@@ -1,0 +1,1339 @@
+,Species,Country.of.Origin,Variety,Processing.Method,Aroma,Flavor,Aftertaste,Acidity,Body,Balance,Uniformity,Clean.Cup,Sweetness,Moisture,Total.Cup.Points,Cluster,FlavorCluster,Country_Group,Processing_Group,Variety_Group
+0,Arabica,Ethiopia,,Washed / Wet,8.67,8.83,8.67,8.75,8.5,8.42,10.0,10.0,10.0,0.12,90.58,1,酸味系,Ethiopia,ウォッシュド,その他
+1,Arabica,Ethiopia,Other,Washed / Wet,8.75,8.67,8.5,8.58,8.42,8.42,10.0,10.0,10.0,0.12,89.92,0,香り系,Ethiopia,ウォッシュド,Other
+2,Arabica,Guatemala,Bourbon,,8.42,8.5,8.42,8.42,8.33,8.42,10.0,10.0,10.0,0.0,89.75,0,香り系,Guatemala,その他,Bourbon
+3,Arabica,Ethiopia,,Natural / Dry,8.17,8.58,8.42,8.42,8.5,8.25,10.0,10.0,10.0,0.11,89.0,2,コク・バランス系,Ethiopia,ナチュラル,その他
+4,Arabica,Ethiopia,Other,Washed / Wet,8.25,8.5,8.25,8.5,8.42,8.33,10.0,10.0,10.0,0.12,88.83,1,酸味系,Ethiopia,ウォッシュド,Other
+5,Arabica,Brazil,,Natural / Dry,8.58,8.42,8.42,8.5,8.25,8.33,10.0,10.0,10.0,0.11,88.83,1,酸味系,Brazil,ナチュラル,その他
+6,Arabica,Peru,Other,Washed / Wet,8.42,8.5,8.33,8.5,8.25,8.25,10.0,10.0,10.0,0.11,88.75,1,酸味系,その他,ウォッシュド,Other
+7,Arabica,Ethiopia,,,8.25,8.33,8.5,8.42,8.33,8.5,10.0,10.0,9.33,0.03,88.67,2,コク・バランス系,Ethiopia,その他,その他
+8,Arabica,Ethiopia,,,8.67,8.67,8.58,8.42,8.33,8.42,9.33,10.0,9.33,0.03,88.42,0,香り系,Ethiopia,その他,その他
+9,Arabica,Ethiopia,Other,Natural / Dry,8.08,8.58,8.5,8.5,7.67,8.42,10.0,10.0,10.0,0.1,88.25,1,酸味系,Ethiopia,ナチュラル,Other
+10,Arabica,Ethiopia,,Natural / Dry,8.17,8.67,8.25,8.5,7.75,8.17,10.0,10.0,10.0,0.1,88.08,1,酸味系,Ethiopia,ナチュラル,その他
+11,Arabica,United States,Other,Washed / Wet,8.25,8.42,8.17,8.33,8.08,8.17,10.0,10.0,10.0,0.0,87.92,1,酸味系,その他,ウォッシュド,Other
+12,Arabica,United States,Other,Washed / Wet,8.08,8.67,8.33,8.42,8.0,8.08,10.0,10.0,10.0,0.0,87.92,1,酸味系,その他,ウォッシュド,Other
+13,Arabica,United States (Hawaii),,,8.33,8.42,8.08,8.25,8.25,8.0,10.0,10.0,10.0,0.0,87.92,1,酸味系,United States (Hawaii),その他,その他
+14,Arabica,Ethiopia,,,8.25,8.33,8.5,8.25,8.58,8.75,9.33,10.0,9.33,0.05,87.83,2,コク・バランス系,Ethiopia,その他,その他
+15,Arabica,United States,Other,Washed / Wet,8.0,8.5,8.58,8.17,8.17,8.0,10.0,10.0,10.0,0.0,87.58,2,コク・バランス系,その他,ウォッシュド,Other
+16,Arabica,Indonesia,,,8.33,8.25,7.83,7.75,8.5,8.42,10.0,10.0,10.0,0.03,87.42,3,丸み系,その他,その他,その他
+17,Arabica,Ethiopia,,,8.17,8.33,8.25,8.33,8.42,8.33,9.33,10.0,9.33,0.05,87.33,2,コク・バランス系,Ethiopia,その他,その他
+18,Arabica,China,Catimor,Washed / Wet,8.42,8.25,8.08,8.17,7.92,8.0,10.0,10.0,10.0,0.1,87.25,0,香り系,その他,ウォッシュド,その他
+19,Arabica,Ethiopia,Ethiopian Yirgacheffe,Natural / Dry,8.17,8.17,8.0,8.17,8.08,8.33,10.0,10.0,10.0,0.0,87.25,1,酸味系,Ethiopia,ナチュラル,その他
+20,Arabica,United States,Other,Washed / Wet,8.0,8.25,8.08,8.5,8.25,8.0,10.0,10.0,10.0,0.0,87.25,1,酸味系,その他,ウォッシュド,Other
+21,Arabica,Costa Rica,Caturra,Washed / Wet,8.08,8.25,8.0,8.17,8.0,8.33,10.0,10.0,10.0,0.11,87.17,2,コク・バランス系,Costa Rica,ウォッシュド,Caturra
+22,Arabica,Mexico,Other,Washed / Wet,8.17,8.25,8.17,8.0,7.83,8.17,10.0,10.0,10.0,0.13,87.17,0,香り系,Mexico,ウォッシュド,Other
+23,Arabica,United States,Other,Washed / Wet,8.25,8.33,8.17,8.17,7.83,8.17,10.0,10.0,10.0,0.0,87.08,0,香り系,その他,ウォッシュド,Other
+24,Arabica,Ethiopia,,Natural / Dry,8.42,8.17,7.92,8.17,8.33,8.0,10.0,10.0,10.0,0.11,87.08,1,酸味系,Ethiopia,ナチュラル,その他
+25,Arabica,Brazil,Bourbon,Natural / Dry,8.5,8.5,8.0,8.0,8.0,8.0,10.0,10.0,10.0,0.12,86.92,0,香り系,Brazil,ナチュラル,Bourbon
+26,Arabica,Ethiopia,,,7.83,8.25,8.08,8.17,8.17,8.17,10.0,10.0,10.0,0.05,86.92,2,コク・バランス系,Ethiopia,その他,その他
+27,Arabica,Uganda,SL14,Washed / Wet,8.42,8.17,8.17,8.17,7.83,7.92,10.0,10.0,10.0,0.12,86.83,0,香り系,Uganda,ウォッシュド,その他
+28,Arabica,Honduras,Caturra,,8.17,8.08,8.08,8.0,8.08,8.0,10.0,10.0,10.0,0.1,86.67,0,香り系,Honduras,その他,Caturra
+29,Arabica,Taiwan,Sumatra,Pulped natural / honey,8.0,8.0,8.0,8.25,8.0,8.17,10.0,10.0,10.0,0.0,86.58,1,酸味系,Taiwan,ハニー,その他
+30,Arabica,Nicaragua,,,7.92,8.25,8.0,8.33,8.0,8.08,10.0,10.0,10.0,0.08,86.58,1,酸味系,その他,その他,その他
+31,Arabica,"Tanzania, United Republic Of",,Natural / Dry,8.42,8.17,8.17,8.0,7.58,8.0,10.0,10.0,10.0,0.11,86.5,0,香り系,"Tanzania, United Republic Of",ナチュラル,その他
+32,Arabica,Brazil,Bourbon,Natural / Dry,8.5,8.17,8.0,7.75,8.0,8.0,10.0,10.0,10.0,0.12,86.42,0,香り系,Brazil,ナチュラル,Bourbon
+33,Arabica,Costa Rica,Caturra,Washed / Wet,8.17,7.83,8.0,8.08,7.83,8.0,10.0,10.0,10.0,0.0,86.33,0,香り系,Costa Rica,ウォッシュド,Caturra
+34,Arabica,Ethiopia,,Natural / Dry,8.0,8.08,7.92,8.0,8.08,8.08,10.0,10.0,10.0,0.1,86.25,1,酸味系,Ethiopia,ナチュラル,その他
+35,Arabica,Kenya,SL34,Washed / Wet,8.08,8.0,8.0,8.25,7.92,7.92,10.0,10.0,10.0,0.12,86.25,1,酸味系,その他,ウォッシュド,その他
+36,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,8.08,8.17,8.0,7.92,7.92,7.83,10.0,10.0,10.0,0.0,86.25,0,香り系,United States (Hawaii),ナチュラル,Hawaiian Kona
+37,Arabica,United States (Hawaii),,,8.25,8.42,8.08,7.75,7.67,7.83,10.0,10.0,10.0,0.0,86.25,0,香り系,United States (Hawaii),その他,その他
+38,Arabica,Ethiopia,,,7.92,7.75,8.08,8.08,8.08,8.17,10.0,10.0,10.0,0.1,86.25,1,酸味系,Ethiopia,その他,その他
+39,Arabica,United States,Other,Washed / Wet,7.67,8.17,8.0,8.0,8.17,8.08,10.0,10.0,10.0,0.0,86.17,2,コク・バランス系,その他,ウォッシュド,Other
+40,Arabica,Thailand,Caturra,Washed / Wet,7.83,8.33,7.83,8.25,7.58,7.92,10.0,10.0,10.0,0.1,86.17,1,酸味系,Thailand,ウォッシュド,Caturra
+41,Arabica,Brazil,Yellow Bourbon,,8.17,7.92,7.92,7.75,8.33,8.0,10.0,10.0,10.0,0.08,86.17,3,丸み系,Brazil,その他,Yellow Bourbon
+42,Arabica,Brazil,Yellow Bourbon,,8.42,7.92,8.0,7.75,7.92,8.0,10.0,10.0,10.0,0.01,86.17,0,香り系,Brazil,その他,Yellow Bourbon
+43,Arabica,Taiwan,Bourbon,Semi-washed / Semi-pulped,8.08,8.17,7.75,8.08,7.75,7.83,10.0,10.0,10.0,0.12,86.08,1,酸味系,Taiwan,セミウォッシュド,Bourbon
+44,Arabica,Kenya,SL28,Natural / Dry,8.08,8.08,8.0,8.0,7.83,8.08,10.0,10.0,10.0,0.11,86.08,0,香り系,その他,ナチュラル,その他
+45,Arabica,Brazil,Bourbon,Semi-washed / Semi-pulped,8.33,8.0,8.0,8.0,7.75,8.0,10.0,10.0,10.0,0.11,86.08,0,香り系,Brazil,セミウォッシュド,Bourbon
+46,Arabica,Uganda,,Semi-washed / Semi-pulped,8.08,8.08,7.83,7.92,8.08,7.92,10.0,10.0,10.0,0.0,86.0,1,酸味系,Uganda,セミウォッシュド,その他
+47,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.92,7.83,8.08,8.08,8.17,10.0,10.0,10.0,0.12,86.0,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+48,Arabica,Kenya,SL28,Washed / Wet,7.92,8.17,7.83,8.5,7.5,7.92,10.0,10.0,10.0,0.11,86.0,1,酸味系,その他,ウォッシュド,その他
+49,Arabica,Uganda,Other,Washed / Wet,8.25,8.0,7.83,8.08,8.0,7.92,10.0,10.0,10.0,0.1,86.0,1,酸味系,Uganda,ウォッシュド,Other
+50,Arabica,Ethiopia,,,7.75,8.08,8.0,8.25,8.0,8.0,10.0,10.0,10.0,0.01,86.0,2,コク・バランス系,Ethiopia,その他,その他
+51,Arabica,United States (Hawaii),,,8.33,8.17,7.75,8.0,7.75,7.83,10.0,10.0,10.0,0.0,86.0,0,香り系,United States (Hawaii),その他,その他
+52,Arabica,Guatemala,Bourbon,Washed / Wet,7.92,8.08,7.92,8.08,8.08,7.83,10.0,10.0,10.0,0.1,85.92,2,コク・バランス系,Guatemala,ウォッシュド,Bourbon
+53,Arabica,Uganda,SL14,Natural / Dry,8.17,8.17,7.92,8.08,7.83,7.75,10.0,10.0,10.0,0.12,85.92,0,香り系,Uganda,ナチュラル,その他
+54,Arabica,Colombia,Caturra,Washed / Wet,8.0,8.0,8.0,8.17,7.83,8.0,10.0,10.0,10.0,0.0,85.92,1,酸味系,Colombia,ウォッシュド,Caturra
+55,Arabica,Panama,Gesha,Washed / Wet,8.0,8.0,7.92,8.08,7.83,8.0,10.0,10.0,10.0,0.08,85.83,1,酸味系,その他,ウォッシュド,その他
+56,Arabica,Ethiopia,,Washed / Wet,7.83,8.08,7.92,8.08,8.0,7.92,10.0,10.0,10.0,0.1,85.83,2,コク・バランス系,Ethiopia,ウォッシュド,その他
+57,Arabica,Guatemala,Bourbon,Washed / Wet,7.83,8.0,8.0,8.17,7.83,8.0,10.0,10.0,10.0,0.12,85.83,1,酸味系,Guatemala,ウォッシュド,Bourbon
+58,Arabica,Guatemala,Catuai,Washed / Wet,8.0,8.0,7.83,8.33,7.83,7.83,10.0,10.0,10.0,0.1,85.83,1,酸味系,Guatemala,ウォッシュド,Catuai
+59,Arabica,Ethiopia,Caturra,Natural / Dry,7.83,8.0,7.83,8.17,7.92,8.0,10.0,10.0,10.0,0.09,85.75,1,酸味系,Ethiopia,ナチュラル,Caturra
+60,Arabica,Peru,,Washed / Wet,8.0,8.0,8.0,8.08,7.92,7.75,10.0,10.0,10.0,0.1,85.75,0,香り系,その他,ウォッシュド,その他
+61,Arabica,Papua New Guinea,,Washed / Wet,8.33,8.42,7.83,8.33,8.0,8.25,9.33,9.33,10.0,0.12,85.75,1,酸味系,その他,ウォッシュド,その他
+62,Arabica,El Salvador,Bourbon,Washed / Wet,7.92,8.17,8.0,7.92,7.75,7.83,10.0,10.0,10.0,0.1,85.58,2,コク・バランス系,その他,ウォッシュド,Bourbon
+63,Arabica,El Salvador,Bourbon,Semi-washed / Semi-pulped,7.83,8.0,8.0,7.75,7.92,8.17,10.0,10.0,10.0,0.11,85.58,2,コク・バランス系,その他,セミウォッシュド,Bourbon
+64,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.83,8.0,7.92,7.75,8.08,8.0,10.0,10.0,10.0,0.0,85.58,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+65,Arabica,Panama,Caturra,Natural / Dry,8.0,7.75,7.83,7.83,7.67,8.58,10.0,10.0,10.0,0.09,85.5,3,丸み系,その他,ナチュラル,Caturra
+66,Arabica,Kenya,SL28,Natural / Dry,7.92,7.92,7.83,8.08,7.83,7.92,10.0,10.0,10.0,0.1,85.5,1,酸味系,その他,ナチュラル,その他
+67,Arabica,Ethiopia,Other,Natural / Dry,7.83,8.0,7.83,7.92,7.83,8.08,10.0,10.0,10.0,0.12,85.5,2,コク・バランス系,Ethiopia,ナチュラル,Other
+68,Arabica,Uganda,SL14,Washed / Wet,8.33,7.92,7.67,7.92,7.67,7.92,10.0,10.0,10.0,0.12,85.5,1,酸味系,Uganda,ウォッシュド,その他
+69,Arabica,Guatemala,Bourbon,Washed / Wet,8.0,7.83,7.67,8.33,7.83,8.0,10.0,10.0,10.0,0.11,85.5,1,酸味系,Guatemala,ウォッシュド,Bourbon
+70,Arabica,Ethiopia,,Washed / Wet,7.75,7.83,7.83,8.17,7.92,7.83,10.0,10.0,10.0,0.1,85.42,1,酸味系,Ethiopia,ウォッシュド,その他
+71,Arabica,Uganda,SL14,Washed / Wet,8.08,8.0,7.83,7.67,8.0,7.83,10.0,10.0,10.0,0.12,85.42,0,香り系,Uganda,ウォッシュド,その他
+72,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.92,7.92,7.75,7.92,7.75,7.92,10.0,10.0,10.0,0.0,85.42,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+73,Arabica,Brazil,Bourbon,Semi-washed / Semi-pulped,8.0,8.0,8.0,7.67,7.75,8.0,10.0,10.0,10.0,0.11,85.42,0,香り系,Brazil,セミウォッシュド,Bourbon
+74,Arabica,El Salvador,,,8.08,7.83,7.83,8.08,7.83,7.83,10.0,10.0,10.0,0.01,85.42,1,酸味系,その他,その他,その他
+75,Arabica,China,Catimor,Natural / Dry,8.0,8.0,8.0,7.83,7.83,7.75,10.0,10.0,10.0,0.1,85.33,0,香り系,その他,ナチュラル,その他
+76,Arabica,Guatemala,Pacamara,Natural / Dry,7.83,7.75,7.83,7.67,7.83,8.58,10.0,10.0,10.0,0.11,85.33,3,丸み系,Guatemala,ナチュラル,その他
+77,Arabica,Costa Rica,Caturra,Washed / Wet,7.92,8.08,8.0,7.92,8.0,8.08,10.0,10.0,9.33,0.0,85.33,2,コク・バランス系,Costa Rica,ウォッシュド,Caturra
+78,Arabica,Costa Rica,Caturra,Washed / Wet,8.0,7.58,7.58,7.67,8.08,8.5,10.0,10.0,10.0,0.1,85.33,3,丸み系,Costa Rica,ウォッシュド,Caturra
+79,Arabica,Kenya,SL34,Washed / Wet,7.83,8.08,7.75,8.08,7.92,7.75,10.0,10.0,10.0,0.0,85.33,1,酸味系,その他,ウォッシュド,その他
+80,Arabica,Kenya,SL34,Washed / Wet,8.0,7.92,7.92,8.08,7.83,7.75,10.0,10.0,10.0,0.0,85.33,1,酸味系,その他,ウォッシュド,その他
+81,Arabica,Ethiopia,,,7.83,7.83,7.92,8.08,7.75,7.83,10.0,10.0,10.0,0.05,85.33,1,酸味系,Ethiopia,その他,その他
+82,Arabica,Ethiopia,Typica,,7.92,7.83,7.75,8.33,7.75,7.75,10.0,10.0,10.0,0.1,85.33,1,酸味系,Ethiopia,その他,Typica
+83,Arabica,Guatemala,Bourbon,,8.0,7.92,7.75,8.0,7.92,7.83,10.0,10.0,10.0,0.1,85.25,1,酸味系,Guatemala,その他,Bourbon
+84,Arabica,Colombia,Caturra,Washed / Wet,8.17,7.92,7.83,8.0,7.58,7.83,10.0,10.0,10.0,0.11,85.25,0,香り系,Colombia,ウォッシュド,Caturra
+85,Arabica,Colombia,Caturra,Natural / Dry,7.58,8.08,7.92,7.83,8.0,7.92,10.0,10.0,10.0,0.12,85.25,2,コク・バランス系,Colombia,ナチュラル,Caturra
+86,Arabica,Indonesia,Sumatra Lintong,Semi-washed / Semi-pulped,7.75,7.83,7.67,8.0,8.08,7.83,10.0,10.0,10.0,0.11,85.17,1,酸味系,その他,セミウォッシュド,その他
+87,Arabica,Guatemala,Caturra,Washed / Wet,8.25,8.0,7.67,7.92,7.75,7.67,10.0,10.0,10.0,0.0,85.17,0,香り系,Guatemala,ウォッシュド,Caturra
+88,Arabica,Ethiopia,Other,Natural / Dry,7.75,8.0,7.58,8.0,8.0,7.92,10.0,10.0,10.0,0.11,85.08,1,酸味系,Ethiopia,ナチュラル,Other
+89,Arabica,Colombia,Caturra,Natural / Dry,8.17,7.83,7.58,8.08,8.0,7.75,10.0,10.0,10.0,0.0,85.08,1,酸味系,Colombia,ナチュラル,Caturra
+90,Arabica,Ethiopia,,Natural / Dry,8.42,8.0,7.42,8.0,7.92,7.92,9.33,10.0,10.0,0.1,85.08,1,酸味系,Ethiopia,ナチュラル,その他
+91,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.58,7.83,7.83,7.92,7.83,8.17,10.0,10.0,10.0,0.11,85.08,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+92,Arabica,Colombia,Caturra,Natural / Dry,7.83,8.0,7.75,7.75,7.83,7.83,10.0,10.0,10.0,0.11,85.08,1,酸味系,Colombia,ナチュラル,Caturra
+93,Arabica,United States (Hawaii),,,8.08,8.17,7.92,8.0,8.08,8.0,9.33,9.33,10.0,0.01,85.08,1,酸味系,United States (Hawaii),その他,その他
+94,Arabica,Ethiopia,,,7.67,8.0,7.83,8.0,7.92,7.83,10.0,10.0,10.0,0.0,85.08,2,コク・バランス系,Ethiopia,その他,その他
+95,Arabica,United States (Hawaii),,,7.5,7.92,8.25,7.83,7.92,7.75,10.0,10.0,10.0,0.0,85.08,2,コク・バランス系,United States (Hawaii),その他,その他
+96,Arabica,Uganda,SL14,Washed / Wet,8.17,7.92,7.75,7.75,7.67,7.75,10.0,10.0,10.0,0.11,85.0,0,香り系,Uganda,ウォッシュド,その他
+97,Arabica,Colombia,Caturra,Washed / Wet,8.0,7.92,7.75,7.92,7.75,7.83,10.0,10.0,10.0,0.0,85.0,1,酸味系,Colombia,ウォッシュド,Caturra
+98,Arabica,Costa Rica,Catuai,Washed / Wet,7.83,8.0,7.58,7.92,7.92,7.83,10.0,10.0,10.0,0.12,85.0,1,酸味系,Costa Rica,ウォッシュド,Catuai
+99,Arabica,Mexico,Typica,Washed / Wet,7.83,8.0,7.83,7.75,7.67,7.83,10.0,10.0,10.0,0.09,85.0,0,香り系,Mexico,ウォッシュド,Typica
+100,Arabica,Kenya,,Washed / Wet,8.17,7.83,7.92,7.75,7.67,7.83,10.0,10.0,10.0,0.11,85.0,0,香り系,その他,ウォッシュド,その他
+101,Arabica,Kenya,SL34,Washed / Wet,7.75,7.83,7.75,8.08,8.0,7.75,10.0,10.0,10.0,0.0,85.0,1,酸味系,その他,ウォッシュド,その他
+102,Arabica,Brazil,Mundo Novo,Natural / Dry,8.0,8.0,7.83,7.83,7.67,7.67,10.0,10.0,10.0,0.12,85.0,0,香り系,Brazil,ナチュラル,Mundo Novo
+103,Arabica,Mexico,Pacamara,,7.92,8.17,7.75,8.08,7.42,7.83,10.0,10.0,10.0,0.0,85.0,1,酸味系,Mexico,その他,その他
+104,Arabica,United States (Hawaii),,,7.75,7.92,7.75,7.75,8.0,8.0,10.0,10.0,10.0,0.0,85.0,2,コク・バランス系,United States (Hawaii),その他,その他
+105,Arabica,Guatemala,,,7.83,8.08,7.67,8.0,7.75,7.67,10.0,10.0,10.0,0.04,85.0,1,酸味系,Guatemala,その他,その他
+106,Arabica,Colombia,Caturra,Washed / Wet,7.92,7.92,7.67,7.83,7.92,7.83,10.0,10.0,10.0,0.0,84.92,1,酸味系,Colombia,ウォッシュド,Caturra
+107,Arabica,Colombia,Caturra,Washed / Wet,7.92,7.83,7.75,7.83,7.75,8.0,10.0,10.0,10.0,0.12,84.92,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+108,Arabica,Taiwan,Typica,Semi-washed / Semi-pulped,7.67,7.83,8.0,7.58,8.0,7.92,10.0,10.0,10.0,0.11,84.92,2,コク・バランス系,Taiwan,セミウォッシュド,Typica
+109,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,8.0,7.83,7.83,7.92,7.75,7.75,10.0,10.0,10.0,0.12,84.92,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+110,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.92,7.83,7.75,7.75,8.0,10.0,10.0,10.0,0.11,84.92,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+111,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.75,8.0,7.75,7.83,7.5,7.92,10.0,10.0,10.0,0.11,84.92,0,香り系,Mexico,セミウォッシュド,Typica
+112,Arabica,Brazil,Bourbon,Natural / Dry,8.0,7.92,7.75,7.75,8.0,7.75,10.0,10.0,10.0,0.11,84.92,1,酸味系,Brazil,ナチュラル,Bourbon
+113,Arabica,Brazil,Catuai,Natural / Dry,8.0,8.0,7.75,8.0,7.5,7.75,10.0,10.0,10.0,0.12,84.92,0,香り系,Brazil,ナチュラル,Catuai
+114,Arabica,Kenya,,,8.0,7.67,7.83,8.17,7.92,7.75,10.0,10.0,10.0,0.06,84.92,1,酸味系,その他,その他,その他
+115,Arabica,Taiwan,Typica,Natural / Dry,7.92,7.58,7.83,7.83,7.83,7.83,10.0,10.0,10.0,0.0,84.83,0,香り系,Taiwan,ナチュラル,Typica
+116,Arabica,Uganda,SL14,Natural / Dry,7.75,7.92,7.67,7.67,8.25,7.75,10.0,10.0,10.0,0.12,84.83,1,酸味系,Uganda,ナチュラル,その他
+117,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.67,7.75,7.75,7.75,7.83,8.0,10.0,10.0,10.0,0.0,84.83,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+118,Arabica,Ethiopia,,,7.75,7.92,7.83,7.92,7.75,7.67,10.0,10.0,10.0,0.1,84.83,1,酸味系,Ethiopia,その他,その他
+119,Arabica,Ethiopia,,,7.42,7.92,7.92,8.0,7.83,7.83,10.0,10.0,10.0,0.1,84.83,2,コク・バランス系,Ethiopia,その他,その他
+120,Arabica,Thailand,Caturra,Pulped natural / honey,7.75,7.75,7.75,7.75,8.0,7.75,10.0,10.0,10.0,0.12,84.75,2,コク・バランス系,Thailand,ハニー,Caturra
+121,Arabica,Kenya,SL34,Washed / Wet,7.92,7.83,7.58,7.92,7.75,7.83,10.0,10.0,10.0,0.13,84.75,1,酸味系,その他,ウォッシュド,その他
+122,Arabica,Honduras,Catuai,Washed / Wet,7.83,7.75,8.0,7.67,7.67,7.67,10.0,10.0,10.0,0.11,84.75,2,コク・バランス系,Honduras,ウォッシュド,Catuai
+123,Arabica,El Salvador,,,7.75,8.0,8.0,8.33,7.67,7.92,10.0,10.0,9.33,0.15,84.75,1,酸味系,その他,その他,その他
+124,Arabica,Nicaragua,,,7.83,7.58,7.58,7.83,7.75,7.67,10.0,10.0,10.0,0.18,84.75,1,酸味系,その他,その他,その他
+125,Arabica,El Salvador,Bourbon,Washed / Wet,7.83,7.83,7.5,8.0,7.83,7.67,10.0,10.0,10.0,0.0,84.67,1,酸味系,その他,ウォッシュド,Bourbon
+126,Arabica,Indonesia,Java,Washed / Wet,7.92,7.83,7.75,7.75,7.75,7.75,10.0,10.0,10.0,0.12,84.67,1,酸味系,その他,ウォッシュド,その他
+127,Arabica,Japan,Mundo Novo,Pulped natural / honey,7.75,7.75,7.75,7.42,8.08,7.83,10.0,10.0,10.0,0.12,84.67,2,コク・バランス系,その他,ハニー,Mundo Novo
+128,Arabica,Costa Rica,Catuai,Washed / Wet,8.08,7.75,7.67,7.83,7.5,7.92,10.0,10.0,10.0,0.1,84.67,1,酸味系,Costa Rica,ウォッシュド,Catuai
+129,Arabica,Guatemala,Bourbon,Washed / Wet,7.75,7.83,7.58,8.0,7.92,7.75,10.0,10.0,10.0,0.1,84.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+130,Arabica,Costa Rica,Caturra,Washed / Wet,8.17,8.0,7.83,7.17,7.83,7.75,10.0,10.0,10.0,0.12,84.67,3,丸み系,Costa Rica,ウォッシュド,Caturra
+131,Arabica,Ethiopia,Ethiopian Yirgacheffe,Washed / Wet,8.08,7.83,7.75,7.83,7.58,7.67,10.0,10.0,10.0,0.1,84.67,0,香り系,Ethiopia,ウォッシュド,その他
+132,Arabica,Costa Rica,Other,Other,7.67,7.58,7.75,7.75,7.67,8.58,10.0,10.0,10.0,0.08,84.67,3,丸み系,Costa Rica,その他,Other
+133,Arabica,Costa Rica,Catuai,Washed / Wet,8.0,7.58,7.83,7.75,7.75,7.75,10.0,10.0,10.0,0.11,84.67,0,香り系,Costa Rica,ウォッシュド,Catuai
+134,Arabica,Costa Rica,,Washed / Wet,8.08,7.83,7.75,7.83,7.92,8.0,10.0,10.0,9.33,0.0,84.67,3,丸み系,Costa Rica,ウォッシュド,その他
+135,Arabica,Taiwan,Typica,Washed / Wet,8.0,7.92,7.75,7.75,7.75,7.75,10.0,10.0,10.0,0.11,84.67,1,酸味系,Taiwan,ウォッシュド,Typica
+136,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.83,7.75,7.83,7.75,7.83,10.0,10.0,10.0,0.0,84.67,1,酸味系,Colombia,ウォッシュド,Caturra
+137,Arabica,Kenya,SL28,Washed / Wet,7.75,7.92,7.83,8.0,7.58,7.75,10.0,10.0,10.0,0.11,84.67,1,酸味系,その他,ウォッシュド,その他
+138,Arabica,Guatemala,Bourbon,Washed / Wet,8.0,7.83,7.67,7.83,7.67,8.0,10.0,10.0,10.0,0.11,84.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+139,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.83,7.67,8.0,7.67,7.83,10.0,10.0,10.0,0.12,84.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+140,Arabica,Mexico,Typica,Washed / Wet,7.83,7.58,7.67,7.92,7.92,7.83,10.0,10.0,10.0,0.13,84.67,1,酸味系,Mexico,ウォッシュド,Typica
+141,Arabica,Uganda,Other,Washed / Wet,7.92,7.83,7.75,7.92,7.67,7.75,10.0,10.0,10.0,0.11,84.67,1,酸味系,Uganda,ウォッシュド,Other
+142,Arabica,Peru,,,7.67,7.83,7.75,7.75,7.92,7.83,10.0,10.0,10.0,0.0,84.67,2,コク・バランス系,その他,その他,その他
+143,Arabica,Ethiopia,,,7.42,7.75,7.75,8.0,8.0,7.92,10.0,10.0,10.0,0.2,84.67,2,コク・バランス系,Ethiopia,その他,その他
+144,Arabica,Kenya,SL34,Washed / Wet,7.92,7.75,7.83,7.75,7.58,7.92,10.0,10.0,10.0,0.11,84.58,1,酸味系,その他,ウォッシュド,その他
+145,Arabica,Colombia,Other,Washed / Wet,7.83,7.67,7.58,7.92,7.67,7.83,10.0,10.0,10.0,0.0,84.58,1,酸味系,Colombia,ウォッシュド,Other
+146,Arabica,Colombia,Caturra,Washed / Wet,7.92,7.83,7.58,8.0,7.83,7.67,10.0,10.0,10.0,0.0,84.58,1,酸味系,Colombia,ウォッシュド,Caturra
+147,Arabica,Kenya,Peaberry,Washed / Wet,7.83,7.83,7.83,7.75,7.58,7.83,10.0,10.0,10.0,0.1,84.58,0,香り系,その他,ウォッシュド,その他
+148,Arabica,Guatemala,Pacas,Washed / Wet,7.75,7.83,7.67,7.92,7.75,7.83,10.0,10.0,10.0,0.11,84.58,1,酸味系,Guatemala,ウォッシュド,その他
+149,Arabica,Guatemala,Bourbon,Washed / Wet,8.0,7.92,7.67,7.58,7.58,7.67,10.0,10.0,10.0,0.09,84.58,0,香り系,Guatemala,ウォッシュド,Bourbon
+150,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.67,7.58,7.75,7.58,8.5,10.0,10.0,10.0,0.0,84.58,3,丸み系,Colombia,ウォッシュド,Caturra
+151,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.75,7.83,7.75,7.58,8.0,10.0,10.0,10.0,0.0,84.58,1,酸味系,Colombia,ウォッシュド,Caturra
+152,Arabica,Kenya,SL28,Washed / Wet,7.75,7.75,7.75,8.08,7.75,7.75,10.0,10.0,10.0,0.0,84.58,1,酸味系,その他,ウォッシュド,その他
+153,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.83,7.83,8.0,7.58,7.92,10.0,10.0,10.0,0.0,84.58,1,酸味系,Colombia,ウォッシュド,Caturra
+154,Arabica,Costa Rica,Bourbon,Semi-washed / Semi-pulped,7.75,7.83,7.75,8.0,7.83,7.67,10.0,10.0,10.0,0.12,84.58,1,酸味系,Costa Rica,セミウォッシュド,Bourbon
+155,Arabica,Colombia,Caturra,Washed / Wet,7.42,7.67,7.75,7.75,8.08,7.83,10.0,10.0,10.0,0.11,84.58,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+156,Arabica,Brazil,Bourbon,Semi-washed / Semi-pulped,8.0,8.0,7.75,7.75,7.58,7.75,10.0,10.0,10.0,0.12,84.58,0,香り系,Brazil,セミウォッシュド,Bourbon
+157,Arabica,Brazil,Catuai,Semi-washed / Semi-pulped,8.5,8.0,7.5,7.75,7.5,7.83,10.0,10.0,10.0,0.11,84.58,0,香り系,Brazil,セミウォッシュド,Catuai
+158,Arabica,Costa Rica,Caturra,Washed / Wet,7.92,7.67,7.92,7.75,7.67,7.58,10.0,10.0,10.0,0.1,84.5,2,コク・バランス系,Costa Rica,ウォッシュド,Caturra
+159,Arabica,Uganda,SL14,Washed / Wet,7.92,7.75,7.67,7.75,7.83,7.75,10.0,10.0,10.0,0.11,84.5,1,酸味系,Uganda,ウォッシュド,その他
+160,Arabica,China,Catimor,Washed / Wet,7.75,7.92,7.67,7.83,7.75,7.67,10.0,10.0,10.0,0.1,84.5,1,酸味系,その他,ウォッシュド,その他
+161,Arabica,Costa Rica,Caturra,Washed / Wet,7.92,7.83,7.83,7.83,7.58,7.58,10.0,10.0,10.0,0.11,84.5,0,香り系,Costa Rica,ウォッシュド,Caturra
+162,Arabica,Colombia,Other,Washed / Wet,8.08,7.67,7.83,7.83,7.67,7.67,10.0,10.0,10.0,0.12,84.5,0,香り系,Colombia,ウォッシュド,Other
+163,Arabica,China,Other,Washed / Wet,7.67,8.0,7.75,7.83,7.75,7.58,10.0,10.0,10.0,0.0,84.5,2,コク・バランス系,その他,ウォッシュド,Other
+164,Arabica,Guatemala,Bourbon,Washed / Wet,8.17,7.83,7.67,7.83,7.67,7.83,10.0,10.0,10.0,0.11,84.5,1,酸味系,Guatemala,ウォッシュド,Bourbon
+165,Arabica,Kenya,SL28,Washed / Wet,7.92,7.83,7.67,8.0,7.67,7.75,10.0,10.0,10.0,0.11,84.5,1,酸味系,その他,ウォッシュド,その他
+166,Arabica,Mexico,Typica,Washed / Wet,8.0,7.92,7.42,8.08,7.5,7.67,10.0,10.0,10.0,0.12,84.5,1,酸味系,Mexico,ウォッシュド,Typica
+167,Arabica,Mexico,Typica,Washed / Wet,7.92,7.83,7.75,7.75,7.75,7.83,10.0,10.0,10.0,0.11,84.5,1,酸味系,Mexico,ウォッシュド,Typica
+168,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,8.0,7.67,8.0,7.5,7.83,10.0,10.0,10.0,0.11,84.5,1,酸味系,Guatemala,ウォッシュド,Bourbon
+169,Arabica,Brazil,,,7.81,7.81,7.88,7.75,7.38,8.25,9.5,10.0,10.0,0.0,84.5,1,酸味系,Brazil,その他,その他
+170,Arabica,Brazil,,,8.17,7.67,7.75,7.75,7.67,7.75,10.0,10.0,10.0,0.0,84.5,0,香り系,Brazil,その他,その他
+171,Arabica,Costa Rica,Caturra,Washed / Wet,7.58,7.83,7.83,8.0,7.67,7.58,10.0,10.0,10.0,0.1,84.42,2,コク・バランス系,Costa Rica,ウォッシュド,Caturra
+172,Arabica,Indonesia,Mandheling,Other,7.67,7.67,7.83,7.58,7.83,7.83,10.0,10.0,10.0,0.0,84.42,2,コク・バランス系,その他,その他,その他
+173,Arabica,Colombia,Caturra,Natural / Dry,7.92,7.83,7.75,7.67,7.92,7.67,10.0,10.0,10.0,0.0,84.42,1,酸味系,Colombia,ナチュラル,Caturra
+174,Arabica,Colombia,Caturra,Washed / Wet,7.92,7.75,7.67,7.92,7.67,7.75,10.0,10.0,10.0,0.0,84.42,1,酸味系,Colombia,ウォッシュド,Caturra
+175,Arabica,Taiwan,Typica,Washed / Wet,7.83,7.83,7.75,8.0,7.5,7.75,10.0,10.0,10.0,0.11,84.42,1,酸味系,Taiwan,ウォッシュド,Typica
+176,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.92,7.92,7.5,7.83,7.5,7.92,10.0,10.0,10.0,0.11,84.42,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+177,Arabica,Mexico,Pacamara,Washed / Wet,7.75,7.92,7.75,7.67,7.83,7.67,10.0,10.0,10.0,0.12,84.42,2,コク・バランス系,Mexico,ウォッシュド,その他
+178,Arabica,Ethiopia,,,7.5,7.75,7.83,7.92,7.92,7.75,10.0,10.0,10.0,0.2,84.42,2,コク・バランス系,Ethiopia,その他,その他
+179,Arabica,Kenya,SL28,Washed / Wet,7.33,7.58,7.83,7.75,7.75,7.92,10.0,10.0,10.0,0.11,84.33,2,コク・バランス系,その他,ウォッシュド,その他
+180,Arabica,Honduras,Caturra,,7.92,8.0,7.75,7.67,7.67,7.75,10.0,10.0,10.0,0.1,84.33,0,香り系,Honduras,その他,Caturra
+181,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.75,7.5,7.83,7.67,8.5,10.0,10.0,10.0,0.0,84.33,3,丸み系,Colombia,ウォッシュド,Caturra
+182,Arabica,Honduras,Catuai,Washed / Wet,7.58,7.92,7.58,7.75,7.92,7.75,10.0,10.0,10.0,0.11,84.33,1,酸味系,Honduras,ウォッシュド,Catuai
+183,Arabica,Colombia,,,7.67,7.67,7.75,7.83,7.75,7.83,10.0,10.0,10.0,0.0,84.33,2,コク・バランス系,Colombia,その他,その他
+184,Arabica,Colombia,Caturra,Natural / Dry,7.75,7.67,8.0,7.67,8.08,7.83,10.0,10.0,10.0,0.11,84.33,2,コク・バランス系,Colombia,ナチュラル,Caturra
+185,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.58,7.33,7.83,7.58,8.08,10.0,10.0,10.0,0.0,84.33,1,酸味系,Colombia,ウォッシュド,Caturra
+186,Arabica,Mexico,Typica,Washed / Wet,8.0,7.75,7.75,7.83,7.5,7.67,10.0,10.0,10.0,0.12,84.33,0,香り系,Mexico,ウォッシュド,Typica
+187,Arabica,Brazil,Yellow Bourbon,,8.17,8.0,7.5,7.75,7.5,7.67,10.0,10.0,10.0,0.0,84.33,0,香り系,Brazil,その他,Yellow Bourbon
+188,Arabica,Brazil,,,8.0,8.0,7.5,7.5,7.67,7.75,10.0,10.0,10.0,0.02,84.33,3,丸み系,Brazil,その他,その他
+189,Arabica,Ethiopia,,,7.75,7.75,7.92,7.75,7.5,7.92,10.0,10.0,10.0,0.0,84.33,1,酸味系,Ethiopia,その他,その他
+190,Arabica,Guatemala,,,7.5,7.67,7.75,7.67,7.92,7.92,10.0,10.0,10.0,0.04,84.33,2,コク・バランス系,Guatemala,その他,その他
+191,Arabica,Taiwan,Typica,Washed / Wet,7.92,7.75,7.75,7.67,7.67,7.83,10.0,10.0,10.0,0.12,84.25,0,香り系,Taiwan,ウォッシュド,Typica
+192,Arabica,Thailand,Catimor,Natural / Dry,7.83,7.75,7.75,7.42,7.83,7.67,10.0,10.0,10.0,0.12,84.25,0,香り系,Thailand,ナチュラル,その他
+193,Arabica,Colombia,Caturra,Natural / Dry,7.83,7.58,7.75,7.58,7.67,8.0,10.0,10.0,10.0,0.11,84.25,3,丸み系,Colombia,ナチュラル,Caturra
+194,Arabica,Guatemala,Caturra,Washed / Wet,7.75,7.75,7.58,7.92,7.75,7.75,10.0,10.0,10.0,0.11,84.25,1,酸味系,Guatemala,ウォッシュド,Caturra
+195,Arabica,Guatemala,Caturra,Washed / Wet,7.75,7.92,7.5,8.08,7.58,7.67,10.0,10.0,10.0,0.1,84.25,1,酸味系,Guatemala,ウォッシュド,Caturra
+196,Arabica,China,Catimor,Natural / Dry,7.83,7.83,7.58,7.75,7.75,7.75,10.0,10.0,10.0,0.1,84.25,1,酸味系,その他,ナチュラル,その他
+197,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.67,7.75,7.75,7.67,7.92,10.0,10.0,10.0,0.11,84.25,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+198,Arabica,Colombia,Caturra,Washed / Wet,7.83,7.67,7.75,7.58,7.92,7.75,10.0,10.0,10.0,0.12,84.25,3,丸み系,Colombia,ウォッシュド,Caturra
+199,Arabica,Colombia,Other,Washed / Wet,7.83,7.75,7.83,7.58,7.67,7.75,10.0,10.0,10.0,0.12,84.25,0,香り系,Colombia,ウォッシュド,Other
+200,Arabica,Colombia,Caturra,Natural / Dry,7.42,7.67,7.83,7.75,7.92,7.83,10.0,10.0,10.0,0.12,84.25,2,コク・バランス系,Colombia,ナチュラル,Caturra
+201,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.83,7.67,7.75,7.83,7.67,7.67,10.0,10.0,10.0,0.12,84.25,2,コク・バランス系,"Tanzania, United Republic Of",ウォッシュド,Other
+202,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.83,7.75,7.75,7.75,7.67,7.75,10.0,10.0,10.0,0.12,84.25,0,香り系,"Tanzania, United Republic Of",ウォッシュド,Other
+203,Arabica,Guatemala,Bourbon,Other,7.83,7.83,7.5,7.92,7.58,7.75,10.0,10.0,10.0,0.1,84.25,1,酸味系,Guatemala,その他,Bourbon
+204,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.5,7.75,7.83,7.92,7.83,10.0,10.0,10.0,0.11,84.25,1,酸味系,Colombia,ウォッシュド,Caturra
+205,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.33,7.92,7.92,7.92,7.92,8.08,10.0,10.0,9.33,0.11,84.25,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+206,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.83,7.92,7.67,7.83,7.5,7.75,10.0,10.0,10.0,0.12,84.25,0,香り系,Mexico,セミウォッシュド,Typica
+207,Arabica,Mexico,Bourbon,Washed / Wet,7.83,7.83,7.75,7.67,7.83,7.58,10.0,10.0,10.0,0.12,84.25,0,香り系,Mexico,ウォッシュド,Bourbon
+208,Arabica,Mexico,Bourbon,Washed / Wet,7.83,7.92,7.67,7.75,7.5,7.75,10.0,10.0,10.0,0.1,84.25,0,香り系,Mexico,ウォッシュド,Bourbon
+209,Arabica,Uganda,Other,Natural / Dry,8.17,7.75,7.58,7.67,7.83,7.58,10.0,10.0,10.0,0.13,84.25,1,酸味系,Uganda,ナチュラル,Other
+210,Arabica,Guatemala,Bourbon,Washed / Wet,7.75,7.83,7.58,7.83,7.67,7.75,10.0,10.0,10.0,0.13,84.17,1,酸味系,Guatemala,ウォッシュド,Bourbon
+211,Arabica,Colombia,Caturra,Washed / Wet,7.83,7.75,7.58,7.67,7.75,7.83,10.0,10.0,10.0,0.0,84.17,1,酸味系,Colombia,ウォッシュド,Caturra
+212,Arabica,Costa Rica,Caturra,Washed / Wet,7.92,7.75,7.67,7.67,7.5,7.67,10.0,10.0,10.0,0.09,84.17,0,香り系,Costa Rica,ウォッシュド,Caturra
+213,Arabica,Guatemala,Caturra,Washed / Wet,7.75,7.75,7.58,8.0,7.67,7.83,10.0,10.0,10.0,0.11,84.17,1,酸味系,Guatemala,ウォッシュド,Caturra
+214,Arabica,Guatemala,Caturra,Washed / Wet,7.75,7.92,7.58,7.92,7.67,7.67,10.0,10.0,10.0,0.1,84.17,1,酸味系,Guatemala,ウォッシュド,Caturra
+215,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.83,7.58,7.83,7.83,7.67,10.0,10.0,10.0,0.1,84.17,1,酸味系,Guatemala,ウォッシュド,Bourbon
+216,Arabica,Colombia,Caturra,Washed / Wet,8.0,7.5,7.5,7.67,8.0,7.83,10.0,10.0,10.0,0.0,84.17,3,丸み系,Colombia,ウォッシュド,Caturra
+217,Arabica,Nicaragua,Caturra,Natural / Dry,7.67,7.83,7.83,7.5,7.67,7.83,10.0,10.0,10.0,0.12,84.17,2,コク・バランス系,その他,ナチュラル,Caturra
+218,Arabica,Brazil,Catuai,Natural / Dry,7.67,7.75,7.75,7.67,7.83,7.75,10.0,10.0,10.0,0.0,84.17,2,コク・バランス系,Brazil,ナチュラル,Catuai
+219,Arabica,Costa Rica,Caturra,Washed / Wet,7.67,7.75,7.67,7.75,7.5,8.0,10.0,10.0,10.0,0.0,84.17,1,酸味系,Costa Rica,ウォッシュド,Caturra
+220,Arabica,Ethiopia,Gesha,Natural / Dry,7.5,7.92,7.58,7.83,7.75,7.83,10.0,10.0,10.0,0.1,84.17,2,コク・バランス系,Ethiopia,ナチュラル,その他
+221,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.92,7.75,7.75,7.75,7.75,7.58,10.0,10.0,10.0,0.13,84.17,0,香り系,"Tanzania, United Republic Of",ウォッシュド,Other
+222,Arabica,Colombia,Other,Washed / Wet,7.67,7.5,7.67,7.42,7.83,8.58,10.0,10.0,10.0,0.12,84.17,3,丸み系,Colombia,ウォッシュド,Other
+223,Arabica,Guatemala,,Washed / Wet,7.67,7.75,7.67,7.75,7.75,7.75,10.0,10.0,10.0,0.11,84.17,2,コク・バランス系,Guatemala,ウォッシュド,その他
+224,Arabica,Kenya,SL28,Washed / Wet,7.58,7.75,7.75,7.75,7.75,7.83,10.0,10.0,10.0,0.08,84.17,2,コク・バランス系,その他,ウォッシュド,その他
+225,Arabica,Brazil,Mundo Novo,Natural / Dry,7.58,7.83,7.75,7.67,7.67,8.0,10.0,10.0,10.0,0.11,84.17,2,コク・バランス系,Brazil,ナチュラル,Mundo Novo
+226,Arabica,Guatemala,Bourbon,Washed / Wet,7.92,7.75,7.67,7.67,7.83,7.92,10.0,10.0,10.0,0.11,84.17,3,丸み系,Guatemala,ウォッシュド,Bourbon
+227,Arabica,El Salvador,Bourbon,Natural / Dry,8.42,8.08,7.5,7.17,7.58,8.17,9.33,10.0,10.0,0.11,84.17,3,丸み系,その他,ナチュラル,Bourbon
+228,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.75,7.75,7.75,7.83,7.75,10.0,10.0,10.0,0.0,84.17,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+229,Arabica,Guatemala,Catuai,Natural / Dry,7.83,7.5,7.5,8.0,7.83,7.83,10.0,10.0,10.0,0.11,84.17,1,酸味系,Guatemala,ナチュラル,Catuai
+230,Arabica,Uganda,Other,Washed / Wet,7.83,7.75,7.5,7.83,7.83,7.75,10.0,10.0,10.0,0.11,84.17,1,酸味系,Uganda,ウォッシュド,Other
+231,Arabica,Indonesia,Mandheling,Natural / Dry,7.81,7.88,7.56,7.75,7.63,7.75,10.0,10.0,10.0,0.12,84.13,1,酸味系,その他,ナチュラル,その他
+232,Arabica,Colombia,Caturra,Washed / Wet,7.83,7.5,7.42,7.5,7.83,8.5,10.0,10.0,10.0,0.0,84.08,3,丸み系,Colombia,ウォッシュド,Caturra
+233,Arabica,Taiwan,Typica,Washed / Wet,7.58,7.67,7.67,7.67,7.75,7.83,10.0,10.0,10.0,0.1,84.08,2,コク・バランス系,Taiwan,ウォッシュド,Typica
+234,Arabica,Guatemala,Bourbon,Washed / Wet,8.0,7.75,7.5,7.58,7.92,7.67,10.0,10.0,10.0,0.1,84.08,1,酸味系,Guatemala,ウォッシュド,Bourbon
+235,Arabica,Colombia,Caturra,Washed / Wet,7.92,7.75,7.67,7.75,7.67,7.67,10.0,10.0,10.0,0.0,84.08,1,酸味系,Colombia,ウォッシュド,Caturra
+236,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.75,7.67,8.0,7.75,7.67,10.0,10.0,10.0,0.1,84.08,1,酸味系,Guatemala,ウォッシュド,Bourbon
+237,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.83,7.75,7.83,7.83,7.42,8.08,9.33,10.0,10.0,0.11,84.08,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+238,Arabica,Mexico,Typica,Washed / Wet,7.67,7.75,7.67,7.75,7.67,7.75,10.0,10.0,10.0,0.11,84.08,1,酸味系,Mexico,ウォッシュド,Typica
+239,Arabica,Ethiopia,Other,Natural / Dry,7.92,7.92,7.83,8.0,7.92,7.92,10.0,10.0,8.67,0.09,84.08,1,酸味系,Ethiopia,ナチュラル,Other
+240,Arabica,Costa Rica,,Washed / Wet,7.58,7.75,7.67,7.75,7.83,7.75,10.0,10.0,10.0,0.08,84.0,2,コク・バランス系,Costa Rica,ウォッシュド,その他
+241,Arabica,Ethiopia,Gesha,Natural / Dry,7.83,7.75,7.67,7.75,7.33,7.75,10.0,10.0,10.0,0.11,84.0,0,香り系,Ethiopia,ナチュラル,その他
+242,Arabica,Honduras,Caturra,Washed / Wet,7.42,7.83,7.75,7.92,7.75,7.58,10.0,10.0,10.0,0.1,84.0,2,コク・バランス系,Honduras,ウォッシュド,Caturra
+243,Arabica,Guatemala,Caturra,Washed / Wet,7.67,7.83,7.58,7.92,7.75,7.67,10.0,10.0,10.0,0.12,84.0,1,酸味系,Guatemala,ウォッシュド,Caturra
+244,Arabica,Colombia,Other,Washed / Wet,7.67,7.67,7.83,7.58,7.58,7.83,10.0,10.0,10.0,0.11,84.0,2,コク・バランス系,Colombia,ウォッシュド,Other
+245,Arabica,Guatemala,Bourbon,Natural / Dry,7.92,7.67,7.42,7.92,7.75,7.83,10.0,10.0,10.0,0.1,84.0,1,酸味系,Guatemala,ナチュラル,Bourbon
+246,Arabica,Guatemala,Bourbon,Other,7.75,7.83,7.5,7.83,7.58,7.67,10.0,10.0,10.0,0.1,84.0,1,酸味系,Guatemala,その他,Bourbon
+247,Arabica,Colombia,,Washed / Wet,7.67,7.75,7.67,7.67,7.67,7.75,10.0,10.0,10.0,0.12,84.0,2,コク・バランス系,Colombia,ウォッシュド,その他
+248,Arabica,Colombia,Caturra,Natural / Dry,7.58,7.42,7.75,7.92,7.75,7.92,10.0,10.0,10.0,0.12,84.0,1,酸味系,Colombia,ナチュラル,Caturra
+249,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.67,7.5,7.5,7.67,7.67,10.0,10.0,10.0,0.12,84.0,1,酸味系,Colombia,ウォッシュド,Caturra
+250,Arabica,Ethiopia,Other,Natural / Dry,7.75,7.75,7.5,7.58,7.67,7.92,10.0,10.0,10.0,0.09,84.0,1,酸味系,Ethiopia,ナチュラル,Other
+251,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.58,7.83,7.67,7.25,8.0,7.75,10.0,10.0,10.0,0.1,84.0,2,コク・バランス系,Brazil,ナチュラル,Yellow Bourbon
+252,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.83,7.67,7.75,7.67,7.75,10.0,10.0,10.0,0.11,84.0,1,酸味系,Colombia,ウォッシュド,Caturra
+253,Arabica,Kenya,SL34,Washed / Wet,7.67,7.83,7.5,7.75,7.92,7.67,10.0,10.0,10.0,0.0,84.0,1,酸味系,その他,ウォッシュド,その他
+254,Arabica,Thailand,Other,Washed / Wet,7.92,8.17,8.17,8.42,8.08,8.17,8.67,8.67,9.33,0.12,84.0,2,コク・バランス系,Thailand,ウォッシュド,Other
+255,Arabica,Kenya,SL28,Washed / Wet,7.67,7.75,7.67,7.75,7.83,7.67,10.0,10.0,10.0,0.0,84.0,2,コク・バランス系,その他,ウォッシュド,その他
+256,Arabica,Uganda,Other,Washed / Wet,7.92,7.75,7.58,7.67,7.67,7.83,10.0,10.0,10.0,0.1,84.0,1,酸味系,Uganda,ウォッシュド,Other
+257,Arabica,Thailand,,,7.58,7.75,7.58,7.75,7.58,7.75,10.0,10.0,10.0,0.06,84.0,1,酸味系,Thailand,その他,その他
+258,Arabica,Brazil,Bourbon,Natural / Dry,7.5,7.75,7.58,7.5,7.58,7.5,10.0,10.0,10.0,0.0,83.92,2,コク・バランス系,Brazil,ナチュラル,Bourbon
+259,Arabica,Mexico,Mundo Novo,Washed / Wet,7.83,7.83,7.58,7.92,7.42,7.5,10.0,10.0,10.0,0.11,83.92,0,香り系,Mexico,ウォッシュド,Mundo Novo
+260,Arabica,Thailand,Catimor,Natural / Dry,7.67,7.75,7.5,7.67,7.67,7.83,10.0,10.0,10.0,0.1,83.92,1,酸味系,Thailand,ナチュラル,その他
+261,Arabica,Brazil,Bourbon,Natural / Dry,7.58,7.67,7.67,7.75,7.58,7.83,10.0,10.0,10.0,0.11,83.92,2,コク・バランス系,Brazil,ナチュラル,Bourbon
+262,Arabica,Taiwan,Typica,Washed / Wet,7.83,7.75,7.83,7.75,7.83,7.75,9.33,10.0,10.0,0.11,83.92,2,コク・バランス系,Taiwan,ウォッシュド,Typica
+263,Arabica,Colombia,,,7.75,7.67,7.5,7.75,7.83,7.75,10.0,10.0,10.0,0.11,83.92,1,酸味系,Colombia,その他,その他
+264,Arabica,Colombia,,,7.75,7.58,7.5,7.83,7.75,7.92,10.0,10.0,10.0,0.0,83.92,1,酸味系,Colombia,その他,その他
+265,Arabica,Taiwan,,Natural / Dry,7.75,7.75,7.58,7.75,7.75,7.67,10.0,10.0,10.0,0.0,83.92,1,酸味系,Taiwan,ナチュラル,その他
+266,Arabica,Colombia,,Washed / Wet,7.92,7.67,7.5,7.83,7.58,7.67,10.0,10.0,10.0,0.0,83.92,1,酸味系,Colombia,ウォッシュド,その他
+267,Arabica,Colombia,,Washed / Wet,7.83,7.75,7.58,7.58,7.75,7.75,10.0,10.0,10.0,0.0,83.92,1,酸味系,Colombia,ウォッシュド,その他
+268,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.58,7.67,7.83,7.83,7.67,10.0,10.0,10.0,0.0,83.92,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+269,Arabica,Taiwan,Typica,Washed / Wet,8.0,7.92,7.92,7.92,7.67,7.33,10.0,10.0,10.0,0.06,83.92,0,香り系,Taiwan,ウォッシュド,Typica
+270,Arabica,Colombia,Caturra,Natural / Dry,7.67,7.83,7.67,7.75,7.67,7.83,10.0,10.0,10.0,0.12,83.92,1,酸味系,Colombia,ナチュラル,Caturra
+271,Arabica,Mexico,Typica,Washed / Wet,7.67,7.75,7.58,7.67,7.75,7.83,10.0,10.0,10.0,0.12,83.92,1,酸味系,Mexico,ウォッシュド,Typica
+272,Arabica,Mexico,Typica,Washed / Wet,7.5,7.67,7.58,7.83,7.75,7.75,10.0,10.0,10.0,0.11,83.92,2,コク・バランス系,Mexico,ウォッシュド,Typica
+273,Arabica,Mexico,Typica,Washed / Wet,7.75,7.92,7.83,7.92,7.75,7.67,9.33,10.0,10.0,0.0,83.92,1,酸味系,Mexico,ウォッシュド,Typica
+274,Arabica,Colombia,Caturra,Washed / Wet,7.92,7.58,7.5,7.83,7.58,7.67,10.0,10.0,10.0,0.0,83.83,1,酸味系,Colombia,ウォッシュド,Caturra
+275,Arabica,Colombia,Caturra,,7.83,7.67,7.5,7.75,7.75,7.75,10.0,10.0,10.0,0.0,83.83,1,酸味系,Colombia,その他,Caturra
+276,Arabica,Costa Rica,Caturra,Washed / Wet,7.67,7.67,7.75,7.67,7.5,7.75,10.0,10.0,10.0,0.0,83.83,0,香り系,Costa Rica,ウォッシュド,Caturra
+277,Arabica,Guatemala,Bourbon,Washed / Wet,7.75,7.75,7.5,7.75,7.83,7.58,10.0,10.0,10.0,0.11,83.83,1,酸味系,Guatemala,ウォッシュド,Bourbon
+278,Arabica,Taiwan,,,7.75,7.67,7.5,7.75,7.75,7.67,10.0,10.0,10.0,0.0,83.83,1,酸味系,Taiwan,その他,その他
+279,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.25,7.58,7.42,8.0,7.75,7.83,10.0,10.0,10.0,0.0,83.83,2,コク・バランス系,Brazil,ナチュラル,Yellow Bourbon
+280,Arabica,Taiwan,Typica,Washed / Wet,7.67,7.75,7.67,7.75,7.42,7.75,10.0,10.0,10.0,0.0,83.83,0,香り系,Taiwan,ウォッシュド,Typica
+281,Arabica,Ethiopia,,Natural / Dry,7.75,7.75,7.67,7.67,7.58,7.67,10.0,10.0,10.0,0.12,83.83,0,香り系,Ethiopia,ナチュラル,その他
+282,Arabica,Brazil,Bourbon,Semi-washed / Semi-pulped,7.67,7.67,7.58,7.5,7.83,8.17,10.0,10.0,9.33,0.0,83.83,2,コク・バランス系,Brazil,セミウォッシュド,Bourbon
+283,Arabica,Costa Rica,Catuai,Washed / Wet,7.83,7.42,7.5,7.83,7.75,7.83,10.0,10.0,10.0,0.1,83.83,1,酸味系,Costa Rica,ウォッシュド,Catuai
+284,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.83,7.33,8.0,7.58,7.75,10.0,10.0,10.0,0.1,83.83,1,酸味系,Guatemala,ウォッシュド,Bourbon
+285,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.92,7.5,7.33,7.67,8.17,7.5,10.0,10.0,10.0,0.1,83.83,1,酸味系,Brazil,ナチュラル,Yellow Bourbon
+286,Arabica,Ecuador,,Natural / Dry,7.5,7.67,7.58,7.75,7.83,7.83,10.0,10.0,10.0,0.09,83.83,2,コク・バランス系,その他,ナチュラル,その他
+287,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.58,7.58,7.83,7.58,7.67,10.0,10.0,10.0,0.11,83.83,1,酸味系,Colombia,ウォッシュド,Caturra
+288,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.83,7.5,7.83,7.83,7.67,10.0,10.0,10.0,0.11,83.83,1,酸味系,Guatemala,ウォッシュド,Bourbon
+289,Arabica,Mexico,Bourbon,Natural / Dry,7.67,8.0,7.67,7.42,7.67,7.5,10.0,10.0,10.0,0.1,83.83,2,コク・バランス系,Mexico,ナチュラル,Bourbon
+290,Arabica,Mexico,Pacas,Natural / Dry,7.67,7.58,7.5,7.75,7.75,7.75,10.0,10.0,10.0,0.11,83.83,1,酸味系,Mexico,ナチュラル,その他
+291,Arabica,Brazil,Yellow Bourbon,Semi-washed / Semi-pulped,7.83,7.83,7.58,7.67,7.5,7.58,10.0,10.0,10.0,0.12,83.83,0,香り系,Brazil,セミウォッシュド,Yellow Bourbon
+292,Arabica,Thailand,,,7.75,7.75,7.58,8.0,7.67,7.58,10.0,10.0,10.0,0.02,83.83,1,酸味系,Thailand,その他,その他
+293,Arabica,Thailand,,,7.5,7.83,7.58,7.58,7.75,7.83,10.0,10.0,10.0,0.01,83.83,2,コク・バランス系,Thailand,その他,その他
+294,Arabica,Ethiopia,,,7.58,7.83,7.58,8.0,7.83,7.5,10.0,10.0,10.0,0.1,83.83,1,酸味系,Ethiopia,その他,その他
+295,Arabica,Kenya,SL28,Washed / Wet,7.75,7.58,7.5,7.58,7.75,7.75,10.0,10.0,10.0,0.11,83.75,3,丸み系,その他,ウォッシュド,その他
+296,Arabica,Brazil,Bourbon,Natural / Dry,7.67,7.67,7.58,7.75,7.67,7.67,10.0,10.0,10.0,0.11,83.75,1,酸味系,Brazil,ナチュラル,Bourbon
+297,Arabica,Colombia,Caturra,Washed / Wet,7.83,7.83,7.58,7.58,7.58,7.58,10.0,10.0,10.0,0.11,83.75,0,香り系,Colombia,ウォッシュド,Caturra
+298,Arabica,Taiwan,Typica,Natural / Dry,7.67,7.67,7.58,7.58,7.67,7.83,10.0,10.0,10.0,0.0,83.75,2,コク・バランス系,Taiwan,ナチュラル,Typica
+299,Arabica,Colombia,,Washed / Wet,7.92,7.75,7.5,7.67,7.75,7.5,10.0,10.0,10.0,0.0,83.75,1,酸味系,Colombia,ウォッシュド,その他
+300,Arabica,China,Catimor,Washed / Wet,7.83,7.75,7.67,7.5,7.58,7.67,10.0,10.0,10.0,0.1,83.75,0,香り系,その他,ウォッシュド,その他
+301,Arabica,Colombia,Caturra,Natural / Dry,7.75,7.67,7.5,7.67,7.58,7.83,10.0,10.0,10.0,0.0,83.75,1,酸味系,Colombia,ナチュラル,Caturra
+302,Arabica,Uganda,Bourbon,Natural / Dry,8.0,7.92,7.58,7.75,7.33,7.5,10.0,10.0,10.0,0.12,83.75,0,香り系,Uganda,ナチュラル,Bourbon
+303,Arabica,United States (Puerto Rico),Other,Washed / Wet,7.83,7.83,7.83,7.67,8.0,8.17,9.33,9.33,10.0,0.12,83.75,2,コク・バランス系,その他,ウォッシュド,Other
+304,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.67,7.67,7.92,7.5,7.67,10.0,10.0,10.0,0.0,83.75,1,酸味系,Colombia,ウォッシュド,Caturra
+305,Arabica,Colombia,Other,Washed / Wet,7.67,7.42,7.42,7.42,8.0,8.33,10.0,10.0,10.0,0.0,83.75,3,丸み系,Colombia,ウォッシュド,Other
+306,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.67,7.75,7.67,7.67,7.67,10.0,10.0,10.0,0.0,83.75,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+307,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.67,7.75,7.58,7.42,8.0,10.0,10.0,10.0,0.11,83.75,1,酸味系,Colombia,ウォッシュド,Caturra
+308,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.25,7.42,7.67,7.58,7.83,8.25,10.0,10.0,10.0,0.0,83.75,3,丸み系,United States (Hawaii),ナチュラル,Hawaiian Kona
+309,Arabica,Mexico,Caturra,Natural / Dry,7.83,7.58,7.58,7.5,7.75,7.67,10.0,10.0,10.0,0.13,83.75,3,丸み系,Mexico,ナチュラル,Caturra
+310,Arabica,Guatemala,Caturra,Washed / Wet,7.67,7.58,7.58,7.67,7.75,7.75,10.0,10.0,10.0,0.11,83.75,1,酸味系,Guatemala,ウォッシュド,Caturra
+311,Arabica,Colombia,,,7.83,7.83,7.58,7.33,7.42,7.67,10.0,10.0,10.0,0.1,83.75,3,丸み系,Colombia,その他,その他
+312,Arabica,Colombia,,,7.75,7.67,7.25,7.25,7.58,8.5,10.0,10.0,10.0,0.06,83.75,3,丸み系,Colombia,その他,その他
+313,Arabica,United States (Hawaii),,,7.83,7.67,7.75,7.67,7.58,7.5,10.0,10.0,10.0,0.0,83.75,0,香り系,United States (Hawaii),その他,その他
+314,Arabica,Brazil,Bourbon,Natural / Dry,7.67,7.83,7.5,7.67,7.67,7.5,10.0,10.0,10.0,0.11,83.67,1,酸味系,Brazil,ナチュラル,Bourbon
+315,Arabica,Kenya,SL28,Washed / Wet,8.08,7.67,7.67,7.58,7.25,7.67,10.0,10.0,10.0,0.11,83.67,0,香り系,その他,ウォッシュド,その他
+316,Arabica,Honduras,Caturra,Washed / Wet,7.5,7.5,7.67,7.67,8.0,8.0,10.0,10.0,10.0,0.1,83.67,2,コク・バランス系,Honduras,ウォッシュド,Caturra
+317,Arabica,Nicaragua,Caturra,Washed / Wet,7.67,7.75,7.67,7.67,7.83,7.58,10.0,10.0,10.0,0.1,83.67,2,コク・バランス系,その他,ウォッシュド,Caturra
+318,Arabica,Brazil,Bourbon,Natural / Dry,7.58,7.75,7.58,7.75,7.58,7.58,10.0,10.0,10.0,0.11,83.67,1,酸味系,Brazil,ナチュラル,Bourbon
+319,Arabica,Taiwan,Caturra,Natural / Dry,7.5,7.67,7.33,7.92,7.83,7.67,10.0,10.0,10.0,0.1,83.67,1,酸味系,Taiwan,ナチュラル,Caturra
+320,Arabica,Costa Rica,,,7.33,7.67,7.67,7.5,7.67,7.5,10.0,10.0,10.0,0.11,83.67,2,コク・バランス系,Costa Rica,その他,その他
+321,Arabica,Thailand,,Washed / Wet,7.5,7.75,7.58,7.83,7.67,7.58,10.0,10.0,10.0,0.12,83.67,2,コク・バランス系,Thailand,ウォッシュド,その他
+322,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.75,7.5,7.75,7.67,7.67,10.0,10.0,10.0,0.11,83.67,1,酸味系,Colombia,ウォッシュド,Caturra
+323,Arabica,Guatemala,Bourbon,Washed / Wet,8.0,7.5,7.33,8.0,8.0,8.0,9.33,10.0,10.0,0.1,83.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+324,Arabica,Colombia,Caturra,Washed / Wet,7.83,7.75,7.67,7.58,7.58,7.67,10.0,10.0,10.0,0.0,83.67,0,香り系,Colombia,ウォッシュド,Caturra
+325,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.67,7.67,7.67,7.33,7.75,10.0,10.0,10.0,0.0,83.67,0,香り系,Colombia,ウォッシュド,Caturra
+326,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.67,7.42,7.67,8.0,7.75,10.0,10.0,10.0,0.12,83.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+327,Arabica,Guatemala,Bourbon,Washed / Wet,7.83,7.67,7.33,7.67,7.67,7.83,10.0,10.0,10.0,0.11,83.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+328,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.75,7.58,7.83,7.17,7.75,10.0,10.0,10.0,0.11,83.67,1,酸味系,Colombia,ウォッシュド,Caturra
+329,Arabica,Guatemala,Caturra,Natural / Dry,8.17,8.17,7.83,7.67,8.08,7.75,9.33,9.33,9.33,0.11,83.67,3,丸み系,Guatemala,ナチュラル,Caturra
+330,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,8.17,7.5,7.42,7.58,7.83,10.0,10.0,10.0,0.11,83.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+331,Arabica,Mexico,Typica,Washed / Wet,7.67,7.5,7.5,7.33,7.83,8.25,10.0,10.0,10.0,0.12,83.67,3,丸み系,Mexico,ウォッシュド,Typica
+332,Arabica,Indonesia,Typica,Washed / Wet,8.17,7.67,7.58,7.58,7.42,7.67,10.0,10.0,10.0,0.12,83.67,1,酸味系,その他,ウォッシュド,Typica
+333,Arabica,Guatemala,Caturra,Washed / Wet,7.67,7.5,7.33,8.0,7.67,7.67,10.0,10.0,10.0,0.1,83.67,1,酸味系,Guatemala,ウォッシュド,Caturra
+334,Arabica,United States (Hawaii),,,7.75,8.0,7.92,8.08,7.75,8.0,9.33,9.33,9.33,0.0,83.67,1,酸味系,United States (Hawaii),その他,その他
+335,Arabica,Brazil,Bourbon,Natural / Dry,7.58,7.67,7.58,7.58,7.67,7.58,10.0,10.0,10.0,0.11,83.58,2,コク・バランス系,Brazil,ナチュラル,Bourbon
+336,Arabica,Guatemala,Caturra,Washed / Wet,7.75,7.75,7.5,7.83,7.58,7.58,10.0,10.0,10.0,0.11,83.58,1,酸味系,Guatemala,ウォッシュド,Caturra
+337,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.75,7.58,7.58,7.67,7.58,10.0,10.0,10.0,0.11,83.58,1,酸味系,Colombia,ウォッシュド,Caturra
+338,Arabica,China,Catimor,Washed / Wet,7.67,7.58,7.58,7.58,7.67,7.75,10.0,10.0,10.0,0.1,83.58,2,コク・バランス系,その他,ウォッシュド,その他
+339,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.75,7.58,7.67,7.75,7.58,10.0,10.0,10.0,0.12,83.58,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+340,Arabica,Mexico,Caturra,Washed / Wet,7.75,7.75,7.58,7.58,7.5,7.67,10.0,10.0,10.0,0.12,83.58,0,香り系,Mexico,ウォッシュド,Caturra
+341,Arabica,Ethiopia,Other,Washed / Wet,7.75,7.67,7.58,7.67,7.5,7.67,10.0,10.0,10.0,0.0,83.58,0,香り系,Ethiopia,ウォッシュド,Other
+342,Arabica,Uganda,SL14,Washed / Wet,7.67,7.67,7.42,7.75,7.75,7.67,10.0,10.0,10.0,0.12,83.58,1,酸味系,Uganda,ウォッシュド,その他
+343,Arabica,Colombia,Caturra,Natural / Dry,7.67,7.58,7.67,7.67,7.67,7.67,10.0,10.0,10.0,0.0,83.58,2,コク・バランス系,Colombia,ナチュラル,Caturra
+344,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.58,7.67,7.58,7.67,7.75,10.0,10.0,10.0,0.12,83.58,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+345,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.58,7.5,7.58,7.75,7.83,10.0,10.0,10.0,0.0,83.58,3,丸み系,Colombia,ウォッシュド,Caturra
+346,Arabica,Taiwan,Typica,Other,7.75,7.75,7.75,7.75,7.5,7.58,10.0,10.0,10.0,0.11,83.58,0,香り系,Taiwan,その他,Typica
+347,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.67,7.58,7.67,7.75,7.58,10.0,10.0,10.0,0.11,83.58,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+348,Arabica,Mexico,Typica,Washed / Wet,7.83,7.67,7.58,7.58,7.67,7.58,10.0,10.0,10.0,0.12,83.58,0,香り系,Mexico,ウォッシュド,Typica
+349,Arabica,Colombia,Caturra,Natural / Dry,7.67,7.58,7.58,7.58,7.67,7.75,10.0,10.0,10.0,0.11,83.58,2,コク・バランス系,Colombia,ナチュラル,Caturra
+350,Arabica,Brazil,Catuai,Semi-washed / Semi-pulped,7.83,7.75,7.5,7.75,7.5,7.58,10.0,10.0,10.0,0.12,83.58,1,酸味系,Brazil,セミウォッシュド,Catuai
+351,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.58,7.58,7.75,7.75,7.5,10.0,10.0,10.0,0.0,83.5,1,酸味系,Colombia,ウォッシュド,Caturra
+352,Arabica,Taiwan,,,7.58,7.58,7.17,7.17,7.0,7.0,10.0,10.0,10.0,0.11,83.5,0,香り系,Taiwan,その他,その他
+353,Arabica,Costa Rica,Caturra,Washed / Wet,7.92,7.42,7.5,7.67,7.5,7.67,10.0,10.0,10.0,0.0,83.5,1,酸味系,Costa Rica,ウォッシュド,Caturra
+354,Arabica,Colombia,Caturra,Natural / Dry,7.75,7.58,7.58,7.5,7.75,7.75,10.0,10.0,10.0,0.0,83.5,3,丸み系,Colombia,ナチュラル,Caturra
+355,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.75,7.5,7.83,7.58,7.58,10.0,10.0,10.0,0.1,83.5,1,酸味系,Guatemala,ウォッシュド,Bourbon
+356,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.58,7.58,7.58,7.75,7.67,10.0,10.0,10.0,0.12,83.5,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+357,Arabica,"Tanzania, United Republic Of",Ruiru 11,Washed / Wet,7.75,7.67,7.58,7.67,7.67,7.58,10.0,10.0,10.0,0.13,83.5,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,その他
+358,Arabica,Indonesia,Sumatra,Semi-washed / Semi-pulped,7.25,7.67,7.58,7.92,7.83,7.58,10.0,10.0,10.0,0.13,83.5,2,コク・バランス系,その他,セミウォッシュド,その他
+359,Arabica,Ethiopia,,Natural / Dry,7.67,7.75,7.5,7.58,7.75,7.67,10.0,10.0,10.0,0.1,83.5,1,酸味系,Ethiopia,ナチュラル,その他
+360,Arabica,Colombia,,Washed / Wet,7.67,7.42,7.67,7.83,7.58,7.67,10.0,10.0,10.0,0.0,83.5,1,酸味系,Colombia,ウォッシュド,その他
+361,Arabica,Colombia,Caturra,Washed / Wet,8.0,7.58,7.25,7.58,7.92,7.58,10.0,10.0,10.0,0.11,83.5,1,酸味系,Colombia,ウォッシュド,Caturra
+362,Arabica,Guatemala,Caturra,Washed / Wet,7.58,7.75,7.5,7.83,7.42,7.67,10.0,10.0,10.0,0.1,83.5,1,酸味系,Guatemala,ウォッシュド,Caturra
+363,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.58,7.33,7.5,7.83,7.83,10.0,10.0,10.0,0.0,83.5,3,丸み系,Colombia,ウォッシュド,Caturra
+364,Arabica,Honduras,Caturra,Natural / Dry,7.67,7.5,7.67,7.5,7.67,7.67,10.0,10.0,10.0,0.1,83.5,2,コク・バランス系,Honduras,ナチュラル,Caturra
+365,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.75,7.42,7.67,7.75,7.67,10.0,10.0,10.0,0.0,83.5,1,酸味系,Colombia,ウォッシュド,Caturra
+366,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.67,7.58,7.75,7.58,7.75,10.0,10.0,10.0,0.11,83.5,1,酸味系,Colombia,ウォッシュド,Caturra
+367,Arabica,Mexico,Bourbon,Natural / Dry,7.83,7.58,7.25,7.5,7.5,7.42,10.0,10.0,10.0,0.13,83.5,1,酸味系,Mexico,ナチュラル,Bourbon
+368,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.67,7.75,7.67,7.75,7.58,7.5,10.0,10.0,10.0,0.11,83.5,1,酸味系,Mexico,セミウォッシュド,Typica
+369,Arabica,Mexico,Pacamara,Washed / Wet,7.75,7.67,7.67,7.75,7.33,7.5,10.0,10.0,10.0,0.12,83.5,0,香り系,Mexico,ウォッシュド,その他
+370,Arabica,Guatemala,Caturra,Washed / Wet,7.83,7.5,7.5,8.0,7.67,7.5,10.0,10.0,10.0,0.1,83.5,1,酸味系,Guatemala,ウォッシュド,Caturra
+371,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.58,7.58,7.67,7.67,7.67,10.0,10.0,10.0,0.11,83.5,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+372,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.5,7.75,7.5,8.0,7.67,10.0,10.0,10.0,0.0,83.5,2,コク・バランス系,Guatemala,ウォッシュド,Bourbon
+373,Arabica,United States (Hawaii),,,7.5,7.67,7.58,7.92,7.58,7.67,10.0,10.0,10.0,0.01,83.5,1,酸味系,United States (Hawaii),その他,その他
+374,Arabica,Indonesia,,,7.83,7.58,7.58,7.58,7.75,7.58,10.0,10.0,10.0,0.0,83.5,3,丸み系,その他,その他,その他
+375,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.58,7.58,7.5,7.75,7.83,10.0,10.0,10.0,0.0,83.42,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+376,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.75,7.5,7.58,7.58,7.67,10.0,10.0,10.0,0.1,83.42,1,酸味系,Guatemala,ウォッシュド,Bourbon
+377,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.67,7.5,7.67,7.67,7.58,10.0,10.0,10.0,0.11,83.42,1,酸味系,Colombia,ウォッシュド,Caturra
+378,Arabica,Costa Rica,Caturra,Washed / Wet,7.58,7.5,7.42,7.92,7.5,7.67,10.0,10.0,10.0,0.09,83.42,1,酸味系,Costa Rica,ウォッシュド,Caturra
+379,Arabica,Taiwan,,,7.67,7.67,7.0,7.08,7.0,7.0,10.0,10.0,10.0,0.11,83.42,0,香り系,Taiwan,その他,その他
+380,Arabica,Uganda,SL14,Washed / Wet,7.58,7.75,7.33,7.75,7.67,7.58,10.0,10.0,10.0,0.11,83.42,1,酸味系,Uganda,ウォッシュド,その他
+381,Arabica,Thailand,Catimor,Washed / Wet,7.5,7.58,7.75,7.5,7.75,7.67,10.0,10.0,10.0,0.13,83.42,2,コク・バランス系,Thailand,ウォッシュド,その他
+382,Arabica,El Salvador,Bourbon,Washed / Wet,7.58,7.5,7.75,7.58,7.75,7.67,10.0,10.0,10.0,0.11,83.42,2,コク・バランス系,その他,ウォッシュド,Bourbon
+383,Arabica,Colombia,Caturra,Natural / Dry,7.58,7.67,7.58,7.67,7.58,7.67,10.0,10.0,10.0,0.12,83.42,1,酸味系,Colombia,ナチュラル,Caturra
+384,Arabica,Brazil,Yellow Bourbon,Semi-washed / Semi-pulped,7.33,7.83,7.75,7.5,7.42,7.83,10.0,10.0,10.0,0.12,83.42,2,コク・バランス系,Brazil,セミウォッシュド,Yellow Bourbon
+385,Arabica,"Tanzania, United Republic Of",Bourbon,Washed / Wet,7.75,7.67,7.58,7.67,7.58,7.58,10.0,10.0,10.0,0.13,83.42,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Bourbon
+386,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.58,7.25,7.75,7.75,8.58,9.33,10.0,10.0,0.12,83.42,3,丸み系,Colombia,ウォッシュド,Caturra
+387,Arabica,Guatemala,Bourbon,Natural / Dry,7.75,7.83,7.33,7.83,7.5,7.67,10.0,10.0,10.0,0.1,83.42,1,酸味系,Guatemala,ナチュラル,Bourbon
+388,Arabica,Guatemala,Caturra,Washed / Wet,7.67,7.75,7.5,7.83,7.58,7.5,10.0,10.0,10.0,0.1,83.42,1,酸味系,Guatemala,ウォッシュド,Caturra
+389,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.5,7.75,7.42,7.75,7.75,10.0,10.0,10.0,0.11,83.42,3,丸み系,Guatemala,ウォッシュド,Bourbon
+390,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.42,7.75,7.67,7.58,7.67,7.67,10.0,10.0,10.0,0.0,83.42,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+391,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.75,7.58,7.5,7.67,7.75,10.0,10.0,10.0,0.11,83.42,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+392,Arabica,Colombia,,,7.58,7.58,7.58,7.67,7.75,7.67,10.0,10.0,10.0,0.1,83.42,2,コク・バランス系,Colombia,その他,その他
+393,Arabica,United States (Hawaii),,,7.5,7.92,7.42,7.67,7.83,7.58,10.0,10.0,10.0,0.01,83.42,1,酸味系,United States (Hawaii),その他,その他
+394,Arabica,Thailand,Peaberry,,7.58,7.25,7.5,7.92,7.92,7.42,10.0,10.0,10.0,0.11,83.42,1,酸味系,Thailand,その他,その他
+395,Arabica,Mexico,,,7.25,7.88,7.38,7.63,7.5,8.75,9.0,10.0,10.0,0.09,83.38,3,丸み系,Mexico,その他,その他
+396,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.5,7.75,7.58,7.58,7.58,10.0,10.0,10.0,0.0,83.33,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+397,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.58,7.58,7.42,7.67,7.75,10.0,10.0,10.0,0.0,83.33,3,丸み系,Colombia,ウォッシュド,Caturra
+398,Arabica,Colombia,Caturra,Washed / Wet,7.83,7.58,7.58,7.58,7.5,7.58,10.0,10.0,10.0,0.0,83.33,0,香り系,Colombia,ウォッシュド,Caturra
+399,Arabica,Brazil,Catuai,Semi-washed / Semi-pulped,7.5,7.83,7.33,7.58,7.58,7.92,10.0,10.0,10.0,0.1,83.33,1,酸味系,Brazil,セミウォッシュド,Catuai
+400,Arabica,Mexico,Caturra,Washed / Wet,7.75,7.75,7.5,7.67,7.5,7.58,10.0,10.0,10.0,0.12,83.33,1,酸味系,Mexico,ウォッシュド,Caturra
+401,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.75,7.42,7.83,7.83,7.42,10.0,10.0,10.0,0.11,83.33,1,酸味系,Colombia,ウォッシュド,Caturra
+402,Arabica,"Tanzania, United Republic Of",Other,Semi-washed / Semi-pulped,7.75,7.58,7.67,7.58,7.58,7.58,10.0,10.0,10.0,0.12,83.33,0,香り系,"Tanzania, United Republic Of",セミウォッシュド,Other
+403,Arabica,Mexico,Other,Washed / Wet,7.67,7.67,7.58,7.67,7.5,7.58,10.0,10.0,10.0,0.12,83.33,1,酸味系,Mexico,ウォッシュド,Other
+404,Arabica,Costa Rica,Caturra,Washed / Wet,7.67,7.67,7.42,7.67,7.67,7.67,10.0,10.0,10.0,0.12,83.33,1,酸味系,Costa Rica,ウォッシュド,Caturra
+405,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.83,7.58,7.83,7.67,7.92,8.0,9.33,10.0,9.33,0.11,83.33,3,丸み系,United States (Hawaii),ナチュラル,Hawaiian Kona
+406,Arabica,Costa Rica,Catuai,Washed / Wet,7.5,7.67,7.67,7.5,7.83,7.17,10.0,10.0,10.0,0.11,83.33,1,酸味系,Costa Rica,ウォッシュド,Catuai
+407,Arabica,Peru,,Washed / Wet,7.83,7.75,7.58,7.83,7.92,7.58,9.33,10.0,10.0,0.12,83.33,1,酸味系,その他,ウォッシュド,その他
+408,Arabica,Haiti,Typica,Washed / Wet,7.58,7.5,7.67,7.5,7.83,7.42,10.0,10.0,10.0,0.11,83.33,2,コク・バランス系,その他,ウォッシュド,Typica
+409,Arabica,Colombia,Caturra,Natural / Dry,7.67,7.67,7.5,7.67,7.92,7.42,10.0,10.0,10.0,0.11,83.33,1,酸味系,Colombia,ナチュラル,Caturra
+410,Arabica,Guatemala,Bourbon,Washed / Wet,7.83,7.67,7.17,7.67,7.67,7.67,10.0,10.0,10.0,0.11,83.33,1,酸味系,Guatemala,ウォッシュド,Bourbon
+411,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.92,7.5,7.58,7.83,7.67,7.67,9.33,10.0,10.0,0.1,83.33,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+412,Arabica,Burundi,Bourbon,Washed / Wet,7.75,7.67,7.33,7.5,7.5,7.75,10.0,10.0,10.0,0.0,83.33,1,酸味系,その他,ウォッシュド,Bourbon
+413,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.67,7.67,7.58,7.67,7.58,10.0,10.0,10.0,0.0,83.33,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+414,Arabica,United States (Hawaii),,,8.08,7.83,7.83,7.75,7.67,7.58,9.33,10.0,9.33,0.01,83.33,0,香り系,United States (Hawaii),その他,その他
+415,Arabica,United States (Hawaii),,,7.58,7.67,7.58,7.5,7.83,7.67,10.0,10.0,10.0,0.0,83.33,2,コク・バランス系,United States (Hawaii),その他,その他
+416,Arabica,Mexico,Typica,Washed / Wet,7.67,7.83,7.42,7.83,7.33,7.5,10.0,10.0,10.0,0.11,83.25,1,酸味系,Mexico,ウォッシュド,Typica
+417,Arabica,Costa Rica,Catuai,Pulped natural / honey,7.5,7.5,7.83,7.5,7.67,7.67,10.0,10.0,10.0,0.11,83.25,2,コク・バランス系,Costa Rica,ハニー,Catuai
+418,Arabica,Costa Rica,,Washed / Wet,7.83,7.5,7.42,7.67,7.5,7.67,10.0,10.0,10.0,0.11,83.25,1,酸味系,Costa Rica,ウォッシュド,その他
+419,Arabica,Guatemala,Pacas,Washed / Wet,7.5,7.58,7.42,7.83,7.67,7.58,10.0,10.0,10.0,0.11,83.25,1,酸味系,Guatemala,ウォッシュド,その他
+420,Arabica,Uganda,SL14,Washed / Wet,7.5,7.67,7.67,7.42,7.67,7.67,10.0,10.0,10.0,0.12,83.25,2,コク・バランス系,Uganda,ウォッシュド,その他
+421,Arabica,Brazil,,,7.58,7.67,7.42,7.5,7.67,7.42,10.0,10.0,10.0,0.12,83.25,2,コク・バランス系,Brazil,その他,その他
+422,Arabica,Colombia,Caturra,Natural / Dry,7.58,7.67,7.67,7.17,7.75,7.83,10.0,10.0,10.0,0.0,83.25,2,コク・バランス系,Colombia,ナチュラル,Caturra
+423,Arabica,Mexico,Typica,Natural / Dry,7.83,7.75,7.5,7.58,7.58,7.58,10.0,10.0,10.0,0.12,83.25,1,酸味系,Mexico,ナチュラル,Typica
+424,Arabica,Taiwan,Bourbon,Washed / Wet,7.67,7.5,7.5,7.5,7.67,7.83,10.0,10.0,10.0,0.1,83.25,3,丸み系,Taiwan,ウォッシュド,Bourbon
+425,Arabica,Taiwan,Typica,Washed / Wet,7.92,7.83,7.75,7.58,7.5,7.33,10.0,10.0,10.0,0.1,83.25,0,香り系,Taiwan,ウォッシュド,Typica
+426,Arabica,Colombia,Caturra,Natural / Dry,7.58,7.58,7.5,7.58,7.58,7.75,10.0,10.0,10.0,0.0,83.25,2,コク・バランス系,Colombia,ナチュラル,Caturra
+427,Arabica,Guatemala,Caturra,Washed / Wet,7.5,7.67,7.58,7.67,7.67,7.5,10.0,10.0,10.0,0.1,83.25,2,コク・バランス系,Guatemala,ウォッシュド,Caturra
+428,Arabica,Colombia,Caturra,Washed / Wet,7.83,7.5,7.67,7.33,7.67,7.67,10.0,10.0,10.0,0.11,83.25,0,香り系,Colombia,ウォッシュド,Caturra
+429,Arabica,Mexico,Bourbon,Washed / Wet,7.58,7.75,7.5,7.5,7.58,7.58,10.0,10.0,10.0,0.12,83.25,1,酸味系,Mexico,ウォッシュド,Bourbon
+430,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.58,7.75,7.83,8.0,8.08,7.67,9.33,10.0,9.33,0.11,83.25,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+431,Arabica,Mexico,Mundo Novo,Washed / Wet,7.75,7.58,7.58,7.58,7.5,7.58,10.0,10.0,10.0,0.13,83.25,0,香り系,Mexico,ウォッシュド,Mundo Novo
+432,Arabica,Mexico,Caturra,Washed / Wet,7.75,7.75,7.42,7.92,7.33,7.5,10.0,10.0,10.0,0.12,83.25,1,酸味系,Mexico,ウォッシュド,Caturra
+433,Arabica,Guatemala,Bourbon,Washed / Wet,7.83,7.58,7.08,7.83,7.42,8.08,10.0,10.0,10.0,0.11,83.25,1,酸味系,Guatemala,ウォッシュド,Bourbon
+434,Arabica,Brazil,Yellow Bourbon,Semi-washed / Semi-pulped,7.75,7.67,7.5,7.58,7.58,7.58,10.0,10.0,10.0,0.11,83.25,1,酸味系,Brazil,セミウォッシュド,Yellow Bourbon
+435,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.58,7.58,7.42,7.83,7.58,10.0,10.0,10.0,0.12,83.25,3,丸み系,Colombia,ウォッシュド,Caturra
+436,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.67,7.5,7.5,7.58,7.67,10.0,10.0,10.0,0.11,83.25,1,酸味系,Colombia,ウォッシュド,Caturra
+437,Arabica,Colombia,,,7.92,7.75,7.25,7.42,7.83,7.58,10.0,10.0,10.0,0.08,83.25,3,丸み系,Colombia,その他,その他
+438,Arabica,Colombia,,,8.0,7.67,7.67,7.25,7.67,7.5,10.0,10.0,10.0,0.13,83.25,0,香り系,Colombia,その他,その他
+439,Arabica,Colombia,,,7.92,7.75,7.5,7.42,7.42,7.67,10.0,10.0,10.0,0.04,83.25,0,香り系,Colombia,その他,その他
+440,Arabica,Brazil,Bourbon,Natural / Dry,7.67,7.42,7.5,7.58,7.67,7.58,10.0,10.0,10.0,0.11,83.17,1,酸味系,Brazil,ナチュラル,Bourbon
+441,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.58,7.33,7.67,7.75,7.58,10.0,10.0,10.0,0.1,83.17,1,酸味系,Guatemala,ウォッシュド,Bourbon
+442,Arabica,"Tanzania, United Republic Of",Bourbon,Washed / Wet,7.67,7.58,7.42,7.67,7.67,7.58,10.0,10.0,10.0,0.12,83.17,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Bourbon
+443,Arabica,Peru,,,7.92,7.5,7.5,7.58,7.67,7.5,10.0,10.0,10.0,0.11,83.17,1,酸味系,その他,その他,その他
+444,Arabica,Vietnam,Catimor,Natural / Dry,7.58,7.42,7.08,7.33,7.58,8.58,10.0,10.0,10.0,0.07,83.17,3,丸み系,その他,ナチュラル,その他
+445,Arabica,Guatemala,Caturra,Washed / Wet,7.67,7.75,7.42,7.75,7.58,7.5,10.0,10.0,10.0,0.11,83.17,1,酸味系,Guatemala,ウォッシュド,Caturra
+446,Arabica,Honduras,Catuai,Washed / Wet,7.67,7.67,7.5,7.67,7.5,7.67,10.0,10.0,10.0,0.11,83.17,1,酸味系,Honduras,ウォッシュド,Catuai
+447,Arabica,China,Catimor,Washed / Wet,7.5,7.67,7.33,7.67,7.67,7.67,10.0,10.0,10.0,0.11,83.17,1,酸味系,その他,ウォッシュド,その他
+448,Arabica,China,Catimor,Washed / Wet,7.67,7.67,7.5,7.67,7.42,7.58,10.0,10.0,10.0,0.1,83.17,1,酸味系,その他,ウォッシュド,その他
+449,Arabica,El Salvador,Bourbon,Washed / Wet,7.5,7.5,7.33,7.67,8.0,7.67,10.0,10.0,10.0,0.0,83.17,1,酸味系,その他,ウォッシュド,Bourbon
+450,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.75,7.5,7.83,7.58,7.5,10.0,10.0,10.0,0.11,83.17,1,酸味系,Guatemala,ウォッシュド,Bourbon
+451,Arabica,Guatemala,Bourbon,Washed / Wet,7.92,7.67,7.42,7.75,7.5,7.5,10.0,10.0,10.0,0.12,83.17,1,酸味系,Guatemala,ウォッシュド,Bourbon
+452,Arabica,Kenya,SL28,Washed / Wet,7.83,7.75,7.67,7.75,7.83,8.5,9.33,9.33,9.33,0.1,83.17,3,丸み系,その他,ウォッシュド,その他
+453,Arabica,Thailand,,Washed / Wet,7.67,7.58,7.58,7.75,7.42,7.67,10.0,10.0,10.0,0.12,83.17,0,香り系,Thailand,ウォッシュド,その他
+454,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.58,7.67,7.67,7.58,7.42,7.58,10.0,10.0,10.0,0.13,83.17,0,香り系,"Tanzania, United Republic Of",ウォッシュド,Other
+455,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.5,7.5,7.67,7.5,7.67,10.0,10.0,10.0,0.0,83.17,1,酸味系,Colombia,ウォッシュド,Caturra
+456,Arabica,Uganda,SL14,Washed / Wet,8.0,7.67,7.5,7.42,7.33,7.58,10.0,10.0,10.0,0.1,83.17,0,香り系,Uganda,ウォッシュド,その他
+457,Arabica,Colombia,,Washed / Wet,7.58,7.75,7.5,7.58,7.58,7.58,10.0,10.0,10.0,0.11,83.17,1,酸味系,Colombia,ウォッシュド,その他
+458,Arabica,Honduras,Catuai,Natural / Dry,7.5,7.5,7.5,7.67,7.67,7.67,10.0,10.0,10.0,0.1,83.17,2,コク・バランス系,Honduras,ナチュラル,Catuai
+459,Arabica,Honduras,Caturra,Natural / Dry,7.67,7.67,7.5,7.67,7.5,7.67,10.0,10.0,10.0,0.11,83.17,1,酸味系,Honduras,ナチュラル,Caturra
+460,Arabica,Guatemala,Catuai,Washed / Wet,7.33,7.83,7.17,8.17,7.33,7.67,10.0,10.0,10.0,0.09,83.17,1,酸味系,Guatemala,ウォッシュド,Catuai
+461,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.5,7.5,7.58,7.42,7.92,7.67,10.0,10.0,10.0,0.11,83.17,3,丸み系,United States (Hawaii),ナチュラル,Hawaiian Kona
+462,Arabica,"Tanzania, United Republic Of",Bourbon,Washed / Wet,7.58,7.5,7.58,7.75,7.58,7.58,10.0,10.0,10.0,0.12,83.17,2,コク・バランス系,"Tanzania, United Republic Of",ウォッシュド,Bourbon
+463,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.83,7.33,7.67,7.5,7.67,10.0,10.0,10.0,0.11,83.17,1,酸味系,Guatemala,ウォッシュド,Bourbon
+464,Arabica,Mexico,Typica,Washed / Wet,7.75,7.58,7.58,7.58,7.5,7.42,10.0,10.0,10.0,0.11,83.17,0,香り系,Mexico,ウォッシュド,Typica
+465,Arabica,Mexico,Typica,Washed / Wet,7.75,7.67,7.58,7.5,7.42,7.58,10.0,10.0,10.0,0.12,83.17,0,香り系,Mexico,ウォッシュド,Typica
+466,Arabica,Mexico,Pacamara,Washed / Wet,7.58,7.75,7.42,7.67,7.5,7.58,10.0,10.0,10.0,0.14,83.17,1,酸味系,Mexico,ウォッシュド,その他
+467,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.5,7.5,7.5,7.58,8.17,10.0,10.0,10.0,0.11,83.17,3,丸み系,Colombia,ウォッシュド,Caturra
+468,Arabica,Mexico,Typica,Washed / Wet,7.75,7.5,7.42,7.75,7.58,7.58,10.0,10.0,10.0,0.13,83.17,1,酸味系,Mexico,ウォッシュド,Typica
+469,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.67,7.5,7.58,7.67,7.67,10.0,10.0,10.0,0.11,83.17,1,酸味系,Colombia,ウォッシュド,Caturra
+470,Arabica,Mexico,Typica,Washed / Wet,7.5,7.75,7.58,7.58,7.67,7.5,10.0,10.0,10.0,0.11,83.17,2,コク・バランス系,Mexico,ウォッシュド,Typica
+471,Arabica,Brazil,Mundo Novo,Natural / Dry,7.75,7.67,7.58,7.5,7.58,7.58,10.0,10.0,10.0,0.12,83.17,1,酸味系,Brazil,ナチュラル,Mundo Novo
+472,Arabica,Brazil,Mundo Novo,Natural / Dry,7.92,7.58,7.5,7.58,7.42,7.5,10.0,10.0,10.0,0.11,83.17,0,香り系,Brazil,ナチュラル,Mundo Novo
+473,Arabica,Guatemala,Bourbon,Washed / Wet,7.75,7.5,7.67,7.5,7.92,8.0,10.0,10.0,9.33,0.0,83.17,3,丸み系,Guatemala,ウォッシュド,Bourbon
+474,Arabica,Brazil,Mundo Novo,Semi-washed / Semi-pulped,7.75,7.5,7.58,7.5,7.75,7.5,10.0,10.0,10.0,0.12,83.17,3,丸み系,Brazil,セミウォッシュド,Mundo Novo
+475,Arabica,Brazil,,,7.58,7.75,7.67,7.5,7.67,7.58,10.0,10.0,10.0,0.02,83.17,2,コク・バランス系,Brazil,その他,その他
+476,Arabica,El Salvador,,,7.42,7.83,8.17,8.08,7.17,7.58,10.0,9.33,10.0,0.14,83.17,1,酸味系,その他,その他,その他
+477,Arabica,Ethiopia,,,7.75,8.0,7.67,8.08,7.83,7.92,9.33,9.33,9.33,0.01,83.17,1,酸味系,Ethiopia,その他,その他
+478,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.67,7.33,7.67,7.75,7.58,10.0,10.0,10.0,0.0,83.08,1,酸味系,Colombia,ウォッシュド,Caturra
+479,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.5,7.5,7.42,8.0,7.75,10.0,10.0,10.0,0.0,83.08,3,丸み系,Colombia,ウォッシュド,Caturra
+480,Arabica,Brazil,Yellow Bourbon,Pulped natural / honey,7.58,7.58,7.58,7.5,7.67,7.58,10.0,10.0,10.0,0.11,83.08,2,コク・バランス系,Brazil,ハニー,Yellow Bourbon
+481,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.33,7.67,7.67,7.33,7.75,7.42,10.0,10.0,10.0,0.0,83.08,2,コク・バランス系,Brazil,ナチュラル,Yellow Bourbon
+482,Arabica,Taiwan,Typica,Natural / Dry,7.83,7.92,7.5,7.83,7.67,7.25,9.33,10.0,10.0,0.0,83.08,1,酸味系,Taiwan,ナチュラル,Typica
+483,Arabica,Brazil,Mundo Novo,Natural / Dry,7.42,7.67,7.58,7.5,7.75,7.67,10.0,10.0,10.0,0.11,83.08,2,コク・バランス系,Brazil,ナチュラル,Mundo Novo
+484,Arabica,Brazil,Bourbon,Washed / Wet,7.58,7.83,7.67,7.42,7.42,7.5,10.0,10.0,10.0,0.0,83.08,2,コク・バランス系,Brazil,ウォッシュド,Bourbon
+485,Arabica,Costa Rica,Catuai,Washed / Wet,7.83,7.33,7.5,7.67,7.58,7.67,10.0,10.0,10.0,0.1,83.08,1,酸味系,Costa Rica,ウォッシュド,Catuai
+486,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.33,7.75,7.58,7.33,7.83,7.67,10.0,10.0,10.0,0.12,83.08,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+487,Arabica,Taiwan,Typica,Other,7.75,7.75,7.5,7.5,7.5,7.5,10.0,10.0,10.0,0.11,83.08,0,香り系,Taiwan,その他,Typica
+488,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.83,7.83,7.33,7.17,7.75,7.67,10.0,10.0,10.0,0.1,83.08,3,丸み系,United States (Hawaii),ナチュラル,Hawaiian Kona
+489,Arabica,Mexico,Other,Washed / Wet,7.75,7.67,7.42,7.75,7.5,7.5,10.0,10.0,10.0,0.1,83.08,1,酸味系,Mexico,ウォッシュド,Other
+490,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.67,7.58,7.5,7.67,7.92,8.0,9.33,9.33,10.0,0.0,83.08,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+491,Arabica,United States (Hawaii),Hawaiian Kona,Washed / Wet,7.33,7.58,7.58,7.92,7.67,7.58,10.0,10.0,10.0,0.12,83.08,2,コク・バランス系,United States (Hawaii),ウォッシュド,Hawaiian Kona
+492,Arabica,Colombia,Caturra,,7.33,7.33,7.33,7.58,7.25,8.08,10.0,10.0,10.0,0.01,83.08,3,丸み系,Colombia,その他,Caturra
+493,Arabica,Colombia,,,7.83,7.75,7.33,7.25,7.42,7.92,10.0,10.0,10.0,0.08,83.08,3,丸み系,Colombia,その他,その他
+494,Arabica,Indonesia,,,7.67,7.58,7.5,7.58,7.67,7.58,10.0,10.0,10.0,0.0,83.08,1,酸味系,その他,その他,その他
+495,Arabica,Guatemala,,,7.92,7.67,7.67,7.25,7.83,7.67,9.33,10.0,10.0,0.02,83.08,0,香り系,Guatemala,その他,その他
+496,Arabica,Brazil,Bourbon,Natural / Dry,7.58,7.5,7.5,7.75,7.67,7.5,10.0,10.0,10.0,0.0,83.0,2,コク・バランス系,Brazil,ナチュラル,Bourbon
+497,Arabica,Brazil,Bourbon,Natural / Dry,7.5,7.58,7.58,7.67,7.58,7.5,10.0,10.0,10.0,0.11,83.0,2,コク・バランス系,Brazil,ナチュラル,Bourbon
+498,Arabica,Brazil,Bourbon,Natural / Dry,7.5,7.67,7.58,7.67,7.58,7.42,10.0,10.0,10.0,0.11,83.0,1,酸味系,Brazil,ナチュラル,Bourbon
+499,Arabica,Uganda,Bourbon,Washed / Wet,7.67,7.58,7.42,7.42,7.83,7.5,10.0,10.0,10.0,0.12,83.0,1,酸味系,Uganda,ウォッシュド,Bourbon
+500,Arabica,Uganda,Bourbon,Natural / Dry,7.67,7.67,7.5,7.58,7.42,7.5,10.0,10.0,10.0,0.12,83.0,0,香り系,Uganda,ナチュラル,Bourbon
+501,Arabica,Colombia,,,7.67,7.67,7.33,7.67,7.5,7.58,10.0,10.0,10.0,0.11,83.0,1,酸味系,Colombia,その他,その他
+502,Arabica,Vietnam,Caturra,Other,7.75,7.67,7.58,7.58,7.42,7.67,9.33,10.0,10.0,0.0,83.0,0,香り系,その他,その他,Caturra
+503,Arabica,Guatemala,Catuai,Washed / Wet,7.67,7.75,7.33,7.92,7.42,7.5,10.0,10.0,10.0,0.11,83.0,1,酸味系,Guatemala,ウォッシュド,Catuai
+504,Arabica,Guatemala,Catuai,Washed / Wet,7.75,7.67,7.33,7.75,7.5,7.42,10.0,10.0,10.0,0.11,83.0,1,酸味系,Guatemala,ウォッシュド,Catuai
+505,Arabica,Guatemala,Bourbon,Washed / Wet,7.83,7.67,7.25,7.67,7.75,7.5,10.0,10.0,10.0,0.11,83.0,1,酸味系,Guatemala,ウォッシュド,Bourbon
+506,Arabica,Brazil,Catuai,Natural / Dry,7.67,7.67,7.67,7.5,7.42,7.5,10.0,10.0,10.0,0.0,83.0,0,香り系,Brazil,ナチュラル,Catuai
+507,Arabica,Taiwan,Typica,Washed / Wet,7.92,7.92,7.83,7.58,7.33,7.25,10.0,10.0,10.0,0.08,83.0,0,香り系,Taiwan,ウォッシュド,Typica
+508,Arabica,Uganda,SL14,Washed / Wet,7.83,7.58,7.5,7.5,7.58,7.5,10.0,10.0,10.0,0.12,83.0,0,香り系,Uganda,ウォッシュド,その他
+509,Arabica,United States (Puerto Rico),Other,Washed / Wet,7.67,7.5,7.67,7.83,7.75,7.83,10.0,10.0,9.33,0.0,83.0,1,酸味系,その他,ウォッシュド,Other
+510,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.67,7.42,7.83,7.5,7.5,10.0,10.0,10.0,0.1,83.0,1,酸味系,Guatemala,ウォッシュド,Bourbon
+511,Arabica,Costa Rica,Catuai,Washed / Wet,7.67,7.58,7.5,7.58,7.5,7.5,10.0,10.0,10.0,0.11,83.0,1,酸味系,Costa Rica,ウォッシュド,Catuai
+512,Arabica,Brazil,Yellow Bourbon,Semi-washed / Semi-pulped,7.75,7.58,7.42,7.67,7.42,7.67,10.0,10.0,10.0,0.12,83.0,1,酸味系,Brazil,セミウォッシュド,Yellow Bourbon
+513,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.42,7.33,7.5,7.58,7.17,10.0,10.0,10.0,0.11,83.0,1,酸味系,Colombia,ウォッシュド,Caturra
+514,Arabica,Colombia,Caturra,Washed / Wet,7.83,7.5,7.58,7.33,7.5,7.67,10.0,10.0,10.0,0.0,83.0,0,香り系,Colombia,ウォッシュド,Caturra
+515,Arabica,Colombia,Caturra,Natural / Dry,7.33,7.67,7.75,7.42,7.75,7.58,10.0,10.0,10.0,0.11,83.0,2,コク・バランス系,Colombia,ナチュラル,Caturra
+516,Arabica,Colombia,Caturra,Natural / Dry,7.58,7.75,7.42,7.67,7.58,7.42,10.0,10.0,10.0,0.0,83.0,1,酸味系,Colombia,ナチュラル,Caturra
+517,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.5,7.42,7.58,7.75,7.58,10.0,10.0,10.0,0.11,83.0,1,酸味系,Colombia,ウォッシュド,Caturra
+518,Arabica,Mexico,Typica,Washed / Wet,7.67,7.58,7.42,7.5,7.67,7.58,10.0,10.0,10.0,0.11,83.0,1,酸味系,Mexico,ウォッシュド,Typica
+519,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.67,7.83,7.5,7.58,7.58,7.67,9.33,10.0,10.0,0.11,83.0,1,酸味系,Mexico,セミウォッシュド,Typica
+520,Arabica,Mexico,Bourbon,Washed / Wet,7.5,7.67,7.5,7.5,7.58,7.58,10.0,10.0,10.0,0.11,83.0,1,酸味系,Mexico,ウォッシュド,Bourbon
+521,Arabica,Colombia,Arusha,Natural / Dry,7.67,7.58,7.5,7.5,7.75,7.5,10.0,10.0,10.0,0.0,83.0,1,酸味系,Colombia,ナチュラル,その他
+522,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.58,7.5,7.67,7.83,7.75,9.33,10.0,10.0,0.0,83.0,1,酸味系,Colombia,ウォッシュド,Caturra
+523,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.58,7.58,7.58,7.67,7.42,10.0,10.0,10.0,0.11,83.0,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+524,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.67,7.5,7.67,7.5,7.83,10.0,10.0,10.0,0.1,83.0,2,コク・バランス系,Guatemala,ウォッシュド,Bourbon
+525,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.67,7.58,7.5,7.67,7.42,10.0,10.0,10.0,0.12,83.0,0,香り系,Colombia,ウォッシュド,Caturra
+526,Arabica,Thailand,,,7.33,7.67,7.58,7.5,7.75,7.67,10.0,10.0,10.0,0.28,83.0,2,コク・バランス系,Thailand,その他,その他
+527,Arabica,Colombia,,,7.33,7.67,7.58,7.33,7.58,7.92,10.0,10.0,10.0,0.08,83.0,2,コク・バランス系,Colombia,その他,その他
+528,Arabica,United States (Hawaii),,,7.83,7.83,7.67,7.83,7.92,7.83,9.33,9.33,9.33,0.0,83.0,1,酸味系,United States (Hawaii),その他,その他
+529,Arabica,United States (Hawaii),,,7.5,7.58,7.42,7.58,7.58,7.67,10.0,10.0,10.0,0.0,83.0,1,酸味系,United States (Hawaii),その他,その他
+530,Arabica,Colombia,,,7.5,7.58,7.67,7.67,7.58,7.58,10.0,10.0,10.0,0.06,83.0,2,コク・バランス系,Colombia,その他,その他
+531,Arabica,Nicaragua,Caturra,,7.58,7.83,7.75,7.92,7.92,8.08,9.33,9.33,9.33,0.07,83.0,2,コク・バランス系,その他,その他,Caturra
+532,Arabica,Thailand,,,7.5,7.25,7.42,7.75,8.17,7.5,10.0,10.0,10.0,0.0,83.0,1,酸味系,Thailand,その他,その他
+533,Arabica,Brazil,Bourbon,Natural / Dry,7.67,7.58,7.5,7.58,7.58,7.5,10.0,10.0,10.0,0.0,82.92,1,酸味系,Brazil,ナチュラル,Bourbon
+534,Arabica,El Salvador,Bourbon,Washed / Wet,7.5,7.5,7.75,7.58,7.92,7.83,10.0,10.0,9.33,0.0,82.92,2,コク・バランス系,その他,ウォッシュド,Bourbon
+535,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.67,7.5,7.33,7.67,7.58,10.0,10.0,10.0,0.11,82.92,0,香り系,Colombia,ウォッシュド,Caturra
+536,Arabica,Taiwan,Caturra,Natural / Dry,7.17,7.83,7.25,7.67,7.67,7.58,10.0,10.0,10.0,0.09,82.92,1,酸味系,Taiwan,ナチュラル,Caturra
+537,Arabica,Ethiopia,Ethiopian Heirlooms,Washed / Wet,7.58,7.58,7.5,7.5,7.58,7.58,10.0,10.0,10.0,0.0,82.92,2,コク・バランス系,Ethiopia,ウォッシュド,その他
+538,Arabica,Taiwan,Typica,Natural / Dry,7.5,7.58,7.67,7.33,7.5,7.75,10.0,10.0,10.0,0.0,82.92,2,コク・バランス系,Taiwan,ナチュラル,Typica
+539,Arabica,Philippines,Other,Washed / Wet,7.58,7.58,7.67,7.58,7.5,7.5,10.0,10.0,10.0,0.11,82.92,0,香り系,その他,ウォッシュド,Other
+540,Arabica,Philippines,Other,Washed / Wet,8.08,7.5,7.67,7.42,7.33,7.5,10.0,10.0,10.0,0.0,82.92,0,香り系,その他,ウォッシュド,Other
+541,Arabica,Mexico,Typica,Natural / Dry,7.83,7.67,7.25,7.58,7.5,7.5,10.0,10.0,10.0,0.13,82.92,1,酸味系,Mexico,ナチュラル,Typica
+542,Arabica,Mexico,Bourbon,Washed / Wet,7.75,7.67,7.42,7.42,7.75,7.5,10.0,10.0,10.0,0.12,82.92,1,酸味系,Mexico,ウォッシュド,Bourbon
+543,Arabica,Brazil,Moka Peaberry,Semi-washed / Semi-pulped,7.08,7.5,7.5,7.83,7.75,7.67,10.0,10.0,10.0,0.11,82.92,2,コク・バランス系,Brazil,セミウォッシュド,その他
+544,Arabica,Uganda,SL14,Washed / Wet,8.0,7.5,7.5,7.58,7.33,7.42,10.0,10.0,10.0,0.12,82.92,1,酸味系,Uganda,ウォッシュド,その他
+545,Arabica,Uganda,SL14,Washed / Wet,7.75,7.58,7.58,7.5,7.5,7.5,10.0,10.0,10.0,0.12,82.92,0,香り系,Uganda,ウォッシュド,その他
+546,Arabica,Guatemala,Bourbon,Washed / Wet,7.75,7.5,7.42,7.58,7.67,7.5,10.0,10.0,10.0,0.1,82.92,1,酸味系,Guatemala,ウォッシュド,Bourbon
+547,Arabica,Guatemala,Caturra,Natural / Dry,7.67,7.83,7.42,7.5,7.33,7.5,10.0,10.0,10.0,0.1,82.92,0,香り系,Guatemala,ナチュラル,Caturra
+548,Arabica,Guatemala,,Washed / Wet,7.58,7.58,7.25,7.58,7.58,7.58,10.0,10.0,10.0,0.1,82.92,1,酸味系,Guatemala,ウォッシュド,その他
+549,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.5,7.75,7.33,7.58,7.58,10.0,10.0,10.0,0.11,82.92,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+550,Arabica,Colombia,Caturra,Natural / Dry,7.75,7.5,7.25,7.5,7.75,7.5,10.0,10.0,10.0,0.0,82.92,1,酸味系,Colombia,ナチュラル,Caturra
+551,Arabica,Guatemala,Bourbon,Washed / Wet,7.83,7.75,7.25,7.92,7.5,7.17,10.0,10.0,10.0,0.11,82.92,1,酸味系,Guatemala,ウォッシュド,Bourbon
+552,Arabica,Colombia,Other,Washed / Wet,7.83,7.67,7.42,7.42,7.5,7.58,10.0,10.0,10.0,0.11,82.92,0,香り系,Colombia,ウォッシュド,Other
+553,Arabica,Mexico,Typica,Natural / Dry,7.58,7.58,7.33,7.25,7.58,7.75,10.0,10.0,10.0,0.1,82.92,3,丸み系,Mexico,ナチュラル,Typica
+554,Arabica,Vietnam,Other,Natural / Dry,7.67,7.33,7.17,7.58,8.08,7.42,10.0,10.0,10.0,0.0,82.92,1,酸味系,その他,ナチュラル,Other
+555,Arabica,Mexico,Typica,Washed / Wet,8.0,7.92,7.67,7.17,7.67,7.42,9.33,10.0,10.0,0.14,82.92,3,丸み系,Mexico,ウォッシュド,Typica
+556,Arabica,United States (Hawaii),Hawaiian Kona,Washed / Wet,7.5,7.5,7.5,7.42,7.67,7.83,10.0,10.0,10.0,0.1,82.92,2,コク・バランス系,United States (Hawaii),ウォッシュド,Hawaiian Kona
+557,Arabica,Colombia,,,7.5,7.75,7.33,7.75,7.08,7.83,10.0,10.0,10.0,0.15,82.92,1,酸味系,Colombia,その他,その他
+558,Arabica,Thailand,,,7.42,7.58,7.5,7.17,7.5,8.0,10.0,10.0,10.0,0.0,82.92,2,コク・バランス系,Thailand,その他,その他
+559,Arabica,Kenya,SL28,Washed / Wet,7.75,7.58,7.42,7.58,7.5,7.5,10.0,10.0,10.0,0.1,82.83,1,酸味系,その他,ウォッシュド,その他
+560,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.58,7.33,7.67,7.58,7.58,10.0,10.0,10.0,0.11,82.83,1,酸味系,Guatemala,ウォッシュド,Bourbon
+561,Arabica,Brazil,Yellow Bourbon,Pulped natural / honey,7.67,7.58,7.58,7.5,7.5,7.42,10.0,10.0,10.0,0.11,82.83,0,香り系,Brazil,ハニー,Yellow Bourbon
+562,Arabica,El Salvador,Pacas,Washed / Wet,7.33,7.67,7.67,7.83,7.33,7.67,10.0,10.0,10.0,0.0,82.83,1,酸味系,その他,ウォッシュド,その他
+563,Arabica,Rwanda,Bourbon,Washed / Wet,7.83,7.92,7.75,7.83,7.75,7.75,9.33,9.33,9.33,0.11,82.83,1,酸味系,その他,ウォッシュド,Bourbon
+564,Arabica,Vietnam,Other,Other,7.25,7.58,7.5,7.42,7.75,7.42,10.0,10.0,10.0,0.11,82.83,2,コク・バランス系,その他,その他,Other
+565,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.58,7.33,7.67,7.67,7.5,10.0,10.0,10.0,0.11,82.83,1,酸味系,Guatemala,ウォッシュド,Bourbon
+566,Arabica,Brazil,Catuai,Natural / Dry,7.58,7.83,7.33,7.67,7.42,7.33,10.0,10.0,10.0,0.12,82.83,1,酸味系,Brazil,ナチュラル,Catuai
+567,Arabica,Colombia,Other,Washed / Wet,7.83,7.67,7.5,7.58,7.5,7.67,10.0,10.0,10.0,0.0,82.83,1,酸味系,Colombia,ウォッシュド,Other
+568,Arabica,United States,Other,Other,7.42,7.58,7.25,7.5,7.75,7.75,10.0,10.0,10.0,0.0,82.83,1,酸味系,その他,その他,Other
+569,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.67,7.75,7.67,7.42,7.17,10.0,10.0,10.0,0.1,82.83,0,香り系,Guatemala,ウォッシュド,Bourbon
+570,Arabica,Colombia,Typica,Natural / Dry,7.5,7.42,7.58,7.5,7.58,7.58,10.0,10.0,10.0,0.0,82.83,2,コク・バランス系,Colombia,ナチュラル,Typica
+571,Arabica,Colombia,Caturra,Washed / Wet,7.83,7.5,7.5,7.42,7.5,7.5,10.0,10.0,10.0,0.11,82.83,0,香り系,Colombia,ウォッシュド,Caturra
+572,Arabica,"Tanzania, United Republic Of",Arusha,Washed / Wet,7.67,7.5,7.33,7.25,7.58,7.75,10.0,10.0,10.0,0.11,82.83,3,丸み系,"Tanzania, United Republic Of",ウォッシュド,その他
+573,Arabica,Mexico,Caturra,Washed / Wet,7.58,7.67,7.5,7.58,7.5,7.5,10.0,10.0,10.0,0.12,82.83,1,酸味系,Mexico,ウォッシュド,Caturra
+574,Arabica,Mexico,Bourbon,Washed / Wet,7.67,7.58,7.42,7.75,7.42,7.42,10.0,10.0,10.0,0.12,82.83,1,酸味系,Mexico,ウォッシュド,Bourbon
+575,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.67,7.33,7.5,7.33,7.92,10.0,10.0,10.0,0.11,82.83,3,丸み系,Guatemala,ウォッシュド,Bourbon
+576,Arabica,Mexico,Typica,Washed / Wet,7.58,7.58,7.5,7.42,7.67,7.58,10.0,10.0,10.0,0.11,82.83,2,コク・バランス系,Mexico,ウォッシュド,Typica
+577,Arabica,El Salvador,,,7.75,7.58,7.75,7.75,7.25,7.5,10.0,10.0,10.0,0.0,82.83,0,香り系,その他,その他,その他
+578,Arabica,Guatemala,Caturra,Washed / Wet,7.5,7.58,7.42,7.67,7.58,7.5,10.0,10.0,10.0,0.1,82.75,1,酸味系,Guatemala,ウォッシュド,Caturra
+579,Arabica,Guatemala,Caturra,Washed / Wet,7.58,7.67,7.5,7.58,7.5,7.42,10.0,10.0,10.0,0.11,82.75,1,酸味系,Guatemala,ウォッシュド,Caturra
+580,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.67,7.17,7.67,7.67,7.58,10.0,10.0,10.0,0.11,82.75,1,酸味系,Guatemala,ウォッシュド,Bourbon
+581,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.5,7.42,7.58,7.67,7.5,10.0,10.0,10.0,0.1,82.75,1,酸味系,Guatemala,ウォッシュド,Bourbon
+582,Arabica,Guatemala,Bourbon,Washed / Wet,7.42,7.58,7.42,7.67,7.5,7.5,10.0,10.0,10.0,0.1,82.75,1,酸味系,Guatemala,ウォッシュド,Bourbon
+583,Arabica,Indonesia,Sulawesi,Other,7.5,7.58,7.42,7.58,7.58,7.5,10.0,10.0,10.0,0.12,82.75,1,酸味系,その他,その他,その他
+584,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.58,7.33,7.58,7.33,7.67,10.0,10.0,10.0,0.12,82.75,1,酸味系,Guatemala,ウォッシュド,Bourbon
+585,Arabica,Taiwan,Yellow Bourbon,Natural / Dry,7.83,7.67,7.33,7.67,7.58,7.67,9.33,10.0,10.0,0.0,82.75,1,酸味系,Taiwan,ナチュラル,Yellow Bourbon
+586,Arabica,El Salvador,Bourbon,Washed / Wet,7.67,7.67,7.17,7.33,7.58,7.67,10.0,10.0,10.0,0.0,82.75,3,丸み系,その他,ウォッシュド,Bourbon
+587,Arabica,Costa Rica,Caturra,Washed / Wet,7.58,7.5,7.42,7.67,7.42,7.5,10.0,10.0,10.0,0.09,82.75,1,酸味系,Costa Rica,ウォッシュド,Caturra
+588,Arabica,Honduras,Caturra,Natural / Dry,7.58,7.5,7.42,7.58,7.5,7.5,10.0,10.0,10.0,0.09,82.75,1,酸味系,Honduras,ナチュラル,Caturra
+589,Arabica,Brazil,Yellow Bourbon,Pulped natural / honey,7.5,7.5,7.58,7.5,7.58,7.58,10.0,10.0,10.0,0.11,82.75,2,コク・バランス系,Brazil,ハニー,Yellow Bourbon
+590,Arabica,China,Catimor,Natural / Dry,7.67,7.5,7.33,7.33,7.67,7.67,10.0,10.0,10.0,0.1,82.75,3,丸み系,その他,ナチュラル,その他
+591,Arabica,China,Catimor,Washed / Wet,7.5,7.67,7.42,7.67,7.5,7.5,10.0,10.0,10.0,0.11,82.75,1,酸味系,その他,ウォッシュド,その他
+592,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.58,7.58,7.75,7.33,7.5,10.0,10.0,10.0,0.0,82.75,1,酸味系,Colombia,ウォッシュド,Caturra
+593,Arabica,Malawi,Gesha,Washed / Wet,7.75,7.58,7.42,7.5,7.33,7.5,10.0,10.0,10.0,0.12,82.75,0,香り系,その他,ウォッシュド,その他
+594,Arabica,Guatemala,Pacas,Washed / Wet,7.75,7.42,7.25,7.75,7.5,7.67,10.0,10.0,10.0,0.13,82.75,1,酸味系,Guatemala,ウォッシュド,その他
+595,Arabica,Colombia,Typica,Washed / Wet,7.67,7.42,7.42,7.58,7.33,7.67,10.0,10.0,10.0,0.12,82.75,1,酸味系,Colombia,ウォッシュド,Typica
+596,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.67,7.58,7.42,7.83,7.33,7.5,10.0,10.0,10.0,0.1,82.75,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+597,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.58,7.83,7.75,7.75,7.42,8.0,9.33,9.33,10.0,0.1,82.75,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+598,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.33,7.17,7.33,7.25,8.58,10.0,10.0,10.0,0.1,82.75,3,丸み系,Colombia,ウォッシュド,Caturra
+599,Arabica,Mexico,Typica,Washed / Wet,7.58,7.58,7.5,7.5,7.5,7.5,10.0,10.0,10.0,0.12,82.75,0,香り系,Mexico,ウォッシュド,Typica
+600,Arabica,Mexico,Typica,Washed / Wet,7.58,7.58,7.33,7.75,7.25,7.58,10.0,10.0,10.0,0.12,82.75,1,酸味系,Mexico,ウォッシュド,Typica
+601,Arabica,Mexico,Typica,Natural / Dry,8.08,8.17,8.0,8.0,7.83,7.92,6.67,10.0,10.0,0.12,82.75,0,香り系,Mexico,ナチュラル,Typica
+602,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.58,7.42,7.67,7.5,7.58,10.0,10.0,10.0,0.0,82.75,1,酸味系,Colombia,ウォッシュド,Caturra
+603,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.58,7.58,7.58,7.5,7.42,10.0,10.0,10.0,0.11,82.75,0,香り系,Colombia,ウォッシュド,Caturra
+604,Arabica,United States (Hawaii),Hawaiian Kona,Washed / Wet,7.25,7.75,7.5,7.83,7.67,7.67,9.33,10.0,10.0,0.12,82.75,2,コク・バランス系,United States (Hawaii),ウォッシュド,Hawaiian Kona
+605,Arabica,Panama,Catuai,Washed / Wet,7.42,7.42,7.5,7.58,7.5,7.75,10.0,10.0,10.0,0.0,82.75,2,コク・バランス系,その他,ウォッシュド,Catuai
+606,Arabica,United States (Hawaii),,,7.75,7.67,7.5,7.83,7.17,7.42,10.0,10.0,10.0,0.0,82.75,0,香り系,United States (Hawaii),その他,その他
+607,Arabica,Brazil,Bourbon,Natural / Dry,7.5,7.58,7.25,7.75,7.58,7.5,10.0,10.0,10.0,0.0,82.67,1,酸味系,Brazil,ナチュラル,Bourbon
+608,Arabica,Brazil,Bourbon,Natural / Dry,7.5,7.58,7.5,7.67,7.5,7.42,10.0,10.0,10.0,0.11,82.67,1,酸味系,Brazil,ナチュラル,Bourbon
+609,Arabica,Laos,Catimor,Washed / Wet,7.67,7.67,7.42,7.42,7.42,7.5,10.0,10.0,10.0,0.13,82.67,0,香り系,その他,ウォッシュド,その他
+610,Arabica,El Salvador,Pacas,Washed / Wet,7.67,7.67,7.67,7.67,7.5,7.67,10.0,10.0,9.33,0.0,82.67,0,香り系,その他,ウォッシュド,その他
+611,Arabica,Mexico,,,7.5,7.67,7.42,7.75,7.42,7.17,10.0,10.0,10.0,0.11,82.67,1,酸味系,Mexico,その他,その他
+612,Arabica,Colombia,,Washed / Wet,7.75,7.5,7.33,7.58,7.33,7.75,10.0,10.0,10.0,0.0,82.67,1,酸味系,Colombia,ウォッシュド,その他
+613,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.58,7.5,7.42,7.67,7.5,7.5,10.0,10.0,10.0,0.0,82.67,1,酸味系,Brazil,ナチュラル,Yellow Bourbon
+614,Arabica,Brazil,Catuai,Natural / Dry,7.33,7.5,7.58,7.58,7.67,7.5,10.0,10.0,10.0,0.12,82.67,2,コク・バランス系,Brazil,ナチュラル,Catuai
+615,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.5,7.5,7.5,7.5,7.5,7.58,10.0,10.0,10.0,0.12,82.67,2,コク・バランス系,"Tanzania, United Republic Of",ウォッシュド,Other
+616,Arabica,"Tanzania, United Republic Of",Bourbon,Washed / Wet,7.58,7.5,7.5,7.58,7.33,7.58,10.0,10.0,10.0,0.12,82.67,0,香り系,"Tanzania, United Republic Of",ウォッシュド,Bourbon
+617,Arabica,Taiwan,Typica,Washed / Wet,8.0,7.83,7.83,7.42,7.25,7.25,10.0,10.0,10.0,0.08,82.67,0,香り系,Taiwan,ウォッシュド,Typica
+618,Arabica,Mexico,Typica,Natural / Dry,7.67,7.58,7.42,7.5,7.42,7.5,10.0,10.0,10.0,0.11,82.67,1,酸味系,Mexico,ナチュラル,Typica
+619,Arabica,Uganda,SL14,Washed / Wet,7.67,7.5,7.33,7.67,7.5,7.5,10.0,10.0,10.0,0.12,82.67,1,酸味系,Uganda,ウォッシュド,その他
+620,Arabica,Taiwan,Typica,Washed / Wet,7.67,7.5,7.5,7.5,7.5,7.5,10.0,10.0,10.0,0.11,82.67,0,香り系,Taiwan,ウォッシュド,Typica
+621,Arabica,Thailand,Caturra,Washed / Wet,7.42,7.5,7.5,7.67,7.58,7.5,10.0,10.0,10.0,0.11,82.67,1,酸味系,Thailand,ウォッシュド,Caturra
+622,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.58,7.67,7.25,7.58,7.42,10.0,10.0,10.0,0.11,82.67,0,香り系,Colombia,ウォッシュド,Caturra
+623,Arabica,El Salvador,Other,Washed / Wet,7.92,8.0,7.5,6.75,7.92,7.58,10.0,10.0,9.33,0.0,82.67,3,丸み系,その他,ウォッシュド,Other
+624,Arabica,Guatemala,Caturra,Washed / Wet,7.67,7.67,7.17,7.67,7.5,7.5,10.0,10.0,10.0,0.11,82.67,1,酸味系,Guatemala,ウォッシュド,Caturra
+625,Arabica,Thailand,Other,Washed / Wet,7.83,7.33,7.83,7.33,7.58,7.83,10.0,10.0,9.33,0.12,82.67,0,香り系,Thailand,ウォッシュド,Other
+626,Arabica,Mexico,Other,Washed / Wet,7.58,7.58,7.42,7.58,7.42,7.5,10.0,10.0,10.0,0.11,82.67,1,酸味系,Mexico,ウォッシュド,Other
+627,Arabica,Mexico,Typica,Washed / Wet,7.5,7.58,7.58,7.58,7.42,7.42,10.0,10.0,10.0,0.12,82.67,0,香り系,Mexico,ウォッシュド,Typica
+628,Arabica,Colombia,,,7.33,7.58,7.42,7.42,7.67,7.67,10.0,10.0,10.0,0.11,82.67,2,コク・バランス系,Colombia,その他,その他
+629,Arabica,United States (Hawaii),,,7.83,7.67,7.5,7.67,7.5,7.58,10.0,10.0,9.33,0.03,82.67,1,酸味系,United States (Hawaii),その他,その他
+630,Arabica,Mexico,Blue Mountain,,7.75,7.58,7.25,7.75,7.67,7.58,10.0,10.0,10.0,0.0,82.67,1,酸味系,Mexico,その他,その他
+631,Arabica,Colombia,,,8.08,7.67,7.67,7.33,7.33,7.17,10.0,10.0,10.0,0.08,82.67,0,香り系,Colombia,その他,その他
+632,Arabica,Colombia,,,7.5,7.42,7.33,7.33,7.67,7.83,10.0,10.0,10.0,0.21,82.67,2,コク・バランス系,Colombia,その他,その他
+633,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.42,7.42,7.75,7.5,7.5,10.0,10.0,10.0,0.1,82.58,1,酸味系,Guatemala,ウォッシュド,Bourbon
+634,Arabica,Taiwan,Typica,Pulped natural / honey,7.67,7.42,7.5,7.42,7.58,7.5,10.0,10.0,10.0,0.11,82.58,3,丸み系,Taiwan,ハニー,Typica
+635,Arabica,Brazil,,Pulped natural / honey,7.5,7.58,7.42,7.5,7.75,7.33,10.0,10.0,10.0,0.11,82.58,1,酸味系,Brazil,ハニー,その他
+636,Arabica,Taiwan,,,7.25,7.25,7.0,7.08,7.0,7.0,10.0,10.0,10.0,0.11,82.58,0,香り系,Taiwan,その他,その他
+637,Arabica,Brazil,,,7.42,7.42,7.5,7.33,7.25,7.67,10.0,10.0,10.0,0.0,82.58,1,酸味系,Brazil,その他,その他
+638,Arabica,Indonesia,Typica,Semi-washed / Semi-pulped,7.83,7.58,7.42,7.33,7.42,7.5,10.0,10.0,10.0,0.13,82.58,0,香り系,その他,セミウォッシュド,Typica
+639,Arabica,Thailand,,Washed / Wet,7.75,7.33,7.42,7.67,7.42,7.5,10.0,10.0,10.0,0.12,82.58,1,酸味系,Thailand,ウォッシュド,その他
+640,Arabica,Thailand,Caturra,Washed / Wet,7.42,7.58,7.58,7.42,7.58,7.5,10.0,10.0,10.0,0.12,82.58,2,コク・バランス系,Thailand,ウォッシュド,Caturra
+641,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.75,7.42,7.33,7.5,7.58,7.5,10.0,10.0,10.0,0.12,82.58,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+642,Arabica,Uganda,SL14,Natural / Dry,7.83,7.5,7.42,7.58,7.42,7.42,10.0,10.0,10.0,0.12,82.58,0,香り系,Uganda,ナチュラル,その他
+643,Arabica,Costa Rica,Catuai,Washed / Wet,7.67,7.42,7.5,7.67,7.0,7.75,10.0,10.0,10.0,0.11,82.58,1,酸味系,Costa Rica,ウォッシュド,Catuai
+644,Arabica,Mexico,,Washed / Wet,7.58,7.58,7.42,7.75,7.67,7.67,9.33,10.0,10.0,0.0,82.58,1,酸味系,Mexico,ウォッシュド,その他
+645,Arabica,Guatemala,,Natural / Dry,7.5,7.58,7.42,7.58,7.42,7.58,10.0,10.0,10.0,0.0,82.58,1,酸味系,Guatemala,ナチュラル,その他
+646,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.25,7.33,7.42,7.5,7.83,10.0,10.0,10.0,0.11,82.58,3,丸み系,Colombia,ウォッシュド,Caturra
+647,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.5,7.75,7.25,7.33,7.58,10.0,10.0,10.0,0.11,82.58,0,香り系,Colombia,ウォッシュド,Caturra
+648,Arabica,Colombia,Caturra,Washed / Wet,7.58,7.5,7.42,7.58,7.67,7.42,10.0,10.0,10.0,0.11,82.58,1,酸味系,Colombia,ウォッシュド,Caturra
+649,Arabica,Mexico,Typica,Washed / Wet,7.5,7.58,7.5,7.5,7.42,7.5,10.0,10.0,10.0,0.1,82.58,0,香り系,Mexico,ウォッシュド,Typica
+650,Arabica,Mexico,Typica,Washed / Wet,7.67,7.58,7.58,7.75,7.67,6.83,10.0,10.0,10.0,0.12,82.58,1,酸味系,Mexico,ウォッシュド,Typica
+651,Arabica,Colombia,Caturra,Washed / Wet,7.33,7.42,7.58,7.42,7.67,7.5,10.0,10.0,10.0,0.11,82.58,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+652,Arabica,Brazil,Mundo Novo,,7.58,7.5,7.33,7.75,7.5,7.5,10.0,10.0,10.0,0.0,82.58,1,酸味系,Brazil,その他,Mundo Novo
+653,Arabica,Brazil,Bourbon,Natural / Dry,7.5,7.5,7.5,7.5,7.58,7.5,10.0,10.0,10.0,0.11,82.5,2,コク・バランス系,Brazil,ナチュラル,Bourbon
+654,Arabica,Indonesia,Other,Washed / Wet,7.83,7.75,7.25,7.5,7.42,7.33,10.0,10.0,10.0,0.11,82.5,0,香り系,その他,ウォッシュド,Other
+655,Arabica,Honduras,Caturra,Washed / Wet,7.58,7.58,7.33,7.5,7.5,7.5,10.0,10.0,10.0,0.1,82.5,1,酸味系,Honduras,ウォッシュド,Caturra
+656,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.5,7.33,7.5,7.67,7.5,10.0,10.0,10.0,0.1,82.5,1,酸味系,Guatemala,ウォッシュド,Bourbon
+657,Arabica,Thailand,,Washed / Wet,7.5,7.83,7.5,7.75,7.33,7.42,9.33,10.0,10.0,0.12,82.5,1,酸味系,Thailand,ウォッシュド,その他
+658,Arabica,Thailand,Caturra,Washed / Wet,7.33,7.5,7.5,7.5,7.67,7.5,10.0,10.0,10.0,0.11,82.5,2,コク・バランス系,Thailand,ウォッシュド,Caturra
+659,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.67,7.42,7.33,7.58,7.5,7.5,10.0,10.0,10.0,0.12,82.5,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+660,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.75,7.0,7.42,7.58,7.58,7.58,10.0,10.0,10.0,0.12,82.5,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+661,Arabica,Mexico,Other,Washed / Wet,7.42,7.58,7.5,7.67,7.25,7.5,10.0,10.0,10.0,0.0,82.5,1,酸味系,Mexico,ウォッシュド,Other
+662,Arabica,Brazil,Yellow Bourbon,Semi-washed / Semi-pulped,7.42,7.5,7.67,7.33,7.42,7.67,10.0,10.0,10.0,0.11,82.5,2,コク・バランス系,Brazil,セミウォッシュド,Yellow Bourbon
+663,Arabica,Guatemala,Bourbon,Washed / Wet,7.83,7.42,7.33,7.67,7.42,7.5,10.0,10.0,10.0,0.12,82.5,1,酸味系,Guatemala,ウォッシュド,Bourbon
+664,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.5,7.42,7.42,7.58,7.58,10.0,10.0,10.0,0.11,82.5,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+665,Arabica,Guatemala,Bourbon,Washed / Wet,7.83,7.67,7.17,7.33,7.5,7.67,10.0,10.0,10.0,0.11,82.5,3,丸み系,Guatemala,ウォッシュド,Bourbon
+666,Arabica,Mexico,Typica,Washed / Wet,7.5,7.58,7.5,7.5,7.42,7.42,10.0,10.0,10.0,0.13,82.5,0,香り系,Mexico,ウォッシュド,Typica
+667,Arabica,Mexico,Typica,Washed / Wet,7.67,7.5,7.33,7.67,7.5,7.33,10.0,10.0,10.0,0.12,82.5,1,酸味系,Mexico,ウォッシュド,Typica
+668,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.92,7.5,7.33,7.58,7.25,7.42,10.0,10.0,10.0,0.11,82.5,1,酸味系,Mexico,セミウォッシュド,Typica
+669,Arabica,Guatemala,Caturra,Natural / Dry,7.67,7.33,7.33,7.33,7.5,7.83,10.0,10.0,10.0,0.11,82.5,3,丸み系,Guatemala,ナチュラル,Caturra
+670,Arabica,Brazil,Bourbon,Semi-washed / Semi-pulped,7.67,7.42,7.33,7.67,7.5,7.5,10.0,10.0,10.0,0.0,82.5,1,酸味系,Brazil,セミウォッシュド,Bourbon
+671,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.5,7.33,7.5,7.25,7.67,10.0,10.0,10.0,0.11,82.5,1,酸味系,Colombia,ウォッシュド,Caturra
+672,Arabica,United States (Hawaii),Hawaiian Kona,Washed / Wet,7.33,7.42,7.33,7.75,7.42,7.67,10.0,10.0,10.0,0.12,82.5,1,酸味系,United States (Hawaii),ウォッシュド,Hawaiian Kona
+673,Arabica,Guatemala,,,7.75,7.58,7.67,7.67,7.58,7.58,9.33,10.0,10.0,0.01,82.5,2,コク・バランス系,Guatemala,その他,その他
+674,Arabica,Honduras,Other,Washed / Wet,7.42,7.67,7.17,7.58,7.58,7.5,10.0,10.0,10.0,0.12,82.42,1,酸味系,Honduras,ウォッシュド,Other
+675,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.5,7.33,7.75,7.33,7.5,10.0,10.0,10.0,0.1,82.42,1,酸味系,Guatemala,ウォッシュド,Bourbon
+676,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.58,7.25,7.67,7.42,7.33,10.0,10.0,10.0,0.12,82.42,1,酸味系,Guatemala,ウォッシュド,Bourbon
+677,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.5,7.25,7.67,7.5,7.5,10.0,10.0,10.0,0.12,82.42,1,酸味系,Guatemala,ウォッシュド,Bourbon
+678,Arabica,Guatemala,Caturra,Washed / Wet,7.5,7.42,7.08,7.75,7.67,7.5,10.0,10.0,10.0,0.11,82.42,1,酸味系,Guatemala,ウォッシュド,Caturra
+679,Arabica,Colombia,Caturra,Washed / Wet,5.08,7.75,7.83,7.75,7.83,8.08,10.0,10.0,10.0,0.11,82.42,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+680,Arabica,China,Catimor,Washed / Wet,7.67,7.42,7.42,7.5,7.42,7.42,10.0,10.0,10.0,0.1,82.42,0,香り系,その他,ウォッシュド,その他
+681,Arabica,Brazil,,,7.42,7.5,7.33,7.5,7.25,7.42,10.0,10.0,10.0,0.11,82.42,1,酸味系,Brazil,その他,その他
+682,Arabica,"Tanzania, United Republic Of",Ruiru 11,Washed / Wet,7.67,7.25,7.42,7.42,7.67,7.42,10.0,10.0,10.0,0.13,82.42,3,丸み系,"Tanzania, United Republic Of",ウォッシュド,その他
+683,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.17,7.83,7.33,7.5,7.75,7.42,10.0,10.0,10.0,0.0,82.42,1,酸味系,Brazil,ナチュラル,Yellow Bourbon
+684,Arabica,Guatemala,Caturra,Washed / Wet,7.5,7.5,7.5,7.67,7.42,7.5,10.0,10.0,10.0,0.1,82.42,1,酸味系,Guatemala,ウォッシュド,Caturra
+685,Arabica,Mexico,Typica,Washed / Wet,7.42,7.5,7.42,7.58,7.42,7.5,10.0,10.0,10.0,0.11,82.42,1,酸味系,Mexico,ウォッシュド,Typica
+686,Arabica,Brazil,Catuai,Semi-washed / Semi-pulped,7.58,7.67,7.33,7.5,7.5,7.42,10.0,10.0,10.0,0.12,82.42,1,酸味系,Brazil,セミウォッシュド,Catuai
+687,Arabica,Peru,,Washed / Wet,7.58,7.58,7.58,7.75,7.5,7.58,9.33,10.0,10.0,0.0,82.42,1,酸味系,その他,ウォッシュド,その他
+688,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.25,7.33,7.25,7.5,7.42,7.5,10.0,10.0,10.0,0.0,82.42,2,コク・バランス系,Brazil,ナチュラル,Yellow Bourbon
+689,Arabica,Mexico,Bourbon,Washed / Wet,7.5,7.58,7.5,7.92,7.42,7.67,9.33,10.0,10.0,0.12,82.42,1,酸味系,Mexico,ウォッシュド,Bourbon
+690,Arabica,Honduras,,Washed / Wet,7.25,7.67,7.42,7.17,7.75,7.5,10.0,10.0,10.0,0.09,82.42,2,コク・バランス系,Honduras,ウォッシュド,その他
+691,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.42,7.33,7.5,7.58,7.5,10.0,10.0,10.0,0.11,82.42,1,酸味系,Colombia,ウォッシュド,Caturra
+692,Arabica,Mexico,Typica,Washed / Wet,7.5,7.42,7.42,7.67,7.42,7.58,10.0,10.0,10.0,0.12,82.42,1,酸味系,Mexico,ウォッシュド,Typica
+693,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.42,7.58,7.5,7.42,7.58,7.5,10.0,10.0,10.0,0.13,82.42,2,コク・バランス系,Mexico,セミウォッシュド,Typica
+694,Arabica,Mexico,Typica,Washed / Wet,7.42,7.58,7.33,7.58,7.5,7.5,10.0,10.0,10.0,0.14,82.42,1,酸味系,Mexico,ウォッシュド,Typica
+695,Arabica,Mexico,Caturra,Washed / Wet,7.75,7.33,7.25,7.58,7.58,7.33,10.0,10.0,10.0,0.13,82.42,1,酸味系,Mexico,ウォッシュド,Caturra
+696,Arabica,Mexico,Typica,Washed / Wet,7.5,7.58,7.33,7.5,7.5,7.5,10.0,10.0,10.0,0.11,82.42,1,酸味系,Mexico,ウォッシュド,Typica
+697,Arabica,Mexico,Pacamara,Washed / Wet,7.58,7.58,7.17,7.5,7.5,7.5,10.0,10.0,10.0,0.14,82.42,1,酸味系,Mexico,ウォッシュド,その他
+698,Arabica,Mexico,Caturra,Washed / Wet,7.58,7.33,7.33,7.58,7.5,7.5,10.0,10.0,10.0,0.11,82.42,1,酸味系,Mexico,ウォッシュド,Caturra
+699,Arabica,Mexico,Bourbon,Washed / Wet,7.67,7.58,7.33,7.42,7.58,7.33,10.0,10.0,10.0,0.13,82.42,1,酸味系,Mexico,ウォッシュド,Bourbon
+700,Arabica,Mexico,Typica,Washed / Wet,7.83,7.5,7.42,7.67,7.17,7.33,10.0,10.0,10.0,0.12,82.42,0,香り系,Mexico,ウォッシュド,Typica
+701,Arabica,Colombia,Caturra,Natural / Dry,7.67,7.33,7.25,7.42,7.5,7.67,10.0,10.0,10.0,0.0,82.42,3,丸み系,Colombia,ナチュラル,Caturra
+702,Arabica,Brazil,Arusha,Natural / Dry,7.75,7.5,7.42,7.42,7.5,7.42,10.0,10.0,10.0,0.11,82.42,0,香り系,Brazil,ナチュラル,その他
+703,Arabica,Colombia,Caturra,Washed / Wet,7.33,7.58,7.17,7.58,7.42,7.58,10.0,10.0,10.0,0.0,82.42,1,酸味系,Colombia,ウォッシュド,Caturra
+704,Arabica,Colombia,,,7.58,7.25,7.42,7.25,7.58,7.83,10.0,10.0,10.0,0.02,82.42,3,丸み系,Colombia,その他,その他
+705,Arabica,Honduras,Caturra,Washed / Wet,7.5,7.58,7.33,7.5,7.42,7.42,10.0,10.0,10.0,0.1,82.33,1,酸味系,Honduras,ウォッシュド,Caturra
+706,Arabica,Brazil,Catuai,Natural / Dry,7.33,7.5,7.5,7.33,7.5,7.5,10.0,10.0,10.0,0.11,82.33,2,コク・バランス系,Brazil,ナチュラル,Catuai
+707,Arabica,Brazil,,Natural / Dry,7.42,7.42,7.42,7.5,7.5,7.58,10.0,10.0,10.0,0.11,82.33,2,コク・バランス系,Brazil,ナチュラル,その他
+708,Arabica,Brazil,Bourbon,Natural / Dry,7.5,7.5,7.42,7.5,7.42,7.5,10.0,10.0,10.0,0.11,82.33,1,酸味系,Brazil,ナチュラル,Bourbon
+709,Arabica,Costa Rica,Caturra,Washed / Wet,7.75,7.5,7.25,7.25,7.42,7.67,10.0,10.0,10.0,0.1,82.33,3,丸み系,Costa Rica,ウォッシュド,Caturra
+710,Arabica,Costa Rica,Catuai,Washed / Wet,7.75,7.33,7.5,7.5,7.33,7.58,10.0,10.0,10.0,0.0,82.33,0,香り系,Costa Rica,ウォッシュド,Catuai
+711,Arabica,China,Catimor,Pulped natural / honey,7.5,7.58,7.42,7.5,7.42,7.42,10.0,10.0,10.0,0.12,82.33,1,酸味系,その他,ハニー,その他
+712,Arabica,Brazil,Bourbon,Natural / Dry,8.25,7.83,7.25,8.33,8.17,8.08,10.0,6.67,10.0,0.07,82.33,1,酸味系,Brazil,ナチュラル,Bourbon
+713,Arabica,Brazil,Mundo Novo,Natural / Dry,7.42,7.5,7.5,7.42,7.5,7.58,10.0,10.0,10.0,0.11,82.33,2,コク・バランス系,Brazil,ナチュラル,Mundo Novo
+714,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.42,7.17,7.83,7.5,7.5,10.0,10.0,10.0,0.1,82.33,1,酸味系,Guatemala,ウォッシュド,Bourbon
+715,Arabica,Malawi,Gesha,Washed / Wet,7.33,7.58,7.42,7.58,7.33,7.5,10.0,10.0,10.0,0.12,82.33,1,酸味系,その他,ウォッシュド,その他
+716,Arabica,Brazil,Bourbon,Natural / Dry,7.75,8.08,7.67,8.08,8.08,8.0,10.0,10.0,6.67,0.11,82.33,1,酸味系,Brazil,ナチュラル,Bourbon
+717,Arabica,Guatemala,Pacas,Washed / Wet,7.58,7.67,7.5,7.58,7.75,7.5,9.33,10.0,10.0,0.12,82.33,2,コク・バランス系,Guatemala,ウォッシュド,その他
+718,Arabica,Mexico,,Washed / Wet,7.33,7.58,7.42,7.5,7.5,7.5,10.0,10.0,10.0,0.11,82.33,2,コク・バランス系,Mexico,ウォッシュド,その他
+719,Arabica,Colombia,Caturra,Washed / Wet,7.42,7.33,7.5,7.17,7.08,8.33,10.0,10.0,10.0,0.1,82.33,3,丸み系,Colombia,ウォッシュド,Caturra
+720,Arabica,Taiwan,Typica,Semi-washed / Semi-pulped,7.5,7.5,7.5,7.5,7.5,7.5,10.0,10.0,10.0,0.11,82.33,2,コク・バランス系,Taiwan,セミウォッシュド,Typica
+721,Arabica,Taiwan,Typica,Washed / Wet,7.5,7.5,7.5,7.5,7.5,7.5,10.0,10.0,10.0,0.11,82.33,2,コク・バランス系,Taiwan,ウォッシュド,Typica
+722,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.42,7.58,7.5,7.5,7.58,10.0,10.0,10.0,0.12,82.33,2,コク・バランス系,Guatemala,ウォッシュド,Bourbon
+723,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.42,7.5,7.5,7.5,7.58,10.0,10.0,10.0,0.0,82.33,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+724,Arabica,Mexico,Typica,Washed / Wet,7.67,7.5,7.42,7.5,7.42,7.42,10.0,10.0,10.0,0.12,82.33,1,酸味系,Mexico,ウォッシュド,Typica
+725,Arabica,Costa Rica,,Washed / Wet,7.92,7.58,7.25,7.75,7.92,7.58,9.33,9.33,10.0,0.0,82.33,1,酸味系,Costa Rica,ウォッシュド,その他
+726,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.5,7.33,7.67,7.5,7.33,10.0,10.0,10.0,0.11,82.33,1,酸味系,Guatemala,ウォッシュド,Bourbon
+727,Arabica,Mexico,Typica,Natural / Dry,7.58,7.67,7.58,7.33,7.0,7.58,10.0,10.0,10.0,0.15,82.33,0,香り系,Mexico,ナチュラル,Typica
+728,Arabica,Mexico,Bourbon,Washed / Wet,7.67,7.58,7.5,7.58,7.5,7.5,10.0,10.0,10.0,0.13,82.33,1,酸味系,Mexico,ウォッシュド,Bourbon
+729,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.67,7.33,7.5,7.33,7.5,10.0,10.0,10.0,0.1,82.33,1,酸味系,Guatemala,ウォッシュド,Bourbon
+730,Arabica,Brazil,Mundo Novo,Natural / Dry,7.58,7.5,7.42,7.5,7.5,7.42,10.0,10.0,10.0,0.12,82.33,1,酸味系,Brazil,ナチュラル,Mundo Novo
+731,Arabica,Mexico,Typica,Washed / Wet,8.0,7.75,7.33,7.33,7.08,7.67,9.33,10.0,10.0,0.11,82.33,0,香り系,Mexico,ウォッシュド,Typica
+732,Arabica,Brazil,Mundo Novo,Washed / Wet,7.58,7.58,7.25,7.58,7.42,7.5,10.0,10.0,10.0,0.11,82.33,1,酸味系,Brazil,ウォッシュド,Mundo Novo
+733,Arabica,Colombia,Caturra,Natural / Dry,7.83,7.58,7.33,7.25,7.58,7.42,10.0,10.0,10.0,0.0,82.33,3,丸み系,Colombia,ナチュラル,Caturra
+734,Arabica,Brazil,Catuai,Washed / Wet,7.58,7.5,7.25,7.42,7.67,7.33,10.0,10.0,10.0,0.09,82.25,1,酸味系,Brazil,ウォッシュド,Catuai
+735,Arabica,Taiwan,,,7.0,7.08,7.0,7.17,7.0,7.0,10.0,10.0,10.0,0.1,82.25,1,酸味系,Taiwan,その他,その他
+736,Arabica,Guatemala,Pacas,Washed / Wet,7.67,7.5,7.25,7.67,7.42,7.42,10.0,10.0,10.0,0.11,82.25,1,酸味系,Guatemala,ウォッシュド,その他
+737,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.42,7.67,7.5,7.08,7.5,7.42,10.0,10.0,10.0,0.0,82.25,2,コク・バランス系,Brazil,ナチュラル,Yellow Bourbon
+738,Arabica,El Salvador,Bourbon,Washed / Wet,7.58,7.67,7.5,7.67,7.83,8.42,9.33,9.33,9.33,0.12,82.25,3,丸み系,その他,ウォッシュド,Bourbon
+739,Arabica,Honduras,Catuai,Washed / Wet,7.58,7.5,7.42,7.58,7.42,7.42,10.0,10.0,10.0,0.11,82.25,1,酸味系,Honduras,ウォッシュド,Catuai
+740,Arabica,Malawi,Gesha,Washed / Wet,7.58,7.42,7.33,7.42,7.58,7.5,10.0,10.0,10.0,0.13,82.25,1,酸味系,その他,ウォッシュド,その他
+741,Arabica,Brazil,Bourbon,Natural / Dry,7.75,7.58,7.42,7.42,7.33,7.33,10.0,10.0,10.0,0.11,82.25,0,香り系,Brazil,ナチュラル,Bourbon
+742,Arabica,Taiwan,Typica,Washed / Wet,7.5,7.5,7.5,7.5,7.5,7.5,10.0,10.0,10.0,0.11,82.25,2,コク・バランス系,Taiwan,ウォッシュド,Typica
+743,Arabica,Mexico,Mundo Novo,Washed / Wet,7.58,7.58,7.42,7.42,7.42,7.42,10.0,10.0,10.0,0.12,82.25,1,酸味系,Mexico,ウォッシュド,Mundo Novo
+744,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.33,7.42,7.5,7.67,7.5,7.42,10.0,10.0,10.0,0.0,82.25,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+745,Arabica,Mexico,Bourbon,Washed / Wet,7.58,7.58,7.5,7.17,7.42,7.42,10.0,10.0,10.0,0.16,82.25,0,香り系,Mexico,ウォッシュド,Bourbon
+746,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.5,7.33,7.58,7.67,7.33,10.0,10.0,10.0,0.11,82.25,1,酸味系,Guatemala,ウォッシュド,Bourbon
+747,Arabica,Mexico,Bourbon,Washed / Wet,7.5,7.58,7.42,7.67,7.33,7.42,10.0,10.0,10.0,0.13,82.25,1,酸味系,Mexico,ウォッシュド,Bourbon
+748,Arabica,Mexico,Typica,Washed / Wet,7.67,7.58,7.33,7.5,7.42,7.42,10.0,10.0,10.0,0.12,82.25,1,酸味系,Mexico,ウォッシュド,Typica
+749,Arabica,El Salvador,Other,Washed / Wet,7.75,7.33,7.33,7.5,7.5,7.5,10.0,10.0,10.0,0.0,82.25,1,酸味系,その他,ウォッシュド,Other
+750,Arabica,Mexico,Typica,Washed / Wet,7.33,7.58,7.42,7.67,7.33,7.5,10.0,10.0,10.0,0.11,82.25,1,酸味系,Mexico,ウォッシュド,Typica
+751,Arabica,Mexico,Typica,Washed / Wet,7.42,7.5,7.42,7.58,7.42,7.5,10.0,10.0,10.0,0.1,82.25,1,酸味系,Mexico,ウォッシュド,Typica
+752,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.42,7.67,7.33,7.58,7.33,10.0,10.0,10.0,0.12,82.25,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+753,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.33,7.33,7.33,7.5,7.5,10.0,10.0,10.0,0.11,82.25,3,丸み系,Colombia,ウォッシュド,Caturra
+754,Arabica,Brazil,Arusha,Natural / Dry,7.67,7.58,7.42,7.0,7.5,7.58,10.0,10.0,10.0,0.12,82.25,3,丸み系,Brazil,ナチュラル,その他
+755,Arabica,Colombia,,,7.17,7.25,7.58,7.25,7.58,7.67,10.0,10.0,10.0,0.22,82.25,2,コク・バランス系,Colombia,その他,その他
+756,Arabica,Brazil,Bourbon,Natural / Dry,7.42,7.42,7.5,7.42,7.42,7.5,10.0,10.0,10.0,0.11,82.17,2,コク・バランス系,Brazil,ナチュラル,Bourbon
+757,Arabica,Honduras,Caturra,Washed / Wet,7.5,7.5,7.17,7.42,7.5,7.5,10.0,10.0,10.0,0.11,82.17,1,酸味系,Honduras,ウォッシュド,Caturra
+758,Arabica,Nicaragua,,,7.5,7.5,7.33,7.42,7.5,7.42,10.0,10.0,10.0,0.1,82.17,1,酸味系,その他,その他,その他
+759,Arabica,"Tanzania, United Republic Of",Bourbon,Washed / Wet,7.58,7.42,7.42,7.33,7.5,7.42,10.0,10.0,10.0,0.13,82.17,3,丸み系,"Tanzania, United Republic Of",ウォッシュド,Bourbon
+760,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.42,7.42,7.42,7.5,7.5,7.33,10.0,10.0,10.0,0.12,82.17,2,コク・バランス系,"Tanzania, United Republic Of",ウォッシュド,Other
+761,Arabica,Brazil,Yellow Bourbon,Natural / Dry,6.92,7.58,7.42,7.33,7.83,7.5,10.0,10.0,10.0,0.0,82.17,2,コク・バランス系,Brazil,ナチュラル,Yellow Bourbon
+762,Arabica,Thailand,,Washed / Wet,7.42,7.42,7.17,7.75,7.25,7.67,10.0,10.0,10.0,0.12,82.17,1,酸味系,Thailand,ウォッシュド,その他
+763,Arabica,Honduras,Catuai,Washed / Wet,7.67,7.5,7.25,7.42,7.58,7.42,10.0,10.0,10.0,0.11,82.17,1,酸味系,Honduras,ウォッシュド,Catuai
+764,Arabica,Guatemala,Bourbon,Washed / Wet,7.42,7.42,7.5,7.5,7.42,7.5,10.0,10.0,10.0,0.09,82.17,2,コク・バランス系,Guatemala,ウォッシュド,Bourbon
+765,Arabica,Brazil,Mundo Novo,Natural / Dry,7.58,7.5,7.42,7.25,7.5,7.42,10.0,10.0,10.0,0.12,82.17,0,香り系,Brazil,ナチュラル,Mundo Novo
+766,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.75,7.42,7.42,7.58,7.33,7.42,10.0,10.0,10.0,0.12,82.17,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+767,Arabica,Mexico,Other,Washed / Wet,7.42,7.33,7.17,7.42,7.33,8.17,10.0,10.0,10.0,0.12,82.17,3,丸み系,Mexico,ウォッシュド,Other
+768,Arabica,Mexico,Other,Washed / Wet,7.5,7.5,7.33,7.42,7.5,7.42,10.0,10.0,10.0,0.1,82.17,1,酸味系,Mexico,ウォッシュド,Other
+769,Arabica,Taiwan,Typica,Other,7.5,7.5,7.5,7.5,7.5,7.5,10.0,10.0,10.0,0.11,82.17,2,コク・バランス系,Taiwan,その他,Typica
+770,Arabica,Taiwan,Typica,Washed / Wet,7.67,7.5,7.5,7.17,7.17,7.58,10.0,10.0,10.0,0.0,82.17,0,香り系,Taiwan,ウォッシュド,Typica
+771,Arabica,Colombia,Caturra,Washed / Wet,7.33,7.25,7.25,7.58,7.75,7.5,10.0,10.0,10.0,0.0,82.17,1,酸味系,Colombia,ウォッシュド,Caturra
+772,Arabica,Mexico,Typica,Washed / Wet,7.5,7.67,7.0,7.5,7.33,7.5,10.0,10.0,10.0,0.15,82.17,1,酸味系,Mexico,ウォッシュド,Typica
+773,Arabica,Guatemala,Caturra,Washed / Wet,7.25,7.75,7.0,7.75,8.17,7.75,10.0,10.0,9.33,0.12,82.17,1,酸味系,Guatemala,ウォッシュド,Caturra
+774,Arabica,Mexico,Typica,Washed / Wet,7.5,7.58,7.25,7.5,7.5,7.33,10.0,10.0,10.0,0.12,82.17,1,酸味系,Mexico,ウォッシュド,Typica
+775,Arabica,Mexico,Typica,Washed / Wet,7.0,7.67,7.5,7.5,7.42,7.5,10.0,10.0,10.0,0.1,82.17,2,コク・バランス系,Mexico,ウォッシュド,Typica
+776,Arabica,Colombia,,,7.58,7.67,7.42,7.17,7.17,7.75,10.0,10.0,10.0,0.08,82.17,3,丸み系,Colombia,その他,その他
+777,Arabica,Indonesia,Bourbon,Washed / Wet,7.5,7.5,7.42,7.42,7.5,7.42,10.0,10.0,10.0,0.15,82.08,2,コク・バランス系,その他,ウォッシュド,Bourbon
+778,Arabica,Colombia,Caturra,Washed / Wet,7.75,7.58,7.42,7.67,7.83,7.58,9.33,9.33,10.0,0.0,82.08,1,酸味系,Colombia,ウォッシュド,Caturra
+779,Arabica,Brazil,Bourbon,Natural / Dry,7.42,7.58,7.42,7.5,7.42,7.25,10.0,10.0,10.0,0.11,82.08,1,酸味系,Brazil,ナチュラル,Bourbon
+780,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.25,7.25,7.58,7.58,7.25,7.92,10.0,10.0,10.0,0.0,82.08,3,丸み系,Brazil,ナチュラル,Yellow Bourbon
+781,Arabica,Costa Rica,Caturra,Washed / Wet,7.75,7.42,7.42,7.25,7.17,7.42,10.0,10.0,10.0,0.0,82.08,0,香り系,Costa Rica,ウォッシュド,Caturra
+782,Arabica,"Tanzania, United Republic Of",Bourbon,Washed / Wet,7.42,7.33,7.42,7.42,7.5,7.58,10.0,10.0,10.0,0.12,82.08,2,コク・バランス系,"Tanzania, United Republic Of",ウォッシュド,Bourbon
+783,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.42,7.5,7.5,7.33,7.33,7.5,10.0,10.0,10.0,0.12,82.08,0,香り系,"Tanzania, United Republic Of",ウォッシュド,Other
+784,Arabica,Colombia,,Washed / Wet,7.5,7.42,7.42,7.42,7.67,7.42,10.0,10.0,10.0,0.11,82.08,2,コク・バランス系,Colombia,ウォッシュド,その他
+785,Arabica,Costa Rica,Caturra,Washed / Wet,7.58,7.33,7.33,7.33,7.5,7.67,10.0,10.0,10.0,0.11,82.08,3,丸み系,Costa Rica,ウォッシュド,Caturra
+786,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.25,7.58,7.58,7.25,7.5,7.42,10.0,10.0,10.0,0.11,82.08,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+787,Arabica,Mexico,Typica,Washed / Wet,7.42,7.58,7.5,7.33,7.42,7.42,10.0,10.0,10.0,0.13,82.08,2,コク・バランス系,Mexico,ウォッシュド,Typica
+788,Arabica,Mexico,Typica,Washed / Wet,7.5,7.42,7.42,7.5,7.25,7.5,10.0,10.0,10.0,0.13,82.08,0,香り系,Mexico,ウォッシュド,Typica
+789,Arabica,Mexico,Typica,Washed / Wet,7.67,7.5,7.25,7.58,7.42,7.33,10.0,10.0,10.0,0.11,82.08,1,酸味系,Mexico,ウォッシュド,Typica
+790,Arabica,Vietnam,Other,Natural / Dry,7.67,8.0,7.17,7.08,7.67,7.08,10.0,10.0,10.0,0.12,82.08,0,香り系,その他,ナチュラル,Other
+791,Arabica,Mexico,Typica,Washed / Wet,7.58,7.42,7.25,7.75,7.33,7.42,10.0,10.0,10.0,0.11,82.08,1,酸味系,Mexico,ウォッシュド,Typica
+792,Arabica,United States (Hawaii),Hawaiian Kona,Washed / Wet,7.33,7.5,7.33,7.58,7.08,7.83,10.0,10.0,10.0,0.1,82.08,1,酸味系,United States (Hawaii),ウォッシュド,Hawaiian Kona
+793,Arabica,Colombia,,,7.67,7.42,7.67,7.33,7.25,7.58,10.0,10.0,10.0,0.08,82.08,0,香り系,Colombia,その他,その他
+794,Arabica,Honduras,Caturra,Washed / Wet,7.5,7.5,7.17,7.5,7.5,7.42,10.0,10.0,10.0,0.12,82.0,1,酸味系,Honduras,ウォッシュド,Caturra
+795,Arabica,Honduras,Caturra,Natural / Dry,7.5,7.5,7.25,7.33,7.42,7.5,10.0,10.0,10.0,0.1,82.0,1,酸味系,Honduras,ナチュラル,Caturra
+796,Arabica,Brazil,Bourbon,Natural / Dry,7.5,7.33,7.42,7.5,7.33,7.42,10.0,10.0,10.0,0.11,82.0,2,コク・バランス系,Brazil,ナチュラル,Bourbon
+797,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.67,7.33,7.33,7.42,7.42,7.42,10.0,10.0,10.0,0.13,82.0,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+798,Arabica,Laos,Other,Washed / Wet,7.42,7.5,7.25,7.33,7.5,7.5,10.0,10.0,10.0,0.12,82.0,1,酸味系,その他,ウォッシュド,Other
+799,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.42,7.42,7.33,7.58,7.33,7.42,10.0,10.0,10.0,0.12,82.0,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+800,Arabica,Malawi,Gesha,Washed / Wet,7.5,7.42,7.33,7.58,7.33,7.5,10.0,10.0,10.0,0.13,82.0,1,酸味系,その他,ウォッシュド,その他
+801,Arabica,Taiwan,Typica,Washed / Wet,7.33,7.5,7.17,7.42,7.5,7.33,10.0,10.0,10.0,0.09,82.0,1,酸味系,Taiwan,ウォッシュド,Typica
+802,Arabica,Thailand,,Washed / Wet,7.58,7.5,7.42,7.42,7.33,7.42,10.0,10.0,10.0,0.11,82.0,0,香り系,Thailand,ウォッシュド,その他
+803,Arabica,Costa Rica,Catuai,Washed / Wet,7.5,7.25,7.33,7.33,7.75,7.5,10.0,10.0,10.0,0.1,82.0,3,丸み系,Costa Rica,ウォッシュド,Catuai
+804,Arabica,Honduras,Caturra,Washed / Wet,7.33,7.33,7.33,7.5,7.5,7.83,10.0,10.0,10.0,0.11,82.0,2,コク・バランス系,Honduras,ウォッシュド,Caturra
+805,Arabica,Colombia,Caturra,Washed / Wet,7.33,7.33,7.58,7.5,7.5,7.58,10.0,10.0,10.0,0.11,82.0,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+806,Arabica,Taiwan,Typica,Washed / Wet,7.42,7.58,7.33,7.42,8.0,7.5,9.33,10.0,10.0,0.12,82.0,1,酸味系,Taiwan,ウォッシュド,Typica
+807,Arabica,Brazil,Mundo Novo,Natural / Dry,7.33,7.67,7.42,7.17,7.33,7.42,10.0,10.0,10.0,0.11,82.0,2,コク・バランス系,Brazil,ナチュラル,Mundo Novo
+808,Arabica,Mexico,Typica,Washed / Wet,7.67,7.33,7.25,7.5,7.42,7.42,10.0,10.0,10.0,0.12,82.0,1,酸味系,Mexico,ウォッシュド,Typica
+809,Arabica,Brazil,Mundo Novo,Natural / Dry,7.42,7.5,7.33,7.5,7.33,7.5,10.0,10.0,10.0,0.12,82.0,1,酸味系,Brazil,ナチュラル,Mundo Novo
+810,Arabica,Brazil,Catuai,Semi-washed / Semi-pulped,7.42,7.5,7.25,7.5,7.5,7.42,10.0,10.0,10.0,0.11,82.0,1,酸味系,Brazil,セミウォッシュド,Catuai
+811,Arabica,Guatemala,Bourbon,Natural / Dry,7.33,7.33,7.33,7.5,7.67,7.67,10.0,10.0,10.0,0.11,82.0,2,コク・バランス系,Guatemala,ナチュラル,Bourbon
+812,Arabica,Brazil,Mundo Novo,Semi-washed / Semi-pulped,7.58,7.5,7.17,7.5,7.5,7.42,10.0,10.0,10.0,0.12,82.0,1,酸味系,Brazil,セミウォッシュド,Mundo Novo
+813,Arabica,Guatemala,Bourbon,Washed / Wet,7.75,7.33,7.33,7.42,7.75,7.67,10.0,10.0,9.33,0.0,82.0,3,丸み系,Guatemala,ウォッシュド,Bourbon
+814,Arabica,Colombia,Caturra,,7.33,7.0,7.08,7.42,7.5,7.67,10.0,10.0,10.0,0.07,82.0,1,酸味系,Colombia,その他,Caturra
+815,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.5,7.25,7.58,7.58,7.5,9.33,10.0,10.0,0.1,81.92,1,酸味系,Guatemala,ウォッシュド,Bourbon
+816,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.5,7.25,7.42,7.42,7.42,10.0,10.0,10.0,0.11,81.92,1,酸味系,Guatemala,ウォッシュド,Bourbon
+817,Arabica,Honduras,Caturra,Washed / Wet,7.58,7.5,7.25,7.33,7.42,7.5,10.0,10.0,10.0,0.12,81.92,1,酸味系,Honduras,ウォッシュド,Caturra
+818,Arabica,Brazil,Catuai,Natural / Dry,7.42,7.33,7.33,7.5,7.5,7.33,10.0,10.0,10.0,0.11,81.92,2,コク・バランス系,Brazil,ナチュラル,Catuai
+819,Arabica,El Salvador,Bourbon,Washed / Wet,7.67,7.58,7.33,7.5,7.5,7.67,10.0,10.0,9.33,0.11,81.92,1,酸味系,その他,ウォッシュド,Bourbon
+820,Arabica,Guatemala,Catuai,Washed / Wet,7.58,7.58,7.17,7.83,7.17,7.33,10.0,10.0,10.0,0.11,81.92,1,酸味系,Guatemala,ウォッシュド,Catuai
+821,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.33,7.33,7.33,7.42,7.5,7.58,10.0,10.0,10.0,0.12,81.92,2,コク・バランス系,"Tanzania, United Republic Of",ウォッシュド,Other
+822,Arabica,Nicaragua,,Washed / Wet,7.58,7.42,7.25,7.17,7.5,7.67,10.0,10.0,10.0,0.12,81.92,3,丸み系,その他,ウォッシュド,その他
+823,Arabica,Zambia,SL28,Washed / Wet,7.67,7.08,7.42,7.33,7.75,7.42,10.0,10.0,10.0,0.0,81.92,3,丸み系,その他,ウォッシュド,その他
+824,Arabica,Honduras,,Washed / Wet,7.42,7.33,7.33,7.58,7.33,7.5,10.0,10.0,10.0,0.11,81.92,1,酸味系,Honduras,ウォッシュド,その他
+825,Arabica,Taiwan,Typica,Other,7.5,7.5,7.42,7.25,7.5,7.5,10.0,10.0,10.0,0.11,81.92,0,香り系,Taiwan,その他,Typica
+826,Arabica,Mexico,Bourbon,Washed / Wet,7.58,7.5,7.25,7.58,7.5,7.25,10.0,10.0,10.0,0.12,81.92,1,酸味系,Mexico,ウォッシュド,Bourbon
+827,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.5,7.5,7.25,7.25,7.5,7.5,10.0,10.0,10.0,0.13,81.92,1,酸味系,Mexico,セミウォッシュド,Typica
+828,Arabica,Mexico,Mundo Novo,Washed / Wet,7.5,7.42,7.25,7.5,7.33,7.33,10.0,10.0,10.0,0.14,81.92,1,酸味系,Mexico,ウォッシュド,Mundo Novo
+829,Arabica,Mexico,Other,Washed / Wet,7.33,7.58,7.17,7.58,7.42,7.33,10.0,10.0,10.0,0.12,81.92,1,酸味系,Mexico,ウォッシュド,Other
+830,Arabica,Mexico,Bourbon,Washed / Wet,7.67,7.42,7.33,7.83,7.5,7.5,9.33,10.0,10.0,0.12,81.92,1,酸味系,Mexico,ウォッシュド,Bourbon
+831,Arabica,Brazil,Mundo Novo,Natural / Dry,7.42,7.58,7.25,7.5,7.33,7.5,10.0,10.0,10.0,0.12,81.92,1,酸味系,Brazil,ナチュラル,Mundo Novo
+832,Arabica,Colombia,,,7.67,7.33,7.33,7.58,7.33,7.33,10.0,10.0,10.0,0.09,81.92,1,酸味系,Colombia,その他,その他
+833,Arabica,Guatemala,Bourbon,Washed / Wet,7.42,7.5,7.25,7.5,7.33,7.42,10.0,10.0,10.0,0.1,81.83,1,酸味系,Guatemala,ウォッシュド,Bourbon
+834,Arabica,Costa Rica,Catuai,Pulped natural / honey,7.25,7.33,7.5,7.33,7.67,7.42,10.0,10.0,10.0,0.0,81.83,2,コク・バランス系,Costa Rica,ハニー,Catuai
+835,Arabica,Brazil,Mundo Novo,Natural / Dry,7.42,7.5,7.42,7.5,7.42,7.25,10.0,10.0,10.0,0.11,81.83,1,酸味系,Brazil,ナチュラル,Mundo Novo
+836,Arabica,Indonesia,Other,Other,7.75,7.83,7.58,7.75,7.92,7.83,10.0,10.0,10.0,0.11,81.83,1,酸味系,その他,その他,Other
+837,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.5,7.33,7.42,7.58,7.25,10.0,10.0,10.0,0.1,81.83,1,酸味系,Guatemala,ウォッシュド,Bourbon
+838,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.17,7.58,6.83,7.5,7.75,7.25,10.0,10.0,10.0,0.0,81.83,1,酸味系,Brazil,ナチュラル,Yellow Bourbon
+839,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.58,7.0,6.92,6.92,7.67,7.5,10.0,10.0,10.0,0.0,81.83,3,丸み系,Brazil,ナチュラル,Yellow Bourbon
+840,Arabica,Myanmar,Catuai,Washed / Wet,7.33,7.58,7.5,7.42,7.33,7.33,10.0,10.0,10.0,0.0,81.83,2,コク・バランス系,その他,ウォッシュド,Catuai
+841,Arabica,Mexico,Catuai,Washed / Wet,7.58,7.5,7.33,7.5,7.17,7.33,10.0,10.0,10.0,0.11,81.83,0,香り系,Mexico,ウォッシュド,Catuai
+842,Arabica,Honduras,Catuai,Washed / Wet,7.5,7.5,7.33,7.5,7.42,7.25,10.0,10.0,10.0,0.12,81.83,1,酸味系,Honduras,ウォッシュド,Catuai
+843,Arabica,Costa Rica,Caturra,Washed / Wet,7.67,7.5,7.5,7.25,7.08,7.42,10.0,10.0,10.0,0.09,81.83,0,香り系,Costa Rica,ウォッシュド,Caturra
+844,Arabica,Taiwan,Typica,Washed / Wet,7.67,7.33,7.17,7.25,7.75,7.33,10.0,10.0,10.0,0.0,81.83,1,酸味系,Taiwan,ウォッシュド,Typica
+845,Arabica,Indonesia,Typica,Other,7.42,7.42,7.42,7.33,7.42,7.42,10.0,10.0,10.0,0.11,81.83,2,コク・バランス系,その他,その他,Typica
+846,Arabica,Malawi,Gesha,Washed / Wet,7.58,7.42,7.33,7.33,7.33,7.42,10.0,10.0,10.0,0.13,81.83,1,酸味系,その他,ウォッシュド,その他
+847,Arabica,Brazil,Bourbon,Natural / Dry,7.33,7.58,7.25,7.17,7.83,7.33,10.0,10.0,10.0,0.11,81.83,1,酸味系,Brazil,ナチュラル,Bourbon
+848,Arabica,Honduras,Caturra,Natural / Dry,7.5,7.5,7.33,7.33,7.33,7.33,10.0,10.0,10.0,0.1,81.83,1,酸味系,Honduras,ナチュラル,Caturra
+849,Arabica,Mexico,Typica,Washed / Wet,7.42,7.42,7.25,7.5,7.33,7.42,10.0,10.0,10.0,0.11,81.83,1,酸味系,Mexico,ウォッシュド,Typica
+850,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.5,7.0,7.42,7.5,7.58,10.0,10.0,10.0,0.0,81.83,1,酸味系,Colombia,ウォッシュド,Caturra
+851,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.83,7.83,7.83,8.0,7.83,7.83,10.0,6.67,10.0,0.0,81.83,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+852,Arabica,Brazil,Bourbon,Semi-washed / Semi-pulped,7.75,7.75,7.5,7.42,7.83,7.75,9.33,9.33,9.33,0.12,81.83,1,酸味系,Brazil,セミウォッシュド,Bourbon
+853,Arabica,Guatemala,Bourbon,Washed / Wet,7.83,7.67,7.33,7.33,7.67,7.83,9.33,10.0,9.33,0.11,81.83,3,丸み系,Guatemala,ウォッシュド,Bourbon
+854,Arabica,Mexico,Bourbon,Washed / Wet,7.83,7.33,7.25,7.58,7.25,7.33,10.0,10.0,10.0,0.12,81.83,1,酸味系,Mexico,ウォッシュド,Bourbon
+855,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.33,7.33,7.25,7.5,7.5,7.5,10.0,10.0,10.0,0.12,81.83,1,酸味系,Mexico,セミウォッシュド,Typica
+856,Arabica,Brazil,Mundo Novo,,7.33,7.67,7.25,7.5,7.5,7.25,10.0,10.0,10.0,0.02,81.83,1,酸味系,Brazil,その他,Mundo Novo
+857,Arabica,Colombia,,,7.58,7.5,7.17,7.58,7.33,7.33,10.0,10.0,10.0,0.05,81.83,1,酸味系,Colombia,その他,その他
+858,Arabica,United States (Hawaii),,,7.25,7.58,7.83,7.67,7.75,7.75,9.33,9.33,10.0,0.02,81.83,2,コク・バランス系,United States (Hawaii),その他,その他
+859,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.5,7.25,7.42,7.42,7.33,10.0,10.0,10.0,0.11,81.75,1,酸味系,Guatemala,ウォッシュド,Bourbon
+860,Arabica,Vietnam,Caturra,Washed / Wet,7.0,7.08,7.33,7.5,7.5,7.33,10.0,10.0,10.0,0.12,81.75,2,コク・バランス系,その他,ウォッシュド,Caturra
+861,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.42,7.42,7.42,7.42,7.33,7.33,10.0,10.0,10.0,0.12,81.75,0,香り系,"Tanzania, United Republic Of",ウォッシュド,Other
+862,Arabica,Brazil,,Natural / Dry,7.17,7.25,7.17,7.25,7.42,8.25,10.0,10.0,10.0,0.1,81.75,3,丸み系,Brazil,ナチュラル,その他
+863,Arabica,Mexico,Bourbon,Washed / Wet,7.5,7.5,7.33,7.42,7.25,7.25,10.0,10.0,10.0,0.13,81.75,0,香り系,Mexico,ウォッシュド,Bourbon
+864,Arabica,Mexico,Mundo Novo,Washed / Wet,7.42,7.5,7.17,7.67,7.33,7.42,10.0,10.0,10.0,0.13,81.75,1,酸味系,Mexico,ウォッシュド,Mundo Novo
+865,Arabica,Mexico,Typica,Washed / Wet,7.42,7.5,7.33,7.58,7.33,7.33,10.0,10.0,10.0,0.11,81.75,1,酸味系,Mexico,ウォッシュド,Typica
+866,Arabica,Mexico,Caturra,Washed / Wet,7.33,7.42,7.33,7.67,7.42,7.25,10.0,10.0,10.0,0.12,81.75,1,酸味系,Mexico,ウォッシュド,Caturra
+867,Arabica,Mexico,Typica,Washed / Wet,7.5,7.42,7.25,7.33,7.67,7.25,10.0,10.0,10.0,0.12,81.75,1,酸味系,Mexico,ウォッシュド,Typica
+868,Arabica,Colombia,Caturra,Washed / Wet,7.33,7.42,7.33,7.33,7.5,7.67,10.0,10.0,10.0,0.0,81.75,2,コク・バランス系,Colombia,ウォッシュド,Caturra
+869,Arabica,Colombia,,,7.42,7.58,6.92,7.08,7.25,8.0,10.0,10.0,10.0,0.08,81.75,3,丸み系,Colombia,その他,その他
+870,Arabica,Brazil,Bourbon,Natural / Dry,7.42,7.5,7.25,7.5,7.5,7.25,10.0,10.0,10.0,0.11,81.67,1,酸味系,Brazil,ナチュラル,Bourbon
+871,Arabica,Guatemala,Bourbon,Washed / Wet,7.42,7.42,7.08,7.42,7.33,7.42,10.0,10.0,10.0,0.1,81.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+872,Arabica,Guatemala,Bourbon,Washed / Wet,7.42,7.33,7.17,7.67,7.33,7.42,10.0,10.0,10.0,0.12,81.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+873,Arabica,Honduras,Catuai,Washed / Wet,7.58,7.5,7.33,7.33,7.42,7.25,10.0,10.0,10.0,0.11,81.67,0,香り系,Honduras,ウォッシュド,Catuai
+874,Arabica,"Tanzania, United Republic Of",,,7.17,7.33,7.33,7.42,7.5,7.33,10.0,10.0,10.0,0.0,81.67,2,コク・バランス系,"Tanzania, United Republic Of",その他,その他
+875,Arabica,Nicaragua,,,7.58,7.5,7.25,7.25,7.5,7.25,10.0,10.0,10.0,0.1,81.67,1,酸味系,その他,その他,その他
+876,Arabica,Colombia,,,7.75,7.75,7.75,7.67,5.25,7.83,10.0,10.0,10.0,0.0,81.67,0,香り系,Colombia,その他,その他
+877,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.25,7.75,6.92,7.42,7.5,7.58,10.0,10.0,10.0,0.0,81.67,1,酸味系,Brazil,ナチュラル,Yellow Bourbon
+878,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.42,7.33,7.25,7.42,7.5,7.42,10.0,10.0,10.0,0.12,81.67,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+879,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.33,7.33,7.5,7.25,7.42,7.33,10.0,10.0,10.0,0.12,81.67,2,コク・バランス系,"Tanzania, United Republic Of",ウォッシュド,Other
+880,Arabica,Brazil,Bourbon,Washed / Wet,7.25,7.42,7.25,7.5,7.5,7.42,10.0,10.0,10.0,0.1,81.67,2,コク・バランス系,Brazil,ウォッシュド,Bourbon
+881,Arabica,Indonesia,Sumatra,Semi-washed / Semi-pulped,7.17,7.42,7.33,7.42,7.33,7.42,10.0,10.0,10.0,0.11,81.67,2,コク・バランス系,その他,セミウォッシュド,その他
+882,Arabica,Honduras,Caturra,Natural / Dry,7.5,7.33,7.5,7.5,7.17,7.17,10.0,10.0,10.0,0.1,81.67,0,香り系,Honduras,ナチュラル,Caturra
+883,Arabica,Costa Rica,Caturra,Washed / Wet,7.5,7.17,7.17,7.17,7.5,7.08,10.0,10.0,10.0,0.11,81.67,1,酸味系,Costa Rica,ウォッシュド,Caturra
+884,Arabica,Mexico,,Washed / Wet,7.42,7.42,7.67,8.0,7.58,7.5,9.33,9.33,10.0,0.0,81.67,2,コク・バランス系,Mexico,ウォッシュド,その他
+885,Arabica,Taiwan,Typica,Semi-washed / Semi-pulped,7.5,7.5,7.5,7.25,7.42,7.25,10.0,10.0,10.0,0.11,81.67,0,香り系,Taiwan,セミウォッシュド,Typica
+886,Arabica,Taiwan,Typica,Washed / Wet,7.58,7.42,7.33,7.42,7.33,7.33,10.0,10.0,10.0,0.11,81.67,1,酸味系,Taiwan,ウォッシュド,Typica
+887,Arabica,Mexico,Typica,Washed / Wet,7.5,7.42,7.08,7.58,7.33,7.33,10.0,10.0,10.0,0.12,81.67,1,酸味系,Mexico,ウォッシュド,Typica
+888,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.67,7.33,7.33,7.33,7.33,10.0,10.0,10.0,0.11,81.67,0,香り系,Guatemala,ウォッシュド,Bourbon
+889,Arabica,Mexico,Typica,Washed / Wet,7.25,7.67,7.58,7.67,7.67,7.58,8.67,10.0,10.0,0.13,81.67,2,コク・バランス系,Mexico,ウォッシュド,Typica
+890,Arabica,Mexico,Bourbon,Washed / Wet,7.67,7.25,7.17,7.75,7.5,7.25,10.0,10.0,10.0,0.11,81.67,1,酸味系,Mexico,ウォッシュド,Bourbon
+891,Arabica,Mexico,Bourbon,Washed / Wet,7.5,7.42,7.33,7.42,7.42,7.42,10.0,10.0,10.0,0.11,81.67,1,酸味系,Mexico,ウォッシュド,Bourbon
+892,Arabica,Mexico,Bourbon,Washed / Wet,7.58,7.42,7.25,7.58,7.25,7.17,10.0,10.0,10.0,0.11,81.67,1,酸味系,Mexico,ウォッシュド,Bourbon
+893,Arabica,Mexico,Caturra,Semi-washed / Semi-pulped,7.75,7.58,7.25,7.17,7.58,7.33,9.33,10.0,10.0,0.11,81.67,3,丸み系,Mexico,セミウォッシュド,Caturra
+894,Arabica,United States (Hawaii),Hawaiian Kona,Washed / Wet,7.42,7.33,7.33,7.33,7.17,7.83,10.0,10.0,10.0,0.1,81.67,1,酸味系,United States (Hawaii),ウォッシュド,Hawaiian Kona
+895,Arabica,Honduras,Catimor,Washed / Wet,7.5,7.42,7.08,7.42,7.5,7.33,10.0,10.0,10.0,0.11,81.58,1,酸味系,Honduras,ウォッシュド,その他
+896,Arabica,Guatemala,Bourbon,Washed / Wet,7.42,7.42,7.08,7.5,7.42,7.33,10.0,10.0,10.0,0.12,81.58,1,酸味系,Guatemala,ウォッシュド,Bourbon
+897,Arabica,Taiwan,Typica,Washed / Wet,7.42,7.42,7.25,7.67,7.33,7.25,10.0,10.0,10.0,0.1,81.58,1,酸味系,Taiwan,ウォッシュド,Typica
+898,Arabica,Costa Rica,Caturra,Washed / Wet,7.58,7.42,7.5,7.17,7.08,7.58,10.0,10.0,10.0,0.12,81.58,0,香り系,Costa Rica,ウォッシュド,Caturra
+899,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.42,7.42,7.33,7.42,7.42,7.33,10.0,10.0,10.0,0.12,81.58,2,コク・バランス系,"Tanzania, United Republic Of",ウォッシュド,Other
+900,Arabica,Malawi,Gesha,Washed / Wet,7.42,7.42,7.17,7.58,7.33,7.33,10.0,10.0,10.0,0.13,81.58,1,酸味系,その他,ウォッシュド,その他
+901,Arabica,Taiwan,Typica,Semi-washed / Semi-pulped,7.33,7.17,7.08,7.08,8.33,8.25,10.0,10.0,9.33,0.0,81.58,3,丸み系,Taiwan,セミウォッシュド,Typica
+902,Arabica,Brazil,Yellow Bourbon,Washed / Wet,7.42,7.42,7.33,7.33,7.5,7.25,10.0,10.0,10.0,0.12,81.58,2,コク・バランス系,Brazil,ウォッシュド,Yellow Bourbon
+903,Arabica,Guatemala,Bourbon,Washed / Wet,7.42,7.33,7.17,7.58,7.42,7.5,10.0,10.0,10.0,0.12,81.58,1,酸味系,Guatemala,ウォッシュド,Bourbon
+904,Arabica,Mexico,Typica,Washed / Wet,7.67,7.5,7.42,7.5,6.75,7.42,10.0,10.0,10.0,0.12,81.58,1,酸味系,Mexico,ウォッシュド,Typica
+905,Arabica,Mexico,Marigojipe,Natural / Dry,7.33,7.5,7.25,7.5,7.5,7.17,10.0,10.0,10.0,0.11,81.58,1,酸味系,Mexico,ナチュラル,その他
+906,Arabica,Mexico,Typica,Natural / Dry,7.67,7.58,7.42,7.58,7.58,7.42,10.0,10.0,8.67,0.11,81.58,1,酸味系,Mexico,ナチュラル,Typica
+907,Arabica,Thailand,,,7.08,7.33,7.58,7.58,7.17,7.5,10.0,10.0,10.0,0.01,81.58,1,酸味系,Thailand,その他,その他
+908,Arabica,Thailand,,,7.33,7.33,7.17,7.5,7.58,7.33,10.0,10.0,10.0,0.2,81.58,1,酸味系,Thailand,その他,その他
+909,Arabica,Costa Rica,,,7.25,7.17,7.33,7.33,7.5,7.75,10.0,10.0,10.0,0.0,81.58,2,コク・バランス系,Costa Rica,その他,その他
+910,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.58,7.17,7.42,7.33,7.42,9.33,10.0,10.0,0.1,81.5,1,酸味系,Guatemala,ウォッシュド,Bourbon
+911,Arabica,Nicaragua,Caturra,Other,7.5,7.42,7.33,7.33,7.25,7.33,10.0,10.0,10.0,0.11,81.5,0,香り系,その他,その他,Caturra
+912,Arabica,Honduras,Caturra,Washed / Wet,7.5,7.5,7.33,7.42,7.17,7.25,10.0,10.0,10.0,0.1,81.5,0,香り系,Honduras,ウォッシュド,Caturra
+913,Arabica,Guatemala,Bourbon,,7.5,7.42,7.25,7.25,7.5,7.25,10.0,10.0,10.0,0.12,81.5,1,酸味系,Guatemala,その他,Bourbon
+914,Arabica,Taiwan,Typica,Natural / Dry,7.5,7.42,7.33,7.08,7.58,7.25,10.0,10.0,10.0,0.12,81.5,0,香り系,Taiwan,ナチュラル,Typica
+915,Arabica,Myanmar,Catuai,Washed / Wet,7.25,7.42,7.25,7.5,7.33,7.33,10.0,10.0,10.0,0.0,81.5,1,酸味系,その他,ウォッシュド,Catuai
+916,Arabica,Costa Rica,Caturra,Washed / Wet,7.83,7.33,7.08,7.08,7.33,7.5,10.0,10.0,10.0,0.12,81.5,1,酸味系,Costa Rica,ウォッシュド,Caturra
+917,Arabica,Malawi,Gesha,Washed / Wet,7.67,7.42,6.92,7.5,7.5,7.17,10.0,10.0,10.0,0.12,81.5,1,酸味系,その他,ウォッシュド,その他
+918,Arabica,Guatemala,Other,Washed / Wet,7.5,7.42,7.17,7.58,7.25,7.42,10.0,10.0,10.0,0.12,81.5,1,酸味系,Guatemala,ウォッシュド,Other
+919,Arabica,Taiwan,Typica,Washed / Wet,7.42,7.33,7.67,7.33,7.42,7.5,10.0,10.0,9.33,0.11,81.5,2,コク・バランス系,Taiwan,ウォッシュド,Typica
+920,Arabica,Brazil,Yellow Bourbon,Semi-washed / Semi-pulped,7.58,7.5,7.5,7.67,7.67,7.83,9.33,9.33,9.33,0.0,81.5,2,コク・バランス系,Brazil,セミウォッシュド,Yellow Bourbon
+921,Arabica,Haiti,Blue Mountain,Washed / Wet,7.42,7.33,7.25,7.42,7.42,7.33,10.0,10.0,10.0,0.11,81.5,1,酸味系,その他,ウォッシュド,その他
+922,Arabica,Taiwan,Typica,Other,7.5,7.42,7.25,7.25,7.33,7.33,10.0,10.0,10.0,0.11,81.5,1,酸味系,Taiwan,その他,Typica
+923,Arabica,Mexico,Typica,Washed / Wet,7.33,7.33,7.17,7.42,7.5,7.5,10.0,10.0,10.0,0.13,81.5,1,酸味系,Mexico,ウォッシュド,Typica
+924,Arabica,Mexico,Typica,Washed / Wet,7.58,7.42,7.25,7.42,7.33,7.33,10.0,10.0,10.0,0.12,81.5,1,酸味系,Mexico,ウォッシュド,Typica
+925,Arabica,Mexico,Catuai,Washed / Wet,7.42,7.25,7.17,7.42,7.17,8.0,10.0,10.0,10.0,0.12,81.5,3,丸み系,Mexico,ウォッシュド,Catuai
+926,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.33,7.5,7.33,7.33,7.33,7.42,10.0,10.0,10.0,0.11,81.5,1,酸味系,Mexico,セミウォッシュド,Typica
+927,Arabica,Mexico,Bourbon,Washed / Wet,7.42,7.42,7.33,7.17,7.25,7.42,10.0,10.0,10.0,0.13,81.5,0,香り系,Mexico,ウォッシュド,Bourbon
+928,Arabica,Mexico,Typica,Natural / Dry,7.5,7.5,7.25,7.5,7.42,7.58,9.33,10.0,10.0,0.11,81.5,1,酸味系,Mexico,ナチュラル,Typica
+929,Arabica,Indonesia,Other,Washed / Wet,7.75,7.17,7.17,7.33,7.58,7.33,10.0,10.0,10.0,0.12,81.5,1,酸味系,その他,ウォッシュド,Other
+930,Arabica,Brazil,Bourbon,Semi-washed / Semi-pulped,7.5,7.42,7.17,7.42,7.5,7.33,10.0,10.0,10.0,0.12,81.5,1,酸味系,Brazil,セミウォッシュド,Bourbon
+931,Arabica,Guatemala,Bourbon,Washed / Wet,7.33,7.5,7.33,7.42,7.17,7.33,10.0,10.0,10.0,0.11,81.5,1,酸味系,Guatemala,ウォッシュド,Bourbon
+932,Arabica,Colombia,,,7.42,7.42,7.17,7.42,7.42,7.33,10.0,10.0,10.0,0.06,81.5,1,酸味系,Colombia,その他,その他
+933,Arabica,United States (Hawaii),,,7.33,7.33,7.33,7.5,7.5,7.83,9.33,10.0,10.0,0.0,81.5,2,コク・バランス系,United States (Hawaii),その他,その他
+934,Arabica,Mexico,Mundo Novo,Washed / Wet,7.58,7.33,7.08,7.33,7.5,7.33,10.0,10.0,10.0,0.12,81.42,1,酸味系,Mexico,ウォッシュド,Mundo Novo
+935,Arabica,Guatemala,Catuai,Washed / Wet,7.42,7.33,7.08,7.58,7.33,7.25,10.0,10.0,10.0,0.1,81.42,1,酸味系,Guatemala,ウォッシュド,Catuai
+936,Arabica,Brazil,Catuai,Natural / Dry,7.33,7.5,7.5,7.33,6.83,7.42,10.0,10.0,10.0,0.11,81.42,0,香り系,Brazil,ナチュラル,Catuai
+937,Arabica,Honduras,Catuai,Washed / Wet,7.5,7.33,7.17,7.25,7.5,7.42,10.0,10.0,10.0,0.12,81.42,1,酸味系,Honduras,ウォッシュド,Catuai
+938,Arabica,Taiwan,Typica,Washed / Wet,7.83,7.75,7.42,7.17,7.08,7.08,10.0,10.0,10.0,0.12,81.42,0,香り系,Taiwan,ウォッシュド,Typica
+939,Arabica,Malawi,Gesha,Washed / Wet,7.58,7.17,7.33,7.42,7.08,7.42,10.0,10.0,10.0,0.12,81.42,0,香り系,その他,ウォッシュド,その他
+940,Arabica,Brazil,Bourbon,Natural / Dry,7.25,7.5,7.42,7.17,7.33,7.33,10.0,10.0,10.0,0.0,81.42,2,コク・バランス系,Brazil,ナチュラル,Bourbon
+941,Arabica,Guatemala,Bourbon,Washed / Wet,7.42,7.5,7.17,7.42,7.42,7.42,10.0,10.0,10.0,0.1,81.42,1,酸味系,Guatemala,ウォッシュド,Bourbon
+942,Arabica,Mexico,Typica,Washed / Wet,7.67,7.33,7.25,7.17,7.25,7.42,10.0,10.0,10.0,0.0,81.42,0,香り系,Mexico,ウォッシュド,Typica
+943,Arabica,Peru,,Washed / Wet,7.42,7.42,7.17,7.33,7.42,7.42,10.0,10.0,10.0,0.1,81.42,1,酸味系,その他,ウォッシュド,その他
+944,Arabica,Guatemala,Bourbon,Washed / Wet,7.42,7.33,7.25,7.42,7.42,7.5,10.0,10.0,10.0,0.12,81.42,1,酸味系,Guatemala,ウォッシュド,Bourbon
+945,Arabica,Mexico,Caturra,Washed / Wet,7.42,7.33,7.25,7.17,7.25,7.42,10.0,10.0,10.0,0.13,81.42,0,香り系,Mexico,ウォッシュド,Caturra
+946,Arabica,Mexico,Typica,Washed / Wet,7.42,7.42,7.25,7.25,7.5,7.33,10.0,10.0,10.0,0.13,81.42,1,酸味系,Mexico,ウォッシュド,Typica
+947,Arabica,Colombia,Caturra,Natural / Dry,7.5,7.42,7.25,7.17,7.17,7.75,10.0,10.0,10.0,0.11,81.42,3,丸み系,Colombia,ナチュラル,Caturra
+948,Arabica,Colombia,,,7.75,7.33,7.42,7.0,7.33,7.25,10.0,10.0,10.0,0.16,81.42,0,香り系,Colombia,その他,その他
+949,Arabica,United States (Hawaii),Peaberry,,7.83,7.0,7.0,7.58,7.58,7.5,10.0,10.0,10.0,0.01,81.42,1,酸味系,United States (Hawaii),その他,その他
+950,Arabica,Colombia,Caturra,Washed / Wet,7.5,7.33,7.33,7.17,7.33,7.42,10.0,10.0,10.0,0.0,81.33,0,香り系,Colombia,ウォッシュド,Caturra
+951,Arabica,Honduras,Caturra,Washed / Wet,7.5,7.5,7.0,7.17,7.5,7.33,10.0,10.0,10.0,0.11,81.33,3,丸み系,Honduras,ウォッシュド,Caturra
+952,Arabica,Mexico,,,7.67,7.42,7.0,7.42,7.58,7.08,10.0,10.0,10.0,0.12,81.33,1,酸味系,Mexico,その他,その他
+953,Arabica,Brazil,Catuai,Natural / Dry,7.25,7.33,7.33,7.33,7.33,7.42,10.0,10.0,10.0,0.11,81.33,2,コク・バランス系,Brazil,ナチュラル,Catuai
+954,Arabica,Honduras,Catuai,Washed / Wet,7.58,7.42,7.17,7.42,7.17,7.17,10.0,10.0,10.0,0.09,81.33,1,酸味系,Honduras,ウォッシュド,Catuai
+955,Arabica,Brazil,Yellow Bourbon,Other,7.17,7.33,7.42,7.25,7.42,7.33,10.0,10.0,10.0,0.12,81.33,2,コク・バランス系,Brazil,その他,Yellow Bourbon
+956,Arabica,Philippines,Other,Washed / Wet,7.08,7.33,7.42,7.33,7.33,7.5,10.0,10.0,10.0,0.14,81.33,2,コク・バランス系,その他,ウォッシュド,Other
+957,Arabica,Malawi,Gesha,Washed / Wet,7.75,7.33,7.08,7.33,7.33,7.25,10.0,10.0,10.0,0.13,81.33,1,酸味系,その他,ウォッシュド,その他
+958,Arabica,Honduras,Catuai,Washed / Wet,7.33,7.33,7.17,7.33,7.5,7.33,10.0,10.0,10.0,0.12,81.33,1,酸味系,Honduras,ウォッシュド,Catuai
+959,Arabica,Mexico,Typica,Washed / Wet,7.58,7.42,7.25,7.33,7.25,7.25,10.0,10.0,10.0,0.13,81.33,1,酸味系,Mexico,ウォッシュド,Typica
+960,Arabica,Mexico,Typica,Washed / Wet,7.33,7.25,7.17,7.42,7.58,7.33,10.0,10.0,10.0,0.12,81.33,1,酸味系,Mexico,ウォッシュド,Typica
+961,Arabica,Brazil,Catuai,Natural / Dry,7.5,7.58,7.5,7.5,7.75,7.83,9.33,9.33,9.33,0.11,81.33,2,コク・バランス系,Brazil,ナチュラル,Catuai
+962,Arabica,Taiwan,Typica,Natural / Dry,7.83,7.75,7.67,7.83,7.83,7.75,9.33,10.0,10.0,0.12,81.25,1,酸味系,Taiwan,ナチュラル,Typica
+963,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.17,7.42,7.17,7.08,6.92,8.17,10.0,10.0,10.0,0.0,81.25,3,丸み系,Brazil,ナチュラル,Yellow Bourbon
+964,Arabica,Nicaragua,Catuai,Washed / Wet,7.08,7.5,7.33,7.17,7.42,7.25,10.0,10.0,10.0,0.1,81.25,2,コク・バランス系,その他,ウォッシュド,Catuai
+965,Arabica,Honduras,Catuai,Washed / Wet,7.42,7.17,7.17,7.5,7.33,7.25,10.0,10.0,10.0,0.12,81.25,1,酸味系,Honduras,ウォッシュド,Catuai
+966,Arabica,Guatemala,Pacamara,Washed / Wet,7.33,7.42,7.17,7.25,7.42,7.33,10.0,10.0,10.0,0.09,81.25,1,酸味系,Guatemala,ウォッシュド,その他
+967,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.33,7.17,7.17,7.5,7.25,7.42,10.0,10.0,10.0,0.13,81.25,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+968,Arabica,Taiwan,Typica,Semi-washed / Semi-pulped,7.5,7.5,7.25,7.25,7.25,7.25,10.0,10.0,10.0,0.11,81.25,0,香り系,Taiwan,セミウォッシュド,Typica
+969,Arabica,Guatemala,Caturra,Washed / Wet,7.5,7.33,7.5,7.58,7.0,7.25,10.0,10.0,10.0,0.11,81.25,0,香り系,Guatemala,ウォッシュド,Caturra
+970,Arabica,Mexico,Typica,Washed / Wet,7.42,7.42,7.33,7.33,7.5,7.42,9.33,10.0,10.0,0.12,81.25,2,コク・バランス系,Mexico,ウォッシュド,Typica
+971,Arabica,Nicaragua,,Washed / Wet,7.33,7.5,7.17,7.17,7.58,7.17,10.0,10.0,10.0,0.09,81.17,1,酸味系,その他,ウォッシュド,その他
+972,Arabica,"Tanzania, United Republic Of",Bourbon,Washed / Wet,7.67,7.17,7.17,7.33,7.5,7.17,10.0,10.0,10.0,0.12,81.17,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Bourbon
+973,Arabica,Mexico,Caturra,Washed / Wet,7.75,7.58,7.08,7.25,7.08,7.25,10.0,10.0,10.0,0.12,81.17,0,香り系,Mexico,ウォッシュド,Caturra
+974,Arabica,Costa Rica,Caturra,Washed / Wet,7.5,7.5,7.33,7.17,7.08,7.17,10.0,10.0,10.0,0.11,81.17,0,香り系,Costa Rica,ウォッシュド,Caturra
+975,Arabica,Honduras,Catuai,Natural / Dry,7.42,7.33,7.0,7.42,7.33,7.33,10.0,10.0,10.0,0.13,81.17,1,酸味系,Honduras,ナチュラル,Catuai
+976,Arabica,Thailand,Caturra,Washed / Wet,6.83,7.42,7.42,7.17,7.5,7.42,10.0,10.0,10.0,0.12,81.17,2,コク・バランス系,Thailand,ウォッシュド,Caturra
+977,Arabica,Philippines,Typica,Natural / Dry,7.25,7.25,7.25,7.08,7.58,7.5,10.0,10.0,10.0,0.0,81.17,3,丸み系,その他,ナチュラル,Typica
+978,Arabica,"Tanzania, United Republic Of",Bourbon,Washed / Wet,7.58,7.17,7.17,7.33,7.33,7.25,10.0,10.0,10.0,0.12,81.17,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Bourbon
+979,Arabica,Malawi,Caturra,Washed / Wet,7.58,7.25,7.33,7.08,7.33,7.33,10.0,10.0,10.0,0.12,81.17,0,香り系,その他,ウォッシュド,Caturra
+980,Arabica,Costa Rica,Catuai,Washed / Wet,7.33,7.08,7.33,7.25,7.33,7.58,10.0,10.0,10.0,0.11,81.17,3,丸み系,Costa Rica,ウォッシュド,Catuai
+981,Arabica,Brazil,Catuai,Natural / Dry,7.42,7.42,7.17,7.42,7.33,7.25,10.0,10.0,10.0,0.11,81.17,1,酸味系,Brazil,ナチュラル,Catuai
+982,Arabica,Mexico,Typica,Natural / Dry,7.42,7.25,7.08,7.75,7.42,7.17,10.0,10.0,10.0,0.13,81.17,1,酸味系,Mexico,ナチュラル,Typica
+983,Arabica,Guatemala,Caturra,Washed / Wet,7.42,7.25,7.33,7.25,7.25,7.42,10.0,10.0,10.0,0.12,81.17,0,香り系,Guatemala,ウォッシュド,Caturra
+984,Arabica,Brazil,Mundo Novo,Natural / Dry,7.42,7.33,7.25,7.42,7.5,7.17,10.0,10.0,10.0,0.12,81.17,1,酸味系,Brazil,ナチュラル,Mundo Novo
+985,Arabica,United States (Hawaii),,,7.25,7.75,7.67,7.67,7.42,7.67,8.67,9.33,10.0,0.04,81.17,2,コク・バランス系,United States (Hawaii),その他,その他
+986,Arabica,Ethiopia,,Natural / Dry,7.42,7.33,7.17,7.33,7.42,7.17,10.0,10.0,10.0,0.11,81.08,1,酸味系,Ethiopia,ナチュラル,その他
+987,Arabica,Brazil,Mundo Novo,Natural / Dry,7.58,7.42,7.5,7.25,7.75,7.58,9.33,10.0,9.33,0.11,81.08,3,丸み系,Brazil,ナチュラル,Mundo Novo
+988,Arabica,Nicaragua,Other,Washed / Wet,7.33,7.33,7.33,7.42,7.33,7.33,10.0,10.0,10.0,0.11,81.08,1,酸味系,その他,ウォッシュド,Other
+989,Arabica,United States,Pache Comun,Natural / Dry,7.42,7.17,7.33,7.42,7.25,7.33,10.0,10.0,10.0,0.0,81.08,2,コク・バランス系,その他,ナチュラル,その他
+990,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.42,7.33,7.33,7.25,7.25,7.33,10.0,10.0,10.0,0.13,81.08,0,香り系,"Tanzania, United Republic Of",ウォッシュド,Other
+991,Arabica,Costa Rica,Caturra,Washed / Wet,7.42,7.25,7.17,7.25,7.25,7.58,10.0,10.0,10.0,0.13,81.08,3,丸み系,Costa Rica,ウォッシュド,Caturra
+992,Arabica,United States (Puerto Rico),Other,Washed / Wet,7.67,7.75,7.67,7.58,7.58,7.67,6.67,10.0,10.0,0.0,81.08,0,香り系,その他,ウォッシュド,Other
+993,Arabica,Mexico,Typica,Washed / Wet,7.25,7.42,7.33,7.33,7.17,7.33,10.0,10.0,10.0,0.13,81.08,0,香り系,Mexico,ウォッシュド,Typica
+994,Arabica,Mexico,Typica,Washed / Wet,7.33,7.25,7.33,7.42,7.25,7.42,10.0,10.0,10.0,0.12,81.08,1,酸味系,Mexico,ウォッシュド,Typica
+995,Arabica,Mexico,Typica,Washed / Wet,7.33,7.33,7.25,7.42,7.25,7.25,10.0,10.0,10.0,0.11,81.08,1,酸味系,Mexico,ウォッシュド,Typica
+996,Arabica,Mexico,Typica,Washed / Wet,7.42,7.33,7.25,7.42,7.17,7.25,10.0,10.0,10.0,0.1,81.08,1,酸味系,Mexico,ウォッシュド,Typica
+997,Arabica,United States (Hawaii),Hawaiian Kona,Washed / Wet,7.42,7.42,7.25,7.58,6.92,7.17,10.0,10.0,10.0,0.06,81.08,0,香り系,United States (Hawaii),ウォッシュド,Hawaiian Kona
+998,Arabica,Brazil,Bourbon,Pulped natural / honey,7.25,7.25,7.17,7.5,7.33,7.17,10.0,10.0,10.0,0.11,81.0,1,酸味系,Brazil,ハニー,Bourbon
+999,Arabica,El Salvador,Bourbon,Washed / Wet,7.42,7.08,7.08,7.33,7.25,7.58,10.0,10.0,10.0,0.0,81.0,1,酸味系,その他,ウォッシュド,Bourbon
+1000,Arabica,Brazil,Yellow Bourbon,Pulped natural / honey,7.33,7.17,7.17,7.67,7.33,7.17,10.0,10.0,10.0,0.11,81.0,1,酸味系,Brazil,ハニー,Yellow Bourbon
+1001,Arabica,Guatemala,Bourbon,Washed / Wet,7.42,7.25,7.17,7.5,7.25,7.17,10.0,10.0,10.0,0.09,81.0,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1002,Arabica,Colombia,Caturra,Washed / Wet,7.67,7.5,7.42,5.25,7.67,7.75,10.0,10.0,10.0,0.0,81.0,3,丸み系,Colombia,ウォッシュド,Caturra
+1003,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.25,7.0,7.25,7.5,7.25,10.0,10.0,10.0,0.11,81.0,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1004,Arabica,Taiwan,Typica,Washed / Wet,7.25,7.17,7.17,7.25,7.5,7.33,10.0,10.0,10.0,0.12,81.0,1,酸味系,Taiwan,ウォッシュド,Typica
+1005,Arabica,Honduras,Caturra,Natural / Dry,7.42,7.25,7.25,7.33,7.25,7.17,10.0,10.0,10.0,0.12,81.0,1,酸味系,Honduras,ナチュラル,Caturra
+1006,Arabica,Brazil,Mundo Novo,Natural / Dry,7.67,7.75,7.83,7.75,7.83,7.75,10.0,6.67,10.0,0.12,81.0,2,コク・バランス系,Brazil,ナチュラル,Mundo Novo
+1007,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.33,7.33,7.08,7.42,7.17,7.33,10.0,10.0,10.0,0.12,81.0,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+1008,Arabica,Uganda,SL14,Natural / Dry,7.33,6.92,7.17,7.33,7.42,7.42,10.0,10.0,10.0,0.12,81.0,1,酸味系,Uganda,ナチュラル,その他
+1009,Arabica,Taiwan,Typica,Semi-washed / Semi-pulped,7.5,6.92,7.33,7.33,7.33,7.33,10.0,10.0,10.0,0.11,81.0,1,酸味系,Taiwan,セミウォッシュド,Typica
+1010,Arabica,Thailand,,Washed / Wet,7.33,7.42,7.25,7.42,7.25,7.17,10.0,10.0,10.0,0.0,81.0,1,酸味系,Thailand,ウォッシュド,その他
+1011,Arabica,Mexico,Other,Washed / Wet,7.08,7.33,7.33,7.33,7.42,7.25,10.0,10.0,10.0,0.12,81.0,2,コク・バランス系,Mexico,ウォッシュド,Other
+1012,Arabica,Mexico,Typica,Washed / Wet,7.58,7.67,7.5,7.67,7.58,7.5,8.0,10.0,10.0,0.0,81.0,1,酸味系,Mexico,ウォッシュド,Typica
+1013,Arabica,Taiwan,Other,Washed / Wet,7.33,7.17,7.25,7.33,7.33,7.25,10.0,10.0,10.0,0.0,80.92,2,コク・バランス系,Taiwan,ウォッシュド,Other
+1014,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.67,7.33,7.58,7.67,7.5,9.33,9.33,9.33,0.1,80.92,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1015,Arabica,Kenya,SL28,Washed / Wet,7.17,7.58,7.5,7.5,8.0,7.75,10.0,10.0,10.0,0.11,80.92,2,コク・バランス系,その他,ウォッシュド,その他
+1016,Arabica,Mexico,Bourbon,Washed / Wet,7.5,7.33,7.17,7.42,7.5,7.33,9.33,10.0,10.0,0.11,80.92,1,酸味系,Mexico,ウォッシュド,Bourbon
+1017,Arabica,Myanmar,Other,Other,7.17,7.42,7.0,7.58,7.33,7.0,10.0,10.0,10.0,0.0,80.92,1,酸味系,その他,その他,Other
+1018,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.42,7.08,7.17,7.17,7.58,7.25,10.0,10.0,10.0,0.1,80.92,3,丸み系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1019,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.33,7.17,7.17,7.25,7.42,7.33,10.0,10.0,10.0,0.12,80.92,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+1020,Arabica,Brazil,Yellow Bourbon,Natural / Dry,7.25,7.33,7.25,7.25,7.25,7.33,10.0,10.0,10.0,0.12,80.92,2,コク・バランス系,Brazil,ナチュラル,Yellow Bourbon
+1021,Arabica,Taiwan,Typica,Washed / Wet,7.92,7.67,7.33,7.08,7.08,7.08,10.0,10.0,10.0,0.09,80.92,0,香り系,Taiwan,ウォッシュド,Typica
+1022,Arabica,Brazil,Bourbon,Natural / Dry,7.17,7.42,7.17,7.25,7.25,7.33,10.0,10.0,10.0,0.1,80.92,1,酸味系,Brazil,ナチュラル,Bourbon
+1023,Arabica,Nicaragua,Caturra,Washed / Wet,7.33,7.08,7.25,7.0,7.5,7.42,10.0,10.0,10.0,0.1,80.92,3,丸み系,その他,ウォッシュド,Caturra
+1024,Arabica,Guatemala,Pacas,Washed / Wet,7.58,7.42,6.92,7.5,7.25,7.17,10.0,10.0,10.0,0.12,80.92,1,酸味系,Guatemala,ウォッシュド,その他
+1025,Arabica,Taiwan,Typica,Washed / Wet,7.42,7.25,7.25,7.25,7.25,7.25,10.0,10.0,10.0,0.11,80.92,0,香り系,Taiwan,ウォッシュド,Typica
+1026,Arabica,Taiwan,Typica,Other,7.25,7.17,7.08,7.08,7.08,8.08,10.0,10.0,10.0,0.11,80.92,3,丸み系,Taiwan,その他,Typica
+1027,Arabica,Taiwan,Typica,Washed / Wet,7.42,7.25,7.25,7.25,7.25,7.25,10.0,10.0,10.0,0.11,80.92,0,香り系,Taiwan,ウォッシュド,Typica
+1028,Arabica,Mexico,Typica,Washed / Wet,7.58,7.33,7.08,7.5,7.17,7.25,10.0,10.0,10.0,0.13,80.92,1,酸味系,Mexico,ウォッシュド,Typica
+1029,Arabica,Thailand,Peaberry,,7.67,7.58,7.33,7.33,7.17,7.0,10.0,10.0,10.0,0.0,80.92,0,香り系,Thailand,その他,その他
+1030,Arabica,Laos,Catimor,Washed / Wet,7.42,7.33,7.17,7.17,7.17,7.25,10.0,10.0,10.0,0.0,80.83,1,酸味系,その他,ウォッシュド,その他
+1031,Arabica,Guatemala,Caturra,Washed / Wet,7.67,7.25,7.08,7.33,7.17,7.25,10.0,10.0,10.0,0.11,80.83,1,酸味系,Guatemala,ウォッシュド,Caturra
+1032,Arabica,Mexico,Catuai,Semi-washed / Semi-pulped,7.17,7.08,7.25,7.42,7.25,7.33,10.0,10.0,10.0,0.13,80.83,1,酸味系,Mexico,セミウォッシュド,Catuai
+1033,Arabica,Mexico,Typica,Washed / Wet,7.33,7.25,7.33,7.33,7.25,7.17,10.0,10.0,10.0,0.11,80.83,2,コク・バランス系,Mexico,ウォッシュド,Typica
+1034,Arabica,Mexico,Bourbon,Washed / Wet,7.5,7.17,7.33,7.25,7.17,7.17,10.0,10.0,10.0,0.13,80.83,0,香り系,Mexico,ウォッシュド,Bourbon
+1035,Arabica,United States (Hawaii),Hawaiian Kona,Washed / Wet,7.42,7.33,7.0,7.25,7.33,7.5,10.0,10.0,10.0,0.1,80.83,1,酸味系,United States (Hawaii),ウォッシュド,Hawaiian Kona
+1036,Arabica,Colombia,,,7.33,7.33,7.0,6.83,7.33,7.67,10.0,10.0,10.0,0.01,80.83,3,丸み系,Colombia,その他,その他
+1037,Arabica,Brazil,,Natural / Dry,7.17,7.25,7.08,7.17,7.25,7.58,10.0,10.0,10.0,0.0,80.75,2,コク・バランス系,Brazil,ナチュラル,その他
+1038,Arabica,Myanmar,Catuai,Washed / Wet,6.92,7.5,7.0,7.58,7.5,7.08,10.0,10.0,10.0,0.0,80.75,1,酸味系,その他,ウォッシュド,Catuai
+1039,Arabica,Guatemala,Caturra,Washed / Wet,7.5,7.33,7.0,7.42,7.17,7.17,10.0,10.0,10.0,0.12,80.75,1,酸味系,Guatemala,ウォッシュド,Caturra
+1040,Arabica,Nicaragua,Other,Washed / Wet,7.25,7.25,7.17,7.25,7.33,7.25,10.0,10.0,10.0,0.12,80.75,2,コク・バランス系,その他,ウォッシュド,Other
+1041,Arabica,Honduras,Caturra,Natural / Dry,7.5,7.33,7.0,7.42,7.25,7.17,10.0,10.0,10.0,0.11,80.75,1,酸味系,Honduras,ナチュラル,Caturra
+1042,Arabica,Panama,Caturra,Other,7.25,7.33,7.17,7.33,7.33,7.17,10.0,10.0,10.0,0.11,80.75,2,コク・バランス系,その他,その他,Caturra
+1043,Arabica,Honduras,Catuai,Washed / Wet,7.42,7.17,7.08,7.42,7.25,7.25,10.0,10.0,10.0,0.09,80.75,1,酸味系,Honduras,ウォッシュド,Catuai
+1044,Arabica,Honduras,Catuai,Natural / Dry,7.25,7.33,7.08,7.5,7.25,7.33,10.0,10.0,10.0,0.13,80.75,1,酸味系,Honduras,ナチュラル,Catuai
+1045,Arabica,Costa Rica,Caturra,Washed / Wet,7.33,7.33,7.25,7.25,7.17,7.17,10.0,10.0,10.0,0.11,80.75,0,香り系,Costa Rica,ウォッシュド,Caturra
+1046,Arabica,Mexico,Typica,Washed / Wet,7.58,7.33,7.42,7.25,7.5,7.5,9.33,9.33,10.0,0.11,80.75,3,丸み系,Mexico,ウォッシュド,Typica
+1047,Arabica,Haiti,Typica,Washed / Wet,7.42,7.0,7.42,7.25,7.08,7.33,10.0,10.0,10.0,0.12,80.75,0,香り系,その他,ウォッシュド,Typica
+1048,Arabica,United States (Hawaii),Arusha,Natural / Dry,7.08,7.33,7.17,7.25,7.33,7.67,10.0,10.0,10.0,0.13,80.75,2,コク・バランス系,United States (Hawaii),ナチュラル,その他
+1049,Arabica,Taiwan,Typica,Other,7.33,7.08,7.08,7.08,7.42,7.33,10.0,10.0,10.0,0.0,80.67,3,丸み系,Taiwan,その他,Typica
+1050,Arabica,Indonesia,Mandheling,Semi-washed / Semi-pulped,7.58,7.42,7.0,7.67,7.5,7.5,9.33,9.33,10.0,0.13,80.67,1,酸味系,その他,セミウォッシュド,その他
+1051,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.42,6.83,7.17,7.42,7.17,10.0,10.0,10.0,0.11,80.67,3,丸み系,Guatemala,ウォッシュド,Bourbon
+1052,Arabica,Costa Rica,Caturra,Washed / Wet,7.83,7.5,7.67,7.67,7.83,7.5,6.67,10.0,10.0,0.11,80.67,3,丸み系,Costa Rica,ウォッシュド,Caturra
+1053,Arabica,Malawi,Caturra,Washed / Wet,7.5,7.25,7.17,7.17,7.25,7.17,10.0,10.0,10.0,0.12,80.67,0,香り系,その他,ウォッシュド,Caturra
+1054,Arabica,Mexico,Typica,Washed / Wet,7.25,7.17,7.17,7.25,7.17,7.42,10.0,10.0,10.0,0.12,80.67,2,コク・バランス系,Mexico,ウォッシュド,Typica
+1055,Arabica,Colombia,Caturra,Natural / Dry,7.67,7.5,7.42,7.67,7.5,7.75,10.0,10.0,6.67,0.0,80.67,1,酸味系,Colombia,ナチュラル,Caturra
+1056,Arabica,Guatemala,Bourbon,Washed / Wet,7.67,7.17,7.0,7.5,7.0,7.0,10.0,10.0,10.0,0.12,80.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1057,Arabica,Guatemala,Bourbon,Washed / Wet,7.0,7.33,7.5,7.33,7.0,7.33,10.0,10.0,10.0,0.11,80.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1058,Arabica,Guatemala,Bourbon,Washed / Wet,7.0,7.5,7.33,7.17,7.17,7.17,10.0,10.0,10.0,0.11,80.67,2,コク・バランス系,Guatemala,ウォッシュド,Bourbon
+1059,Arabica,Colombia,,,7.17,7.25,7.08,7.42,7.08,7.42,10.0,10.0,10.0,0.18,80.67,1,酸味系,Colombia,その他,その他
+1060,Arabica,Brazil,,,7.33,7.25,7.33,7.08,7.58,7.25,9.33,10.0,10.0,0.11,80.58,3,丸み系,Brazil,その他,その他
+1061,Arabica,Nicaragua,,,7.08,7.5,7.0,7.25,7.42,7.0,10.0,10.0,10.0,0.11,80.58,1,酸味系,その他,その他,その他
+1062,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.25,7.08,7.08,7.33,7.33,7.25,10.0,10.0,10.0,0.12,80.58,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Other
+1063,Arabica,Brazil,Bourbon,Semi-washed / Semi-pulped,7.42,7.25,7.33,7.0,7.08,7.25,10.0,10.0,10.0,0.0,80.58,0,香り系,Brazil,セミウォッシュド,Bourbon
+1064,Arabica,Honduras,Caturra,Washed / Wet,7.5,7.17,7.0,7.42,7.33,7.0,10.0,10.0,10.0,0.11,80.58,1,酸味系,Honduras,ウォッシュド,Caturra
+1065,Arabica,Guatemala,Bourbon,Natural / Dry,7.17,7.42,6.83,7.5,7.17,7.25,10.0,10.0,10.0,0.11,80.58,1,酸味系,Guatemala,ナチュラル,Bourbon
+1066,Arabica,United States (Hawaii),,,7.42,7.58,7.5,7.92,7.83,7.83,8.67,8.67,9.33,0.0,80.58,2,コク・バランス系,United States (Hawaii),その他,その他
+1067,Arabica,Colombia,,,7.08,7.25,7.0,7.5,7.08,7.33,10.0,10.0,10.0,0.0,80.58,1,酸味系,Colombia,その他,その他
+1068,Arabica,Taiwan,Other,Natural / Dry,7.17,7.17,7.17,7.42,7.17,7.25,10.0,10.0,10.0,0.0,80.5,1,酸味系,Taiwan,ナチュラル,Other
+1069,Arabica,Guatemala,Caturra,Washed / Wet,7.33,7.25,7.08,7.17,7.25,7.17,10.0,10.0,10.0,0.1,80.5,1,酸味系,Guatemala,ウォッシュド,Caturra
+1070,Arabica,Honduras,Catuai,Washed / Wet,7.58,7.33,7.0,7.17,7.33,7.08,10.0,10.0,10.0,0.11,80.5,1,酸味系,Honduras,ウォッシュド,Catuai
+1071,Arabica,Mauritius,,,7.25,7.25,7.17,7.17,7.25,7.17,10.0,10.0,10.0,0.12,80.5,2,コク・バランス系,その他,その他,その他
+1072,Arabica,Brazil,Yellow Bourbon,Semi-washed / Semi-pulped,7.25,7.33,7.17,7.5,7.33,7.25,9.33,10.0,10.0,0.11,80.5,1,酸味系,Brazil,セミウォッシュド,Yellow Bourbon
+1073,Arabica,Myanmar,Other,Washed / Wet,7.17,7.33,7.17,7.42,7.25,7.08,10.0,10.0,10.0,0.0,80.5,1,酸味系,その他,ウォッシュド,Other
+1074,Arabica,Guatemala,Other,Washed / Wet,7.5,7.17,6.83,7.5,7.17,7.17,10.0,10.0,10.0,0.11,80.5,1,酸味系,Guatemala,ウォッシュド,Other
+1075,Arabica,Brazil,Yellow Bourbon,Semi-washed / Semi-pulped,7.42,7.42,7.08,7.33,7.67,7.5,9.33,9.33,10.0,0.1,80.5,1,酸味系,Brazil,セミウォッシュド,Yellow Bourbon
+1076,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.42,7.33,7.33,7.58,7.58,7.42,8.67,10.0,10.0,0.11,80.5,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1077,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.5,7.0,7.67,7.17,7.0,10.0,10.0,10.0,0.12,80.5,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1078,Arabica,Mexico,Typica,Washed / Wet,7.25,7.25,7.08,7.33,7.25,7.17,10.0,10.0,10.0,0.15,80.5,1,酸味系,Mexico,ウォッシュド,Typica
+1079,Arabica,Honduras,,,7.25,7.42,7.0,7.42,7.33,7.0,10.0,10.0,10.0,0.1,80.42,1,酸味系,Honduras,その他,その他
+1080,Arabica,Taiwan,Typica,Washed / Wet,7.58,7.17,7.17,7.17,7.17,7.17,10.0,10.0,10.0,0.14,80.42,0,香り系,Taiwan,ウォッシュド,Typica
+1081,Arabica,El Salvador,Bourbon,Washed / Wet,7.33,7.17,7.08,7.08,7.33,7.17,10.0,10.0,10.0,0.0,80.42,1,酸味系,その他,ウォッシュド,Bourbon
+1082,Arabica,China,Other,Washed / Wet,7.25,7.08,7.25,7.17,7.33,7.17,10.0,10.0,10.0,0.17,80.42,2,コク・バランス系,その他,ウォッシュド,Other
+1083,Arabica,Taiwan,Typica,Washed / Wet,7.25,7.25,7.17,7.25,7.25,7.25,10.0,10.0,10.0,0.11,80.42,2,コク・バランス系,Taiwan,ウォッシュド,Typica
+1084,Arabica,Mexico,Typica,Washed / Wet,6.92,7.17,7.08,7.5,7.33,7.17,10.0,10.0,10.0,0.1,80.42,2,コク・バランス系,Mexico,ウォッシュド,Typica
+1085,Arabica,Mexico,Caturra,Washed / Wet,7.42,7.08,7.08,7.33,7.25,7.17,10.0,10.0,10.0,0.12,80.42,1,酸味系,Mexico,ウォッシュド,Caturra
+1086,Arabica,Burundi,,,7.08,7.25,7.17,7.33,7.08,7.08,10.0,10.0,10.0,0.12,80.33,1,酸味系,その他,その他,その他
+1087,Arabica,"Tanzania, United Republic Of",Bourbon,Washed / Wet,7.25,7.17,7.0,7.25,7.42,7.08,10.0,10.0,10.0,0.13,80.33,1,酸味系,"Tanzania, United Republic Of",ウォッシュド,Bourbon
+1088,Arabica,"Tanzania, United Republic Of",Other,Washed / Wet,7.25,7.17,7.25,7.25,7.25,7.08,10.0,10.0,10.0,0.12,80.33,2,コク・バランス系,"Tanzania, United Republic Of",ウォッシュド,Other
+1089,Arabica,Taiwan,Yellow Bourbon,Other,7.25,7.25,7.08,7.25,7.25,7.25,10.0,10.0,10.0,0.11,80.33,1,酸味系,Taiwan,その他,Yellow Bourbon
+1090,Arabica,Guatemala,Bourbon,Washed / Wet,7.33,7.33,6.83,7.5,7.0,7.17,10.0,10.0,10.0,0.11,80.33,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1091,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.25,7.08,7.08,7.33,7.33,7.17,10.0,10.0,10.0,0.11,80.33,1,酸味系,Mexico,セミウォッシュド,Typica
+1092,Arabica,United States (Hawaii),Hawaiian Kona,Washed / Wet,7.17,7.5,6.92,7.33,7.67,7.33,9.33,10.0,10.0,0.12,80.33,1,酸味系,United States (Hawaii),ウォッシュド,Hawaiian Kona
+1093,Arabica,Ethiopia,,,7.25,7.25,7.25,7.33,7.5,8.0,9.33,9.33,10.0,0.1,80.33,3,丸み系,Ethiopia,その他,その他
+1094,Arabica,Brazil,Catuai,Natural / Dry,7.17,7.33,7.42,7.08,7.0,7.0,10.0,10.0,10.0,0.11,80.25,2,コク・バランス系,Brazil,ナチュラル,Catuai
+1095,Arabica,Honduras,Caturra,Natural / Dry,7.25,7.25,7.0,7.0,7.42,7.0,10.0,10.0,10.0,0.1,80.25,1,酸味系,Honduras,ナチュラル,Caturra
+1096,Arabica,Mexico,Caturra,Washed / Wet,7.25,7.17,7.0,7.33,7.33,7.0,10.0,10.0,10.0,0.1,80.25,1,酸味系,Mexico,ウォッシュド,Caturra
+1097,Arabica,Myanmar,Other,Natural / Dry,8.0,7.08,7.0,7.33,7.08,6.92,10.0,10.0,10.0,0.11,80.25,1,酸味系,その他,ナチュラル,Other
+1098,Arabica,Myanmar,Catuai,Natural / Dry,7.42,7.0,7.08,7.0,7.17,7.33,10.0,10.0,10.0,0.0,80.25,3,丸み系,その他,ナチュラル,Catuai
+1099,Arabica,Nicaragua,Caturra,Washed / Wet,7.08,6.92,7.0,7.25,7.5,7.25,10.0,10.0,10.0,0.11,80.25,1,酸味系,その他,ウォッシュド,Caturra
+1100,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.5,7.08,7.67,7.67,7.42,7.58,9.33,9.33,9.33,0.12,80.25,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1101,Arabica,Colombia,Typica,Washed / Wet,7.42,8.0,7.83,7.75,8.08,7.58,8.67,8.67,8.67,0.1,80.25,2,コク・バランス系,Colombia,ウォッシュド,Typica
+1102,Arabica,Taiwan,Typica,Semi-washed / Semi-pulped,7.25,7.08,7.25,7.25,7.17,7.25,10.0,10.0,10.0,0.11,80.25,2,コク・バランス系,Taiwan,セミウォッシュド,Typica
+1103,Arabica,Guatemala,Caturra,Washed / Wet,7.0,7.17,7.33,7.33,7.0,7.17,10.0,10.0,10.0,0.11,80.25,1,酸味系,Guatemala,ウォッシュド,Caturra
+1104,Arabica,Mexico,Caturra,Washed / Wet,7.58,7.33,7.17,7.25,6.75,7.0,10.0,10.0,10.0,0.11,80.25,0,香り系,Mexico,ウォッシュド,Caturra
+1105,Arabica,Vietnam,Catimor,Other,7.42,7.25,7.25,7.58,7.42,7.33,8.67,10.0,10.0,0.0,80.17,1,酸味系,その他,その他,その他
+1106,Arabica,Nicaragua,Caturra,Washed / Wet,7.17,7.08,7.08,7.33,7.25,7.08,10.0,10.0,10.0,0.11,80.17,2,コク・バランス系,その他,ウォッシュド,Caturra
+1107,Arabica,Honduras,Catuai,Washed / Wet,7.25,7.25,7.0,7.17,7.08,7.08,10.0,10.0,10.0,0.11,80.17,1,酸味系,Honduras,ウォッシュド,Catuai
+1108,Arabica,Guatemala,Bourbon,Washed / Wet,7.33,7.33,7.0,7.17,7.17,7.17,10.0,10.0,10.0,0.11,80.17,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1109,Arabica,Mexico,Typica,Washed / Wet,7.33,7.08,6.92,7.42,7.25,7.08,10.0,10.0,10.0,0.11,80.17,1,酸味系,Mexico,ウォッシュド,Typica
+1110,Arabica,Mexico,Typica,Washed / Wet,7.58,7.42,7.33,7.5,7.08,7.17,8.67,10.0,10.0,0.14,80.17,0,香り系,Mexico,ウォッシュド,Typica
+1111,Arabica,Mexico,Bourbon,Washed / Wet,7.33,7.33,7.17,7.08,7.25,7.0,10.0,10.0,10.0,0.12,80.17,0,香り系,Mexico,ウォッシュド,Bourbon
+1112,Arabica,Guatemala,Bourbon,Washed / Wet,7.33,7.33,7.0,7.33,7.0,7.0,10.0,10.0,10.0,0.11,80.17,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1113,Arabica,United States (Hawaii),,,7.58,7.5,7.33,7.33,7.67,7.33,9.33,9.33,9.33,0.05,80.17,1,酸味系,United States (Hawaii),その他,その他
+1114,Arabica,Brazil,Bourbon,Pulped natural / honey,7.17,7.17,7.0,7.17,7.25,7.25,10.0,10.0,10.0,0.11,80.08,1,酸味系,Brazil,ハニー,Bourbon
+1115,Arabica,Taiwan,Typica,Washed / Wet,7.42,7.25,7.25,7.17,7.0,7.0,10.0,10.0,10.0,0.07,80.08,0,香り系,Taiwan,ウォッシュド,Typica
+1116,Arabica,Nicaragua,,Natural / Dry,7.25,7.17,6.92,7.25,7.17,7.25,10.0,10.0,10.0,0.1,80.08,1,酸味系,その他,ナチュラル,その他
+1117,Arabica,Taiwan,Typica,Other,7.25,7.25,7.25,7.25,7.08,7.0,10.0,10.0,10.0,0.11,80.08,0,香り系,Taiwan,その他,Typica
+1118,Arabica,Taiwan,Typica,Washed / Wet,7.25,7.25,7.25,7.0,7.25,7.08,10.0,10.0,10.0,0.11,80.08,0,香り系,Taiwan,ウォッシュド,Typica
+1119,Arabica,Taiwan,Typica,Semi-washed / Semi-pulped,7.25,7.25,7.25,7.08,7.17,7.08,10.0,10.0,10.0,0.11,80.08,0,香り系,Taiwan,セミウォッシュド,Typica
+1120,Arabica,Mexico,Typica,Washed / Wet,7.33,7.17,7.25,7.08,7.08,7.08,10.0,10.0,10.0,0.15,80.08,0,香り系,Mexico,ウォッシュド,Typica
+1121,Arabica,Mexico,Typica,Washed / Wet,7.25,7.08,7.0,7.17,7.33,7.17,10.0,10.0,10.0,0.14,80.08,1,酸味系,Mexico,ウォッシュド,Typica
+1122,Arabica,Nicaragua,Caturra,Washed / Wet,7.33,7.08,6.92,7.08,7.42,7.17,10.0,10.0,10.0,0.1,80.0,1,酸味系,その他,ウォッシュド,Caturra
+1123,Arabica,Myanmar,Other,Washed / Wet,7.17,7.33,7.0,7.42,7.17,7.0,10.0,10.0,10.0,0.0,80.0,1,酸味系,その他,ウォッシュド,Other
+1124,Arabica,Mexico,Typica,Washed / Wet,7.58,7.75,7.42,7.5,7.5,7.5,8.67,8.67,10.0,0.0,80.0,1,酸味系,Mexico,ウォッシュド,Typica
+1125,Arabica,Taiwan,Typica,Washed / Wet,7.25,7.25,7.25,7.0,7.25,7.0,10.0,10.0,10.0,0.11,80.0,0,香り系,Taiwan,ウォッシュド,Typica
+1126,Arabica,Thailand,,Washed / Wet,7.33,6.67,7.08,7.42,7.42,7.08,10.0,10.0,10.0,0.0,80.0,1,酸味系,Thailand,ウォッシュド,その他
+1127,Arabica,Mexico,Typica,Washed / Wet,7.25,7.25,7.08,7.17,7.33,7.33,9.33,10.0,10.0,0.12,80.0,1,酸味系,Mexico,ウォッシュド,Typica
+1128,Arabica,Mexico,Other,Washed / Wet,7.08,7.33,7.0,7.33,7.08,7.0,10.0,10.0,10.0,0.11,80.0,1,酸味系,Mexico,ウォッシュド,Other
+1129,Arabica,Ethiopia,,,7.42,7.42,7.5,7.92,7.75,7.58,8.67,9.33,8.67,0.05,80.0,2,コク・バランス系,Ethiopia,その他,その他
+1130,Arabica,Colombia,,Washed / Wet,7.83,7.67,7.58,7.75,7.83,7.17,6.67,10.0,10.0,0.0,79.92,1,酸味系,Colombia,ウォッシュド,その他
+1131,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.5,7.0,7.0,6.92,7.33,7.17,10.0,10.0,10.0,0.11,79.92,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1132,Arabica,Mexico,Bourbon,Washed / Wet,7.33,7.08,7.08,7.33,7.42,7.17,9.33,10.0,10.0,0.12,79.92,1,酸味系,Mexico,ウォッシュド,Bourbon
+1133,Arabica,Mexico,Other,Washed / Wet,7.17,7.17,6.92,7.25,7.33,7.08,10.0,10.0,10.0,0.12,79.92,1,酸味系,Mexico,ウォッシュド,Other
+1134,Arabica,Mexico,Bourbon,Washed / Wet,7.5,7.17,7.0,7.17,7.25,7.08,10.0,10.0,10.0,0.0,79.92,1,酸味系,Mexico,ウォッシュド,Bourbon
+1135,Arabica,Mexico,Catuai,Washed / Wet,7.17,7.08,7.08,7.08,7.5,7.33,9.33,10.0,10.0,0.11,79.92,3,丸み系,Mexico,ウォッシュド,Catuai
+1136,Arabica,Mexico,Typica,Natural / Dry,7.33,7.25,7.0,7.42,7.17,7.17,9.33,10.0,10.0,0.12,79.92,1,酸味系,Mexico,ナチュラル,Typica
+1137,Arabica,Mexico,Mundo Novo,Washed / Wet,7.17,7.33,7.08,7.58,7.33,7.08,10.0,9.33,10.0,0.11,79.92,1,酸味系,Mexico,ウォッシュド,Mundo Novo
+1138,Arabica,United States (Hawaii),,,7.5,7.42,7.58,7.42,7.5,7.58,8.67,8.67,10.0,0.05,79.92,2,コク・バランス系,United States (Hawaii),その他,その他
+1139,Arabica,Kenya,SL34,Washed / Wet,7.0,7.08,7.0,7.17,7.25,7.25,10.0,10.0,10.0,0.11,79.83,2,コク・バランス系,その他,ウォッシュド,その他
+1140,Arabica,Guatemala,Bourbon,Washed / Wet,7.33,7.25,6.92,7.33,7.25,7.33,9.33,10.0,10.0,0.1,79.83,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1141,Arabica,Nicaragua,Caturra,Washed / Wet,6.83,7.17,7.17,6.92,7.5,7.08,10.0,10.0,10.0,0.11,79.83,2,コク・バランス系,その他,ウォッシュド,Caturra
+1142,Arabica,Mexico,Typica,Washed / Wet,7.17,7.08,7.0,7.25,7.5,7.0,10.0,10.0,10.0,0.12,79.83,1,酸味系,Mexico,ウォッシュド,Typica
+1143,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.58,7.08,6.83,7.17,7.5,7.17,9.33,10.0,10.0,0.12,79.83,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1144,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.42,7.25,7.58,7.33,7.42,9.33,9.33,9.33,0.1,79.75,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1145,Arabica,Taiwan,Typica,Natural / Dry,7.75,7.33,7.17,7.33,7.67,7.83,9.33,9.33,8.67,0.0,79.75,3,丸み系,Taiwan,ナチュラル,Typica
+1146,Arabica,Taiwan,Typica,Washed / Wet,7.08,7.08,7.25,7.0,7.17,7.17,10.0,10.0,10.0,0.1,79.75,2,コク・バランス系,Taiwan,ウォッシュド,Typica
+1147,Arabica,Thailand,,Washed / Wet,7.25,7.08,6.92,7.5,7.08,6.92,10.0,10.0,10.0,0.12,79.75,1,酸味系,Thailand,ウォッシュド,その他
+1148,Arabica,Peru,,Washed / Wet,7.0,7.08,7.0,7.25,7.5,7.42,9.33,10.0,10.0,0.12,79.75,2,コク・バランス系,その他,ウォッシュド,その他
+1149,Arabica,Costa Rica,Catuai,Washed / Wet,7.58,7.5,7.67,7.75,7.67,7.58,8.0,8.0,10.0,0.1,79.75,2,コク・バランス系,Costa Rica,ウォッシュド,Catuai
+1150,Arabica,Mexico,Typica,Washed / Wet,7.58,7.08,7.0,7.0,7.5,6.92,10.0,10.0,10.0,0.12,79.75,1,酸味系,Mexico,ウォッシュド,Typica
+1151,Arabica,Mexico,Bourbon,Washed / Wet,7.58,7.08,6.92,7.58,7.5,6.92,10.0,9.33,10.0,0.13,79.75,1,酸味系,Mexico,ウォッシュド,Bourbon
+1152,Arabica,Mexico,Bourbon,Washed / Wet,7.25,7.08,7.0,7.17,7.17,7.08,10.0,10.0,10.0,0.12,79.75,1,酸味系,Mexico,ウォッシュド,Bourbon
+1153,Arabica,Mexico,Bourbon,Washed / Wet,7.25,7.17,7.17,7.08,7.17,7.0,10.0,10.0,10.0,0.14,79.75,0,香り系,Mexico,ウォッシュド,Bourbon
+1154,Arabica,Mexico,Typica,Washed / Wet,7.33,7.25,7.0,7.08,7.08,7.0,10.0,10.0,10.0,0.1,79.75,1,酸味系,Mexico,ウォッシュド,Typica
+1155,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.33,7.5,7.33,7.0,7.33,9.33,9.33,9.33,0.0,79.75,0,香り系,Guatemala,ウォッシュド,Bourbon
+1156,Arabica,Mexico,Typica,Washed / Wet,7.25,6.83,6.92,7.08,7.25,7.08,10.0,10.0,10.0,0.12,79.75,3,丸み系,Mexico,ウォッシュド,Typica
+1157,Arabica,Guatemala,Bourbon,Washed / Wet,7.42,7.42,7.25,7.58,7.42,7.33,9.33,9.33,9.33,0.1,79.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1158,Arabica,El Salvador,Bourbon,Washed / Wet,7.25,7.08,7.0,6.83,7.33,7.17,10.0,10.0,10.0,0.0,79.67,3,丸み系,その他,ウォッシュド,Bourbon
+1159,Arabica,Thailand,,Washed / Wet,6.92,7.17,6.83,7.42,7.17,7.08,10.0,10.0,10.0,0.12,79.67,1,酸味系,Thailand,ウォッシュド,その他
+1160,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.0,6.83,7.08,7.08,7.17,10.0,10.0,10.0,0.11,79.67,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1161,Arabica,Mexico,Typica,Washed / Wet,7.42,7.25,6.83,7.58,7.17,6.58,10.0,10.0,10.0,0.12,79.67,1,酸味系,Mexico,ウォッシュド,Typica
+1162,Arabica,Mexico,Caturra,Washed / Wet,7.33,7.17,7.0,6.75,7.08,7.0,10.0,10.0,10.0,0.13,79.67,0,香り系,Mexico,ウォッシュド,Caturra
+1163,Arabica,Mexico,Mundo Novo,Washed / Wet,6.92,7.17,7.17,7.17,7.08,7.08,10.0,10.0,10.0,0.0,79.67,2,コク・バランス系,Mexico,ウォッシュド,Mundo Novo
+1164,Arabica,Thailand,Peaberry,,7.17,7.17,7.0,7.0,7.25,6.92,10.0,10.0,10.0,0.0,79.67,1,酸味系,Thailand,その他,その他
+1165,Arabica,Mexico,Typica,Washed / Wet,7.08,7.0,6.92,7.33,7.25,7.08,10.0,10.0,10.0,0.12,79.58,1,酸味系,Mexico,ウォッシュド,Typica
+1166,Arabica,Mexico,Caturra,Washed / Wet,7.25,6.92,6.92,7.33,7.25,7.0,10.0,10.0,10.0,0.13,79.58,1,酸味系,Mexico,ウォッシュド,Caturra
+1167,Arabica,Colombia,,,7.25,7.17,7.0,6.75,7.17,7.33,10.0,10.0,10.0,0.1,79.58,3,丸み系,Colombia,その他,その他
+1168,Arabica,Guatemala,,,7.08,7.0,6.83,7.33,7.25,7.0,10.0,10.0,10.0,0.17,79.58,1,酸味系,Guatemala,その他,その他
+1169,Arabica,Nicaragua,Caturra,Natural / Dry,6.92,6.92,7.0,7.42,7.25,7.0,10.0,10.0,10.0,0.12,79.5,2,コク・バランス系,その他,ナチュラル,Caturra
+1170,Arabica,Taiwan,Typica,Natural / Dry,6.92,7.0,7.17,7.0,7.42,7.0,10.0,10.0,10.0,0.0,79.5,2,コク・バランス系,Taiwan,ナチュラル,Typica
+1171,Arabica,Colombia,Caturra,Washed / Wet,7.83,7.5,7.42,7.42,7.67,7.5,10.0,6.67,10.0,0.0,79.5,1,酸味系,Colombia,ウォッシュド,Caturra
+1172,Arabica,Mexico,Caturra,Washed / Wet,7.25,7.08,6.92,7.25,7.58,7.08,9.33,10.0,10.0,0.12,79.5,1,酸味系,Mexico,ウォッシュド,Caturra
+1173,Arabica,Mexico,Typica,Washed / Wet,7.25,7.33,7.0,7.25,7.17,7.17,9.33,10.0,10.0,0.12,79.5,1,酸味系,Mexico,ウォッシュド,Typica
+1174,Arabica,Guatemala,Bourbon,Washed / Wet,7.08,7.33,7.25,7.58,7.33,7.42,9.33,9.33,9.33,0.1,79.42,2,コク・バランス系,Guatemala,ウォッシュド,Bourbon
+1175,Arabica,Guatemala,Other,Washed / Wet,7.25,7.33,6.83,7.0,7.0,7.17,10.0,10.0,10.0,0.1,79.42,3,丸み系,Guatemala,ウォッシュド,Other
+1176,Arabica,Mexico,Typica,Washed / Wet,7.0,6.83,6.83,7.42,7.33,7.17,10.0,10.0,10.0,0.13,79.42,1,酸味系,Mexico,ウォッシュド,Typica
+1177,Arabica,Cote d?Ivoire,,Washed / Wet,7.42,7.25,6.83,7.0,7.33,7.08,9.33,10.0,10.0,0.13,79.33,3,丸み系,その他,ウォッシュド,その他
+1178,Arabica,Colombia,Caturra,Washed / Wet,7.42,7.25,6.75,7.25,7.42,7.25,9.33,9.33,10.0,0.0,79.33,1,酸味系,Colombia,ウォッシュド,Caturra
+1179,Arabica,Mexico,Typica,Washed / Wet,7.0,7.0,6.83,7.33,7.42,6.92,10.0,10.0,10.0,0.14,79.33,1,酸味系,Mexico,ウォッシュド,Typica
+1180,Arabica,Mexico,Typica,Washed / Wet,7.42,7.17,7.08,7.17,7.08,7.08,9.33,10.0,10.0,0.14,79.33,0,香り系,Mexico,ウォッシュド,Typica
+1181,Arabica,Guatemala,Bourbon,Washed / Wet,7.17,6.5,6.33,7.25,7.58,7.33,10.0,10.0,10.0,0.11,79.33,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1182,Arabica,Taiwan,Typica,Washed / Wet,7.08,6.83,6.83,7.25,7.42,7.08,10.0,10.0,10.0,0.11,79.25,1,酸味系,Taiwan,ウォッシュド,Typica
+1183,Arabica,Mexico,Bourbon,Washed / Wet,7.0,7.0,6.92,7.17,7.17,7.08,10.0,10.0,10.0,0.13,79.25,1,酸味系,Mexico,ウォッシュド,Bourbon
+1184,Arabica,Guatemala,Bourbon,Washed / Wet,7.33,7.42,7.33,7.42,7.5,7.42,8.67,9.33,9.33,0.1,79.17,2,コク・バランス系,Guatemala,ウォッシュド,Bourbon
+1185,Arabica,Honduras,Catuai,Washed / Wet,7.58,7.0,6.75,6.92,7.0,6.92,10.0,10.0,10.0,0.11,79.17,1,酸味系,Honduras,ウォッシュド,Catuai
+1186,Arabica,Guatemala,Bourbon,Washed / Wet,7.08,7.0,6.92,7.42,7.0,6.92,10.0,10.0,10.0,0.11,79.17,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1187,Arabica,Guatemala,Catuai,Washed / Wet,7.25,7.17,6.75,7.25,7.0,6.92,10.0,10.0,10.0,0.11,79.17,1,酸味系,Guatemala,ウォッシュド,Catuai
+1188,Arabica,Costa Rica,Catuai,Washed / Wet,7.17,7.42,7.5,8.0,7.25,7.83,10.0,10.0,6.67,0.1,79.17,1,酸味系,Costa Rica,ウォッシュド,Catuai
+1189,Arabica,Mexico,Typica,Washed / Wet,7.25,7.08,6.92,7.08,7.17,7.17,9.33,10.0,10.0,0.14,79.17,1,酸味系,Mexico,ウォッシュド,Typica
+1190,Arabica,Mexico,Typica,Washed / Wet,7.17,6.92,6.92,7.08,7.17,7.0,10.0,10.0,10.0,0.14,79.17,1,酸味系,Mexico,ウォッシュド,Typica
+1191,Arabica,Mexico,Typica,,6.75,6.75,6.83,7.25,7.58,7.08,10.0,10.0,10.0,0.01,79.17,1,酸味系,Mexico,その他,Typica
+1192,Arabica,Guatemala,Bourbon,Washed / Wet,7.58,7.67,7.42,7.42,7.67,7.67,8.67,8.67,8.67,0.1,79.08,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1193,Arabica,United States (Puerto Rico),Other,Washed / Wet,7.42,7.08,6.75,7.33,7.33,6.92,10.0,9.33,10.0,0.13,79.08,1,酸味系,その他,ウォッシュド,Other
+1194,Arabica,Mexico,Typica,Washed / Wet,7.33,7.0,6.92,7.25,7.33,7.08,9.33,10.0,10.0,0.16,79.08,1,酸味系,Mexico,ウォッシュド,Typica
+1195,Arabica,Mexico,Mundo Novo,Washed / Wet,7.25,7.08,6.75,7.33,7.42,7.0,9.33,10.0,10.0,0.11,79.08,1,酸味系,Mexico,ウォッシュド,Mundo Novo
+1196,Arabica,Mexico,Typica,Washed / Wet,7.17,7.25,7.25,7.17,7.25,7.08,9.33,9.33,10.0,0.1,79.08,2,コク・バランス系,Mexico,ウォッシュド,Typica
+1197,Arabica,,,,6.75,6.75,6.42,6.83,7.58,7.5,10.0,10.0,10.0,0.1,79.08,3,丸み系,その他,その他,その他
+1198,Arabica,Guatemala,Other,Washed / Wet,7.33,7.17,6.58,7.42,7.08,6.83,10.0,10.0,10.0,0.12,79.0,1,酸味系,Guatemala,ウォッシュド,Other
+1199,Arabica,Honduras,Pacas,Washed / Wet,7.0,7.0,7.0,7.0,7.0,7.0,10.0,10.0,10.0,0.11,79.0,2,コク・バランス系,Honduras,ウォッシュド,その他
+1200,Arabica,Peru,Typica,Washed / Wet,7.67,7.17,7.08,7.25,8.0,7.5,8.67,9.33,9.33,0.0,79.0,3,丸み系,その他,ウォッシュド,Typica
+1201,Arabica,Mexico,Mundo Novo,Natural / Dry,6.75,7.08,6.67,7.25,7.17,7.08,10.0,10.0,10.0,0.12,79.0,1,酸味系,Mexico,ナチュラル,Mundo Novo
+1202,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.5,7.17,6.92,7.5,7.25,7.0,8.67,10.0,10.0,0.14,79.0,1,酸味系,Mexico,セミウォッシュド,Typica
+1203,Arabica,Mexico,Typica,Washed / Wet,7.17,6.83,6.83,7.25,7.17,6.92,10.0,10.0,10.0,0.14,79.0,1,酸味系,Mexico,ウォッシュド,Typica
+1204,Arabica,Mexico,Typica,Washed / Wet,7.33,7.0,6.75,7.08,7.17,7.25,9.33,10.0,10.0,0.12,78.92,3,丸み系,Mexico,ウォッシュド,Typica
+1205,Arabica,Mexico,Typica,Washed / Wet,7.5,7.0,6.92,7.08,6.92,6.75,10.0,10.0,10.0,0.16,78.92,1,酸味系,Mexico,ウォッシュド,Typica
+1206,Arabica,Nicaragua,Caturra,Other,7.17,7.0,6.92,7.0,7.0,7.0,10.0,10.0,10.0,0.1,78.83,1,酸味系,その他,その他,Caturra
+1207,Arabica,United States (Hawaii),,Natural / Dry,7.5,6.92,6.92,7.25,7.58,7.42,9.33,9.33,9.33,0.12,78.75,1,酸味系,United States (Hawaii),ナチュラル,その他
+1208,Arabica,Guatemala,Bourbon,Washed / Wet,7.33,7.08,6.33,7.25,7.0,7.0,10.0,10.0,10.0,0.12,78.75,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1209,Arabica,Mexico,Typica,Washed / Wet,7.25,6.83,6.83,7.0,7.17,7.0,10.0,10.0,10.0,0.14,78.75,3,丸み系,Mexico,ウォッシュド,Typica
+1210,Arabica,Mexico,Typica,Semi-washed / Semi-pulped,7.25,7.33,7.17,7.25,7.08,7.0,8.67,10.0,10.0,0.14,78.75,1,酸味系,Mexico,セミウォッシュド,Typica
+1211,Arabica,Mexico,Bourbon,Washed / Wet,7.67,7.17,6.83,7.33,7.58,7.17,9.33,10.0,8.67,0.12,78.75,1,酸味系,Mexico,ウォッシュド,Bourbon
+1212,Arabica,China,Typica,Washed / Wet,7.0,6.92,6.83,7.17,7.17,7.17,10.0,10.0,9.33,0.0,78.67,1,酸味系,その他,ウォッシュド,Typica
+1213,Arabica,Mexico,Caturra,Washed / Wet,6.92,6.92,6.67,7.25,7.17,6.92,10.0,10.0,10.0,0.13,78.67,1,酸味系,Mexico,ウォッシュド,Caturra
+1214,Arabica,Nicaragua,,,7.08,7.0,6.75,6.83,7.08,6.92,10.0,10.0,10.0,0.1,78.58,1,酸味系,その他,その他,その他
+1215,Arabica,Nicaragua,,Natural / Dry,6.83,7.08,6.92,6.75,7.25,7.08,10.0,10.0,10.0,0.11,78.58,2,コク・バランス系,その他,ナチュラル,その他
+1216,Arabica,Guatemala,Other,Washed / Wet,7.33,7.17,6.92,7.58,7.25,7.17,8.67,9.33,10.0,0.12,78.58,1,酸味系,Guatemala,ウォッシュド,Other
+1217,Arabica,Taiwan,Typica,Washed / Wet,6.83,6.75,7.17,7.25,7.0,6.92,10.0,10.0,10.0,0.1,78.58,2,コク・バランス系,Taiwan,ウォッシュド,Typica
+1218,Arabica,Mexico,Typica,Washed / Wet,7.0,7.0,6.75,7.33,6.92,6.92,10.0,10.0,10.0,0.13,78.58,1,酸味系,Mexico,ウォッシュド,Typica
+1219,Arabica,Mexico,Typica,Washed / Wet,7.92,7.58,7.58,7.92,7.92,7.5,8.0,6.67,10.0,0.1,78.58,1,酸味系,Mexico,ウォッシュド,Typica
+1220,Arabica,United States (Hawaii),,,7.92,6.83,7.08,7.42,6.75,7.33,8.67,9.33,10.0,0.0,78.58,1,酸味系,United States (Hawaii),その他,その他
+1221,Arabica,Mexico,Bourbon,Washed / Wet,7.25,6.75,6.92,6.92,7.25,7.58,9.33,9.33,10.0,0.0,78.5,3,丸み系,Mexico,ウォッシュド,Bourbon
+1222,Arabica,Mexico,Typica,Washed / Wet,7.08,6.83,6.83,7.0,7.0,6.92,10.0,10.0,10.0,0.12,78.5,1,酸味系,Mexico,ウォッシュド,Typica
+1223,Arabica,Mexico,Caturra,Washed / Wet,7.25,7.17,7.0,6.83,7.58,7.08,8.67,10.0,10.0,0.13,78.5,3,丸み系,Mexico,ウォッシュド,Caturra
+1224,Arabica,Brazil,Catuai,Natural / Dry,6.83,7.0,6.92,7.08,6.92,6.83,10.0,10.0,10.0,0.12,78.42,1,酸味系,Brazil,ナチュラル,Catuai
+1225,Arabica,Mexico,Typica,Washed / Wet,7.58,7.17,7.0,7.17,7.33,7.0,8.0,10.0,10.0,0.14,78.42,1,酸味系,Mexico,ウォッシュド,Typica
+1226,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.5,7.75,7.58,7.83,7.92,7.92,7.33,8.0,8.67,0.1,78.33,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1227,Arabica,Guatemala,Other,Washed / Wet,7.17,6.5,6.67,7.0,7.17,7.17,10.0,10.0,10.0,0.1,78.33,1,酸味系,Guatemala,ウォッシュド,Other
+1228,Arabica,Guatemala,Bourbon,Washed / Wet,7.17,7.17,6.5,7.17,7.0,6.83,10.0,10.0,10.0,0.11,78.33,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1229,Arabica,Mexico,Typica,Natural / Dry,7.25,7.25,7.0,7.5,7.33,7.42,8.0,9.33,10.0,0.13,78.33,1,酸味系,Mexico,ナチュラル,Typica
+1230,Arabica,Guatemala,Bourbon,Washed / Wet,7.17,6.08,6.17,7.25,7.33,7.33,10.0,10.0,10.0,0.11,78.33,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1231,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.5,7.5,7.33,7.58,7.5,7.42,8.67,8.67,8.67,0.11,78.25,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1232,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.42,7.33,7.33,7.5,7.67,7.75,8.0,8.67,9.33,0.11,78.25,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1233,Arabica,Indonesia,Java,Washed / Wet,6.92,6.83,6.92,6.92,6.92,6.83,10.0,10.0,10.0,0.13,78.17,2,コク・バランス系,その他,ウォッシュド,その他
+1234,Arabica,Mexico,Typica,Washed / Wet,7.08,6.83,6.67,7.25,7.25,6.92,10.0,9.33,10.0,0.11,78.08,1,酸味系,Mexico,ウォッシュド,Typica
+1235,Arabica,Taiwan,Yellow Bourbon,Washed / Wet,7.5,7.08,7.33,7.17,7.5,7.5,6.67,10.0,10.0,0.0,78.0,3,丸み系,Taiwan,ウォッシュド,Yellow Bourbon
+1236,Arabica,Honduras,Pacas,Natural / Dry,6.83,7.0,6.67,7.0,7.0,6.83,10.0,10.0,10.0,0.11,78.0,1,酸味系,Honduras,ナチュラル,その他
+1237,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.58,7.33,7.5,7.42,7.5,7.33,8.0,8.67,9.33,0.12,78.0,2,コク・バランス系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1238,Arabica,Guatemala,Other,Washed / Wet,7.42,7.25,6.83,7.33,7.0,6.92,9.33,9.33,9.33,0.1,78.0,1,酸味系,Guatemala,ウォッシュド,Other
+1239,Arabica,China,Typica,Washed / Wet,7.33,7.17,6.92,7.08,7.33,7.0,9.33,9.33,9.33,0.1,78.0,1,酸味系,その他,ウォッシュド,Typica
+1240,Arabica,Guatemala,Bourbon,Washed / Wet,7.0,6.83,6.83,7.17,6.67,6.83,10.0,10.0,10.0,0.11,78.0,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1241,Arabica,Mexico,Other,Washed / Wet,7.25,7.33,7.0,7.0,7.25,7.08,10.0,10.0,8.0,0.12,78.0,1,酸味系,Mexico,ウォッシュド,Other
+1242,Arabica,Colombia,,,7.42,7.17,7.0,7.17,7.67,7.17,8.67,9.33,9.33,0.1,78.0,1,酸味系,Colombia,その他,その他
+1243,Arabica,Costa Rica,Caturra,Washed / Wet,7.5,7.25,7.42,7.0,7.08,6.83,8.67,9.33,10.0,0.12,77.92,0,香り系,Costa Rica,ウォッシュド,Caturra
+1244,Arabica,Mexico,Typica,Washed / Wet,7.42,7.25,7.0,7.0,7.25,7.08,8.0,10.0,10.0,0.11,77.92,1,酸味系,Mexico,ウォッシュド,Typica
+1245,Arabica,Guatemala,Bourbon,Washed / Wet,7.17,6.17,6.17,7.08,7.33,6.83,10.0,10.0,10.0,0.11,77.92,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1246,Arabica,Nicaragua,,,7.42,7.0,7.0,7.17,7.08,7.0,9.33,8.67,10.0,0.1,77.83,1,酸味系,その他,その他,その他
+1247,Arabica,Brazil,,Washed / Wet,7.0,6.75,6.67,6.83,7.08,6.83,10.0,10.0,10.0,0.11,77.83,1,酸味系,Brazil,ウォッシュド,その他
+1248,Arabica,Guatemala,Bourbon,Washed / Wet,7.0,6.83,6.67,7.17,6.83,6.83,10.0,10.0,10.0,0.11,77.83,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1249,Arabica,Taiwan,Typica,Washed / Wet,7.17,6.75,6.58,7.33,7.33,7.17,9.33,9.33,10.0,0.11,77.67,1,酸味系,Taiwan,ウォッシュド,Typica
+1250,Arabica,United States (Hawaii),,Natural / Dry,7.58,7.67,7.58,7.67,7.42,7.42,9.33,9.33,6.0,0.12,77.58,1,酸味系,United States (Hawaii),ナチュラル,その他
+1251,Arabica,Mexico,Typica,Washed / Wet,7.17,6.75,6.58,6.75,6.83,6.75,10.0,10.0,10.0,0.13,77.5,1,酸味系,Mexico,ウォッシュド,Typica
+1252,Arabica,Guatemala,Bourbon,Washed / Wet,7.08,6.92,6.33,7.0,6.92,7.0,10.0,10.0,10.0,0.11,77.42,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1253,Arabica,Brazil,Bourbon,Natural / Dry,7.5,7.33,7.42,7.58,7.58,6.92,8.0,8.0,10.0,0.0,77.33,1,酸味系,Brazil,ナチュラル,Bourbon
+1254,Arabica,Guatemala,Other,Washed / Wet,7.33,7.0,6.83,7.17,7.17,7.17,9.33,9.33,9.33,0.1,77.33,1,酸味系,Guatemala,ウォッシュド,Other
+1255,Arabica,Mexico,Typica,Washed / Wet,7.33,7.0,6.67,7.0,6.92,6.92,9.33,9.33,10.0,0.15,77.33,1,酸味系,Mexico,ウォッシュド,Typica
+1256,Arabica,Haiti,Typica,Washed / Wet,6.83,6.83,6.83,6.75,6.92,6.92,9.33,10.0,10.0,0.1,77.25,2,コク・バランス系,その他,ウォッシュド,Typica
+1257,Arabica,United States (Hawaii),,Natural / Dry,7.08,6.92,6.83,6.67,7.58,7.42,8.67,9.33,10.0,0.12,77.25,3,丸み系,United States (Hawaii),ナチュラル,その他
+1258,Arabica,Mexico,Other,Washed / Wet,7.08,7.0,7.0,7.25,7.33,7.25,8.67,8.67,10.0,0.12,77.17,1,酸味系,Mexico,ウォッシュド,Other
+1259,Arabica,Peru,Caturra,Washed / Wet,7.42,7.75,7.42,7.67,7.92,7.83,8.67,5.33,9.33,0.0,77.0,1,酸味系,その他,ウォッシュド,Caturra
+1260,Arabica,India,,Natural / Dry,7.67,7.33,7.17,6.67,7.17,7.42,9.33,10.0,6.67,0.0,76.83,3,丸み系,その他,ナチュラル,その他
+1261,Arabica,Mexico,Typica,,6.67,6.33,6.42,6.83,7.0,6.92,10.0,10.0,10.0,0.0,76.75,1,酸味系,Mexico,その他,Typica
+1262,Arabica,Guatemala,Bourbon,Washed / Wet,6.42,6.5,6.5,7.33,6.33,6.92,10.0,10.0,10.0,0.12,76.5,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1263,Arabica,Mexico,Typica,Washed / Wet,7.17,6.58,6.58,7.0,7.25,6.58,9.33,9.33,10.0,0.13,76.42,1,酸味系,Mexico,ウォッシュド,Typica
+1264,Arabica,Guatemala,Bourbon,Washed / Wet,7.5,7.0,6.83,7.5,7.17,7.33,8.67,8.67,8.67,0.11,76.33,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1265,Arabica,Guatemala,Bourbon,Washed / Wet,6.17,6.5,6.5,7.17,7.0,6.83,10.0,10.0,10.0,0.11,76.33,2,コク・バランス系,Guatemala,ウォッシュド,Bourbon
+1266,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.25,7.08,6.83,7.17,7.33,6.83,8.67,8.67,9.33,0.0,76.25,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1267,Arabica,United States (Hawaii),,Natural / Dry,7.5,7.33,7.33,7.58,7.67,7.25,8.0,8.0,8.0,0.0,76.17,1,酸味系,United States (Hawaii),ナチュラル,その他
+1268,Arabica,Mexico,Typica,Washed / Wet,7.42,7.0,6.83,7.08,6.92,6.83,7.33,10.0,10.0,0.16,76.17,1,酸味系,Mexico,ウォッシュド,Typica
+1269,Arabica,Indonesia,Other,Natural / Dry,7.33,7.0,6.5,6.08,7.58,6.33,9.33,10.0,9.33,0.12,76.17,3,丸み系,その他,ナチュラル,Other
+1270,Arabica,Mexico,Bourbon,Washed / Wet,7.08,6.83,6.83,7.17,7.17,7.08,10.0,7.33,10.0,0.12,76.08,1,酸味系,Mexico,ウォッシュド,Bourbon
+1271,Arabica,Honduras,Pacas,Natural / Dry,6.83,6.83,6.67,6.83,7.0,6.83,9.33,8.67,10.0,0.11,76.0,1,酸味系,Honduras,ナチュラル,その他
+1272,Arabica,Philippines,,Washed / Wet,6.83,6.5,6.5,6.92,6.75,7.0,9.33,10.0,9.33,0.12,75.83,1,酸味系,その他,ウォッシュド,その他
+1273,Arabica,Brazil,,Natural / Dry,7.17,7.0,6.83,7.5,7.17,7.0,8.0,8.0,10.0,0.11,75.67,1,酸味系,Brazil,ナチュラル,その他
+1274,Arabica,Guatemala,Bourbon,Washed / Wet,7.92,7.58,7.17,7.58,7.33,7.17,8.0,8.0,8.0,0.11,75.58,0,香り系,Guatemala,ウォッシュド,Bourbon
+1275,Arabica,Guatemala,Bourbon,Washed / Wet,6.67,6.5,6.33,7.0,7.17,6.75,8.67,10.0,10.0,0.12,75.58,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1276,Arabica,Mexico,Pacamara,Washed / Wet,7.5,7.25,6.92,7.0,7.17,6.83,8.0,8.0,10.0,0.11,75.5,1,酸味系,Mexico,ウォッシュド,その他
+1277,Arabica,Mexico,Mundo Novo,Washed / Wet,7.17,6.92,6.67,6.83,7.25,7.75,10.0,6.0,10.0,0.11,75.17,3,丸み系,Mexico,ウォッシュド,Mundo Novo
+1278,Arabica,Mexico,Other,Washed / Wet,7.25,6.83,6.67,7.08,7.17,6.83,10.0,6.67,10.0,0.12,75.17,1,酸味系,Mexico,ウォッシュド,Other
+1279,Arabica,Mexico,Typica,Washed / Wet,7.17,7.17,6.83,7.17,7.42,6.67,8.67,7.33,10.0,0.13,75.17,1,酸味系,Mexico,ウォッシュド,Typica
+1280,Arabica,Mexico,Typica,Washed / Wet,7.0,6.92,6.75,6.92,7.17,6.83,10.0,6.67,10.0,0.14,75.0,1,酸味系,Mexico,ウォッシュド,Typica
+1281,Arabica,Mexico,Typica,Washed / Wet,7.08,6.75,6.58,7.0,7.0,6.75,8.67,8.67,10.0,0.17,74.92,1,酸味系,Mexico,ウォッシュド,Typica
+1282,Arabica,Mexico,Typica,Washed / Wet,7.33,6.75,6.67,7.25,7.5,7.0,10.0,5.33,10.0,0.12,74.83,1,酸味系,Mexico,ウォッシュド,Typica
+1283,Arabica,Guatemala,Bourbon,Washed / Wet,6.75,6.5,6.17,7.0,7.25,6.75,8.0,10.0,10.0,0.11,74.75,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1284,Arabica,Guatemala,Bourbon,Washed / Wet,6.75,6.67,6.17,7.17,7.0,6.58,8.0,10.0,10.0,0.11,74.75,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1285,Arabica,Mexico,Typica,Washed / Wet,7.08,7.0,6.83,7.5,7.33,6.83,8.0,7.33,10.0,0.12,74.67,1,酸味系,Mexico,ウォッシュド,Typica
+1286,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.5,7.25,7.0,7.25,7.42,7.33,8.0,8.67,6.67,0.0,74.42,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1287,Arabica,Guatemala,Bourbon,Washed / Wet,6.5,6.33,6.5,7.5,7.33,6.83,8.67,10.0,8.67,0.11,74.33,1,酸味系,Guatemala,ウォッシュド,Bourbon
+1288,Arabica,Mexico,Typica,Washed / Wet,7.0,6.58,6.67,6.83,7.08,6.83,10.0,6.67,10.0,0.14,74.33,3,丸み系,Mexico,ウォッシュド,Typica
+1289,Arabica,Mexico,Typica,Washed / Wet,6.92,6.42,6.17,7.33,7.25,6.75,10.0,6.67,10.0,0.13,74.0,1,酸味系,Mexico,ウォッシュド,Typica
+1290,Arabica,Mexico,Typica,Washed / Wet,7.67,7.0,7.17,7.58,7.33,7.33,10.0,2.67,10.0,0.12,73.83,1,酸味系,Mexico,ウォッシュド,Typica
+1291,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,7.17,7.17,7.17,7.58,7.67,6.92,9.33,6.67,6.67,0.0,73.67,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1292,Arabica,Brazil,,,7.25,6.58,6.58,7.0,7.0,6.42,8.0,8.0,10.0,0.11,73.5,1,酸味系,Brazil,その他,その他
+1293,Arabica,Honduras,Pacas,Washed / Wet,7.0,7.17,6.83,7.17,7.0,7.17,8.0,8.0,8.0,0.11,73.42,1,酸味系,Honduras,ウォッシュド,その他
+1294,Arabica,Mexico,Typica,Washed / Wet,7.08,7.08,6.92,7.08,6.92,6.92,8.0,8.0,8.0,0.0,72.92,1,酸味系,Mexico,ウォッシュド,Typica
+1295,Arabica,Colombia,,Natural / Dry,8.0,7.33,7.75,7.33,7.42,7.67,6.67,6.67,6.67,0.0,72.83,0,香り系,Colombia,ナチュラル,その他
+1296,Arabica,United States (Hawaii),Hawaiian Kona,Natural / Dry,6.92,6.92,6.92,7.5,7.58,7.17,6.67,6.67,9.33,0.11,72.58,1,酸味系,United States (Hawaii),ナチュラル,Hawaiian Kona
+1297,Arabica,Haiti,,,6.92,6.75,7.08,7.17,7.33,6.67,10.0,5.33,8.67,0.08,72.33,1,酸味系,その他,その他,その他
+1298,Arabica,Costa Rica,Caturra,Washed / Wet,6.33,6.5,6.33,6.83,6.33,6.5,10.0,6.67,10.0,0.11,71.75,1,酸味系,Costa Rica,ウォッシュド,Caturra
+1299,Arabica,Mexico,Mundo Novo,Washed / Wet,6.92,6.92,6.92,6.92,7.17,7.0,10.0,2.67,10.0,0.12,71.08,2,コク・バランス系,Mexico,ウォッシュド,Mundo Novo
+1300,Arabica,Mexico,Bourbon,Washed / Wet,6.5,6.67,6.42,7.17,7.33,6.5,8.0,6.0,10.0,0.11,71.0,1,酸味系,Mexico,ウォッシュド,Bourbon
+1301,Arabica,Mexico,Typica,Washed / Wet,6.92,7.0,6.83,6.92,7.42,6.92,6.0,6.0,10.0,0.12,70.75,1,酸味系,Mexico,ウォッシュド,Typica
+1302,Arabica,Brazil,,Natural / Dry,7.0,7.0,6.83,7.0,7.33,6.83,6.0,6.0,10.0,0.11,70.67,1,酸味系,Brazil,ナチュラル,その他
+1303,Arabica,Honduras,Catuai,Washed / Wet,6.67,6.5,6.17,6.67,6.83,6.17,8.0,8.0,8.0,0.1,69.33,1,酸味系,Honduras,ウォッシュド,Catuai
+1304,Arabica,Honduras,Catuai,Washed / Wet,7.0,6.17,6.17,6.67,6.5,6.17,8.0,8.0,8.0,0.1,69.17,1,酸味系,Honduras,ウォッシュド,Catuai
+1305,Arabica,Honduras,Catuai,Washed / Wet,7.0,6.33,6.17,6.5,6.67,6.17,8.0,8.0,8.0,0.1,69.17,1,酸味系,Honduras,ウォッシュド,Catuai
+1306,Arabica,Mexico,Bourbon,Washed / Wet,7.08,6.83,6.25,7.42,7.25,6.75,10.0,0.0,10.0,0.11,68.33,1,酸味系,Mexico,ウォッシュド,Bourbon
+1307,Arabica,Haiti,Typica,Natural / Dry,6.75,6.58,6.42,6.67,7.08,6.67,9.33,6.0,6.0,0.14,67.92,1,酸味系,その他,ナチュラル,Typica
+1308,Arabica,Nicaragua,Caturra,Other,7.25,6.58,6.33,6.25,6.42,6.08,6.0,6.0,6.0,0.13,63.08,0,香り系,その他,その他,Caturra
+1309,Arabica,Guatemala,Catuai,Washed / Wet,7.5,6.67,6.67,7.67,7.33,6.67,8.0,1.33,1.33,0.1,59.83,1,酸味系,Guatemala,ウォッシュド,Catuai
+1311,Robusta,Uganda,,,7.83,8.08,7.75,7.92,8.25,7.92,10.0,10.0,8.0,0.12,83.75,1,酸味系,Uganda,その他,その他
+1312,Robusta,India,,Washed / Wet,8.0,7.75,7.92,8.0,7.92,7.92,10.0,10.0,8.0,0.0,83.5,2,コク・バランス系,その他,ウォッシュド,その他
+1313,Robusta,India,,,7.92,7.83,7.92,8.0,7.83,7.92,10.0,10.0,7.83,0.0,83.25,2,コク・バランス系,その他,その他,その他
+1314,Robusta,Uganda,,,8.0,7.92,7.92,7.75,7.83,7.75,10.0,10.0,7.75,0.12,83.0,0,香り系,Uganda,その他,その他
+1315,Robusta,Uganda,,,8.33,7.83,7.83,7.75,8.25,7.75,10.0,10.0,7.58,0.12,83.0,1,酸味系,Uganda,その他,その他
+1316,Robusta,India,,,8.0,7.92,7.67,8.0,7.75,7.92,10.0,10.0,7.75,0.0,82.75,1,酸味系,その他,その他,その他
+1317,Robusta,India,,,7.67,7.75,7.83,7.83,7.92,7.75,10.0,10.0,8.0,0.0,82.58,2,コク・バランス系,その他,その他,その他
+1318,Robusta,India,,Washed / Wet,7.67,7.75,7.83,7.67,7.92,7.83,10.0,10.0,7.92,0.1,82.5,2,コク・バランス系,その他,ウォッシュド,その他
+1319,Robusta,India,Other,Washed / Wet,7.67,7.75,7.58,7.83,7.83,8.0,10.0,10.0,7.92,0.09,82.5,2,コク・バランス系,その他,ウォッシュド,Other
+1320,Robusta,Uganda,,,7.67,7.83,7.83,7.83,7.92,7.75,10.0,10.0,7.75,0.12,82.42,2,コク・バランス系,Uganda,その他,その他
+1321,Robusta,Uganda,,,7.58,7.92,7.75,7.83,7.5,7.67,10.0,10.0,7.67,0.12,81.75,1,酸味系,Uganda,その他,その他
+1322,Robusta,India,Other,Natural / Dry,7.67,7.83,7.75,7.5,7.75,7.58,10.0,10.0,7.75,0.11,81.58,2,コク・バランス系,その他,ナチュラル,Other
+1323,Robusta,India,,,7.58,7.58,7.67,7.58,7.67,7.67,10.0,10.0,7.5,0.0,81.58,2,コク・バランス系,その他,その他,その他
+1324,Robusta,Uganda,,,8.0,7.75,7.75,7.58,7.67,7.5,10.0,10.0,7.58,0.11,81.5,0,香り系,Uganda,その他,その他
+1325,Robusta,Uganda,,,8.0,7.67,7.75,7.5,7.67,7.58,10.0,10.0,7.58,0.12,81.5,0,香り系,Uganda,その他,その他
+1326,Robusta,India,,,7.75,7.75,7.67,7.67,7.58,7.58,10.0,10.0,7.58,0.0,81.42,0,香り系,その他,その他,その他
+1327,Robusta,India,,Natural / Dry,7.5,7.5,7.25,7.83,7.67,7.83,10.0,10.0,7.83,0.13,81.25,1,酸味系,その他,ナチュラル,その他
+1328,Robusta,Uganda,,,7.33,7.58,7.5,7.75,7.75,7.67,10.0,10.0,7.75,0.12,80.92,2,コク・バランス系,Uganda,その他,その他
+1329,Robusta,Uganda,,,7.83,7.58,7.33,7.67,7.5,7.5,10.0,10.0,7.75,0.12,80.58,1,酸味系,Uganda,その他,その他
+1330,Robusta,Uganda,,,7.75,7.42,7.33,7.58,7.67,7.58,10.0,10.0,7.67,0.12,80.5,1,酸味系,Uganda,その他,その他
+1331,Robusta,India,,,7.67,7.67,7.5,7.33,7.58,7.5,10.0,10.0,7.42,0.0,80.17,0,香り系,その他,その他,その他
+1332,Robusta,India,,Natural / Dry,7.58,7.42,7.42,7.83,7.42,7.5,10.0,10.0,7.42,0.0,80.17,1,酸味系,その他,ナチュラル,その他
+1333,Robusta,United States,Arusha,Natural / Dry,7.92,7.5,7.42,7.42,7.42,7.42,9.33,10.0,7.58,0.0,79.33,0,香り系,その他,ナチュラル,その他
+1334,Robusta,Ecuador,,,7.75,7.58,7.33,7.58,5.08,7.83,10.0,10.0,7.75,0.0,78.75,0,香り系,その他,その他,その他
+1335,Robusta,Ecuador,,,7.5,7.67,7.75,7.75,5.17,5.25,10.0,10.0,8.42,0.0,78.08,0,香り系,その他,その他,その他
+1336,Robusta,United States,,Natural / Dry,7.33,7.33,7.17,7.42,7.5,7.17,9.33,9.33,7.42,0.0,77.17,1,酸味系,その他,ナチュラル,その他
+1337,Robusta,India,,Natural / Dry,7.42,6.83,6.75,7.17,7.25,7.0,9.33,9.33,7.08,0.1,75.08,1,酸味系,その他,ナチュラル,その他
+1338,Robusta,Vietnam,,Natural / Dry,6.75,6.67,6.5,6.83,6.92,6.83,9.33,9.33,6.67,0.12,73.75,1,酸味系,その他,ナチュラル,その他
