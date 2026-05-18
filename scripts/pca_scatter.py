@@ -5,7 +5,7 @@ from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 import plotly.graph_objects as go
 
-df = pd.read_csv("merged_data_full.csv", index_col=0).reset_index(drop=True)
+df = pd.read_csv("../data/merged_data_full.csv", index_col=0).reset_index(drop=True)
 
 taste_cols = ["Aroma", "Flavor", "Aftertaste", "Acidity", "Body", "Balance"]
 df_taste = df[taste_cols].dropna()
@@ -244,5 +244,5 @@ fig.update_layout(
     margin=dict(l=60, r=40, t=140, b=70),
 )
 
-fig.write_html("pca_scatter.html")
+fig.write_html("../outputs/html/pca_scatter.html")
 print("保存完了: pca_scatter.html")

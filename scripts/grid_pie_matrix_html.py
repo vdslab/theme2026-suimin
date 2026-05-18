@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-df = pd.read_csv('merged_data_k4.csv', index_col=0)
+df = pd.read_csv('../data/merged_data_k4.csv', index_col=0)
 
 country_jp = {
     'Mexico': 'メキシコ', 'Guatemala': 'グアテマラ', 'Colombia': 'コロンビア',
@@ -188,5 +188,5 @@ fig.update_layout(
     font=dict(family='Hiragino Sans'),
 )
 
-fig.write_html('grid_pie_matrix.html')
+fig.write_html('../outputs/html/grid_pie_matrix.html')
 print('保存完了: grid_pie_matrix.html')

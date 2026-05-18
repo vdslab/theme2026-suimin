@@ -6,7 +6,7 @@ import numpy as np
 
 matplotlib.rcParams['font.family'] = 'Hiragino Sans'
 
-df = pd.read_csv('merged_data_k4.csv', index_col=0)
+df = pd.read_csv('../data/merged_data_k4.csv', index_col=0)
 
 country_jp = {
     'Mexico': 'メキシコ', 'Guatemala': 'グアテマラ', 'Colombia': 'コロンビア',
@@ -105,6 +105,6 @@ fig.legend(
 )
 
 plt.tight_layout(rect=[0, 0.04, 1, 1])
-plt.savefig('grid_pie_matrix.png', dpi=150, bbox_inches='tight',
+plt.savefig('../outputs/images/grid_pie_matrix.png', dpi=150, bbox_inches='tight',
             facecolor='#F8F8F8')
 print('保存完了: grid_pie_matrix.png')

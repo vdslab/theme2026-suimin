@@ -4,7 +4,7 @@ from sklearn.preprocessing import normalize
 from sklearn.cluster import AgglomerativeClustering
 import plotly.graph_objects as go
 
-df = pd.read_csv('merged_data_full.csv', index_col=0).reset_index(drop=True)
+df = pd.read_csv('../data/merged_data_full.csv', index_col=0).reset_index(drop=True)
 taste_cols = ['Aroma','Flavor','Aftertaste','Acidity','Body','Balance']
 df_taste = df[taste_cols].dropna()
 valid_idx = df_taste.index
@@ -120,5 +120,5 @@ fig.update_layout(
     margin=dict(l=140, r=40, t=110, b=110),
 )
 
-fig.write_html('bubble_matrix.html')
+fig.write_html('../outputs/html/bubble_matrix.html')
 print('保存完了: bubble_matrix.html')
