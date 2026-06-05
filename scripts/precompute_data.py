@@ -91,24 +91,40 @@ def process_coffee_data(csv_path, group_cols, output_path):
     n_clusters = membership_probs.shape[1]
     print(f"Number of clusters found: {n_clusters}")
     
-    # Identify taste profiles and auto-name clusters
+    # Identify taste profiles and auto-name clusters based on top 2 features
+    feature_translation = {
+        'Aroma': '香り',
+        'Flavor': '風味',
+        'Aftertaste': '後味',
+        'Acidity': '酸味',
+        'Body': 'コク',
+        'Balance': 'バランス'
+    }
+    
     cluster_names_map = {}
     for j in range(n_clusters):
-        c_mean = X_relative[membership_probs.argmax(axis=1) == j].mean()
-        top_feature = c_mean.idxmax()
-        if top_feature == 'Aroma': name = "🌸 香り特化型"
-        elif top_feature == 'Body': name = "☕ ボディ・コク重視"
-        elif top_feature in ['Flavor', 'Acidity']: name = "🍋 風味・酸味際立ち"
-        else: name = "⚖️ マイルド・調和型"
+        cluster_nodes = X_relative[membership_probs.argmax(axis=1) == j]
+        if len(cluster_nodes) > 0:
+            c_mean = cluster_nodes.mean()
+            top_2 = c_mean.nlargest(2).index.tolist()
+            name = f"✨ {feature_translation[top_2[0]]}・{feature_translation[top_2[1]]}型"
+        else:
+            name = "⚖️ マイルド型"
+            
+        # Ensure uniqueness
+        base_name = name
+        suffix = 1
+        while name in cluster_names_map.values():
+            suffix += 1
+            name = f"{base_name} ({suffix})"
         cluster_names_map[j] = name
         
-    cluster_descriptions = {
-        "🌸 香り特化型": "：ドリップした瞬間の華やかなアロマが際立つタイプ",
-        "☕ ボディ・コク重視": "：口当たりが重厚で、心地よい苦味やコクが続くタイプ",
-        "🍋 風味・酸味際立ち": "：フルーティーで爽やかな酸味や果実感が広がるタイプ",
-        "⚖️ マイルド・調和型": "：酸味・苦味の調和が取れた、すっきりプレーンなタイプ",
-        "ノイズ (独自路線)": "：どの型にも当てはまらない、ユニークな独自の味わい"
-    }
+    cluster_descriptions = {}
+    for j in range(n_clusters):
+        c_name = cluster_names_map[j]
+        raw_name = c_name.split(" (")[0].replace("✨ ", "")
+        cluster_descriptions[c_name] = f"：{raw_name}が際立つ個性的な味わい"
+    cluster_descriptions["ノイズ (独自路線)"] = "：どの型にも当てはまらない、ユニークな独自の味わい"
     
     hex_palette = [
         '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3',

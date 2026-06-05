@@ -172,7 +172,7 @@ const CoffeeChart = ({
     return nodes.map((node) => {
       const isSelected = selectedIds.includes(node.id);
       const isRecommended = recommendedIds.includes(node.id);
-      const matchesFilter = !hasActiveFilters || activeClusters.includes(node.dominant_cluster);
+      const matchesFilter = !hasActiveFilters || activeClusters.some((cName) => (node.probs && node.probs[cName] || 0) >= 0.15);
       
       const coords = getZoomCoords(node.x, node.y);
 
@@ -335,7 +335,7 @@ const CoffeeChart = ({
               x={tooltipPos.x}
               y={tooltipPos.y}
               width="220"
-              height="160"
+              height="250"
               className="pointer-events-none overflow-visible z-50"
             >
               <div className="p-3.5 bg-brand-text/95 backdrop-blur-md rounded-2xl shadow-xl text-[10px] text-white flex flex-col gap-1 w-[200px] font-sans">
@@ -354,6 +354,25 @@ const CoffeeChart = ({
                 {hoveredNode.isSelected && (
                   <div className="mt-1.5 flex items-center gap-1.5 text-[9px] font-semibold text-[#D4A373]">
                     <span>★</span> あなたが飲んだ豆
+                  </div>
+                )}
+
+                {/* Cluster membership breakdown */}
+                {hoveredNode.probs && (
+                  <div className="mt-2 pt-2 border-t border-white/10 flex flex-col gap-1">
+                    <div className="text-[8px] opacity-50 font-bold uppercase tracking-wider">クラスター所属率</div>
+                    {Object.entries(hoveredNode.probs)
+                      .filter(([_, prob]) => prob > 0.05) // show > 5%
+                      .sort((a, b) => b[1] - a[1])       // sort descending
+                      .map(([name, prob]) => {
+                        const cleanName = name.replace("✨ ", "").split(" (")[0];
+                        return (
+                          <div key={name} className="flex justify-between items-center text-[9px] leading-tight">
+                            <span className="truncate opacity-80">{cleanName}</span>
+                            <span className="font-bold text-[#D4A373]">{(prob * 100).toFixed(0)}%</span>
+                          </div>
+                        );
+                      })}
                   </div>
                 )}
               </div>
