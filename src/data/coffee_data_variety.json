@@ -1,0 +1,4116 @@
+{
+  "nodes": [
+    {
+      "id": "node_0",
+      "country": "Brazil",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Arusha"
+      ],
+      "x": 6.169414520263672,
+      "y": 5.9733781814575195,
+      "taste": {
+        "Aroma": 7.71,
+        "Flavor": 7.54,
+        "Aftertaste": 7.42,
+        "Acidity": 7.21,
+        "Body": 7.5,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.0,
+        "☕ ボディ・コク重視": 1.0280537463468604e-308,
+        "⚖️ マイルド・調和型": 1.294050172062867e-308,
+        "🍋 風味・酸味際立ち": 1.249110487182423e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 151, 255)",
+      "label": "Brazil (Natural) - Arusha",
+      "sample_count": 2
+    },
+    {
+      "id": "node_1",
+      "country": "Brazil",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 4.569302082061768,
+      "y": 1.959466576576233,
+      "taste": {
+        "Aroma": 7.629655172413793,
+        "Flavor": 7.654827586206897,
+        "Aftertaste": 7.508965517241379,
+        "Acidity": 7.623793103448276,
+        "Body": 7.625862068965517,
+        "Balance": 7.536896551724138
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 10.527520609944819,
+      "probs": {
+        "🌸 香り特化型": 0.012192487828595234,
+        "☕ ボディ・コク重視": 0.03150547484208367,
+        "⚖️ マイルド・調和型": 0.01254577681456541,
+        "🍋 風味・酸味際立ち": 0.10527520609944818,
+        "ノイズ (独自路線)": 0.524937785214454
+      },
+      "color": "rgb(187, 177, 172)",
+      "label": "Brazil (Natural) - Bourbon",
+      "sample_count": 29
+    },
+    {
+      "id": "node_2",
+      "country": "Brazil",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 5.643436431884766,
+      "y": 3.351417064666748,
+      "taste": {
+        "Aroma": 7.423076923076923,
+        "Flavor": 7.518461538461538,
+        "Aftertaste": 7.4423076923076925,
+        "Acidity": 7.46076923076923,
+        "Body": 7.384615384615385,
+        "Balance": 7.416153846153846
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 7.7637491654316,
+      "probs": {
+        "🌸 香り特化型": 0.019789023505840664,
+        "☕ ボディ・コク重視": 0.01769285770152735,
+        "⚖️ マイルド・調和型": 0.01549834619946475,
+        "🍋 風味・酸味際立ち": 0.023999484844499517,
+        "ノイズ (独自路線)": 0.5702612131813007
+      },
+      "color": "rgb(185, 192, 187)",
+      "label": "Brazil (Natural) - Catuai",
+      "sample_count": 13
+    },
+    {
+      "id": "node_3",
+      "country": "Brazil",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Mundo Novo"
+      ],
+      "x": 6.316643238067627,
+      "y": 3.4085471630096436,
+      "taste": {
+        "Aroma": 7.567333333333334,
+        "Flavor": 7.6,
+        "Aftertaste": 7.505333333333334,
+        "Acidity": 7.489333333333334,
+        "Body": 7.538666666666667,
+        "Balance": 7.534000000000001
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 2.3650017535576116e-308,
+        "☕ ボディ・コク重視": 1.874502953297271e-308,
+        "⚖️ マイルド・調和型": 2.2142942775203014e-308,
+        "🍋 風味・酸味際立ち": 2.1651709892843157e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(25, 211, 243)",
+      "label": "Brazil (Natural) - Mundo Novo",
+      "sample_count": 15
+    },
+    {
+      "id": "node_4",
+      "country": "Brazil",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Yellow Bourbon"
+      ],
+      "x": 5.2940802574157715,
+      "y": 0.4073764681816101,
+      "taste": {
+        "Aroma": 7.339333333333333,
+        "Flavor": 7.521333333333333,
+        "Aftertaste": 7.312,
+        "Acidity": 7.405333333333333,
+        "Body": 7.600666666666667,
+        "Balance": 7.572666666666667
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.0479977546907527e-308,
+        "☕ ボディ・コク重視": 1.0,
+        "⚖️ マイルド・調和型": 1.546040205146481e-308,
+        "🍋 風味・酸味際立ち": 3.4944889635954884e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(50, 205, 50)",
+      "label": "Brazil (Natural) - Yellow Bourbon",
+      "sample_count": 15
+    },
+    {
+      "id": "node_5",
+      "country": "Brazil",
+      "method": "Pulped natural / honey",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 4.235194206237793,
+      "y": 1.23926842212677,
+      "taste": {
+        "Aroma": 7.21,
+        "Flavor": 7.21,
+        "Aftertaste": 7.085,
+        "Acidity": 7.335,
+        "Body": 7.29,
+        "Balance": 7.21
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 15.51848250456032,
+      "probs": {
+        "🌸 香り特化型": 0.012383327661006069,
+        "☕ ボディ・コク重視": 0.0522196364193346,
+        "⚖️ マイルド・調和型": 0.013700446900561726,
+        "🍋 風味・酸味際立ち": 0.1551848250456032,
+        "ノイズ (独自路線)": 0.46828791683198623
+      },
+      "color": "rgb(193, 173, 151)",
+      "label": "Brazil (Pulped natural) - Bourbon",
+      "sample_count": 2
+    },
+    {
+      "id": "node_6",
+      "country": "Brazil",
+      "method": "Pulped natural / honey",
+      "varieties": [
+        "Yellow Bourbon"
+      ],
+      "x": 7.3699259757995605,
+      "y": 4.311234474182129,
+      "taste": {
+        "Aroma": 7.52,
+        "Flavor": 7.4575,
+        "Aftertaste": 7.4775,
+        "Acidity": 7.5425,
+        "Body": 7.52,
+        "Balance": 7.4375
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 2.9632684221379425e-308,
+        "☕ ボディ・コク重視": 1.294057952437617e-308,
+        "⚖️ マイルド・調和型": 2.526963822507937e-308,
+        "🍋 風味・酸味際立ち": 1.3862564907980257e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Brazil (Pulped natural) - Yellow Bourbon",
+      "sample_count": 4
+    },
+    {
+      "id": "node_7",
+      "country": "Brazil",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 5.810698986053467,
+      "y": 4.749261856079102,
+      "taste": {
+        "Aroma": 7.7925,
+        "Flavor": 7.68875,
+        "Aftertaste": 7.5825,
+        "Acidity": 7.55375,
+        "Body": 7.6025,
+        "Balance": 7.71875
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 53.43680832036376,
+      "probs": {
+        "🌸 香り特化型": 0.0770047079069143,
+        "☕ ボディ・コク重視": 0.01728639995235493,
+        "⚖️ マイルド・調和型": 0.0200097157949045,
+        "🍋 風味・酸味際立ち": 0.02228261522718767,
+        "ノイズ (独自路線)": 0.007696567574020152
+      },
+      "color": "rgb(180, 193, 144)",
+      "label": "Brazil (Semi-washed) - Bourbon",
+      "sample_count": 8
+    },
+    {
+      "id": "node_8",
+      "country": "Brazil",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 3.6620023250579834,
+      "y": 5.068775653839111,
+      "taste": {
+        "Aroma": 7.766,
+        "Flavor": 7.75,
+        "Aftertaste": 7.382,
+        "Acidity": 7.616,
+        "Body": 7.516,
+        "Balance": 7.634
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 34.44906539199841,
+      "probs": {
+        "🌸 香り特化型": 0.0755205342128071,
+        "☕ ボディ・コク重視": 0.033517881986363816,
+        "⚖️ マイルド・調和型": 0.028872320688350616,
+        "🍋 風味・酸味際立ち": 0.05091920416478591,
+        "ノイズ (独自路線)": 0.0028741956904646537
+      },
+      "color": "rgb(195, 143, 148)",
+      "label": "Brazil (Semi-washed) - Catuai",
+      "sample_count": 5
+    },
+    {
+      "id": "node_9",
+      "country": "Brazil",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Moka Peaberry"
+      ],
+      "x": 4.976538181304932,
+      "y": 1.54817533493042,
+      "taste": {
+        "Aroma": 7.08,
+        "Flavor": 7.5,
+        "Aftertaste": 7.5,
+        "Acidity": 7.83,
+        "Body": 7.75,
+        "Balance": 7.67
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 22.230075984315878,
+      "probs": {
+        "🌸 香り特化型": 0.020600685459848188,
+        "☕ ボディ・コク重視": 0.08502455480321972,
+        "⚖️ マイルド・調和型": 0.024813222322295086,
+        "🍋 風味・酸味際立ち": 0.10482794784270096,
+        "ノイズ (独自路線)": 0.15892845035039072
+      },
+      "color": "rgb(159, 157, 156)",
+      "label": "Brazil (Semi-washed) - Moka Peaberry",
+      "sample_count": 1
+    },
+    {
+      "id": "node_10",
+      "country": "Brazil",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Mundo Novo"
+      ],
+      "x": 8.332108497619629,
+      "y": 5.114644527435303,
+      "taste": {
+        "Aroma": 7.665,
+        "Flavor": 7.5,
+        "Aftertaste": 7.375,
+        "Acidity": 7.5,
+        "Body": 7.625,
+        "Balance": 7.46
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 3.0350087761275033e-308,
+        "☕ ボディ・コク重視": 1.1213726758177987e-308,
+        "⚖️ マイルド・調和型": 2.4023204370854e-308,
+        "🍋 風味・酸味際立ち": 1.1678667174834796e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Brazil (Semi-washed) - Mundo Novo",
+      "sample_count": 2
+    },
+    {
+      "id": "node_11",
+      "country": "Brazil",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Yellow Bourbon"
+      ],
+      "x": 4.295986652374268,
+      "y": 2.899857997894287,
+      "taste": {
+        "Aroma": 7.54125,
+        "Flavor": 7.5825,
+        "Aftertaste": 7.45875,
+        "Acidity": 7.53125,
+        "Body": 7.50125,
+        "Balance": 7.61375
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.6495060774032553e-308,
+        "☕ ボディ・コク重視": 2.234352913462793e-308,
+        "⚖️ マイルド・調和型": 1.2851053364101223e-308,
+        "🍋 風味・酸味際立ち": 5.62306420466855e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(30, 144, 255)",
+      "label": "Brazil (Semi-washed) - Yellow Bourbon",
+      "sample_count": 8
+    },
+    {
+      "id": "node_12",
+      "country": "Brazil",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 5.7647833824157715,
+      "y": 2.952063798904419,
+      "taste": {
+        "Aroma": 7.415,
+        "Flavor": 7.625,
+        "Aftertaste": 7.46,
+        "Acidity": 7.46,
+        "Body": 7.46,
+        "Balance": 7.46
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 9.780226588775836,
+      "probs": {
+        "🌸 香り特化型": 0.01756789666284323,
+        "☕ ボディ・コク重視": 0.020400422668006683,
+        "⚖️ マイルド・調和型": 0.017294170779782677,
+        "🍋 風味・酸味際立ち": 0.025978796574259003,
+        "ノイズ (独自路線)": 0.5326550103663583
+      },
+      "color": "rgb(187, 191, 182)",
+      "label": "Brazil (Washed) - Bourbon",
+      "sample_count": 2
+    },
+    {
+      "id": "node_13",
+      "country": "Brazil",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 9.178610801696777,
+      "y": 4.8727617263793945,
+      "taste": {
+        "Aroma": 7.58,
+        "Flavor": 7.5,
+        "Aftertaste": 7.25,
+        "Acidity": 7.42,
+        "Body": 7.67,
+        "Balance": 7.33
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 48.10432637532943,
+      "probs": {
+        "🌸 香り特化型": 0.043866529253174615,
+        "☕ ボディ・コク重視": 0.02179798047029874,
+        "⚖️ マイルド・調和型": 0.05207385004053696,
+        "🍋 風味・酸味際立ち": 0.021695940943356987,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(202, 156, 120)",
+      "label": "Brazil (Washed) - Catuai",
+      "sample_count": 1
+    },
+    {
+      "id": "node_14",
+      "country": "Brazil",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Mundo Novo"
+      ],
+      "x": 3.6484460830688477,
+      "y": 5.011780261993408,
+      "taste": {
+        "Aroma": 7.58,
+        "Flavor": 7.58,
+        "Aftertaste": 7.25,
+        "Acidity": 7.58,
+        "Body": 7.42,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 34.82548984165729,
+      "probs": {
+        "🌸 香り特化型": 0.07372085777974406,
+        "☕ ボディ・コク重視": 0.0334606068790567,
+        "⚖️ マイルド・調和型": 0.028616359067517378,
+        "🍋 風味・酸味際立ち": 0.051188972739519736,
+        "ノイズ (独自路線)": 0.002874195690465098
+      },
+      "color": "rgb(195, 142, 148)",
+      "label": "Brazil (Washed) - Mundo Novo",
+      "sample_count": 1
+    },
+    {
+      "id": "node_15",
+      "country": "Brazil",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Yellow Bourbon"
+      ],
+      "x": 8.947418212890625,
+      "y": 4.21113920211792,
+      "taste": {
+        "Aroma": 7.42,
+        "Flavor": 7.42,
+        "Aftertaste": 7.33,
+        "Acidity": 7.33,
+        "Body": 7.5,
+        "Balance": 7.25
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 41.14522669349919,
+      "probs": {
+        "🌸 香り特化型": 0.03349175933995494,
+        "☕ ボディ・コク重視": 0.0194786562868651,
+        "⚖️ マイルド・調和型": 0.057282973763080246,
+        "🍋 風味・酸味際立ち": 0.018920031972994994,
+        "ノイズ (独自路線)": 0.12789319568576907
+      },
+      "color": "rgb(197, 165, 135)",
+      "label": "Brazil (Washed) - Yellow Bourbon",
+      "sample_count": 1
+    },
+    {
+      "id": "node_16",
+      "country": "China",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Catimor"
+      ],
+      "x": 6.298120021820068,
+      "y": 3.5206501483917236,
+      "taste": {
+        "Aroma": 7.833333333333333,
+        "Flavor": 7.776666666666666,
+        "Aftertaste": 7.636666666666667,
+        "Acidity": 7.636666666666667,
+        "Body": 7.75,
+        "Balance": 7.723333333333334
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 2.4810256452710103e-308,
+        "☕ ボディ・コク重視": 1.8168672884955327e-308,
+        "⚖️ マイルド・調和型": 2.157212996516945e-308,
+        "🍋 風味・酸味際立ち": 2.1259582689159495e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(25, 211, 243)",
+      "label": "China (Natural) - Catimor",
+      "sample_count": 3
+    },
+    {
+      "id": "node_17",
+      "country": "China",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Catimor"
+      ],
+      "x": 4.1974310874938965,
+      "y": 4.764271259307861,
+      "taste": {
+        "Aroma": 7.75125,
+        "Flavor": 7.74125,
+        "Aftertaste": 7.58375,
+        "Acidity": 7.69875,
+        "Body": 7.61625,
+        "Balance": 7.6575
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 3.2552145709300983e-308,
+        "☕ ボディ・コク重視": 1.350857280587191e-308,
+        "⚖️ マイルド・調和型": 1.186501919626404e-308,
+        "🍋 風味・酸味際立ち": 2.0749703025144996e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 102, 146)",
+      "label": "China (Washed) - Catimor",
+      "sample_count": 8
+    },
+    {
+      "id": "node_18",
+      "country": "China",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 6.0685038566589355,
+      "y": 2.567939519882202,
+      "taste": {
+        "Aroma": 7.46,
+        "Flavor": 7.54,
+        "Aftertaste": 7.5,
+        "Acidity": 7.5,
+        "Body": 7.54,
+        "Balance": 7.375
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 23.784361251516277,
+      "probs": {
+        "🌸 香り特化型": 0.018663169162845144,
+        "☕ ボディ・コク重視": 0.027616373985159582,
+        "⚖️ マイルド・調和型": 0.023918826425177765,
+        "🍋 風味・酸味際立ち": 0.029710814158308237,
+        "ノイズ (独自路線)": 0.34451843666032467
+      },
+      "color": "rgb(190, 186, 161)",
+      "label": "China (Washed) - Other",
+      "sample_count": 2
+    },
+    {
+      "id": "node_19",
+      "country": "China",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 8.680999755859375,
+      "y": 4.8928070068359375,
+      "taste": {
+        "Aroma": 7.165,
+        "Flavor": 7.045,
+        "Aftertaste": 6.875,
+        "Acidity": 7.125,
+        "Body": 7.25,
+        "Balance": 7.085
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 38.48350054648847,
+      "probs": {
+        "🌸 香り特化型": 0.05550945399864356,
+        "☕ ボディ・コク重視": 0.024505054237422972,
+        "⚖️ マイルド・調和型": 0.05636124596718362,
+        "🍋 風味・酸味際立ち": 0.024883335039545287,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(197, 153, 124)",
+      "label": "China (Washed) - Typica",
+      "sample_count": 2
+    },
+    {
+      "id": "node_20",
+      "country": "Colombia",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Arusha"
+      ],
+      "x": 9.202823638916016,
+      "y": 4.334178924560547,
+      "taste": {
+        "Aroma": 7.67,
+        "Flavor": 7.58,
+        "Aftertaste": 7.5,
+        "Acidity": 7.5,
+        "Body": 7.75,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.838183834039453e-308,
+        "☕ ボディ・コク重視": 1.066123322148192e-308,
+        "⚖️ マイルド・調和型": 2.952314079593276e-308,
+        "🍋 風味・酸味際立ち": 1.033047499511111e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Colombia (Natural) - Arusha",
+      "sample_count": 1
+    },
+    {
+      "id": "node_21",
+      "country": "Colombia",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 8.611119270324707,
+      "y": 3.176486015319824,
+      "taste": {
+        "Aroma": 7.680416666666667,
+        "Flavor": 7.6525,
+        "Aftertaste": 7.59375,
+        "Acidity": 7.608750000000001,
+        "Body": 7.715416666666666,
+        "Balance": 7.7225
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 36.91533842054173,
+      "probs": {
+        "🌸 香り特化型": 0.03341145590950335,
+        "☕ ボディ・コク重視": 0.027686039527527528,
+        "⚖️ マイルド・調和型": 0.1405366822600841,
+        "🍋 風味・酸味際立ち": 0.025084800556462842,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(180, 156, 139)",
+      "label": "Colombia (Natural) - Caturra",
+      "sample_count": 24
+    },
+    {
+      "id": "node_22",
+      "country": "Colombia",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 9.826491355895996,
+      "y": 3.1137447357177734,
+      "taste": {
+        "Aroma": 7.5,
+        "Flavor": 7.42,
+        "Aftertaste": 7.58,
+        "Acidity": 7.5,
+        "Body": 7.58,
+        "Balance": 7.58
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.2363857509687406e-308,
+        "☕ ボディ・コク重視": 1.052613441675115e-308,
+        "⚖️ マイルド・調和型": 3.8341905308135435e-308,
+        "🍋 風味・酸味際立ち": 9.298664007457233e-309,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(0, 204, 150)",
+      "label": "Colombia (Natural) - Typica",
+      "sample_count": 1
+    },
+    {
+      "id": "node_23",
+      "country": "Colombia",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 8.491364479064941,
+      "y": 2.8345303535461426,
+      "taste": {
+        "Aroma": 7.652941176470589,
+        "Flavor": 7.6100980392156865,
+        "Aftertaste": 7.546862745098039,
+        "Acidity": 7.591176470588235,
+        "Body": 7.6460784313725485,
+        "Balance": 7.7244117647058825
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 23.424860522083097,
+      "probs": {
+        "🌸 香り特化型": 0.029669560036201695,
+        "☕ ボディ・コク重視": 0.028137421827444987,
+        "⚖️ マイルド・調和型": 0.20624510062936705,
+        "🍋 風味・酸味際立ち": 0.024658527817037854,
+        "ノイズ (独自路線)": 0.10339627774806259
+      },
+      "color": "rgb(176, 157, 160)",
+      "label": "Colombia (Washed) - Caturra",
+      "sample_count": 102
+    },
+    {
+      "id": "node_24",
+      "country": "Colombia",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 8.681500434875488,
+      "y": 2.1642842292785645,
+      "taste": {
+        "Aroma": 7.80125,
+        "Flavor": 7.6274999999999995,
+        "Aftertaste": 7.635,
+        "Acidity": 7.59375,
+        "Body": 7.6775,
+        "Balance": 7.905
+      },
+      "dominant_cluster": "⚖️ マイルド・調和型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.241183558613633e-308,
+        "☕ ボディ・コク重視": 1.475197443252134e-308,
+        "⚖️ マイルド・調和型": 1.0,
+        "🍋 風味・酸味際立ち": 1.191346174869999e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(171, 99, 250)",
+      "label": "Colombia (Washed) - Other",
+      "sample_count": 8
+    },
+    {
+      "id": "node_25",
+      "country": "Colombia",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 5.955749988555908,
+      "y": 2.2818002700805664,
+      "taste": {
+        "Aroma": 7.545,
+        "Flavor": 7.71,
+        "Aftertaste": 7.625,
+        "Acidity": 7.665,
+        "Body": 7.705,
+        "Balance": 7.625
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.5712239653036396e-308,
+        "☕ ボディ・コク重視": 2.920781955566552e-308,
+        "⚖️ マイルド・調和型": 2.1253274776188e-308,
+        "🍋 風味・酸味際立ち": 2.986910176959912e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(254, 203, 82)",
+      "label": "Colombia (Washed) - Typica",
+      "sample_count": 2
+    },
+    {
+      "id": "node_26",
+      "country": "Costa Rica",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 7.656106948852539,
+      "y": 4.083301544189453,
+      "taste": {
+        "Aroma": 7.672307692307692,
+        "Flavor": 7.486923076923077,
+        "Aftertaste": 7.544615384615384,
+        "Acidity": 7.66,
+        "Body": 7.55076923076923,
+        "Balance": 7.653076923076923
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 76.14848625710053,
+      "probs": {
+        "🌸 香り特化型": 0.020065752163943566,
+        "☕ ボディ・コク重視": 0.010427449692633399,
+        "⚖️ マイルド・調和型": 0.023415610117339336,
+        "🍋 風味・酸味際立ち": 0.01075784472154053,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(230, 160, 106)",
+      "label": "Costa Rica (Washed) - Catuai",
+      "sample_count": 13
+    },
+    {
+      "id": "node_27",
+      "country": "Costa Rica",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 5.636767864227295,
+      "y": 4.558532238006592,
+      "taste": {
+        "Aroma": 7.690714285714286,
+        "Flavor": 7.5475,
+        "Aftertaste": 7.509285714285714,
+        "Acidity": 7.51,
+        "Body": 7.466785714285714,
+        "Balance": 7.586428571428571
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 4.844755659031462e-308,
+        "☕ ボディ・コク重視": 1.379697835817712e-308,
+        "⚖️ マイルド・調和型": 1.5164154773386466e-308,
+        "🍋 風味・酸味際立ち": 1.8305341968419077e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(182, 232, 128)",
+      "label": "Costa Rica (Washed) - Caturra",
+      "sample_count": 28
+    },
+    {
+      "id": "node_28",
+      "country": "El Salvador",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 8.30025577545166,
+      "y": 2.90657114982605,
+      "taste": {
+        "Aroma": 7.568181818181818,
+        "Flavor": 7.5227272727272725,
+        "Aftertaste": 7.408181818181817,
+        "Acidity": 7.499090909090909,
+        "Body": 7.642727272727272,
+        "Balance": 7.668181818181818
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 35.757434031837185,
+      "probs": {
+        "🌸 香り特化型": 0.03154255721749665,
+        "☕ ボディ・コク重視": 0.02932919906231639,
+        "⚖️ マイルド・調和型": 0.1699424187136183,
+        "🍋 風味・酸味際立ち": 0.026067819803727188,
+        "ノイズ (独自路線)": 1.1102230246251565e-16
+      },
+      "color": "rgb(183, 154, 143)",
+      "label": "El Salvador (Washed) - Bourbon",
+      "sample_count": 11
+    },
+    {
+      "id": "node_29",
+      "country": "El Salvador",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 6.027819633483887,
+      "y": 6.0978169441223145,
+      "taste": {
+        "Aroma": 7.835,
+        "Flavor": 7.665,
+        "Aftertaste": 7.415,
+        "Acidity": 7.125,
+        "Body": 7.71,
+        "Balance": 7.54
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.0,
+        "☕ ボディ・コク重視": 1.009573177798509e-308,
+        "⚖️ マイルド・調和型": 1.2433157239229954e-308,
+        "🍋 風味・酸味際立ち": 1.235767060598292e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 151, 255)",
+      "label": "El Salvador (Washed) - Other",
+      "sample_count": 2
+    },
+    {
+      "id": "node_30",
+      "country": "El Salvador",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Pacas"
+      ],
+      "x": 4.444316864013672,
+      "y": 3.723145008087158,
+      "taste": {
+        "Aroma": 7.5,
+        "Flavor": 7.67,
+        "Aftertaste": 7.67,
+        "Acidity": 7.75,
+        "Body": 7.415,
+        "Balance": 7.67
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 6.6058252171079355,
+      "probs": {
+        "🌸 香り特化型": 0.020616488473117596,
+        "☕ ボディ・コク重視": 0.016144241438316352,
+        "⚖️ マイルド・調和型": 0.01213464290651155,
+        "🍋 風味・酸味際立ち": 0.02879532515917854,
+        "ノイズ (独自路線)": 0.612249200778209
+      },
+      "color": "rgb(191, 189, 189)",
+      "label": "El Salvador (Washed) - Pacas",
+      "sample_count": 2
+    },
+    {
+      "id": "node_31",
+      "country": "Ethiopia",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 4.3860931396484375,
+      "y": 2.426788568496704,
+      "taste": {
+        "Aroma": 7.83,
+        "Flavor": 8.0,
+        "Aftertaste": 7.83,
+        "Acidity": 8.17,
+        "Body": 7.92,
+        "Balance": 8.0
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 29.38658868048038,
+      "probs": {
+        "🌸 香り特化型": 0.015214559765154461,
+        "☕ ボディ・コク重視": 0.0277656454799925,
+        "⚖️ マイルド・調和型": 0.013639424427767602,
+        "🍋 風味・酸味際立ち": 0.09341043816624449,
+        "ノイズ (独自路線)": 0.3037525896675798
+      },
+      "color": "rgb(148, 164, 183)",
+      "label": "Ethiopia (Natural) - Caturra",
+      "sample_count": 1
+    },
+    {
+      "id": "node_32",
+      "country": "Ethiopia",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Ethiopian Yirgacheffe"
+      ],
+      "x": 4.4272356033325195,
+      "y": 2.9745523929595947,
+      "taste": {
+        "Aroma": 8.17,
+        "Flavor": 8.17,
+        "Aftertaste": 8.0,
+        "Acidity": 8.17,
+        "Body": 8.08,
+        "Balance": 8.33
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 34.24862935168999,
+      "probs": {
+        "🌸 香り特化型": 0.013510078819810858,
+        "☕ ボディ・コク重視": 0.017436651020288685,
+        "⚖️ マイルド・調和型": 0.010395898658341823,
+        "🍋 風味・酸味際立ち": 0.040318252487581745,
+        "ノイズ (独自路線)": 0.38366105154452
+      },
+      "color": "rgb(141, 172, 202)",
+      "label": "Ethiopia (Natural) - Ethiopian Yirgacheffe",
+      "sample_count": 1
+    },
+    {
+      "id": "node_33",
+      "country": "Ethiopia",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Gesha"
+      ],
+      "x": 4.285348415374756,
+      "y": 3.6570146083831787,
+      "taste": {
+        "Aroma": 7.665,
+        "Flavor": 7.835,
+        "Aftertaste": 7.625,
+        "Acidity": 7.79,
+        "Body": 7.54,
+        "Balance": 7.79
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 8.038783737819669,
+      "probs": {
+        "🌸 香り特化型": 0.020924325029866197,
+        "☕ ボディ・コク重視": 0.017889903829957962,
+        "⚖️ マイルド・調和型": 0.012659828014009911,
+        "🍋 風味・酸味際立ち": 0.03329627395367235,
+        "ノイズ (独自路線)": 0.5834723980744971
+      },
+      "color": "rgb(188, 186, 187)",
+      "label": "Ethiopia (Natural) - Gesha",
+      "sample_count": 2
+    },
+    {
+      "id": "node_34",
+      "country": "Ethiopia",
+      "method": "Natural / Dry",
+      "varieties": [],
+      "x": 4.232522010803223,
+      "y": 3.447523593902588,
+      "taste": {
+        "Aroma": 7.866,
+        "Flavor": 8.05,
+        "Aftertaste": 7.848000000000001,
+        "Acidity": 8.0,
+        "Body": 7.8180000000000005,
+        "Balance": 8.052
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 12.29329382317596,
+      "probs": {
+        "🌸 香り特化型": 0.01952731139433833,
+        "☕ ボディ・コク重視": 0.020729592407372918,
+        "⚖️ マイルド・調和型": 0.01271366996638375,
+        "🍋 風味・酸味際立ち": 0.04199167495639515,
+        "ノイズ (独自路線)": 0.53379078457378
+      },
+      "color": "rgb(180, 183, 187)",
+      "label": "Ethiopia (Natural) - Other",
+      "sample_count": 5
+    },
+    {
+      "id": "node_35",
+      "country": "Ethiopia",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Ethiopian Heirlooms"
+      ],
+      "x": 6.648201942443848,
+      "y": 3.3316643238067627,
+      "taste": {
+        "Aroma": 7.58,
+        "Flavor": 7.58,
+        "Aftertaste": 7.5,
+        "Acidity": 7.5,
+        "Body": 7.58,
+        "Balance": 7.58
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 54.896344821903,
+      "probs": {
+        "🌸 香り特化型": 0.018165593240467355,
+        "☕ ボディ・コク重視": 0.014971642033144406,
+        "⚖️ マイルド・調和型": 0.020599270320331785,
+        "🍋 風味・酸味際立ち": 0.01616833678887952,
+        "ノイズ (独自路線)": 0.1469431530957378
+      },
+      "color": "rgb(102, 194, 204)",
+      "label": "Ethiopia (Washed) - Ethiopian Heirlooms",
+      "sample_count": 1
+    },
+    {
+      "id": "node_36",
+      "country": "Ethiopia",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Ethiopian Yirgacheffe"
+      ],
+      "x": 5.236569404602051,
+      "y": 5.459598064422607,
+      "taste": {
+        "Aroma": 8.08,
+        "Flavor": 7.83,
+        "Aftertaste": 7.75,
+        "Acidity": 7.83,
+        "Body": 7.58,
+        "Balance": 7.67
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 13.102315349847087,
+      "probs": {
+        "🌸 香り特化型": 0.13102315349847088,
+        "☕ ボディ・コク重視": 0.01924000699986953,
+        "⚖️ マイルド・調和型": 0.020706368356187766,
+        "🍋 風味・酸味際立ち": 0.025561926488931318,
+        "ノイズ (独自路線)": 0.30849925359325625
+      },
+      "color": "rgb(199, 173, 175)",
+      "label": "Ethiopia (Washed) - Ethiopian Yirgacheffe",
+      "sample_count": 1
+    },
+    {
+      "id": "node_37",
+      "country": "Ethiopia",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 4.311546325683594,
+      "y": 4.691886901855469,
+      "taste": {
+        "Aroma": 8.25,
+        "Flavor": 8.28,
+        "Aftertaste": 8.11,
+        "Acidity": 8.25,
+        "Body": 8.113333333333333,
+        "Balance": 8.14
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 3.349151082000009e-308,
+        "☕ ボディ・コク重視": 1.3806866567379205e-308,
+        "⚖️ マイルド・調和型": 1.2187880507341635e-308,
+        "🍋 風味・酸味際立ち": 2.121852696412662e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 102, 146)",
+      "label": "Ethiopia (Washed) - Other",
+      "sample_count": 3
+    },
+    {
+      "id": "node_38",
+      "country": "Guatemala",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 3.168142557144165,
+      "y": 1.0175145864486694,
+      "taste": {
+        "Aroma": 7.5425,
+        "Flavor": 7.5625,
+        "Aftertaste": 7.2275,
+        "Acidity": 7.6875,
+        "Body": 7.5225,
+        "Balance": 7.605
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.024019891639367e-308,
+        "☕ ボディ・コク重視": 2.832641124709542e-308,
+        "⚖️ マイルド・調和型": 1.0349811889738994e-308,
+        "🍋 風味・酸味際立ち": 6.759648697963783e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 215, 0)",
+      "label": "Guatemala (Natural) - Bourbon",
+      "sample_count": 4
+    },
+    {
+      "id": "node_39",
+      "country": "Guatemala",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 7.537056922912598,
+      "y": 3.349208354949951,
+      "taste": {
+        "Aroma": 7.83,
+        "Flavor": 7.5,
+        "Aftertaste": 7.5,
+        "Acidity": 8.0,
+        "Body": 7.83,
+        "Balance": 7.83
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 67.23181785260456,
+      "probs": {
+        "🌸 香り特化型": 0.01936155693020758,
+        "☕ ボディ・コク重視": 0.015050644989916139,
+        "⚖️ マイルド・調和型": 0.039837183553325016,
+        "🍋 風味・酸味際立ち": 0.014700841487736805,
+        "ノイズ (独自路線)": 0.009486693443085947
+      },
+      "color": "rgb(218, 161, 115)",
+      "label": "Guatemala (Natural) - Catuai",
+      "sample_count": 1
+    },
+    {
+      "id": "node_40",
+      "country": "Guatemala",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 6.009555816650391,
+      "y": 5.816996097564697,
+      "taste": {
+        "Aroma": 7.836666666666666,
+        "Flavor": 7.776666666666666,
+        "Aftertaste": 7.526666666666666,
+        "Acidity": 7.5,
+        "Body": 7.636666666666667,
+        "Balance": 7.6933333333333325
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.0,
+        "☕ ボディ・コク重視": 1.061529222245523e-308,
+        "⚖️ マイルド・調和型": 1.3048675799421874e-308,
+        "🍋 風味・酸味際立ち": 1.308764401094991e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 151, 255)",
+      "label": "Guatemala (Natural) - Caturra",
+      "sample_count": 3
+    },
+    {
+      "id": "node_41",
+      "country": "Guatemala",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Pacamara"
+      ],
+      "x": 8.38253116607666,
+      "y": 1.8527936935424805,
+      "taste": {
+        "Aroma": 7.83,
+        "Flavor": 7.75,
+        "Aftertaste": 7.83,
+        "Acidity": 7.67,
+        "Body": 7.83,
+        "Balance": 8.58
+      },
+      "dominant_cluster": "⚖️ マイルド・調和型",
+      "max_prob": 27.420442502173604,
+      "probs": {
+        "🌸 香り特化型": 0.016359090446255917,
+        "☕ ボディ・コク重視": 0.022557473733588743,
+        "⚖️ マイルド・調和型": 0.27420442502173603,
+        "🍋 風味・酸味際立ち": 0.01736052410126122,
+        "ノイズ (独自路線)": 0.3979966433013238
+      },
+      "color": "rgb(181, 166, 196)",
+      "label": "Guatemala (Natural) - Pacamara",
+      "sample_count": 1
+    },
+    {
+      "id": "node_42",
+      "country": "Guatemala",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 3.2301552295684814,
+      "y": 1.016574740409851,
+      "taste": {
+        "Aroma": 7.507090909090909,
+        "Flavor": 7.4439090909090915,
+        "Aftertaste": 7.223363636363636,
+        "Acidity": 7.551727272727273,
+        "Body": 7.45390909090909,
+        "Balance": 7.4439090909090915
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 79.68240804402976,
+      "probs": {
+        "🌸 香り特化型": 0.006600342305401206,
+        "☕ ボディ・コク重視": 0.01866256217988713,
+        "⚖️ マイルド・調和型": 0.0067082747691389775,
+        "🍋 風味・酸味際立ち": 0.045734611098249826,
+        "ノイズ (独自路線)": 0.02713506331254456
+      },
+      "color": "rgb(237, 201, 27)",
+      "label": "Guatemala (Washed) - Bourbon",
+      "sample_count": 110
+    },
+    {
+      "id": "node_43",
+      "country": "Guatemala",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 2.716815233230591,
+      "y": 1.2641533613204956,
+      "taste": {
+        "Aroma": 7.5625,
+        "Flavor": 7.5,
+        "Aftertaste": 7.16625,
+        "Acidity": 7.8125,
+        "Body": 7.36375,
+        "Balance": 7.32375
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.016501770050686e-308,
+        "☕ ボディ・コク重視": 2.306791468042126e-308,
+        "⚖️ マイルド・調和型": 9.645429447821567e-309,
+        "🍋 風味・酸味際立ち": 5.254114721381092e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 215, 0)",
+      "label": "Guatemala (Washed) - Catuai",
+      "sample_count": 8
+    },
+    {
+      "id": "node_44",
+      "country": "Guatemala",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 3.112017869949341,
+      "y": 1.291060447692871,
+      "taste": {
+        "Aroma": 7.603076923076923,
+        "Flavor": 7.599615384615385,
+        "Aftertaste": 7.399615384615384,
+        "Acidity": 7.711923076923076,
+        "Body": 7.529615384615385,
+        "Balance": 7.520384615384615
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 52.07033655415844,
+      "probs": {
+        "🌸 香り特化型": 0.01585726657666626,
+        "☕ ボディ・コク重視": 0.0397064670842718,
+        "⚖️ マイルド・調和型": 0.015422182327950465,
+        "🍋 風味・酸味際立ち": 0.11426742507297309,
+        "ノイズ (独自路線)": 0.058546037820682906
+      },
+      "color": "rgb(214, 181, 64)",
+      "label": "Guatemala (Washed) - Caturra",
+      "sample_count": 26
+    },
+    {
+      "id": "node_45",
+      "country": "Guatemala",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 2.606017589569092,
+      "y": 1.3161624670028687,
+      "taste": {
+        "Aroma": 7.35375,
+        "Flavor": 7.12625,
+        "Aftertaste": 6.8325,
+        "Acidity": 7.3225,
+        "Body": 7.13625,
+        "Balance": 7.1274999999999995
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 49.398184700729345,
+      "probs": {
+        "🌸 香り特化型": 0.008946090862359406,
+        "☕ ボディ・コク重視": 0.01951509472922263,
+        "⚖️ マイルド・調和型": 0.008379830085966903,
+        "🍋 風味・酸味際立ち": 0.04317781890462849,
+        "ノイズ (独自路線)": 0.3029288352237066
+      },
+      "color": "rgb(222, 198, 90)",
+      "label": "Guatemala (Washed) - Other",
+      "sample_count": 8
+    },
+    {
+      "id": "node_46",
+      "country": "Guatemala",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Pacamara"
+      ],
+      "x": 5.472335338592529,
+      "y": 0.24470528960227966,
+      "taste": {
+        "Aroma": 7.33,
+        "Flavor": 7.42,
+        "Aftertaste": 7.17,
+        "Acidity": 7.25,
+        "Body": 7.42,
+        "Balance": 7.33
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.0215272274014017e-308,
+        "☕ ボディ・コク重視": 1.0,
+        "⚖️ マイルド・調和型": 1.57814909665298e-308,
+        "🍋 風味・酸味際立ち": 3.080974154436932e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(50, 205, 50)",
+      "label": "Guatemala (Washed) - Pacamara",
+      "sample_count": 1
+    },
+    {
+      "id": "node_47",
+      "country": "Guatemala",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Pacas"
+      ],
+      "x": 2.9643099308013916,
+      "y": 1.1303807497024536,
+      "taste": {
+        "Aroma": 7.638333333333333,
+        "Flavor": 7.57,
+        "Aftertaste": 7.335,
+        "Acidity": 7.708333333333333,
+        "Body": 7.5566666666666675,
+        "Balance": 7.528333333333333
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.021899466818244e-308,
+        "☕ ボディ・コク重視": 2.568327113352517e-308,
+        "⚖️ マイルド・調和型": 1.0023767404787697e-308,
+        "🍋 風味・酸味際立ち": 6.114012410773016e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 215, 0)",
+      "label": "Guatemala (Washed) - Pacas",
+      "sample_count": 6
+    },
+    {
+      "id": "node_48",
+      "country": "Haiti",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Blue Mountain"
+      ],
+      "x": 8.076517105102539,
+      "y": 4.76377534866333,
+      "taste": {
+        "Aroma": 7.42,
+        "Flavor": 7.33,
+        "Aftertaste": 7.25,
+        "Acidity": 7.42,
+        "Body": 7.42,
+        "Balance": 7.33
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 3.0813864260070684e-308,
+        "☕ ボディ・コク重視": 1.2153801348229774e-308,
+        "⚖️ マイルド・調和型": 2.6881173334872206e-308,
+        "🍋 風味・酸味際立ち": 1.265434871329819e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Haiti (Washed) - Blue Mountain",
+      "sample_count": 1
+    },
+    {
+      "id": "node_49",
+      "country": "Haiti",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 9.795575141906738,
+      "y": 3.0270800590515137,
+      "taste": {
+        "Aroma": 7.276666666666666,
+        "Flavor": 7.109999999999999,
+        "Aftertaste": 7.3066666666666675,
+        "Acidity": 7.166666666666667,
+        "Body": 7.276666666666666,
+        "Balance": 7.223333333333334
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.2269386131689396e-308,
+        "☕ ボディ・コク重視": 1.067600825345659e-308,
+        "⚖️ マイルド・調和型": 4.0607769708685516e-308,
+        "🍋 風味・酸味際立ち": 9.375437584768844e-309,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(0, 204, 150)",
+      "label": "Haiti (Washed) - Typica",
+      "sample_count": 3
+    },
+    {
+      "id": "node_50",
+      "country": "Honduras",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 3.277963876724243,
+      "y": 0.9660543203353882,
+      "taste": {
+        "Aroma": 7.390000000000001,
+        "Flavor": 7.386666666666667,
+        "Aftertaste": 7.1933333333333325,
+        "Acidity": 7.53,
+        "Body": 7.416666666666667,
+        "Balance": 7.4433333333333325
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 54.152072606392665,
+      "probs": {
+        "🌸 香り特化型": 0.009408423096436158,
+        "☕ ボディ・コク重視": 0.02746313220669436,
+        "⚖️ マイルド・調和型": 0.00966132346944653,
+        "🍋 風味・酸味際立ち": 0.06567276313432274,
+        "ノイズ (独自路線)": 0.20548071282656166
+      },
+      "color": "rgb(222, 194, 74)",
+      "label": "Honduras (Natural) - Catuai",
+      "sample_count": 3
+    },
+    {
+      "id": "node_51",
+      "country": "Honduras",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 5.340956211090088,
+      "y": 4.934998035430908,
+      "taste": {
+        "Aroma": 7.510000000000001,
+        "Flavor": 7.4255555555555555,
+        "Aftertaste": 7.3244444444444445,
+        "Acidity": 7.406666666666666,
+        "Body": 7.390000000000001,
+        "Balance": 7.353333333333334
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 17.259121826360595,
+      "probs": {
+        "🌸 香り特化型": 0.07255946499471846,
+        "☕ ボディ・コク重視": 0.016029131930446073,
+        "⚖️ マイルド・調和型": 0.017049627224512167,
+        "🍋 風味・酸味際立ち": 0.021687992899058966,
+        "ノイズ (独自路線)": 0.39072532974323804
+      },
+      "color": "rgb(195, 185, 175)",
+      "label": "Honduras (Natural) - Caturra",
+      "sample_count": 9
+    },
+    {
+      "id": "node_52",
+      "country": "Honduras",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Pacas"
+      ],
+      "x": 4.708375930786133,
+      "y": 0.8347957730293274,
+      "taste": {
+        "Aroma": 6.83,
+        "Flavor": 6.915,
+        "Aftertaste": 6.67,
+        "Acidity": 6.915,
+        "Body": 7.0,
+        "Balance": 6.83
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 20.437984851128054,
+      "probs": {
+        "🌸 香り特化型": 0.022206081904167948,
+        "☕ ボディ・コク重視": 0.20437984851128055,
+        "⚖️ マイルド・調和型": 0.028079875522413672,
+        "🍋 風味・酸味際立ち": 0.11683603632984454,
+        "ノイズ (独自路線)": 0.12637977573020498
+      },
+      "color": "rgb(154, 165, 126)",
+      "label": "Honduras (Natural) - Pacas",
+      "sample_count": 2
+    },
+    {
+      "id": "node_53",
+      "country": "Honduras",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Catimor"
+      ],
+      "x": 8.869986534118652,
+      "y": 4.945032596588135,
+      "taste": {
+        "Aroma": 7.5,
+        "Flavor": 7.42,
+        "Aftertaste": 7.08,
+        "Acidity": 7.42,
+        "Body": 7.5,
+        "Balance": 7.33
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 34.14496033197561,
+      "probs": {
+        "🌸 香り特化型": 0.058446635254026394,
+        "☕ ボディ・コク重視": 0.02659850017344099,
+        "⚖️ マイルド・調和型": 0.0614305344985084,
+        "🍋 風味・酸味際立ち": 0.02685620593890182,
+        "ノイズ (独自路線)": 1.1102230246251565e-16
+      },
+      "color": "rgb(192, 153, 127)",
+      "label": "Honduras (Washed) - Catimor",
+      "sample_count": 1
+    },
+    {
+      "id": "node_54",
+      "country": "Honduras",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 7.958054542541504,
+      "y": 5.9295148849487305,
+      "taste": {
+        "Aroma": 7.430000000000001,
+        "Flavor": 7.2411111111111115,
+        "Aftertaste": 7.079444444444444,
+        "Acidity": 7.274444444444445,
+        "Body": 7.282777777777778,
+        "Balance": 7.135555555555555
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 3.7085161006610886e-308,
+        "☕ ボディ・コク重視": 9.01434689729487e-309,
+        "⚖️ マイルド・調和型": 1.498067397589064e-308,
+        "🍋 風味・酸味際立ち": 9.78834099120096e-309,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(239, 85, 59)",
+      "label": "Honduras (Washed) - Catuai",
+      "sample_count": 18
+    },
+    {
+      "id": "node_55",
+      "country": "Honduras",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 3.919018030166626,
+      "y": 1.5638518333435059,
+      "taste": {
+        "Aroma": 7.491818181818181,
+        "Flavor": 7.499090909090909,
+        "Aftertaste": 7.302727272727273,
+        "Acidity": 7.486363636363635,
+        "Body": 7.508181818181819,
+        "Balance": 7.484545454545454
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.2289145647076547e-308,
+        "☕ ボディ・コク重視": 3.6005661155285035e-308,
+        "⚖️ マイルド・調和型": 1.241973059486914e-308,
+        "🍋 風味・酸味際立ち": 1.0,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 69, 0)",
+      "label": "Honduras (Washed) - Caturra",
+      "sample_count": 11
+    },
+    {
+      "id": "node_56",
+      "country": "Honduras",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 4.742473602294922,
+      "y": 0.5956003069877625,
+      "taste": {
+        "Aroma": 7.42,
+        "Flavor": 7.67,
+        "Aftertaste": 7.17,
+        "Acidity": 7.58,
+        "Body": 7.58,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 25.732122391659946,
+      "probs": {
+        "🌸 香り特化型": 0.021538177591037957,
+        "☕ ボディ・コク重視": 0.25732122391659945,
+        "⚖️ マイルド・調和型": 0.02806996297658492,
+        "🍋 風味・酸味際立ち": 0.09996052568655243,
+        "ノイズ (独自路線)": 0.12637977573020498
+      },
+      "color": "rgb(148, 169, 122)",
+      "label": "Honduras (Washed) - Other",
+      "sample_count": 1
+    },
+    {
+      "id": "node_57",
+      "country": "Honduras",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Pacas"
+      ],
+      "x": 4.093419075012207,
+      "y": 2.778966188430786,
+      "taste": {
+        "Aroma": 7.0,
+        "Flavor": 7.085,
+        "Aftertaste": 6.915,
+        "Acidity": 7.085,
+        "Body": 7.0,
+        "Balance": 7.085
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.5536954906796466e-308,
+        "☕ ボディ・コク重視": 2.2567908092118645e-308,
+        "⚖️ マイルド・調和型": 1.233793237686161e-308,
+        "🍋 風味・酸味際立ち": 6.498590516607784e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(30, 144, 255)",
+      "label": "Honduras (Washed) - Pacas",
+      "sample_count": 2
+    },
+    {
+      "id": "node_58",
+      "country": "Indonesia",
+      "method": "Other",
+      "varieties": [
+        "Mandheling"
+      ],
+      "x": 9.770252227783203,
+      "y": 3.2206532955169678,
+      "taste": {
+        "Aroma": 7.67,
+        "Flavor": 7.67,
+        "Aftertaste": 7.83,
+        "Acidity": 7.58,
+        "Body": 7.83,
+        "Balance": 7.83
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.2684661983547365e-308,
+        "☕ ボディ・コク重視": 1.0499467076167e-308,
+        "⚖️ マイルド・調和型": 3.757421442340927e-308,
+        "🍋 風味・酸味際立ち": 9.347340290454485e-309,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(0, 204, 150)",
+      "label": "Indonesia (Other) - Mandheling",
+      "sample_count": 1
+    },
+    {
+      "id": "node_59",
+      "country": "Indonesia",
+      "method": "Other",
+      "varieties": [],
+      "x": 5.392848968505859,
+      "y": 0.27623847126960754,
+      "taste": {
+        "Aroma": 7.75,
+        "Flavor": 7.83,
+        "Aftertaste": 7.58,
+        "Acidity": 7.75,
+        "Body": 7.92,
+        "Balance": 7.83
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.025769942032695e-308,
+        "☕ ボディ・コク重視": 1.0,
+        "⚖️ マイルド・調和型": 1.555695092053487e-308,
+        "🍋 風味・酸味際立ち": 3.2081855790106186e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(50, 205, 50)",
+      "label": "Indonesia (Other) - Other",
+      "sample_count": 1
+    },
+    {
+      "id": "node_60",
+      "country": "Indonesia",
+      "method": "Other",
+      "varieties": [
+        "Sulawesi"
+      ],
+      "x": 4.270350456237793,
+      "y": 1.7710449695587158,
+      "taste": {
+        "Aroma": 7.5,
+        "Flavor": 7.58,
+        "Aftertaste": 7.42,
+        "Acidity": 7.58,
+        "Body": 7.58,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 41.28742329196182,
+      "probs": {
+        "🌸 香り特化型": 0.016120785185517853,
+        "☕ ボディ・コク重視": 0.04624750068443562,
+        "⚖️ マイルド・調和型": 0.016442623272659402,
+        "🍋 風味・酸味際立ち": 0.4128742329196182,
+        "ノイズ (独自路線)": 0.11342004347817292
+      },
+      "color": "rgb(194, 130, 98)",
+      "label": "Indonesia (Other) - Sulawesi",
+      "sample_count": 1
+    },
+    {
+      "id": "node_61",
+      "country": "Indonesia",
+      "method": "Other",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 6.546913146972656,
+      "y": 3.3709805011749268,
+      "taste": {
+        "Aroma": 7.42,
+        "Flavor": 7.42,
+        "Aftertaste": 7.42,
+        "Acidity": 7.33,
+        "Body": 7.42,
+        "Balance": 7.42
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 2.292854793785542e-308,
+        "☕ ボディ・コク重視": 1.847154400003929e-308,
+        "⚖️ マイルド・調和型": 2.4218328712177845e-308,
+        "🍋 風味・酸味際立ち": 2.037362396595155e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(25, 211, 243)",
+      "label": "Indonesia (Other) - Typica",
+      "sample_count": 1
+    },
+    {
+      "id": "node_62",
+      "country": "Indonesia",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Mandheling"
+      ],
+      "x": 2.7123544216156006,
+      "y": 1.1992045640945435,
+      "taste": {
+        "Aroma": 7.58,
+        "Flavor": 7.42,
+        "Aftertaste": 7.0,
+        "Acidity": 7.67,
+        "Body": 7.5,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.0065866404893247e-308,
+        "☕ ボディ・コク重視": 2.3200490826871185e-308,
+        "⚖️ マイルド・調和型": 9.622304025339055e-309,
+        "🍋 風味・酸味際立ち": 5.137353659649479e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 215, 0)",
+      "label": "Indonesia (Semi-washed) - Mandheling",
+      "sample_count": 1
+    },
+    {
+      "id": "node_63",
+      "country": "Indonesia",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Sumatra"
+      ],
+      "x": 5.320956230163574,
+      "y": 1.979161262512207,
+      "taste": {
+        "Aroma": 7.21,
+        "Flavor": 7.545,
+        "Aftertaste": 7.455,
+        "Acidity": 7.67,
+        "Body": 7.58,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.625788156695566e-308,
+        "☕ ボディ・コク重視": 4.487295794486296e-308,
+        "⚖️ マイルド・調和型": 1.945936854675986e-308,
+        "🍋 風味・酸味際立ち": 5.571599787365897e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(99, 110, 250)",
+      "label": "Indonesia (Semi-washed) - Sumatra",
+      "sample_count": 2
+    },
+    {
+      "id": "node_64",
+      "country": "Indonesia",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Sumatra Lintong"
+      ],
+      "x": 4.7081708908081055,
+      "y": 0.9932878613471985,
+      "taste": {
+        "Aroma": 7.75,
+        "Flavor": 7.83,
+        "Aftertaste": 7.67,
+        "Acidity": 8.0,
+        "Body": 8.08,
+        "Balance": 7.83
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 12.085480801216477,
+      "probs": {
+        "🌸 香り特化型": 0.017118740545792748,
+        "☕ ボディ・コク重視": 0.12085480801216476,
+        "⚖️ マイルド・調和型": 0.021250267216894075,
+        "🍋 風味・酸味際立ち": 0.09642920571469583,
+        "ノイズ (独自路線)": 0.34591138868803273
+      },
+      "color": "rgb(172, 174, 150)",
+      "label": "Indonesia (Semi-washed) - Sumatra Lintong",
+      "sample_count": 1
+    },
+    {
+      "id": "node_65",
+      "country": "Indonesia",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 6.47048807144165,
+      "y": 6.019794940948486,
+      "taste": {
+        "Aroma": 7.83,
+        "Flavor": 7.58,
+        "Aftertaste": 7.42,
+        "Acidity": 7.33,
+        "Body": 7.42,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.0,
+        "☕ ボディ・コク重視": 1.010130412750352e-308,
+        "⚖️ マイルド・調和型": 1.329281357799321e-308,
+        "🍋 風味・酸味際立ち": 1.201317368215495e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 151, 255)",
+      "label": "Indonesia (Semi-washed) - Typica",
+      "sample_count": 1
+    },
+    {
+      "id": "node_66",
+      "country": "Indonesia",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 6.375494480133057,
+      "y": 3.3817691802978516,
+      "taste": {
+        "Aroma": 7.5,
+        "Flavor": 7.5,
+        "Aftertaste": 7.42,
+        "Acidity": 7.42,
+        "Body": 7.5,
+        "Balance": 7.42
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 2.331752869412639e-308,
+        "☕ ボディ・コク重視": 1.8778864101963735e-308,
+        "⚖️ マイルド・調和型": 2.2710253152690484e-308,
+        "🍋 風味・酸味際立ち": 2.138979602868827e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(25, 211, 243)",
+      "label": "Indonesia (Washed) - Bourbon",
+      "sample_count": 1
+    },
+    {
+      "id": "node_67",
+      "country": "Indonesia",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Java"
+      ],
+      "x": 6.502745628356934,
+      "y": 4.373706340789795,
+      "taste": {
+        "Aroma": 7.42,
+        "Flavor": 7.33,
+        "Aftertaste": 7.335,
+        "Acidity": 7.335,
+        "Body": 7.335,
+        "Balance": 7.29
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 7.957308043693066,
+      "probs": {
+        "🌸 香り特化型": 0.04052538026230923,
+        "☕ ボディ・コク重視": 0.014814414679521486,
+        "⚖️ マイルド・調和型": 0.020329999168049118,
+        "🍋 風味・酸味際立ち": 0.017470027788426733,
+        "ノイズ (独自路線)": 0.5223674016891969
+      },
+      "color": "rgb(191, 190, 182)",
+      "label": "Indonesia (Washed) - Java",
+      "sample_count": 2
+    },
+    {
+      "id": "node_68",
+      "country": "Indonesia",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 7.68803071975708,
+      "y": 6.002282619476318,
+      "taste": {
+        "Aroma": 7.79,
+        "Flavor": 7.46,
+        "Aftertaste": 7.21,
+        "Acidity": 7.415,
+        "Body": 7.5,
+        "Balance": 7.33
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 35.39248640896882,
+      "probs": {
+        "🌸 香り特化型": 0.06515256744697637,
+        "☕ ボディ・コク重視": 0.013036484102359528,
+        "⚖️ マイルド・調和型": 0.02079145768714018,
+        "🍋 風味・酸味際立ち": 0.014376937234555503,
+        "ノイズ (独自路線)": 0.28661542420394326
+      },
+      "color": "rgb(211, 149, 138)",
+      "label": "Indonesia (Washed) - Other",
+      "sample_count": 2
+    },
+    {
+      "id": "node_69",
+      "country": "Indonesia",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 6.480307102203369,
+      "y": 6.056270122528076,
+      "taste": {
+        "Aroma": 8.17,
+        "Flavor": 7.67,
+        "Aftertaste": 7.58,
+        "Acidity": 7.58,
+        "Body": 7.42,
+        "Balance": 7.67
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 83.85646465119714,
+      "probs": {
+        "🌸 香り特化型": 0.8385646465119714,
+        "☕ ボディ・コク重視": 0.004164632550095648,
+        "⚖️ マイルド・調和型": 0.0054825934395283564,
+        "🍋 風味・酸味際立ち": 0.004947975445387601,
+        "ノイズ (独自路線)": 0.05321726798407023
+      },
+      "color": "rgb(244, 154, 239)",
+      "label": "Indonesia (Washed) - Typica",
+      "sample_count": 1
+    },
+    {
+      "id": "node_70",
+      "country": "Kenya",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Peaberry"
+      ],
+      "x": 5.576590061187744,
+      "y": 4.328658580780029,
+      "taste": {
+        "Aroma": 7.83,
+        "Flavor": 7.83,
+        "Aftertaste": 7.83,
+        "Acidity": 7.75,
+        "Body": 7.58,
+        "Balance": 7.83
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 4.1023765830303594e-308,
+        "☕ ボディ・コク重視": 1.461758229655094e-308,
+        "⚖️ マイルド・調和型": 1.551887067798981e-308,
+        "🍋 風味・酸味際立ち": 1.9741367379611516e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(182, 232, 128)",
+      "label": "Kenya (Washed) - Peaberry",
+      "sample_count": 1
+    },
+    {
+      "id": "node_71",
+      "country": "Kenya",
+      "method": "Washed / Wet",
+      "varieties": [
+        "SL28"
+      ],
+      "x": 4.250109672546387,
+      "y": 2.622673273086548,
+      "taste": {
+        "Aroma": 7.708333333333333,
+        "Flavor": 7.7425,
+        "Aftertaste": 7.674166666666667,
+        "Acidity": 7.8183333333333325,
+        "Body": 7.68,
+        "Balance": 7.8133333333333335
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.530262246402153e-308,
+        "☕ ボディ・コク重視": 2.449609504480629e-308,
+        "⚖️ マイルド・調和型": 1.2837625723670365e-308,
+        "🍋 風味・酸味際立ち": 7.587925977388058e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(30, 144, 255)",
+      "label": "Kenya (Washed) - SL28",
+      "sample_count": 12
+    },
+    {
+      "id": "node_72",
+      "country": "Kenya",
+      "method": "Washed / Wet",
+      "varieties": [
+        "SL34"
+      ],
+      "x": 4.062275409698486,
+      "y": 1.8424768447875977,
+      "taste": {
+        "Aroma": 7.77125,
+        "Flavor": 7.79,
+        "Aftertaste": 7.66625,
+        "Acidity": 7.885,
+        "Body": 7.77125,
+        "Balance": 7.73
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.3158903255232956e-308,
+        "☕ ボディ・コク重視": 3.420600650319569e-308,
+        "⚖️ マイルド・調和型": 1.288283689805092e-308,
+        "🍋 風味・酸味際立ち": 1.0,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 69, 0)",
+      "label": "Kenya (Washed) - SL34",
+      "sample_count": 8
+    },
+    {
+      "id": "node_73",
+      "country": "Laos",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Catimor"
+      ],
+      "x": 5.79576301574707,
+      "y": 5.6091437339782715,
+      "taste": {
+        "Aroma": 7.545,
+        "Flavor": 7.5,
+        "Aftertaste": 7.295,
+        "Acidity": 7.295,
+        "Body": 7.295,
+        "Balance": 7.375
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 24.34703040529645,
+      "probs": {
+        "🌸 香り特化型": 0.2434703040529645,
+        "☕ ボディ・コク重視": 0.012464056258790926,
+        "⚖️ マイルド・調和型": 0.014777163931885006,
+        "🍋 風味・酸味際立ち": 0.015708980810052255,
+        "ノイズ (独自路線)": 0.4162002454257637
+      },
+      "color": "rgb(209, 179, 196)",
+      "label": "Laos (Washed) - Catimor",
+      "sample_count": 2
+    },
+    {
+      "id": "node_74",
+      "country": "Laos",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 5.487572193145752,
+      "y": 0.20022185146808624,
+      "taste": {
+        "Aroma": 7.42,
+        "Flavor": 7.5,
+        "Aftertaste": 7.25,
+        "Acidity": 7.33,
+        "Body": 7.5,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.013767604481436e-308,
+        "☕ ボディ・コク重視": 1.0,
+        "⚖️ マイルド・調和型": 1.5736277600092143e-308,
+        "🍋 風味・酸味際立ち": 3.020867829610775e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(50, 205, 50)",
+      "label": "Laos (Washed) - Other",
+      "sample_count": 1
+    },
+    {
+      "id": "node_75",
+      "country": "Malawi",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 6.544434070587158,
+      "y": 5.634306907653809,
+      "taste": {
+        "Aroma": 7.54,
+        "Flavor": 7.25,
+        "Aftertaste": 7.25,
+        "Acidity": 7.125,
+        "Body": 7.29,
+        "Balance": 7.25
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 23.79079684121955,
+      "probs": {
+        "🌸 香り特化型": 0.2379079684121955,
+        "☕ ボディ・コク重視": 0.01507782946540659,
+        "⚖️ マイルド・調和型": 0.02032342991531954,
+        "🍋 風味・酸味際立ち": 0.017880445344875703,
+        "ノイズ (独自路線)": 0.3519480510262182
+      },
+      "color": "rgb(206, 175, 188)",
+      "label": "Malawi (Washed) - Caturra",
+      "sample_count": 2
+    },
+    {
+      "id": "node_76",
+      "country": "Malawi",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Gesha"
+      ],
+      "x": 3.9296553134918213,
+      "y": 5.450665473937988,
+      "taste": {
+        "Aroma": 7.573333333333333,
+        "Flavor": 7.417777777777778,
+        "Aftertaste": 7.2588888888888885,
+        "Acidity": 7.47111111111111,
+        "Body": 7.348888888888889,
+        "Balance": 7.398888888888889
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 26.2734271422283,
+      "probs": {
+        "🌸 香り特化型": 0.07360043205058811,
+        "☕ ボディ・コク重視": 0.026467782613760125,
+        "⚖️ マイルド・調和型": 0.024225194378882712,
+        "🍋 風味・酸味際立ち": 0.03829905066912831,
+        "ノイズ (独自路線)": 0.19356039172237127
+      },
+      "color": "rgb(198, 157, 161)",
+      "label": "Malawi (Washed) - Gesha",
+      "sample_count": 9
+    },
+    {
+      "id": "node_77",
+      "country": "Mexico",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 5.748116493225098,
+      "y": 5.8163161277771,
+      "taste": {
+        "Aroma": 7.75,
+        "Flavor": 7.79,
+        "Aftertaste": 7.46,
+        "Acidity": 7.46,
+        "Body": 7.585,
+        "Balance": 7.46
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 37.658763095435184,
+      "probs": {
+        "🌸 香り特化型": 0.3765876309543518,
+        "☕ ボディ・コク重視": 0.01485176289728944,
+        "⚖️ マイルド・調和型": 0.017530353232553662,
+        "🍋 風味・酸味際立ち": 0.018675322438588972,
+        "ノイズ (独自路線)": 0.23234591950682737
+      },
+      "color": "rgb(213, 168, 197)",
+      "label": "Mexico (Natural) - Bourbon",
+      "sample_count": 2
+    },
+    {
+      "id": "node_78",
+      "country": "Mexico",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 9.174073219299316,
+      "y": 3.479733467102051,
+      "taste": {
+        "Aroma": 7.83,
+        "Flavor": 7.58,
+        "Aftertaste": 7.58,
+        "Acidity": 7.5,
+        "Body": 7.75,
+        "Balance": 7.67
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 13.597471471232902,
+      "probs": {
+        "🌸 香り特化型": 0.021010553403179595,
+        "☕ ボディ・コク重視": 0.015854195070375846,
+        "⚖️ マイルド・調和型": 0.05941776524692304,
+        "🍋 風味・酸味際立ち": 0.014520687203809737,
+        "ノイズ (独自路線)": 0.48431922070049904
+      },
+      "color": "rgb(175, 186, 177)",
+      "label": "Mexico (Natural) - Caturra",
+      "sample_count": 1
+    },
+    {
+      "id": "node_79",
+      "country": "Mexico",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Marigojipe"
+      ],
+      "x": 5.4452009201049805,
+      "y": 1.573212742805481,
+      "taste": {
+        "Aroma": 7.33,
+        "Flavor": 7.5,
+        "Aftertaste": 7.25,
+        "Acidity": 7.5,
+        "Body": 7.5,
+        "Balance": 7.17
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.4807128698022715e-308,
+        "☕ ボディ・コク重視": 6.00047188306075e-308,
+        "⚖️ マイルド・調和型": 1.994747651974829e-308,
+        "🍋 風味・酸味際立ち": 5.006826281889921e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(99, 110, 250)",
+      "label": "Mexico (Natural) - Marigojipe",
+      "sample_count": 1
+    },
+    {
+      "id": "node_80",
+      "country": "Mexico",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Mundo Novo"
+      ],
+      "x": 4.829859256744385,
+      "y": 0.5175515413284302,
+      "taste": {
+        "Aroma": 6.75,
+        "Flavor": 7.08,
+        "Aftertaste": 6.67,
+        "Acidity": 7.25,
+        "Body": 7.17,
+        "Balance": 7.08
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 30.124965769347163,
+      "probs": {
+        "🌸 香り特化型": 0.020427557617567437,
+        "☕ ボディ・コク重視": 0.3012496576934716,
+        "⚖️ マイルド・調和型": 0.027237592987237765,
+        "🍋 風味・酸味際立ち": 0.0877763513327154,
+        "ノイズ (独自路線)": 0.12637977573020476
+      },
+      "color": "rgb(142, 172, 119)",
+      "label": "Mexico (Natural) - Mundo Novo",
+      "sample_count": 1
+    },
+    {
+      "id": "node_81",
+      "country": "Mexico",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Pacas"
+      ],
+      "x": 7.838828086853027,
+      "y": 3.374128818511963,
+      "taste": {
+        "Aroma": 7.67,
+        "Flavor": 7.58,
+        "Aftertaste": 7.5,
+        "Acidity": 7.75,
+        "Body": 7.75,
+        "Balance": 7.75
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 2.068343346837039e-308,
+        "☕ ボディ・コク重視": 1.5761838404447744e-308,
+        "⚖️ マイルド・調和型": 4.915518534525258e-308,
+        "🍋 風味・酸味際立ち": 1.5117095191570867e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Mexico (Natural) - Pacas",
+      "sample_count": 1
+    },
+    {
+      "id": "node_82",
+      "country": "Mexico",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 3.861771821975708,
+      "y": 5.005349636077881,
+      "taste": {
+        "Aroma": 7.612727272727272,
+        "Flavor": 7.568181818181818,
+        "Aftertaste": 7.348181818181818,
+        "Acidity": 7.544545454545454,
+        "Body": 7.4390909090909085,
+        "Balance": 7.508181818181819
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 42.57003781659367,
+      "probs": {
+        "🌸 香り特化型": 0.06719118135645885,
+        "☕ ボディ・コク重視": 0.028498759654979607,
+        "⚖️ マイルド・調和型": 0.024828279852156607,
+        "🍋 風味・酸味際立ち": 0.043306246087160064,
+        "ノイズ (独自路線)": 0.002874195690464987
+      },
+      "color": "rgb(202, 138, 148)",
+      "label": "Mexico (Natural) - Typica",
+      "sample_count": 11
+    },
+    {
+      "id": "node_83",
+      "country": "Mexico",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 7.318545818328857,
+      "y": 3.794612169265747,
+      "taste": {
+        "Aroma": 7.17,
+        "Flavor": 7.08,
+        "Aftertaste": 7.25,
+        "Acidity": 7.42,
+        "Body": 7.25,
+        "Balance": 7.33
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 33.57301598049949,
+      "probs": {
+        "🌸 香り特化型": 0.04799422100415527,
+        "☕ ボディ・コク重視": 0.02896244481209067,
+        "⚖️ マイルド・調和型": 0.060191503538056856,
+        "🍋 風味・酸味際立ち": 0.0301030701486379,
+        "ノイズ (独自路線)": -2.220446049250313e-16
+      },
+      "color": "rgb(181, 163, 139)",
+      "label": "Mexico (Semi-washed) - Catuai",
+      "sample_count": 1
+    },
+    {
+      "id": "node_84",
+      "country": "Mexico",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 6.026623249053955,
+      "y": 6.131952285766602,
+      "taste": {
+        "Aroma": 7.75,
+        "Flavor": 7.58,
+        "Aftertaste": 7.25,
+        "Acidity": 7.17,
+        "Body": 7.58,
+        "Balance": 7.33
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 86.79876613405426,
+      "probs": {
+        "🌸 香り特化型": 0.8679876613405426,
+        "☕ ボディ・コク重視": 0.0038701224835102563,
+        "⚖️ マイルド・調和型": 0.004764420645287546,
+        "🍋 風味・酸味際立ち": 0.004734230183732524,
+        "ノイズ (独自路線)": 0.034201238421665336
+      },
+      "color": "rgb(245, 153, 241)",
+      "label": "Mexico (Semi-washed) - Caturra",
+      "sample_count": 1
+    },
+    {
+      "id": "node_85",
+      "country": "Mexico",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 4.107791900634766,
+      "y": 4.719471454620361,
+      "taste": {
+        "Aroma": 7.535,
+        "Flavor": 7.540833333333333,
+        "Aftertaste": 7.368333333333333,
+        "Acidity": 7.5125,
+        "Body": 7.415,
+        "Balance": 7.445833333333333
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 73.18876055532512,
+      "probs": {
+        "🌸 香り特化型": 0.02929124580384651,
+        "☕ ボディ・コク重視": 0.012793853567675293,
+        "⚖️ マイルド・調和型": 0.011063312532056278,
+        "🍋 風味・酸味際立ち": 0.01988559771943728,
+        "ノイズ (独自路線)": 0.002874195690464987
+      },
+      "color": "rgb(230, 119, 147)",
+      "label": "Mexico (Semi-washed) - Typica",
+      "sample_count": 12
+    },
+    {
+      "id": "node_86",
+      "country": "Mexico",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 8.086941719055176,
+      "y": 5.787454128265381,
+      "taste": {
+        "Aroma": 7.474242424242425,
+        "Flavor": 7.340606060606061,
+        "Aftertaste": 7.204848484848484,
+        "Acidity": 7.422424242424242,
+        "Body": 7.394242424242424,
+        "Balance": 7.28030303030303
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 3.384317840959818e-308,
+        "☕ ボディ・コク重視": 9.11746122840115e-309,
+        "⚖️ マイルド・調和型": 1.5656094736747045e-308,
+        "🍋 風味・酸味際立ち": 9.806844201869525e-309,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(239, 85, 59)",
+      "label": "Mexico (Washed) - Bourbon",
+      "sample_count": 33
+    },
+    {
+      "id": "node_87",
+      "country": "Mexico",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 8.773320198059082,
+      "y": 2.0884833335876465,
+      "taste": {
+        "Aroma": 7.390000000000001,
+        "Flavor": 7.276666666666666,
+        "Aftertaste": 7.1933333333333325,
+        "Acidity": 7.333333333333333,
+        "Body": 7.28,
+        "Balance": 7.553333333333334
+      },
+      "dominant_cluster": "⚖️ マイルド・調和型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.2107741236353597e-308,
+        "☕ ボディ・コク重視": 1.4589852954287605e-308,
+        "⚖️ マイルド・調和型": 1.0,
+        "🍋 風味・酸味際立ち": 1.169364523977988e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(171, 99, 250)",
+      "label": "Mexico (Washed) - Catuai",
+      "sample_count": 3
+    },
+    {
+      "id": "node_88",
+      "country": "Mexico",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 7.997110843658447,
+      "y": 5.989039897918701,
+      "taste": {
+        "Aroma": 7.465294117647058,
+        "Flavor": 7.338235294117647,
+        "Aftertaste": 7.176470588235294,
+        "Acidity": 7.371764705882352,
+        "Body": 7.332352941176471,
+        "Balance": 7.25
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 3.6195538241465784e-308,
+        "☕ ボディ・コク重視": 8.91174346669702e-309,
+        "⚖️ マイルド・調和型": 1.4775767536058913e-308,
+        "🍋 風味・酸味際立ち": 9.668394508941053e-309,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(239, 85, 59)",
+      "label": "Mexico (Washed) - Caturra",
+      "sample_count": 17
+    },
+    {
+      "id": "node_89",
+      "country": "Mexico",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Mundo Novo"
+      ],
+      "x": 3.637099266052246,
+      "y": 1.3600196838378906,
+      "taste": {
+        "Aroma": 7.371818181818182,
+        "Flavor": 7.332727272727272,
+        "Aftertaste": 7.151818181818182,
+        "Acidity": 7.386363636363637,
+        "Body": 7.340909090909091,
+        "Balance": 7.3172727272727265
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 18.077579139647515,
+      "probs": {
+        "🌸 香り特化型": 0.011333476196569284,
+        "☕ ボディ・コク重視": 0.0328415758175025,
+        "⚖️ マイルド・調和型": 0.011456656836844029,
+        "🍋 風味・酸味際立ち": 0.18077579139647515,
+        "ノイズ (独自路線)": 0.4687707237608417
+      },
+      "color": "rgb(203, 173, 140)",
+      "label": "Mexico (Washed) - Mundo Novo",
+      "sample_count": 11
+    },
+    {
+      "id": "node_90",
+      "country": "Mexico",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 3.959578514099121,
+      "y": 1.8306938409805298,
+      "taste": {
+        "Aroma": 7.410714285714286,
+        "Flavor": 7.439285714285715,
+        "Aftertaste": 7.262857142857143,
+        "Acidity": 7.452142857142857,
+        "Body": 7.380714285714285,
+        "Balance": 7.404285714285714
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.299271823810556e-308,
+        "☕ ボディ・コク重視": 3.3157153393616526e-308,
+        "⚖️ マイルド・調和型": 1.25943551765493e-308,
+        "🍋 風味・酸味際立ち": 1.0,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 69, 0)",
+      "label": "Mexico (Washed) - Other",
+      "sample_count": 14
+    },
+    {
+      "id": "node_91",
+      "country": "Mexico",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Pacamara"
+      ],
+      "x": 4.448853492736816,
+      "y": 5.103848457336426,
+      "taste": {
+        "Aroma": 7.632,
+        "Flavor": 7.634,
+        "Aftertaste": 7.386,
+        "Acidity": 7.518000000000001,
+        "Body": 7.465999999999999,
+        "Balance": 7.4159999999999995
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 3.9757197684163264e-308,
+        "☕ ボディ・コク重視": 1.2718391355414123e-308,
+        "⚖️ マイルド・調和型": 1.1943686271694853e-308,
+        "🍋 風味・酸味際立ち": 1.847973488641793e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 102, 146)",
+      "label": "Mexico (Washed) - Pacamara",
+      "sample_count": 5
+    },
+    {
+      "id": "node_92",
+      "country": "Mexico",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 8.064706802368164,
+      "y": 5.784183979034424,
+      "taste": {
+        "Aroma": 7.439821428571428,
+        "Flavor": 7.335267857142857,
+        "Aftertaste": 7.205089285714286,
+        "Acidity": 7.402232142857143,
+        "Body": 7.356964285714286,
+        "Balance": 7.284910714285714
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 3.429533709026415e-308,
+        "☕ ボディ・コク重視": 9.13723653601483e-309,
+        "⚖️ マイルド・調和型": 1.5655224408639885e-308,
+        "🍋 風味・酸味際立ち": 9.838533967794326e-309,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(239, 85, 59)",
+      "label": "Mexico (Washed) - Typica",
+      "sample_count": 112
+    },
+    {
+      "id": "node_93",
+      "country": "Myanmar",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 5.485884189605713,
+      "y": 1.6712286472320557,
+      "taste": {
+        "Aroma": 7.166666666666667,
+        "Flavor": 7.5,
+        "Aftertaste": 7.25,
+        "Acidity": 7.5,
+        "Body": 7.386666666666667,
+        "Balance": 7.246666666666667
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.5170099177031767e-308,
+        "☕ ボディ・コク重視": 5.518238585814932e-308,
+        "⚖️ マイルド・調和型": 2.030565549529715e-308,
+        "🍋 風味・酸味際立ち": 4.9196134853058e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(99, 110, 250)",
+      "label": "Myanmar (Washed) - Catuai",
+      "sample_count": 3
+    },
+    {
+      "id": "node_94",
+      "country": "Myanmar",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 5.487421989440918,
+      "y": 1.5710874795913696,
+      "taste": {
+        "Aroma": 7.17,
+        "Flavor": 7.33,
+        "Aftertaste": 7.085,
+        "Acidity": 7.42,
+        "Body": 7.21,
+        "Balance": 7.04
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.481838323259156e-308,
+        "☕ ボディ・コク重視": 5.979754758262254e-308,
+        "⚖️ マイルド・調和型": 2.0210679207636284e-308,
+        "🍋 風味・酸味際立ち": 4.86235518725875e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(99, 110, 250)",
+      "label": "Myanmar (Washed) - Other",
+      "sample_count": 2
+    },
+    {
+      "id": "node_95",
+      "country": "Nicaragua",
+      "method": "Other",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 6.686493873596191,
+      "y": 6.082398414611816,
+      "taste": {
+        "Aroma": 7.3066666666666675,
+        "Flavor": 7.0,
+        "Aftertaste": 6.859999999999999,
+        "Acidity": 6.859999999999999,
+        "Body": 6.890000000000001,
+        "Balance": 6.803333333333334
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 34.46444703013798,
+      "probs": {
+        "🌸 香り特化型": 0.34464447030137985,
+        "☕ ボディ・コク重視": 0.011510428769464088,
+        "⚖️ マイルド・調和型": 0.01560508611335538,
+        "🍋 風味・酸味際立ち": 0.013488769298468773,
+        "ノイズ (独自路線)": 0.35194805102621796
+      },
+      "color": "rgb(215, 172, 201)",
+      "label": "Nicaragua (Other) - Caturra",
+      "sample_count": 3
+    },
+    {
+      "id": "node_96",
+      "country": "Nicaragua",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Catuai"
+      ],
+      "x": 5.857582092285156,
+      "y": 2.3393821716308594,
+      "taste": {
+        "Aroma": 7.08,
+        "Flavor": 7.5,
+        "Aftertaste": 7.33,
+        "Acidity": 7.17,
+        "Body": 7.42,
+        "Balance": 7.25
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.5959019347276865e-308,
+        "☕ ボディ・コク重視": 2.884897498670923e-308,
+        "⚖️ マイルド・調和型": 2.0453904518077385e-308,
+        "🍋 風味・酸味際立ち": 3.1167377861696064e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(254, 203, 82)",
+      "label": "Nicaragua (Washed) - Catuai",
+      "sample_count": 1
+    },
+    {
+      "id": "node_97",
+      "country": "Nicaragua",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 9.382244110107422,
+      "y": 4.245790481567383,
+      "taste": {
+        "Aroma": 7.234999999999999,
+        "Flavor": 7.18,
+        "Aftertaste": 7.1816666666666675,
+        "Acidity": 7.208333333333333,
+        "Body": 7.5,
+        "Balance": 7.263333333333333
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.7308123415088724e-308,
+        "☕ ボディ・コク重視": 1.0548952074775857e-308,
+        "⚖️ マイルド・調和型": 2.991712835926997e-308,
+        "🍋 風味・酸味際立ち": 1.010921127788261e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Nicaragua (Washed) - Caturra",
+      "sample_count": 6
+    },
+    {
+      "id": "node_98",
+      "country": "Nicaragua",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 7.424930572509766,
+      "y": 4.325532913208008,
+      "taste": {
+        "Aroma": 7.29,
+        "Flavor": 7.29,
+        "Aftertaste": 7.25,
+        "Acidity": 7.335,
+        "Body": 7.33,
+        "Balance": 7.29
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 2.9423040179209183e-308,
+        "☕ ボディ・コク重視": 1.282845359282686e-308,
+        "⚖️ マイルド・調和型": 2.54361809548712e-308,
+        "🍋 風味・酸味際立ち": 1.368783445341671e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Nicaragua (Washed) - Other",
+      "sample_count": 2
+    },
+    {
+      "id": "node_99",
+      "country": "Peru",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 5.119040012359619,
+      "y": 0.3703916668891907,
+      "taste": {
+        "Aroma": 7.42,
+        "Flavor": 7.75,
+        "Aftertaste": 7.42,
+        "Acidity": 7.67,
+        "Body": 7.92,
+        "Balance": 7.83
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 52.30480803990601,
+      "probs": {
+        "🌸 香り特化型": 0.013083023764928902,
+        "☕ ボディ・コク重視": 0.52304808039906,
+        "⚖️ マイルド・調和型": 0.018648674084865705,
+        "🍋 風味・酸味際立ち": 0.046840224122340346,
+        "ノイズ (独自路線)": 0.12637977573020476
+      },
+      "color": "rgb(113, 185, 102)",
+      "label": "Peru (Washed) - Caturra",
+      "sample_count": 1
+    },
+    {
+      "id": "node_100",
+      "country": "Peru",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 4.478130340576172,
+      "y": 4.801915645599365,
+      "taste": {
+        "Aroma": 8.42,
+        "Flavor": 8.5,
+        "Aftertaste": 8.33,
+        "Acidity": 8.5,
+        "Body": 8.25,
+        "Balance": 8.25
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 3.7130705313837297e-308,
+        "☕ ボディ・コク重視": 1.357851937853887e-308,
+        "⚖️ マイルド・調和型": 1.240680807343547e-308,
+        "🍋 風味・酸味際立ち": 2.030815452205826e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 102, 146)",
+      "label": "Peru (Washed) - Other",
+      "sample_count": 1
+    },
+    {
+      "id": "node_101",
+      "country": "Peru",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 9.490066528320312,
+      "y": 4.362916946411133,
+      "taste": {
+        "Aroma": 7.67,
+        "Flavor": 7.17,
+        "Aftertaste": 7.08,
+        "Acidity": 7.25,
+        "Body": 8.0,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.7133857242162446e-308,
+        "☕ ボディ・コク重視": 1.025718543890451e-308,
+        "⚖️ マイルド・調和型": 2.7972227392406954e-308,
+        "🍋 風味・酸味際立ち": 9.86121943928015e-309,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Peru (Washed) - Typica",
+      "sample_count": 1
+    },
+    {
+      "id": "node_102",
+      "country": "Philippines",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 5.730474472045898,
+      "y": 4.290170669555664,
+      "taste": {
+        "Aroma": 7.580000000000001,
+        "Flavor": 7.47,
+        "Aftertaste": 7.586666666666666,
+        "Acidity": 7.4433333333333325,
+        "Body": 7.386666666666667,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 4.0968603342229274e-308,
+        "☕ ボディ・コク重視": 1.470813643943772e-308,
+        "⚖️ マイルド・調和型": 1.616860786993253e-308,
+        "🍋 風味・酸味際立ち": 1.9401115761797835e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(182, 232, 128)",
+      "label": "Philippines (Washed) - Other",
+      "sample_count": 3
+    },
+    {
+      "id": "node_103",
+      "country": "Taiwan",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 4.74656867980957,
+      "y": 0.5616189241409302,
+      "taste": {
+        "Aroma": 7.335,
+        "Flavor": 7.75,
+        "Aftertaste": 7.29,
+        "Acidity": 7.795,
+        "Body": 7.75,
+        "Balance": 7.625
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 26.415778491071578,
+      "probs": {
+        "🌸 香り特化型": 0.021450766937002062,
+        "☕ ボディ・コク重視": 0.2641577849107158,
+        "⚖️ マイルド・調和型": 0.02806183751111843,
+        "🍋 風味・酸味際立ち": 0.09793947167585772,
+        "ノイズ (独自路線)": 0.1263797757302051
+      },
+      "color": "rgb(147, 170, 121)",
+      "label": "Taiwan (Natural) - Caturra",
+      "sample_count": 2
+    },
+    {
+      "id": "node_104",
+      "country": "Taiwan",
+      "method": "Natural / Dry",
+      "varieties": [],
+      "x": 4.426808834075928,
+      "y": 2.3666913509368896,
+      "taste": {
+        "Aroma": 7.17,
+        "Flavor": 7.17,
+        "Aftertaste": 7.17,
+        "Acidity": 7.42,
+        "Body": 7.17,
+        "Balance": 7.25
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 19.659107445551317,
+      "probs": {
+        "🌸 香り特化型": 0.013962519125490484,
+        "☕ ボディ・コク重視": 0.0265908228668427,
+        "⚖️ マイルド・調和型": 0.012776764338289757,
+        "🍋 風味・酸味際立ち": 0.09057523616358513,
+        "ノイズ (独自路線)": 0.4213592663824042
+      },
+      "color": "rgb(166, 172, 180)",
+      "label": "Taiwan (Natural) - Other",
+      "sample_count": 1
+    },
+    {
+      "id": "node_105",
+      "country": "Taiwan",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 9.085538864135742,
+      "y": 3.5936667919158936,
+      "taste": {
+        "Aroma": 7.615,
+        "Flavor": 7.53125,
+        "Aftertaste": 7.49,
+        "Acidity": 7.47625,
+        "Body": 7.64625,
+        "Balance": 7.56125
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 9.104584663411616,
+      "probs": {
+        "🌸 香り特化型": 0.017809996530551455,
+        "☕ ボディ・コク重視": 0.012895667142499949,
+        "⚖️ マイルド・調和型": 0.04591107279262187,
+        "🍋 風味・酸味際立ち": 0.011942457435279243,
+        "ノイズ (独自路線)": 0.5924630761946905
+      },
+      "color": "rgb(187, 190, 183)",
+      "label": "Taiwan (Natural) - Typica",
+      "sample_count": 8
+    },
+    {
+      "id": "node_106",
+      "country": "Taiwan",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Yellow Bourbon"
+      ],
+      "x": 3.5091733932495117,
+      "y": 5.151438236236572,
+      "taste": {
+        "Aroma": 7.83,
+        "Flavor": 7.67,
+        "Aftertaste": 7.33,
+        "Acidity": 7.67,
+        "Body": 7.58,
+        "Balance": 7.67
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 29.57465709158429,
+      "probs": {
+        "🌸 香り特化型": 0.07949776843787,
+        "☕ ボディ・コク重視": 0.03610279946606143,
+        "⚖️ マイルド・調和型": 0.030974568146498013,
+        "🍋 風味・酸味際立ち": 0.05460671568116663,
+        "ノイズ (独自路線)": 0.014632820967584226
+      },
+      "color": "rgb(191, 146, 148)",
+      "label": "Taiwan (Natural) - Yellow Bourbon",
+      "sample_count": 1
+    },
+    {
+      "id": "node_107",
+      "country": "Taiwan",
+      "method": "Other",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 5.718835830688477,
+      "y": 4.5816473960876465,
+      "taste": {
+        "Aroma": 7.47875,
+        "Flavor": 7.4275,
+        "Aftertaste": 7.35375,
+        "Acidity": 7.3325,
+        "Body": 7.36375,
+        "Balance": 7.4775
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 5.010516750163722e-308,
+        "☕ ボディ・コク重視": 1.369652414145495e-308,
+        "⚖️ マイルド・調和型": 1.536827568739332e-308,
+        "🍋 風味・酸味際立ち": 1.795247001419797e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(182, 232, 128)",
+      "label": "Taiwan (Other) - Typica",
+      "sample_count": 8
+    },
+    {
+      "id": "node_108",
+      "country": "Taiwan",
+      "method": "Other",
+      "varieties": [
+        "Yellow Bourbon"
+      ],
+      "x": 3.8442888259887695,
+      "y": 1.6592168807983398,
+      "taste": {
+        "Aroma": 7.25,
+        "Flavor": 7.25,
+        "Aftertaste": 7.08,
+        "Acidity": 7.25,
+        "Body": 7.25,
+        "Balance": 7.25
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.2423760648206784e-308,
+        "☕ ボディ・コク重視": 3.377375011063859e-308,
+        "⚖️ マイルド・調和型": 1.2252186186450084e-308,
+        "🍋 風味・酸味際立ち": 1.0,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 69, 0)",
+      "label": "Taiwan (Other) - Yellow Bourbon",
+      "sample_count": 1
+    },
+    {
+      "id": "node_109",
+      "country": "Taiwan",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 4.550260543823242,
+      "y": 5.31390905380249,
+      "taste": {
+        "Aroma": 8.08,
+        "Flavor": 8.17,
+        "Aftertaste": 7.75,
+        "Acidity": 8.08,
+        "Body": 7.75,
+        "Balance": 7.83
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 37.13154112358414,
+      "probs": {
+        "🌸 香り特化型": 0.05514318888721775,
+        "☕ ボディ・コク重視": 0.01525899742063417,
+        "⚖️ マイルド・調和型": 0.014785293308502903,
+        "🍋 風味・酸味際立ち": 0.021601151439251065,
+        "ノイズ (独自路線)": 0.27264322721840495
+      },
+      "color": "rgb(212, 155, 166)",
+      "label": "Taiwan (Semi-washed) - Bourbon",
+      "sample_count": 1
+    },
+    {
+      "id": "node_110",
+      "country": "Taiwan",
+      "method": "Semi-washed / Semi-pulped",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 9.388787269592285,
+      "y": 3.4530744552612305,
+      "taste": {
+        "Aroma": 7.4375,
+        "Flavor": 7.34375,
+        "Aftertaste": 7.395,
+        "Acidity": 7.29,
+        "Body": 7.52125,
+        "Balance": 7.47875
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 18.09331024554054,
+      "probs": {
+        "🌸 香り特化型": 0.018337618906919224,
+        "☕ ボディ・コク重視": 0.014076778796076184,
+        "⚖️ マイルド・調和型": 0.05136368763999703,
+        "🍋 風味・酸味際立ち": 0.01280724283253759,
+        "ノイズ (独自路線)": 0.48431922070049893
+      },
+      "color": "rgb(167, 189, 177)",
+      "label": "Taiwan (Semi-washed) - Typica",
+      "sample_count": 8
+    },
+    {
+      "id": "node_111",
+      "country": "Taiwan",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 8.628108978271484,
+      "y": 2.248533010482788,
+      "taste": {
+        "Aroma": 7.67,
+        "Flavor": 7.5,
+        "Aftertaste": 7.5,
+        "Acidity": 7.5,
+        "Body": 7.67,
+        "Balance": 7.83
+      },
+      "dominant_cluster": "⚖️ マイルド・調和型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.2696482360285857e-308,
+        "☕ ボディ・コク重視": 1.4756877728696887e-308,
+        "⚖️ マイルド・調和型": 1.0,
+        "🍋 風味・酸味際立ち": 1.2034489887627513e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(171, 99, 250)",
+      "label": "Taiwan (Washed) - Bourbon",
+      "sample_count": 1
+    },
+    {
+      "id": "node_112",
+      "country": "Taiwan",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 7.593398094177246,
+      "y": 4.12823486328125,
+      "taste": {
+        "Aroma": 7.33,
+        "Flavor": 7.17,
+        "Aftertaste": 7.25,
+        "Acidity": 7.33,
+        "Body": 7.33,
+        "Balance": 7.25
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 2.601022958772164e-308,
+        "☕ ボディ・コク重視": 1.308104638678109e-308,
+        "⚖️ マイルド・調和型": 2.8455026936384434e-308,
+        "🍋 風味・酸味際立ち": 1.3602276871199437e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Taiwan (Washed) - Other",
+      "sample_count": 1
+    },
+    {
+      "id": "node_113",
+      "country": "Taiwan",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Typica"
+      ],
+      "x": 6.243430137634277,
+      "y": 4.320774555206299,
+      "taste": {
+        "Aroma": 7.5470588235294125,
+        "Flavor": 7.4535294117647055,
+        "Aftertaste": 7.412058823529412,
+        "Acidity": 7.402647058823529,
+        "Body": 7.402058823529411,
+        "Balance": 7.352058823529411
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 15.95959055292497,
+      "probs": {
+        "🌸 香り特化型": 0.05415461916327715,
+        "☕ ボディ・コク重視": 0.01821407565634277,
+        "⚖️ マイルド・調和型": 0.023094270332594192,
+        "🍋 風味・酸味際立ち": 0.022216575959274985,
+        "ノイズ (独自路線)": 0.35809349196216167
+      },
+      "color": "rgb(183, 187, 173)",
+      "label": "Taiwan (Washed) - Typica",
+      "sample_count": 34
+    },
+    {
+      "id": "node_114",
+      "country": "Taiwan",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Yellow Bourbon"
+      ],
+      "x": 9.284196853637695,
+      "y": 3.13724422454834,
+      "taste": {
+        "Aroma": 7.5,
+        "Flavor": 7.08,
+        "Aftertaste": 7.33,
+        "Acidity": 7.17,
+        "Body": 7.5,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 14.46898759053464,
+      "probs": {
+        "🌸 香り特化型": 0.016222387735585493,
+        "☕ ボディ・コク重視": 0.013656245203563091,
+        "⚖️ マイルド・調和型": 0.06073723747469157,
+        "🍋 風味・酸味際立ち": 0.012146057603775073,
+        "ノイズ (独自路線)": 0.5544335994641426
+      },
+      "color": "rgb(173, 190, 184)",
+      "label": "Taiwan (Washed) - Yellow Bourbon",
+      "sample_count": 1
+    },
+    {
+      "id": "node_115",
+      "country": "Tanzania, United Republic Of",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Arusha"
+      ],
+      "x": 8.560480117797852,
+      "y": 2.1225922107696533,
+      "taste": {
+        "Aroma": 7.67,
+        "Flavor": 7.5,
+        "Aftertaste": 7.33,
+        "Acidity": 7.25,
+        "Body": 7.58,
+        "Balance": 7.75
+      },
+      "dominant_cluster": "⚖️ マイルド・調和型",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.2474283512831867e-308,
+        "☕ ボディ・コク重視": 1.526284107880731e-308,
+        "⚖️ マイルド・調和型": 1.0,
+        "🍋 風味・酸味際立ち": 1.223992637769631e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(171, 99, 250)",
+      "label": "Tanzania, United Republic Of (Washed) - Arusha",
+      "sample_count": 1
+    },
+    {
+      "id": "node_116",
+      "country": "Tanzania, United Republic Of",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 7.946245193481445,
+      "y": 4.5062127113342285,
+      "taste": {
+        "Aroma": 7.564444444444444,
+        "Flavor": 7.390000000000001,
+        "Aftertaste": 7.362222222222223,
+        "Acidity": 7.481111111111111,
+        "Body": 7.489999999999999,
+        "Balance": 7.424444444444443
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 74.63642628343368,
+      "probs": {
+        "🌸 香り特化型": 0.024122929839380875,
+        "☕ ボディ・コク重視": 0.010445340133692959,
+        "⚖️ マイルド・調和型": 0.02382338609921474,
+        "🍋 風味・酸味際立ち": 0.0108277274835285,
+        "ノイズ (独自路線)": 4.440892098500626e-16
+      },
+      "color": "rgb(230, 159, 106)",
+      "label": "Tanzania, United Republic Of (Washed) - Bourbon",
+      "sample_count": 9
+    },
+    {
+      "id": "node_117",
+      "country": "Tanzania, United Republic Of",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 7.547861576080322,
+      "y": 4.2856926918029785,
+      "taste": {
+        "Aroma": 7.5336,
+        "Flavor": 7.4072000000000005,
+        "Aftertaste": 7.4096,
+        "Acidity": 7.493200000000001,
+        "Body": 7.4468,
+        "Balance": 7.4524
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 2.8026118494930416e-308,
+        "☕ ボディ・コク重視": 1.2755437268820094e-308,
+        "⚖️ マイルド・調和型": 2.6478340163348166e-308,
+        "🍋 風味・酸味際立ち": 1.3441762028106816e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Tanzania, United Republic Of (Washed) - Other",
+      "sample_count": 25
+    },
+    {
+      "id": "node_118",
+      "country": "Tanzania, United Republic Of",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Ruiru 11"
+      ],
+      "x": 8.006148338317871,
+      "y": 4.565558433532715,
+      "taste": {
+        "Aroma": 7.71,
+        "Flavor": 7.46,
+        "Aftertaste": 7.5,
+        "Acidity": 7.545,
+        "Body": 7.67,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 2.9704998083048056e-308,
+        "☕ ボディ・コク重視": 1.26549470736463e-308,
+        "⚖️ マイルド・調和型": 2.885283535871637e-308,
+        "🍋 風味・酸味際立ち": 1.3108643822298394e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Tanzania, United Republic Of (Washed) - Ruiru 11",
+      "sample_count": 2
+    },
+    {
+      "id": "node_119",
+      "country": "Thailand",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Catimor"
+      ],
+      "x": 9.725428581237793,
+      "y": 3.2495322227478027,
+      "taste": {
+        "Aroma": 7.5,
+        "Flavor": 7.58,
+        "Aftertaste": 7.75,
+        "Acidity": 7.5,
+        "Body": 7.75,
+        "Balance": 7.67
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 74.72650747809467,
+      "probs": {
+        "🌸 香り特化型": 0.006915178410901344,
+        "☕ ボディ・コク重視": 0.005675884825127846,
+        "⚖️ マイルド・調和型": 0.020431813380727117,
+        "🍋 風味・酸味際立ち": 0.005065182160261309,
+        "ノイズ (独自路線)": 0.13027008135529872
+      },
+      "color": "rgb(50, 198, 157)",
+      "label": "Thailand (Washed) - Catimor",
+      "sample_count": 1
+    },
+    {
+      "id": "node_120",
+      "country": "Thailand",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 5.753234386444092,
+      "y": 2.388392686843872,
+      "taste": {
+        "Aroma": 7.366,
+        "Flavor": 7.6659999999999995,
+        "Aftertaste": 7.566,
+        "Acidity": 7.601999999999999,
+        "Body": 7.581999999999999,
+        "Balance": 7.5680000000000005
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.6157507032675256e-308,
+        "☕ ボディ・コク重視": 2.855070261362749e-308,
+        "⚖️ マイルド・調和型": 1.966889014140317e-308,
+        "🍋 風味・酸味際立ち": 3.2674208749416325e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(254, 203, 82)",
+      "label": "Thailand (Washed) - Caturra",
+      "sample_count": 5
+    },
+    {
+      "id": "node_121",
+      "country": "Thailand",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 9.780638694763184,
+      "y": 3.018054962158203,
+      "taste": {
+        "Aroma": 7.875,
+        "Flavor": 7.75,
+        "Aftertaste": 8.0,
+        "Acidity": 7.875,
+        "Body": 7.83,
+        "Balance": 8.0
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.228320579514004e-308,
+        "☕ ボディ・コク重視": 1.071235572477092e-308,
+        "⚖️ マイルド・調和型": 4.1114423351149046e-308,
+        "🍋 風味・酸味際立ち": 9.40185662528532e-309,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(0, 204, 150)",
+      "label": "Thailand (Washed) - Other",
+      "sample_count": 2
+    },
+    {
+      "id": "node_122",
+      "country": "Uganda",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 4.697741508483887,
+      "y": 5.385788917541504,
+      "taste": {
+        "Aroma": 7.835,
+        "Flavor": 7.795,
+        "Aftertaste": 7.54,
+        "Acidity": 7.665,
+        "Body": 7.375,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 26.394933663779195,
+      "probs": {
+        "🌸 香り特化型": 0.07188659018813731,
+        "☕ ボディ・コク重視": 0.017612833543095185,
+        "⚖️ マイルド・調和型": 0.01749168613752251,
+        "🍋 風味・酸味際立ち": 0.024531832502157156,
+        "ノイズ (独自路線)": 0.30849925359325614
+      },
+      "color": "rgb(205, 163, 170)",
+      "label": "Uganda (Natural) - Bourbon",
+      "sample_count": 2
+    },
+    {
+      "id": "node_123",
+      "country": "Uganda",
+      "method": "Natural / Dry",
+      "varieties": [],
+      "x": 7.500382900238037,
+      "y": 6.0046586990356445,
+      "taste": {
+        "Aroma": 8.17,
+        "Flavor": 7.75,
+        "Aftertaste": 7.58,
+        "Acidity": 7.67,
+        "Body": 7.83,
+        "Balance": 7.58
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 14.842136894081312,
+      "probs": {
+        "🌸 香り特化型": 0.061677642339460166,
+        "☕ ボディ・コク重視": 0.010559156171670428,
+        "⚖️ マイルド・調和型": 0.016427999082613463,
+        "🍋 風味・酸味際立ち": 0.011767668373934698,
+        "ノイズ (独自路線)": 0.5559213662976662
+      },
+      "color": "rgb(207, 178, 174)",
+      "label": "Uganda (Natural) - Other",
+      "sample_count": 1
+    },
+    {
+      "id": "node_124",
+      "country": "Uganda",
+      "method": "Natural / Dry",
+      "varieties": [
+        "SL14"
+      ],
+      "x": 8.190044403076172,
+      "y": 4.871671676635742,
+      "taste": {
+        "Aroma": 7.77,
+        "Flavor": 7.6274999999999995,
+        "Aftertaste": 7.545,
+        "Acidity": 7.665,
+        "Body": 7.73,
+        "Balance": 7.585
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 3.0385091696546494e-308,
+        "☕ ボディ・コク重視": 1.1806240246271004e-308,
+        "⚖️ マイルド・調和型": 2.6027560405241093e-308,
+        "🍋 風味・酸味際立ち": 1.227046257938462e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Uganda (Natural) - SL14",
+      "sample_count": 4
+    },
+    {
+      "id": "node_125",
+      "country": "Uganda",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Bourbon"
+      ],
+      "x": 9.377462387084961,
+      "y": 4.584883213043213,
+      "taste": {
+        "Aroma": 7.67,
+        "Flavor": 7.58,
+        "Aftertaste": 7.42,
+        "Acidity": 7.42,
+        "Body": 7.83,
+        "Balance": 7.5
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.820387236030354e-308,
+        "☕ ボディ・コク重視": 1.010785019014341e-308,
+        "⚖️ マイルド・調和型": 2.603124783313943e-308,
+        "🍋 風味・酸味際立ち": 9.86694196064744e-309,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Uganda (Washed) - Bourbon",
+      "sample_count": 1
+    },
+    {
+      "id": "node_126",
+      "country": "Uganda",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 3.862121820449829,
+      "y": 5.537657260894775,
+      "taste": {
+        "Aroma": 7.98,
+        "Flavor": 7.8325,
+        "Aftertaste": 7.665,
+        "Acidity": 7.875,
+        "Body": 7.7925,
+        "Balance": 7.8125
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 20.855839624503545,
+      "probs": {
+        "🌸 香り特化型": 0.06934673031069372,
+        "☕ ボディ・コク重視": 0.025082520554286118,
+        "⚖️ マイルド・調和型": 0.022980571080977986,
+        "🍋 風味・酸味際立ち": 0.03610199615704365,
+        "ノイズ (独自路線)": 0.2811932551645787
+      },
+      "color": "rgb(197, 164, 166)",
+      "label": "Uganda (Washed) - Other",
+      "sample_count": 4
+    },
+    {
+      "id": "node_127",
+      "country": "Uganda",
+      "method": "Washed / Wet",
+      "varieties": [
+        "SL14"
+      ],
+      "x": 5.361199855804443,
+      "y": 5.314019203186035,
+      "taste": {
+        "Aroma": 7.916923076923077,
+        "Flavor": 7.744615384615385,
+        "Aftertaste": 7.609230769230769,
+        "Acidity": 7.68076923076923,
+        "Body": 7.640769230769231,
+        "Balance": 7.660769230769231
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 10.421343927948596,
+      "probs": {
+        "🌸 香り特化型": 0.10213010079143335,
+        "☕ ボディ・コク重視": 0.015434777306719065,
+        "⚖️ マイルド・調和型": 0.016860538383378715,
+        "🍋 風味・酸味際立ち": 0.02043388096106517,
+        "ノイズ (独自路線)": 0.4446846972120623
+      },
+      "color": "rgb(200, 182, 182)",
+      "label": "Uganda (Washed) - SL14",
+      "sample_count": 13
+    },
+    {
+      "id": "node_128",
+      "country": "United States",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 5.700445652008057,
+      "y": 3.0610461235046387,
+      "taste": {
+        "Aroma": 8.041666666666666,
+        "Flavor": 8.39,
+        "Aftertaste": 8.221666666666666,
+        "Acidity": 8.265,
+        "Body": 8.083333333333334,
+        "Balance": 8.083333333333334
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 6.596356091760877,
+      "probs": {
+        "🌸 香り特化型": 0.014583476195514243,
+        "☕ ボディ・コク重視": 0.016578628359008814,
+        "⚖️ マイルド・調和型": 0.013362653504274565,
+        "🍋 風味・酸味際立ち": 0.02179907986540271,
+        "ノイズ (独自路線)": 0.6280730337437523
+      },
+      "color": "rgb(190, 194, 189)",
+      "label": "United States (Washed) - Other",
+      "sample_count": 6
+    },
+    {
+      "id": "node_129",
+      "country": "United States (Hawaii)",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Arusha"
+      ],
+      "x": 8.067975044250488,
+      "y": 1.6798174381256104,
+      "taste": {
+        "Aroma": 7.08,
+        "Flavor": 7.33,
+        "Aftertaste": 7.17,
+        "Acidity": 7.25,
+        "Body": 7.33,
+        "Balance": 7.67
+      },
+      "dominant_cluster": "⚖️ マイルド・調和型",
+      "max_prob": 8.194942666150313,
+      "probs": {
+        "🌸 香り特化型": 0.01089494163245032,
+        "☕ ボディ・コク重視": 0.016974349727344986,
+        "⚖️ マイルド・調和型": 0.08194942666150314,
+        "🍋 風味・酸味際立ち": 0.012558033543707875,
+        "ノイズ (独自路線)": 0.6936864566449081
+      },
+      "color": "rgb(195, 191, 196)",
+      "label": "United States (Hawaii) (Natural) - Arusha",
+      "sample_count": 1
+    },
+    {
+      "id": "node_130",
+      "country": "United States (Hawaii)",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Hawaiian Kona"
+      ],
+      "x": 8.237435340881348,
+      "y": 3.331603527069092,
+      "taste": {
+        "Aroma": 7.554571428571429,
+        "Flavor": 7.5445714285714285,
+        "Aftertaste": 7.508857142857143,
+        "Acidity": 7.598,
+        "Body": 7.669142857142858,
+        "Balance": 7.648571428571429
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.915106140416097e-308,
+        "☕ ボディ・コク重視": 1.4865729449836487e-308,
+        "⚖️ マイルド・調和型": 5.869145813418768e-308,
+        "🍋 風味・酸味際立ち": 1.3898110032583986e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "United States (Hawaii) (Natural) - Hawaiian Kona",
+      "sample_count": 35
+    },
+    {
+      "id": "node_131",
+      "country": "United States (Hawaii)",
+      "method": "Washed / Wet",
+      "varieties": [
+        "Hawaiian Kona"
+      ],
+      "x": 4.291700839996338,
+      "y": 2.756014823913574,
+      "taste": {
+        "Aroma": 7.352222222222222,
+        "Flavor": 7.481111111111111,
+        "Aftertaste": 7.304444444444444,
+        "Acidity": 7.554444444444444,
+        "Body": 7.3999999999999995,
+        "Balance": 7.601111111111111
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.589880788342051e-308,
+        "☕ ボディ・コク重視": 2.349233758478818e-308,
+        "⚖️ マイルド・調和型": 1.2908318234654645e-308,
+        "🍋 風味・酸味際立ち": 6.464787955117224e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(30, 144, 255)",
+      "label": "United States (Hawaii) (Washed) - Hawaiian Kona",
+      "sample_count": 9
+    },
+    {
+      "id": "node_132",
+      "country": "United States (Puerto Rico)",
+      "method": "Washed / Wet",
+      "varieties": [],
+      "x": 8.186963081359863,
+      "y": 3.2903053760528564,
+      "taste": {
+        "Aroma": 7.6475,
+        "Flavor": 7.54,
+        "Aftertaste": 7.48,
+        "Acidity": 7.6025,
+        "Body": 7.665,
+        "Balance": 7.6475
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.910687034353532e-308,
+        "☕ ボディ・コク重視": 1.5100476764297703e-308,
+        "⚖️ マイルド・調和型": 5.973162286521639e-308,
+        "🍋 風味・酸味際立ち": 1.4093185035005814e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "United States (Puerto Rico) (Washed) - Other",
+      "sample_count": 4
+    },
+    {
+      "id": "node_133",
+      "country": "Vietnam",
+      "method": "Natural / Dry",
+      "varieties": [
+        "Catimor"
+      ],
+      "x": 8.401511192321777,
+      "y": 1.869394302368164,
+      "taste": {
+        "Aroma": 7.58,
+        "Flavor": 7.42,
+        "Aftertaste": 7.08,
+        "Acidity": 7.33,
+        "Body": 7.58,
+        "Balance": 8.58
+      },
+      "dominant_cluster": "⚖️ マイルド・調和型",
+      "max_prob": 26.44524632178386,
+      "probs": {
+        "🌸 香り特化型": 0.014919564159874481,
+        "☕ ボディ・コク重視": 0.020389485445196018,
+        "⚖️ マイルド・調和型": 0.2644524632178386,
+        "🍋 風味・酸味際立ち": 0.01573892275808769,
+        "ノイズ (独自路線)": 0.4367051562822881
+      },
+      "color": "rgb(183, 168, 198)",
+      "label": "Vietnam (Natural) - Catimor",
+      "sample_count": 1
+    },
+    {
+      "id": "node_134",
+      "country": "Vietnam",
+      "method": "Natural / Dry",
+      "varieties": [],
+      "x": 9.260384559631348,
+      "y": 4.95248556137085,
+      "taste": {
+        "Aroma": 7.67,
+        "Flavor": 7.665,
+        "Aftertaste": 7.17,
+        "Acidity": 7.33,
+        "Body": 7.875,
+        "Balance": 7.25
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 45.23619125118464,
+      "probs": {
+        "🌸 香り特化型": 0.046621327199354426,
+        "☕ ボディ・コク重視": 0.023085725640709123,
+        "⚖️ マイルド・調和型": 0.05427680911993766,
+        "🍋 風味・酸味際立ち": 0.022990238706475503,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(199, 155, 121)",
+      "label": "Vietnam (Natural) - Other",
+      "sample_count": 2
+    },
+    {
+      "id": "node_135",
+      "country": "Vietnam",
+      "method": "Other",
+      "varieties": [
+        "Catimor"
+      ],
+      "x": 7.495440483093262,
+      "y": 3.4385249614715576,
+      "taste": {
+        "Aroma": 7.42,
+        "Flavor": 7.25,
+        "Aftertaste": 7.25,
+        "Acidity": 7.58,
+        "Body": 7.42,
+        "Balance": 7.33
+      },
+      "dominant_cluster": "☕ ボディ・コク重視",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 2.2182260541816616e-308,
+        "☕ ボディ・コク重視": 1.6445332429091294e-308,
+        "⚖️ マイルド・調和型": 4.113289473462203e-308,
+        "🍋 風味・酸味際立ち": 1.627224454843959e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(255, 161, 90)",
+      "label": "Vietnam (Other) - Catimor",
+      "sample_count": 1
+    },
+    {
+      "id": "node_136",
+      "country": "Vietnam",
+      "method": "Other",
+      "varieties": [
+        "Caturra"
+      ],
+      "x": 5.528745651245117,
+      "y": 4.666065692901611,
+      "taste": {
+        "Aroma": 7.75,
+        "Flavor": 7.67,
+        "Aftertaste": 7.58,
+        "Acidity": 7.58,
+        "Body": 7.42,
+        "Balance": 7.67
+      },
+      "dominant_cluster": "🌸 香り特化型",
+      "max_prob": 58.90482304849512,
+      "probs": {
+        "🌸 香り特化型": 0.05894076462464054,
+        "☕ ボディ・コク重視": 0.015578007419438695,
+        "⚖️ マイルド・調和型": 0.016857504607504608,
+        "🍋 風味・酸味際立ち": 0.020882741433420404,
+        "ノイズ (独自路線)": 0.007696567574020041
+      },
+      "color": "rgb(181, 197, 142)",
+      "label": "Vietnam (Other) - Caturra",
+      "sample_count": 1
+    },
+    {
+      "id": "node_137",
+      "country": "Vietnam",
+      "method": "Other",
+      "varieties": [],
+      "x": 5.834842205047607,
+      "y": 2.3085153102874756,
+      "taste": {
+        "Aroma": 7.25,
+        "Flavor": 7.58,
+        "Aftertaste": 7.5,
+        "Acidity": 7.42,
+        "Body": 7.75,
+        "Balance": 7.42
+      },
+      "dominant_cluster": "🍋 風味・酸味際立ち",
+      "max_prob": 100.0,
+      "probs": {
+        "🌸 香り特化型": 1.5814117115557755e-308,
+        "☕ ボディ・コク重視": 2.9373765663903484e-308,
+        "⚖️ マイルド・調和型": 2.0301220063066455e-308,
+        "🍋 風味・酸味際立ち": 3.1677479184364333e-308,
+        "ノイズ (独自路線)": 0.0
+      },
+      "color": "rgb(254, 203, 82)",
+      "label": "Vietnam (Other) - Other",
+      "sample_count": 1
+    }
+  ],
+  "clusters": [
+    {
+      "name": "☕ ボディ・コク重視",
+      "description": "：口当たりが重厚で、心地よい苦味やコクが続くタイプ",
+      "color": "#00CC96"
+    },
+    {
+      "name": "⚖️ マイルド・調和型",
+      "description": "：酸味・苦味の調和が取れた、すっきりプレーンなタイプ",
+      "color": "#AB63FA"
+    },
+    {
+      "name": "🌸 香り特化型",
+      "description": "：ドリップした瞬間の華やかなアロマが際立つタイプ",
+      "color": "#EF553B"
+    },
+    {
+      "name": "🍋 風味・酸味際立ち",
+      "description": "：フルーティーで爽やかな酸味や果実感が広がるタイプ",
+      "color": "#19D3F3"
+    }
+  ]
+}
