@@ -15,10 +15,10 @@ const CoffeeChart = ({
   const [offsetY, setOffsetY] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  const [activeClusters, setActiveClusters] = useState([]); // Empty = show all
+  const [activeClusters, setActiveClusters] = useState([]);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
 
-  // Reset filters and viewport when node dataset changes
+  // Reset viewport when data changes
   useEffect(() => {
     setScale(1);
     setOffsetX(0);
@@ -40,23 +40,22 @@ const CoffeeChart = ({
     return { minX, maxX, minY, maxY, xRange, yRange };
   }, [nodes]);
 
-  // Fixed SVG viewport dimensions
+  // Viewport dimensions
   const width = 800;
   const height = 550;
-  const padding = 40;
+  const padding = 50;
 
-  // Map data coordinates to base SVG viewport coordinates (unzoomed)
+  // Base coordinates mapping (unzoomed)
   const getBaseCoords = (x, y) => {
     const normX = (x - bounds.minX) / bounds.xRange;
     const normY = (y - bounds.minY) / bounds.yRange;
     
-    // Fit into width and height with padding
     const svgX = padding + normX * (width - 2 * padding);
-    const svgY = height - (padding + normY * (height - 2 * padding)); // Invert Y for screen space
+    const svgY = height - (padding + normY * (height - 2 * padding)); // Invert Y
     return { x: svgX, y: svgY };
   };
 
-  // Map data coordinates to current zoomed/panned SVG coordinates
+  // Zoomed coordinates mapping
   const getZoomCoords = (x, y) => {
     const base = getBaseCoords(x, y);
     return {
@@ -65,9 +64,9 @@ const CoffeeChart = ({
     };
   };
 
-  // Pan handlers
+  // Drag handlers
   const handleMouseDown = (e) => {
-    if (e.button !== 0) return; // Only left click drag
+    if (e.button !== 0) return;
     setIsDragging(true);
     setDragStart({ x: e.clientX - offsetX, y: e.clientY - offsetY });
   };
@@ -78,10 +77,8 @@ const CoffeeChart = ({
       setOffsetY(e.clientY - dragStart.y);
     }
 
-    // Update tooltip position if hovering
     if (hoveredNode && svgRef.current) {
       const rect = svgRef.current.getBoundingClientRect();
-      // Offset tooltip a bit to the top right of cursor
       setTooltipPos({
         x: e.clientX - rect.left + 15,
         y: e.clientY - rect.top - 15,
@@ -93,21 +90,18 @@ const CoffeeChart = ({
     setIsDragging(false);
   };
 
-  // Zoom handler (centered at cursor)
+  // Zoom centered at cursor
   const handleWheel = (e) => {
     e.preventDefault();
     const zoomFactor = 1.15;
     let nextScale = e.deltaY < 0 ? scale * zoomFactor : scale / zoomFactor;
-    
-    // Limits
-    nextScale = Math.max(0.6, Math.min(nextScale, 15));
+    nextScale = Math.max(0.5, Math.min(nextScale, 15));
     
     if (svgRef.current) {
       const rect = svgRef.current.getBoundingClientRect();
       const mouseX = e.clientX - rect.left;
       const mouseY = e.clientY - rect.top;
 
-      // Keep coordinates under cursor stable
       const nextOffsetX = mouseX - (mouseX - offsetX) * (nextScale / scale);
       const nextOffsetY = mouseY - (mouseY - offsetY) * (nextScale / scale);
 
@@ -117,32 +111,59 @@ const CoffeeChart = ({
     }
   };
 
-  // Double click reset
-  const handleDoubleClick = () => {
+  const handleHomeClick = () => {
     setScale(1);
     setOffsetX(0);
     setOffsetY(0);
   };
 
-  // Toggle cluster filter
-  const handleLegendClick = (clusterName) => {
-    setActiveClusters((prev) => {
-      if (prev.includes(clusterName)) {
-        // If it's already selected, remove it
-        const next = prev.filter((c) => c !== clusterName);
-        return next;
-      } else {
-        // Add to active filters
-        return [...prev, clusterName];
-      }
+  const handleZoomIn = () => {
+    setScale((prev) => Math.min(prev * 1.2, 15));
+  };
+
+  const handleZoomOut = () => {
+    setScale((prev) => Math.max(prev / 1.2, 0.5));
+  };
+
+  // Compute cluster background clouds
+  const clusterClouds = useMemo(() => {
+    const clouds = [];
+    clusters.forEach((cluster) => {
+      if (cluster.name === "ノイズ (独自路線)") return;
+
+      const clusterNodes = nodes.filter((n) => n.dominant_cluster === cluster.name);
+      if (clusterNodes.length < 2) return;
+
+      // Center
+      const sumX = clusterNodes.reduce((acc, n) => acc + n.x, 0);
+      const sumY = clusterNodes.reduce((acc, n) => acc + n.y, 0);
+      const centerX = sumX / clusterNodes.length;
+      const centerY = sumY / clusterNodes.length;
+
+      // Base Radius as maximum distance from center
+      const maxDist = Math.max(
+        ...clusterNodes.map((n) => Math.sqrt((n.x - centerX) ** 2 + (n.y - centerY) ** 2))
+      );
+      const baseRadius = maxDist || 1.0;
+
+      // Project center to SVG zoomed coordinates
+      const screenCenter = getZoomCoords(centerX, centerY);
+
+      // Project right edge to calculate screen radius in pixels
+      const screenRight = getZoomCoords(centerX + baseRadius, centerY);
+      const screenRadius = Math.abs(screenRight.x - screenCenter.x) * 1.3 + 30; // 30px buffer
+
+      clouds.push({
+        name: cluster.name,
+        cx: screenCenter.x,
+        cy: screenCenter.y,
+        r: screenRadius,
+        color: cluster.color,
+      });
     });
-  };
+    return clouds;
+  }, [nodes, clusters, scale, offsetX, offsetY]);
 
-  const clearLegendFilters = () => {
-    setActiveClusters([]);
-  };
-
-  // Determine visibility and opacity for nodes
   const hasSelection = selectedIds.length > 0;
   const hasRecommendations = recommendedIds.length > 0;
   const hasActiveFilters = activeClusters.length > 0;
@@ -151,28 +172,23 @@ const CoffeeChart = ({
     return nodes.map((node) => {
       const isSelected = selectedIds.includes(node.id);
       const isRecommended = recommendedIds.includes(node.id);
-      
-      // Check cluster filter
       const matchesFilter = !hasActiveFilters || activeClusters.includes(node.dominant_cluster);
       
-      // Base coordinates
       const coords = getZoomCoords(node.x, node.y);
 
-      // Determine opacity
       let opacity = 0.85;
       if (hasActiveFilters && !matchesFilter) {
-        opacity = 0.05;
+        opacity = 0.03;
       } else if (hasSelection || hasRecommendations) {
         if (isSelected) opacity = 1.0;
         else if (isRecommended) opacity = 1.0;
-        else opacity = 0.15; // fade out others
+        else opacity = 0.15;
       }
 
-      // Determine size
-      let radius = 7.5;
-      if (isSelected) radius = 11;
-      else if (isRecommended) radius = 10;
-      else if (hoveredNode?.id === node.id) radius = 10;
+      let radius = 6.5;
+      if (isSelected) radius = 10;
+      else if (isRecommended) radius = 9;
+      else if (hoveredNode?.id === node.id) radius = 9;
 
       return {
         ...node,
@@ -187,62 +203,70 @@ const CoffeeChart = ({
     });
   }, [nodes, scale, offsetX, offsetY, selectedIds, recommendedIds, activeClusters, hoveredNode]);
 
-  return (
-    <div className="flex flex-col gap-3 w-full h-full bg-base-100/50 backdrop-blur-md border border-base-200 p-4 rounded-3xl shadow-xl">
-      <div className="flex justify-between items-center px-1">
-        <div>
-          <h3 className="text-md font-bold text-base-content/90 flex items-center gap-2">
-            ☕ フレーバーマップ (2D UMAP)
-          </h3>
-          <p className="text-[10px] text-base-content/50">
-            近い位置にある豆ほど風味が似ています。ドラッグで移動、スクロールで拡大、ダブルクリックでリセット。
-          </p>
-        </div>
-        <div className="flex gap-2">
-          {hasActiveFilters && (
-            <button
-              onClick={clearLegendFilters}
-              className="btn btn-ghost btn-xs text-[10px] py-0 h-6 min-h-0 text-primary"
-            >
-              フィルター解除
-            </button>
-          )}
-          <button
-            onClick={handleDoubleClick}
-            className="btn btn-outline btn-xs text-[10px] py-0 h-6 min-h-0 opacity-70 hover:opacity-100"
-          >
-            表示位置リセット
-          </button>
-        </div>
-      </div>
+  // Toggle legend filter
+  const handleLegendClick = (clusterName) => {
+    setActiveClusters((prev) =>
+      prev.includes(clusterName)
+        ? prev.filter((c) => c !== clusterName)
+        : [...prev, clusterName]
+    );
+  };
 
-      {/* SVG Canvas Container */}
-      <div className="relative w-full border border-base-200 rounded-2xl bg-base-300/10 overflow-hidden shadow-inner cursor-grab active:cursor-grabbing">
+  // Helper to draw a star
+  const drawStar = (cx, cy, r, color) => {
+    // 5-pointed star coordinates
+    return (
+      <g>
+        {/* White outline circle for contrast */}
+        <circle cx={cx} cy={cy} r={r + 3} fill="#2C2520" stroke="#FFF" strokeWidth="1" />
+        {/* Star path */}
+        <path
+          d={`M ${cx} ${cy - r} L ${cx + r * 0.22} ${cy - r * 0.3} L ${cx + r * 0.9} ${cy - r * 0.3} L ${cx + r * 0.35} ${cy + r * 0.1} L ${cx + r * 0.55} ${cy + r * 0.8} L ${cx} ${cy + r * 0.38} L ${cx - r * 0.55} ${cy + r * 0.8} L ${cx - r * 0.35} ${cy + r * 0.1} L ${cx - r * 0.9} ${cy - r * 0.3} L ${cx - r * 0.22} ${cy - r * 0.3} Z`}
+          fill="#FFF"
+          stroke="#FFF"
+          strokeWidth="0.5"
+          className="animate-star origin-center"
+        />
+      </g>
+    );
+  };
+
+  return (
+    <div className="relative w-full h-[550px] border border-brand-border rounded-3xl bg-white shadow-sm overflow-hidden flex flex-col select-none">
+      
+      {/* SVG Canvas with Grid background */}
+      <div className="absolute inset-0 map-grid bg-white cursor-grab active:cursor-grabbing">
         <svg
           ref={svgRef}
           width="100%"
-          height={height}
-          viewBox={`0 0 ${width} ${height}`}
+          height="100%"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
           onWheel={handleWheel}
-          onDoubleClick={handleDoubleClick}
-          className="select-none"
         >
-          {/* Subtle Grid Background */}
+          {/* SVG Blur Filter for Cluster Clouds */}
           <defs>
-            <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(255,255,255,0.03)" />
-              <stop offset="100%" stopColor="rgba(0,0,0,0)" />
-            </radialGradient>
+            <filter id="blur-filter" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="38" />
+            </filter>
           </defs>
-          <rect width={width} height={height} fill="url(#bgGlow)" />
 
-          {/* Background clusters outlines or lines could go here */}
+          {/* 1. Translucent cluster background blobs */}
+          {clusterClouds.map((cloud) => (
+            <circle
+              key={cloud.name}
+              cx={cloud.cx}
+              cy={cloud.cy}
+              r={cloud.r}
+              fill={cloud.color}
+              opacity="0.13"
+              filter="url(#blur-filter)"
+            />
+          ))}
 
-          {/* Render regular/non-highlighted nodes first */}
+          {/* 2. Regular nodes (not selected or recommended) */}
           {renderedNodes
             .filter((n) => !n.isSelected && !n.isRecommended)
             .map((node) => (
@@ -253,27 +277,26 @@ const CoffeeChart = ({
                 r={node.radius}
                 fill={node.color}
                 opacity={node.opacity}
-                className="transition-all duration-300 ease-out cursor-pointer stroke-white/40 hover:stroke-white hover:stroke-[2px]"
-                onMouseEnter={(e) => setHoveredNode(node)}
+                className="transition-all duration-300 ease-out cursor-pointer stroke-white/60 hover:stroke-white hover:stroke-[2px] shadow-sm"
+                onMouseEnter={() => setHoveredNode(node)}
                 onMouseLeave={() => setHoveredNode(null)}
                 onClick={() => onNodeClick(node)}
               />
             ))}
 
-          {/* Render recommended nodes next (glow ring + circle) */}
+          {/* 3. Recommended nodes (pulsing colored outer ring) */}
           {renderedNodes
             .filter((n) => n.isRecommended)
             .map((node) => (
               <g key={node.id} className="cursor-pointer" onClick={() => onNodeClick(node)}>
-                {/* Glowing ring animation */}
                 <circle
                   cx={node.cx}
                   cy={node.cy}
                   r={node.radius + 6}
                   fill="none"
                   stroke={node.color}
-                  strokeWidth="2.5"
-                  opacity={node.opacity * 0.75}
+                  strokeWidth="2"
+                  opacity={node.opacity * 0.6}
                   className="animate-pulse"
                 />
                 <circle
@@ -282,138 +305,140 @@ const CoffeeChart = ({
                   r={node.radius}
                   fill={node.color}
                   opacity={node.opacity}
-                  stroke="#fff"
-                  strokeWidth="2.5"
-                  className="transition-all duration-300 ease-out hover:stroke-[3.5px] shadow-lg"
-                  onMouseEnter={(e) => setHoveredNode(node)}
+                  stroke="#FFF"
+                  strokeWidth="2"
+                  className="transition-all duration-300 ease-out hover:stroke-[3px]"
+                  onMouseEnter={() => setHoveredNode(node)}
                   onMouseLeave={() => setHoveredNode(null)}
                 />
               </g>
             ))}
 
-          {/* Render selected nodes on top (gold star/marker or thick white ring) */}
+          {/* 4. Selected nodes (Star marker) */}
           {renderedNodes
             .filter((n) => n.isSelected)
             .map((node) => (
-              <g key={node.id} className="cursor-pointer" onClick={() => onNodeClick(node)}>
-                {/* Double bold ring for selected items */}
-                <circle
-                  cx={node.cx}
-                  cy={node.cy}
-                  r={node.radius + 5}
-                  fill="none"
-                  stroke="#fff"
-                  strokeWidth="2.5"
-                  opacity={node.opacity}
-                />
-                <circle
-                  cx={node.cx}
-                  cy={node.cy}
-                  r={node.radius + 2}
-                  fill="none"
-                  stroke={node.color}
-                  strokeWidth="2"
-                  opacity={node.opacity}
-                />
-                <circle
-                  cx={node.cx}
-                  cy={node.cy}
-                  r={node.radius}
-                  fill={node.color}
-                  opacity={node.opacity}
-                  stroke="#fff"
-                  strokeWidth="2.5"
-                  onMouseEnter={(e) => setHoveredNode(node)}
-                  onMouseLeave={() => setHoveredNode(null)}
-                />
+              <g
+                key={node.id}
+                className="cursor-pointer"
+                onClick={() => onNodeClick(node)}
+                onMouseEnter={() => setHoveredNode(node)}
+                onMouseLeave={() => setHoveredNode(null)}
+              >
+                {drawStar(node.cx, node.cy, node.radius, node.color)}
               </g>
             ))}
 
-          {/* Interactive Floating Tooltip inside SVG */}
+          {/* Floating Tooltip inside SVG */}
           {hoveredNode && (
             <foreignObject
               x={tooltipPos.x}
               y={tooltipPos.y}
-              width="240"
-              height="180"
+              width="220"
+              height="160"
               className="pointer-events-none overflow-visible z-50"
             >
-              <div className="p-3 bg-base-100/95 backdrop-blur-md border border-base-200/80 rounded-2xl shadow-2xl text-[10px] text-base-content flex flex-col gap-1.5 w-[230px] font-sans transition-opacity duration-200">
-                <div className="flex justify-between items-start gap-1">
-                  <span className="font-bold text-xs leading-tight text-base-content/90">
-                    {hoveredNode.label}
-                  </span>
-                  <span
-                    className="badge text-[8px] px-1.5 py-0 h-4 leading-none font-bold border-none"
-                    style={{
-                      backgroundColor: hoveredNode.color,
-                      color: "#fff",
-                      textShadow: "0px 1px 2px rgba(0,0,0,0.2)",
-                    }}
-                  >
-                    {hoveredNode.dominant_cluster.split(" ")[1] || "ノイズ"}
-                  </span>
+              <div className="p-3.5 bg-brand-text/95 backdrop-blur-md rounded-2xl shadow-xl text-[10px] text-white flex flex-col gap-1 w-[200px] font-sans">
+                <div className="font-bold text-xs leading-tight">
+                  {hoveredNode.label.split(" - ")[0]}
                 </div>
-                
-                {hoveredNode.varieties && hoveredNode.varieties.length > 0 && (
-                  <div className="text-[9px] text-base-content/60 leading-tight">
-                    <span className="font-semibold">品種:</span> {hoveredNode.varieties.join(", ")}
+                {hoveredNode.label.split(" - ")[1] && (
+                  <div className="text-[9px] opacity-75 leading-tight mt-0.5">
+                    品種: {hoveredNode.label.split(" - ")[1]}
                   </div>
                 )}
-                
-                <div className="divider my-0 opacity-20"></div>
-                
-                <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-[9px]">
-                  <div>🌸 香り: <span className="font-bold">{hoveredNode.taste.Aroma.toFixed(2)}</span></div>
-                  <div>🍋 酸味: <span className="font-bold">{hoveredNode.taste.Acidity.toFixed(2)}</span></div>
-                  <div>☕ コク: <span className="font-bold">{hoveredNode.taste.Body.toFixed(2)}</span></div>
-                  <div>🌿 風味: <span className="font-bold">{hoveredNode.taste.Flavor.toFixed(2)}</span></div>
-                  <div>🍃 後味: <span className="font-bold">{hoveredNode.taste.Aftertaste.toFixed(2)}</span></div>
-                  <div>⚖️ 均整: <span className="font-bold">{hoveredNode.taste.Balance.toFixed(2)}</span></div>
+                <div className="text-[9px] opacity-60 leading-none mt-0.5">
+                  精製方法: {hoveredNode.method}
                 </div>
-
-                <div className="divider my-0 opacity-20"></div>
-
-                <div className="text-[8px] opacity-75">
-                  <span className="font-semibold text-primary">最大確率:</span>{" "}
-                  {hoveredNode.dominant_cluster}: {hoveredNode.max_prob.toFixed(1)}%
-                </div>
+                
+                {hoveredNode.isSelected && (
+                  <div className="mt-1.5 flex items-center gap-1.5 text-[9px] font-semibold text-[#D4A373]">
+                    <span>★</span> あなたが飲んだ豆
+                  </div>
+                )}
               </div>
             </foreignObject>
           )}
         </svg>
       </div>
 
-      {/* Cluster Legends Panel */}
-      <div className="flex flex-wrap gap-2 px-1 justify-center">
-        {clusters.map((cluster) => {
-          const isActive = activeClusters.includes(cluster.name);
-          const isFilterActive = activeClusters.length > 0;
-          return (
-            <button
-              key={cluster.name}
-              onClick={() => handleLegendClick(cluster.name)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-semibold border transition-all shadow-sm ${
-                isActive
-                  ? "bg-primary/10 border-primary text-primary"
-                  : isFilterActive
-                  ? "bg-base-200/40 border-base-200/50 opacity-40 text-base-content/40 hover:opacity-75"
-                  : "bg-base-200/70 border-base-300/80 hover:bg-base-200 hover:border-base-400 text-base-content/80"
-              }`}
-            >
-              <span
-                className="w-2.5 h-2.5 rounded-full inline-block border border-white/20"
-                style={{ backgroundColor: cluster.color }}
-              ></span>
-              <span>
-                {cluster.name}
-                <span className="font-normal opacity-70">
-                  {cluster.description.split("：")[1]}
-                </span>
-              </span>
-            </button>
-          );
-        })}
+      {/* Floating Overlay 1: Cluster Legend (Top Left) */}
+      <div className="absolute top-4 left-4 z-10 p-4 rounded-2xl bg-white/90 backdrop-blur-md border border-brand-border/60 shadow-sm max-w-[210px] text-left">
+        <h4 className="text-[10px] font-bold text-brand-text/60 tracking-wider uppercase mb-2">
+          クラスター（味わいの傾向）
+        </h4>
+        <div className="flex flex-col gap-1.5 max-h-[220px] overflow-y-auto pr-1 scrollbar-thin">
+          {clusters.map((cluster) => {
+            const isActive = activeClusters.includes(cluster.name);
+            const displayClusterName = cluster.name.split(" ")[1] || "その他";
+            return (
+              <button
+                key={cluster.name}
+                onClick={() => handleLegendClick(cluster.name)}
+                className={`flex items-center gap-2 text-[11px] font-medium transition-all ${
+                  isActive 
+                    ? "opacity-30 line-through text-brand-text/40" 
+                    : "text-brand-text/80 hover:text-brand-primary"
+                }`}
+              >
+                <span
+                  className="w-2.5 h-2.5 rounded-full inline-block shrink-0 border border-white/20"
+                  style={{ backgroundColor: cluster.color }}
+                ></span>
+                <span className="truncate">{displayClusterName}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Floating Overlay 2: Instructions (Bottom Left) */}
+      <div className="absolute bottom-4 left-4 z-10 p-3 rounded-2xl bg-white/80 backdrop-blur-md border border-brand-border/40 shadow-sm text-left max-w-[250px]">
+        <h5 className="text-[10px] font-bold text-brand-text/80 mb-0.5">マップの見方</h5>
+        <p className="text-[9px] text-brand-text/50 leading-relaxed">
+          近い位置にある豆は、味わいの特徴が似ていることを表します
+        </p>
+      </div>
+
+      {/* Floating Overlay 3: Controls Panel (Right Middle) */}
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-1.5 p-1 rounded-2xl bg-white/90 backdrop-blur-md border border-brand-border/60 shadow-sm">
+        <button
+          onClick={handleHomeClick}
+          className="btn btn-ghost btn-circle btn-xs h-7 w-7 min-h-0 text-brand-text/60 hover:text-brand-primary"
+          title="初期位置"
+        >
+          🏠
+        </button>
+        <button
+          onClick={handleHomeClick}
+          className="btn btn-ghost btn-circle btn-xs h-7 w-7 min-h-0 text-brand-text/60 hover:text-brand-primary text-[10px] font-bold"
+          title="全表示"
+        >
+          ⤢
+        </button>
+        <div className="w-4 h-[1px] bg-brand-border/60 mx-auto"></div>
+        <button
+          onClick={handleZoomIn}
+          className="btn btn-ghost btn-circle btn-xs h-7 w-7 min-h-0 text-brand-text/60 hover:text-brand-primary font-bold text-sm"
+          title="拡大"
+        >
+          ＋
+        </button>
+        <button
+          onClick={handleZoomOut}
+          className="btn btn-ghost btn-circle btn-xs h-7 w-7 min-h-0 text-brand-text/60 hover:text-brand-primary font-bold text-sm"
+          title="縮小"
+        >
+          －
+        </button>
+        <div className="w-4 h-[1px] bg-brand-border/60 mx-auto"></div>
+        <button
+          onClick={handleHomeClick}
+          className="btn btn-ghost btn-circle btn-xs h-7 w-7 min-h-0 text-brand-text/60 hover:text-brand-primary text-xs"
+          title="リセット"
+        >
+          🎯
+        </button>
       </div>
     </div>
   );

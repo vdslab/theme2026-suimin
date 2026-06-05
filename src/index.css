@@ -1,10 +1,20 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-/* Custom Scrollbar */
+@theme {
+  --color-brand-beige: #F8F6F2;
+  --color-brand-sidebar: #F2EFE9;
+  --color-brand-text: #2C2520;
+  --color-brand-primary: #8C6239;
+  --color-brand-primary-light: #F0E6DD;
+  --color-brand-border: #E4DFD5;
+  --color-brand-shadow: rgba(139, 90, 43, 0.04);
+}
+
+/* Custom Scrollbar for sidebars and lists */
 .scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
@@ -12,23 +22,43 @@
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: var(--color-base-300, #c0c0c0);
-  border-radius: 4px;
+  background: #E0DCD3;
+  border-radius: 99px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: var(--color-base-content, #888);
-  opacity: 0.5;
+  background: #C8C2B7;
 }
 
-/* Glowing animation keyframe override/extension if needed */
-@keyframes borderPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.3;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 0.8;
-  }
+/* Glassmorphism overlays */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(228, 223, 213, 0.6);
+}
+
+.dark-glass {
+  background: rgba(44, 37, 32, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Star pulse animation for selected nodes */
+@keyframes starPulse {
+  0% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.15) rotate(180deg); opacity: 0.9; }
+  100% { transform: scale(1) rotate(360deg); opacity: 1; }
+}
+
+.animate-star {
+  animation: starPulse 6s infinite linear;
+}
+
+/* Map background grid */
+.map-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(228, 223, 213, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(228, 223, 213, 0.25) 1px, transparent 1px);
 }

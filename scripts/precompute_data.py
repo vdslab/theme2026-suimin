@@ -26,6 +26,10 @@ def process_coffee_data(csv_path, group_cols, output_path):
     # Perform grouping
     grouped = df_filtered.groupby(group_cols)[taste_cols].mean().reset_index()
     
+    # Add mean altitude
+    altitudes = df_filtered.groupby(group_cols)['altitude_mean_meters'].mean().reset_index()
+    grouped = pd.merge(grouped, altitudes, on=group_cols)
+    
     # Add count of samples in each group
     group_sizes = df_filtered.groupby(group_cols).size().reset_index(name='sample_count')
     grouped = pd.merge(grouped, group_sizes, on=group_cols)
@@ -152,11 +156,15 @@ def process_coffee_data(csv_path, group_cols, output_path):
         
         taste_dict = {col: float(row[col]) for col in taste_cols}
         
+        mean_alt = row['altitude_mean_meters']
+        altitude_text = f"{int(mean_alt):,}m" if pd.notna(mean_alt) and mean_alt > 0 else "1,200m - 1,800m"
+        
         node = {
             "id": f"node_{i}",
             "country": str(row['country']),
             "method": str(row['method']),
             "varieties": [v for v in row['varieties'] if v != 'nan' and str(v) != 'None' and str(v) != 'Other'],
+            "altitude": altitude_text,
             "x": float(row['UMAP_X']),
             "y": float(row['UMAP_Y']),
             "taste": taste_dict,
