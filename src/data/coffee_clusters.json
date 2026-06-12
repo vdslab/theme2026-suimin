@@ -11,7 +11,7 @@
     "Label":"Brazil (Natural)",
     "UMAP_X":-2.4567637444,
     "UMAP_Y":7.2221775055,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Brazil",
@@ -25,7 +25,7 @@
     "Label":"Brazil (Pulped natural)",
     "UMAP_X":-2.964402914,
     "UMAP_Y":7.9513611794,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Brazil",
@@ -39,7 +39,7 @@
     "Label":"Brazil (Semi-washed)",
     "UMAP_X":-1.6591078043,
     "UMAP_Y":8.062620163,
-    "Cluster_Name":"⚖️ マイルド・調和型 (Cluster 2)"
+    "Cluster_Name":"マイルド・調和型 (C2)"
   },
   {
     "Country.of.Origin":"Brazil",
@@ -53,7 +53,7 @@
     "Label":"Brazil (Washed)",
     "UMAP_X":-2.8030765057,
     "UMAP_Y":6.8681750298,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"China",
@@ -67,7 +67,7 @@
     "Label":"China (Natural)",
     "UMAP_X":-1.1629695892,
     "UMAP_Y":8.0261163712,
-    "Cluster_Name":"⚖️ マイルド・調和型 (Cluster 2)"
+    "Cluster_Name":"マイルド・調和型 (C2)"
   },
   {
     "Country.of.Origin":"China",
@@ -81,7 +81,7 @@
     "Label":"China (Washed)",
     "UMAP_X":-3.4730551243,
     "UMAP_Y":7.4581222534,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Colombia",
@@ -95,7 +95,7 @@
     "Label":"Colombia (Natural)",
     "UMAP_X":-0.1497541517,
     "UMAP_Y":6.1305265427,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Colombia",
@@ -109,7 +109,7 @@
     "Label":"Colombia (Washed)",
     "UMAP_X":-0.2696223557,
     "UMAP_Y":6.6537799835,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Costa Rica",
@@ -123,7 +123,7 @@
     "Label":"Costa Rica (Washed)",
     "UMAP_X":1.1341542006,
     "UMAP_Y":6.5392093658,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"El Salvador",
@@ -137,7 +137,7 @@
     "Label":"El Salvador (Washed)",
     "UMAP_X":-0.2013554424,
     "UMAP_Y":6.3989806175,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Ethiopia",
@@ -151,7 +151,7 @@
     "Label":"Ethiopia (Natural)",
     "UMAP_X":-3.9334847927,
     "UMAP_Y":7.725587368,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Ethiopia",
@@ -165,7 +165,7 @@
     "Label":"Ethiopia (Washed)",
     "UMAP_X":-4.1042428017,
     "UMAP_Y":8.4117183685,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Guatemala",
@@ -179,7 +179,7 @@
     "Label":"Guatemala (Natural)",
     "UMAP_X":-1.9647397995,
     "UMAP_Y":8.3315286636,
-    "Cluster_Name":"⚖️ マイルド・調和型 (Cluster 2)"
+    "Cluster_Name":"マイルド・調和型 (C2)"
   },
   {
     "Country.of.Origin":"Guatemala",
@@ -193,7 +193,7 @@
     "Label":"Guatemala (Washed)",
     "UMAP_X":-3.2517049313,
     "UMAP_Y":6.1502432823,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Haiti",
@@ -207,7 +207,7 @@
     "Label":"Haiti (Washed)",
     "UMAP_X":0.6937545538,
     "UMAP_Y":6.2043657303,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Honduras",
@@ -221,7 +221,7 @@
     "Label":"Honduras (Natural)",
     "UMAP_X":-3.6565306187,
     "UMAP_Y":6.7372436523,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Honduras",
@@ -235,7 +235,7 @@
     "Label":"Honduras (Washed)",
     "UMAP_X":-3.5735378265,
     "UMAP_Y":6.5088715553,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"India",
@@ -249,7 +249,7 @@
     "Label":"India (Natural)",
     "UMAP_X":-0.4412273467,
     "UMAP_Y":7.2021713257,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"India",
@@ -263,7 +263,7 @@
     "Label":"India (Washed)",
     "UMAP_X":-0.9239737391,
     "UMAP_Y":6.0403618813,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Indonesia",
@@ -277,7 +277,7 @@
     "Label":"Indonesia (Other)",
     "UMAP_X":-0.3591852188,
     "UMAP_Y":5.4759430885,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Indonesia",
@@ -291,7 +291,7 @@
     "Label":"Indonesia (Semi-washed)",
     "UMAP_X":-2.6525650024,
     "UMAP_Y":6.1747937202,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Indonesia",
@@ -305,7 +305,7 @@
     "Label":"Indonesia (Washed)",
     "UMAP_X":2.8087887764,
     "UMAP_Y":5.5810813904,
-    "Cluster_Name":"🌸 香り特化型 (Cluster 0)"
+    "Cluster_Name":"香り特化型 (C0)"
   },
   {
     "Country.of.Origin":"Kenya",
@@ -319,7 +319,7 @@
     "Label":"Kenya (Washed)",
     "UMAP_X":-3.4311585426,
     "UMAP_Y":8.4514484406,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Laos",
@@ -333,7 +333,7 @@
     "Label":"Laos (Washed)",
     "UMAP_X":-1.2580850124,
     "UMAP_Y":8.0880432129,
-    "Cluster_Name":"⚖️ マイルド・調和型 (Cluster 2)"
+    "Cluster_Name":"マイルド・調和型 (C2)"
   },
   {
     "Country.of.Origin":"Malawi",
@@ -347,7 +347,7 @@
     "Label":"Malawi (Washed)",
     "UMAP_X":2.5522248745,
     "UMAP_Y":5.6898188591,
-    "Cluster_Name":"🌸 香り特化型 (Cluster 0)"
+    "Cluster_Name":"香り特化型 (C0)"
   },
   {
     "Country.of.Origin":"Mexico",
@@ -361,7 +361,7 @@
     "Label":"Mexico (Natural)",
     "UMAP_X":-3.7771632671,
     "UMAP_Y":7.2273445129,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Mexico",
@@ -375,7 +375,7 @@
     "Label":"Mexico (Semi-washed)",
     "UMAP_X":-3.6675591469,
     "UMAP_Y":7.8482728004,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Mexico",
@@ -389,7 +389,7 @@
     "Label":"Mexico (Washed)",
     "UMAP_X":-3.6414108276,
     "UMAP_Y":6.2517209053,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Myanmar",
@@ -403,7 +403,7 @@
     "Label":"Myanmar (Washed)",
     "UMAP_X":-4.2942814827,
     "UMAP_Y":8.6266689301,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Nicaragua",
@@ -417,7 +417,7 @@
     "Label":"Nicaragua (Natural)",
     "UMAP_X":-0.8781044483,
     "UMAP_Y":5.495721817,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Nicaragua",
@@ -431,7 +431,7 @@
     "Label":"Nicaragua (Other)",
     "UMAP_X":2.9421229362,
     "UMAP_Y":5.6047859192,
-    "Cluster_Name":"🌸 香り特化型 (Cluster 0)"
+    "Cluster_Name":"香り特化型 (C0)"
   },
   {
     "Country.of.Origin":"Nicaragua",
@@ -445,7 +445,7 @@
     "Label":"Nicaragua (Washed)",
     "UMAP_X":-0.5813422799,
     "UMAP_Y":5.2161502838,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Peru",
@@ -459,7 +459,7 @@
     "Label":"Peru (Washed)",
     "UMAP_X":-2.026465416,
     "UMAP_Y":6.2293925285,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Philippines",
@@ -473,7 +473,7 @@
     "Label":"Philippines (Washed)",
     "UMAP_X":0.8805392385,
     "UMAP_Y":6.7166962624,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Taiwan",
@@ -487,7 +487,7 @@
     "Label":"Taiwan (Natural)",
     "UMAP_X":-2.3196909428,
     "UMAP_Y":6.6260156631,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Taiwan",
@@ -501,7 +501,7 @@
     "Label":"Taiwan (Other)",
     "UMAP_X":-0.8337211013,
     "UMAP_Y":7.7761893272,
-    "Cluster_Name":"⚖️ マイルド・調和型 (Cluster 2)"
+    "Cluster_Name":"マイルド・調和型 (C2)"
   },
   {
     "Country.of.Origin":"Taiwan",
@@ -515,7 +515,7 @@
     "Label":"Taiwan (Semi-washed)",
     "UMAP_X":0.2533753514,
     "UMAP_Y":5.9223866463,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Taiwan",
@@ -529,7 +529,7 @@
     "Label":"Taiwan (Washed)",
     "UMAP_X":2.5709233284,
     "UMAP_Y":5.271253109,
-    "Cluster_Name":"🌸 香り特化型 (Cluster 0)"
+    "Cluster_Name":"香り特化型 (C0)"
   },
   {
     "Country.of.Origin":"Tanzania, United Republic Of",
@@ -543,7 +543,7 @@
     "Label":"Tanzania, United Republic Of (Washed)",
     "UMAP_X":1.0190540552,
     "UMAP_Y":6.1230416298,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Thailand",
@@ -557,7 +557,7 @@
     "Label":"Thailand (Washed)",
     "UMAP_X":-3.581656456,
     "UMAP_Y":8.5758123398,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"Uganda",
@@ -571,7 +571,7 @@
     "Label":"Uganda (Natural)",
     "UMAP_X":2.7976901531,
     "UMAP_Y":5.7301893234,
-    "Cluster_Name":"🌸 香り特化型 (Cluster 0)"
+    "Cluster_Name":"香り特化型 (C0)"
   },
   {
     "Country.of.Origin":"Uganda",
@@ -585,7 +585,7 @@
     "Label":"Uganda (Washed)",
     "UMAP_X":2.6839380264,
     "UMAP_Y":5.3231987953,
-    "Cluster_Name":"🌸 香り特化型 (Cluster 0)"
+    "Cluster_Name":"香り特化型 (C0)"
   },
   {
     "Country.of.Origin":"United States",
@@ -599,7 +599,7 @@
     "Label":"United States (Natural)",
     "UMAP_X":1.5834829807,
     "UMAP_Y":6.0163722038,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"United States",
@@ -613,7 +613,7 @@
     "Label":"United States (Washed)",
     "UMAP_X":-4.2713508606,
     "UMAP_Y":8.5876579285,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   },
   {
     "Country.of.Origin":"United States (Hawaii)",
@@ -627,7 +627,7 @@
     "Label":"United States (Hawaii) (Natural)",
     "UMAP_X":-1.2637733221,
     "UMAP_Y":5.9637145996,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"United States (Hawaii)",
@@ -641,7 +641,7 @@
     "Label":"United States (Hawaii) (Washed)",
     "UMAP_X":-2.3570213318,
     "UMAP_Y":8.4702558517,
-    "Cluster_Name":"⚖️ マイルド・調和型 (Cluster 2)"
+    "Cluster_Name":"マイルド・調和型 (C2)"
   },
   {
     "Country.of.Origin":"United States (Puerto Rico)",
@@ -655,7 +655,7 @@
     "Label":"United States (Puerto Rico) (Washed)",
     "UMAP_X":-1.0590891838,
     "UMAP_Y":6.5128698349,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Vietnam",
@@ -669,7 +669,7 @@
     "Label":"Vietnam (Natural)",
     "UMAP_X":-0.6287382841,
     "UMAP_Y":6.8996477127,
-    "Cluster_Name":"☕ ボディ・コク重視 (Cluster 1)"
+    "Cluster_Name":"ボディ・コク重視 (C1)"
   },
   {
     "Country.of.Origin":"Vietnam",
@@ -683,6 +683,6 @@
     "Label":"Vietnam (Other)",
     "UMAP_X":-2.8397285938,
     "UMAP_Y":7.7308349609,
-    "Cluster_Name":"🍋 風味・酸味際立ち (Cluster 3)"
+    "Cluster_Name":"風味・酸味際立ち (C3)"
   }
 ]

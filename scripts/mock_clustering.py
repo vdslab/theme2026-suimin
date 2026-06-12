@@ -26,7 +26,7 @@ X_relative = X.div(row_means, axis=0)
 X_scaled = StandardScaler().fit_transform(X_relative)
 
 # ==========================================
-# 2. 【改善策】クラスタリング用の中次元空間の生成
+# 2. クラスタリング用の中次元空間の生成
 # ==========================================
 # 空間を歪めず（min_dist=0.0）、構造を維持しやすい3次元に圧縮
 cluster_mapper = umap.UMAP(
@@ -45,7 +45,7 @@ clusterer = hdbscan.HDBSCAN(min_cluster_size=4, min_samples=3)
 cluster_labels = clusterer.fit_predict(X_clusterable)
 
 # ==========================================
-# 4. 【可視化用】の2次元マップの生成
+# 4. 可視化用の2次元マップの生成
 # ==========================================
 # 人間が見やすいように、少し隙間（min_dist=0.1）をあけて2Dに展開
 visual_mapper = umap.UMAP(
@@ -59,18 +59,18 @@ X_2d = visual_mapper.fit_transform(X_scaled)
 grouped['UMAP_X'] = X_2d[:, 0]
 grouped['UMAP_Y'] = X_2d[:, 1]
 
-# クラスタ名の割り当て（最有力特徴量で命名）
+# クラスタ名の割り当て（最有力特徴量で命名、絵文字なし）
 cluster_names_map = {}
 for c in np.unique(cluster_labels):
     if c == -1:
-        cluster_names_map[c] = "⚪ ノイズ (独自路線)"
+        cluster_names_map[c] = "ノイズ (独自路線)"
     else:
         c_mean = X_relative[cluster_labels == c].mean()
         top = c_mean.idxmax()
-        if top == 'Aroma': name = f"🌸 香り特化型 (Cluster {c})"
-        elif top == 'Body': name = f"☕ ボディ・コク重視 (Cluster {c})"
-        elif top in ['Flavor', 'Acidity']: name = f"🍋 風味・酸味際立ち (Cluster {c})"
-        else: name = f"⚖️ マイルド・調和型 (Cluster {c})"
+        if top == 'Aroma': name = f"香り特化型 (C{c})"
+        elif top == 'Body': name = f"ボディ・コク重視 (C{c})"
+        elif top in ['Flavor', 'Acidity']: name = f"風味・酸味際立ち (C{c})"
+        else: name = f"マイルド・調和型 (C{c})"
         cluster_names_map[c] = name
 
 grouped['Cluster_Name'] = [cluster_names_map[l] for l in cluster_labels]
@@ -115,3 +115,4 @@ import os
 os.makedirs("src/data", exist_ok=True)
 grouped.to_json("src/data/coffee_clusters.json", orient="records", force_ascii=False, indent=2)
 print("[OK] src/data/coffee_clusters.json saved")
+

@@ -16,46 +16,26 @@ const coffeeData = rawData.map((item, index) => ({
   balance: item["Balance"],
 }));
 
-// クラスタごとの配色と日本語名
-const CLUSTERS = {
-  aroma: {
-    color: "#ec4899", // Pink
-    name: "🌸 香り特化型",
-    desc: "Aromaが特に際立っているコーヒー",
-    badge: "bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-900/30 dark:text-pink-300 dark:border-pink-800"
-  },
-  body: {
-    color: "#b45309", // Amber
-    name: "☕ ボディ・コク重視",
-    desc: "しっかりとしたコクと口当たりが特徴",
-    badge: "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-850"
-  },
-  flavor: {
-    color: "#d97706", // Orange/Yellow
-    name: "🍋 風味・酸味際立ち",
-    desc: "明るい酸味とフルーティな風味が特徴",
-    badge: "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-850"
-  },
-  mild: {
-    color: "#10b981", // Emerald
-    name: "⚖️ マイルド・調和型",
-    desc: "全体のバランスが良くマイルドな味わい",
-    badge: "bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800"
-  },
-  noise: {
-    color: "#9ca3af", // Gray
-    name: "⚪ ノイズ (独自路線)",
-    desc: "独自の風味プロファイルを持つ個性的な銘柄",
-    badge: "bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700"
-  }
-};
+// googlecolab_testcode.py のカラーパレット順に合わせた基準色をマッピング
+const HEX_PALETTE = ['#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880'];
 
-function getClusterKey(clusterName) {
-  if (clusterName.includes("香り")) return "aroma";
-  if (clusterName.includes("ボディ") || clusterName.includes("コク")) return "body";
-  if (clusterName.includes("風味") || clusterName.includes("酸味")) return "flavor";
-  if (clusterName.includes("マイルド") || clusterName.includes("調和")) return "mild";
-  return "noise";
+function getClusterColor(clusterName) {
+  if (!clusterName || clusterName.includes("ノイズ")) {
+    return "lightgrey";
+  }
+  // "🌸 香り特化型 (C0)" などの文字列からクラスタ番号(例: 0)を抽出
+  const match = clusterName.match(/\(C(\d+)\)/);
+  if (match) {
+    const idx = parseInt(match[1], 10);
+    return HEX_PALETTE[idx % HEX_PALETTE.length];
+  }
+  
+  // フォールバック
+  if (clusterName.includes("香り")) return "#EF553B";
+  if (clusterName.includes("ボディ") || clusterName.includes("コク")) return "#00CC96";
+  if (clusterName.includes("風味") || clusterName.includes("酸味")) return "#AB63FA";
+  if (clusterName.includes("マイルド") || clusterName.includes("調和")) return "#FFA15A";
+  return "lightgrey";
 }
 
 function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
@@ -120,25 +100,38 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
     setActiveCluster(prev => prev === clusterKey ? null : clusterKey);
   };
 
+  // ユニークなクラスタリスト（凡例用、googlecolab_testcode.pyと同様にソート）
+  const uniqueClustersInData = useMemo(() => {
+    const set = new Set();
+    coffeeData.forEach(d => set.add(d.Cluster_Name));
+    return Array.from(set).sort((a, b) => {
+      if (a.includes("ノイズ")) return 1;
+      if (b.includes("ノイズ")) return -1;
+      return a.localeCompare(b);
+    });
+  }, []);
+
   return (
     <div 
       ref={containerRef}
       className="relative flex flex-col h-[640px] rounded-2xl border border-base-300 bg-base-200 p-4 shadow-xl overflow-hidden"
     >
       {/* 凡例 & タイトル */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+      <div className="flex flex-col gap-2 mb-3">
         <div className="text-sm font-semibold text-base-content/80">
           凡例（クリックでハイライト選択）:
         </div>
         <div className="flex flex-wrap gap-2">
-          {Object.entries(CLUSTERS).map(([key, cluster]) => {
-            const isSelected = activeCluster === key;
+          {uniqueClustersInData.map((cName) => {
+            const isSelected = activeCluster === cName;
             const isDimmed = activeCluster !== null && !isSelected;
+            const cColor = getClusterColor(cName);
+            
             return (
               <button
-                key={key}
-                onClick={() => handleClusterClick(key)}
-                className={`badge badge-md cursor-pointer border transition-all duration-300 py-3 px-4 ${
+                key={cName}
+                onClick={() => handleClusterClick(cName)}
+                className={`badge badge-md cursor-pointer border transition-all duration-300 py-3 px-3 ${
                   isSelected 
                     ? "scale-105 shadow-md font-bold text-white" 
                     : isDimmed 
@@ -146,13 +139,13 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
                       : "hover:scale-105"
                 }`}
                 style={{
-                  backgroundColor: isSelected ? cluster.color : "transparent",
-                  borderColor: cluster.color,
-                  color: isSelected ? "#ffffff" : cluster.color
+                  backgroundColor: isSelected ? cColor : "transparent",
+                  borderColor: cColor,
+                  color: isSelected ? "#ffffff" : cColor
                 }}
               >
-                <span className="w-2.5 h-2.5 rounded-full mr-2" style={{ backgroundColor: isSelected ? "#ffffff" : cluster.color }} />
-                {cluster.name}
+                <span className="w-2.5 h-2.5 rounded-full mr-2" style={{ backgroundColor: isSelected ? "#ffffff" : cColor }} />
+                {cName}
               </button>
             );
           })}
@@ -197,23 +190,21 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
             );
           })}
 
-
           {/* プロット点の描画 */}
           {coffeeData.map((node) => {
-            const clusterKey = getClusterKey(node.Cluster_Name);
             const isSelected = selectedCoffee && selectedCoffee.name === node.name;
-            const isClusterFiltered = activeCluster !== null && activeCluster !== clusterKey;
+            const isClusterFiltered = activeCluster !== null && activeCluster !== node.Cluster_Name;
             
             // 透明度の決定
-            let opacity = 0.8;
-            if (clusterKey === "noise") opacity = 0.35;
+            let opacity = 0.85;
+            if (node.Cluster_Name.includes("ノイズ")) opacity = 0.45;
             if (activeCluster !== null) {
               opacity = isClusterFiltered ? 0.12 : 0.95;
             } else if (selectedCoffee) {
               opacity = isSelected ? 1.0 : 0.2;
             }
 
-            const colorInfo = CLUSTERS[clusterKey];
+            const baseColor = getClusterColor(node.Cluster_Name);
             const cx = xScale(node.UMAP_X);
             const cy = yScale(node.UMAP_Y);
             const r = isSelected ? 11 : hoveredNode?.id === node.id ? 9 : 6.5;
@@ -221,7 +212,13 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
             return (
               <g 
                 key={node.id}
-                onClick={() => onSelectCoffee(node)}
+                onClick={() => {
+                  if (selectedCoffee && selectedCoffee.id === node.id) {
+                    onSelectCoffee(null);
+                  } else {
+                    onSelectCoffee(node);
+                  }
+                }}
                 onMouseEnter={(e) => {
                   setHoveredNode(node);
                   handleMouseMove(e);
@@ -230,37 +227,25 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
                 onMouseLeave={() => setHoveredNode(null)}
                 className="cursor-pointer transition-all duration-300"
               >
-                {/* 選択中のパルス外輪 */}
-                {isSelected && (
-                  <circle
-                    cx={cx}
-                    cy={cy}
-                    r={r + 8}
-                    fill="none"
-                    stroke={colorInfo.color}
-                    strokeWidth={2}
-                    className="animate-ping opacity-60"
-                  />
-                )}
-                {/* 外枠（ホバー/選択時のハイライト用） */}
+                {/* 外枠（ホバー/選択時のハイライト用） - アニメーション(ping)は削除 */}
                 {(isSelected || hoveredNode?.id === node.id) && (
                   <circle
                     cx={cx}
                     cy={cy}
                     r={r + 3.5}
                     fill="none"
-                    stroke={isSelected ? "#ffffff" : colorInfo.color}
+                    stroke={isSelected ? "#ffffff" : baseColor}
                     strokeWidth={isSelected ? 2 : 1.5}
                     opacity={isSelected ? 1.0 : 0.6}
                   />
                 )}
-                {/* メインのドット */}
+                {/* メインのドット (原色表示) */}
                 <circle
                   cx={cx}
                   cy={cy}
                   r={r}
-                  fill={colorInfo.color}
-                  stroke={isSelected ? colorInfo.color : "#ffffff"}
+                  fill={baseColor}
+                  stroke={isSelected ? baseColor : "#ffffff"}
                   strokeWidth={isSelected ? 1.5 : 1}
                   opacity={opacity}
                   className="transition-all duration-300"
@@ -273,7 +258,7 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
         {/* ツールチップ（絶対配置） */}
         {hoveredNode && (
           <div 
-            className="absolute z-50 pointer-events-none w-72 rounded-xl border border-base-300 bg-base-100 p-4 shadow-2xl transition-all duration-100"
+            className="absolute z-50 pointer-events-none w-72 rounded-xl border border-base-300 bg-base-100 p-4 shadow-2xl transition-all duration-100 overflow-y-auto max-h-[460px]"
             style={{
               left: `${hoverPos.x}px`,
               top: `${hoverPos.y}px`,
@@ -282,20 +267,29 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
             }}
           >
             <div className="flex items-center justify-between mb-2">
-              <span className={`badge badge-sm font-semibold border ${CLUSTERS[getClusterKey(hoveredNode.Cluster_Name)].badge}`}>
-                {CLUSTERS[getClusterKey(hoveredNode.Cluster_Name)].name}
+              <span 
+                className="badge badge-sm font-semibold border text-white py-2 px-2"
+                style={{ 
+                  backgroundColor: getClusterColor(hoveredNode.Cluster_Name),
+                  borderColor: getClusterColor(hoveredNode.Cluster_Name)
+                }}
+              >
+                主要: {hoveredNode.Cluster_Name.split(" ")[0]}
               </span>
             </div>
             
             <h3 className="text-base font-bold text-base-content leading-tight">
               {hoveredNode.country}
             </h3>
-            <p className="text-xs text-base-content/60 mb-3">
+            <p className="text-xs text-base-content/60 mb-2">
               製法: {hoveredNode.method}
             </p>
 
-            {/* 味パラメータのプログレスバー表示 */}
-            <div className="space-y-1.5 border-t border-base-300/40 pt-2.5">
+            {/* 味パラメータ表示 */}
+            <div className="space-y-1.5 border-t border-base-300/40 pt-2">
+              <div className="text-[10px] font-bold text-base-content/50 uppercase tracking-wider mb-1">
+                味覚評価 (平均スコア)
+              </div>
               {[
                 { label: "香り (Aroma)", value: hoveredNode.aroma },
                 { label: "風味 (Flavor)", value: hoveredNode.flavor },
@@ -305,16 +299,15 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
                 { label: "調和 (Balance)", value: hoveredNode.balance },
               ].map((param) => (
                 <div key={param.label} className="text-xs">
-                  <div className="flex justify-between text-base-content/85 mb-0.5">
+                  <div className="flex justify-between text-base-content/80 mb-0.5">
                     <span>{param.label}</span>
                     <span className="font-semibold">{param.value.toFixed(2)}</span>
                   </div>
-                  <div className="w-full bg-base-300/40 rounded-full h-1.5 overflow-hidden">
+                  <div className="w-full bg-base-300/40 rounded-full h-1 overflow-hidden">
                     <div 
-                      className="h-full rounded-full transition-all duration-300"
+                      className="h-full rounded-full transition-all duration-300 bg-base-content/30"
                       style={{
                         width: `${Math.min(100, Math.max(0, ((param.value - 6.5) / 2.0) * 100))}%`, // 6.5〜8.5 を 0%〜100% としてスケーリング
-                        backgroundColor: CLUSTERS[getClusterKey(hoveredNode.Cluster_Name)].color
                       }}
                     />
                   </div>
@@ -329,4 +322,5 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
 }
 
 export default CoffeeMap;
+
 
