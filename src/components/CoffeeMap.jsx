@@ -239,12 +239,12 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
                     opacity={isSelected ? 1.0 : 0.6}
                   />
                 )}
-                {/* メインのドット (原色表示) */}
+                {/* メインのドット (ブレンドカラー表示) */}
                 <circle
                   cx={cx}
                   cy={cy}
                   r={r}
-                  fill={baseColor}
+                  fill={node.Blended_Color || baseColor}
                   stroke={isSelected ? baseColor : "#ffffff"}
                   strokeWidth={isSelected ? 1.5 : 1}
                   opacity={opacity}
@@ -285,6 +285,37 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
           <p className="text-xs text-base-content/60 mb-2">
             製法: {hoveredNode.method}
           </p>
+
+          {/* クラスタ所属確率のパーセント表示 */}
+          <div className="space-y-1.5 border-t border-base-300/40 pt-2 pb-2">
+            <div className="text-[10px] font-bold text-base-content/50 uppercase tracking-wider mb-1">
+              クラスタ所属確率
+            </div>
+            {Object.entries(hoveredNode.Probs || {}).map(([cName, prob]) => {
+              if (prob < 0.01) return null; // 1%未満は表示しない
+              const isNoise = cName === 'noise';
+              const displayName = isNoise ? 'ノイズ (独自路線)' : cName;
+              const cColor = getClusterColor(cName);
+              
+              return (
+                <div key={cName} className="text-xs">
+                  <div className="flex justify-between text-base-content/85 mb-0.5">
+                    <span className="truncate max-w-[190px]">{displayName}</span>
+                    <span className="font-semibold">{(prob * 100).toFixed(0)}%</span>
+                  </div>
+                  <div className="w-full bg-base-300/40 rounded-full h-1.5 overflow-hidden">
+                    <div 
+                      className="h-full rounded-full transition-all duration-300"
+                      style={{
+                        width: `${prob * 100}%`,
+                        backgroundColor: cColor
+                      }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
           {/* 味パラメータ表示 */}
           <div className="space-y-1.5 border-t border-base-300/40 pt-2">

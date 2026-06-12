@@ -4,6 +4,7 @@ import plotly.express as px
 import umap
 import hdbscan
 from sklearn.preprocessing import StandardScaler
+import matplotlib.colors as mcolors
 
 # ==========================================
 # 1. データの読み込みと前処理
@@ -41,8 +42,11 @@ X_clusterable = cluster_mapper.fit_transform(X_scaled)
 # 3. 中次元空間に対してHDBSCANを実行
 # ==========================================
 # 抽出された本質的な構造に対して密度を計算
-clusterer = hdbscan.HDBSCAN(min_cluster_size=4, min_samples=3)
+clusterer = hdbscan.HDBSCAN(min_cluster_size=4, min_samples=3, prediction_data=True)
 cluster_labels = clusterer.fit_predict(X_clusterable)
+
+membership_probs = hdbscan.all_points_membership_vectors(clusterer)
+n_clusters = membership_probs.shape[1]
 
 # ==========================================
 # 4. 可視化用の2次元マップの生成
@@ -74,6 +78,42 @@ for c in np.unique(cluster_labels):
         cluster_names_map[c] = name
 
 grouped['Cluster_Name'] = [cluster_names_map[l] for l in cluster_labels]
+
+# googlecolab_testcode.py に準拠したカラーブレンド計算
+hex_palette = ['#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880']
+base_colors = [np.array(mcolors.to_rgb(hex_palette[i % len(hex_palette)])) for i in range(n_clusters)]
+noise_color = np.array(mcolors.to_rgb('lightgrey'))
+
+blended_colors = []
+dominant_clusters = []
+probs_list = []
+
+for i in range(len(membership_probs)):
+    probs = membership_probs[i]
+    sum_probs = np.sum(probs)
+
+    c = np.zeros(3)
+    for j in range(n_clusters):
+        c += probs[j] * base_colors[j]
+    if sum_probs < 1.0:
+        c += (1.0 - sum_probs) * noise_color
+
+    c = np.clip(c, 0, 1)
+    blended_colors.append(f"rgb({int(c[0]*255)}, {int(c[1]*255)}, {int(c[2]*255)})")
+
+    if sum_probs > 0.1:
+        dominant_clusters.append(cluster_names_map[np.argmax(probs)])
+    else:
+        dominant_clusters.append("ノイズ (独自路線)")
+
+    # 確率情報を辞書形式で保存
+    p_dict = {cluster_names_map[j]: float(probs[j]) for j in range(n_clusters)}
+    p_dict["noise"] = float(1.0 - sum_probs)
+    probs_list.append(p_dict)
+
+grouped['Blended_Color'] = blended_colors
+grouped['Cluster_Name'] = dominant_clusters
+grouped['Probs'] = probs_list
 
 # ==========================================
 # 5. マップの描画
