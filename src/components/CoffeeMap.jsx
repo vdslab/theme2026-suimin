@@ -114,7 +114,7 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
   return (
     <div 
       ref={containerRef}
-      className="relative flex flex-col h-[640px] rounded-2xl border border-base-300 bg-base-200 p-4 shadow-xl overflow-hidden"
+      className="relative flex flex-col h-[640px] rounded-2xl border border-base-300 bg-base-200 p-4 shadow-xl"
     >
       {/* 凡例 & タイトル */}
       <div className="flex flex-col gap-2 mb-3">
@@ -254,69 +254,69 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
             );
           })}
         </svg>
-
-        {/* ツールチップ（絶対配置） */}
-        {hoveredNode && (
-          <div 
-            className="absolute z-50 pointer-events-none w-72 rounded-xl border border-base-300 bg-base-100 p-4 shadow-2xl transition-all duration-100 overflow-y-auto max-h-[460px]"
-            style={{
-              left: `${hoverPos.x}px`,
-              top: `${hoverPos.y}px`,
-              // コンテナの端でツールチップがはみ出さないようにトランスフォーム
-              transform: hoveredNode.UMAP_X > (bounds.xMin + bounds.xMax) / 2 ? 'translateX(-110%)' : 'none'
-            }}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span 
-                className="badge badge-sm font-semibold border text-white py-2 px-2"
-                style={{ 
-                  backgroundColor: getClusterColor(hoveredNode.Cluster_Name),
-                  borderColor: getClusterColor(hoveredNode.Cluster_Name)
-                }}
-              >
-                主要: {hoveredNode.Cluster_Name.split(" ")[0]}
-              </span>
-            </div>
-            
-            <h3 className="text-base font-bold text-base-content leading-tight">
-              {hoveredNode.country}
-            </h3>
-            <p className="text-xs text-base-content/60 mb-2">
-              製法: {hoveredNode.method}
-            </p>
-
-            {/* 味パラメータ表示 */}
-            <div className="space-y-1.5 border-t border-base-300/40 pt-2">
-              <div className="text-[10px] font-bold text-base-content/50 uppercase tracking-wider mb-1">
-                味覚評価 (平均スコア)
-              </div>
-              {[
-                { label: "香り (Aroma)", value: hoveredNode.aroma },
-                { label: "風味 (Flavor)", value: hoveredNode.flavor },
-                { label: "後味 (Aftertaste)", value: hoveredNode.aftertaste },
-                { label: "酸味 (Acidity)", value: hoveredNode.acidity },
-                { label: "コク (Body)", value: hoveredNode.body },
-                { label: "調和 (Balance)", value: hoveredNode.balance },
-              ].map((param) => (
-                <div key={param.label} className="text-xs">
-                  <div className="flex justify-between text-base-content/80 mb-0.5">
-                    <span>{param.label}</span>
-                    <span className="font-semibold">{param.value.toFixed(2)}</span>
-                  </div>
-                  <div className="w-full bg-base-300/40 rounded-full h-1 overflow-hidden">
-                    <div 
-                      className="h-full rounded-full transition-all duration-300 bg-base-content/30"
-                      style={{
-                        width: `${Math.min(100, Math.max(0, ((param.value - 6.5) / 2.0) * 100))}%`, // 6.5〜8.5 を 0%〜100% としてスケーリング
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* ツールチップ（絶対配置） */}
+      {hoveredNode && (
+        <div 
+          className="absolute z-50 pointer-events-none w-72 rounded-xl border border-base-300 bg-base-100 p-4 shadow-2xl transition-all duration-100 overflow-y-auto max-h-[460px]"
+          style={{
+            left: `${hoverPos.x}px`,
+            top: `${hoverPos.y}px`,
+            // コンテナの端でツールチップがはみ出さないようにトランスフォーム
+            transform: hoveredNode.UMAP_X > (bounds.xMin + bounds.xMax) / 2 ? 'translateX(-110%)' : 'none'
+          }}
+        >
+          <div className="flex items-center justify-between mb-2">
+            <span 
+              className="badge badge-sm font-semibold border text-white py-2 px-2"
+              style={{ 
+                backgroundColor: getClusterColor(hoveredNode.Cluster_Name),
+                borderColor: getClusterColor(hoveredNode.Cluster_Name)
+              }}
+            >
+              主要: {hoveredNode.Cluster_Name.split(" ")[0]}
+            </span>
+          </div>
+          
+          <h3 className="text-base font-bold text-base-content leading-tight">
+            {hoveredNode.country}
+          </h3>
+          <p className="text-xs text-base-content/60 mb-2">
+            製法: {hoveredNode.method}
+          </p>
+
+          {/* 味パラメータ表示 */}
+          <div className="space-y-1.5 border-t border-base-300/40 pt-2">
+            <div className="text-[10px] font-bold text-base-content/50 uppercase tracking-wider mb-1">
+              味覚評価 (平均スコア)
+            </div>
+            {[
+              { label: "香り (Aroma)", value: hoveredNode.aroma },
+              { label: "風味 (Flavor)", value: hoveredNode.flavor },
+              { label: "後味 (Aftertaste)", value: hoveredNode.aftertaste },
+              { label: "酸味 (Acidity)", value: hoveredNode.acidity },
+              { label: "コク (Body)", value: hoveredNode.body },
+              { label: "調和 (Balance)", value: hoveredNode.balance },
+            ].map((param) => (
+              <div key={param.label} className="text-xs">
+                <div className="flex justify-between text-base-content/80 mb-0.5">
+                  <span>{param.label}</span>
+                  <span className="font-semibold">{param.value.toFixed(2)}</span>
+                </div>
+                <div className="w-full bg-base-300/40 rounded-full h-1 overflow-hidden">
+                  <div 
+                    className="h-full rounded-full transition-all duration-300 bg-base-content/30"
+                    style={{
+                      width: `${Math.min(100, Math.max(0, ((param.value - 6.5) / 2.0) * 100))}%`, // 6.5〜8.5 を 0%〜100% としてスケーリング
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
