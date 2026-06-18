@@ -170,7 +170,7 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
       </div>
 
       {/* メインのグラフ領域 */}
-      <div className="flex-1 w-full bg-base-300/30 rounded-xl relative overflow-hidden">
+      <div className="flex-1 w-full bg-white rounded-xl relative overflow-hidden">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           width="100%"
