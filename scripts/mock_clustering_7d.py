@@ -21,7 +21,8 @@ def run_clustering_7d():
     # フェーズ1: 個別データに対するUMAP座標計算
     # ==========================================
     print("Calculating individual UMAP coordinates (2D)...")
-    X_all = df_clean[taste_cols]
+    # 2次元描画（座標計算）には、Average.Scoreを除いた偏差の6次元データのみを使用する
+    X_all = df_clean[['Aroma', 'Flavor', 'Aftertaste', 'Acidity', 'Body', 'Balance']]
     
     # 既に各特徴量が「平均からの偏差」となっており、7次元目は「平均評価値」なので
     # 相対値化（各行の平均で割る処理）は行わず、各カラムのスケールを揃える標準化のみ行う
