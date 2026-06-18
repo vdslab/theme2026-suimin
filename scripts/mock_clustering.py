@@ -10,16 +10,30 @@ import matplotlib.colors as mcolors
 # 1. データの読み込みと前処理
 # ==========================================
 df = pd.read_csv("data/merged_data_cleaned.csv")
-group_cols = ['Country.of.Origin', 'Processing.Method']
+df['Variety'] = df['Variety'].fillna('Unknown')
+group_cols = ['Country.of.Origin', 'Processing.Method', 'Variety']
 taste_cols = ['Aroma', 'Flavor', 'Aftertaste', 'Acidity', 'Body', 'Balance']
 
-df_clean = df.dropna(subset=group_cols).copy()
+df_clean = df.dropna(subset=['Country.of.Origin', 'Processing.Method']).copy()
+
+# 個別の全豆データに対して UMAP(2D) を行い、座標(UMAP_X, UMAP_Y)を取得する
+X_all = df_clean[taste_cols]
+row_means_all = X_all.mean(axis=1)
+X_all_relative = X_all.div(row_means_all, axis=0)
+X_all_scaled = StandardScaler().fit_transform(X_all_relative)
+
+visual_mapper_all = umap.UMAP(n_components=2, min_dist=0.1, n_neighbors=5, random_state=42)
+X_all_2d = visual_mapper_all.fit_transform(X_all_scaled)
+df_clean['UMAP_X'] = X_all_2d[:, 0]
+df_clean['UMAP_Y'] = X_all_2d[:, 1]
+
+# 1. 産地・精製方法・品種で集約し、平均値をとる
 grouped = df_clean.groupby(group_cols)[taste_cols].mean().reset_index()
 
+# サンプル数3以上のグループに絞り込む (オプション。一旦すべてのグループでクラスタリングを行うか、以前のように3以上に絞るか。ここでは以前のロジックを踏襲)
 valid_counts = df_clean.groupby(group_cols).size()
 valid_groups = valid_counts[valid_counts >= 3].reset_index()
 grouped = pd.merge(grouped, valid_groups[group_cols], on=group_cols)
-grouped['Label'] = grouped['Country.of.Origin'] + " (" + grouped['Processing.Method'].str.split('/').str[0].str.strip() + ")"
 
 X = grouped[taste_cols]
 row_means = X.mean(axis=1)
@@ -118,6 +132,8 @@ grouped['Probs'] = probs_list
 # ==========================================
 # 5. マップの描画
 # ==========================================
+grouped['Label'] = grouped['Country.of.Origin'] + " (" + grouped['Processing.Method'].str.split('/').str[0].str.strip() + ") - " + grouped['Variety']
+
 fig = px.scatter(
     grouped, x='UMAP_X', y='UMAP_Y', text='Label',
     color='Cluster_Name', hover_name='Label',
@@ -153,6 +169,14 @@ fig.update_layout(
 # ==========================================
 import os
 os.makedirs("src/data", exist_ok=True)
-grouped.to_json("src/data/coffee_clusters.json", orient="records", force_ascii=False, indent=2)
-print("[OK] src/data/coffee_clusters.json saved")
+
+# grouped に付与されたクラスタリング結果を元の df_clean（全ノード）にマージする。今回は色と所属クラスタのみマージ。
+merge_cols = ['Country.of.Origin', 'Processing.Method', 'Variety', 'Blended_Color', 'Cluster_Name', 'Probs']
+merged_df = pd.merge(df_clean, grouped[merge_cols], on=['Country.of.Origin', 'Processing.Method', 'Variety'], how='inner')
+
+# 各ノードが一意になるようにラベルを付与
+merged_df['Label'] = merged_df['Country.of.Origin'] + " (" + merged_df['Processing.Method'].str.split('/').str[0].str.strip() + ") #" + merged_df.index.astype(str)
+
+merged_df.to_json("src/data/coffee_clusters.json", orient="records", force_ascii=False, indent=2)
+print(f"[OK] src/data/coffee_clusters.json saved (Total nodes: {len(merged_df)})")
 

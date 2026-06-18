@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useDeferredValue } from "react";
 import rawData from "../data/coffee_clusters.json";
 
 // DetailPanel.jsx が selectedCoffee.name を参照するため、Label を name にマッピング
@@ -8,6 +8,7 @@ const coffeeData = rawData.map((item, index) => ({
   name: item.Label,
   country: item["Country.of.Origin"],
   method: item["Processing.Method"],
+  variety: item["Variety"] || "不明",
   aroma: item["Aroma"],
   flavor: item["Flavor"],
   aftertaste: item["Aftertaste"],
@@ -42,6 +43,10 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
   const [hoveredNode, setHoveredNode] = useState(null);
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
   const [activeCluster, setActiveCluster] = useState(null); // 凡例フィルター用
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const deferredSelectedCategory = useDeferredValue(selectedCategory);
+  const deferredSearchQuery = useDeferredValue(searchQuery);
   const containerRef = useRef(null);
 
   // 描画サイズ設定 (SVGの仮想座標系)
@@ -111,47 +116,49 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
     });
   }, []);
 
+  // 産地と精製方法・品種のユニークな組み合わせのリスト（プルダウン用）
+  const uniqueCategories = useMemo(() => {
+    const set = new Set();
+    coffeeData.forEach(d => {
+      set.add(`${d.country} (${d.method}) - ${d.variety}`);
+    });
+    return Array.from(set).sort();
+  }, []);
+
   return (
-    <div 
-      ref={containerRef}
-      className="relative flex flex-col h-[640px] rounded-2xl border border-base-300 bg-base-200 p-4 shadow-xl"
-    >
-      {/* 凡例 & タイトル */}
-      <div className="flex flex-col gap-2 mb-3">
-        <div className="text-sm font-semibold text-base-content/80">
-          凡例（クリックでハイライト選択）:
+    <div className="flex flex-col w-full">
+      {/* 検索・フィルターパネル (ノード描画のコンテナ外) */}
+      <div className="flex flex-wrap gap-4 mb-4 bg-base-100 p-4 rounded-xl border border-base-300 shadow-sm">
+        <div className="flex-1 min-w-[200px]">
+          <label className="text-xs font-bold text-base-content/70 mb-1 block">産地・精製方法・品種で絞り込み</label>
+          <select 
+            className="select select-bordered select-sm w-full"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option value="">すべての産地・精製方法・品種</option>
+            {uniqueCategories.map(cat => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {uniqueClustersInData.map((cName) => {
-            const isSelected = activeCluster === cName;
-            const isDimmed = activeCluster !== null && !isSelected;
-            const cColor = getClusterColor(cName);
-            
-            return (
-              <button
-                key={cName}
-                onClick={() => handleClusterClick(cName)}
-                className={`badge badge-md cursor-pointer border transition-all duration-300 py-3 px-3 ${
-                  isSelected 
-                    ? "scale-105 shadow-md font-bold text-white" 
-                    : isDimmed 
-                      ? "opacity-30" 
-                      : "hover:scale-105"
-                }`}
-                style={{
-                  backgroundColor: isSelected ? cColor : "transparent",
-                  borderColor: cColor,
-                  color: isSelected ? "#ffffff" : cColor
-                }}
-              >
-                <span className="w-2.5 h-2.5 rounded-full mr-2" style={{ backgroundColor: isSelected ? "#ffffff" : cColor }} />
-                {cName}
-              </button>
-            );
-          })}
+        
+        <div className="flex-1 min-w-[200px]">
+          <label className="text-xs font-bold text-base-content/70 mb-1 block">キーワード検索</label>
+          <input 
+            type="text" 
+            placeholder="産地や精製方法を入力..." 
+            className="input input-bordered input-sm w-full"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
         </div>
       </div>
 
+      <div 
+        ref={containerRef}
+        className="relative flex flex-col h-[640px] rounded-2xl border border-base-300 bg-base-200 p-4 shadow-xl"
+      >
       {/* メインのグラフ領域 */}
       <div className="flex-1 w-full bg-base-300/30 rounded-xl relative overflow-hidden">
         <svg 
@@ -195,10 +202,22 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
             const isSelected = selectedCoffee && selectedCoffee.name === node.name;
             const isClusterFiltered = activeCluster !== null && activeCluster !== node.Cluster_Name;
             
+            const nodeCategory = `${node.country} (${node.method}) - ${node.variety}`;
+            const matchesCategory = deferredSelectedCategory === "" || nodeCategory === deferredSelectedCategory;
+            const matchesSearch = deferredSearchQuery === "" || 
+              node.name.toLowerCase().includes(deferredSearchQuery.toLowerCase()) || 
+              nodeCategory.toLowerCase().includes(deferredSearchQuery.toLowerCase());
+            
+            const isFiltering = deferredSelectedCategory !== "" || deferredSearchQuery !== "";
+            const isFilteredOut = isFiltering && (!matchesCategory || !matchesSearch);
+
             // 透明度の決定
             let opacity = 0.85;
             if (node.Cluster_Name.includes("ノイズ")) opacity = 0.45;
-            if (activeCluster !== null) {
+            
+            if (isFilteredOut) {
+              opacity = 0.05;
+            } else if (activeCluster !== null) {
               opacity = isClusterFiltered ? 0.12 : 0.95;
             } else if (selectedCoffee) {
               opacity = isSelected ? 1.0 : 0.2;
@@ -349,6 +368,7 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
         </div>
       )}
     </div>
+  </div>
   );
 }
 

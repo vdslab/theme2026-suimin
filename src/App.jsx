@@ -8,7 +8,7 @@ function App() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
 
   return (
-    <div className="min-h-screen bg-base-100 text-base-content">
+    <div className="min-h-screen bg-base-100 text-base-content overflow-x-hidden overflow-y-scroll">
       <div className="grid min-h-screen grid-cols-[240px_1fr_380px]">
         <Sidebar />
 
