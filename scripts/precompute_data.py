@@ -37,6 +37,7 @@ MIN_SAMPLE_COUNT = 3
 INPUT_CSV = "data/merged_data_cleaned.csv"
 OUTPUT_JSON = "src/data/coffee_data.json"
 HEATMAP_PNG = "scripts/cluster_deviation_heatmap.png"
+SCATTER_PNG = "scripts/cluster_scatter.png"
 
 # カラーパレット（クラスタごとの基準色）
 HEX_PALETTE = [
@@ -77,6 +78,54 @@ def assign_cluster_name(dev_mean: pd.Series, c: int) -> str:
     return f"{label} (C{c})"
 
 
+def english_short_label(dev_mean: pd.Series) -> str:
+    """ヒートマップ/散布図用の英語短ラベル（上位1〜2軸）。matplotlib文字化け回避。"""
+    ordered = dev_mean.sort_values(ascending=False)
+    bases = [idx.replace("_dev", "") for idx in ordered.index]
+    if ordered.values[1] >= SECOND_AXIS_THRESHOLD:
+        return f"{bases[0]}+{bases[1]}"
+    return bases[0]
+
+
+def plot_scatter(nodes, cluster_names, has_tcp):
+    """UMAP(2D)座標の散布図。クラスタごとに色分けして空間的なまとまりを確認する。
+
+    クラスタリングはこの2D埋め込み上で行っているため、
+    理想どおり「同じクラスタが近くにまとまる」かを直接確認できる。
+    """
+    fig, ax = plt.subplots(figsize=(11, 8))
+
+    # クラスタごとに散布（ハードラベル基準。-1 はノイズ）
+    for c in sorted(cluster_names):
+        sub = nodes[nodes["_cluster_label"] == c]
+        color = HEX_PALETTE[c % len(HEX_PALETTE)]
+        label = f"C{c}: {english_short_label(sub[DEV_COLS].mean())} (n={len(sub)})"
+        ax.scatter(sub["x"], sub["y"], s=90, c=color, edgecolors="white",
+                   linewidths=0.8, alpha=0.9, label=label, zorder=3)
+
+    noise = nodes[nodes["_cluster_label"] == -1]
+    if len(noise):
+        ax.scatter(noise["x"], noise["y"], s=70, c="lightgrey",
+                   edgecolors="white", linewidths=0.8, alpha=0.7,
+                   label=f"Noise (n={len(noise)})", zorder=2)
+
+    # 産地を薄く注記（読みやすさのため小さめ）
+    for _, r in nodes.iterrows():
+        ax.annotate(r["Country.of.Origin"], (r["x"], r["y"]),
+                    fontsize=6, alpha=0.55, xytext=(4, 3),
+                    textcoords="offset points")
+
+    ax.set_title("Coffee taste-shape map (UMAP 2D of deviation features)\n"
+                 "colored by HDBSCAN cluster")
+    ax.set_xlabel("UMAP-1")
+    ax.set_ylabel("UMAP-2")
+    ax.legend(loc="best", fontsize=8, framealpha=0.9)
+    fig.tight_layout()
+    fig.savefig(SCATTER_PNG, dpi=130)
+    plt.close(fig)
+    print(f"    [OK] {SCATTER_PNG} 保存完了")
+
+
 def plot_heatmap(nodes, cluster_names, has_tcp):
     """クラスタ × 偏差6軸 のヒートマップを描画して PNG 保存する。
 
@@ -94,13 +143,7 @@ def plot_heatmap(nodes, cluster_names, has_tcp):
         sub = nodes[nodes["_cluster_label"] == c]
         dev_mean = sub[DEV_COLS].mean()
         rows.append(dev_mean.values)
-        ordered = dev_mean.sort_values(ascending=False)
-        bases = [idx.replace("_dev", "") for idx in ordered.index]
-        if ordered.values[1] >= SECOND_AXIS_THRESHOLD:
-            top = f"{bases[0]}+{bases[1]}"
-        else:
-            top = bases[0]
-        label = f"C{c}: {top}  (n={len(sub)}"
+        label = f"C{c}: {english_short_label(dev_mean)}  (n={len(sub)}"
         if has_tcp:
             label += f", TCP={sub['Total.Cup.Points'].mean():.1f}"
         label += ")"
@@ -328,6 +371,9 @@ def main():
     # ------------------------------------------------------------------
     print("[7] ヒートマップ出力:", HEATMAP_PNG)
     plot_heatmap(nodes, cluster_names, has_tcp)
+
+    print("[8] 散布図出力:", SCATTER_PNG)
+    plot_scatter(nodes, cluster_names, has_tcp)
 
 
 if __name__ == "__main__":
