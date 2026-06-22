@@ -1,0 +1,2080 @@
+[
+  {
+    "id":0,
+    "country":"Brazil",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Arusha",
+      "Bourbon",
+      "Catuai",
+      "Mundo Novo",
+      "Unknown",
+      "Yellow Bourbon"
+    ],
+    "sample_count":80,
+    "x":7.1776108742,
+    "y":3.3788003922,
+    "scores_mean":{
+      "Aroma":7.516125,
+      "Flavor":7.574625,
+      "Aftertaste":7.442,
+      "Acidity":7.5105,
+      "Body":7.552,
+      "Balance":7.526875
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.0042291667,
+      "Flavor_dev":0.0542708333,
+      "Aftertaste_dev":-0.0783541667,
+      "Acidity_dev":-0.0098541667,
+      "Body_dev":0.0316458333,
+      "Balance_dev":0.0065208333
+    },
+    "overall_score_mean":7.5203541667,
+    "dominant_cluster":"しっかりしたコクと明るい酸味が際立つタイプ (C3)",
+    "color":"rgb(177, 159, 171)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0550226974,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.1068997784,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.1963544211,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.2498522557,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.1064119172,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0846643017,
+      "noise":0.2007946286
+    },
+    "total_cup_points_mean":82.31825
+  },
+  {
+    "id":1,
+    "country":"Brazil",
+    "method":"Pulped natural \/ honey",
+    "varieties":[
+      "Bourbon",
+      "Unknown",
+      "Yellow Bourbon"
+    ],
+    "sample_count":7,
+    "x":6.3051404953,
+    "y":3.4072444439,
+    "scores_mean":{
+      "Aroma":7.4285714286,
+      "Flavor":7.4042857143,
+      "Aftertaste":7.3571428571,
+      "Acidity":7.4771428571,
+      "Body":7.4871428571,
+      "Balance":7.3571428571
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.01,
+      "Flavor_dev":-0.0142857143,
+      "Aftertaste_dev":-0.0614285714,
+      "Acidity_dev":0.0585714286,
+      "Body_dev":0.0685714286,
+      "Balance_dev":-0.0614285714
+    },
+    "overall_score_mean":7.4185714286,
+    "dominant_cluster":"しっかりしたコクと明るい酸味が際立つタイプ (C3)",
+    "color":"rgb(255, 161, 90)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.876849547e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.576606108e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":2.153082857e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.0,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":4.6309365e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.936560259e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":81.9028571429
+  },
+  {
+    "id":2,
+    "country":"Brazil",
+    "method":"Semi-washed \/ Semi-pulped",
+    "varieties":[
+      "Bourbon",
+      "Catuai",
+      "Moka Peaberry",
+      "Mundo Novo",
+      "Yellow Bourbon"
+    ],
+    "sample_count":24,
+    "x":7.3861899376,
+    "y":2.5521211624,
+    "scores_mean":{
+      "Aroma":7.6629166667,
+      "Flavor":7.6425,
+      "Aftertaste":7.47875,
+      "Acidity":7.56625,
+      "Body":7.55875,
+      "Balance":7.6425
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0709722222,
+      "Flavor_dev":0.0505555556,
+      "Aftertaste_dev":-0.1131944444,
+      "Acidity_dev":-0.0256944444,
+      "Body_dev":-0.0331944444,
+      "Balance_dev":0.0505555556
+    },
+    "overall_score_mean":7.5919444444,
+    "dominant_cluster":"華やかな香りと豊かな風味が際立つタイプ (C2)",
+    "color":"rgb(171, 99, 250)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.226747851e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":2.054984701e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.0,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":5.066150036e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":2.655738949e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":3.290391719e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":82.8675
+  },
+  {
+    "id":3,
+    "country":"Brazil",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Bourbon",
+      "Catuai",
+      "Mundo Novo",
+      "Unknown",
+      "Yellow Bourbon"
+    ],
+    "sample_count":6,
+    "x":6.6627087593,
+    "y":3.1788828373,
+    "scores_mean":{
+      "Aroma":7.4016666667,
+      "Flavor":7.4166666667,
+      "Aftertaste":7.2366666667,
+      "Acidity":7.3466666667,
+      "Body":7.4316666667,
+      "Balance":7.305
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0452777778,
+      "Flavor_dev":0.0602777778,
+      "Aftertaste_dev":-0.1197222222,
+      "Acidity_dev":-0.0097222222,
+      "Body_dev":0.0752777778,
+      "Balance_dev":-0.0513888889
+    },
+    "overall_score_mean":7.3563888889,
+    "dominant_cluster":"しっかりしたコクと明るい酸味が際立つタイプ (C3)",
+    "color":"rgb(255, 161, 90)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.60196607e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.678338473e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":3.100404159e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.0,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":4.121282158e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":2.270121261e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":81.4566666667
+  },
+  {
+    "id":4,
+    "country":"China",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Catimor"
+    ],
+    "sample_count":3,
+    "x":7.8238391876,
+    "y":3.0190889835,
+    "scores_mean":{
+      "Aroma":7.8333333333,
+      "Flavor":7.7766666667,
+      "Aftertaste":7.6366666667,
+      "Acidity":7.6366666667,
+      "Body":7.75,
+      "Balance":7.7233333333
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.1072222222,
+      "Flavor_dev":0.0505555556,
+      "Aftertaste_dev":-0.0894444444,
+      "Acidity_dev":-0.0894444444,
+      "Body_dev":0.0238888889,
+      "Balance_dev":-0.0027777778
+    },
+    "overall_score_mean":7.7261111111,
+    "dominant_cluster":"華やかな香りと豊かな風味が際立つタイプ (C2)",
+    "color":"rgb(171, 99, 250)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.033455296e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":3.607026201e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.0,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":2.969379545e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":1.809568434e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.948606717e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":84.11
+  },
+  {
+    "id":5,
+    "country":"China",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Catimor",
+      "Other",
+      "Typica"
+    ],
+    "sample_count":12,
+    "x":6.241830349,
+    "y":2.4254052639,
+    "scores_mean":{
+      "Aroma":7.605,
+      "Flavor":7.5916666667,
+      "Aftertaste":7.4516666667,
+      "Acidity":7.57,
+      "Body":7.5425,
+      "Balance":7.515
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0590277778,
+      "Flavor_dev":0.0456944444,
+      "Aftertaste_dev":-0.0943055556,
+      "Acidity_dev":0.0240277778,
+      "Body_dev":-0.0034722222,
+      "Balance_dev":-0.0309722222
+    },
+    "overall_score_mean":7.5459722222,
+    "dominant_cluster":"華やかな香りと明るい酸味が際立つタイプ (C4)",
+    "color":"rgb(25, 211, 243)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":2.02297407e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.093739953e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":2.356809456e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":4.088738675e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":1.0,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":5.2964431e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":82.6816666667
+  },
+  {
+    "id":6,
+    "country":"Colombia",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Arusha",
+      "Caturra",
+      "Typica",
+      "Unknown"
+    ],
+    "sample_count":27,
+    "x":7.6764760017,
+    "y":5.1327404976,
+    "scores_mean":{
+      "Aroma":7.6851851852,
+      "Flavor":7.6292592593,
+      "Aftertaste":7.5955555556,
+      "Acidity":7.5903703704,
+      "Body":7.7007407407,
+      "Balance":7.707037037
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0338271605,
+      "Flavor_dev":-0.0220987654,
+      "Aftertaste_dev":-0.0558024691,
+      "Acidity_dev":-0.0609876543,
+      "Body_dev":0.049382716,
+      "Balance_dev":0.0556790123
+    },
+    "overall_score_mean":7.6513580247,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(0, 204, 150)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":7.572637345e-309,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.0,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.309722372e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.53875964e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":9.78085891e-309,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":8.216611015e-309,
+      "noise":0.0
+    },
+    "total_cup_points_mean":83.0614814815
+  },
+  {
+    "id":7,
+    "country":"Colombia",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Caturra",
+      "Other",
+      "Typica",
+      "Unknown"
+    ],
+    "sample_count":121,
+    "x":7.561647892,
+    "y":4.7772717476,
+    "scores_mean":{
+      "Aroma":7.6675206612,
+      "Flavor":7.6144628099,
+      "Aftertaste":7.5525619835,
+      "Acidity":7.5974380165,
+      "Body":7.6485123967,
+      "Balance":7.7242975207
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0333884298,
+      "Flavor_dev":-0.0196694215,
+      "Aftertaste_dev":-0.0815702479,
+      "Acidity_dev":-0.0366942149,
+      "Body_dev":0.0143801653,
+      "Balance_dev":0.0901652893
+    },
+    "overall_score_mean":7.6341322314,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(0, 204, 150)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":8.274936967e-309,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.0,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.56108095e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.915811631e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":1.114058865e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":9.237869531e-309,
+      "noise":0.0
+    },
+    "total_cup_points_mean":83.3257024793
+  },
+  {
+    "id":8,
+    "country":"Costa Rica",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Catuai",
+      "Caturra",
+      "Unknown"
+    ],
+    "sample_count":45,
+    "x":6.3323969841,
+    "y":4.4286727905,
+    "scores_mean":{
+      "Aroma":7.6997777778,
+      "Flavor":7.5404444444,
+      "Aftertaste":7.5206666667,
+      "Acidity":7.5746666667,
+      "Body":7.52,
+      "Balance":7.6202222222
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.1204814815,
+      "Flavor_dev":-0.0388518519,
+      "Aftertaste_dev":-0.0586296296,
+      "Acidity_dev":-0.0046296296,
+      "Body_dev":-0.0592962963,
+      "Balance_dev":0.0409259259
+    },
+    "overall_score_mean":7.5792962963,
+    "dominant_cluster":"しっかりしたコクと明るい酸味が際立つタイプ (C3)",
+    "color":"rgb(175, 175, 170)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0759253811,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.1272364776,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.0802505486,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1898898969,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.1032485295,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0641748336,
+      "noise":0.3592743328
+    },
+    "total_cup_points_mean":82.7257777778
+  },
+  {
+    "id":9,
+    "country":"El Salvador",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Bourbon",
+      "Other",
+      "Pacas"
+    ],
+    "sample_count":15,
+    "x":7.911678791,
+    "y":4.4147481918,
+    "scores_mean":{
+      "Aroma":7.5946666667,
+      "Flavor":7.5613333333,
+      "Aftertaste":7.444,
+      "Acidity":7.4826666667,
+      "Body":7.6213333333,
+      "Balance":7.6513333333
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0354444444,
+      "Flavor_dev":0.0021111111,
+      "Aftertaste_dev":-0.1152222222,
+      "Acidity_dev":-0.0765555556,
+      "Body_dev":0.0621111111,
+      "Balance_dev":0.0921111111
+    },
+    "overall_score_mean":7.5592222222,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(0, 204, 150)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":8.262441852e-309,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.0,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":2.050911255e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.953693982e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":1.161873717e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.029388722e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":82.546
+  },
+  {
+    "id":10,
+    "country":"Ethiopia",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Caturra",
+      "Ethiopian Yirgacheffe",
+      "Gesha",
+      "Other",
+      "Unknown"
+    ],
+    "sample_count":17,
+    "x":6.402244091,
+    "y":1.8963512182,
+    "scores_mean":{
+      "Aroma":7.9223529412,
+      "Flavor":8.0247058824,
+      "Aftertaste":7.7994117647,
+      "Acidity":7.9758823529,
+      "Body":7.8529411765,
+      "Balance":7.9470588235
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0019607843,
+      "Flavor_dev":0.1043137255,
+      "Aftertaste_dev":-0.1209803922,
+      "Acidity_dev":0.0554901961,
+      "Body_dev":-0.0674509804,
+      "Balance_dev":0.0266666667
+    },
+    "overall_score_mean":7.9203921569,
+    "dominant_cluster":"明るい酸味と豊かな風味が際立つタイプ (C5)",
+    "color":"rgb(255, 102, 146)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.701641143e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.074409353e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":2.41157304e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":2.97153182e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":5.601028467e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.0,
+      "noise":0.0
+    },
+    "total_cup_points_mean":85.4105882353
+  },
+  {
+    "id":11,
+    "country":"Ethiopia",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Ethiopian Heirlooms",
+      "Ethiopian Yirgacheffe",
+      "Other",
+      "Unknown"
+    ],
+    "sample_count":8,
+    "x":5.8816146851,
+    "y":1.613751173,
+    "scores_mean":{
+      "Aroma":8.0825,
+      "Flavor":8.12375,
+      "Aftertaste":8.0,
+      "Acidity":8.135,
+      "Body":7.99,
+      "Balance":7.98
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.030625,
+      "Flavor_dev":0.071875,
+      "Aftertaste_dev":-0.051875,
+      "Acidity_dev":0.083125,
+      "Body_dev":-0.061875,
+      "Balance_dev":-0.071875
+    },
+    "overall_score_mean":8.051875,
+    "dominant_cluster":"明るい酸味と豊かな風味が際立つタイプ (C5)",
+    "color":"rgb(255, 102, 146)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.994902008e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":8.813671756e-309,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.608131587e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.927120639e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":3.487025131e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.0,
+      "noise":0.0
+    },
+    "total_cup_points_mean":86.46875
+  },
+  {
+    "id":12,
+    "country":"Guatemala",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Bourbon",
+      "Catuai",
+      "Caturra",
+      "Pacamara",
+      "Unknown"
+    ],
+    "sample_count":10,
+    "x":7.8357782364,
+    "y":2.3384902477,
+    "scores_mean":{
+      "Aroma":7.684,
+      "Flavor":7.641,
+      "Aftertaste":7.424,
+      "Acidity":7.65,
+      "Body":7.608,
+      "Balance":7.749
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.058,
+      "Flavor_dev":0.015,
+      "Aftertaste_dev":-0.202,
+      "Acidity_dev":0.024,
+      "Body_dev":-0.018,
+      "Balance_dev":0.123
+    },
+    "overall_score_mean":7.626,
+    "dominant_cluster":"華やかな香りと豊かな風味が際立つタイプ (C2)",
+    "color":"rgb(171, 99, 250)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.030931062e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":2.159917474e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.0,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":2.795021588e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":1.915470238e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":2.571530507e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":83.117
+  },
+  {
+    "id":13,
+    "country":"Guatemala",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Bourbon",
+      "Catuai",
+      "Caturra",
+      "Other",
+      "Pacamara",
+      "Pacas",
+      "Unknown"
+    ],
+    "sample_count":161,
+    "x":5.9114513397,
+    "y":2.9114027023,
+    "scores_mean":{
+      "Aroma":7.5229813665,
+      "Flavor":7.4633540373,
+      "Aftertaste":7.2363354037,
+      "Acidity":7.5845341615,
+      "Body":7.4521118012,
+      "Balance":7.4397515528
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.073136646,
+      "Flavor_dev":0.0135093168,
+      "Aftertaste_dev":-0.2135093168,
+      "Acidity_dev":0.134689441,
+      "Body_dev":0.0022670807,
+      "Balance_dev":-0.0100931677
+    },
+    "overall_score_mean":7.4498447205,
+    "dominant_cluster":"華やかな香りと明るい酸味が際立つタイプ (C4)",
+    "color":"rgb(25, 211, 243)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":2.665760354e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.089019033e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.787713795e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":4.285902255e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":1.0,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":2.597016394e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":81.6386335404
+  },
+  {
+    "id":14,
+    "country":"Haiti",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Blue Mountain",
+      "Typica"
+    ],
+    "sample_count":4,
+    "x":7.0301041603,
+    "y":5.2392253876,
+    "scores_mean":{
+      "Aroma":7.3125,
+      "Flavor":7.165,
+      "Aftertaste":7.2925,
+      "Acidity":7.23,
+      "Body":7.3125,
+      "Balance":7.25
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0520833333,
+      "Flavor_dev":-0.0954166667,
+      "Aftertaste_dev":0.0320833333,
+      "Acidity_dev":-0.0304166667,
+      "Body_dev":0.0520833333,
+      "Balance_dev":-0.0104166667
+    },
+    "overall_score_mean":7.2604166667,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(146, 182, 174)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0551796659,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.2721135795,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.0756046185,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1086509512,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.0690207895,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0530075575,
+      "noise":0.3664228378
+    },
+    "total_cup_points_mean":80.7075
+  },
+  {
+    "id":15,
+    "country":"Honduras",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Catuai",
+      "Caturra",
+      "Pacas"
+    ],
+    "sample_count":14,
+    "x":6.1627163887,
+    "y":2.6727905273,
+    "scores_mean":{
+      "Aroma":7.3871428571,
+      "Flavor":7.3442857143,
+      "Aftertaste":7.2028571429,
+      "Acidity":7.3628571429,
+      "Body":7.34,
+      "Balance":7.2978571429
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0646428571,
+      "Flavor_dev":0.0217857143,
+      "Aftertaste_dev":-0.1196428571,
+      "Acidity_dev":0.0403571429,
+      "Body_dev":0.0175,
+      "Balance_dev":-0.0246428571
+    },
+    "overall_score_mean":7.3225,
+    "dominant_cluster":"華やかな香りと明るい酸味が際立つタイプ (C4)",
+    "color":"rgb(25, 211, 243)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":2.188114972e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.110754207e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":2.207174203e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":4.134020482e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":1.0,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":3.603584486e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":81.1435714286
+  },
+  {
+    "id":16,
+    "country":"Honduras",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Catimor",
+      "Catuai",
+      "Caturra",
+      "Other",
+      "Pacas",
+      "Unknown"
+    ],
+    "sample_count":35,
+    "x":5.593310833,
+    "y":2.7945513725,
+    "scores_mean":{
+      "Aroma":7.4211428571,
+      "Flavor":7.3454285714,
+      "Aftertaste":7.1597142857,
+      "Acidity":7.3488571429,
+      "Body":7.3668571429,
+      "Balance":7.2791428571
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.100952381,
+      "Flavor_dev":0.0252380952,
+      "Aftertaste_dev":-0.1604761905,
+      "Acidity_dev":0.0286666667,
+      "Body_dev":0.0466666667,
+      "Balance_dev":-0.041047619
+    },
+    "overall_score_mean":7.3201904762,
+    "dominant_cluster":"華やかな香りと明るい酸味が際立つタイプ (C4)",
+    "color":"rgb(25, 211, 243)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":4.011723983e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":9.709384504e-309,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.499850036e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":2.889188023e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":1.0,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":2.422353026e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":80.5291428571
+  },
+  {
+    "id":17,
+    "country":"India",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Other",
+      "Unknown"
+    ],
+    "sample_count":5,
+    "x":8.4083786011,
+    "y":3.632566452,
+    "scores_mean":{
+      "Aroma":7.568,
+      "Flavor":7.382,
+      "Aftertaste":7.268,
+      "Acidity":7.4,
+      "Body":7.452,
+      "Balance":7.466
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.1453333333,
+      "Flavor_dev":-0.0406666667,
+      "Aftertaste_dev":-0.1546666667,
+      "Acidity_dev":-0.0226666667,
+      "Body_dev":0.0293333333,
+      "Balance_dev":0.0433333333
+    },
+    "overall_score_mean":7.4226666667,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(0, 204, 150)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":7.833346285e-309,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.0,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":3.384621495e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.645012177e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":1.174382991e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.186839078e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":78.982
+  },
+  {
+    "id":18,
+    "country":"India",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Other",
+      "Unknown"
+    ],
+    "sample_count":3,
+    "x":7.9234004021,
+    "y":4.9564909935,
+    "scores_mean":{
+      "Aroma":7.78,
+      "Flavor":7.75,
+      "Aftertaste":7.7766666667,
+      "Acidity":7.8333333333,
+      "Body":7.89,
+      "Balance":7.9166666667
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.0444444444,
+      "Flavor_dev":-0.0744444444,
+      "Aftertaste_dev":-0.0477777778,
+      "Acidity_dev":0.0088888889,
+      "Body_dev":0.0655555556,
+      "Balance_dev":0.0922222222
+    },
+    "overall_score_mean":7.8244444444,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(0, 204, 150)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":7.38238066e-309,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.0,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.430451548e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.523538127e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":9.672908848e-309,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":8.436257084e-309,
+      "noise":0.0
+    },
+    "total_cup_points_mean":82.8333333333
+  },
+  {
+    "id":19,
+    "country":"Indonesia",
+    "method":"Other",
+    "varieties":[
+      "Mandheling",
+      "Other",
+      "Sulawesi",
+      "Typica"
+    ],
+    "sample_count":4,
+    "x":8.7136802673,
+    "y":4.7063832283,
+    "scores_mean":{
+      "Aroma":7.585,
+      "Flavor":7.625,
+      "Aftertaste":7.5625,
+      "Acidity":7.56,
+      "Body":7.6875,
+      "Balance":7.645
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.0258333333,
+      "Flavor_dev":0.0141666667,
+      "Aftertaste_dev":-0.0483333333,
+      "Acidity_dev":-0.0508333333,
+      "Body_dev":0.0766666667,
+      "Balance_dev":0.0341666667
+    },
+    "overall_score_mean":7.6108333333,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(92, 173, 161)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.05493473,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.5174043204,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.1248017682,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1030683656,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.0729740185,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0691528317,
+      "noise":0.0576639657
+    },
+    "total_cup_points_mean":82.7075
+  },
+  {
+    "id":20,
+    "country":"Indonesia",
+    "method":"Semi-washed \/ Semi-pulped",
+    "varieties":[
+      "Mandheling",
+      "Sumatra",
+      "Sumatra Lintong",
+      "Typica"
+    ],
+    "sample_count":5,
+    "x":6.8127741814,
+    "y":2.7637310028,
+    "scores_mean":{
+      "Aroma":7.516,
+      "Flavor":7.584,
+      "Aftertaste":7.4,
+      "Acidity":7.668,
+      "Body":7.632,
+      "Balance":7.566
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.045,
+      "Flavor_dev":0.023,
+      "Aftertaste_dev":-0.161,
+      "Acidity_dev":0.107,
+      "Body_dev":0.071,
+      "Balance_dev":0.005
+    },
+    "overall_score_mean":7.561,
+    "dominant_cluster":"しっかりしたコクと明るい酸味が際立つタイプ (C3)",
+    "color":"rgb(255, 161, 90)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.536936868e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.613188521e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":4.855480342e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.0,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":4.466827567e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":3.339941046e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":82.718
+  },
+  {
+    "id":21,
+    "country":"Indonesia",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Bourbon",
+      "Java",
+      "Other",
+      "Typica"
+    ],
+    "sample_count":6,
+    "x":4.3873357773,
+    "y":3.1343185902,
+    "scores_mean":{
+      "Aroma":7.6816666667,
+      "Flavor":7.4583333333,
+      "Aftertaste":7.3483333333,
+      "Acidity":7.4166666667,
+      "Body":7.4316666667,
+      "Balance":7.3883333333
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.2275,
+      "Flavor_dev":0.0041666667,
+      "Aftertaste_dev":-0.1058333333,
+      "Acidity_dev":-0.0375,
+      "Body_dev":-0.0225,
+      "Balance_dev":-0.0658333333
+    },
+    "overall_score_mean":7.4541666667,
+    "dominant_cluster":"華やかな香りが主役のタイプ (C0)",
+    "color":"rgb(239, 85, 59)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.0,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":8.015399948e-309,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":9.378336538e-309,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.478961289e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":2.2866013e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.343842435e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":82.0983333333
+  },
+  {
+    "id":22,
+    "country":"Kenya",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Peaberry",
+      "SL28",
+      "SL34",
+      "Unknown"
+    ],
+    "sample_count":22,
+    "x":6.7348117828,
+    "y":1.8893482685,
+    "scores_mean":{
+      "Aroma":7.7577272727,
+      "Flavor":7.7677272727,
+      "Aftertaste":7.6895454545,
+      "Acidity":7.8363636364,
+      "Body":7.7081818182,
+      "Balance":7.7845454545
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0003787879,
+      "Flavor_dev":0.0103787879,
+      "Aftertaste_dev":-0.0678030303,
+      "Acidity_dev":0.0790151515,
+      "Body_dev":-0.0491666667,
+      "Balance_dev":0.0271969697
+    },
+    "overall_score_mean":7.7573484848,
+    "dominant_cluster":"明るい酸味と豊かな風味が際立つタイプ (C5)",
+    "color":"rgb(255, 102, 146)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.436879441e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.17959515e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":3.068569162e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":3.248339858e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":4.251767848e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.0,
+      "noise":0.0
+    },
+    "total_cup_points_mean":84.1472727273
+  },
+  {
+    "id":23,
+    "country":"Laos",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Catimor",
+      "Other"
+    ],
+    "sample_count":3,
+    "x":7.587887764,
+    "y":2.8388025761,
+    "scores_mean":{
+      "Aroma":7.5033333333,
+      "Flavor":7.5,
+      "Aftertaste":7.28,
+      "Acidity":7.3066666667,
+      "Body":7.3633333333,
+      "Balance":7.4166666667
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.1083333333,
+      "Flavor_dev":0.105,
+      "Aftertaste_dev":-0.115,
+      "Acidity_dev":-0.0883333333,
+      "Body_dev":-0.0316666667,
+      "Balance_dev":0.0216666667
+    },
+    "overall_score_mean":7.395,
+    "dominant_cluster":"華やかな香りと豊かな風味が際立つタイプ (C2)",
+    "color":"rgb(171, 99, 250)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.131722801e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":2.677363349e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.0,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":3.976304282e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":2.171492215e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":2.395558244e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":81.8333333333
+  },
+  {
+    "id":24,
+    "country":"Malawi",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Caturra",
+      "Gesha"
+    ],
+    "sample_count":11,
+    "x":4.9408564568,
+    "y":2.6585180759,
+    "scores_mean":{
+      "Aroma":7.5672727273,
+      "Flavor":7.3872727273,
+      "Aftertaste":7.2572727273,
+      "Acidity":7.4081818182,
+      "Body":7.3381818182,
+      "Balance":7.3718181818
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.1789393939,
+      "Flavor_dev":-0.0010606061,
+      "Aftertaste_dev":-0.1310606061,
+      "Acidity_dev":0.0198484848,
+      "Body_dev":-0.0501515152,
+      "Balance_dev":-0.0165151515
+    },
+    "overall_score_mean":7.3883333333,
+    "dominant_cluster":"華やかな香りが主役のタイプ (C0)",
+    "color":"rgb(239, 85, 59)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.0,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":8.501009816e-309,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.170486065e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.840942975e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":4.298578872e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":2.037790861e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":81.7118181818
+  },
+  {
+    "id":25,
+    "country":"Mexico",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Bourbon",
+      "Caturra",
+      "Marigojipe",
+      "Mundo Novo",
+      "Pacas",
+      "Typica"
+    ],
+    "sample_count":17,
+    "x":5.6308560371,
+    "y":2.3281509876,
+    "scores_mean":{
+      "Aroma":7.5776470588,
+      "Flavor":7.5629411765,
+      "Aftertaste":7.3382352941,
+      "Acidity":7.5241176471,
+      "Body":7.4805882353,
+      "Balance":7.4811764706
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0835294118,
+      "Flavor_dev":0.0688235294,
+      "Aftertaste_dev":-0.1558823529,
+      "Acidity_dev":0.03,
+      "Body_dev":-0.0135294118,
+      "Balance_dev":-0.0129411765
+    },
+    "overall_score_mean":7.4941176471,
+    "dominant_cluster":"華やかな香りと明るい酸味が際立つタイプ (C4)",
+    "color":"rgb(160, 159, 174)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.1565149353,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.0395875796,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.0686703251,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.0964702907,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.2988120964,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.1731865745,
+      "noise":0.1667581984
+    },
+    "total_cup_points_mean":82.0488235294
+  },
+  {
+    "id":26,
+    "country":"Mexico",
+    "method":"Semi-washed \/ Semi-pulped",
+    "varieties":[
+      "Catuai",
+      "Caturra",
+      "Typica"
+    ],
+    "sample_count":14,
+    "x":5.9573254585,
+    "y":2.1220974922,
+    "scores_mean":{
+      "Aroma":7.5242857143,
+      "Flavor":7.5107142857,
+      "Aftertaste":7.3514285714,
+      "Acidity":7.4814285714,
+      "Body":7.415,
+      "Balance":7.4292857143
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0722619048,
+      "Flavor_dev":0.0586904762,
+      "Aftertaste_dev":-0.1005952381,
+      "Acidity_dev":0.0294047619,
+      "Body_dev":-0.0370238095,
+      "Balance_dev":-0.0227380952
+    },
+    "overall_score_mean":7.4520238095,
+    "dominant_cluster":"華やかな香りと明るい酸味が際立つタイプ (C4)",
+    "color":"rgb(162, 160, 179)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0922999398,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.0373819232,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.0721504733,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1006797934,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.2978762355,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.2328534363,
+      "noise":0.1667581984
+    },
+    "total_cup_points_mean":81.8871428571
+  },
+  {
+    "id":27,
+    "country":"Mexico",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Bourbon",
+      "Catuai",
+      "Caturra",
+      "Mundo Novo",
+      "Other",
+      "Pacamara",
+      "Typica",
+      "Unknown"
+    ],
+    "sample_count":198,
+    "x":5.6206970215,
+    "y":3.1607446671,
+    "scores_mean":{
+      "Aroma":7.4460606061,
+      "Flavor":7.3531818182,
+      "Aftertaste":7.2126262626,
+      "Acidity":7.4127777778,
+      "Body":7.3668686869,
+      "Balance":7.3028787879
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0969949495,
+      "Flavor_dev":0.0041161616,
+      "Aftertaste_dev":-0.1364393939,
+      "Acidity_dev":0.0637121212,
+      "Body_dev":0.0178030303,
+      "Balance_dev":-0.0461868687
+    },
+    "overall_score_mean":7.3490656566,
+    "dominant_cluster":"華やかな香りと明るい酸味が際立つタイプ (C4)",
+    "color":"rgb(137, 165, 173)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.1528199344,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.0495939178,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.0671033707,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1722559687,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.4108737788,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0909696106,
+      "noise":0.056383419
+    },
+    "total_cup_points_mean":80.6961616162
+  },
+  {
+    "id":28,
+    "country":"Myanmar",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Catuai",
+      "Other"
+    ],
+    "sample_count":5,
+    "x":6.296046257,
+    "y":1.4119144678,
+    "scores_mean":{
+      "Aroma":7.168,
+      "Flavor":7.432,
+      "Aftertaste":7.184,
+      "Acidity":7.468,
+      "Body":7.316,
+      "Balance":7.164
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.1206666667,
+      "Flavor_dev":0.1433333333,
+      "Aftertaste_dev":-0.1046666667,
+      "Acidity_dev":0.1793333333,
+      "Body_dev":0.0273333333,
+      "Balance_dev":-0.1246666667
+    },
+    "overall_score_mean":7.2886666667,
+    "dominant_cluster":"明るい酸味と豊かな風味が際立つタイプ (C5)",
+    "color":"rgb(255, 102, 146)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.523145129e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":9.300752057e-309,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.807652953e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.970384979e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":3.050886054e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.0,
+      "noise":0.0
+    },
+    "total_cup_points_mean":80.916
+  },
+  {
+    "id":29,
+    "country":"Nicaragua",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Caturra",
+      "Unknown"
+    ],
+    "sample_count":4,
+    "x":8.3510293961,
+    "y":5.1323361397,
+    "scores_mean":{
+      "Aroma":7.1675,
+      "Flavor":7.25,
+      "Aftertaste":7.1675,
+      "Acidity":7.23,
+      "Body":7.335,
+      "Balance":7.29
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.0725,
+      "Flavor_dev":0.01,
+      "Aftertaste_dev":-0.0725,
+      "Acidity_dev":-0.01,
+      "Body_dev":0.095,
+      "Balance_dev":0.05
+    },
+    "overall_score_mean":7.24,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(83, 177, 158)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0518530749,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.5656817367,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.1005610684,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.0972639611,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.0665295082,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.060446685,
+      "noise":0.0576639657
+    },
+    "total_cup_points_mean":80.5825
+  },
+  {
+    "id":30,
+    "country":"Nicaragua",
+    "method":"Other",
+    "varieties":[
+      "Caturra"
+    ],
+    "sample_count":3,
+    "x":4.4667315483,
+    "y":3.0303285122,
+    "scores_mean":{
+      "Aroma":7.3066666667,
+      "Flavor":7.0,
+      "Aftertaste":6.86,
+      "Acidity":6.86,
+      "Body":6.89,
+      "Balance":6.8033333333
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.3533333333,
+      "Flavor_dev":0.0466666667,
+      "Aftertaste_dev":-0.0933333333,
+      "Acidity_dev":-0.0933333333,
+      "Body_dev":-0.0633333333,
+      "Balance_dev":-0.15
+    },
+    "overall_score_mean":6.9533333333,
+    "dominant_cluster":"華やかな香りが主役のタイプ (C0)",
+    "color":"rgb(239, 85, 59)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.0,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":8.061352327e-309,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":9.684191838e-309,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.526623318e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":2.489112434e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.430933525e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":74.47
+  },
+  {
+    "id":31,
+    "country":"Nicaragua",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Catuai",
+      "Caturra",
+      "Other",
+      "Unknown"
+    ],
+    "sample_count":11,
+    "x":8.6182785034,
+    "y":4.928296566,
+    "scores_mean":{
+      "Aroma":7.2709090909,
+      "Flavor":7.28,
+      "Aftertaste":7.2127272727,
+      "Acidity":7.2209090909,
+      "Body":7.4690909091,
+      "Balance":7.2954545455
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.0206060606,
+      "Flavor_dev":-0.0115151515,
+      "Aftertaste_dev":-0.0787878788,
+      "Acidity_dev":-0.0706060606,
+      "Body_dev":0.1775757576,
+      "Balance_dev":0.0039393939
+    },
+    "overall_score_mean":7.2915151515,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(86, 176, 160)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0526244645,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.5484683835,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.110711404,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.0978341645,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.0686635297,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0640340881,
+      "noise":0.0576639657
+    },
+    "total_cup_points_mean":81.0009090909
+  },
+  {
+    "id":32,
+    "country":"Peru",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Caturra",
+      "Other",
+      "Typica",
+      "Unknown"
+    ],
+    "sample_count":8,
+    "x":7.6265435219,
+    "y":3.7773075104,
+    "scores_mean":{
+      "Aroma":7.6675,
+      "Flavor":7.65625,
+      "Aftertaste":7.52,
+      "Acidity":7.7075,
+      "Body":7.80375,
+      "Balance":7.66625
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.0027083333,
+      "Flavor_dev":-0.0139583333,
+      "Aftertaste_dev":-0.1502083333,
+      "Acidity_dev":0.0372916667,
+      "Body_dev":0.1335416667,
+      "Balance_dev":-0.0039583333
+    },
+    "overall_score_mean":7.6702083333,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(149, 165, 174)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0509079649,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.2373035905,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.1943937345,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1624847279,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.0820520234,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0720633301,
+      "noise":0.2007946286
+    },
+    "total_cup_points_mean":82.1775
+  },
+  {
+    "id":33,
+    "country":"Philippines",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Other",
+      "Unknown"
+    ],
+    "sample_count":4,
+    "x":6.5202097893,
+    "y":4.7230610847,
+    "scores_mean":{
+      "Aroma":7.3925,
+      "Flavor":7.2275,
+      "Aftertaste":7.315,
+      "Acidity":7.3125,
+      "Body":7.2275,
+      "Balance":7.375
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0841666667,
+      "Flavor_dev":-0.0808333333,
+      "Aftertaste_dev":0.0066666667,
+      "Acidity_dev":0.0041666667,
+      "Body_dev":-0.0808333333,
+      "Balance_dev":0.0666666667
+    },
+    "overall_score_mean":7.3083333333,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(166, 176, 172)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0712364768,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.169768933,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.0825201802,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1619878108,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.092634483,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0625777833,
+      "noise":0.3592743328
+    },
+    "total_cup_points_mean":80.75
+  },
+  {
+    "id":34,
+    "country":"Taiwan",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Caturra",
+      "Other",
+      "Typica",
+      "Unknown",
+      "Yellow Bourbon"
+    ],
+    "sample_count":13,
+    "x":7.4437408447,
+    "y":3.5993950367,
+    "scores_mean":{
+      "Aroma":7.5646153846,
+      "Flavor":7.5646153846,
+      "Aftertaste":7.4292307692,
+      "Acidity":7.5569230769,
+      "Body":7.6284615385,
+      "Balance":7.5638461538
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0133333333,
+      "Flavor_dev":0.0133333333,
+      "Aftertaste_dev":-0.1220512821,
+      "Acidity_dev":0.0056410256,
+      "Body_dev":0.0771794872,
+      "Balance_dev":0.0125641026
+    },
+    "overall_score_mean":7.5512820513,
+    "dominant_cluster":"華やかな香りと豊かな風味が際立つタイプ (C2)",
+    "color":"rgb(164, 160, 175)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0536974846,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.1645050575,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.2131669117,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1965123971,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.0924043573,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0789191633,
+      "noise":0.2007946286
+    },
+    "total_cup_points_mean":82.3338461538
+  },
+  {
+    "id":35,
+    "country":"Taiwan",
+    "method":"Other",
+    "varieties":[
+      "Typica",
+      "Yellow Bourbon"
+    ],
+    "sample_count":9,
+    "x":7.1144814491,
+    "y":4.3986105919,
+    "scores_mean":{
+      "Aroma":7.4533333333,
+      "Flavor":7.4077777778,
+      "Aftertaste":7.3233333333,
+      "Acidity":7.3233333333,
+      "Body":7.3511111111,
+      "Balance":7.4522222222
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0681481481,
+      "Flavor_dev":0.0225925926,
+      "Aftertaste_dev":-0.0618518519,
+      "Acidity_dev":-0.0618518519,
+      "Body_dev":-0.0340740741,
+      "Balance_dev":0.067037037
+    },
+    "overall_score_mean":7.3851851852,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(149, 177, 169)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0532805704,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.2581060016,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.0949423182,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1669726555,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.0769921715,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0580323951,
+      "noise":0.2916738877
+    },
+    "total_cup_points_mean":81.5833333333
+  },
+  {
+    "id":36,
+    "country":"Taiwan",
+    "method":"Semi-washed \/ Semi-pulped",
+    "varieties":[
+      "Bourbon",
+      "Typica"
+    ],
+    "sample_count":9,
+    "x":7.946603775,
+    "y":5.3997011185,
+    "scores_mean":{
+      "Aroma":7.5088888889,
+      "Flavor":7.4355555556,
+      "Aftertaste":7.4344444444,
+      "Acidity":7.3777777778,
+      "Body":7.5466666667,
+      "Balance":7.5177777778
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0387037037,
+      "Flavor_dev":-0.0346296296,
+      "Aftertaste_dev":-0.0357407407,
+      "Acidity_dev":-0.0924074074,
+      "Body_dev":0.0764814815,
+      "Balance_dev":0.0475925926
+    },
+    "overall_score_mean":7.4701851852,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(66, 179, 154)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0508893473,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.6484892687,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.0864267553,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.0946273047,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.0640900133,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0554773107,
+      "noise":0.0
+    },
+    "total_cup_points_mean":82.1288888889
+  },
+  {
+    "id":37,
+    "country":"Taiwan",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Bourbon",
+      "Other",
+      "Typica",
+      "Yellow Bourbon"
+    ],
+    "sample_count":37,
+    "x":5.0409302711,
+    "y":3.7861442566,
+    "scores_mean":{
+      "Aroma":7.5432432432,
+      "Flavor":7.437027027,
+      "Aftertaste":7.4078378378,
+      "Acidity":7.397027027,
+      "Body":7.41,
+      "Balance":7.3662162162
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.1163513514,
+      "Flavor_dev":0.0101351351,
+      "Aftertaste_dev":-0.0190540541,
+      "Acidity_dev":-0.0298648649,
+      "Body_dev":-0.0168918919,
+      "Balance_dev":-0.0606756757
+    },
+    "overall_score_mean":7.4268918919,
+    "dominant_cluster":"華やかな香りが主役のタイプ (C0)",
+    "color":"rgb(177, 157, 157)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.2242796649,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.072033567,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.0736227287,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1478348268,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.1718908905,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0837713268,
+      "noise":0.2265669953
+    },
+    "total_cup_points_mean":81.6651351351
+  },
+  {
+    "id":38,
+    "country":"Tanzania, United Republic Of",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Arusha",
+      "Bourbon",
+      "Other",
+      "Ruiru 11"
+    ],
+    "sample_count":37,
+    "x":5.8942627907,
+    "y":4.3191037178,
+    "scores_mean":{
+      "Aroma":7.5543243243,
+      "Flavor":7.4083783784,
+      "Aftertaste":7.4008108108,
+      "Acidity":7.4864864865,
+      "Body":7.472972973,
+      "Balance":7.4562162162
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0911261261,
+      "Flavor_dev":-0.0548198198,
+      "Aftertaste_dev":-0.0623873874,
+      "Acidity_dev":0.0232882883,
+      "Body_dev":0.0097747748,
+      "Balance_dev":-0.006981982
+    },
+    "overall_score_mean":7.4631981982,
+    "dominant_cluster":"しっかりしたコクと明るい酸味が際立つタイプ (C3)",
+    "color":"rgb(177, 173, 171)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0973814691,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.1001650155,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.0770012415,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1731774873,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.1230312595,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0699691943,
+      "noise":0.3592743328
+    },
+    "total_cup_points_mean":82.2508108108
+  },
+  {
+    "id":39,
+    "country":"Thailand",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Catimor",
+      "Caturra",
+      "Other",
+      "Unknown"
+    ],
+    "sample_count":18,
+    "x":6.60688591,
+    "y":1.6735440493,
+    "scores_mean":{
+      "Aroma":7.4627777778,
+      "Flavor":7.5088888889,
+      "Aftertaste":7.4627777778,
+      "Acidity":7.6216666667,
+      "Body":7.4811111111,
+      "Balance":7.5011111111
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.0436111111,
+      "Flavor_dev":0.0025,
+      "Aftertaste_dev":-0.0436111111,
+      "Acidity_dev":0.1152777778,
+      "Body_dev":-0.0252777778,
+      "Balance_dev":-0.0052777778
+    },
+    "overall_score_mean":7.5063888889,
+    "dominant_cluster":"明るい酸味と豊かな風味が際立つタイプ (C5)",
+    "color":"rgb(255, 102, 146)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.44911578e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.071057515e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":2.428102049e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":2.570227533e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":3.704795019e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.0,
+      "noise":0.0
+    },
+    "total_cup_points_mean":82.3161111111
+  },
+  {
+    "id":40,
+    "country":"Uganda",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Bourbon",
+      "Other",
+      "SL14"
+    ],
+    "sample_count":7,
+    "x":4.3194670677,
+    "y":2.7208898067,
+    "scores_mean":{
+      "Aroma":7.8457142857,
+      "Flavor":7.6928571429,
+      "Aftertaste":7.5485714286,
+      "Acidity":7.6657142857,
+      "Body":7.6428571429,
+      "Balance":7.56
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.1864285714,
+      "Flavor_dev":0.0335714286,
+      "Aftertaste_dev":-0.1107142857,
+      "Acidity_dev":0.0064285714,
+      "Body_dev":-0.0164285714,
+      "Balance_dev":-0.0992857143
+    },
+    "overall_score_mean":7.6592857143,
+    "dominant_cluster":"華やかな香りが主役のタイプ (C0)",
+    "color":"rgb(239, 85, 59)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.0,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":7.462077787e-309,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":9.327899614e-309,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.363640154e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":2.245297928e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.496287994e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":83.6185714286
+  },
+  {
+    "id":41,
+    "country":"Uganda",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Bourbon",
+      "Other",
+      "SL14"
+    ],
+    "sample_count":18,
+    "x":4.8683085442,
+    "y":2.8662137985,
+    "scores_mean":{
+      "Aroma":7.9172222222,
+      "Flavor":7.755,
+      "Aftertaste":7.6111111111,
+      "Acidity":7.7094444444,
+      "Body":7.685,
+      "Balance":7.6855555556
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.19,
+      "Flavor_dev":0.0277777778,
+      "Aftertaste_dev":-0.1161111111,
+      "Acidity_dev":-0.0177777778,
+      "Body_dev":-0.0422222222,
+      "Balance_dev":-0.0416666667
+    },
+    "overall_score_mean":7.7272222222,
+    "dominant_cluster":"華やかな香りが主役のタイプ (C0)",
+    "color":"rgb(239, 85, 59)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.0,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":8.675168699e-309,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.129085186e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.866022201e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":3.932460655e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.778314398e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":84.1122222222
+  },
+  {
+    "id":42,
+    "country":"United States",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Arusha",
+      "Pache Comun",
+      "Unknown"
+    ],
+    "sample_count":3,
+    "x":4.7372088432,
+    "y":3.5727205276,
+    "scores_mean":{
+      "Aroma":7.5566666667,
+      "Flavor":7.3333333333,
+      "Aftertaste":7.3066666667,
+      "Acidity":7.42,
+      "Body":7.39,
+      "Balance":7.3066666667
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.1711111111,
+      "Flavor_dev":-0.0522222222,
+      "Aftertaste_dev":-0.0788888889,
+      "Acidity_dev":0.0344444444,
+      "Body_dev":0.0044444444,
+      "Balance_dev":-0.0788888889
+    },
+    "overall_score_mean":7.3855555556,
+    "dominant_cluster":"華やかな香りが主役のタイプ (C0)",
+    "color":"rgb(186, 149, 147)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.3244887259,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.0558617402,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.0604227257,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1087930263,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.1482624257,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.0756043609,
+      "noise":0.2265669953
+    },
+    "total_cup_points_mean":79.1933333333
+  },
+  {
+    "id":43,
+    "country":"United States",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Other"
+    ],
+    "sample_count":6,
+    "x":6.0211114883,
+    "y":1.3595452309,
+    "scores_mean":{
+      "Aroma":8.0416666667,
+      "Flavor":8.39,
+      "Aftertaste":8.2216666667,
+      "Acidity":8.265,
+      "Body":8.0833333333,
+      "Balance":8.0833333333
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.1391666667,
+      "Flavor_dev":0.2091666667,
+      "Aftertaste_dev":0.0408333333,
+      "Acidity_dev":0.0841666667,
+      "Body_dev":-0.0975,
+      "Balance_dev":-0.0975
+    },
+    "overall_score_mean":8.1808333333,
+    "dominant_cluster":"明るい酸味と豊かな風味が際立つタイプ (C5)",
+    "color":"rgb(255, 102, 146)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.660078432e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":8.647639952e-309,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.573149973e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.768983918e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":2.844778581e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.0,
+      "noise":0.0
+    },
+    "total_cup_points_mean":87.32
+  },
+  {
+    "id":44,
+    "country":"United States (Hawaii)",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Arusha",
+      "Hawaiian Kona",
+      "Unknown"
+    ],
+    "sample_count":40,
+    "x":8.1905097961,
+    "y":4.7221841812,
+    "scores_mean":{
+      "Aroma":7.52875,
+      "Flavor":7.50575,
+      "Aftertaste":7.466,
+      "Acidity":7.55875,
+      "Body":7.65,
+      "Balance":7.622
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.0264583333,
+      "Flavor_dev":-0.0494583333,
+      "Aftertaste_dev":-0.0892083333,
+      "Acidity_dev":0.0035416667,
+      "Body_dev":0.0947916667,
+      "Balance_dev":0.0667916667
+    },
+    "overall_score_mean":7.5552083333,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(0, 204, 150)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":7.181130616e-309,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.0,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":1.592896775e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.483497652e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":9.625290761e-309,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":8.71285785e-309,
+      "noise":0.0
+    },
+    "total_cup_points_mean":81.06825
+  },
+  {
+    "id":45,
+    "country":"United States (Hawaii)",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Hawaiian Kona"
+    ],
+    "sample_count":9,
+    "x":7.2988405228,
+    "y":1.9214684963,
+    "scores_mean":{
+      "Aroma":7.3522222222,
+      "Flavor":7.4811111111,
+      "Aftertaste":7.3044444444,
+      "Acidity":7.5544444444,
+      "Body":7.4,
+      "Balance":7.6011111111
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.0966666667,
+      "Flavor_dev":0.0322222222,
+      "Aftertaste_dev":-0.1444444444,
+      "Acidity_dev":0.1055555556,
+      "Body_dev":-0.0488888889,
+      "Balance_dev":0.1522222222
+    },
+    "overall_score_mean":7.4488888889,
+    "dominant_cluster":"明るい酸味と豊かな風味が際立つタイプ (C5)",
+    "color":"rgb(191, 163, 186)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":0.0391899302,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":0.0483272756,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":0.1548592161,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":0.1013875352,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":0.0877360896,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":0.1818561393,
+      "noise":0.3866438142
+    },
+    "total_cup_points_mean":81.9155555556
+  },
+  {
+    "id":46,
+    "country":"United States (Puerto Rico)",
+    "method":"Washed \/ Wet",
+    "varieties":[
+      "Other"
+    ],
+    "sample_count":4,
+    "x":8.0278053284,
+    "y":4.2679419518,
+    "scores_mean":{
+      "Aroma":7.6475,
+      "Flavor":7.54,
+      "Aftertaste":7.48,
+      "Acidity":7.6025,
+      "Body":7.665,
+      "Balance":7.6475
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0504166667,
+      "Flavor_dev":-0.0570833333,
+      "Aftertaste_dev":-0.1170833333,
+      "Acidity_dev":0.0054166667,
+      "Body_dev":0.0679166667,
+      "Balance_dev":0.0504166667
+    },
+    "overall_score_mean":7.5970833333,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(0, 204, 150)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":8.162527216e-309,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.0,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":2.266506904e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.911135069e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":1.168627065e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.059366762e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":81.7275
+  },
+  {
+    "id":47,
+    "country":"Vietnam",
+    "method":"Natural \/ Dry",
+    "varieties":[
+      "Catimor",
+      "Other",
+      "Unknown"
+    ],
+    "sample_count":4,
+    "x":8.2476615906,
+    "y":4.0139994621,
+    "scores_mean":{
+      "Aroma":7.4175,
+      "Flavor":7.355,
+      "Aftertaste":6.98,
+      "Acidity":7.205,
+      "Body":7.5625,
+      "Balance":7.4775
+    },
+    "deviation_mean":{
+      "Aroma_dev":0.0845833333,
+      "Flavor_dev":0.0220833333,
+      "Aftertaste_dev":-0.3529166667,
+      "Acidity_dev":-0.1279166667,
+      "Body_dev":0.2295833333,
+      "Balance_dev":0.1445833333
+    },
+    "overall_score_mean":7.3329166667,
+    "dominant_cluster":"しっかりしたコクと整ったバランスが際立つタイプ (C1)",
+    "color":"rgb(0, 204, 150)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":7.90528941e-309,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":1.0,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":2.652099055e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.763437689e-308,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":1.15689557e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.099610885e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":80.48
+  },
+  {
+    "id":48,
+    "country":"Vietnam",
+    "method":"Other",
+    "varieties":[
+      "Catimor",
+      "Caturra",
+      "Other"
+    ],
+    "sample_count":3,
+    "x":6.6649188995,
+    "y":3.6397418976,
+    "scores_mean":{
+      "Aroma":7.4733333333,
+      "Flavor":7.5,
+      "Aftertaste":7.4433333333,
+      "Acidity":7.5266666667,
+      "Body":7.53,
+      "Balance":7.4733333333
+    },
+    "deviation_mean":{
+      "Aroma_dev":-0.0177777778,
+      "Flavor_dev":0.0088888889,
+      "Aftertaste_dev":-0.0477777778,
+      "Acidity_dev":0.0355555556,
+      "Body_dev":0.0388888889,
+      "Balance_dev":-0.0177777778
+    },
+    "overall_score_mean":7.4911111111,
+    "dominant_cluster":"しっかりしたコクと明るい酸味が際立つタイプ (C3)",
+    "color":"rgb(255, 161, 90)",
+    "probs":{
+      "華やかな香りが主役のタイプ (C0)":1.473148219e-308,
+      "しっかりしたコクと整ったバランスが際立つタイプ (C1)":2.023409651e-308,
+      "華やかな香りと豊かな風味が際立つタイプ (C2)":2.428522071e-308,
+      "しっかりしたコクと明るい酸味が際立つタイプ (C3)":1.0,
+      "華やかな香りと明るい酸味が際立つタイプ (C4)":2.797827025e-308,
+      "明るい酸味と豊かな風味が際立つタイプ (C5)":1.673702265e-308,
+      "noise":0.0
+    },
+    "total_cup_points_mean":82.0
+  }
+]
