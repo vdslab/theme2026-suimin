@@ -100,7 +100,10 @@ function DetailPanel({ selectedCoffee }) {
             </h3>
             <div className="flex flex-wrap gap-1">
               {c.varieties.map((v) => (
-                <span key={v} className="badge badge-ghost badge-sm font-normal">
+                <span
+                  key={v}
+                  className="badge badge-ghost badge-sm font-normal"
+                >
                   {v}
                 </span>
               ))}
@@ -124,12 +127,17 @@ function DetailPanel({ selectedCoffee }) {
                       <span className="truncate max-w-[200px] text-base-content/80">
                         {isNoiseRow ? "ノイズ (独自路線)" : shortName(name)}
                       </span>
-                      <span className="font-semibold">{(p * 100).toFixed(0)}%</span>
+                      <span className="font-semibold">
+                        {(p * 100).toFixed(0)}%
+                      </span>
                     </div>
                     <div className="w-full h-1.5 rounded-full bg-base-300/40 overflow-hidden">
                       <div
                         className="h-full rounded-full"
-                        style={{ width: `${p * 100}%`, backgroundColor: rowColor }}
+                        style={{
+                          width: `${p * 100}%`,
+                          backgroundColor: rowColor,
+                        }}
                       />
                     </div>
                   </div>

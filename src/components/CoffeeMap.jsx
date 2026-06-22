@@ -1,6 +1,11 @@
 import { useState, useMemo, useRef } from "react";
 import rawData from "../data/coffee_data.json";
-import { clusterColor, shortName, isNoise, clusterIndex } from "../lib/clusters";
+import {
+  clusterColor,
+  shortName,
+  isNoise,
+  clusterIndex,
+} from "../lib/clusters";
 
 // coffee_data.json は「産地 × 精製方法」で集約したノード。表示用に整形する。
 const coffeeData = rawData.map((item) => ({
@@ -44,18 +49,28 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
   const bounds = useMemo(() => {
     const xs = coffeeData.map((d) => d.x);
     const ys = coffeeData.map((d) => d.y);
-    const xMin = Math.min(...xs), xMax = Math.max(...xs);
-    const yMin = Math.min(...ys), yMax = Math.max(...ys);
+    const xMin = Math.min(...xs),
+      xMax = Math.max(...xs);
+    const yMin = Math.min(...ys),
+      yMax = Math.max(...ys);
     const xPad = (xMax - xMin) * 0.05;
     const yPad = (yMax - yMin) * 0.05;
-    return { xMin: xMin - xPad, xMax: xMax + xPad, yMin: yMin - yPad, yMax: yMax + yPad };
+    return {
+      xMin: xMin - xPad,
+      xMax: xMax + xPad,
+      yMin: yMin - yPad,
+      yMax: yMax + yPad,
+    };
   }, []);
 
   const xScale = (x) =>
-    padding + ((x - bounds.xMin) / (bounds.xMax - bounds.xMin)) * (width - padding * 2);
+    padding +
+    ((x - bounds.xMin) / (bounds.xMax - bounds.xMin)) * (width - padding * 2);
   // Y軸は反転（上が大きい値）
   const yScale = (y) =>
-    height - padding - ((y - bounds.yMin) / (bounds.yMax - bounds.yMin)) * (height - padding * 2);
+    height -
+    padding -
+    ((y - bounds.yMin) / (bounds.yMax - bounds.yMin)) * (height - padding * 2);
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
@@ -70,7 +85,9 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
     <div className="flex flex-col gap-3">
       {/* 凡例（クリックで絞り込み） */}
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-sm font-semibold text-base-content/70 mr-1">凡例:</span>
+        <span className="text-sm font-semibold text-base-content/70 mr-1">
+          凡例:
+        </span>
         {legendClusters.map((name) => {
           const color = clusterColor(name);
           const selected = activeCluster === name;
@@ -109,13 +126,14 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
       {/* マップ本体 */}
       <div
         ref={containerRef}
-        className="relative w-full rounded-2xl border border-base-300 bg-white shadow-sm overflow-hidden"
+        className="relative mx-auto w-full max-w-7xl aspect-[800/540] rounded-2xl border border-base-300 bg-white shadow-sm overflow-hidden"
       >
         <svg
           viewBox={`0 0 ${width} ${height}`}
+          preserveAspectRatio="xMidYMid meet"
           width="100%"
           height="100%"
-          className="select-none"
+          className="absolute inset-0 select-none"
           onClick={() => onSelectCoffee(null)}
         >
           {/* ノード */}
@@ -123,7 +141,8 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
             const baseColor = clusterColor(node.clusterName);
             const isSelected = selectedCoffee?.id === node.id;
             const isHovered = hoveredNode?.id === node.id;
-            const filteredOut = activeCluster !== null && activeCluster !== node.clusterName;
+            const filteredOut =
+              activeCluster !== null && activeCluster !== node.clusterName;
 
             let opacity = 0.85;
             if (isNoise(node.clusterName)) opacity = 0.4;
@@ -191,7 +210,10 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee }) {
               style={{ backgroundColor: clusterColor(hoveredNode.clusterName) }}
             />
             <span className="font-bold">{hoveredNode.country}</span>
-            <span className="text-base-content/60"> / {hoveredNode.method}</span>
+            <span className="text-base-content/60">
+              {" "}
+              / {hoveredNode.method}
+            </span>
             <div className="text-base-content/60 mt-0.5">
               {shortName(hoveredNode.clusterName)}
             </div>
