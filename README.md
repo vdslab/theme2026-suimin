@@ -11,6 +11,19 @@ npm run build    # 本番ビルド
 npm run preview  # ビルド結果のプレビュー
 ```
 
+## Lint / フォーマット
+
+リント・フォーマットには [Biome](https://biomejs.dev/) を使用しています（設定は [`biome.json`](biome.json)）。
+
+```bash
+npm run lint     # リントチェックのみ（修正なし）
+npm run format   # フォーマットを適用
+npm run check    # リント + フォーマット + import 整理をまとめて適用
+```
+
+- コミット・PR 前に `npm run check` を実行してください。
+- `npm run lint` でエラーが出る場合は修正してから PR を出してください。
+
 ---
 
 ## 開発ルール

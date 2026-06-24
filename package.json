@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome check --write ."
   },
   "repository": {
     "type": "git",
@@ -15,7 +18,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/minmmmmin/sandbox/issues"
   },
@@ -25,6 +28,7 @@
     "react-dom": "^19.2.6"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.1",
     "@tailwindcss/vite": "^4.3.0",
     "@vitejs/plugin-react": "^6.0.2",
     "daisyui": "^5.5.20",
