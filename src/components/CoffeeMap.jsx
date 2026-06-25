@@ -35,7 +35,7 @@ const legendClusters = (() => {
   });
 })();
 
-function CoffeeMap({ selectedCoffee, onSelectCoffee, drankCoffees = {}, onUpdateDrank, recommendedCoffee }) {
+function CoffeeMap({ selectedCoffee, onSelectCoffee, drankCoffees = {}, onUpdateDrank, onRemoveDrank, recommendedCoffee }) {
   const [hoveredNode, setHoveredNode] = useState(null);
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
   const [activeCluster, setActiveCluster] = useState(null); // 凡例フィルター（clusterName）
@@ -317,15 +317,38 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee, drankCoffees = {}, onUpdate
                 </div>
               </div>
               
-              <button 
-                className="btn btn-sm btn-primary mt-2 relative z-10"
-                onClick={() => {
-                  onUpdateDrank(pNode.id, sliderValue);
-                  setPopupNodeId(null);
-                }}
-              >
-                飲んだ！
-              </button>
+              {drankCoffees[pNode.id] !== undefined ? (
+                <div className="flex gap-2 mt-2 relative z-10 w-full">
+                  <button 
+                    className="btn btn-sm btn-outline btn-error flex-1 px-1"
+                    onClick={() => {
+                      onRemoveDrank(pNode.id);
+                      setPopupNodeId(null);
+                    }}
+                  >
+                    選択解除
+                  </button>
+                  <button 
+                    className="btn btn-sm btn-primary flex-1 px-1"
+                    onClick={() => {
+                      onUpdateDrank(pNode.id, sliderValue);
+                      setPopupNodeId(null);
+                    }}
+                  >
+                    修正
+                  </button>
+                </div>
+              ) : (
+                <button 
+                  className="btn btn-sm btn-primary mt-2 relative z-10 w-full"
+                  onClick={() => {
+                    onUpdateDrank(pNode.id, sliderValue);
+                    setPopupNodeId(null);
+                  }}
+                >
+                  飲んだ！
+                </button>
+              )}
             </div>
           );
         })()}

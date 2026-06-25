@@ -96,6 +96,14 @@ function App() {
               setDrankCoffees((prev) => ({ ...prev, [id]: score }));
               setRecommendedCoffee(null);
             }}
+            onRemoveDrank={(id) => {
+              setDrankCoffees((prev) => {
+                const newState = { ...prev };
+                delete newState[id];
+                return newState;
+              });
+              setRecommendedCoffee(null);
+            }}
             recommendedCoffee={recommendedCoffee}
           />
         </main>
