@@ -21,6 +21,16 @@ function App() {
       .sort((a, b) => a.localeCompare(b));
   }, []);
 
+  const filteredSuggestions = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+
+    if (!query) return [];
+
+    return searchSuggestions
+      .filter((suggestion) => suggestion.toLowerCase().includes(query))
+      .slice(0, 8);
+  }, [searchQuery, searchSuggestions]);
+
   return (
     <div className="min-h-screen bg-base-100 text-base-content">
       <div className="grid min-h-screen grid-cols-[240px_1fr_380px]">
@@ -43,11 +53,20 @@ function App() {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
 
-              <datalist id="coffee-search-suggestions">
-                {searchSuggestions.map((suggestion) => (
-                  <option key={suggestion} value={suggestion} />
-                ))}
-              </datalist>
+              {filteredSuggestions.length > 0 && (
+                <div className="absolute z-50 mt-2 w-full rounded-box border border-base-300 bg-base-100 shadow-lg overflow-hidden">
+                  {filteredSuggestions.map((suggestion) => (
+                    <button
+                      key={suggestion}
+                      type="button"
+                      className="block w-full px-4 py-2 text-left text-sm hover:bg-base-200"
+                      onClick={() => setSearchQuery(suggestion)}
+                    >
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
