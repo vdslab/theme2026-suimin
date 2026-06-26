@@ -2,12 +2,14 @@ import { useState, useMemo } from "react";
 
 import Sidebar from "./components/Sidebar";
 import CoffeeMap, { coffeeData } from "./components/CoffeeMap";
+import WorldMap from "./components/WorldMap";
 import DetailPanel from "./components/DetailPanel";
 import rawData from "./data/coffee_data.json";
 
 function App() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [mapView, setMapView] = useState("taste"); // "taste" or "world"
 
   const searchSuggestions = useMemo(() => {
     const values = rawData.flatMap((item) => [
@@ -102,9 +104,15 @@ function App() {
         <main className="border-x border-base-300 p-8 flex flex-col">
           <div className="mb-6 flex justify-between items-end">
             <div className="flex-1">
-              <h1 className="text-3xl font-bold">味覚マップ</h1>
+              <div className="flex items-center gap-4">
+                <h1 className="text-3xl font-bold">味覚マップ</h1>
+                <div role="tablist" className="tabs tabs-boxed tabs-sm mt-1">
+                  <a role="tab" className={`tab ${mapView === "taste" ? "tab-active font-bold" : ""}`} onClick={() => setMapView("taste")}>散布図</a>
+                  <a role="tab" className={`tab ${mapView === "world" ? "tab-active font-bold" : ""}`} onClick={() => setMapView("world")}>世界地図</a>
+                </div>
+              </div>
               <p className="mt-2 text-sm text-base-content/70">
-                コーヒーの味わいの特徴をもとにしたマップです
+                コーヒーの味わいや産地をもとにしたマップです
               </p>
 
               <div className="mt-4 relative">
@@ -138,25 +146,47 @@ function App() {
             </button>
           </div>
 
-          <CoffeeMap
-            selectedCoffee={selectedCoffee}
-            onSelectCoffee={setSelectedCoffee}
-            searchQuery={searchQuery}
-            drankCoffees={drankCoffees}
-            onUpdateDrank={(id, score) => {
-              setDrankCoffees((prev) => ({ ...prev, [id]: score }));
-              setRecommendedCoffee(null);
-            }}
-            onRemoveDrank={(id) => {
-              setDrankCoffees((prev) => {
-                const newState = { ...prev };
-                delete newState[id];
-                return newState;
-              });
-              setRecommendedCoffee(null);
-            }}
-            recommendedCoffee={recommendedCoffee}
-          />
+          {mapView === "taste" ? (
+            <CoffeeMap
+              selectedCoffee={selectedCoffee}
+              onSelectCoffee={setSelectedCoffee}
+              searchQuery={searchQuery}
+              drankCoffees={drankCoffees}
+              onUpdateDrank={(id, score) => {
+                setDrankCoffees((prev) => ({ ...prev, [id]: score }));
+                setRecommendedCoffee(null);
+              }}
+              onRemoveDrank={(id) => {
+                setDrankCoffees((prev) => {
+                  const newState = { ...prev };
+                  delete newState[id];
+                  return newState;
+                });
+                setRecommendedCoffee(null);
+              }}
+              recommendedCoffee={recommendedCoffee}
+            />
+          ) : (
+            <WorldMap
+              selectedCoffee={selectedCoffee}
+              onSelectCoffee={setSelectedCoffee}
+              searchQuery={searchQuery}
+              drankCoffees={drankCoffees}
+              onUpdateDrank={(id, score) => {
+                setDrankCoffees((prev) => ({ ...prev, [id]: score }));
+                setRecommendedCoffee(null);
+              }}
+              onRemoveDrank={(id) => {
+                setDrankCoffees((prev) => {
+                  const newState = { ...prev };
+                  delete newState[id];
+                  return newState;
+                });
+                setRecommendedCoffee(null);
+              }}
+              recommendedCoffee={recommendedCoffee}
+            />
+          )}
         </main>
 
         <DetailPanel selectedCoffee={selectedCoffee} isRecommended={selectedCoffee && recommendedCoffee && selectedCoffee.id === recommendedCoffee.id} />
