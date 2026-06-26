@@ -35,13 +35,33 @@ const legendClusters = (() => {
   });
 })();
 
-function CoffeeMap({ selectedCoffee, onSelectCoffee, drankCoffees = {}, onUpdateDrank, onRemoveDrank, recommendedCoffee }) {
+function CoffeeMap({ selectedCoffee, onSelectCoffee, searchQuery, drankCoffees = {}, onUpdateDrank, onRemoveDrank, recommendedCoffee }) {
   const [hoveredNode, setHoveredNode] = useState(null);
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
   const [activeCluster, setActiveCluster] = useState(null); // 凡例フィルター（clusterName）
   const [popupNodeId, setPopupNodeId] = useState(null);
   const [sliderValue, setSliderValue] = useState(3);
   const containerRef = useRef(null);
+
+  const filteredCoffeeData = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+
+    if (!query) return coffeeData;
+
+    return coffeeData.filter((coffee) => {
+      const country = coffee.country?.toLowerCase() ?? "";
+      const method = coffee.method?.toLowerCase() ?? "";
+      const name = coffee.name?.toLowerCase() ?? "";
+      const varieties = coffee.varieties?.join(" ").toLowerCase() ?? "";
+
+      return (
+        country.includes(query) ||
+        method.includes(query) ||
+        name.includes(query) ||
+        varieties.includes(query)
+      );
+    });
+  }, [searchQuery]);
 
   // SVG 仮想座標系
   const width = 800;
@@ -195,7 +215,7 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee, drankCoffees = {}, onUpdate
             })}
 
           {/* ノード */}
-          {coffeeData.map((node) => {
+          {filteredCoffeeData.map((node) => {
             const baseColor = clusterColor(node.clusterName);
             const isSelected = selectedCoffee?.id === node.id;
             const isHovered = hoveredNode?.id === node.id;
