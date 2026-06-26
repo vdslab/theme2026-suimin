@@ -9,9 +9,16 @@
     グループ内の偏差6軸を平均（集約ノード）
       ↓ sample_count >= 3 のグループのみ残す
       ↓ 集約ノードの偏差6軸に StandardScaler
-    UMAP(2D)
-      ↓
-    HDBSCAN
+    StandardScaler済み偏差6軸
+      ├─ UMAP(3D, min_dist=0) → HDBSCAN  ← クラスタリングはこちらで実施
+      └─ UMAP(2D, min_dist=0.1)          ← 表示座標(x, y)専用
+
+クラスタリングと可視化を分離している理由:
+    可視化用の2D UMAP(min_dist>0)は見栄えのために点を引き離すため密度が歪み、
+    その上でHDBSCANをかけるとクラスタ結果が2Dレイアウトとシードに左右される
+    （検証: 2D vs 特徴量空間 ARI≈0.35、シード間ARI sd≈0.18 と不安定）。
+    そこでクラスタリングは密度を保つ中次元UMAP(3D, min_dist=0)で行い、
+    得られたラベルを2D表示座標に乗せるだけにする。
 
 クラスタリング特徴量には「総合品質スコア(Total.Cup.Points / Average.Score)」を
 一切使わない。目的は「品質の高低」ではなく「味の形」での可視化のため。
@@ -35,6 +42,12 @@ DEV_COLS = [f"{c}_dev" for c in TASTE_COLS]
 GROUP_COLS = ["Country.of.Origin", "Processing.Method"]
 MIN_SAMPLE_COUNT = 3
 INPUT_CSV = "data/merged_data_cleaned.csv"
+
+# UMAP パラメータ（クラスタリング用と表示用を分離）
+CLUSTER_UMAP_PARAMS = dict(n_components=3, n_neighbors=15, min_dist=0.0)  # 密度保持・クラスタリング用
+DISPLAY_UMAP_PARAMS = dict(n_components=2, n_neighbors=15, min_dist=0.1)  # 可視化座標(x, y)用
+HDBSCAN_PARAMS = dict(min_cluster_size=4, min_samples=1)
+RANDOM_STATE = 42
 OUTPUT_JSON = "src/data/coffee_data.json"
 HEATMAP_PNG = "scripts/cluster_deviation_heatmap.png"
 SCATTER_PNG = "scripts/cluster_scatter.png"
@@ -90,8 +103,9 @@ def english_short_label(dev_mean: pd.Series) -> str:
 def plot_scatter(nodes, cluster_names, has_tcp):
     """UMAP(2D)座標の散布図。クラスタごとに色分けして空間的なまとまりを確認する。
 
-    クラスタリングはこの2D埋め込み上で行っているため、
-    理想どおり「同じクラスタが近くにまとまる」かを直接確認できる。
+    クラスタリングは別の3D UMAP(min_dist=0)上で行い、ここではその結果ラベルを
+    表示用2D座標に乗せている。3Dで分けたまとまりが2D表示でも概ね近接するかを確認できる
+    （次元削減の都合で多少のにじみは出うる）。
     """
     fig, ax = plt.subplots(figsize=(11, 8))
 
@@ -227,23 +241,24 @@ def main():
     print(f"[4] sample_count >= {MIN_SAMPLE_COUNT} で残ったノード数: {len(nodes)}")
 
     # ------------------------------------------------------------------
-    # [5] 集約ノードの偏差6軸に StandardScaler → UMAP(2D) → HDBSCAN
+    # [5] 集約ノードの偏差6軸に StandardScaler
+    #     → クラスタリングは UMAP(3D, min_dist=0) 上で HDBSCAN
+    #     → 表示座標は別の UMAP(2D, min_dist=0.1) で作成（ラベルを乗せるだけ）
     # ------------------------------------------------------------------
-    print("[5] StandardScaler → UMAP(2D) → HDBSCAN")
+    print("[5] StandardScaler → [クラスタリング:UMAP(3D,min_dist=0)→HDBSCAN] + [表示:UMAP(2D)]")
     X = nodes[DEV_COLS].values
     X_scaled = StandardScaler().fit_transform(X)
 
-    mapper = umap.UMAP(
-        n_components=2, n_neighbors=15, min_dist=0.1, random_state=42,
-    )
-    X_2d = mapper.fit_transform(X_scaled)
+    # クラスタリング用の中次元埋め込み（密度を保つので結果が安定）
+    X_cluster = umap.UMAP(random_state=RANDOM_STATE, **CLUSTER_UMAP_PARAMS).fit_transform(X_scaled)
+
+    # 表示用2D座標（可視化専用。クラスタリングには使わない）
+    X_2d = umap.UMAP(random_state=RANDOM_STATE, **DISPLAY_UMAP_PARAMS).fit_transform(X_scaled)
     nodes["x"] = X_2d[:, 0]
     nodes["y"] = X_2d[:, 1]
 
-    clusterer = hdbscan.HDBSCAN(
-        min_cluster_size=4, min_samples=1, prediction_data=True,
-    )
-    cluster_labels = clusterer.fit_predict(X_2d)
+    clusterer = hdbscan.HDBSCAN(prediction_data=True, **HDBSCAN_PARAMS)
+    cluster_labels = clusterer.fit_predict(X_cluster)
     membership = hdbscan.all_points_membership_vectors(clusterer)
     # all_points_membership_vectors は 1クラスタ時に 1次元配列を返すことがある
     if membership.ndim == 1:
