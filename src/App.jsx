@@ -6,6 +6,7 @@ import DetailPanel from "./components/DetailPanel";
 
 function App() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="min-h-screen bg-base-100 text-base-content">
@@ -18,11 +19,22 @@ function App() {
             <p className="mt-2 text-sm text-base-content/70">
               コーヒーの味わいの特徴をもとにしたマップです
             </p>
+
+            <div className="mt-4">
+              <input
+                type="text"
+                className="input input-bordered w-full max-w-md"
+                placeholder="産地・精製方法・品種で検索"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
           </div>
 
           <CoffeeMap
             selectedCoffee={selectedCoffee}
             onSelectCoffee={setSelectedCoffee}
+            searchQuery={searchQuery}
           />
         </main>
 
