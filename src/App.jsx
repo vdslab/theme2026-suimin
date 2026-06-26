@@ -99,47 +99,41 @@ function App() {
       <div className="grid min-h-screen grid-cols-[240px_1fr_380px]">
         <Sidebar />
 
-        <main className="border-x border-base-300 p-8">
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold">味覚マップ</h1>
-            <p className="mt-2 text-sm text-base-content/70">
-              コーヒーの味わいの特徴をもとにしたマップです
-            </p>
-
-            <div className="mt-4">
-              <input
-                type="text"
-                list="coffee-search-suggestions"
-                className="input input-bordered w-full max-w-md"
-                placeholder="産地・精製方法・品種で検索"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-
-              {filteredSuggestions.length > 0 && (
-                <div className="absolute z-50 mt-2 w-full rounded-box border border-base-300 bg-base-100 shadow-lg overflow-hidden">
-                  {filteredSuggestions.map((suggestion) => (
-                    <button
-                      key={suggestion}
-                      type="button"
-                      className="block w-full px-4 py-2 text-left text-sm hover:bg-base-200"
-                      onClick={() => setSearchQuery(suggestion)}
-                    >
-                      {suggestion}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
         <main className="border-x border-base-300 p-8 flex flex-col">
           <div className="mb-6 flex justify-between items-end">
-            <div>
+            <div className="flex-1">
               <h1 className="text-3xl font-bold">味覚マップ</h1>
               <p className="mt-2 text-sm text-base-content/70">
                 コーヒーの味わいの特徴をもとにしたマップです
               </p>
+
+              <div className="mt-4 relative">
+                <input
+                  type="text"
+                  list="coffee-search-suggestions"
+                  className="input input-bordered w-full max-w-md"
+                  placeholder="産地・精製方法・品種で検索"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+
+                {filteredSuggestions.length > 0 && (
+                  <div className="absolute z-50 mt-2 w-full max-w-md rounded-box border border-base-300 bg-base-100 shadow-lg overflow-hidden">
+                    {filteredSuggestions.map((suggestion) => (
+                      <button
+                        key={suggestion}
+                        type="button"
+                        className="block w-full px-4 py-2 text-left text-sm hover:bg-base-200"
+                        onClick={() => setSearchQuery(suggestion)}
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-            <button onClick={handleRecommend} className="btn btn-primary text-white shadow-sm hover:scale-105 transition-transform">
+            <button onClick={handleRecommend} className="btn btn-primary text-white shadow-sm hover:scale-105 transition-transform shrink-0 ml-4 mb-1">
               ✨ おすすめを計算する
             </button>
           </div>

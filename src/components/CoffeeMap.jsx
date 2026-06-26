@@ -35,7 +35,7 @@ const legendClusters = (() => {
   });
 })();
 
-function CoffeeMap({ selectedCoffee, onSelectCoffee, searchQuer, drankCoffees = {}, onUpdateDrank, onRemoveDrank, recommendedCoffee }) {
+function CoffeeMap({ selectedCoffee, onSelectCoffee, searchQuery, drankCoffees = {}, onUpdateDrank, onRemoveDrank, recommendedCoffee }) {
   const [hoveredNode, setHoveredNode] = useState(null);
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
   const [activeCluster, setActiveCluster] = useState(null); // 凡例フィルター（clusterName）
