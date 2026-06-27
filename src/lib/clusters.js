@@ -13,7 +13,7 @@ export const NOISE_COLOR = "#9ca3af";
 
 // "... (C3)" からクラスタ番号を取り出す
 export function clusterIndex(name) {
-  const m = name && name.match(/\(C(\d+)\)/);
+  const m = name?.match(/\(C(\d+)\)/);
   return m ? parseInt(m[1], 10) : null;
 }
 
