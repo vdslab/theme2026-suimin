@@ -179,11 +179,19 @@ function CoffeeMap({
           width="100%"
           height="100%"
           className="absolute inset-0 select-none"
+          aria-label="コーヒー豆 味覚マップ"
           onClick={() => {
             onSelectCoffee(null);
             setPopupNodeId(null);
           }}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              onSelectCoffee(null);
+              setPopupNodeId(null);
+            }
+          }}
         >
+          <title>コーヒー豆 味覚マップ</title>
           {/* レコメンドアニメーションの線 */}
           {recommendedCoffee &&
             Object.entries(drankCoffees || {}).map(([id, score]) => {
@@ -249,9 +257,19 @@ function CoffeeMap({
             const r = isSelected ? 11 : isHovered ? 9 : 6.5;
 
             return (
+              // biome-ignore lint/a11y/useSemanticElements: SVG context — <button> cannot be nested inside <svg>
               <g
                 key={node.id}
+                role="button"
+                tabIndex={0}
+                aria-label={node.name}
                 onClick={(e) => handleNodeClick(e, node, isSelected)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleNodeClick(e, node, isSelected);
+                  }
+                }}
                 onMouseEnter={(e) => {
                   setHoveredNode(node);
                   handleMouseMove(e);
@@ -342,12 +360,15 @@ function CoffeeMap({
 
             return (
               <div
+                role="dialog"
+                aria-label="好み度を入力"
                 className="absolute z-[60] -translate-x-1/2 -translate-y-[calc(100%+28px)] rounded-xl border border-base-300 bg-base-100 p-3 shadow-xl flex flex-col gap-2 min-w-[200px] animate-in fade-in slide-in-from-bottom-2"
                 style={{
                   left: `${(px / width) * 100}%`,
                   top: `${(py / height) * 100}%`,
                 }}
                 onClick={(e) => e.stopPropagation()}
+                onKeyDown={(e) => e.stopPropagation()}
               >
                 <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-base-100 border-b border-r border-base-300 rotate-45"></div>
 
