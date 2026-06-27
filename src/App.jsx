@@ -1,8 +1,7 @@
-import { useState, useMemo } from "react";
-
-import Sidebar from "./components/Sidebar";
+import { useMemo, useState } from "react";
 import CoffeeMap, { coffeeData } from "./components/CoffeeMap";
 import DetailPanel from "./components/DetailPanel";
+import Sidebar from "./components/Sidebar";
 import rawData from "./data/coffee_data.json";
 
 function App() {
@@ -43,7 +42,9 @@ function App() {
     // 1. Initial position = average of drank coffees
     let sumX = 0,
       sumY = 0;
-    const drankNodes = coffeeData.filter((d) => drankCoffees[d.id] !== undefined);
+    const drankNodes = coffeeData.filter(
+      (d) => drankCoffees[d.id] !== undefined,
+    );
     drankNodes.forEach((d) => {
       sumX += d.x;
       sumY += d.y;
@@ -67,8 +68,10 @@ function App() {
     // スコア3（ウェイト0）ばかりの場合は移動しません。
     // 少しだけおすすめ度を強めるため、正規化した距離に微小な乗数(1.2)をかけます。
     const multiplier = 1.2;
-    const shiftX = totalWeightMag === 0 ? 0 : (deltaX / totalWeightMag) * multiplier;
-    const shiftY = totalWeightMag === 0 ? 0 : (deltaY / totalWeightMag) * multiplier;
+    const shiftX =
+      totalWeightMag === 0 ? 0 : (deltaX / totalWeightMag) * multiplier;
+    const shiftY =
+      totalWeightMag === 0 ? 0 : (deltaY / totalWeightMag) * multiplier;
 
     const finalX = initX + shiftX;
     const finalY = initY + shiftY;
@@ -79,7 +82,7 @@ function App() {
 
     coffeeData.forEach((d) => {
       if (drankCoffees[d.id] !== undefined) return; // skip drank coffees
-      const dist = Math.sqrt(Math.pow(d.x - finalX, 2) + Math.pow(d.y - finalY, 2));
+      const dist = Math.sqrt((d.x - finalX) ** 2 + (d.y - finalY) ** 2);
       if (dist < minDistance) {
         minDistance = dist;
         closestNode = d;
@@ -133,8 +136,12 @@ function App() {
                 )}
               </div>
             </div>
-            <button onClick={handleRecommend} className="btn btn-primary text-white shadow-sm hover:scale-105 transition-transform shrink-0 ml-4 mb-1">
-              ✨ おすすめを計算する
+            <button
+              type="button"
+              onClick={handleRecommend}
+              className="btn btn-primary text-white shadow-sm hover:scale-105 transition-transform shrink-0 ml-4 mb-1"
+            >
+              おすすめを計算する
             </button>
           </div>
 
@@ -159,7 +166,14 @@ function App() {
           />
         </main>
 
-        <DetailPanel selectedCoffee={selectedCoffee} isRecommended={selectedCoffee && recommendedCoffee && selectedCoffee.id === recommendedCoffee.id} />
+        <DetailPanel
+          selectedCoffee={selectedCoffee}
+          isRecommended={
+            selectedCoffee &&
+            recommendedCoffee &&
+            selectedCoffee.id === recommendedCoffee.id
+          }
+        />
       </div>
     </div>
   );
