@@ -1,10 +1,10 @@
-import { useState, useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import rawData from "../data/coffee_data.json";
 import {
   clusterColor,
-  shortName,
-  isNoise,
   clusterIndex,
+  isNoise,
+  shortName,
 } from "../lib/clusters";
 
 // coffee_data.json は「産地 × 精製方法」で集約したノード。表示用に整形する。
@@ -35,7 +35,15 @@ const legendClusters = (() => {
   });
 })();
 
-function CoffeeMap({ selectedCoffee, onSelectCoffee, searchQuery, drankCoffees = {}, onUpdateDrank, onRemoveDrank, recommendedCoffee }) {
+function CoffeeMap({
+  selectedCoffee,
+  onSelectCoffee,
+  searchQuery,
+  drankCoffees = {},
+  onUpdateDrank,
+  onRemoveDrank,
+  recommendedCoffee,
+}) {
   const [hoveredNode, setHoveredNode] = useState(null);
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
   const [activeCluster, setActiveCluster] = useState(null); // 凡例フィルター（clusterName）
@@ -106,7 +114,7 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee, searchQuery, drankCoffees =
   const handleNodeClick = (e, node, isSelected) => {
     e.stopPropagation();
     onSelectCoffee(isSelected ? null : node);
-    
+
     // Toggle popup
     if (popupNodeId === node.id) {
       setPopupNodeId(null);
@@ -178,10 +186,10 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee, searchQuery, drankCoffees =
           {recommendedCoffee &&
             Object.entries(drankCoffees || {}).map(([id, score]) => {
               if (score === 3) return null; // 普通の場合は線を省略
-              
+
               const drankNode = coffeeData.find((d) => d.id === Number(id));
               if (!drankNode) return null;
-              
+
               const isLike = score > 3;
               const rX = xScale(recommendedCoffee.x);
               const rY = yScale(recommendedCoffee.y);
@@ -195,7 +203,13 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee, searchQuery, drankCoffees =
               const x2 = isLike ? dX : rX;
               const y2 = isLike ? dY : rY;
 
-              const strokeWidth = isLike ? (score === 5 ? 3 : 1.5) : (score === 1 ? 3 : 1.5);
+              const strokeWidth = isLike
+                ? score === 5
+                  ? 3
+                  : 1.5
+                : score === 1
+                  ? 3
+                  : 1.5;
               const strokeColor = isLike ? "#10b981" : "#ef4444"; // emerald-500 : red-500
 
               return (
@@ -247,13 +261,36 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee, searchQuery, drankCoffees =
                 {/* レコメンド強調ハイライト */}
                 {isRecommended && (
                   <>
-                    <circle cx={cx} cy={cy} r={r + 12} fill="#fef08a" opacity={0.6} className="animate-pulse pointer-events-none" />
-                    <circle cx={cx} cy={cy} r={r + 6} fill="none" stroke="#eab308" strokeWidth={2} strokeDasharray="4 2" className="pointer-events-none">
-                      <animateTransform attributeName="transform" type="rotate" from={`0 ${cx} ${cy}`} to={`360 ${cx} ${cy}`} dur="4s" repeatCount="indefinite" />
+                    <circle
+                      cx={cx}
+                      cy={cy}
+                      r={r + 12}
+                      fill="#fef08a"
+                      opacity={0.6}
+                      className="animate-pulse pointer-events-none"
+                    />
+                    <circle
+                      cx={cx}
+                      cy={cy}
+                      r={r + 6}
+                      fill="none"
+                      stroke="#eab308"
+                      strokeWidth={2}
+                      strokeDasharray="4 2"
+                      className="pointer-events-none"
+                    >
+                      <animateTransform
+                        attributeName="transform"
+                        type="rotate"
+                        from={`0 ${cx} ${cy}`}
+                        to={`360 ${cx} ${cy}`}
+                        dur="4s"
+                        repeatCount="indefinite"
+                      />
                     </circle>
                   </>
                 )}
-                
+
                 {/* 選択・ホバー時のリング */}
                 {(isSelected || isHovered) && (
                   <circle
@@ -265,7 +302,7 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee, searchQuery, drankCoffees =
                     strokeWidth={isSelected ? 2 : 1.5}
                   />
                 )}
-                
+
                 <circle
                   cx={cx}
                   cy={cy}
@@ -275,7 +312,7 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee, searchQuery, drankCoffees =
                   strokeWidth={hasDrank ? 2 : 1}
                   opacity={opacity}
                 />
-                
+
                 {/* 飲んだマーク（チェック） */}
                 {hasDrank && (
                   <path
@@ -294,84 +331,88 @@ function CoffeeMap({ selectedCoffee, onSelectCoffee, searchQuery, drankCoffees =
         </svg>
 
         {/* スライダーポップアップ */}
-        {popupNodeId && (() => {
-          const pNode = coffeeData.find(n => n.id === popupNodeId);
-          if (!pNode) return null;
-          const px = xScale(pNode.x);
-          const py = yScale(pNode.y);
-          
-          return (
-            <div
-              className="absolute z-[60] -translate-x-1/2 -translate-y-[calc(100%+28px)] rounded-xl border border-base-300 bg-base-100 p-3 shadow-xl flex flex-col gap-2 min-w-[200px] animate-in fade-in slide-in-from-bottom-2"
-              style={{ 
-                left: `${(px / width) * 100}%`, 
-                top: `${(py / height) * 100}%` 
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-base-100 border-b border-r border-base-300 rotate-45"></div>
-              
-              <div className="flex justify-between items-center mb-1 relative z-10">
-                <span className="font-bold text-sm text-base-content">好み度を入力</span>
-                <button 
-                  className="btn btn-ghost btn-xs btn-circle text-base-content/50 hover:text-base-content" 
-                  onClick={() => setPopupNodeId(null)}
-                >
-                  ✕
-                </button>
-              </div>
-              
-              <div className="flex flex-col gap-1 relative z-10">
-                <input 
-                  type="range" 
-                  min="1" max="5" 
-                  value={sliderValue} 
-                  onChange={e => setSliderValue(Number(e.target.value))} 
-                  className="range range-xs range-primary" 
-                  step="1" 
-                />
-                <div className="w-full flex justify-between text-[10px] px-1 text-base-content/60 font-medium">
-                  <span>苦手</span>
-                  <span>普通</span>
-                  <span>好み</span>
-                </div>
-              </div>
-              
-              {drankCoffees[pNode.id] !== undefined ? (
-                <div className="flex gap-2 mt-2 relative z-10 w-full">
-                  <button 
-                    className="btn btn-sm btn-outline btn-error flex-1 px-1"
-                    onClick={() => {
-                      onRemoveDrank(pNode.id);
-                      setPopupNodeId(null);
-                    }}
+        {popupNodeId &&
+          (() => {
+            const pNode = coffeeData.find((n) => n.id === popupNodeId);
+            if (!pNode) return null;
+            const px = xScale(pNode.x);
+            const py = yScale(pNode.y);
+
+            return (
+              <div
+                className="absolute z-[60] -translate-x-1/2 -translate-y-[calc(100%+28px)] rounded-xl border border-base-300 bg-base-100 p-3 shadow-xl flex flex-col gap-2 min-w-[200px] animate-in fade-in slide-in-from-bottom-2"
+                style={{
+                  left: `${(px / width) * 100}%`,
+                  top: `${(py / height) * 100}%`,
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-base-100 border-b border-r border-base-300 rotate-45"></div>
+
+                <div className="flex justify-between items-center mb-1 relative z-10">
+                  <span className="font-bold text-sm text-base-content">
+                    好み度を入力
+                  </span>
+                  <button
+                    className="btn btn-ghost btn-xs btn-circle text-base-content/50 hover:text-base-content"
+                    onClick={() => setPopupNodeId(null)}
                   >
-                    選択解除
+                    ✕
                   </button>
-                  <button 
-                    className="btn btn-sm btn-primary flex-1 px-1"
+                </div>
+
+                <div className="flex flex-col gap-1 relative z-10">
+                  <input
+                    type="range"
+                    min="1"
+                    max="5"
+                    value={sliderValue}
+                    onChange={(e) => setSliderValue(Number(e.target.value))}
+                    className="range range-xs range-primary"
+                    step="1"
+                  />
+                  <div className="w-full flex justify-between text-[10px] px-1 text-base-content/60 font-medium">
+                    <span>苦手</span>
+                    <span>普通</span>
+                    <span>好み</span>
+                  </div>
+                </div>
+
+                {drankCoffees[pNode.id] !== undefined ? (
+                  <div className="flex gap-2 mt-2 relative z-10 w-full">
+                    <button
+                      className="btn btn-sm btn-outline btn-error flex-1 px-1"
+                      onClick={() => {
+                        onRemoveDrank(pNode.id);
+                        setPopupNodeId(null);
+                      }}
+                    >
+                      選択解除
+                    </button>
+                    <button
+                      className="btn btn-sm btn-primary flex-1 px-1"
+                      onClick={() => {
+                        onUpdateDrank(pNode.id, sliderValue);
+                        setPopupNodeId(null);
+                      }}
+                    >
+                      修正
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    className="btn btn-sm btn-primary mt-2 relative z-10 w-full"
                     onClick={() => {
                       onUpdateDrank(pNode.id, sliderValue);
                       setPopupNodeId(null);
                     }}
                   >
-                    修正
+                    飲んだ！
                   </button>
-                </div>
-              ) : (
-                <button 
-                  className="btn btn-sm btn-primary mt-2 relative z-10 w-full"
-                  onClick={() => {
-                    onUpdateDrank(pNode.id, sliderValue);
-                    setPopupNodeId(null);
-                  }}
-                >
-                  飲んだ！
-                </button>
-              )}
-            </div>
-          );
-        })()}
+                )}
+              </div>
+            );
+          })()}
 
         {/* 軽量ホバーツールチップ（詳細は右パネル） */}
         {hoveredNode && !popupNodeId && (

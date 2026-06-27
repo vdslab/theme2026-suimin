@@ -1,8 +1,13 @@
 // クラスタの色・名前まわりの共通ヘルパー。
 // precompute_data.py と同じカラーパレット（クラスタ index 順）。
 export const HEX_PALETTE = [
-  "#EF553B", "#00CC96", "#AB63FA", "#FFA15A",
-  "#19D3F3", "#FF6692", "#B6E880",
+  "#EF553B",
+  "#00CC96",
+  "#AB63FA",
+  "#FFA15A",
+  "#19D3F3",
+  "#FF6692",
+  "#B6E880",
 ];
 export const NOISE_COLOR = "#9ca3af";
 
