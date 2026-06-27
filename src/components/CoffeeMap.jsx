@@ -138,6 +138,7 @@ function CoffeeMap({
           return (
             <button
               key={name}
+              type="button"
               onClick={() => toggleCluster(name)}
               className={`badge gap-1.5 cursor-pointer border transition ${
                 dimmed ? "opacity-30" : "hover:scale-105"
@@ -158,6 +159,7 @@ function CoffeeMap({
         })}
         {activeCluster && (
           <button
+            type="button"
             onClick={() => setActiveCluster(null)}
             className="btn btn-ghost btn-xs"
           >
@@ -354,6 +356,7 @@ function CoffeeMap({
                     好み度を入力
                   </span>
                   <button
+                    type="button"
                     className="btn btn-ghost btn-xs btn-circle text-base-content/50 hover:text-base-content"
                     onClick={() => setPopupNodeId(null)}
                   >
@@ -381,6 +384,7 @@ function CoffeeMap({
                 {drankCoffees[pNode.id] !== undefined ? (
                   <div className="flex gap-2 mt-2 relative z-10 w-full">
                     <button
+                      type="button"
                       className="btn btn-sm btn-outline btn-error flex-1 px-1"
                       onClick={() => {
                         onRemoveDrank(pNode.id);
@@ -390,6 +394,7 @@ function CoffeeMap({
                       選択解除
                     </button>
                     <button
+                      type="button"
                       className="btn btn-sm btn-primary flex-1 px-1"
                       onClick={() => {
                         onUpdateDrank(pNode.id, sliderValue);
@@ -401,6 +406,7 @@ function CoffeeMap({
                   </div>
                 ) : (
                   <button
+                    type="button"
                     className="btn btn-sm btn-primary mt-2 relative z-10 w-full"
                     onClick={() => {
                       onUpdateDrank(pNode.id, sliderValue);

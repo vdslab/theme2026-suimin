@@ -137,6 +137,7 @@ function App() {
               </div>
             </div>
             <button
+              type="button"
               onClick={handleRecommend}
               className="btn btn-primary text-white shadow-sm hover:scale-105 transition-transform shrink-0 ml-4 mb-1"
             >
