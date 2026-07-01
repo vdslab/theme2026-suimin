@@ -3,21 +3,22 @@ import CoffeeMap, { coffeeData } from "./components/CoffeeMap";
 import DetailPanel from "./components/DetailPanel";
 import Sidebar from "./components/Sidebar";
 import rawData from "./data/coffee_data.json";
+import { toJapaneseCountryName } from "./utils/countryName";
 
 function App() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
   const searchSuggestions = useMemo(() => {
-    const values = rawData.flatMap((item) => [
-      item.country,
-      item.method,
-      ...(item.varieties || []),
-    ]);
+    const values = rawData.flatMap((item) => {
+      const countryJa = toJapaneseCountryName(item.country);
+
+      return [countryJa, item.method, ...(item.varieties || [])];
+    });
 
     return [...new Set(values)]
       .filter(Boolean)
-      .sort((a, b) => a.localeCompare(b));
+      .sort((a, b) => a.localeCompare(b, "ja"));
   }, []);
 
   const filteredSuggestions = useMemo(() => {
