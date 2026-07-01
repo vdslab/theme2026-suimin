@@ -465,7 +465,9 @@ function CoffeeMap({
               className="inline-block w-2 h-2 rounded-full mr-1.5 align-middle"
               style={{ backgroundColor: clusterColor(hoveredNode.clusterName) }}
             />
-            <span className="font-bold">{hoveredNode.country}</span>
+            <span className="font-bold">
+              {hoveredNode.countryJa || hoveredNode.country}
+            </span>
             <span className="text-base-content/60">
               {" "}
               / {hoveredNode.method}
