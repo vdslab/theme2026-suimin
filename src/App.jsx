@@ -3,6 +3,7 @@ import CoffeeMap, { coffeeData } from "./components/CoffeeMap";
 import DetailPanel from "./components/DetailPanel";
 import Sidebar from "./components/Sidebar";
 import rawData from "./data/coffee_data.json";
+import { cleanVarieties } from "./lib/varieties";
 
 function App() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
@@ -12,7 +13,7 @@ function App() {
     const values = rawData.flatMap((item) => [
       item.country,
       item.method,
-      ...(item.varieties || []),
+      ...cleanVarieties(item.varieties),
     ]);
 
     return [...new Set(values)]
