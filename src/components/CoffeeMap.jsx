@@ -63,12 +63,14 @@ function CoffeeMap({
 
     return coffeeData.filter((coffee) => {
       const country = coffee.country?.toLowerCase() ?? "";
+      const countryJa = coffee.countryJa?.toLowerCase() ?? "";
       const method = coffee.method?.toLowerCase() ?? "";
       const name = coffee.name?.toLowerCase() ?? "";
       const varieties = coffee.varieties?.join(" ").toLowerCase() ?? "";
 
       return (
         country.includes(query) ||
+        countryJa.includes(query) ||
         method.includes(query) ||
         name.includes(query) ||
         varieties.includes(query)
