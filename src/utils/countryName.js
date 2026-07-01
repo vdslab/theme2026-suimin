@@ -8,10 +8,6 @@ countries.registerLocale(en);
 export function toJapaneseCountryName(countryEn) {
   if (!countryEn) return "";
 
-  if (countryNameOverrides[countryEn]) {
-    return countryNameOverrides[countryEn];
-  }
-
   const code = countries.getAlpha2Code(countryEn, "en");
 
   if (!code) {
