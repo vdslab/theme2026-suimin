@@ -6,6 +6,7 @@ import {
   isNoise,
   shortName,
 } from "../lib/clusters";
+import { cleanVarieties } from "../lib/varieties";
 import { toJapaneseCountryName } from "../utils/countryName";
 
 // coffee_data.json は「産地 × 精製方法」で集約したノード。表示用に整形する。
@@ -19,15 +20,15 @@ export const coffeeData = rawData.map((item) => {
     country: item.country,
     countryJa,
     method: item.method,
-    varieties: item.varieties || [],
+    varieties: cleanVarieties(item.varieties),
     sampleCount: item.sample_count,
     x: item.x,
     y: item.y,
-    blendedColor: item.color,
+    blendedColor: item.color, // membershipブレンド色（ドットの塗り）
     clusterName: item.dominant_cluster,
     probs: item.probs || {},
-    scores: item.scores_mean,
-    deviation: item.deviation_mean,
+    scores: item.scores_mean, // { Aroma, Flavor, ... }
+    deviation: item.deviation_mean, // { Aroma_dev, ... }
   };
 });
 // データに存在するクラスタ一覧（凡例用）。C番号順、ノイズは末尾。

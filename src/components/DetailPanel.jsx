@@ -95,11 +95,11 @@ function DetailPanel({ selectedCoffee }) {
         </div>
 
         {/* 品種 */}
-        {c.varieties?.length > 0 && (
-          <div>
-            <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-              含まれる品種
-            </h3>
+        <div>
+          <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+            含まれる品種
+          </h3>
+          {c.varieties?.length > 0 ? (
             <div className="flex flex-wrap gap-1">
               {c.varieties.map((v) => (
                 <span
@@ -110,8 +110,10 @@ function DetailPanel({ selectedCoffee }) {
                 </span>
               ))}
             </div>
-          </div>
-        )}
+          ) : (
+            <p className="text-xs text-base-content/40">品種情報なし</p>
+          )}
+        </div>
 
         {/* 所属確率 */}
         {probs.length > 0 && (

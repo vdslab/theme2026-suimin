@@ -1,6 +1,6 @@
 import countries from "i18n-iso-countries";
-import ja from "i18n-iso-countries/langs/ja.json";
 import en from "i18n-iso-countries/langs/en.json";
+import ja from "i18n-iso-countries/langs/ja.json";
 
 countries.registerLocale(ja);
 countries.registerLocale(en);
