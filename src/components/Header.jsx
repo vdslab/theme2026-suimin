@@ -1,10 +1,11 @@
 import { useMemo } from "react";
 import rawData from "../data/coffee_data.json";
+import { translateCountry } from "../lib/countryNames";
 
 export default function Header({ searchQuery, setSearchQuery, onRecommend }) {
   const searchSuggestions = useMemo(() => {
     const values = rawData.flatMap((item) => [
-      item.country,
+      translateCountry(item.country),
       item.method,
       ...(item.varieties || []),
     ]);

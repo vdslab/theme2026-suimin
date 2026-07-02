@@ -6,6 +6,7 @@ import * as topojson from "topojson-client";
 import { coffeeData } from "../lib/coffeeData";
 import { clusterColor } from "../lib/clusters";
 import worldTopoJson from "../data/world-110m.json";
+import { translateCountry } from "../lib/countryNames";
 
 import MapLegend from "./MapLegend";
 import MethodPopup from "./MethodPopup";
@@ -52,6 +53,7 @@ export default function WorldMap({ selectedCoffee, onSelectCoffee, searchQuery, 
     const map = {};
     coffeeData.forEach(node => {
       const matchesSearch = !query || 
+        (translateCountry(node.country)?.toLowerCase() ?? "").includes(query) ||
         (node.country?.toLowerCase() ?? "").includes(query) ||
         (node.method?.toLowerCase() ?? "").includes(query) ||
         (node.name?.toLowerCase() ?? "").includes(query) ||

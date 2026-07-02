@@ -1,4 +1,5 @@
 import { clusterColor, shortName, TASTE_AXES } from "../lib/clusters";
+import { translateCountry } from "../lib/countryNames";
 
 function DetailPanel({ selectedCoffee, isRecommended, onClose }) {
   if (!selectedCoffee) {
@@ -48,7 +49,7 @@ function DetailPanel({ selectedCoffee, isRecommended, onClose }) {
             >
               {shortName(c.clusterName)}
             </span>
-            <h2 className="text-xl font-bold leading-tight">{c.country}</h2>
+            <h2 className="text-xl font-bold leading-tight">{translateCountry(c.country)}</h2>
             <p className="text-sm text-base-content/60">製法: {c.method}</p>
             <p className="text-xs text-base-content/50 mt-1">
               このグループのサンプル数: {c.sampleCount} 件

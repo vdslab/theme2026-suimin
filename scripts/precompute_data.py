@@ -33,7 +33,7 @@ from sklearn.preprocessing import StandardScaler
 TASTE_COLS = ["Aroma", "Flavor", "Aftertaste", "Acidity", "Body", "Balance"]
 DEV_COLS = [f"{c}_dev" for c in TASTE_COLS]
 GROUP_COLS = ["Country.of.Origin", "Processing.Method"]
-MIN_SAMPLE_COUNT = 3
+MIN_SAMPLE_COUNT = 1
 INPUT_CSV = "data/merged_data_cleaned.csv"
 OUTPUT_JSON = "src/data/coffee_data.json"
 HEATMAP_PNG = "scripts/cluster_deviation_heatmap.png"

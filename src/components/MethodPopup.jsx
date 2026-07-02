@@ -1,4 +1,5 @@
 import { clusterColor, shortName } from "../lib/clusters";
+import { translateCountry } from "../lib/countryNames";
 
 export default function MethodPopup({
   popupInfo,
@@ -68,7 +69,7 @@ export default function MethodPopup({
           className="font-bold text-lg leading-tight pr-6 mb-1 text-base-content/80 cursor-grab active:cursor-grabbing select-none"
           onMouseDown={handleDragStart}
         >
-          {popupInfo.geoName}
+          {translateCountry(popupInfo.geoName)}
         </h3>
         {isSelectedValid ? (
           <>
