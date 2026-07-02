@@ -50,15 +50,41 @@ export default function WorldMap({ selectedCoffee, onSelectCoffee, searchQuery, 
 
   // ノードのグループ化（検索・フィルタ反映）
   const filteredNodesByGeoName = useMemo(() => {
-    const query = (searchQuery || "").trim().toLowerCase();
+    const rawQuery = (searchQuery || "").trim();
+    let regex = null;
+    let isRegexValid = false;
+    
+    if (rawQuery) {
+      try {
+        regex = new RegExp(rawQuery, 'i');
+        isRegexValid = true;
+      } catch (e) {
+        // 正規表現として無効な場合は通常の文字列検索にフォールバック
+      }
+    }
+
+    const queryLower = rawQuery.toLowerCase();
     const map = {};
+    
     coffeeData.forEach(node => {
-      const matchesSearch = !query || 
-        (translateCountry(node.country)?.toLowerCase() ?? "").includes(query) ||
-        (node.country?.toLowerCase() ?? "").includes(query) ||
-        (node.method?.toLowerCase() ?? "").includes(query) ||
-        (node.name?.toLowerCase() ?? "").includes(query) ||
-        (node.varieties?.join(" ").toLowerCase() ?? "").includes(query);
+      let matchesSearch = false;
+      if (!rawQuery) {
+        matchesSearch = true;
+      } else {
+        const targets = [
+          translateCountry(node.country) || "",
+          node.country || "",
+          node.method || "",
+          node.name || "",
+          (node.varieties || []).join(" ")
+        ];
+
+        if (isRegexValid) {
+          matchesSearch = targets.some(str => regex.test(str));
+        } else {
+          matchesSearch = targets.some(str => str.toLowerCase().includes(queryLower));
+        }
+      }
         
       if (matchesSearch) {
         const geoName = mapCountryName(node.country);
