@@ -34,6 +34,7 @@ export const COUNTRY_TRANSLATIONS = {
   "United States": "アメリカ",
   "United States of America": "アメリカ",
   "United States (Hawaii)": "ハワイ (アメリカ)",
+  "Hawaii": "ハワイ (アメリカ)",
   "United States (Puerto Rico)": "プエルトリコ (アメリカ)",
   "Puerto Rico": "プエルトリコ",
   "Vietnam": "ベトナム",

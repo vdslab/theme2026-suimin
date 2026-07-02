@@ -14,7 +14,8 @@ import MethodPopup from "./MethodPopup";
 // TopoJSONのnameとcoffeeDataのcountryをマッピング
 const mapCountryName = (c) => {
   if (c === "Tanzania, United Republic Of") return "Tanzania";
-  if (c === "United States" || c === "United States (Hawaii)") return "United States of America";
+  if (c === "United States") return "United States of America";
+  if (c === "United States (Hawaii)") return "Hawaii";
   if (c === "United States (Puerto Rico)") return "Puerto Rico";
   return c;
 };
@@ -158,6 +159,29 @@ export default function WorldMap({ selectedCoffee, onSelectCoffee, searchQuery, 
               />
             );
           })}
+
+          {/* ハワイを別途描画（110m地図だと省略されたり小さすぎたりするため） */}
+          {(() => {
+            const geoName = "Hawaii";
+            const hasData = !!filteredNodesByGeoName[geoName];
+            if (!hasData && !recommendedCoffee) return null;
+            const fill = hasData ? `url(#pattern-Hawaii)` : "#cbd5e1";
+            const [hx, hy] = projection([-155.5828, 19.8968]) || [0,0];
+            const isCountryRecommended = recommendedCoffee && mapCountryName(recommendedCoffee.country) === geoName;
+            
+            return (
+              <circle
+                cx={hx}
+                cy={hy}
+                r={8}
+                fill={fill}
+                stroke={isCountryRecommended ? "#eab308" : "#f8fafc"} 
+                strokeWidth={isCountryRecommended ? 2.5 : 0.5}
+                className={hasData ? "cursor-pointer hover:opacity-80 transition-opacity" : ""}
+                onClick={(e) => hasData && handleCountryClick(e, geoName)}
+              />
+            );
+          })()}
         </g>
       </svg>
 
