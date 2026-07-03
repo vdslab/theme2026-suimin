@@ -1,13 +1,16 @@
 import { clusterColor, shortName, TASTE_AXES } from "../lib/clusters";
+import { translateCountry } from "../lib/countryNames";
 
-function DetailPanel({ selectedCoffee, isRecommended, onClose }) {
+function DetailPanel({ selectedCoffee, onClose }) {
   if (!selectedCoffee) {
     return (
       <aside className="bg-base-100 p-6 h-full flex flex-col justify-center items-center">
         <div className="rounded-box border border-dashed border-base-300 bg-base-200/50 p-6 text-center">
           <p className="text-sm text-base-content/60">
-            マップ上の国をクリックして<br />
-            精製方法を選ぶと、<br />
+            マップ上の国をクリックして
+            <br />
+            精製方法を選ぶと、
+            <br />
             ここに詳細が表示されます。
           </p>
         </div>
@@ -32,7 +35,8 @@ function DetailPanel({ selectedCoffee, isRecommended, onClose }) {
   return (
     <aside className="bg-base-100 h-full flex flex-col relative overflow-hidden">
       {/* 閉じるボタン */}
-      <button 
+      <button
+        type="button"
         onClick={onClose}
         className="absolute top-4 right-4 btn btn-circle btn-sm btn-ghost bg-base-200 hover:bg-base-300 z-10"
       >
@@ -48,7 +52,9 @@ function DetailPanel({ selectedCoffee, isRecommended, onClose }) {
             >
               {shortName(c.clusterName)}
             </span>
-            <h2 className="text-xl font-bold leading-tight">{c.country}</h2>
+            <h2 className="text-xl font-bold leading-tight">
+              {translateCountry(c.country)}
+            </h2>
             <p className="text-sm text-base-content/60">製法: {c.method}</p>
             <p className="text-xs text-base-content/50 mt-1">
               このグループのサンプル数: {c.sampleCount} 件
@@ -61,7 +67,7 @@ function DetailPanel({ selectedCoffee, isRecommended, onClose }) {
             </h3>
             <div className="space-y-2">
               {devs.map((d) => {
-                const pct = (Math.abs(d.dev) / maxAbs) * 50; 
+                const pct = (Math.abs(d.dev) / maxAbs) * 50;
                 const positive = d.dev >= 0;
                 return (
                   <div key={d.key} className="flex items-center gap-2 text-xs">
