@@ -122,13 +122,17 @@ export default function WorldMap({
     svg.call(zoomBehavior);
   }, []);
 
-  const handleCountryClick = (e, geoName) => {
+  const handleCountryClick = (e, geoName, geo) => {
     e.stopPropagation();
     const rect = containerRef.current.getBoundingClientRect();
 
+    const centroid = d3geo.geoCentroid(geo);
+    if (centroid) {
+      setCenterLng(centroid[0]);
+    }
+
     const nodes = filteredNodesByGeoName[geoName];
     if (nodes && nodes.length > 0) {
-      // 一番サンプル数が多い精製方法をデフォルト選択
       const topNode = [...nodes].sort(
         (a, b) => b.sampleCount - a.sampleCount,
       )[0];
@@ -137,7 +141,7 @@ export default function WorldMap({
 
     setPopupInfo({
       geoName,
-      x: Math.min(e.clientX - rect.left, width - 600), // 2ウィンドウ分の見切れ防止
+      x: Math.min(e.clientX - rect.left, width - 600),
       y: Math.min(e.clientY - rect.top, height - 300),
     });
   };
@@ -248,7 +252,12 @@ export default function WorldMap({
                     ? "cursor-pointer hover:opacity-80 transition-opacity"
                     : ""
                 }
-                onClick={(e) => hasData && handleCountryClick(e, geoName)}
+                onClick={(e) => {
+                  if (hasData) {
+                    setCenterLng(-155.5828);
+                    handleCountryClick(e, geoName);
+                  }
+                }}
               />
             );
           })}
