@@ -20,6 +20,9 @@ const mapCountryName = (c) => {
   return c;
 };
 
+// 描画の初期位置が日本
+const [centerLing, setCenterLing] = useState(139);
+
 export default function WorldMap({
   selectedCoffee,
   onSelectCoffee,
@@ -50,9 +53,10 @@ export default function WorldMap({
   const projection = useMemo(() => {
     return d3geo
       .geoMercator()
+      .rotate([-centerLng, 0])
       .scale(180)
       .translate([width / 2, height / 1.5]);
-  }, [width, height]);
+  }, [width, height, centerLng]);
 
   const pathGenerator = useMemo(() => {
     return d3geo.geoPath().projection(projection);
