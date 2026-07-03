@@ -12,8 +12,11 @@ export function useRecommendation(drankCoffees, setSelectedCoffee) {
     }
 
     // 1. Initial position = average of drank coffees
-    let sumX = 0, sumY = 0;
-    const drankNodes = coffeeData.filter((d) => drankCoffees[d.id] !== undefined);
+    let sumX = 0,
+      sumY = 0;
+    const drankNodes = coffeeData.filter(
+      (d) => drankCoffees[d.id] !== undefined,
+    );
     drankNodes.forEach((d) => {
       sumX += d.x;
       sumY += d.y;
@@ -22,7 +25,8 @@ export function useRecommendation(drankCoffees, setSelectedCoffee) {
     const initY = sumY / drankNodes.length;
 
     // 2. Apply spring forces
-    let deltaX = 0, deltaY = 0;
+    let deltaX = 0,
+      deltaY = 0;
     let totalWeightMag = 0;
     drankNodes.forEach((d) => {
       const score = drankCoffees[d.id];
@@ -33,8 +37,10 @@ export function useRecommendation(drankCoffees, setSelectedCoffee) {
     });
 
     const multiplier = 1.2;
-    const shiftX = totalWeightMag === 0 ? 0 : (deltaX / totalWeightMag) * multiplier;
-    const shiftY = totalWeightMag === 0 ? 0 : (deltaY / totalWeightMag) * multiplier;
+    const shiftX =
+      totalWeightMag === 0 ? 0 : (deltaX / totalWeightMag) * multiplier;
+    const shiftY =
+      totalWeightMag === 0 ? 0 : (deltaY / totalWeightMag) * multiplier;
 
     const finalX = initX + shiftX;
     const finalY = initY + shiftY;
@@ -45,7 +51,7 @@ export function useRecommendation(drankCoffees, setSelectedCoffee) {
 
     coffeeData.forEach((d) => {
       if (drankCoffees[d.id] !== undefined) return; // skip drank coffees
-      const dist = Math.sqrt(Math.pow(d.x - finalX, 2) + Math.pow(d.y - finalY, 2));
+      const dist = Math.sqrt((d.x - finalX) ** 2 + (d.y - finalY) ** 2);
       if (dist < minDistance) {
         minDistance = dist;
         closestNode = d;

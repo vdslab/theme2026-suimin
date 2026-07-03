@@ -29,8 +29,10 @@ export default function Header({ searchQuery, setSearchQuery, onRecommend }) {
     <div className="absolute top-6 left-6 z-20 flex flex-col gap-4 pointer-events-none">
       <div className="flex gap-4 items-start pointer-events-auto">
         <div className="bg-base-100 p-4 rounded-2xl shadow-lg border border-base-200">
-          <h1 className="text-2xl font-bold mb-3 text-primary">Coffee Taste Map</h1>
-          
+          <h1 className="text-2xl font-bold mb-3 text-primary">
+            Coffee Taste Map
+          </h1>
+
           <div className="relative">
             <input
               type="text"
@@ -55,10 +57,10 @@ export default function Header({ searchQuery, setSearchQuery, onRecommend }) {
             )}
           </div>
         </div>
-        
-        <button 
+
+        <button
           type="button"
-          onClick={onRecommend} 
+          onClick={onRecommend}
           className="btn btn-primary btn-lg text-white shadow-lg hover:scale-105 transition-transform shrink-0"
         >
           ✨ おすすめを計算する

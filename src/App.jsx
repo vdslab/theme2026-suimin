@@ -1,16 +1,16 @@
 import { useState } from "react";
-
-import WorldMap from "./components/WorldMap";
 import DetailPanel from "./components/DetailPanel";
 import Header from "./components/Header";
+import WorldMap from "./components/WorldMap";
 import { useRecommendation } from "./hooks/useRecommendation";
 
 function App() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [drankCoffees, setDrankCoffees] = useState({}); // { [id]: score }
-  
-  const { recommendedCoffee, setRecommendedCoffee, recommend } = useRecommendation(drankCoffees, setSelectedCoffee);
+
+  const { recommendedCoffee, setRecommendedCoffee, recommend } =
+    useRecommendation(drankCoffees, setSelectedCoffee);
 
   const handleCloseDetail = () => {
     setSelectedCoffee(null);
@@ -40,21 +40,25 @@ function App() {
       />
 
       {/* 2. Floating Header (Search & Recommend) */}
-      <Header 
-        searchQuery={searchQuery} 
-        setSearchQuery={setSearchQuery} 
-        onRecommend={recommend} 
+      <Header
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        onRecommend={recommend}
       />
 
       {/* 3. Detail Panel (Slide-in) */}
-      <div 
+      <div
         className={`absolute top-0 right-0 h-full w-96 bg-base-100 shadow-2xl z-30 transition-transform duration-300 transform ${
           selectedCoffee ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <DetailPanel 
-          selectedCoffee={selectedCoffee} 
-          isRecommended={selectedCoffee && recommendedCoffee && selectedCoffee.id === recommendedCoffee.id} 
+        <DetailPanel
+          selectedCoffee={selectedCoffee}
+          isRecommended={
+            selectedCoffee &&
+            recommendedCoffee &&
+            selectedCoffee.id === recommendedCoffee.id
+          }
           onClose={handleCloseDetail}
         />
       </div>
@@ -63,4 +67,3 @@ function App() {
 }
 
 export default App;
-
