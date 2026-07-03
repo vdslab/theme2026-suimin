@@ -20,9 +20,6 @@ const mapCountryName = (c) => {
   return c;
 };
 
-// 描画の初期位置が日本
-const [centerLing, setCenterLing] = useState(139);
-
 export default function WorldMap({
   selectedCoffee,
   onSelectCoffee,
@@ -49,6 +46,8 @@ export default function WorldMap({
       .features;
   }, []);
 
+  // 描画の初期位置が日本
+  const [centerLng, setCenterLng] = useState(139);
   // Projection
   const projection = useMemo(() => {
     return d3geo
@@ -122,13 +121,15 @@ export default function WorldMap({
     svg.call(zoomBehavior);
   }, []);
 
-  const handleCountryClick = (e, geoName, geo) => {
+  const handleCountryClick = (e, geoName, geo = null) => {
     e.stopPropagation();
     const rect = containerRef.current.getBoundingClientRect();
 
-    const centroid = d3geo.geoCentroid(geo);
-    if (centroid) {
-      setCenterLng(centroid[0]);
+    if (geo) {
+      const centroid = d3geo.geoCentroid(geo);
+      if (centroid) {
+        setCenterLng(centroid[0]);
+      }
     }
 
     const nodes = filteredNodesByGeoName[geoName];
@@ -252,12 +253,7 @@ export default function WorldMap({
                     ? "cursor-pointer hover:opacity-80 transition-opacity"
                     : ""
                 }
-                onClick={(e) => {
-                  if (hasData) {
-                    setCenterLng(-155.5828);
-                    handleCountryClick(e, geoName);
-                  }
-                }}
+                onClick={(e) => hasData && handleCountryClick(e, geoName, geo)}
               />
             );
           })}
@@ -287,7 +283,12 @@ export default function WorldMap({
                     ? "cursor-pointer hover:opacity-80 transition-opacity"
                     : ""
                 }
-                onClick={(e) => hasData && handleCountryClick(e, geoName)}
+                onClick={(e) => {
+                  if (hasData) {
+                    setCenterLng(-155.5828);
+                    handleCountryClick(e, geoName);
+                  }
+                }}
               />
             );
           })()}
