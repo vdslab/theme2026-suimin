@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DetailPanel from "./components/DetailPanel";
 import Header from "./components/Header";
 import WorldMap from "./components/WorldMap";
+import StartupGuide from "./components/StartupGuide";
 import { useRecommendation } from "./hooks/useRecommendation";
 
 function App() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [drankCoffees, setDrankCoffees] = useState({}); // { [id]: score }
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
+
+  useEffect(() => {
+    const hasSeenGuide = localStorage.getItem("hasSeenGuide");
+    if (!hasSeenGuide) {
+      setIsGuideOpen(true);
+      localStorage.setItem("hasSeenGuide", "true");
+    }
+  }, []);
 
   const { recommendedCoffee, setRecommendedCoffee, recommend } =
     useRecommendation(drankCoffees, setSelectedCoffee);
@@ -44,6 +54,13 @@ function App() {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onRecommend={recommend}
+        onOpenGuide={() => setIsGuideOpen(true)}
+      />
+
+      {/* Startup Guide Modal */}
+      <StartupGuide 
+        isOpen={isGuideOpen} 
+        onClose={() => setIsGuideOpen(false)} 
       />
 
       {/* 3. Detail Panel (Slide-in) */}
