@@ -1,7 +1,8 @@
 import { clusterColor, shortName, TASTE_AXES } from "../lib/clusters";
+import { nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
-function DetailPanel({ selectedCoffee, onClose }) {
+function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
   if (!selectedCoffee) {
     return (
       <aside className="bg-base-100 p-6 h-full flex flex-col justify-center items-center">
@@ -31,6 +32,8 @@ function DetailPanel({ selectedCoffee, onClose }) {
   const probs = Object.entries(c.probs)
     .filter(([, p]) => p >= 0.01)
     .sort(([, a], [, b]) => b - a);
+
+  const neighbors = nearestByTaste(c, 5);
 
   return (
     <aside className="bg-base-100 h-full flex flex-col relative overflow-hidden">
@@ -149,6 +152,43 @@ function DetailPanel({ selectedCoffee, onClose }) {
                         />
                       </div>
                     </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {neighbors.length > 0 && (
+            <div>
+              <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+                味が近い豆（UMAP上での近傍）
+              </h3>
+              <div className="space-y-1.5">
+                {neighbors.map((n, i) => {
+                  const nColor = n.blendedColor || clusterColor(n.clusterName);
+                  return (
+                    <button
+                      key={n.id}
+                      type="button"
+                      onClick={() => onSelectCoffee?.(n)}
+                      className="flex w-full items-center gap-2.5 rounded-lg bg-base-100 p-2 text-left hover:bg-base-300/40 transition-colors"
+                    >
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-base-300/60 text-[10px] font-bold text-base-content/60">
+                        {i + 1}
+                      </span>
+                      <span
+                        className="h-2.5 w-2.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: nColor }}
+                      />
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-sm font-medium">
+                          {translateCountry(n.country)}
+                        </span>
+                        <span className="block truncate text-[11px] text-base-content/50">
+                          {n.method} ・ {shortName(n.clusterName)}
+                        </span>
+                      </span>
+                    </button>
                   );
                 })}
               </div>

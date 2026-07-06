@@ -60,6 +60,7 @@ function App() {
             selectedCoffee.id === recommendedCoffee.id
           }
           onClose={handleCloseDetail}
+          onSelectCoffee={setSelectedCoffee}
         />
       </div>
     </div>
