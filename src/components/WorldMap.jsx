@@ -15,6 +15,8 @@ import MethodPopup from "./MethodPopup";
 // ポップアップがその下に潜り込まないよう右端に余白を確保する
 const DETAIL_PANEL_WIDTH = 384;
 const POPUP_WIDTH = 560;
+// 味覚クラスタ凡例（左下）を避けるための、ポップアップの想定高さ
+const POPUP_HEIGHT = 360;
 
 // TopoJSONのnameとcoffeeDataのcountryをマッピング
 const mapCountryName = (c) => {
@@ -41,6 +43,7 @@ export default function WorldMap({
   const containerRef = useRef(null);
   const svgRef = useRef(null);
   const gRef = useRef(null);
+  const legendRef = useRef(null);
 
   const width = typeof window !== "undefined" ? window.innerWidth : 1200;
   const height = typeof window !== "undefined" ? window.innerHeight : 800;
@@ -136,18 +139,28 @@ export default function WorldMap({
       onSelectCoffee(topNode);
     }
 
-    setPopupInfo({
-      geoName,
-      // 右端は DetailPanel の幅も避けてクランプ（詳細パネルと重ならないように）
-      x: Math.max(
-        0,
-        Math.min(
-          e.clientX - rect.left,
-          width - DETAIL_PANEL_WIDTH - POPUP_WIDTH,
-        ),
-      ),
-      y: Math.min(e.clientY - rect.top, height - 300),
-    });
+    // 右端は DetailPanel の幅も避けてクランプ（詳細パネルと重ならないように）
+    const x = Math.max(
+      0,
+      Math.min(e.clientX - rect.left, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
+    );
+    let y = Math.min(e.clientY - rect.top, height - 300);
+
+    // 左下の味覚クラスタ凡例と横方向で重なる位置なら、その上に収まるよう持ち上げる
+    const legend = legendRef.current;
+    if (legend) {
+      const lr = legend.getBoundingClientRect();
+      const legendLeft = lr.left - rect.left;
+      const legendRight = lr.right - rect.left;
+      const legendTop = lr.top - rect.top;
+      const overlapsHorizontally =
+        x < legendRight && x + POPUP_WIDTH > legendLeft;
+      if (overlapsHorizontally) {
+        y = Math.max(0, Math.min(y, legendTop - POPUP_HEIGHT));
+      }
+    }
+
+    setPopupInfo({ geoName, x, y });
   };
 
   const handleSliderChange = (id, val) => {
@@ -294,6 +307,7 @@ export default function WorldMap({
       </svg>
 
       <MapLegend
+        ref={legendRef}
         activeCluster={activeCluster}
         toggleCluster={toggleCluster}
         setActiveCluster={setActiveCluster}
