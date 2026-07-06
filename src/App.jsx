@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import DetailPanel from "./components/DetailPanel";
 import Header from "./components/Header";
-import WorldMap from "./components/WorldMap";
 import StartupGuide from "./components/StartupGuide";
+import WorldMap from "./components/WorldMap";
 import { useRecommendation } from "./hooks/useRecommendation";
 
 function App() {
@@ -58,9 +58,9 @@ function App() {
       />
 
       {/* Startup Guide Modal */}
-      <StartupGuide 
-        isOpen={isGuideOpen} 
-        onClose={() => setIsGuideOpen(false)} 
+      <StartupGuide
+        isOpen={isGuideOpen}
+        onClose={() => setIsGuideOpen(false)}
       />
 
       {/* 3. Detail Panel (Slide-in) */}
