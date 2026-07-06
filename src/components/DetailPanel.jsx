@@ -31,9 +31,10 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
 
   const probs = Object.entries(c.probs)
     .filter(([, p]) => p >= 0.01)
-    .sort(([, a], [, b]) => b - a);
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 3);
 
-  const neighbors = nearestByTaste(c, 5);
+  const neighbors = nearestByTaste(c, 3);
 
   return (
     <aside className="bg-base-100 h-full flex flex-col relative overflow-hidden">
@@ -47,7 +48,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
       </button>
 
       <div className="p-6 overflow-y-auto flex-1">
-        <div className="rounded-box border border-base-300 bg-base-200 p-5 space-y-5 mt-8">
+        <div className="rounded-box border border-base-300 bg-base-200 p-4 space-y-4 mt-8">
           <div>
             <span
               className="inline-block rounded-lg px-2.5 py-1 text-xs font-semibold text-white leading-snug mb-2"
@@ -58,15 +59,15 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
             <h2 className="text-xl font-bold leading-tight">
               {translateCountry(c.country)}
             </h2>
-            <p className="text-sm text-base-content/60">製法: {c.method}</p>
+            <p className="text-sm text-base-content/60">精製方法：{c.method}</p>
             <p className="text-xs text-base-content/50 mt-1">
-              このグループのサンプル数: {c.sampleCount} 件
+              参考にした豆の数：{c.sampleCount} 件
             </p>
           </div>
 
           <div>
             <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-              味の形（このグループ内での相対バランス）
+              味わいの特徴（この産地の傾向）
             </h3>
             <div className="space-y-2">
               {devs.map((d) => {
@@ -101,14 +102,14 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
               })}
             </div>
             <p className="text-[11px] text-base-content/40 mt-2">
-              右（色付き）＝相対的に強い味、左（グレー）＝相対的に弱い味
+              右にいくほど、この産地で強く感じられる味です
             </p>
           </div>
 
           {c.varieties?.length > 0 && (
             <div>
               <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-                含まれる品種
+                含まれる主な品種
               </h3>
               <div className="flex flex-wrap gap-1">
                 {c.varieties.map((v) => (
@@ -126,7 +127,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
           {probs.length > 0 && (
             <div>
               <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-                クラスタ所属確率
+                味わいのタイプ（近さ）
               </h3>
               <div className="space-y-1.5">
                 {probs.map(([name, p]) => {
@@ -136,7 +137,9 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
                     <div key={name} className="text-xs">
                       <div className="flex justify-between mb-0.5">
                         <span className="truncate max-w-[200px] text-base-content/80">
-                          {isNoiseRow ? "ノイズ (独自路線)" : shortName(name)}
+                          {isNoiseRow
+                            ? "個性派（独自の味わい）"
+                            : shortName(name)}
                         </span>
                         <span className="font-semibold">
                           {(p * 100).toFixed(0)}%
@@ -161,7 +164,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
           {neighbors.length > 0 && (
             <div>
               <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-                味が近い豆（UMAP上での近傍）
+                味が近い豆
               </h3>
               <div className="space-y-1.5">
                 {neighbors.map((n, i) => {
