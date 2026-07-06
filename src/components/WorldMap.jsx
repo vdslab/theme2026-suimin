@@ -11,6 +11,11 @@ import { translateCountry } from "../lib/countryNames";
 import MapLegend from "./MapLegend";
 import MethodPopup from "./MethodPopup";
 
+// 精製方法を選ぶと DetailPanel (App.jsx の w-96) が右からスライドインするため、
+// ポップアップがその下に潜り込まないよう右端に余白を確保する
+const DETAIL_PANEL_WIDTH = 384;
+const POPUP_WIDTH = 560;
+
 // TopoJSONのnameとcoffeeDataのcountryをマッピング
 const mapCountryName = (c) => {
   if (c === "Tanzania, United Republic Of") return "Tanzania";
@@ -133,7 +138,14 @@ export default function WorldMap({
 
     setPopupInfo({
       geoName,
-      x: Math.min(e.clientX - rect.left, width - 600), // 2ウィンドウ分の見切れ防止
+      // 右端は DetailPanel の幅も避けてクランプ（詳細パネルと重ならないように）
+      x: Math.max(
+        0,
+        Math.min(
+          e.clientX - rect.left,
+          width - DETAIL_PANEL_WIDTH - POPUP_WIDTH,
+        ),
+      ),
       y: Math.min(e.clientY - rect.top, height - 300),
     });
   };
