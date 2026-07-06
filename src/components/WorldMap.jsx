@@ -1,6 +1,6 @@
 import * as d3geo from "d3-geo";
 import { select } from "d3-selection";
-import { zoom } from "d3-zoom";
+import { zoom, zoomIdentity } from "d3-zoom";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as topojson from "topojson-client";
 import worldTopoJson from "../data/world-110m.json";
@@ -44,6 +44,7 @@ export default function WorldMap({
   const svgRef = useRef(null);
   const gRef = useRef(null);
   const legendRef = useRef(null);
+  const zoomTransformRef = useRef(zoomIdentity);
 
   const width = typeof window !== "undefined" ? window.innerWidth : 1200;
   const height = typeof window !== "undefined" ? window.innerHeight : 800;
@@ -122,9 +123,41 @@ export default function WorldMap({
       .scaleExtent([1, 8])
       .on("zoom", (event) => {
         select(gRef.current).attr("transform", event.transform);
+        zoomTransformRef.current = event.transform;
       });
     svg.call(zoomBehavior);
   }, []);
+
+  // DetailPanel の「味が近い豆」など、地図外から別の国の豆が選択されたとき、
+  // 開いているポップアップをその国に追従させ、正しい国と精製方法を表示する。
+  useEffect(() => {
+    if (!selectedCoffee) return;
+    const geoName = mapCountryName(selectedCoffee.country);
+    setPopupInfo((prev) => {
+      // ポップアップが閉じている、または既に同じ国を表示中なら何もしない
+      // （地図クリック由来の選択ではクリック位置を維持したいのでここで弾く）
+      if (!prev || prev.geoName === geoName) return prev;
+
+      // 対象の国の画面上の位置を求めてポップアップを移動する
+      let cx;
+      let cy;
+      if (geoName === "Hawaii") {
+        [cx, cy] = projection([-155.5828, 19.8968]) || [0, 0];
+      } else {
+        const geo = geoFeatures.find((g) => g.properties.name === geoName);
+        if (!geo) return { ...prev, geoName };
+        [cx, cy] = pathGenerator.centroid(geo);
+      }
+      const [sx, sy] = zoomTransformRef.current.apply([cx, cy]);
+
+      const x = Math.max(
+        0,
+        Math.min(sx, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
+      );
+      const y = Math.max(0, Math.min(sy, height - 300));
+      return { geoName, x, y };
+    });
+  }, [selectedCoffee, geoFeatures, pathGenerator, projection, width, height]);
 
   const handleCountryClick = (e, geoName) => {
     e.stopPropagation();
