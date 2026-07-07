@@ -37,7 +37,10 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
   const neighbors = nearestByTaste(c, 3);
 
   return (
-    <aside className="bg-base-100 h-full flex flex-col relative overflow-hidden">
+    <aside className="bg-base-100 h-full flex flex-col relative overflow-hidden rounded-t-3xl lg:rounded-none">
+      {/* スマホ向けドラッグハンドル (装飾) */}
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-12 h-1.5 bg-base-300 rounded-full lg:hidden z-20" />
+
       {/* 閉じるボタン */}
       <button
         type="button"
@@ -51,22 +54,22 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
         <div className="rounded-box border border-base-300 bg-base-200 p-4 space-y-4 mt-8">
           <div>
             <span
-              className="inline-block rounded-lg px-2.5 py-1 text-xs font-semibold text-white leading-snug mb-2"
+              className="inline-block rounded-lg px-2.5 py-1 text-sm lg:text-xs font-semibold text-white leading-snug mb-2"
               style={{ backgroundColor: color }}
             >
               {shortName(c.clusterName)}
             </span>
-            <h2 className="text-xl font-bold leading-tight">
+            <h2 className="text-2xl lg:text-xl font-bold leading-tight">
               {translateCountry(c.country)}
             </h2>
-            <p className="text-sm text-base-content/60">精製方法：{c.method}</p>
-            <p className="text-xs text-base-content/50 mt-1">
+            <p className="text-base lg:text-sm text-base-content/60">精製方法：{c.method}</p>
+            <p className="text-sm lg:text-xs text-base-content/50 mt-1">
               参考にした豆の数：{c.sampleCount} 件
             </p>
           </div>
 
           <div>
-            <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+            <h3 className="text-sm lg:text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
               味わいの特徴（この産地の傾向）
             </h3>
             <div className="space-y-2">
@@ -74,7 +77,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
                 const pct = (Math.abs(d.dev) / maxAbs) * 50;
                 const positive = d.dev >= 0;
                 return (
-                  <div key={d.key} className="flex items-center gap-2 text-xs">
+                  <div key={d.key} className="flex items-center gap-2 text-sm lg:text-xs">
                     <span className="w-16 shrink-0 text-base-content/70">
                       {d.label}
                     </span>
@@ -101,21 +104,21 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
                 );
               })}
             </div>
-            <p className="text-[11px] text-base-content/40 mt-2">
+            <p className="text-xs lg:text-[11px] text-base-content/40 mt-2">
               右にいくほど、この産地で強く感じられる味です
             </p>
           </div>
 
           {c.varieties?.length > 0 && (
             <div>
-              <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+              <h3 className="text-sm lg:text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
                 含まれる主な品種
               </h3>
               <div className="flex flex-wrap gap-1">
                 {c.varieties.map((v) => (
                   <span
                     key={v}
-                    className="badge badge-ghost badge-sm font-normal"
+                    className="badge badge-ghost badge-md lg:badge-sm font-normal"
                   >
                     {v}
                   </span>
@@ -126,7 +129,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
 
           {probs.length > 0 && (
             <div>
-              <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+              <h3 className="text-sm lg:text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
                 味わいのタイプ（近さ）
               </h3>
               <div className="space-y-1.5">
@@ -134,7 +137,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
                   const isNoiseRow = name === "noise";
                   const rowColor = isNoiseRow ? "#9ca3af" : clusterColor(name);
                   return (
-                    <div key={name} className="text-xs">
+                    <div key={name} className="text-sm lg:text-xs">
                       <div className="flex justify-between mb-0.5">
                         <span className="truncate max-w-[200px] text-base-content/80">
                           {isNoiseRow
@@ -163,7 +166,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
 
           {neighbors.length > 0 && (
             <div>
-              <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+              <h3 className="text-sm lg:text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
                 味が近い豆
               </h3>
               <div className="space-y-1.5">
@@ -176,7 +179,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
                       onClick={() => onSelectCoffee?.(n)}
                       className="flex w-full items-center gap-2.5 rounded-lg bg-base-100 p-2 text-left hover:bg-base-300/40 transition-colors"
                     >
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-base-300/60 text-[10px] font-bold text-base-content/60">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-base-300/60 text-xs lg:text-[10px] font-bold text-base-content/60">
                         {i + 1}
                       </span>
                       <span
@@ -184,10 +187,10 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
                         style={{ backgroundColor: nColor }}
                       />
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate text-sm font-medium">
+                        <span className="block truncate text-base lg:text-sm font-medium">
                           {translateCountry(n.country)}
                         </span>
-                        <span className="block truncate text-[11px] text-base-content/50">
+                        <span className="block truncate text-xs lg:text-[11px] text-base-content/50">
                           {n.method} ・ {shortName(n.clusterName)}
                         </span>
                       </span>

@@ -63,11 +63,17 @@ function App() {
         onClose={() => setIsGuideOpen(false)}
       />
 
-      {/* 3. Detail Panel (Slide-in) */}
+      {/* 3. Detail Panel (Slide-in / Bottom Sheet) */}
       <div
-        className={`absolute top-0 right-0 h-full w-96 bg-base-100 shadow-2xl z-30 transition-transform duration-300 transform ${
-          selectedCoffee ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`absolute bg-base-100 z-30 transition-transform duration-300 transform 
+          bottom-0 left-0 right-0 h-[55vh] rounded-t-3xl shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.3)]
+          lg:top-0 lg:bottom-auto lg:left-auto lg:right-0 lg:h-full lg:w-96 lg:rounded-none lg:shadow-2xl
+          ${
+            selectedCoffee
+              ? "translate-y-0 lg:translate-x-0"
+              : "translate-y-full lg:translate-y-0 lg:translate-x-full"
+          }
+        `}
       >
         <DetailPanel
           selectedCoffee={selectedCoffee}
