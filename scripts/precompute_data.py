@@ -1,22 +1,3 @@
-"""
-コーヒー豆の「味の形」に基づくクラスタリング・可視化の事前計算スクリプト。
-
-処理の流れ（重要：偏差を取る順番）:
-    個別豆
-      ↓ 豆ごとに6軸平均との差を取って偏差化
-    豆ごとの偏差6軸
-      ↓ 産地 × 精製方法 でグループ化
-    グループ内の偏差6軸を平均（集約ノード）
-      ↓ sample_count >= 3 のグループのみ残す
-      ↓ 集約ノードの偏差6軸に StandardScaler
-    UMAP(2D)
-      ↓
-    HDBSCAN
-
-クラスタリング特徴量には「総合品質スコア(Total.Cup.Points / Average.Score)」を
-一切使わない。目的は「品質の高低」ではなく「味の形」での可視化のため。
-総合品質スコアや元の6軸スコアはホバー/詳細/推薦用の補助情報として JSON に残す。
-"""
 
 import os
 import numpy as np
@@ -41,8 +22,8 @@ SCATTER_PNG = "scripts/cluster_scatter.png"
 
 # カラーパレット（クラスタごとの基準色）
 HEX_PALETTE = [
-    "#EF553B", "#00CC96", "#AB63FA", "#FFA15A",
-    "#19D3F3", "#FF6692", "#B6E880",
+    "#1F77B4", "#FF7F0E", "#2CA02C", "#D62728", "#9467BD",
+    "#8C564B", "#E377C2", "#7F7F7F", "#BCBD22", "#17BECF",
 ]
 
 
@@ -60,11 +41,6 @@ SECOND_AXIS_THRESHOLD = 0.02
 
 
 def assign_cluster_name(dev_mean: pd.Series, c: int) -> str:
-    """クラスタ内の偏差6軸平均を見て、相対的に強い上位1〜2軸で仮命名する。
-
-    最も強い軸を主役にし、2番目の軸も十分に強ければ併記して
-    「飲んだときの味の傾向」が直感的に伝わる名前にする（絵文字なし）。
-    """
     ordered = dev_mean.sort_values(ascending=False)
     bases = [idx.replace("_dev", "") for idx in ordered.index]
     vals = ordered.values
@@ -127,12 +103,7 @@ def plot_scatter(nodes, cluster_names, has_tcp):
 
 
 def plot_heatmap(nodes, cluster_names, has_tcp):
-    """クラスタ × 偏差6軸 のヒートマップを描画して PNG 保存する。
-
-    値は「偏差6軸平均」なので 0 を中心とした発散カラーマップで、
-    各クラスタが『どの味覚項目が相対的に強い/弱いか』が一目で分かる。
-    （日本語・絵文字はmatplotlibで文字化けするため軸/行ラベルは英語表記）
-    """
+    # クラスタ × 偏差6軸 のヒートマップを描画して PNG 保存する。
     cluster_ids = sorted(cluster_names)
     if not cluster_ids:
         print("    [skip] クラスタが無いためヒートマップは省略")
@@ -241,7 +212,8 @@ def main():
     nodes["y"] = X_2d[:, 1]
 
     clusterer = hdbscan.HDBSCAN(
-        min_cluster_size=4, min_samples=1, prediction_data=True,
+        # HDBSCANのパラメータ決めるとこ
+        min_cluster_size=5, min_samples=1, prediction_data=True,
     )
     cluster_labels = clusterer.fit_predict(X_2d)
     membership = hdbscan.all_points_membership_vectors(clusterer)
