@@ -43,8 +43,18 @@ export default function WorldMap({
   const gRef = useRef(null);
   const zoomRef = useRef(null);
 
-  const width = typeof window !== "undefined" ? window.innerWidth : 1200;
-  const height = typeof window !== "undefined" ? window.innerHeight : 800;
+  const [{ width, height }, setDimensions] = useState(() => ({
+    width: typeof window !== "undefined" ? window.innerWidth : 1200,
+    height: typeof window !== "undefined" ? window.innerHeight : 800,
+  }));
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleResize = () =>
+      setDimensions({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // 世界地図データ
   const geoFeatures = useMemo(() => {
@@ -185,6 +195,15 @@ export default function WorldMap({
     svg.call(zoomBehavior);
     svg.call(zoomBehavior.transform, zoomIdentity);
   }, []);
+
+  useEffect(() => {
+    if (zoomRef.current) {
+      zoomRef.current.extent([
+        [0, 0],
+        [width, height],
+      ]);
+    }
+  }, [width, height]);
 
   // 指定した経緯度が画面中央（横方向）に来るよう、パンをアニメーションで寄せる。
   const animateCenterTo = (coord) => {
