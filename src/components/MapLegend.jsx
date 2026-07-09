@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import {
   clusterColor,
   clusterIndex,
@@ -15,13 +16,15 @@ const legendClusters = (() => {
   });
 })();
 
-export default function MapLegend({
-  activeCluster,
-  toggleCluster,
-  setActiveCluster,
-}) {
+const MapLegend = forwardRef(function MapLegend(
+  { activeCluster, toggleCluster, setActiveCluster },
+  ref,
+) {
   return (
-    <div className="absolute bottom-6 left-6 z-20 flex flex-col gap-2 p-4 bg-base-100 rounded-2xl shadow-lg border border-base-200 pointer-events-auto">
+    <div
+      ref={ref}
+      className="absolute bottom-6 left-6 z-20 flex flex-col gap-2 p-4 bg-base-100 rounded-2xl shadow-lg border border-base-200 pointer-events-auto"
+    >
       <span className="text-sm font-semibold text-base-content/70">
         味覚クラスタ:
       </span>
@@ -62,4 +65,6 @@ export default function MapLegend({
       </div>
     </div>
   );
-}
+});
+
+export default MapLegend;
