@@ -83,6 +83,19 @@ export default function WorldMap({
     [geoFeatures, pathGenerator],
   );
 
+  // 描画される陸地全体の縦方向の範囲（投影後px, スケール前）。
+  // 縦パンを陸地の外（＝空白の海）まで動かさないためのクランプに使う。
+  const worldBounds = useMemo(
+    () =>
+      pathGenerator.bounds({ type: "FeatureCollection", features: geoFeatures }),
+    [pathGenerator, geoFeatures],
+  );
+
+  // constrain は zoom の初期化 effect（deps []）から参照するため、
+  // 最新値を ref 経由で渡す。
+  const clampRef = useRef({ bounds: worldBounds, width, height });
+  clampRef.current = { bounds: worldBounds, width, height };
+
   // ノードのグループ化（検索・フィルタ反映）
   const filteredNodesByGeoName = useMemo(() => {
     const rawQuery = (searchQuery || "").trim();
@@ -137,11 +150,30 @@ export default function WorldMap({
     const svg = select(svgRef.current);
     const zoomBehavior = zoom()
       .scaleExtent([1, 8])
+      .extent([
+        [0, 0],
+        [clampRef.current.width, clampRef.current.height],
+      ])
+      // 縦(y)だけを陸地の範囲内にクランプする
+      .constrain((transform, extent) => {
+        const { bounds } = clampRef.current;
+        const k = transform.k;
+        const top = bounds[0][1] * k; // 陸地上端の画面y（translate前）
+        const bottom = bounds[1][1] * k; // 陸地下端の画面y（translate前）
+        const viewTop = extent[0][1];
+        const viewBottom = extent[1][1];
+        const viewH = viewBottom - viewTop;
+
+        let y = transform.y;
+        if (bottom - top <= viewH) {
+          y = viewTop + (viewH - (top + bottom)) / 2;
+        } else {
+          y = Math.min(viewTop - top, Math.max(viewBottom - bottom, y));
+        }
+        return zoomIdentity.translate(transform.x, y).scale(k);
+      })
       .on("zoom", (event) => {
         const { x, y, k } = event.transform;
-        // 横移動量を地球1周分（WORLD_WIDTH * k）でラップして、
-        // 有限個のコピーで無限スクロールに見せる。
-        // 周期分ずらしても内容は同一なので見た目は変わらない。
         const period = WORLD_WIDTH * k;
         const wrappedX = x - Math.round(x / period) * period;
         select(gRef.current).attr(
@@ -151,6 +183,7 @@ export default function WorldMap({
       });
     zoomRef.current = zoomBehavior;
     svg.call(zoomBehavior);
+    svg.call(zoomBehavior.transform, zoomIdentity);
   }, []);
 
   // 指定した経緯度が画面中央（横方向）に来るよう、パンをアニメーションで寄せる。
