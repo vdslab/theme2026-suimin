@@ -117,6 +117,8 @@ export default function WorldMap({
   }, [searchQuery]);
 
   // ズーム設定
+  const zoomBehaviorRef = useRef(null);
+
   useEffect(() => {
     const svg = select(svgRef.current);
     const zoomBehavior = zoom()
@@ -126,42 +128,74 @@ export default function WorldMap({
         zoomTransformRef.current = event.transform;
       });
     svg.call(zoomBehavior);
+    zoomBehaviorRef.current = zoomBehavior;
   }, []);
 
-  // DetailPanel の「味が近い豆」など、地図外から別の国の豆が選択されたとき、
-  // 開いているポップアップをその国に追従させ、正しい国と精製方法を表示する。
-  useEffect(() => {
-    if (!selectedCoffee) return;
-    const geoName = mapCountryName(selectedCoffee.country);
-    setPopupInfo((prev) => {
-      // ポップアップが閉じている、または既に同じ国を表示中なら何もしない
-      // （地図クリック由来の選択ではクリック位置を維持したいのでここで弾く）
-      if (!prev || prev.geoName === geoName) return prev;
+  const panToCountry = useMemo(
+    () => (geoName) => {
+      const svg = select(svgRef.current);
+      const zoomBehavior = zoomBehaviorRef.current;
+      if (!svg || !zoomBehavior) return;
 
-      // 対象の国の画面上の位置を求めてポップアップを移動する
       let cx;
       let cy;
       if (geoName === "Hawaii") {
         [cx, cy] = projection([-155.5828, 19.8968]) || [0, 0];
       } else {
         const geo = geoFeatures.find((g) => g.properties.name === geoName);
-        if (!geo) return { ...prev, geoName };
-        [cx, cy] = pathGenerator.centroid(geo);
+        if (geo) {
+          [cx, cy] = pathGenerator.centroid(geo);
+        }
       }
-      const [sx, sy] = zoomTransformRef.current.apply([cx, cy]);
 
-      const x = Math.max(
+      if (cx !== undefined && cy !== undefined) {
+        const targetScale = 2;
+        const targetX = (width - DETAIL_PANEL_WIDTH) / 2;
+        const targetY = height / 2;
+
+        const transform = zoomIdentity
+          .translate(targetX - cx * targetScale, targetY - cy * targetScale)
+          .scale(targetScale);
+
+        svg.transition().duration(750).call(zoomBehavior.transform, transform);
+      }
+    },
+    [geoFeatures, pathGenerator, projection, width, height],
+  );
+
+  // DetailPanel の「味が近い豆」など、地図外から別の国の豆が選択されたとき、
+  // 開いているポップアップをその国に追従させ、正しい国と精製方法を表示する。
+  // また、対象の国が画面中央に来るようにマップをパン・ズームする。
+  useEffect(() => {
+    if (!selectedCoffee) return;
+    const geoName = mapCountryName(selectedCoffee.country);
+
+    panToCountry(geoName);
+
+    setPopupInfo((prev) => {
+      // ポップアップが閉じている、または既に同じ国を表示中なら何もしない
+      if (!prev || prev.geoName === geoName) return prev;
+
+      // 対象の国の画面上の位置を求めてポップアップを移動する
+      // パンアニメーションの最終地点に合わせてポップアップを配置する
+      const popupTargetX = Math.max(
         0,
-        Math.min(sx, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
+        Math.min(
+          (width - DETAIL_PANEL_WIDTH) / 2,
+          width - DETAIL_PANEL_WIDTH - POPUP_WIDTH,
+        ),
       );
-      const y = Math.max(0, Math.min(sy, height - 300));
-      return { geoName, x, y };
+      const popupTargetY = Math.max(
+        0,
+        Math.min(height / 2 - 100, height - 300),
+      );
+
+      return { geoName, x: popupTargetX, y: popupTargetY };
     });
-  }, [selectedCoffee, geoFeatures, pathGenerator, projection, width, height]);
+  }, [selectedCoffee, panToCountry, width, height]);
 
   const handleCountryClick = (e, geoName) => {
     e.stopPropagation();
-    const rect = containerRef.current.getBoundingClientRect();
 
     const nodes = filteredNodesByGeoName[geoName];
     if (nodes && nodes.length > 0) {
@@ -169,31 +203,25 @@ export default function WorldMap({
       const topNode = [...nodes].sort(
         (a, b) => b.sampleCount - a.sampleCount,
       )[0];
+
+      // すでに選択されている場合でも強制的にパンさせる
+      if (selectedCoffee?.id === topNode.id) {
+        panToCountry(geoName);
+      }
       onSelectCoffee(topNode);
     }
 
-    // 右端は DetailPanel の幅も避けてクランプ（詳細パネルと重ならないように）
-    const x = Math.max(
+    // パンされる最終地点に合わせてポップアップを配置する
+    const popupTargetX = Math.max(
       0,
-      Math.min(e.clientX - rect.left, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
+      Math.min(
+        (width - DETAIL_PANEL_WIDTH) / 2,
+        width - DETAIL_PANEL_WIDTH - POPUP_WIDTH,
+      ),
     );
-    let y = Math.min(e.clientY - rect.top, height - 300);
+    const popupTargetY = Math.max(0, Math.min(height / 2 - 100, height - 300));
 
-    // 左下の味覚クラスタ凡例と横方向で重なる位置なら、その上に収まるよう持ち上げる
-    const legend = legendRef.current;
-    if (legend) {
-      const lr = legend.getBoundingClientRect();
-      const legendLeft = lr.left - rect.left;
-      const legendRight = lr.right - rect.left;
-      const legendTop = lr.top - rect.top;
-      const overlapsHorizontally =
-        x < legendRight && x + POPUP_WIDTH > legendLeft;
-      if (overlapsHorizontally) {
-        y = Math.max(0, Math.min(y, legendTop - POPUP_HEIGHT));
-      }
-    }
-
-    setPopupInfo({ geoName, x, y });
+    setPopupInfo({ geoName, x: popupTargetX, y: popupTargetY });
   };
 
   const handleSliderChange = (id, val) => {
