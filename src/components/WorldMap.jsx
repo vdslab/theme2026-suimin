@@ -97,7 +97,10 @@ export default function WorldMap({
   // 縦パンを陸地の外（＝空白の海）まで動かさないためのクランプに使う。
   const worldBounds = useMemo(
     () =>
-      pathGenerator.bounds({ type: "FeatureCollection", features: geoFeatures }),
+      pathGenerator.bounds({
+        type: "FeatureCollection",
+        features: geoFeatures,
+      }),
     [pathGenerator, geoFeatures],
   );
 
