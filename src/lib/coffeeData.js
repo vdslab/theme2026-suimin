@@ -1,4 +1,5 @@
 import rawData from "../data/coffee_data.json";
+import { cleanVarieties } from "./varieties";
 
 // coffee_data.json は「産地 × 精製方法」で集約したノード。表示用に整形する。
 export const coffeeData = rawData.map((item) => ({
@@ -7,7 +8,7 @@ export const coffeeData = rawData.map((item) => ({
   name: `${item.country}・${item.method}`,
   country: item.country,
   method: item.method,
-  varieties: item.varieties || [],
+  varieties: cleanVarieties(item.varieties),
   sampleCount: item.sample_count,
   x: item.x,
   y: item.y,

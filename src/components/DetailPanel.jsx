@@ -106,11 +106,11 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
             </p>
           </div>
 
-          {c.varieties?.length > 0 && (
-            <div>
-              <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-                含まれる主な品種
-              </h3>
+          <div>
+            <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+              含まれる主な品種
+            </h3>
+            {c.varieties?.length > 0 ? (
               <div className="flex flex-wrap gap-1">
                 {c.varieties.map((v) => (
                   <span
@@ -121,8 +121,10 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
                   </span>
                 ))}
               </div>
-            </div>
-          )}
+            ) : (
+              <p className="text-xs text-base-content/40">品種情報なし</p>
+            )}
+          </div>
 
           {probs.length > 0 && (
             <div>
@@ -168,7 +170,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
               </h3>
               <div className="space-y-1.5">
                 {neighbors.map((n, i) => {
-                  const nColor = n.blendedColor || clusterColor(n.clusterName);
+                  const nColor = clusterColor(n.clusterName);
                   return (
                     <button
                       key={n.id}
