@@ -12,10 +12,6 @@ import { translateCountry } from "../lib/countryNames";
 import MapLegend from "./MapLegend";
 import MethodPopup from "./MethodPopup";
 
-// メルカトル図法の投影スケールと、地球1周分の投影後の幅（px）
-const MAP_SCALE = 180;
-const WORLD_WIDTH = 2 * Math.PI * MAP_SCALE;
-
 // 精製方法を選ぶと DetailPanel (App.jsx の w-96) が右からスライドインするため、
 // ポップアップがその下に潜り込まないよう右端に余白を確保する
 const DETAIL_PANEL_WIDTH = 384;
@@ -74,23 +70,25 @@ export default function WorldMap({
 
   // 描画の初期位置（経度）が日本。再センタリングはパンのアニメーションで行うため固定。
   const centerLng = 139;
+  const worldWidth = width;
+  const mapScale = worldWidth / (2 * Math.PI);
+
   // Projection
   const projection = useMemo(() => {
     return d3geo
       .geoMercator()
       .rotate([-centerLng, 0])
-      .scale(MAP_SCALE)
+      .scale(mapScale)
       .translate([width / 2, height / 1.5]);
-  }, [width, height]);
+  }, [width, height, mapScale]);
 
-  // 横方向に無限スクロールさせるための世界地図コピーのxオフセット群。
-  // 画面幅を覆うのに必要な数だけ、中央を挟んで左右対称に並べる。
+  // 横ドラッグ時に地図が途切れないよう、画面外の隣接コピーを左右2枚ずつ用意する。
+  // （1周=画面幅なので、静止時は中央のコピー1枚だけが見える＝重複しない）
   const worldCopyOffsets = useMemo(() => {
-    const n = Math.ceil(width / (2 * WORLD_WIDTH)) + 1;
     const offsets = [];
-    for (let i = -n; i <= n; i++) offsets.push(i * WORLD_WIDTH);
+    for (let i = -2; i <= 2; i++) offsets.push(i * worldWidth);
     return offsets;
-  }, [width]);
+  }, [worldWidth]);
 
   const pathGenerator = useMemo(() => {
     return d3geo.geoPath().projection(projection);
@@ -197,7 +195,8 @@ export default function WorldMap({
       })
       .on("zoom", (event) => {
         const { x, y, k } = event.transform;
-        const period = WORLD_WIDTH * k;
+        // worldWidth(=width) は初期化 effect(deps [])では古くなるため ref 経由で最新値を使う
+        const period = clampRef.current.width * k;
         const wrappedX = x - Math.round(x / period) * period;
         select(gRef.current).attr(
           "transform",
@@ -230,7 +229,7 @@ export default function WorldMap({
     const [px] = projected;
     const current = zoomTransform(svgNode);
     const k = current.k;
-    const period = WORLD_WIDTH * k;
+    const period = worldWidth * k;
 
     // その点が画面中央に来るためのパン量。
     let targetX = width / 2 - px * k;
@@ -269,7 +268,7 @@ export default function WorldMap({
       const transform = zoomTransformRef.current;
       const [rawSx, sy] = transform.apply([cx, cy]);
       // 横方向は無限スクロールで折り返すため、画面中央に最も近いコピーの位置を採用する
-      const period = WORLD_WIDTH * transform.k;
+      const period = worldWidth * transform.k;
       const sx = rawSx - Math.round((rawSx - width / 2) / period) * period;
 
       const x = Math.max(
@@ -279,7 +278,15 @@ export default function WorldMap({
       const y = Math.max(0, Math.min(sy, height - 300));
       return { geoName, x, y };
     });
-  }, [selectedCoffee, geoFeatures, pathGenerator, projection, width, height]);
+  }, [
+    selectedCoffee,
+    geoFeatures,
+    pathGenerator,
+    projection,
+    width,
+    height,
+    worldWidth,
+  ]);
 
   const handleCountryClick = (e, geoName, geo = null) => {
     e.stopPropagation();
