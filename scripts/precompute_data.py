@@ -29,8 +29,8 @@ SCATTER_PNG = "scripts/cluster_scatter.png"
 
 # カラーパレット（クラスタごとの基準色）
 HEX_PALETTE = [
-    "#1F77B4", "#FF7F0E", "#2CA02C", "#D62728", "#9467BD",
-    "#8C564B", "#E377C2", "#7F7F7F", "#BCBD22", "#17BECF",
+    "#EF553B", "#00CC96", "#AB63FA", "#FFA15A",
+    "#19D3F3", "#FF6692", "#B6E880",
 ]
 
 
