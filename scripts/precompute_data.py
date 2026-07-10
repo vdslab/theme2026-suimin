@@ -34,31 +34,45 @@ HEX_PALETTE = [
 ]
 
 
-# 各味覚軸を「飲んだ味が想像できる」表現に対応づける
-AXIS_DESC = {
-    "Aroma": "華やかな香り",
-    "Flavor": "豊かな風味",
-    "Aftertaste": "長い余韻",
-    "Acidity": "明るい酸味",
-    "Body": "しっかりしたコク",
-    "Balance": "整ったバランス",
+# 各味覚軸を「飲んだ味が想像できる」簡潔な表現に対応づける（高い場合／低い場合）
+AXIS_HIGH = {
+    "Aroma": "香り華やか",
+    "Flavor": "味わい豊か",
+    "Aftertaste": "余韻長め",
+    "Acidity": "酸味しっかり",
+    "Body": "コク深い",
+    "Balance": "バランス良好",
 }
-# 2番目の軸を名前に含める閾値（偏差がこの値以上なら「際立っている」とみなす）
+AXIS_LOW = {
+    "Aroma": "香り控えめ",
+    "Flavor": "あっさり",
+    "Aftertaste": "後味すっきり",
+    "Acidity": "酸味控えめ",
+    "Body": "軽やか",
+    "Balance": "個性際立つ",
+}
+# 英語短ラベル(PNG用)で2軸目を含める閾値
 SECOND_AXIS_THRESHOLD = 0.02
+# クラスタ名に軸を含める偏差の閾値（絶対値がこの値以上の軸だけを命名に使う）
+NAME_THRESHOLD = 0.1
 
 
 def assign_cluster_name(dev_mean: pd.Series, c: int) -> str:
-    ordered = dev_mean.sort_values(ascending=False)
-    bases = [idx.replace("_dev", "") for idx in ordered.index]
-    vals = ordered.values
-
-    d1 = AXIS_DESC[bases[0]]
-    if vals[1] >= SECOND_AXIS_THRESHOLD:
-        d2 = AXIS_DESC[bases[1]]
-        label = f"{d1}と{d2}が際立つタイプ"
-    else:
-        label = f"{d1}が主役のタイプ"
-    return f"{label} (C{c})"
+    """偏差が ±NAME_THRESHOLD を超えた軸だけを、際立つ順に簡潔に並べる。"""
+    # 偏差の絶対値が大きい順（=際立っている順）に軸を見る
+    ordered = dev_mean.reindex(dev_mean.abs().sort_values(ascending=False).index)
+    parts = []
+    for idx, val in ordered.items():
+        base = idx.replace("_dev", "")
+        if val >= NAME_THRESHOLD:
+            parts.append(AXIS_HIGH[base])
+        elif val <= -NAME_THRESHOLD:
+            parts.append(AXIS_LOW[base])
+    if not parts:
+        # 閾値を超える軸が無ければ、最も際立つ1軸だけで命名
+        base = ordered.index[0].replace("_dev", "")
+        parts.append(AXIS_HIGH[base] if ordered.iloc[0] >= 0 else AXIS_LOW[base])
+    return f"{'・'.join(parts)} (C{c})"
 
 
 def english_short_label(dev_mean: pd.Series) -> str:
