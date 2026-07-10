@@ -170,7 +170,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
               </h3>
               <div className="space-y-1.5">
                 {neighbors.map((n, i) => {
-                  const nColor = n.blendedColor || clusterColor(n.clusterName);
+                  const nColor = clusterColor(n.clusterName);
                   return (
                     <button
                       key={n.id}

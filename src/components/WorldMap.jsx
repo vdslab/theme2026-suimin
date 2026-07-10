@@ -387,8 +387,7 @@ export default function WorldMap({
                   if (isFilteredOut) opacity = 0.15;
                   else if (isAnyHighlighted && !isHighlighted) opacity = 0.25;
 
-                  const color =
-                    node.blendedColor || clusterColor(node.clusterName);
+                  const color = clusterColor(node.clusterName);
 
                   const rect = (
                     <rect
