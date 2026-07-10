@@ -9,12 +9,19 @@ matplotlib.use("Agg")  # GUI不要のバックエンド
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import AgglomerativeClustering
 
 # --- 設定 ---------------------------------------------------------------
 TASTE_COLS = ["Aroma", "Flavor", "Aftertaste", "Acidity", "Body", "Balance"]
 DEV_COLS = [f"{c}_dev" for c in TASTE_COLS]
 GROUP_COLS = ["Country.of.Origin", "Processing.Method"]
 MIN_SAMPLE_COUNT = 1
+# HDBSCANの細かいクラスタを、最終的に何個へ丸め込むか（4〜6推奨）。
+# 近い（=味の傾向が似た）クラスタどうしをまとめ、サイズを均等めにする。
+#   見た目(dominant_cluster)の分布の均等さ:
+#     4 -> [33,31,10,7]  5 -> [33,18,12,10,8]  6 -> [19,18,13,12,10,9]
+#   → 6 が最も均等（大きな塊が2つに割れるため）。
+N_CLUSTERS_TARGET = 6
 INPUT_CSV = "data/merged_data_cleaned.csv"
 OUTPUT_JSON = "src/data/coffee_data.json"
 HEATMAP_PNG = "scripts/cluster_deviation_heatmap.png"
@@ -212,7 +219,9 @@ def main():
     nodes["y"] = X_2d[:, 1]
 
     clusterer = hdbscan.HDBSCAN(
-        # HDBSCANのパラメータ決めるとこ
+        # まず細かめ(=多め)にクラスタリングしておき、後段でN_CLUSTERS_TARGETへ丸め込む。
+        # min_cluster_size を直接上げてクラスタ数を減らすと1つの塊が肥大化して
+        # サイズが極端に偏るため、ここは細かめのままにするのが肝。
         min_cluster_size=4, min_samples=1, prediction_data=True,
     )
     cluster_labels = clusterer.fit_predict(X_2d)
@@ -221,9 +230,32 @@ def main():
     if membership.ndim == 1:
         membership = membership.reshape(-1, 1)
     n_clusters = membership.shape[1]
+    print(f"    HDBSCAN 初期クラスタ数: {n_clusters}")
+
+    # ------------------------------------------------------------------
+    # [5b] 細かいクラスタを N_CLUSTERS_TARGET 個へ丸め込む
+    #   UMAP空間の各クラスタ重心を Ward法で凝集し、近いものどうしを統合。
+    #   ハードラベルとソフト所属(membership)の両方をまとめ直すことで、
+    #   後段の色ブレンド・probs・dominant_cluster をそのまま活かす。
+    # ------------------------------------------------------------------
+    if 0 < N_CLUSTERS_TARGET < n_clusters:
+        centroids = np.array([X_2d[cluster_labels == c].mean(axis=0)
+                              for c in range(n_clusters)])
+        merge_map = AgglomerativeClustering(
+            n_clusters=N_CLUSTERS_TARGET, linkage="ward"
+        ).fit_predict(centroids)
+
+        cluster_labels = np.array([-1 if c == -1 else int(merge_map[c])
+                                   for c in cluster_labels])
+        merged = np.zeros((len(nodes), N_CLUSTERS_TARGET))
+        for old in range(n_clusters):
+            merged[:, merge_map[old]] += membership[:, old]
+        membership = merged
+        n_clusters = N_CLUSTERS_TARGET
+        print(f"    → 近いクラスタを統合し {n_clusters} クラスタへ丸め込み")
 
     n_noise = int((cluster_labels == -1).sum())
-    print(f"    HDBSCANクラスタ数: {n_clusters}")
+    print(f"    最終クラスタ数: {n_clusters}")
     print(f"    ノイズ扱いノード数: {n_noise} / {len(nodes)}")
 
     # ------------------------------------------------------------------
