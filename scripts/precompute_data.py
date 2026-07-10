@@ -213,7 +213,7 @@ def main():
 
     clusterer = hdbscan.HDBSCAN(
         # HDBSCANのパラメータ決めるとこ
-        min_cluster_size=5, min_samples=1, prediction_data=True,
+        min_cluster_size=4, min_samples=1, prediction_data=True,
     )
     cluster_labels = clusterer.fit_predict(X_2d)
     membership = hdbscan.all_points_membership_vectors(clusterer)
