@@ -270,7 +270,7 @@ def main():
 
     n_noise = int((cluster_labels == -1).sum())
     print(f"    最終クラスタ数: {n_clusters}")
-    print(f"    ノイズ扱いノード数: {n_noise} / {len(nodes)}")
+    print(f"    ノイズ(個性派)扱いノード数: {n_noise} / {len(nodes)}")
 
     # ------------------------------------------------------------------
     # クラスタ名の割り当て（偏差6軸平均の最大特徴量で命名）
@@ -302,10 +302,12 @@ def main():
         c = np.clip(c, 0, 1)
         colors.append(f"rgb({int(c[0]*255)}, {int(c[1]*255)}, {int(c[2]*255)})")
 
-        if sum_probs > 0.1 and n_clusters > 0:
-            dominant_clusters.append(cluster_names[int(np.argmax(probs))])
+        # HDBSCANがノイズ(-1)と判定した豆は「個性派」として独立させる
+        # （どの味クラスタにも属さない＝独自路線として凡例にも表示される）
+        if cluster_labels[i] == -1:
+            dominant_clusters.append("独自の味わい")
         else:
-            dominant_clusters.append("ノイズ (独自路線)")
+            dominant_clusters.append(cluster_names[int(np.argmax(probs))])
 
         p_dict = {cluster_names[j]: float(probs[j]) for j in range(n_clusters)}
         p_dict["noise"] = float(max(0.0, 1.0 - sum_probs))

@@ -241,7 +241,7 @@
       "Balance_dev":0.1666666667
     },
     "overall_score_mean":7.5833333333,
-    "dominant_cluster":"後味すっきり・香り華やか (C1)",
+    "dominant_cluster":"独自の味わい",
     "color":"rgb(161, 178, 178)",
     "probs":{
       "酸味しっかり (C0)":0.0790280394,
@@ -281,7 +281,7 @@
       "Balance_dev":-0.0027777778
     },
     "overall_score_mean":7.7261111111,
-    "dominant_cluster":"後味すっきり・香り華やか (C1)",
+    "dominant_cluster":"独自の味わい",
     "color":"rgb(185, 193, 192)",
     "probs":{
       "酸味しっかり (C0)":0.031247416,
@@ -363,7 +363,7 @@
       "Balance_dev":-0.0309722222
     },
     "overall_score_mean":7.5459722222,
-    "dominant_cluster":"後味すっきり・香り華やか (C1)",
+    "dominant_cluster":"独自の味わい",
     "color":"rgb(140, 143, 162)",
     "probs":{
       "酸味しっかり (C0)":0.2210367953,
@@ -731,7 +731,7 @@
       "Balance_dev":0.35
     },
     "overall_score_mean":7.82,
-    "dominant_cluster":"後味すっきり・香り華やか (C1)",
+    "dominant_cluster":"独自の味わい",
     "color":"rgb(162, 178, 179)",
     "probs":{
       "酸味しっかり (C0)":0.0698881253,
@@ -944,7 +944,7 @@
       "Balance_dev":0.123
     },
     "overall_score_mean":7.626,
-    "dominant_cluster":"後味すっきり・香り華やか (C1)",
+    "dominant_cluster":"独自の味わい",
     "color":"rgb(152, 180, 178)",
     "probs":{
       "酸味しっかり (C0)":0.0837787615,
@@ -984,7 +984,7 @@
       "Balance_dev":-0.0041666667
     },
     "overall_score_mean":7.7141666667,
-    "dominant_cluster":"後味すっきり・香り華やか (C1)",
+    "dominant_cluster":"独自の味わい",
     "color":"rgb(158, 176, 170)",
     "probs":{
       "酸味しっかり (C0)":0.1528264684,
@@ -1153,7 +1153,7 @@
       "Balance_dev":-0.0246428571
     },
     "overall_score_mean":7.3225,
-    "dominant_cluster":"後味すっきり・香り華やか (C1)",
+    "dominant_cluster":"独自の味わい",
     "color":"rgb(127, 150, 163)",
     "probs":{
       "酸味しっかり (C0)":0.1803934427,
@@ -1239,7 +1239,7 @@
       "Balance_dev":0.0433333333
     },
     "overall_score_mean":7.4226666667,
-    "dominant_cluster":"香り華やか (C5)",
+    "dominant_cluster":"独自の味わい",
     "color":"rgb(164, 155, 162)",
     "probs":{
       "酸味しっかり (C0)":0.089655505,
@@ -1789,7 +1789,7 @@
       "Balance_dev":-0.0461868687
     },
     "overall_score_mean":7.3490656566,
-    "dominant_cluster":"後味すっきり・香り華やか (C1)",
+    "dominant_cluster":"独自の味わい",
     "color":"rgb(154, 181, 177)",
     "probs":{
       "酸味しっかり (C0)":0.0909301967,
@@ -2115,7 +2115,7 @@
       "Balance_dev":-0.0933333333
     },
     "overall_score_mean":7.2633333333,
-    "dominant_cluster":"後味すっきり・コク深い (C2)",
+    "dominant_cluster":"独自の味わい",
     "color":"rgb(181, 169, 187)",
     "probs":{
       "酸味しっかり (C0)":0.1364490065,
@@ -2445,7 +2445,7 @@
       "Balance_dev":0.067037037
     },
     "overall_score_mean":7.3851851852,
-    "dominant_cluster":"バランス良好 (C3)",
+    "dominant_cluster":"独自の味わい",
     "color":"rgb(175, 171, 168)",
     "probs":{
       "酸味しっかり (C0)":0.0580984056,
