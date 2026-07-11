@@ -1,4 +1,4 @@
-// 表示・検索には出さない（クラスタリングには元々使っていない）。
+// 表示・検索には出さない
 const UNKNOWN_VARIETIES = new Set(["Other", "Unknown"]);
 
 export const cleanVarieties = (varieties) =>
