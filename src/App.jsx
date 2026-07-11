@@ -8,6 +8,7 @@ import { toJapaneseCountryName } from "./utils/countryName";
 function App() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const searchSuggestions = useMemo(() => {
     const values = rawData.flatMap((item) => {
@@ -114,21 +115,29 @@ function App() {
               <div className="mt-4 relative">
                 <input
                   type="text"
-                  list="coffee-search-suggestions"
                   className="input input-bordered w-full max-w-md"
                   placeholder="産地・精製方法・品種で検索"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setShowSuggestions(true);
+                  }}
+                  onFocus={() => setShowSuggestions(true)}
+                  onBlur={() => setShowSuggestions(false)}
                 />
 
-                {filteredSuggestions.length > 0 && (
+                {showSuggestions && filteredSuggestions.length > 0 && (
                   <div className="absolute z-50 mt-2 w-full max-w-md rounded-box border border-base-300 bg-base-100 shadow-lg overflow-hidden">
                     {filteredSuggestions.map((suggestion) => (
                       <button
                         key={suggestion}
                         type="button"
                         className="block w-full px-4 py-2 text-left text-sm hover:bg-base-200"
-                        onClick={() => setSearchQuery(suggestion)}
+                        onMouseDown={(e) => e.preventDefault()}
+                        onClick={() => {
+                          setSearchQuery(suggestion);
+                          setShowSuggestions(false);
+                        }}
                       >
                         {suggestion}
                       </button>
