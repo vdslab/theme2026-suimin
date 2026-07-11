@@ -1,3 +1,4 @@
+
 import os
 import numpy as np
 import pandas as pd
@@ -8,19 +9,20 @@ matplotlib.use("Agg")  # GUI不要のバックエンド
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import AgglomerativeClustering
 
 # --- 設定 ---------------------------------------------------------------
 TASTE_COLS = ["Aroma", "Flavor", "Aftertaste", "Acidity", "Body", "Balance"]
 DEV_COLS = [f"{c}_dev" for c in TASTE_COLS]
 GROUP_COLS = ["Country.of.Origin", "Processing.Method"]
-MIN_SAMPLE_COUNT = 3
+MIN_SAMPLE_COUNT = 1
+# HDBSCANの細かいクラスタを、最終的に何個へ丸め込むか（4〜6推奨）。
+# 近い（=味の傾向が似た）クラスタどうしをまとめ、サイズを均等めにする。
+#   見た目(dominant_cluster)の分布の均等さ:
+#     4 -> [33,31,10,7]  5 -> [33,18,12,10,8]  6 -> [19,18,13,12,10,9]
+#   → 6 が最も均等（大きな塊が2つに割れるため）。
+N_CLUSTERS_TARGET = 6
 INPUT_CSV = "data/merged_data_cleaned.csv"
-
-# UMAP パラメータ（クラスタリング用と表示用を分離）
-CLUSTER_UMAP_PARAMS = dict(n_components=3, n_neighbors=15, min_dist=0.0)  # 密度保持・クラスタリング用
-DISPLAY_UMAP_PARAMS = dict(n_components=2, n_neighbors=15, min_dist=0.1)  # 可視化座標(x, y)用
-HDBSCAN_PARAMS = dict(min_cluster_size=4, min_samples=1)
-RANDOM_STATE = 42
 OUTPUT_JSON = "src/data/coffee_data.json"
 HEATMAP_PNG = "scripts/cluster_deviation_heatmap.png"
 SCATTER_PNG = "scripts/cluster_scatter.png"
@@ -32,36 +34,45 @@ HEX_PALETTE = [
 ]
 
 
-# 各味覚軸を「飲んだ味が想像できる」表現に対応づける
-AXIS_DESC = {
-    "Aroma": "華やかな香り",
-    "Flavor": "豊かな風味",
-    "Aftertaste": "長い余韻",
-    "Acidity": "明るい酸味",
-    "Body": "しっかりしたコク",
-    "Balance": "整ったバランス",
+# 各味覚軸を「飲んだ味が想像できる」簡潔な表現に対応づける（高い場合／低い場合）
+AXIS_HIGH = {
+    "Aroma": "香り華やか",
+    "Flavor": "味わい豊か",
+    "Aftertaste": "余韻長め",
+    "Acidity": "酸味しっかり",
+    "Body": "コク深い",
+    "Balance": "バランス良好",
 }
-# 2番目の軸を名前に含める閾値（偏差がこの値以上なら「際立っている」とみなす）
+AXIS_LOW = {
+    "Aroma": "香り控えめ",
+    "Flavor": "あっさり",
+    "Aftertaste": "後味すっきり",
+    "Acidity": "酸味控えめ",
+    "Body": "軽やか",
+    "Balance": "個性際立つ",
+}
+# 英語短ラベル(PNG用)で2軸目を含める閾値
 SECOND_AXIS_THRESHOLD = 0.02
+# クラスタ名に軸を含める偏差の閾値（絶対値がこの値以上の軸だけを命名に使う）
+NAME_THRESHOLD = 0.1
 
 
 def assign_cluster_name(dev_mean: pd.Series, c: int) -> str:
-    """クラスタ内の偏差6軸平均を見て、相対的に強い上位1〜2軸で仮命名する。
-
-    最も強い軸を主役にし、2番目の軸も十分に強ければ併記して
-    「飲んだときの味の傾向」が直感的に伝わる名前にする（絵文字なし）。
-    """
-    ordered = dev_mean.sort_values(ascending=False)
-    bases = [idx.replace("_dev", "") for idx in ordered.index]
-    vals = ordered.values
-
-    d1 = AXIS_DESC[bases[0]]
-    if vals[1] >= SECOND_AXIS_THRESHOLD:
-        d2 = AXIS_DESC[bases[1]]
-        label = f"{d1}と{d2}が際立つタイプ"
-    else:
-        label = f"{d1}が主役のタイプ"
-    return f"{label} (C{c})"
+    """偏差が ±NAME_THRESHOLD を超えた軸だけを、際立つ順に簡潔に並べる。"""
+    # 偏差の絶対値が大きい順（=際立っている順）に軸を見る
+    ordered = dev_mean.reindex(dev_mean.abs().sort_values(ascending=False).index)
+    parts = []
+    for idx, val in ordered.items():
+        base = idx.replace("_dev", "")
+        if val >= NAME_THRESHOLD:
+            parts.append(AXIS_HIGH[base])
+        elif val <= -NAME_THRESHOLD:
+            parts.append(AXIS_LOW[base])
+    if not parts:
+        # 閾値を超える軸が無ければ、最も際立つ1軸だけで命名
+        base = ordered.index[0].replace("_dev", "")
+        parts.append(AXIS_HIGH[base] if ordered.iloc[0] >= 0 else AXIS_LOW[base])
+    return f"{'・'.join(parts)} (C{c})"
 
 
 def english_short_label(dev_mean: pd.Series) -> str:
@@ -76,9 +87,8 @@ def english_short_label(dev_mean: pd.Series) -> str:
 def plot_scatter(nodes, cluster_names, has_tcp):
     """UMAP(2D)座標の散布図。クラスタごとに色分けして空間的なまとまりを確認する。
 
-    クラスタリングは別の3D UMAP(min_dist=0)上で行い、ここではその結果ラベルを
-    表示用2D座標に乗せている。3Dで分けたまとまりが2D表示でも概ね近接するかを確認できる
-    （次元削減の都合で多少のにじみは出うる）。
+    クラスタリングはこの2D埋め込み上で行っているため、
+    理想どおり「同じクラスタが近くにまとまる」かを直接確認できる。
     """
     fig, ax = plt.subplots(figsize=(11, 8))
 
@@ -114,12 +124,7 @@ def plot_scatter(nodes, cluster_names, has_tcp):
 
 
 def plot_heatmap(nodes, cluster_names, has_tcp):
-    """クラスタ × 偏差6軸 のヒートマップを描画して PNG 保存する。
-
-    値は「偏差6軸平均」なので 0 を中心とした発散カラーマップで、
-    各クラスタが『どの味覚項目が相対的に強い/弱いか』が一目で分かる。
-    （日本語・絵文字はmatplotlibで文字化けするため軸/行ラベルは英語表記）
-    """
+    # クラスタ × 偏差6軸 のヒートマップを描画して PNG 保存する。
     cluster_ids = sorted(cluster_names)
     if not cluster_ids:
         print("    [skip] クラスタが無いためヒートマップは省略")
@@ -214,33 +219,58 @@ def main():
     print(f"[4] sample_count >= {MIN_SAMPLE_COUNT} で残ったノード数: {len(nodes)}")
 
     # ------------------------------------------------------------------
-    # [5] 集約ノードの偏差6軸に StandardScaler
-    #     → クラスタリングは UMAP(3D, min_dist=0) 上で HDBSCAN
-    #     → 表示座標は別の UMAP(2D, min_dist=0.1) で作成（ラベルを乗せるだけ）
+    # [5] 集約ノードの偏差6軸に StandardScaler → UMAP(2D) → HDBSCAN
     # ------------------------------------------------------------------
-    print("[5] StandardScaler → [クラスタリング:UMAP(3D,min_dist=0)→HDBSCAN] + [表示:UMAP(2D)]")
+    print("[5] StandardScaler → UMAP(2D) → HDBSCAN")
     X = nodes[DEV_COLS].values
     X_scaled = StandardScaler().fit_transform(X)
 
-    # クラスタリング用の中次元埋め込み（密度を保つので結果が安定）
-    X_cluster = umap.UMAP(random_state=RANDOM_STATE, **CLUSTER_UMAP_PARAMS).fit_transform(X_scaled)
-
-    # 表示用2D座標（可視化専用。クラスタリングには使わない）
-    X_2d = umap.UMAP(random_state=RANDOM_STATE, **DISPLAY_UMAP_PARAMS).fit_transform(X_scaled)
+    mapper = umap.UMAP(
+        n_components=2, n_neighbors=15, min_dist=0.1, random_state=42,
+    )
+    X_2d = mapper.fit_transform(X_scaled)
     nodes["x"] = X_2d[:, 0]
     nodes["y"] = X_2d[:, 1]
 
-    clusterer = hdbscan.HDBSCAN(prediction_data=True, **HDBSCAN_PARAMS)
-    cluster_labels = clusterer.fit_predict(X_cluster)
+    clusterer = hdbscan.HDBSCAN(
+        # まず細かめ(=多め)にクラスタリングしておき、後段でN_CLUSTERS_TARGETへ丸め込む。
+        # min_cluster_size を直接上げてクラスタ数を減らすと1つの塊が肥大化して
+        # サイズが極端に偏るため、ここは細かめのままにするのが肝。
+        min_cluster_size=4, min_samples=1, prediction_data=True,
+    )
+    cluster_labels = clusterer.fit_predict(X_2d)
     membership = hdbscan.all_points_membership_vectors(clusterer)
     # all_points_membership_vectors は 1クラスタ時に 1次元配列を返すことがある
     if membership.ndim == 1:
         membership = membership.reshape(-1, 1)
     n_clusters = membership.shape[1]
+    print(f"    HDBSCAN 初期クラスタ数: {n_clusters}")
+
+    # ------------------------------------------------------------------
+    # [5b] 細かいクラスタを N_CLUSTERS_TARGET 個へ丸め込む
+    #   UMAP空間の各クラスタ重心を Ward法で凝集し、近いものどうしを統合。
+    #   ハードラベルとソフト所属(membership)の両方をまとめ直すことで、
+    #   後段の色ブレンド・probs・dominant_cluster をそのまま活かす。
+    # ------------------------------------------------------------------
+    if 0 < N_CLUSTERS_TARGET < n_clusters:
+        centroids = np.array([X_2d[cluster_labels == c].mean(axis=0)
+                              for c in range(n_clusters)])
+        merge_map = AgglomerativeClustering(
+            n_clusters=N_CLUSTERS_TARGET, linkage="ward"
+        ).fit_predict(centroids)
+
+        cluster_labels = np.array([-1 if c == -1 else int(merge_map[c])
+                                   for c in cluster_labels])
+        merged = np.zeros((len(nodes), N_CLUSTERS_TARGET))
+        for old in range(n_clusters):
+            merged[:, merge_map[old]] += membership[:, old]
+        membership = merged
+        n_clusters = N_CLUSTERS_TARGET
+        print(f"    → 近いクラスタを統合し {n_clusters} クラスタへ丸め込み")
 
     n_noise = int((cluster_labels == -1).sum())
-    print(f"    HDBSCANクラスタ数: {n_clusters}")
-    print(f"    ノイズ扱いノード数: {n_noise} / {len(nodes)}")
+    print(f"    最終クラスタ数: {n_clusters}")
+    print(f"    ノイズ(個性派)扱いノード数: {n_noise} / {len(nodes)}")
 
     # ------------------------------------------------------------------
     # クラスタ名の割り当て（偏差6軸平均の最大特徴量で命名）
@@ -272,10 +302,12 @@ def main():
         c = np.clip(c, 0, 1)
         colors.append(f"rgb({int(c[0]*255)}, {int(c[1]*255)}, {int(c[2]*255)})")
 
-        if sum_probs > 0.1 and n_clusters > 0:
-            dominant_clusters.append(cluster_names[int(np.argmax(probs))])
+        # HDBSCANがノイズ(-1)と判定した豆は「個性派」として独立させる
+        # （どの味クラスタにも属さない＝独自路線として凡例にも表示される）
+        if cluster_labels[i] == -1:
+            dominant_clusters.append("独自の味わい")
         else:
-            dominant_clusters.append("ノイズ (独自路線)")
+            dominant_clusters.append(cluster_names[int(np.argmax(probs))])
 
         p_dict = {cluster_names[j]: float(probs[j]) for j in range(n_clusters)}
         p_dict["noise"] = float(max(0.0, 1.0 - sum_probs))
