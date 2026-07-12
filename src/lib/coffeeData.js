@@ -5,13 +5,17 @@ import { cleanVarieties } from "./varieties";
 export const coffeeData = rawData.map((item) => ({
   id: item.id,
   // DetailPanel / 選択判定が name を参照する。グループキー(産地×精製方法)で一意。
-  name: `${item.country}・${item.method}`,
+  name: `${item.region}・${item.country}・${item.method}`,
   country: item.country,
+  region: item.region,
   method: item.method,
   varieties: cleanVarieties(item.varieties),
   sampleCount: item.sample_count,
   x: item.x,
   y: item.y,
+  lat: item.lat,
+  lng: item.lng,
+  admin1_code: item.admin1_code,
   blendedColor: item.color, // membershipブレンド色（ドットの塗り）
   clusterName: item.dominant_cluster,
   probs: item.probs || {},

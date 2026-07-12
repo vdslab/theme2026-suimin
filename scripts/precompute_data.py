@@ -11,10 +11,15 @@ import matplotlib.colors as mcolors
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import AgglomerativeClustering
 
+from geopy.geocoders import Nominatim
+from geopy.extra.rate_limiter import RateLimiter
+import geopandas as gpd
+from shapely.geometry import Point
+
 # --- 設定 ---------------------------------------------------------------
 TASTE_COLS = ["Aroma", "Flavor", "Aftertaste", "Acidity", "Body", "Balance"]
 DEV_COLS = [f"{c}_dev" for c in TASTE_COLS]
-GROUP_COLS = ["Country.of.Origin", "Processing.Method"]
+GROUP_COLS = ["Region", "Country.of.Origin", "Processing.Method"]
 MIN_SAMPLE_COUNT = 1
 # HDBSCANの細かいクラスタを、最終的に何個へ丸め込むか（4〜6推奨）。
 # 近い（=味の傾向が似た）クラスタどうしをまとめ、サイズを均等めにする。
@@ -173,6 +178,8 @@ def main():
     print("=" * 70)
     print("[1] データ読み込み:", INPUT_CSV)
     df = pd.read_csv(INPUT_CSV)
+    df = df.dropna(subset=['Region']).copy()
+    df = df[df['Region'].str.strip() != '']
     df = df.dropna(subset=GROUP_COLS + TASTE_COLS).copy()
     df["Variety"] = df["Variety"].fillna("Unknown")
 
@@ -217,6 +224,75 @@ def main():
     # ------------------------------------------------------------------
     nodes = grouped[grouped["sample_count"] >= MIN_SAMPLE_COUNT].reset_index(drop=True)
     print(f"[4] sample_count >= {MIN_SAMPLE_COUNT} で残ったノード数: {len(nodes)}")
+
+    # ------------------------------------------------------------------
+    # [4.5] Geocoding & Spatial Join
+    # ------------------------------------------------------------------
+    from geopy.geocoders import Photon
+    print("[4.5] Geocoding & Spatial Join (Natural Earth Admin-1)")
+    geolocator = Photon(timeout=15)
+    geocode = RateLimiter(geolocator.geocode, min_delay_seconds=0.5, max_retries=2, error_wait_seconds=2.0, swallow_exceptions=True)
+    
+    try:
+        admin1_gdf = gpd.read_file('data/ne_50m_admin_1.geojson')
+    except Exception as e:
+        print(f"Error loading ne_50m_admin_1.geojson: {e}")
+        admin1_gdf = None
+    
+    import json
+    import os
+    cache_file = 'data/geocode_cache.json'
+    cache_dict = {}
+    if os.path.exists(cache_file):
+        try:
+            with open(cache_file, 'r', encoding='utf-8') as f:
+                cache_dict = json.load(f)
+        except Exception as e:
+            print(f"Failed to load cache: {e}")
+            
+    lats, lngs, admin1_ids = [], [], []
+    
+    for idx, row in nodes.iterrows():
+        country = row['Country.of.Origin']
+        region = row['Region']
+        query = f"{region}, {country}"
+        
+        if query in cache_dict:
+            lat, lng, adm1_id = cache_dict[query]
+        else:
+            location = None
+            try:
+                location = geocode(query)
+                if location is None:
+                    location = geocode(country)
+            except Exception as e:
+                print(f"Geocoding error for {query}: {e}")
+                
+            if location:
+                lat, lng = location.latitude, location.longitude
+                adm1_id = None
+                if admin1_gdf is not None:
+                    pt = Point(lng, lat)
+                    matched = admin1_gdf[admin1_gdf.geometry.contains(pt)]
+                    if not matched.empty:
+                        adm1_id = matched.iloc[0]['adm1_code']
+            else:
+                lat, lng, adm1_id = 0.0, 0.0, None
+                
+            cache_dict[query] = (lat, lng, adm1_id)
+            print(f"  Geocoded {query} -> {lat:.2f}, {lng:.2f} (Admin1: {adm1_id})")
+            
+            # Save cache incrementally
+            with open(cache_file, 'w', encoding='utf-8') as f:
+                json.dump(cache_dict, f, ensure_ascii=False, indent=2)
+            
+        lats.append(lat)
+        lngs.append(lng)
+        admin1_ids.append(adm1_id)
+        
+    nodes['lat'] = lats
+    nodes['lng'] = lngs
+    nodes['admin1_code'] = admin1_ids
 
     # ------------------------------------------------------------------
     # [5] 集約ノードの偏差6軸に StandardScaler → UMAP(2D) → HDBSCAN
@@ -329,11 +405,15 @@ def main():
         rec = {
             "id": int(idx),
             "country": row["Country.of.Origin"],
+            "region": row["Region"],
             "method": row["Processing.Method"],
             "varieties": row["varieties"],
             "sample_count": int(row["sample_count"]),
             "x": float(row["x"]),
             "y": float(row["y"]),
+            "lat": float(row["lat"]),
+            "lng": float(row["lng"]),
+            "admin1_code": row["admin1_code"],
             # 元の6軸スコア平均（補助情報）
             "scores_mean": {c: float(row[c]) for c in TASTE_COLS},
             # 偏差6軸平均（クラスタリングに使った特徴量）

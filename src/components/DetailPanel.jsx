@@ -56,9 +56,10 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
             >
               {shortName(c.clusterName)}
             </span>
-            <h2 className="text-xl font-bold leading-tight">
+            <h2 className="text-xl font-bold leading-tight">{c.region}</h2>
+            <div className="text-sm font-semibold text-base-content/60 mt-1 mb-2">
               {translateCountry(c.country)}
-            </h2>
+            </div>
             <p className="text-sm text-base-content/60">精製方法：{c.method}</p>
             <p className="text-xs text-base-content/50 mt-1">
               参考にした豆の数：{c.sampleCount} 件
@@ -187,7 +188,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
                       />
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-sm font-medium">
-                          {translateCountry(n.country)}
+                          {n.region} - {translateCountry(n.country)}
                         </span>
                         <span className="block truncate text-[11px] text-base-content/50">
                           {n.method} ・ {shortName(n.clusterName)}

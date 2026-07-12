@@ -12,6 +12,7 @@ export default function Header({
   const searchSuggestions = useMemo(() => {
     const values = rawData.flatMap((item) => [
       translateCountry(item.country),
+      item.region,
       item.method,
       ...cleanVarieties(item.varieties),
     ]);

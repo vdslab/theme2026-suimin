@@ -1,8 +1,9 @@
 import * as d3geo from "d3-geo";
 import { select } from "d3-selection";
 import "d3-transition"; // select(...).transition() を有効化（zoom.transformのアニメーション用）
+import { Delaunay } from "d3-delaunay";
 import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as topojson from "topojson-client";
 import worldTopoJson from "../data/world-110m.json";
 import { clusterColor } from "../lib/clusters";
@@ -19,14 +20,11 @@ const POPUP_WIDTH = 560;
 // 味覚クラスタ凡例（左下）を避けるための、ポップアップの想定高さ
 const POPUP_HEIGHT = 360;
 
-// TopoJSONのnameとcoffeeDataのcountryをマッピング
-const mapCountryName = (c) => {
-  if (c === "Tanzania, United Republic Of") return "Tanzania";
-  if (c === "United States") return "United States of America";
-  if (c === "United States (Hawaii)") return "Hawaii";
-  if (c === "United States (Puerto Rico)") return "Puerto Rico";
-  return c;
-};
+// GeoKeyと名義を取得するユーティリティ
+const getGeoKey = (node) =>
+  node.admin1_code
+    ? `admin1-${node.admin1_code}`
+    : `point-${node.lat}-${node.lng}`;
 
 export default function WorldMap({
   selectedCoffee,
@@ -38,7 +36,7 @@ export default function WorldMap({
   recommendedCoffee,
 }) {
   const [activeCluster, setActiveCluster] = useState(null);
-  const [popupInfo, setPopupInfo] = useState(null); // { geoName, x, y }
+  const [popupInfo, setPopupInfo] = useState(null); // { geoKey, regionName, x, y }
   const [sliderValues, setSliderValues] = useState({});
 
   const containerRef = useRef(null);
@@ -118,7 +116,7 @@ export default function WorldMap({
   clampRef.current = { bounds: worldBounds, width, height };
 
   // ノードのグループ化（検索・フィルタ反映）
-  const filteredNodesByGeoName = useMemo(() => {
+  const filteredNodesByLocation = useMemo(() => {
     const rawQuery = (searchQuery || "").trim();
     let regex = null;
     let isRegexValid = false;
@@ -143,6 +141,7 @@ export default function WorldMap({
         const targets = [
           translateCountry(node.country) || "",
           node.country || "",
+          node.region || "",
           node.method || "",
           node.name || "",
           (node.varieties || []).join(" "),
@@ -158,13 +157,77 @@ export default function WorldMap({
       }
 
       if (matchesSearch) {
-        const geoName = mapCountryName(node.country);
-        if (!map[geoName]) map[geoName] = [];
-        map[geoName].push(node);
+        const geoKey = getGeoKey(node);
+        if (!map[geoKey]) map[geoKey] = [];
+        map[geoKey].push(node);
       }
     });
     return map;
   }, [searchQuery]);
+
+  // 国ごとに地域（geoKey）とその代表座標をまとめる
+  const regionsByCountry = useMemo(() => {
+    const map = {};
+    Object.entries(filteredNodesByLocation).forEach(([geoKey, nodes]) => {
+      const firstNode = nodes[0];
+
+      // GeoJSON(world-110m)の国名にマッピングする
+      const matchedGeo = geoFeatures.find(
+        (g) =>
+          g.properties.name === firstNode.country ||
+          translateCountry(g.properties.name) ===
+            translateCountry(firstNode.country) ||
+          (g.properties.name === "United States of America" &&
+            firstNode.country === "United States") ||
+          (g.properties.name === "Tanzania" &&
+            firstNode.country.includes("Tanzania")) ||
+          (g.properties.name === "Taiwan" && firstNode.country === "Taiwan"),
+      );
+      const cName = matchedGeo ? matchedGeo.properties.name : firstNode.country;
+
+      if (!map[cName]) map[cName] = [];
+      const [px, py] = projection([firstNode.lng, firstNode.lat]) || [0, 0];
+
+      // 同じ座標が重なるとDelaunayがエラーになるため、微小なジッターを加える
+      const isDuplicate = map[cName].some(
+        (r) => r.rawPx === px && r.rawPy === py,
+      );
+      const jitterX = isDuplicate ? (Math.random() - 0.5) * 0.1 : 0;
+      const jitterY = isDuplicate ? (Math.random() - 0.5) * 0.1 : 0;
+
+      map[cName].push({
+        geoKey,
+        nodes,
+        firstNode,
+        rawPx: px,
+        rawPy: py,
+        px: px + jitterX,
+        py: py + jitterY,
+      });
+    });
+    console.log("regionsByCountry:", map);
+    return map;
+  }, [filteredNodesByLocation, projection, geoFeatures]);
+
+  // 国ごとにボロノイ図を計算
+  const voronoisByCountry = useMemo(() => {
+    const map = {};
+    Object.entries(regionsByCountry).forEach(([cName, regions]) => {
+      if (regions.length > 1) {
+        const points = regions.map((r) => [r.px, r.py]);
+        const delaunay = Delaunay.from(points);
+        // クリップパスで切り取るため、領域は画面全体以上に大きく取っておく
+        const voronoi = delaunay.voronoi([
+          -width * 2,
+          -height * 2,
+          width * 3,
+          height * 3,
+        ]);
+        map[cName] = voronoi;
+      }
+    });
+    return map;
+  }, [regionsByCountry, width, height]);
 
   // ズーム設定
   useEffect(() => {
@@ -220,54 +283,55 @@ export default function WorldMap({
   }, [width, height]);
 
   // 指定した経緯度が画面中央（横方向）に来るよう、パンをアニメーションで寄せる。
-  const animateCenterTo = (coord) => {
-    const svgNode = svgRef.current;
-    if (!svgNode || !zoomRef.current || !coord) return;
-    const projected = projection(coord);
-    if (!projected) return;
+  const animateCenterTo = useCallback(
+    (coord) => {
+      const svgNode = svgRef.current;
+      if (!svgNode || !zoomRef.current || !coord) return;
+      const projected = projection(coord);
+      if (!projected) return;
 
-    const [px] = projected;
-    const current = zoomTransform(svgNode);
-    const k = current.k;
-    const period = worldWidth * k;
+      const [px] = projected;
+      const current = zoomTransform(svgNode);
+      const k = current.k;
+      const period = worldWidth * k;
 
-    // その点が画面中央に来るためのパン量。
-    let targetX = width / 2 - px * k;
-    // 現在位置に最も近い周期を選び、最短距離で寄せる（世界を何周もしない）。
-    targetX += Math.round((current.x - targetX) / period) * period;
+      // その点が画面中央に来るためのパン量。
+      let targetX = width / 2 - px * k;
+      // 現在位置に最も近い周期を選び、最短距離で寄せる（世界を何周もしない）。
+      targetX += Math.round((current.x - targetX) / period) * period;
 
-    select(svgNode)
-      .transition()
-      .duration(600)
-      .call(
-        zoomRef.current.transform,
-        zoomIdentity.translate(targetX, current.y).scale(k),
-      );
-  };
+      select(svgNode)
+        .transition()
+        .duration(600)
+        .call(
+          zoomRef.current.transform,
+          zoomIdentity.translate(targetX, current.y).scale(k),
+        );
+    },
+    [projection, width, worldWidth],
+  );
 
-  // DetailPanel の「味が近い豆」など、地図外から別の国の豆が選択されたとき、
-  // 開いているポップアップをその国に追従させ、正しい国と精製方法を表示する。
+  // DetailPanel の「味が近い豆」など、地図外から別の豆が選択されたとき、
+  // 選択された地域へパンし、開いているポップアップを追従させる。
   useEffect(() => {
     if (!selectedCoffee) return;
-    const geoName = mapCountryName(selectedCoffee.country);
-    setPopupInfo((prev) => {
-      // ポップアップが閉じている、または既に同じ国を表示中なら何もしない
-      // （地図クリック由来の選択ではクリック位置を維持したいのでここで弾く）
-      if (!prev || prev.geoName === geoName) return prev;
+    const geoKey = getGeoKey(selectedCoffee);
 
-      // 対象の国の画面上の位置を求めてポップアップを移動する
-      let cx;
-      let cy;
-      if (geoName === "Hawaii") {
-        [cx, cy] = projection([-155.5828, 19.8968]) || [0, 0];
-      } else {
-        const geo = geoFeatures.find((g) => g.properties.name === geoName);
-        if (!geo) return { ...prev, geoName };
-        [cx, cy] = pathGenerator.centroid(geo);
-      }
+    // パンアニメーションを実行
+    const geoCoord = [selectedCoffee.lng, selectedCoffee.lat];
+    if (geoCoord) {
+      animateCenterTo(geoCoord);
+    }
+
+    setPopupInfo((prev) => {
+      // ポップアップが閉じている、または既に同じ地域を表示中なら何もしない
+      if (!prev || prev.geoKey === geoKey) return prev;
+
+      // 対象の地域の画面上の位置を求めてポップアップを移動する
+      const [cx, cy] = projection(geoCoord) || [0, 0];
+
       const transform = zoomTransformRef.current;
       const [rawSx, sy] = transform.apply([cx, cy]);
-      // 横方向は無限スクロールで折り返すため、画面中央に最も近いコピーの位置を採用する
       const period = worldWidth * transform.k;
       const sx = rawSx - Math.round((rawSx - width / 2) / period) * period;
 
@@ -276,30 +340,27 @@ export default function WorldMap({
         Math.min(sx, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
       );
       const y = Math.max(0, Math.min(sy, height - 300));
-      return { geoName, x, y };
+      return { geoKey, regionName: selectedCoffee.region, x, y };
     });
-  }, [
-    selectedCoffee,
-    geoFeatures,
-    pathGenerator,
-    projection,
-    width,
-    height,
-    worldWidth,
-  ]);
+  }, [selectedCoffee, projection, width, height, worldWidth, animateCenterTo]);
 
-  const handleCountryClick = (e, geoName, geo = null) => {
+  const handleRegionClick = (e, geoKey, regionName, geo = null) => {
     e.stopPropagation();
     const rect = containerRef.current.getBoundingClientRect();
 
     if (geo) {
       animateCenterTo(d3geo.geoCentroid(geo));
+    } else {
+      const nodes = filteredNodesByLocation[geoKey];
+      if (nodes && nodes.length > 0) {
+        animateCenterTo([nodes[0].lng, nodes[0].lat]);
+      }
     }
 
-    const nodes = filteredNodesByGeoName[geoName];
+    const nodes = filteredNodesByLocation[geoKey];
     if (nodes && nodes.length > 0) {
       const topNode = [...nodes].sort(
-        (a, b) => b.sampleCount - a.sampleCount,
+        (a, b) => b.sample_count - a.sample_count,
       )[0];
       onSelectCoffee(topNode);
     }
@@ -325,7 +386,7 @@ export default function WorldMap({
       }
     }
 
-    setPopupInfo({ geoName, x, y });
+    setPopupInfo({ geoKey, regionName, x, y });
   };
 
   const handleSliderChange = (id, val) => {
@@ -352,9 +413,9 @@ export default function WorldMap({
         }}
       >
         <defs>
-          {Object.entries(filteredNodesByGeoName).map(([geoName, nodes]) => {
+          {Object.entries(filteredNodesByLocation).map(([geoKey, nodes]) => {
             const totalSamples = nodes.reduce(
-              (sum, n) => sum + n.sampleCount,
+              (sum, n) => sum + (n.sampleCount || 1),
               0,
             );
             let currentX = 0;
@@ -362,15 +423,15 @@ export default function WorldMap({
 
             return (
               <pattern
-                key={geoName}
-                id={`pattern-${geoName.replace(/[^a-zA-Z0-9]/g, "-")}`}
+                key={geoKey}
+                id={`pattern-${geoKey.replace(/[^a-zA-Z0-9]/g, "-")}`}
                 width={patternWidth}
                 height={patternWidth}
                 patternUnits="userSpaceOnUse"
                 patternTransform="rotate(45)"
               >
                 {nodes.map((node) => {
-                  const ratio = node.sampleCount / totalSamples;
+                  const ratio = (node.sampleCount || 1) / totalSamples;
                   const stripeWidth = ratio * patternWidth;
 
                   const isHighlighted =
@@ -405,6 +466,16 @@ export default function WorldMap({
               </pattern>
             );
           })}
+
+          {/* 国ごとのクリップパス定義 */}
+          {geoFeatures.map((geo, geoIdx) => (
+            <clipPath
+              key={`clip-${geo.properties.name}`}
+              id={`clip-${geo.properties.name.replace(/[^a-zA-Z0-9]/g, "-")}`}
+            >
+              <path d={geoPaths[geoIdx]} />
+            </clipPath>
+          ))}
         </defs>
 
         <g ref={gRef} className="countries">
@@ -414,71 +485,142 @@ export default function WorldMap({
               transform={`translate(${offsetX},0)`}
             >
               {geoFeatures.map((geo, geoIdx) => {
-                const geoName = geo.properties.name;
-                const hasData = !!filteredNodesByGeoName[geoName];
-                const fill = hasData
-                  ? `url(#pattern-${geoName.replace(/[^a-zA-Z0-9]/g, "-")})`
-                  : "#cbd5e1";
+                const cName = geo.properties.name;
+                const regions = regionsByCountry[cName] || [];
 
-                // おすすめハイライト時の国の枠線強調
-                const isCountryRecommended =
-                  recommendedCoffee &&
-                  mapCountryName(recommendedCoffee.country) === geoName;
+                // データがない場合はグレーで塗りつぶす
+                if (regions.length === 0) {
+                  return (
+                    <path
+                      key={`geo-empty-${cName}`}
+                      d={geoPaths[geoIdx]}
+                      fill="#cbd5e1"
+                      stroke="#f8fafc"
+                      strokeWidth={0.5}
+                    />
+                  );
+                }
+
+                // 領域が1つの場合は、国全体をその領域のパターンで塗りつぶす
+                if (regions.length === 1) {
+                  const region = regions[0];
+                  const { geoKey } = region;
+                  const fill = `url(#pattern-${geoKey.replace(/[^a-zA-Z0-9]/g, "-")})`;
+                  const isRegionRecommended =
+                    recommendedCoffee &&
+                    getGeoKey(recommendedCoffee) === geoKey;
+
+                  return (
+                    // biome-ignore lint/a11y/noStaticElementInteractions: SVG map path
+                    <path
+                      key={`geo-${geoKey}`}
+                      d={geoPaths[geoIdx]}
+                      fill={fill}
+                      stroke={isRegionRecommended ? "#eab308" : "#f8fafc"}
+                      strokeWidth={isRegionRecommended ? 2.5 : 0.5}
+                      className="cursor-pointer hover:opacity-80 transition-opacity"
+                      onClick={(e) =>
+                        handleRegionClick(
+                          e,
+                          geoKey,
+                          region.firstNode.region,
+                          null,
+                        )
+                      }
+                    />
+                  );
+                }
+
+                // 領域が複数の場合は、Voronoi分割を使って国の中で領域を区切る
+                const voronoi = voronoisByCountry[cName];
+                const clipId = `clip-${cName.replace(/[^a-zA-Z0-9]/g, "-")}`;
 
                 return (
-                  // biome-ignore lint/a11y/noStaticElementInteractions: SVG map path
-                  <path
-                    key={`geo-${geoName}`}
-                    d={geoPaths[geoIdx]}
-                    fill={fill}
-                    stroke={isCountryRecommended ? "#eab308" : "#f8fafc"}
-                    strokeWidth={isCountryRecommended ? 2.5 : 0.5}
-                    className={
-                      hasData
-                        ? "cursor-pointer hover:opacity-80 transition-opacity"
-                        : ""
-                    }
-                    onClick={(e) =>
-                      hasData && handleCountryClick(e, geoName, geo)
-                    }
-                  />
+                  <g
+                    key={`country-group-${cName}`}
+                    clipPath={`url(#${clipId})`}
+                  >
+                    {/* ベースの背景色（境界の隙間埋め用） */}
+                    <path d={geoPaths[geoIdx]} fill="#cbd5e1" />
+                    {regions.map((region, i) => {
+                      const { geoKey } = region;
+                      const fill = `url(#pattern-${geoKey.replace(/[^a-zA-Z0-9]/g, "-")})`;
+                      const isRegionRecommended =
+                        recommendedCoffee &&
+                        getGeoKey(recommendedCoffee) === geoKey;
+                      const cellPath = voronoi.renderCell(i);
+
+                      return (
+                        // biome-ignore lint/a11y/noStaticElementInteractions: SVG map path
+                        <path
+                          key={`voronoi-${geoKey}`}
+                          d={cellPath}
+                          fill={fill}
+                          stroke={isRegionRecommended ? "#eab308" : "#f8fafc"}
+                          strokeWidth={isRegionRecommended ? 2.5 : 0.5}
+                          className="cursor-pointer hover:opacity-80 transition-opacity"
+                          onClick={(e) =>
+                            handleRegionClick(
+                              e,
+                              geoKey,
+                              region.firstNode.region,
+                              null,
+                            )
+                          }
+                        />
+                      );
+                    })}
+                  </g>
                 );
               })}
 
-              {/* ハワイを別途描画（110m地図だと省略されたり小さすぎたりするため） */}
-              {(() => {
-                const geoName = "Hawaii";
-                const hasData = !!filteredNodesByGeoName[geoName];
-                if (!hasData && !recommendedCoffee) return null;
-                const fill = hasData ? `url(#pattern-Hawaii)` : "#cbd5e1";
-                const [hx, hy] = projection([-155.5828, 19.8968]) || [0, 0];
-                const isCountryRecommended =
-                  recommendedCoffee &&
-                  mapCountryName(recommendedCoffee.country) === geoName;
+              {/* 座標のみのポイント（国のポリゴンにマッチしなかった地域用） */}
+              {Object.entries(filteredNodesByLocation).map(
+                ([geoKey, nodes]) => {
+                  const firstNode = nodes[0];
+                  const matchedGeo = geoFeatures.find(
+                    (g) =>
+                      g.properties.name === firstNode.country ||
+                      translateCountry(g.properties.name) ===
+                        translateCountry(firstNode.country) ||
+                      (g.properties.name === "United States of America" &&
+                        firstNode.country === "United States") ||
+                      (g.properties.name === "Tanzania" &&
+                        firstNode.country.includes("Tanzania")) ||
+                      (g.properties.name === "Taiwan" &&
+                        firstNode.country === "Taiwan"),
+                  );
 
-                return (
-                  // biome-ignore lint/a11y/noStaticElementInteractions: SVG map circle
-                  <circle
-                    cx={hx}
-                    cy={hy}
-                    r={8}
-                    fill={fill}
-                    stroke={isCountryRecommended ? "#eab308" : "#f8fafc"}
-                    strokeWidth={isCountryRecommended ? 2.5 : 0.5}
-                    className={
-                      hasData
-                        ? "cursor-pointer hover:opacity-80 transition-opacity"
-                        : ""
-                    }
-                    onClick={(e) => {
-                      if (hasData) {
-                        animateCenterTo([-155.5828, 19.8968]);
-                        handleCountryClick(e, geoName);
+                  // ポリゴン描画済みならスキップ
+                  if (matchedGeo) return null;
+
+                  const fill = `url(#pattern-${geoKey.replace(/[^a-zA-Z0-9]/g, "-")})`;
+                  const [hx, hy] = projection([
+                    firstNode.lng,
+                    firstNode.lat,
+                  ]) || [0, 0];
+                  const isRegionRecommended =
+                    recommendedCoffee &&
+                    getGeoKey(recommendedCoffee) === geoKey;
+
+                  return (
+                    // biome-ignore lint/a11y/noStaticElementInteractions: SVG map circle
+                    <circle
+                      key={`point-${geoKey}`}
+                      cx={hx}
+                      cy={hy}
+                      r={6}
+                      fill={fill}
+                      stroke={isRegionRecommended ? "#eab308" : "#f8fafc"}
+                      strokeWidth={isRegionRecommended ? 2.5 : 0.5}
+                      className="cursor-pointer hover:opacity-80 transition-opacity"
+                      onClick={(e) =>
+                        handleRegionClick(e, geoKey, firstNode.region, null)
                       }
-                    }}
-                  />
-                );
-              })()}
+                    />
+                  );
+                },
+              )}
             </g>
           ))}
         </g>
@@ -495,7 +637,7 @@ export default function WorldMap({
         <MethodPopup
           popupInfo={popupInfo}
           setPopupInfo={setPopupInfo}
-          nodes={filteredNodesByGeoName[popupInfo.geoName]}
+          nodes={filteredNodesByLocation[popupInfo.geoKey]}
           selectedCoffee={selectedCoffee}
           onSelectCoffee={onSelectCoffee}
           sliderValues={sliderValues}
