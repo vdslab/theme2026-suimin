@@ -1,13 +1,17 @@
 import rawData from "../data/coffee_data.json";
 import { cleanVarieties } from "./varieties";
 
-// coffee_data.json は「産地 × 精製方法」で集約したノード。表示用に整形する。
+// coffee_data.json は「産地(国) × admin1地域」で集約したノード。表示用に整形する。
 export const coffeeData = rawData.map((item) => ({
   id: item.id,
-  // DetailPanel / 選択判定が name を参照する。グループキー(産地×精製方法)で一意。
-  name: `${item.country}・${item.method}`,
+  // DetailPanel / 選択判定が name を参照する。グループキー(国×admin1)で一意。
+  name: `${item.country}・${item.admin1}`,
   country: item.country,
-  method: item.method,
+  admin1: item.admin1,
+  // 地図に点を打つための代表座標（GeoJSON順: [lng, lat]）
+  lng: item.lng,
+  lat: item.lat,
+  coordSource: item.coord_source,
   varieties: cleanVarieties(item.varieties),
   sampleCount: item.sample_count,
   x: item.x,

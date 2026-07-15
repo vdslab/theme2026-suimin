@@ -5,7 +5,6 @@ import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as topojson from "topojson-client";
 import worldTopoJson from "../data/world-110m.json";
-import { clusterColor } from "../lib/clusters";
 import { coffeeData } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
@@ -143,7 +142,7 @@ export default function WorldMap({
         const targets = [
           translateCountry(node.country) || "",
           node.country || "",
-          node.method || "",
+          node.admin1 || "",
           node.name || "",
           (node.varieties || []).join(" "),
         ];
@@ -165,6 +164,12 @@ export default function WorldMap({
     });
     return map;
   }, [searchQuery]);
+
+  // 地図に点を打つための平坦なノード配列（検索フィルタ反映済み）
+  const filteredNodeList = useMemo(
+    () => Object.values(filteredNodesByGeoName).flat(),
+    [filteredNodesByGeoName],
+  );
 
   // ズーム設定
   useEffect(() => {
@@ -328,6 +333,35 @@ export default function WorldMap({
     setPopupInfo({ geoName, x, y });
   };
 
+  // 地図上の産地(点)クリック: その産地ノードを選択し、近くにポップアップを出す。
+  const handlePointClick = (e, node) => {
+    e.stopPropagation();
+    if (node.lng != null && node.lat != null) {
+      animateCenterTo([node.lng, node.lat]);
+    }
+    onSelectCoffee(node);
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(
+      0,
+      Math.min(e.clientX - rect.left, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
+    );
+    let y = Math.min(e.clientY - rect.top, height - 300);
+
+    // 左下の凡例と重なる位置なら、その上に収まるよう持ち上げる
+    const legend = legendRef.current;
+    if (legend) {
+      const lr = legend.getBoundingClientRect();
+      const legendLeft = lr.left - rect.left;
+      const legendRight = lr.right - rect.left;
+      const legendTop = lr.top - rect.top;
+      if (x < legendRight && x + POPUP_WIDTH > legendLeft) {
+        y = Math.max(0, Math.min(y, legendTop - POPUP_HEIGHT));
+      }
+    }
+    setPopupInfo({ geoName: mapCountryName(node.country), x, y });
+  };
+
   const handleSliderChange = (id, val) => {
     setSliderValues((prev) => ({ ...prev, [id]: val }));
   };
@@ -351,62 +385,6 @@ export default function WorldMap({
           setPopupInfo(null);
         }}
       >
-        <defs>
-          {Object.entries(filteredNodesByGeoName).map(([geoName, nodes]) => {
-            const totalSamples = nodes.reduce(
-              (sum, n) => sum + n.sampleCount,
-              0,
-            );
-            let currentX = 0;
-            const patternWidth = 24; // 縞模様の太さ
-
-            return (
-              <pattern
-                key={geoName}
-                id={`pattern-${geoName.replace(/[^a-zA-Z0-9]/g, "-")}`}
-                width={patternWidth}
-                height={patternWidth}
-                patternUnits="userSpaceOnUse"
-                patternTransform="rotate(45)"
-              >
-                {nodes.map((node) => {
-                  const ratio = node.sampleCount / totalSamples;
-                  const stripeWidth = ratio * patternWidth;
-
-                  const isHighlighted =
-                    selectedCoffee?.id === node.id ||
-                    recommendedCoffee?.id === node.id;
-                  const isAnyHighlighted = !!(
-                    selectedCoffee || recommendedCoffee
-                  );
-                  const isFilteredOut =
-                    activeCluster !== null &&
-                    activeCluster !== node.clusterName;
-
-                  let opacity = 1;
-                  if (isFilteredOut) opacity = 0.15;
-                  else if (isAnyHighlighted && !isHighlighted) opacity = 0.25;
-
-                  const color = clusterColor(node.clusterName);
-
-                  const rect = (
-                    <rect
-                      key={node.id}
-                      x={currentX}
-                      width={stripeWidth}
-                      height={patternWidth}
-                      fill={color}
-                      opacity={opacity}
-                    />
-                  );
-                  currentX += stripeWidth;
-                  return rect;
-                })}
-              </pattern>
-            );
-          })}
-        </defs>
-
         <g ref={gRef} className="countries">
           {worldCopyOffsets.map((offsetX) => (
             <g
@@ -416,9 +394,9 @@ export default function WorldMap({
               {geoFeatures.map((geo, geoIdx) => {
                 const geoName = geo.properties.name;
                 const hasData = !!filteredNodesByGeoName[geoName];
-                const fill = hasData
-                  ? `url(#pattern-${geoName.replace(/[^a-zA-Z0-9]/g, "-")})`
-                  : "#cbd5e1";
+                // 点(産地)を主役にするため、国の塗りは控えめに。
+                // データのある国はうっすら色づけ、無い国はグレー。
+                const fill = hasData ? "#fde9d0" : "#e2e8f0";
 
                 // おすすめハイライト時の国の枠線強調
                 const isCountryRecommended =
@@ -450,7 +428,7 @@ export default function WorldMap({
                 const geoName = "Hawaii";
                 const hasData = !!filteredNodesByGeoName[geoName];
                 if (!hasData && !recommendedCoffee) return null;
-                const fill = hasData ? `url(#pattern-Hawaii)` : "#cbd5e1";
+                const fill = hasData ? "#fde9d0" : "#e2e8f0";
                 const [hx, hy] = projection([-155.5828, 19.8968]) || [0, 0];
                 const isCountryRecommended =
                   recommendedCoffee &&
@@ -479,6 +457,49 @@ export default function WorldMap({
                   />
                 );
               })()}
+
+              {/* 産地(admin1)の点。UMAP座標ではなく地理座標[lng,lat]に配置する。 */}
+              {filteredNodeList.map((node) => {
+                if (node.lng == null || node.lat == null) return null;
+                const projected = projection([node.lng, node.lat]);
+                if (!projected) return null;
+                const [px, py] = projected;
+
+                const isHighlighted =
+                  selectedCoffee?.id === node.id ||
+                  recommendedCoffee?.id === node.id;
+                const isAnyHighlighted = !!(
+                  selectedCoffee || recommendedCoffee
+                );
+                const isFilteredOut =
+                  activeCluster !== null && activeCluster !== node.clusterName;
+
+                let opacity = 1;
+                if (isFilteredOut) opacity = 0.12;
+                else if (isAnyHighlighted && !isHighlighted) opacity = 0.3;
+
+                // サンプル数が多い産地ほど大きく（√スケールで頭打ち）
+                const r = Math.max(
+                  3.5,
+                  Math.min(11, 3 + Math.sqrt(node.sampleCount)),
+                );
+
+                return (
+                  // biome-ignore lint/a11y/noStaticElementInteractions: SVG map point
+                  <circle
+                    key={`pt-${node.id}`}
+                    cx={px}
+                    cy={py}
+                    r={isHighlighted ? r + 2 : r}
+                    fill={node.blendedColor}
+                    stroke={isHighlighted ? "#eab308" : "#ffffff"}
+                    strokeWidth={isHighlighted ? 2 : 0.7}
+                    opacity={opacity}
+                    className="cursor-pointer transition-opacity hover:opacity-80"
+                    onClick={(e) => handlePointClick(e, node)}
+                  />
+                );
+              })}
             </g>
           ))}
         </g>
