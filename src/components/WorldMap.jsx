@@ -246,7 +246,12 @@ export default function WorldMap({
       return;
     }
 
-    onSelectCountry(nodes);
+    const sortedNodes = [...nodes].sort(
+      (a, b) => b.sampleCount - a.sampleCount,
+    );
+
+    onSelectCoffee?.(sortedNodes[0]);
+    onSelectCountry?.(sortedNodes);
   };
 
   const toggleCluster = (name) =>
