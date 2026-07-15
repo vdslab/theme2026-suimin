@@ -26,6 +26,9 @@ function App() {
     setSelectedCoffee(null);
   };
 
+  const [selectedCoffee, setSelectedCoffee] = useState(null);
+  const [selectedCountryNodes, setSelectedCountryNodes] = useState([]);
+
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#e0f2fe] text-base-content font-sans">
       {/* 1. Map Layer (Full Screen) */}
@@ -71,13 +74,12 @@ function App() {
       >
         <DetailPanel
           selectedCoffee={selectedCoffee}
-          isRecommended={
-            selectedCoffee &&
-            recommendedCoffee &&
-            selectedCoffee.id === recommendedCoffee.id
-          }
+          countryNodes={selectedCountryNodes}
           onClose={handleCloseDetail}
           onSelectCoffee={setSelectedCoffee}
+          drankCoffees={drankCoffees}
+          onUpdateDrank={handleUpdateDrank}
+          onRemoveDrank={handleRemoveDrank}
         />
       </div>
     </div>
