@@ -5,6 +5,7 @@ import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as topojson from "topojson-client";
 import worldTopoJson from "../data/world-110m.json";
+import { clusterColor } from "../lib/clusters";
 import { coffeeData } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
@@ -369,6 +370,13 @@ export default function WorldMap({
   const toggleCluster = (name) =>
     setActiveCluster((prev) => (prev === name ? null : name));
 
+  // コーヒーベルト(南北回帰線±23.4°)と赤道の描画用Y座標。
+  // メルカトル図法では緯線は水平なので、経度は任意でよい。
+  const TROPIC = 25;
+  const yEquator = projection([centerLng, 0])?.[1] ?? 0;
+  const yCancer = projection([centerLng, TROPIC])?.[1] ?? 0; // 北回帰線
+  const yCapricorn = projection([centerLng, -TROPIC])?.[1] ?? 0; // 南回帰線
+
   return (
     <div ref={containerRef} className="w-full h-full relative">
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: Map interaction is pointer-driven */}
@@ -458,6 +466,51 @@ export default function WorldMap({
                 );
               })()}
 
+              {/* コーヒーベルト(南北回帰線の間)を薄く塗り、回帰線と赤道を引く。
+                  クリックを邪魔しないよう pointerEvents は無効。 */}
+              <rect
+                x={0}
+                y={yCancer}
+                width={worldWidth}
+                height={yCapricorn - yCancer}
+                fill="#f59e0b"
+                opacity={0.12}
+                pointerEvents="none"
+              />
+              <line
+                x1={0}
+                x2={worldWidth}
+                y1={yCancer}
+                y2={yCancer}
+                stroke="#f59e0b"
+                strokeWidth={0.8}
+                strokeDasharray="4 4"
+                opacity={0.55}
+                pointerEvents="none"
+              />
+              <line
+                x1={0}
+                x2={worldWidth}
+                y1={yCapricorn}
+                y2={yCapricorn}
+                stroke="#f59e0b"
+                strokeWidth={0.8}
+                strokeDasharray="4 4"
+                opacity={0.55}
+                pointerEvents="none"
+              />
+              <line
+                x1={0}
+                x2={worldWidth}
+                y1={yEquator}
+                y2={yEquator}
+                stroke="#ef4444"
+                strokeWidth={1}
+                strokeDasharray="6 4"
+                opacity={0.7}
+                pointerEvents="none"
+              />
+
               {/* 産地(admin1)の点。UMAP座標ではなく地理座標[lng,lat]に配置する。 */}
               {filteredNodeList.map((node) => {
                 if (node.lng == null || node.lat == null) return null;
@@ -478,11 +531,8 @@ export default function WorldMap({
                 if (isFilteredOut) opacity = 0.12;
                 else if (isAnyHighlighted && !isHighlighted) opacity = 0.3;
 
-                // サンプル数が多い産地ほど大きく（√スケールで頭打ち）
-                const r = Math.max(
-                  3.5,
-                  Math.min(11, 3 + Math.sqrt(node.sampleCount)),
-                );
+                // 分布把握が目的なので大きさは統一。色は最も強いクラスタの単色。
+                const r = 3.5;
 
                 return (
                   // biome-ignore lint/a11y/noStaticElementInteractions: SVG map point
@@ -491,7 +541,7 @@ export default function WorldMap({
                     cx={px}
                     cy={py}
                     r={isHighlighted ? r + 2 : r}
-                    fill={node.blendedColor}
+                    fill={clusterColor(node.clusterName)}
                     stroke={isHighlighted ? "#eab308" : "#ffffff"}
                     strokeWidth={isHighlighted ? 2 : 0.7}
                     opacity={opacity}
