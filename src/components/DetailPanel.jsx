@@ -1,8 +1,28 @@
 import { clusterColor, shortName, TASTE_AXES } from "../lib/clusters";
 import { nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
+import { useEffect, useState } from "react";
 
-function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
+function DetailPanel({
+  selectedCoffee,
+  countryNodes = [],
+  onClose,
+  onSelectCoffee,
+  drankCoffees = {},
+  onRemoveDrank,
+  onUpdateDrank,
+}) {
+  const [score, setScore] = useState(3);
+
+  useEffect(() => {
+    if (!selectedCoffee) {
+      setScore(3);
+      return;
+    }
+
+    setScore(drankCoffees[selectedCoffee.id] ?? 3);
+  }, [selectedCoffee, drankCoffees]);
+
   if (!selectedCoffee) {
     return (
       <aside className="bg-base-100 p-6 h-full flex flex-col justify-center items-center">
@@ -47,6 +67,130 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
         ✕
       </button>
 
+      <div className="rounded-box border border-base-300 bg-base-200 p-4 space-y-4 mt-8">
+        <div className="p-6 overflow-y-auto flex-1">
+          {/* 精製方法選択 */}
+          {countryNodes.length > 0 && (
+            <section className="rounded-box border border-base-300 bg-base-100 p-4 mt-8 mb-4">
+              <h2 className="font-bold text-lg">
+                {translateCountry(selectedCoffee.country)}
+              </h2>
+
+              <p className="mt-1 mb-3 text-xs text-base-content/50">
+                精製方法を選択してください
+              </p>
+
+              <div className="flex flex-col gap-2">
+                {countryNodes.map((node) => {
+                  const isSelected = selectedCoffee.id === node.id;
+
+                  return (
+                    <label
+                      key={node.id}
+                      className={`flex cursor-pointer items-center gap-3 rounded-lg border p-2 transition-colors ${
+                        isSelected
+                          ? "border-primary bg-primary/10"
+                          : "border-base-300 hover:bg-base-200"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name={`method-${selectedCoffee.country}`}
+                        className="radio radio-primary radio-sm"
+                        checked={isSelected}
+                        onChange={() => onSelectCoffee(node)}
+                      />
+
+                      <div className="min-w-0 flex-1">
+                        <span className="block text-sm font-semibold">
+                          {node.method}
+                        </span>
+
+                        <div className="mt-0.5 flex items-center gap-1 text-[10px] text-base-content/60">
+                          <span
+                            className="h-2 w-2 shrink-0 rounded-full"
+                            style={{
+                              backgroundColor: clusterColor(node.clusterName),
+                            }}
+                          />
+
+                          <span className="truncate">
+                            {shortName(node.clusterName)}
+                          </span>
+                        </div>
+                      </div>
+                    </label>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
+          {/* 既存の詳細 */}
+          <div className="rounded-box border border-base-300 bg-base-200 p-4 space-y-4">
+            {/* 現在の内容 */}
+          </div>
+        </div>
+        <section className="rounded-box border border-base-300 bg-base-100 p-4 mb-4">
+          <h3 className="mb-3 text-sm font-bold text-base-content/70">
+            この豆を飲んだ記録
+          </h3>
+
+          <p className="mb-2 text-xs font-semibold text-base-content/60">
+            好み度を入力
+          </p>
+
+          <div className="flex flex-col gap-1">
+            <div className="flex justify-between px-1 text-[10px] font-medium text-base-content/60">
+              <span>苦手</span>
+              <span>普通</span>
+              <span>好み</span>
+            </div>
+
+            <input
+              type="range"
+              min="1"
+              max="5"
+              step="1"
+              value={score}
+              onChange={(e) => setScore(Number(e.target.value))}
+              className="range range-sm range-primary"
+            />
+
+            <div className="mt-1 text-center text-sm font-bold text-primary">
+              {score} / 5
+            </div>
+          </div>
+
+          {drankCoffees[selectedCoffee.id] !== undefined ? (
+            <div className="mt-4 flex gap-2">
+              <button
+                type="button"
+                className="btn btn-sm btn-outline btn-error flex-1"
+                onClick={() => onRemoveDrank(selectedCoffee.id)}
+              >
+                解除
+              </button>
+
+              <button
+                type="button"
+                className="btn btn-sm btn-primary flex-1"
+                onClick={() => onUpdateDrank(selectedCoffee.id, score)}
+              >
+                更新
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              className="btn btn-sm btn-primary mt-4 w-full"
+              onClick={() => onUpdateDrank(selectedCoffee.id, score)}
+            >
+              飲んだ！
+            </button>
+          )}
+        </section>
+      </div>
       <div className="p-6 overflow-y-auto flex-1">
         <div className="rounded-box border border-base-300 bg-base-200 p-4 space-y-4 mt-8">
           <div>
