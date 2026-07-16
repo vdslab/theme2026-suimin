@@ -54,6 +54,8 @@ function App() {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onRecommend={recommend}
+        isRecommendedActive={recommendedCoffee != null}
+        onClearRecommendation={() => setRecommendedCoffee(null)}
         onOpenGuide={() => setIsGuideOpen(true)}
       />
 

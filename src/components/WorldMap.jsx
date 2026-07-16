@@ -2,11 +2,11 @@ import * as d3geo from "d3-geo";
 import { select } from "d3-selection";
 import "d3-transition"; // select(...).transition() を有効化（zoom.transformのアニメーション用）
 import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as topojson from "topojson-client";
 import worldTopoJson from "../data/world-110m.json";
 import { clusterColor } from "../lib/clusters";
-import { coffeeData } from "../lib/coffeeData";
+import { coffeeData, nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
 import MapLegend from "./MapLegend";
@@ -40,6 +40,12 @@ export default function WorldMap({
   const [activeCluster, setActiveCluster] = useState(null);
   const [popupInfo, setPopupInfo] = useState(null); // { geoName, x, y }
   const [sliderValues, setSliderValues] = useState({});
+
+  const similarCoffeeIds = useMemo(() => {
+    if (!selectedCoffee) return new Set();
+    const neighbors = nearestByTaste(selectedCoffee, 3);
+    return new Set(neighbors.map((n) => n.id));
+  }, [selectedCoffee]);
 
   const containerRef = useRef(null);
   const svgRef = useRef(null);
@@ -167,10 +173,33 @@ export default function WorldMap({
   }, [searchQuery]);
 
   // 地図に点を打つための平坦なノード配列（検索フィルタ反映済み）
-  const filteredNodeList = useMemo(
-    () => Object.values(filteredNodesByGeoName).flat(),
-    [filteredNodesByGeoName],
-  );
+  const filteredNodeList = useMemo(() => {
+    const list = Object.values(filteredNodesByGeoName).flat();
+    // 描画順を制御するため、強調されるノードを配列の後ろに移動（z-indexの代わり）
+    return list.sort((a, b) => {
+      const getZIndex = (node) => {
+        const isRecommended = recommendedCoffee?.id === node.id;
+        const isSelected = selectedCoffee?.id === node.id;
+        const isSimilar = selectedCoffee
+          ? similarCoffeeIds.has(node.id)
+          : false;
+        const isDrank = !!drankCoffees[node.id];
+
+        if (isRecommended) return 4;
+        if (isSelected) return 3;
+        if (isSimilar) return 2;
+        if (isDrank) return 1;
+        return 0;
+      };
+      return getZIndex(a) - getZIndex(b);
+    });
+  }, [
+    filteredNodesByGeoName,
+    recommendedCoffee,
+    selectedCoffee,
+    similarCoffeeIds,
+    drankCoffees,
+  ]);
 
   // ズーム設定
   useEffect(() => {
@@ -225,46 +254,73 @@ export default function WorldMap({
     }
   }, [width, height]);
 
-  // 指定した経緯度が画面中央（横方向）に来るよう、パンをアニメーションで寄せる。
-  const animateCenterTo = (coord) => {
-    const svgNode = svgRef.current;
-    if (!svgNode || !zoomRef.current || !coord) return;
-    const projected = projection(coord);
-    if (!projected) return;
+  // 指定した経緯度が見えている画面中央（詳細パネルを避けた位置）に来るよう、パンをアニメーションで寄せる。
+  const animateCenterTo = useCallback(
+    (coord) => {
+      const svgNode = svgRef.current;
+      if (!svgNode || !zoomRef.current || !coord) return;
+      const projected = projection(coord);
+      if (!projected) return;
 
-    const [px] = projected;
-    const current = zoomTransform(svgNode);
-    const k = current.k;
-    const period = worldWidth * k;
+      const [px, py] = projected;
+      const current = zoomTransform(svgNode);
+      const k = current.k;
+      const period = worldWidth * k;
 
-    // その点が画面中央に来るためのパン量。
-    let targetX = width / 2 - px * k;
-    // 現在位置に最も近い周期を選び、最短距離で寄せる（世界を何周もしない）。
-    targetX += Math.round((current.x - targetX) / period) * period;
+      // 詳細パネル(幅384px)を考慮した、見えている領域の中心
+      const visibleCenterX = (width - 384) / 2;
+      const visibleCenterY = height / 2;
 
-    select(svgNode)
-      .transition()
-      .duration(600)
-      .call(
-        zoomRef.current.transform,
-        zoomIdentity.translate(targetX, current.y).scale(k),
-      );
-  };
+      // その点が画面中央に来るためのパン量。
+      let targetX = visibleCenterX - px * k;
+      const targetY = visibleCenterY - py * k;
+
+      // 現在位置に最も近い周期を選び、最短距離で寄せる（世界を何周もしない）。
+      targetX += Math.round((current.x - targetX) / period) * period;
+
+      select(svgNode)
+        .transition()
+        .duration(600)
+        .call(
+          zoomRef.current.transform,
+          zoomIdentity.translate(targetX, targetY).scale(k),
+        );
+    },
+    [projection, width, height, worldWidth],
+  );
+
+  // 外部から豆が選択されたとき（おすすめ、味が近い豆など）、その場所へパンする
+  useEffect(() => {
+    if (
+      selectedCoffee &&
+      selectedCoffee.lng != null &&
+      selectedCoffee.lat != null
+    ) {
+      animateCenterTo([selectedCoffee.lng, selectedCoffee.lat]);
+    }
+  }, [selectedCoffee, animateCenterTo]);
 
   // DetailPanel の「味が近い豆」など、地図外から別の国の豆が選択されたとき、
-  // 開いているポップアップをその国に追従させ、正しい国と精製方法を表示する。
+  // 開いているポップアップをその豆に追従させ、正しい国と精製方法を表示する。
   useEffect(() => {
     if (!selectedCoffee) return;
     const geoName = mapCountryName(selectedCoffee.country);
     setPopupInfo((prev) => {
-      // ポップアップが閉じている、または既に同じ国を表示中なら何もしない
-      // （地図クリック由来の選択ではクリック位置を維持したいのでここで弾く）
-      if (!prev || prev.geoName === geoName) return prev;
+      // ポップアップが閉じている、または既に同じ豆を表示中なら何もしない
+      if (
+        !prev ||
+        (prev.geoName === geoName && prev.coffeeId === selectedCoffee.id)
+      )
+        return prev;
 
-      // 対象の国の画面上の位置を求めてポップアップを移動する
+      // 対象の豆または国の画面上の位置を求めてポップアップを移動する
       let cx;
       let cy;
-      if (geoName === "Hawaii") {
+      if (selectedCoffee.lng != null && selectedCoffee.lat != null) {
+        [cx, cy] = projection([selectedCoffee.lng, selectedCoffee.lat]) || [
+          0, 0,
+        ];
+      } else if (geoName === "Hawaii") {
         [cx, cy] = projection([-155.5828, 19.8968]) || [0, 0];
       } else {
         const geo = geoFeatures.find((g) => g.properties.name === geoName);
@@ -282,7 +338,7 @@ export default function WorldMap({
         Math.min(sx, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
       );
       const y = Math.max(0, Math.min(sy, height - 300));
-      return { geoName, x, y };
+      return { geoName, coffeeId: selectedCoffee.id, x, y };
     });
   }, [
     selectedCoffee,
@@ -303,10 +359,9 @@ export default function WorldMap({
     }
 
     const nodes = filteredNodesByGeoName[geoName];
+    let topNode = null;
     if (nodes && nodes.length > 0) {
-      const topNode = [...nodes].sort(
-        (a, b) => b.sampleCount - a.sampleCount,
-      )[0];
+      topNode = [...nodes].sort((a, b) => b.sampleCount - a.sampleCount)[0];
       onSelectCoffee(topNode);
     }
 
@@ -331,7 +386,7 @@ export default function WorldMap({
       }
     }
 
-    setPopupInfo({ geoName, x, y });
+    setPopupInfo({ geoName, coffeeId: topNode?.id, x, y });
   };
 
   // 地図上の産地(点)クリック: その産地ノードを選択し、近くにポップアップを出す。
@@ -360,7 +415,12 @@ export default function WorldMap({
         y = Math.max(0, Math.min(y, legendTop - POPUP_HEIGHT));
       }
     }
-    setPopupInfo({ geoName: mapCountryName(node.country), x, y });
+    setPopupInfo({
+      geoName: mapCountryName(node.country),
+      coffeeId: node.id,
+      x,
+      y,
+    });
   };
 
   const handleSliderChange = (id, val) => {
@@ -406,19 +466,14 @@ export default function WorldMap({
                 // データのある国はうっすら色づけ、無い国はグレー。
                 const fill = hasData ? "#fde9d0" : "#e2e8f0";
 
-                // おすすめハイライト時の国の枠線強調
-                const isCountryRecommended =
-                  recommendedCoffee &&
-                  mapCountryName(recommendedCoffee.country) === geoName;
-
                 return (
                   // biome-ignore lint/a11y/noStaticElementInteractions: SVG map path
                   <path
                     key={`geo-${geoName}`}
                     d={geoPaths[geoIdx]}
                     fill={fill}
-                    stroke={isCountryRecommended ? "#eab308" : "#f8fafc"}
-                    strokeWidth={isCountryRecommended ? 2.5 : 0.5}
+                    stroke="#f8fafc"
+                    strokeWidth={0.5}
                     className={
                       hasData
                         ? "cursor-pointer hover:opacity-80 transition-opacity"
@@ -438,9 +493,6 @@ export default function WorldMap({
                 if (!hasData && !recommendedCoffee) return null;
                 const fill = hasData ? "#fde9d0" : "#e2e8f0";
                 const [hx, hy] = projection([-155.5828, 19.8968]) || [0, 0];
-                const isCountryRecommended =
-                  recommendedCoffee &&
-                  mapCountryName(recommendedCoffee.country) === geoName;
 
                 return (
                   // biome-ignore lint/a11y/noStaticElementInteractions: SVG map circle
@@ -449,8 +501,8 @@ export default function WorldMap({
                     cy={hy}
                     r={8}
                     fill={fill}
-                    stroke={isCountryRecommended ? "#eab308" : "#f8fafc"}
-                    strokeWidth={isCountryRecommended ? 2.5 : 0.5}
+                    stroke="#f8fafc"
+                    strokeWidth={0.5}
                     className={
                       hasData
                         ? "cursor-pointer hover:opacity-80 transition-opacity"
@@ -518,36 +570,91 @@ export default function WorldMap({
                 if (!projected) return null;
                 const [px, py] = projected;
 
-                const isHighlighted =
-                  selectedCoffee?.id === node.id ||
-                  recommendedCoffee?.id === node.id;
-                const isAnyHighlighted = !!(
-                  selectedCoffee || recommendedCoffee
-                );
+                const isRecommended = recommendedCoffee?.id === node.id;
+                const isSelected = selectedCoffee?.id === node.id;
+                const isDrank = !!drankCoffees[node.id];
+                const isSimilar = selectedCoffee
+                  ? similarCoffeeIds.has(node.id)
+                  : false;
+
+                // Opacity logic based on user rules
+                let opacity = 1;
                 const isFilteredOut =
                   activeCluster !== null && activeCluster !== node.clusterName;
+                if (isFilteredOut) {
+                  opacity = 0.12;
+                } else if (recommendedCoffee) {
+                  // "おすすめを計算する"が実行中: 計算結果の豆と飲んだ豆以外を暗くする
+                  if (!isDrank && !isRecommended) opacity = 0.3;
+                } else if (selectedCoffee) {
+                  if (!isSelected && !isSimilar) opacity = 0.3;
+                }
+                // 何も選択されていない時は、未飲豆のグレーアウトはしない
 
-                let opacity = 1;
-                if (isFilteredOut) opacity = 0.12;
-                else if (isAnyHighlighted && !isHighlighted) opacity = 0.3;
+                // Radius and stroke logic
+                let r = 3.5;
+                let strokeColor = "#ffffff";
+                let strokeWidth = 0.7;
 
-                // 分布把握が目的なので大きさは統一。色は最も強いクラスタの単色。
-                const r = 3.5;
+                if (isSelected || isSimilar) {
+                  r += 2; // 少し大きくなるだけ
+                }
+
+                if (isRecommended) {
+                  if (!isSelected && !isSimilar) r += 2; // 重複して大きくならないように
+                  strokeColor = "#eab308";
+                  strokeWidth = 2;
+                }
 
                 return (
-                  // biome-ignore lint/a11y/noStaticElementInteractions: SVG map point
-                  <circle
-                    key={`pt-${node.id}`}
-                    cx={px}
-                    cy={py}
-                    r={isHighlighted ? r + 2 : r}
-                    fill={clusterColor(node.clusterName)}
-                    stroke={isHighlighted ? "#eab308" : "#ffffff"}
-                    strokeWidth={isHighlighted ? 2 : 0.7}
-                    opacity={opacity}
-                    className="cursor-pointer transition-opacity hover:opacity-80"
-                    onClick={(e) => handlePointClick(e, node)}
-                  />
+                  <g key={`pt-${node.id}`}>
+                    {(isDrank || isSelected) && (
+                      <circle
+                        cx={px}
+                        cy={py}
+                        r={r + 1.5}
+                        fill="none"
+                        stroke="#000000"
+                        strokeWidth={0.5}
+                        opacity={opacity}
+                      />
+                    )}
+                    {isRecommended && (
+                      <circle
+                        cx={px}
+                        cy={py}
+                        r={r}
+                        fill="none"
+                        stroke="#eab308"
+                        strokeWidth={2}
+                      >
+                        <animate
+                          attributeName="r"
+                          values={`${r};${r + 15}`}
+                          dur="1.5s"
+                          repeatCount="indefinite"
+                        />
+                        <animate
+                          attributeName="opacity"
+                          values="1;0"
+                          dur="1.5s"
+                          repeatCount="indefinite"
+                        />
+                      </circle>
+                    )}
+                    {/* biome-ignore lint/a11y/noStaticElementInteractions: SVG map point */}
+                    <circle
+                      cx={px}
+                      cy={py}
+                      r={r}
+                      fill={clusterColor(node.clusterName)}
+                      stroke={strokeColor}
+                      strokeWidth={strokeWidth}
+                      opacity={opacity}
+                      className="cursor-pointer transition-opacity hover:opacity-80"
+                      onClick={(e) => handlePointClick(e, node)}
+                    />
+                  </g>
                 );
               })}
             </g>
