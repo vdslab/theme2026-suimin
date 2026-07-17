@@ -10,6 +10,7 @@ const nodeById = new Map(coffeeData.map((c) => [String(c.id), c]));
 // 飲んだ豆の一覧を左側に常設し、その場で選択・解除できるようにするパネル。
 export default function DrankList({
   drankCoffees,
+  drankOrder = [],
   onRemoveDrank,
   onClearDrank,
   onSelectCoffee,
@@ -18,7 +19,13 @@ export default function DrankList({
   isRecommendedActive,
   onClearRecommendation,
 }) {
-  const entries = Object.entries(drankCoffees);
+  // 追加順(drankOrder)で並べる＝新しく飲んだ豆ほど下に来る。
+  // 万一 order に載っていないidがあっても取りこぼさないよう補完する。
+  const orderedIds = [
+    ...drankOrder.filter((id) => id in drankCoffees),
+    ...Object.keys(drankCoffees).filter((id) => !drankOrder.includes(id)),
+  ];
+  const entries = orderedIds.map((id) => [id, drankCoffees[id]]);
 
   return (
     <div className="absolute top-40 left-6 z-20 flex max-h-[calc(100vh-22rem)] w-[260px] flex-col rounded-2xl border border-base-200 bg-base-100 shadow-lg pointer-events-auto">

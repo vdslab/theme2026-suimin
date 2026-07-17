@@ -10,6 +10,9 @@ function App() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [drankCoffees, setDrankCoffees] = useState({}); // { [id]: score }
+  // 飲んだ豆の追加順(id文字列の配列)。オブジェクトのキーは数値idで昇順に並ぶため、
+  // 「新しく追加したものを下に溜める」には挿入順を別途保持する必要がある。
+  const [drankOrder, setDrankOrder] = useState([]);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [popupRequest, setPopupRequest] = useState(0);
 
@@ -28,17 +31,28 @@ function App() {
     setSelectedCoffee(null);
   };
 
+  const handleUpdateDrank = (id, score) => {
+    const key = String(id);
+    setDrankCoffees((prev) => ({ ...prev, [key]: score }));
+    // 未登録なら末尾に追加（＝リストの下に溜まる）。既存の更新では順序を変えない。
+    setDrankOrder((prev) => (prev.includes(key) ? prev : [...prev, key]));
+    setRecommendedCoffee(null);
+  };
+
   const handleRemoveDrank = (id) => {
+    const key = String(id);
     setDrankCoffees((prev) => {
       const newState = { ...prev };
-      delete newState[id];
+      delete newState[key];
       return newState;
     });
+    setDrankOrder((prev) => prev.filter((k) => k !== key));
     setRecommendedCoffee(null);
   };
 
   const handleClearDrank = () => {
     setDrankCoffees({});
+    setDrankOrder([]);
     setRecommendedCoffee(null);
   };
 
@@ -55,10 +69,7 @@ function App() {
         onSelectCoffee={setSelectedCoffee}
         searchQuery={searchQuery}
         drankCoffees={drankCoffees}
-        onUpdateDrank={(id, score) => {
-          setDrankCoffees((prev) => ({ ...prev, [id]: score }));
-          setRecommendedCoffee(null);
-        }}
+        onUpdateDrank={handleUpdateDrank}
         onRemoveDrank={handleRemoveDrank}
         recommendedCoffee={recommendedCoffee}
         popupRequest={popupRequest}
@@ -74,6 +85,7 @@ function App() {
       {/* 飲んだ豆の一覧（左側・その場で解除できる） */}
       <DrankList
         drankCoffees={drankCoffees}
+        drankOrder={drankOrder}
         onRemoveDrank={handleRemoveDrank}
         onClearDrank={handleClearDrank}
         onSelectCoffee={handleSelectFromList}
