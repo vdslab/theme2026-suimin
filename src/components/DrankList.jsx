@@ -1,3 +1,4 @@
+import { Sparkles, X } from "lucide-react";
 import { clusterColor } from "../lib/clusters";
 import { coffeeData } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
@@ -13,6 +14,9 @@ export default function DrankList({
   onClearDrank,
   onSelectCoffee,
   selectedCoffee,
+  onRecommend,
+  isRecommendedActive,
+  onClearRecommendation,
 }) {
   const entries = Object.entries(drankCoffees);
 
@@ -79,12 +83,36 @@ export default function DrankList({
                 aria-label={`${translateCountry(c.country)}を解除`}
                 title="解除"
               >
-                ✕
+                <X size={14} />
               </button>
             </div>
           );
         })}
       </div>
+
+      {entries.length > 0 && (
+        <div className="border-t border-base-200 p-2">
+          {isRecommendedActive ? (
+            <button
+              type="button"
+              onClick={onClearRecommendation}
+              className="btn btn-outline btn-sm w-full bg-base-100"
+            >
+              <X size={16} />
+              おすすめを解除
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={onRecommend}
+              className="btn btn-primary btn-sm w-full text-white"
+            >
+              <Sparkles size={16} />
+              おすすめを計算する
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

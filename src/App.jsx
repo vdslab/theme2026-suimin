@@ -61,9 +61,6 @@ function App() {
       <Header
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        onRecommend={recommend}
-        isRecommendedActive={recommendedCoffee != null}
-        onClearRecommendation={() => setRecommendedCoffee(null)}
         onOpenGuide={() => setIsGuideOpen(true)}
       />
 
@@ -74,6 +71,9 @@ function App() {
         onClearDrank={handleClearDrank}
         onSelectCoffee={setSelectedCoffee}
         selectedCoffee={selectedCoffee}
+        onRecommend={recommend}
+        isRecommendedActive={recommendedCoffee != null}
+        onClearRecommendation={() => setRecommendedCoffee(null)}
       />
 
       {/* Startup Guide Modal */}
