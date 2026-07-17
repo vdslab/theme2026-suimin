@@ -25,7 +25,11 @@ export default function DrankList({
         </span>
         <button
           type="button"
-          onClick={onClearDrank}
+          onClick={() => {
+            if (window.confirm("飲んだ豆をすべて解除しますか？")) {
+              onClearDrank();
+            }
+          }}
           className="btn btn-ghost btn-xs text-error"
           title="すべて解除"
         >
