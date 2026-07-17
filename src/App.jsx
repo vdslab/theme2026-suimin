@@ -10,8 +10,7 @@ function App() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [drankCoffees, setDrankCoffees] = useState({}); // { [id]: score }
-  // 飲んだ豆の追加順(id文字列の配列)。オブジェクトのキーは数値idで昇順に並ぶため、
-  // 「新しく追加したものを下に溜める」には挿入順を別途保持する必要がある。
+  // オブジェクトのキーは数値idで昇順に並ぶため、追加順は別途配列で保持する。
   const [drankOrder, setDrankOrder] = useState([]);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [popupRequest, setPopupRequest] = useState(0);
@@ -34,7 +33,6 @@ function App() {
   const handleUpdateDrank = (id, score) => {
     const key = String(id);
     setDrankCoffees((prev) => ({ ...prev, [key]: score }));
-    // 未登録なら末尾に追加（＝リストの下に溜まる）。既存の更新では順序を変えない。
     setDrankOrder((prev) => (prev.includes(key) ? prev : [...prev, key]));
     setRecommendedCoffee(null);
   };
@@ -63,7 +61,6 @@ function App() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#e0f2fe] text-base-content font-sans">
-      {/* 1. Map Layer (Full Screen) */}
       <WorldMap
         selectedCoffee={selectedCoffee}
         onSelectCoffee={setSelectedCoffee}
@@ -75,14 +72,12 @@ function App() {
         popupRequest={popupRequest}
       />
 
-      {/* 2. Floating Header (Search & Recommend) */}
       <Header
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onOpenGuide={() => setIsGuideOpen(true)}
       />
 
-      {/* 飲んだ豆の一覧（左側・その場で解除できる） */}
       <DrankList
         drankCoffees={drankCoffees}
         drankOrder={drankOrder}
@@ -95,13 +90,11 @@ function App() {
         onClearRecommendation={() => setRecommendedCoffee(null)}
       />
 
-      {/* Startup Guide Modal */}
       <StartupGuide
         isOpen={isGuideOpen}
         onClose={() => setIsGuideOpen(false)}
       />
 
-      {/* 3. Detail Panel (Slide-in) */}
       <div
         className={`absolute top-0 right-0 h-full w-96 bg-base-100 shadow-2xl z-30 transition-transform duration-300 transform ${
           selectedCoffee ? "translate-x-0" : "translate-x-full"

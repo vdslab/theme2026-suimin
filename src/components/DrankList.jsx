@@ -3,11 +3,9 @@ import { clusterColor } from "../lib/clusters";
 import { coffeeData } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
-// id から豆ノードを引くための索引（coffeeData は不変なのでモジュール読込時に一度だけ作る）。
-// drankCoffees のキーはオブジェクトのため常に文字列化される。数値idと突き合わせるためキーも文字列に揃える。
+// drankCoffees のキーは文字列化されるため、突き合わせ用にキーも文字列で持つ。
 const nodeById = new Map(coffeeData.map((c) => [String(c.id), c]));
 
-// 飲んだ豆の一覧を左側に常設し、その場で選択・解除できるようにするパネル。
 export default function DrankList({
   drankCoffees,
   drankOrder = [],
@@ -19,8 +17,7 @@ export default function DrankList({
   isRecommendedActive,
   onClearRecommendation,
 }) {
-  // 追加順(drankOrder)で並べる＝新しく飲んだ豆ほど下に来る。
-  // 万一 order に載っていないidがあっても取りこぼさないよう補完する。
+  // 追加順で並べ（新しい豆ほど下）、order 漏れの id は末尾に補完する。
   const orderedIds = [
     ...drankOrder.filter((id) => id in drankCoffees),
     ...Object.keys(drankCoffees).filter((id) => !drankOrder.includes(id)),
