@@ -372,38 +372,6 @@ export default function WorldMap({
                 );
               })}
 
-              {/* ハワイを別途描画（110m地図だと省略されたり小さすぎたりするため） */}
-              {(() => {
-                const geoName = "Hawaii";
-                const hasData = !!filteredNodesByGeoName[geoName];
-                if (!hasData && !recommendedCoffee) return null;
-                const fill = hasData ? "#fde9d0" : "#e2e8f0";
-                const [hx, hy] = projection([-155.5828, 19.8968]) || [0, 0];
-
-                return (
-                  // biome-ignore lint/a11y/noStaticElementInteractions: SVG map circle
-                  <circle
-                    cx={hx}
-                    cy={hy}
-                    r={8}
-                    fill={fill}
-                    stroke="#f8fafc"
-                    strokeWidth={0.5}
-                    className={
-                      hasData
-                        ? "cursor-pointer hover:opacity-80 transition-opacity"
-                        : ""
-                    }
-                    onClick={(e) => {
-                      if (hasData) {
-                        animateCenterTo([-155.5828, 19.8968]);
-                        handleCountryClick(e, geoName);
-                      }
-                    }}
-                  />
-                );
-              })()}
-
               {/* コーヒーベルト(南北回帰線の間)を薄く塗り、回帰線と赤道を引く。
                   クリックを邪魔しないよう pointerEvents は無効。 */}
               <rect
