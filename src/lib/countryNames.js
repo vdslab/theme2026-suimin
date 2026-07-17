@@ -18,6 +18,7 @@ export const COUNTRY_TRANSLATIONS = {
   Kenya: "ケニア",
   Laos: "ラオス",
   Malawi: "マラウイ",
+  Mauritius: "モーリシャス",
   Mexico: "メキシコ",
   Myanmar: "ミャンマー",
   Nicaragua: "ニカラグア",
