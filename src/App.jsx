@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import DetailPanel from "./components/DetailPanel";
+import DrankList from "./components/DrankList";
 import Header from "./components/Header";
 import StartupGuide from "./components/StartupGuide";
 import WorldMap from "./components/WorldMap";
@@ -26,6 +27,20 @@ function App() {
     setSelectedCoffee(null);
   };
 
+  const handleRemoveDrank = (id) => {
+    setDrankCoffees((prev) => {
+      const newState = { ...prev };
+      delete newState[id];
+      return newState;
+    });
+    setRecommendedCoffee(null);
+  };
+
+  const handleClearDrank = () => {
+    setDrankCoffees({});
+    setRecommendedCoffee(null);
+  };
+
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#e0f2fe] text-base-content font-sans">
       {/* 1. Map Layer (Full Screen) */}
@@ -38,14 +53,7 @@ function App() {
           setDrankCoffees((prev) => ({ ...prev, [id]: score }));
           setRecommendedCoffee(null);
         }}
-        onRemoveDrank={(id) => {
-          setDrankCoffees((prev) => {
-            const newState = { ...prev };
-            delete newState[id];
-            return newState;
-          });
-          setRecommendedCoffee(null);
-        }}
+        onRemoveDrank={handleRemoveDrank}
         recommendedCoffee={recommendedCoffee}
       />
 
@@ -57,6 +65,15 @@ function App() {
         isRecommendedActive={recommendedCoffee != null}
         onClearRecommendation={() => setRecommendedCoffee(null)}
         onOpenGuide={() => setIsGuideOpen(true)}
+      />
+
+      {/* 飲んだ豆の一覧（左側・その場で解除できる） */}
+      <DrankList
+        drankCoffees={drankCoffees}
+        onRemoveDrank={handleRemoveDrank}
+        onClearDrank={handleClearDrank}
+        onSelectCoffee={setSelectedCoffee}
+        selectedCoffee={selectedCoffee}
       />
 
       {/* Startup Guide Modal */}
