@@ -28,6 +28,8 @@ export default function WorldMap({
   recommendedCoffee,
 }) {
   const [activeCluster, setActiveCluster] = useState(null);
+  // ノードのホバーで表示する国・地域ツールチップ（コンテナ基準の座標）
+  const [hoveredNode, setHoveredNode] = useState(null);
 
   const similarCoffeeIds = useMemo(() => {
     if (!selectedCoffee) return new Set();
@@ -314,6 +316,18 @@ export default function WorldMap({
     onSelectCoffee(node);
   };
 
+  // ノードにホバーしたとき、国・地域名をカーソル位置に表示する。
+  const handleNodeHover = (e, node) => {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setHoveredNode({
+      country: node.country,
+      admin1: node.admin1,
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
   const toggleCluster = (name) =>
     setActiveCluster((prev) => (prev === name ? null : name));
 
@@ -507,6 +521,9 @@ export default function WorldMap({
                       opacity={opacity}
                       className="cursor-pointer transition-opacity hover:opacity-80"
                       onClick={(e) => handlePointClick(e, node)}
+                      onMouseEnter={(e) => handleNodeHover(e, node)}
+                      onMouseMove={(e) => handleNodeHover(e, node)}
+                      onMouseLeave={() => setHoveredNode(null)}
                     />
                   </g>
                 );
@@ -522,6 +539,20 @@ export default function WorldMap({
         toggleCluster={toggleCluster}
         setActiveCluster={setActiveCluster}
       />
+
+      {hoveredNode && (
+        <div
+          className="pointer-events-none absolute z-40 -translate-x-1/2 -translate-y-full rounded-lg bg-base-100/95 px-2.5 py-1.5 shadow-lg border border-base-200 whitespace-nowrap"
+          style={{ left: hoveredNode.x, top: hoveredNode.y - 8 }}
+        >
+          <div className="text-sm font-semibold leading-tight">
+            {translateCountry(hoveredNode.country)}
+          </div>
+          <div className="text-[11px] text-base-content/60 leading-tight">
+            {hoveredNode.admin1}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
