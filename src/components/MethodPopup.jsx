@@ -143,7 +143,7 @@ export default function MethodPopup({
           </>
         ) : (
           <p className="text-sm text-base-content/60 mt-2">
-            右側から産地(地域)を選択してください。
+            右側から地域を選択してください。
           </p>
         )}
       </div>
@@ -154,7 +154,7 @@ export default function MethodPopup({
           className="font-bold mb-3 text-sm text-base-content/70 border-b border-base-200 pb-2 cursor-grab active:cursor-grabbing select-none"
           onMouseDown={handleDragStart}
         >
-          産地(地域)を選択
+          地域を選択
         </h3>
         <div className="flex flex-col gap-2 max-h-[300px] overflow-y-auto pr-1">
           {nodes.map((node) => {

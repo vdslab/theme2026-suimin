@@ -11,6 +11,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [drankCoffees, setDrankCoffees] = useState({}); // { [id]: score }
   const [isGuideOpen, setIsGuideOpen] = useState(false);
+  const [popupRequest, setPopupRequest] = useState(0);
 
   useEffect(() => {
     const hasSeenGuide = localStorage.getItem("hasSeenGuide");
@@ -41,6 +42,11 @@ function App() {
     setRecommendedCoffee(null);
   };
 
+  const handleSelectFromList = (coffee) => {
+    setSelectedCoffee(coffee);
+    setPopupRequest((n) => n + 1);
+  };
+
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#e0f2fe] text-base-content font-sans">
       {/* 1. Map Layer (Full Screen) */}
@@ -55,6 +61,7 @@ function App() {
         }}
         onRemoveDrank={handleRemoveDrank}
         recommendedCoffee={recommendedCoffee}
+        popupRequest={popupRequest}
       />
 
       {/* 2. Floating Header (Search & Recommend) */}
@@ -69,7 +76,7 @@ function App() {
         drankCoffees={drankCoffees}
         onRemoveDrank={handleRemoveDrank}
         onClearDrank={handleClearDrank}
-        onSelectCoffee={setSelectedCoffee}
+        onSelectCoffee={handleSelectFromList}
         selectedCoffee={selectedCoffee}
         onRecommend={recommend}
         isRecommendedActive={recommendedCoffee != null}

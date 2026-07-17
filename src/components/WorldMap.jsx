@@ -36,6 +36,7 @@ export default function WorldMap({
   onUpdateDrank,
   onRemoveDrank,
   recommendedCoffee,
+  popupRequest = 0,
 }) {
   const [activeCluster, setActiveCluster] = useState(null);
   const [popupInfo, setPopupInfo] = useState(null); // { geoName, x, y }
@@ -300,31 +301,19 @@ export default function WorldMap({
     }
   }, [selectedCoffee, animateCenterTo]);
 
-  // DetailPanel の「味が近い豆」など、地図外から別の国の豆が選択されたとき、
-  // 開いているポップアップをその豆に追従させ、正しい国と精製方法を表示する。
-  useEffect(() => {
-    if (!selectedCoffee) return;
-    const geoName = mapCountryName(selectedCoffee.country);
-    setPopupInfo((prev) => {
-      // ポップアップが閉じている、または既に同じ豆を表示中なら何もしない
-      if (
-        !prev ||
-        (prev.geoName === geoName && prev.coffeeId === selectedCoffee.id)
-      )
-        return prev;
-
-      // 対象の豆または国の画面上の位置を求めてポップアップを移動する
+  // 対象の豆の画面上の位置を求めて、ポップアップ表示用の情報を作る。
+  const computePopupInfo = useCallback(
+    (coffee) => {
+      const geoName = mapCountryName(coffee.country);
       let cx;
       let cy;
-      if (selectedCoffee.lng != null && selectedCoffee.lat != null) {
-        [cx, cy] = projection([selectedCoffee.lng, selectedCoffee.lat]) || [
-          0, 0,
-        ];
+      if (coffee.lng != null && coffee.lat != null) {
+        [cx, cy] = projection([coffee.lng, coffee.lat]) || [0, 0];
       } else if (geoName === "Hawaii") {
         [cx, cy] = projection([-155.5828, 19.8968]) || [0, 0];
       } else {
         const geo = geoFeatures.find((g) => g.properties.name === geoName);
-        if (!geo) return { ...prev, geoName };
+        if (!geo) return { geoName, coffeeId: coffee.id, x: 0, y: 0 };
         [cx, cy] = pathGenerator.centroid(geo);
       }
       const transform = zoomTransformRef.current;
@@ -338,17 +327,36 @@ export default function WorldMap({
         Math.min(sx, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
       );
       const y = Math.max(0, Math.min(sy, height - 300));
-      return { geoName, coffeeId: selectedCoffee.id, x, y };
+      return { geoName, coffeeId: coffee.id, x, y };
+    },
+    [geoFeatures, pathGenerator, projection, width, height, worldWidth],
+  );
+
+  // DetailPanel の「味が近い豆」など、地図外から別の国の豆が選択されたとき、
+  // 開いているポップアップをその豆に追従させ、正しい国と精製方法を表示する。
+  useEffect(() => {
+    if (!selectedCoffee) return;
+    const geoName = mapCountryName(selectedCoffee.country);
+    setPopupInfo((prev) => {
+      // ポップアップが閉じている、または既に同じ豆を表示中なら何もしない
+      if (
+        !prev ||
+        (prev.geoName === geoName && prev.coffeeId === selectedCoffee.id)
+      )
+        return prev;
+      return computePopupInfo(selectedCoffee);
     });
-  }, [
-    selectedCoffee,
-    geoFeatures,
-    pathGenerator,
-    projection,
-    width,
-    height,
-    worldWidth,
-  ]);
+  }, [selectedCoffee, computePopupInfo]);
+
+  // 飲んだ豆リストから選ばれたとき(popupRequestが進んだとき)は、
+  // ポップアップが閉じていても新規に開く。selectedCoffeeだけの変化では開かない。
+  const lastPopupRequestRef = useRef(0);
+  useEffect(() => {
+    if (popupRequest === lastPopupRequestRef.current) return;
+    lastPopupRequestRef.current = popupRequest;
+    if (popupRequest === 0 || !selectedCoffee) return;
+    setPopupInfo(computePopupInfo(selectedCoffee));
+  }, [popupRequest, selectedCoffee, computePopupInfo]);
 
   const handleCountryClick = (e, geoName, geo = null) => {
     e.stopPropagation();
