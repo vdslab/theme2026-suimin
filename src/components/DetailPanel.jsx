@@ -24,7 +24,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
     ...a,
     dev: c.deviation?.[`${a.en}_dev`] ?? 0,
     score: c.scores?.[a.en] ?? 0,
-  })).sort((a, b) => b.dev - a.dev);
+  }));
   const maxAbs = Math.max(...devs.map((d) => Math.abs(d.dev)), 0.001);
 
   const probs = Object.entries(c.probs)
