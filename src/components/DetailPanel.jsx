@@ -1,8 +1,19 @@
+import { useState } from "react";
 import { clusterColor, shortName, TASTE_AXES } from "../lib/clusters";
-import { nearestByTaste } from "../lib/coffeeData";
+import { coffeeData, nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
-function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
+function DetailPanel({
+  selectedCoffee,
+  onClose,
+  onSelectCoffee,
+  drankCoffees = {},
+  onUpdateDrank,
+  onRemoveDrank,
+}) {
+  // 好み度スライダーの一時値（id ごと）。未操作なら記録値、それも無ければ 3。
+  const [scoreDraft, setScoreDraft] = useState({});
+
   if (!selectedCoffee) {
     return (
       <aside className="bg-base-100 p-6 h-full flex flex-col justify-center items-center">
@@ -19,6 +30,14 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
 
   const c = selectedCoffee;
   const color = clusterColor(c.clusterName);
+
+  const isDrank = drankCoffees[c.id] !== undefined;
+  const score = scoreDraft[c.id] ?? drankCoffees[c.id] ?? 3;
+
+  // 同じ国の産地(地域)一覧。地域を切り替えられるようにする。
+  const regions = coffeeData
+    .filter((n) => n.country === c.country)
+    .sort((a, b) => b.sampleCount - a.sampleCount);
 
   const devs = TASTE_AXES.map((a) => ({
     ...a,
@@ -62,6 +81,100 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
               参考にした豆の数：{c.sampleCount} 件
             </p>
           </div>
+
+          <div>
+            <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+              好み度を入力
+            </h3>
+            <div className="flex justify-between text-[10px] px-1 text-base-content/60 font-medium mb-1">
+              <span>苦手</span>
+              <span>普通</span>
+              <span>好み</span>
+            </div>
+            <input
+              type="range"
+              min="1"
+              max="5"
+              step="1"
+              value={score}
+              onChange={(e) =>
+                setScoreDraft((prev) => ({
+                  ...prev,
+                  [c.id]: Number(e.target.value),
+                }))
+              }
+              className="range range-sm range-primary"
+            />
+            {isDrank ? (
+              <div className="flex gap-2 mt-3">
+                <button
+                  type="button"
+                  onClick={() => onRemoveDrank?.(c.id)}
+                  className="btn btn-sm btn-outline btn-error flex-1"
+                >
+                  解除
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onUpdateDrank?.(c.id, score)}
+                  className="btn btn-sm btn-primary flex-1"
+                >
+                  更新
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => onUpdateDrank?.(c.id, score)}
+                className="btn btn-sm btn-primary w-full mt-3"
+              >
+                飲んだ！
+              </button>
+            )}
+          </div>
+
+          {regions.length > 1 && (
+            <div>
+              <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
+                地域を選択
+              </h3>
+              <div className="flex flex-col gap-1 max-h-40 overflow-y-auto">
+                {regions.map((n) => {
+                  const active = n.id === c.id;
+                  return (
+                    <button
+                      key={n.id}
+                      type="button"
+                      onClick={() => onSelectCoffee?.(n)}
+                      className={`flex items-center gap-2 rounded-lg border p-2 text-left transition-colors ${
+                        active
+                          ? "border-primary bg-primary/10"
+                          : "border-base-200 hover:bg-base-300/40"
+                      }`}
+                    >
+                      <span
+                        className="h-2.5 w-2.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: clusterColor(n.clusterName) }}
+                      />
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-sm font-medium">
+                          {n.admin1}
+                        </span>
+                        <span className="block truncate text-[11px] text-base-content/50">
+                          {shortName(n.clusterName)}
+                        </span>
+                      </span>
+                      {drankCoffees[n.id] !== undefined && (
+                        <span className="badge badge-primary badge-sm shrink-0">
+                          好み {drankCoffees[n.id]}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           <div>
             <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">

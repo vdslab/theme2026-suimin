@@ -10,14 +10,6 @@ import { coffeeData, nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
 import MapLegend from "./MapLegend";
-import MethodPopup from "./MethodPopup";
-
-// 精製方法を選ぶと DetailPanel (App.jsx の w-96) が右からスライドインするため、
-// ポップアップがその下に潜り込まないよう右端に余白を確保する
-const DETAIL_PANEL_WIDTH = 384;
-const POPUP_WIDTH = 560;
-// 味覚クラスタ凡例（左下）を避けるための、ポップアップの想定高さ
-const POPUP_HEIGHT = 360;
 
 // TopoJSONのnameとcoffeeDataのcountryをマッピング
 const mapCountryName = (c) => {
@@ -33,14 +25,9 @@ export default function WorldMap({
   onSelectCoffee,
   searchQuery,
   drankCoffees = {},
-  onUpdateDrank,
-  onRemoveDrank,
   recommendedCoffee,
-  popupRequest = 0,
 }) {
   const [activeCluster, setActiveCluster] = useState(null);
-  const [popupInfo, setPopupInfo] = useState(null); // { geoName, x, y }
-  const [sliderValues, setSliderValues] = useState({});
 
   const similarCoffeeIds = useMemo(() => {
     if (!selectedCoffee) return new Set();
@@ -301,138 +288,30 @@ export default function WorldMap({
     }
   }, [selectedCoffee, animateCenterTo]);
 
-  // 対象の豆の画面上の位置を求めて、ポップアップ表示用の情報を作る。
-  const computePopupInfo = useCallback(
-    (coffee) => {
-      const geoName = mapCountryName(coffee.country);
-      let cx;
-      let cy;
-      if (coffee.lng != null && coffee.lat != null) {
-        [cx, cy] = projection([coffee.lng, coffee.lat]) || [0, 0];
-      } else if (geoName === "Hawaii") {
-        [cx, cy] = projection([-155.5828, 19.8968]) || [0, 0];
-      } else {
-        const geo = geoFeatures.find((g) => g.properties.name === geoName);
-        if (!geo) return { geoName, coffeeId: coffee.id, x: 0, y: 0 };
-        [cx, cy] = pathGenerator.centroid(geo);
-      }
-      const transform = zoomTransformRef.current;
-      const [rawSx, sy] = transform.apply([cx, cy]);
-      // 横方向は無限スクロールで折り返すため、画面中央に最も近いコピーの位置を採用する
-      const period = worldWidth * transform.k;
-      const sx = rawSx - Math.round((rawSx - width / 2) / period) * period;
-
-      const x = Math.max(
-        0,
-        Math.min(sx, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
-      );
-      const y = Math.max(0, Math.min(sy, height - 300));
-      return { geoName, coffeeId: coffee.id, x, y };
-    },
-    [geoFeatures, pathGenerator, projection, width, height, worldWidth],
-  );
-
-  // DetailPanel の「味が近い豆」など、地図外から別の国の豆が選択されたとき、
-  // 開いているポップアップをその豆に追従させ、正しい国と精製方法を表示する。
-  useEffect(() => {
-    if (!selectedCoffee) return;
-    const geoName = mapCountryName(selectedCoffee.country);
-    setPopupInfo((prev) => {
-      // ポップアップが閉じている、または既に同じ豆を表示中なら何もしない
-      if (
-        !prev ||
-        (prev.geoName === geoName && prev.coffeeId === selectedCoffee.id)
-      )
-        return prev;
-      return computePopupInfo(selectedCoffee);
-    });
-  }, [selectedCoffee, computePopupInfo]);
-
-  // 飲んだ豆リストから選ばれたとき(popupRequestが進んだとき)は、
-  // ポップアップが閉じていても新規に開く。selectedCoffeeだけの変化では開かない。
-  const lastPopupRequestRef = useRef(0);
-  useEffect(() => {
-    if (popupRequest === lastPopupRequestRef.current) return;
-    lastPopupRequestRef.current = popupRequest;
-    if (popupRequest === 0 || !selectedCoffee) return;
-    setPopupInfo(computePopupInfo(selectedCoffee));
-  }, [popupRequest, selectedCoffee, computePopupInfo]);
-
+  // 国(ポリゴン)クリック: その国で最もサンプルの多い産地を選び、詳細パネルを開く。
   const handleCountryClick = (e, geoName, geo = null) => {
     e.stopPropagation();
-    const rect = containerRef.current.getBoundingClientRect();
 
     if (geo) {
       animateCenterTo(d3geo.geoCentroid(geo));
     }
 
     const nodes = filteredNodesByGeoName[geoName];
-    let topNode = null;
     if (nodes && nodes.length > 0) {
-      topNode = [...nodes].sort((a, b) => b.sampleCount - a.sampleCount)[0];
+      const topNode = [...nodes].sort(
+        (a, b) => b.sampleCount - a.sampleCount,
+      )[0];
       onSelectCoffee(topNode);
     }
-
-    // 右端は DetailPanel の幅も避けてクランプ（詳細パネルと重ならないように）
-    const x = Math.max(
-      0,
-      Math.min(e.clientX - rect.left, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
-    );
-    let y = Math.min(e.clientY - rect.top, height - 300);
-
-    // 左下の味覚クラスタ凡例と横方向で重なる位置なら、その上に収まるよう持ち上げる
-    const legend = legendRef.current;
-    if (legend) {
-      const lr = legend.getBoundingClientRect();
-      const legendLeft = lr.left - rect.left;
-      const legendRight = lr.right - rect.left;
-      const legendTop = lr.top - rect.top;
-      const overlapsHorizontally =
-        x < legendRight && x + POPUP_WIDTH > legendLeft;
-      if (overlapsHorizontally) {
-        y = Math.max(0, Math.min(y, legendTop - POPUP_HEIGHT));
-      }
-    }
-
-    setPopupInfo({ geoName, coffeeId: topNode?.id, x, y });
   };
 
-  // 地図上の産地(点)クリック: その産地ノードを選択し、近くにポップアップを出す。
+  // 地図上の産地(点)クリック: その産地ノードを選択し、詳細パネルを開く。
   const handlePointClick = (e, node) => {
     e.stopPropagation();
     if (node.lng != null && node.lat != null) {
       animateCenterTo([node.lng, node.lat]);
     }
     onSelectCoffee(node);
-
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(
-      0,
-      Math.min(e.clientX - rect.left, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
-    );
-    let y = Math.min(e.clientY - rect.top, height - 300);
-
-    // 左下の凡例と重なる位置なら、その上に収まるよう持ち上げる
-    const legend = legendRef.current;
-    if (legend) {
-      const lr = legend.getBoundingClientRect();
-      const legendLeft = lr.left - rect.left;
-      const legendRight = lr.right - rect.left;
-      const legendTop = lr.top - rect.top;
-      if (x < legendRight && x + POPUP_WIDTH > legendLeft) {
-        y = Math.max(0, Math.min(y, legendTop - POPUP_HEIGHT));
-      }
-    }
-    setPopupInfo({
-      geoName: mapCountryName(node.country),
-      coffeeId: node.id,
-      x,
-      y,
-    });
-  };
-
-  const handleSliderChange = (id, val) => {
-    setSliderValues((prev) => ({ ...prev, [id]: val }));
   };
 
   const toggleCluster = (name) =>
@@ -458,7 +337,6 @@ export default function WorldMap({
         className="absolute inset-0 select-none bg-[#e0f2fe]"
         onClick={() => {
           onSelectCoffee(null);
-          setPopupInfo(null);
         }}
       >
         <g ref={gRef} className="countries">
@@ -676,21 +554,6 @@ export default function WorldMap({
         toggleCluster={toggleCluster}
         setActiveCluster={setActiveCluster}
       />
-
-      {popupInfo && (
-        <MethodPopup
-          popupInfo={popupInfo}
-          setPopupInfo={setPopupInfo}
-          nodes={filteredNodesByGeoName[popupInfo.geoName]}
-          selectedCoffee={selectedCoffee}
-          onSelectCoffee={onSelectCoffee}
-          sliderValues={sliderValues}
-          handleSliderChange={handleSliderChange}
-          drankCoffees={drankCoffees}
-          onRemoveDrank={onRemoveDrank}
-          onUpdateDrank={onUpdateDrank}
-        />
-      )}
     </div>
   );
 }

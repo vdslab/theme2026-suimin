@@ -13,7 +13,6 @@ function App() {
   // オブジェクトのキーは数値idで昇順に並ぶため、追加順は別途配列で保持する。
   const [drankOrder, setDrankOrder] = useState([]);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
-  const [popupRequest, setPopupRequest] = useState(0);
 
   useEffect(() => {
     const hasSeenGuide = localStorage.getItem("hasSeenGuide");
@@ -54,11 +53,6 @@ function App() {
     setRecommendedCoffee(null);
   };
 
-  const handleSelectFromList = (coffee) => {
-    setSelectedCoffee(coffee);
-    setPopupRequest((n) => n + 1);
-  };
-
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#e0f2fe] text-base-content font-sans">
       <WorldMap
@@ -66,10 +60,7 @@ function App() {
         onSelectCoffee={setSelectedCoffee}
         searchQuery={searchQuery}
         drankCoffees={drankCoffees}
-        onUpdateDrank={handleUpdateDrank}
-        onRemoveDrank={handleRemoveDrank}
         recommendedCoffee={recommendedCoffee}
-        popupRequest={popupRequest}
       />
 
       <Header
@@ -83,7 +74,7 @@ function App() {
         drankOrder={drankOrder}
         onRemoveDrank={handleRemoveDrank}
         onClearDrank={handleClearDrank}
-        onSelectCoffee={handleSelectFromList}
+        onSelectCoffee={setSelectedCoffee}
         selectedCoffee={selectedCoffee}
         onRecommend={recommend}
         isRecommendedActive={recommendedCoffee != null}
@@ -109,6 +100,9 @@ function App() {
           }
           onClose={handleCloseDetail}
           onSelectCoffee={setSelectedCoffee}
+          drankCoffees={drankCoffees}
+          onUpdateDrank={handleUpdateDrank}
+          onRemoveDrank={handleRemoveDrank}
         />
       </div>
     </div>
