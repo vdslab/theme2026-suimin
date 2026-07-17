@@ -50,7 +50,7 @@ export function useRecommendation(drankCoffees, setSelectedCoffee) {
     let minDistance = Infinity;
 
     coffeeData.forEach((d) => {
-      if (drankCoffees[d.id] !== undefined) return; // skip drank coffees
+      if (drankCoffees[d.id] !== undefined) return;
       const dist = Math.sqrt((d.x - finalX) ** 2 + (d.y - finalY) ** 2);
       if (dist < minDistance) {
         minDistance = dist;

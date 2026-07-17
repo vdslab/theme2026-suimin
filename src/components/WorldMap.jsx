@@ -10,14 +10,6 @@ import { coffeeData, nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
 import MapLegend from "./MapLegend";
-import MethodPopup from "./MethodPopup";
-
-// 精製方法を選ぶと DetailPanel (App.jsx の w-96) が右からスライドインするため、
-// ポップアップがその下に潜り込まないよう右端に余白を確保する
-const DETAIL_PANEL_WIDTH = 384;
-const POPUP_WIDTH = 560;
-// 味覚クラスタ凡例（左下）を避けるための、ポップアップの想定高さ
-const POPUP_HEIGHT = 360;
 
 // TopoJSONのnameとcoffeeDataのcountryをマッピング
 const mapCountryName = (c) => {
@@ -33,13 +25,11 @@ export default function WorldMap({
   onSelectCoffee,
   searchQuery,
   drankCoffees = {},
-  onUpdateDrank,
-  onRemoveDrank,
   recommendedCoffee,
 }) {
   const [activeCluster, setActiveCluster] = useState(null);
-  const [popupInfo, setPopupInfo] = useState(null); // { geoName, x, y }
-  const [sliderValues, setSliderValues] = useState({});
+  // ノードのホバーで表示する国・地域ツールチップ（コンテナ基準の座標）
+  const [hoveredNode, setHoveredNode] = useState(null);
 
   const similarCoffeeIds = useMemo(() => {
     if (!selectedCoffee) return new Set();
@@ -52,7 +42,6 @@ export default function WorldMap({
   const gRef = useRef(null);
   const zoomRef = useRef(null);
   const legendRef = useRef(null);
-  // ズームの最新 transform を保持（外部選択時のポップアップ追従で使用）
   const zoomTransformRef = useRef(zoomIdentity);
 
   const [{ width, height }, setDimensions] = useState(() => ({
@@ -68,7 +57,6 @@ export default function WorldMap({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // 世界地図データ
   const geoFeatures = useMemo(() => {
     return topojson.feature(worldTopoJson, worldTopoJson.objects.countries)
       .features;
@@ -79,7 +67,6 @@ export default function WorldMap({
   const worldWidth = width;
   const mapScale = worldWidth / (2 * Math.PI);
 
-  // Projection
   const projection = useMemo(() => {
     return d3geo
       .geoMercator()
@@ -201,7 +188,6 @@ export default function WorldMap({
     drankCoffees,
   ]);
 
-  // ズーム設定
   useEffect(() => {
     const svg = select(svgRef.current);
     const zoomBehavior = zoom()
@@ -237,7 +223,6 @@ export default function WorldMap({
           "transform",
           `translate(${wrappedX},${y}) scale(${k})`,
         );
-        // 外部選択時のポップアップ追従で参照するため最新 transform を保持
         zoomTransformRef.current = event.transform;
       });
     zoomRef.current = zoomBehavior;
@@ -300,131 +285,42 @@ export default function WorldMap({
     }
   }, [selectedCoffee, animateCenterTo]);
 
-  // DetailPanel の「味が近い豆」など、地図外から別の国の豆が選択されたとき、
-  // 開いているポップアップをその豆に追従させ、正しい国と精製方法を表示する。
-  useEffect(() => {
-    if (!selectedCoffee) return;
-    const geoName = mapCountryName(selectedCoffee.country);
-    setPopupInfo((prev) => {
-      // ポップアップが閉じている、または既に同じ豆を表示中なら何もしない
-      if (
-        !prev ||
-        (prev.geoName === geoName && prev.coffeeId === selectedCoffee.id)
-      )
-        return prev;
-
-      // 対象の豆または国の画面上の位置を求めてポップアップを移動する
-      let cx;
-      let cy;
-      if (selectedCoffee.lng != null && selectedCoffee.lat != null) {
-        [cx, cy] = projection([selectedCoffee.lng, selectedCoffee.lat]) || [
-          0, 0,
-        ];
-      } else if (geoName === "Hawaii") {
-        [cx, cy] = projection([-155.5828, 19.8968]) || [0, 0];
-      } else {
-        const geo = geoFeatures.find((g) => g.properties.name === geoName);
-        if (!geo) return { ...prev, geoName };
-        [cx, cy] = pathGenerator.centroid(geo);
-      }
-      const transform = zoomTransformRef.current;
-      const [rawSx, sy] = transform.apply([cx, cy]);
-      // 横方向は無限スクロールで折り返すため、画面中央に最も近いコピーの位置を採用する
-      const period = worldWidth * transform.k;
-      const sx = rawSx - Math.round((rawSx - width / 2) / period) * period;
-
-      const x = Math.max(
-        0,
-        Math.min(sx, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
-      );
-      const y = Math.max(0, Math.min(sy, height - 300));
-      return { geoName, coffeeId: selectedCoffee.id, x, y };
-    });
-  }, [
-    selectedCoffee,
-    geoFeatures,
-    pathGenerator,
-    projection,
-    width,
-    height,
-    worldWidth,
-  ]);
-
+  // 国(ポリゴン)クリック: その国で最もサンプルの多い産地を選び、詳細パネルを開く。
   const handleCountryClick = (e, geoName, geo = null) => {
     e.stopPropagation();
-    const rect = containerRef.current.getBoundingClientRect();
 
     if (geo) {
       animateCenterTo(d3geo.geoCentroid(geo));
     }
 
     const nodes = filteredNodesByGeoName[geoName];
-    let topNode = null;
     if (nodes && nodes.length > 0) {
-      topNode = [...nodes].sort((a, b) => b.sampleCount - a.sampleCount)[0];
+      const topNode = [...nodes].sort(
+        (a, b) => b.sampleCount - a.sampleCount,
+      )[0];
       onSelectCoffee(topNode);
     }
-
-    // 右端は DetailPanel の幅も避けてクランプ（詳細パネルと重ならないように）
-    const x = Math.max(
-      0,
-      Math.min(e.clientX - rect.left, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
-    );
-    let y = Math.min(e.clientY - rect.top, height - 300);
-
-    // 左下の味覚クラスタ凡例と横方向で重なる位置なら、その上に収まるよう持ち上げる
-    const legend = legendRef.current;
-    if (legend) {
-      const lr = legend.getBoundingClientRect();
-      const legendLeft = lr.left - rect.left;
-      const legendRight = lr.right - rect.left;
-      const legendTop = lr.top - rect.top;
-      const overlapsHorizontally =
-        x < legendRight && x + POPUP_WIDTH > legendLeft;
-      if (overlapsHorizontally) {
-        y = Math.max(0, Math.min(y, legendTop - POPUP_HEIGHT));
-      }
-    }
-
-    setPopupInfo({ geoName, coffeeId: topNode?.id, x, y });
   };
 
-  // 地図上の産地(点)クリック: その産地ノードを選択し、近くにポップアップを出す。
+  // 地図上の産地(点)クリック: その産地ノードを選択し、詳細パネルを開く。
   const handlePointClick = (e, node) => {
     e.stopPropagation();
     if (node.lng != null && node.lat != null) {
       animateCenterTo([node.lng, node.lat]);
     }
     onSelectCoffee(node);
-
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(
-      0,
-      Math.min(e.clientX - rect.left, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
-    );
-    let y = Math.min(e.clientY - rect.top, height - 300);
-
-    // 左下の凡例と重なる位置なら、その上に収まるよう持ち上げる
-    const legend = legendRef.current;
-    if (legend) {
-      const lr = legend.getBoundingClientRect();
-      const legendLeft = lr.left - rect.left;
-      const legendRight = lr.right - rect.left;
-      const legendTop = lr.top - rect.top;
-      if (x < legendRight && x + POPUP_WIDTH > legendLeft) {
-        y = Math.max(0, Math.min(y, legendTop - POPUP_HEIGHT));
-      }
-    }
-    setPopupInfo({
-      geoName: mapCountryName(node.country),
-      coffeeId: node.id,
-      x,
-      y,
-    });
   };
 
-  const handleSliderChange = (id, val) => {
-    setSliderValues((prev) => ({ ...prev, [id]: val }));
+  // ノードにホバーしたとき、国・地域名をカーソル位置に表示する。
+  const handleNodeHover = (e, node) => {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setHoveredNode({
+      country: node.country,
+      admin1: node.admin1,
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
   };
 
   const toggleCluster = (name) =>
@@ -450,7 +346,6 @@ export default function WorldMap({
         className="absolute inset-0 select-none bg-[#e0f2fe]"
         onClick={() => {
           onSelectCoffee(null);
-          setPopupInfo(null);
         }}
       >
         <g ref={gRef} className="countries">
@@ -485,38 +380,6 @@ export default function WorldMap({
                   />
                 );
               })}
-
-              {/* ハワイを別途描画（110m地図だと省略されたり小さすぎたりするため） */}
-              {(() => {
-                const geoName = "Hawaii";
-                const hasData = !!filteredNodesByGeoName[geoName];
-                if (!hasData && !recommendedCoffee) return null;
-                const fill = hasData ? "#fde9d0" : "#e2e8f0";
-                const [hx, hy] = projection([-155.5828, 19.8968]) || [0, 0];
-
-                return (
-                  // biome-ignore lint/a11y/noStaticElementInteractions: SVG map circle
-                  <circle
-                    cx={hx}
-                    cy={hy}
-                    r={8}
-                    fill={fill}
-                    stroke="#f8fafc"
-                    strokeWidth={0.5}
-                    className={
-                      hasData
-                        ? "cursor-pointer hover:opacity-80 transition-opacity"
-                        : ""
-                    }
-                    onClick={(e) => {
-                      if (hasData) {
-                        animateCenterTo([-155.5828, 19.8968]);
-                        handleCountryClick(e, geoName);
-                      }
-                    }}
-                  />
-                );
-              })()}
 
               {/* コーヒーベルト(南北回帰線の間)を薄く塗り、回帰線と赤道を引く。
                   クリックを邪魔しないよう pointerEvents は無効。 */}
@@ -577,7 +440,6 @@ export default function WorldMap({
                   ? similarCoffeeIds.has(node.id)
                   : false;
 
-                // Opacity logic based on user rules
                 let opacity = 1;
                 const isFilteredOut =
                   activeCluster !== null && activeCluster !== node.clusterName;
@@ -591,13 +453,12 @@ export default function WorldMap({
                 }
                 // 何も選択されていない時は、未飲豆のグレーアウトはしない
 
-                // Radius and stroke logic
                 let r = 3.5;
                 let strokeColor = "#ffffff";
                 let strokeWidth = 0.7;
 
                 if (isSelected || isSimilar) {
-                  r += 2; // 少し大きくなるだけ
+                  r += 2;
                 }
 
                 if (isRecommended) {
@@ -653,6 +514,9 @@ export default function WorldMap({
                       opacity={opacity}
                       className="cursor-pointer transition-opacity hover:opacity-80"
                       onClick={(e) => handlePointClick(e, node)}
+                      onMouseEnter={(e) => handleNodeHover(e, node)}
+                      onMouseMove={(e) => handleNodeHover(e, node)}
+                      onMouseLeave={() => setHoveredNode(null)}
                     />
                   </g>
                 );
@@ -669,19 +533,18 @@ export default function WorldMap({
         setActiveCluster={setActiveCluster}
       />
 
-      {popupInfo && (
-        <MethodPopup
-          popupInfo={popupInfo}
-          setPopupInfo={setPopupInfo}
-          nodes={filteredNodesByGeoName[popupInfo.geoName]}
-          selectedCoffee={selectedCoffee}
-          onSelectCoffee={onSelectCoffee}
-          sliderValues={sliderValues}
-          handleSliderChange={handleSliderChange}
-          drankCoffees={drankCoffees}
-          onRemoveDrank={onRemoveDrank}
-          onUpdateDrank={onUpdateDrank}
-        />
+      {hoveredNode && (
+        <div
+          className="pointer-events-none absolute z-40 -translate-x-1/2 -translate-y-full rounded-lg bg-base-100/95 px-2.5 py-1.5 shadow-lg border border-base-200 whitespace-nowrap"
+          style={{ left: hoveredNode.x, top: hoveredNode.y - 8 }}
+        >
+          <div className="text-sm font-semibold leading-tight">
+            {translateCountry(hoveredNode.country)}
+          </div>
+          <div className="text-[11px] text-base-content/60 leading-tight">
+            {hoveredNode.admin1}
+          </div>
+        </div>
       )}
     </div>
   );
