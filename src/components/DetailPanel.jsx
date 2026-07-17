@@ -8,9 +8,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
       <aside className="bg-base-100 p-6 h-full flex flex-col justify-center items-center">
         <div className="rounded-box border border-dashed border-base-300 bg-base-200/50 p-6 text-center">
           <p className="text-sm text-base-content/60">
-            マップ上の国をクリックして
-            <br />
-            精製方法を選ぶと、
+            マップ上の産地(点)をクリックすると、
             <br />
             ここに詳細が表示されます。
           </p>
@@ -59,7 +57,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
             <h2 className="text-xl font-bold leading-tight">
               {translateCountry(c.country)}
             </h2>
-            <p className="text-sm text-base-content/60">精製方法：{c.method}</p>
+            <p className="text-sm text-base-content/60">地域：{c.admin1}</p>
             <p className="text-xs text-base-content/50 mt-1">
               参考にした豆の数：{c.sampleCount} 件
             </p>
@@ -190,7 +188,7 @@ function DetailPanel({ selectedCoffee, onClose, onSelectCoffee }) {
                           {translateCountry(n.country)}
                         </span>
                         <span className="block truncate text-[11px] text-base-content/50">
-                          {n.method} ・ {shortName(n.clusterName)}
+                          {n.admin1} ・ {shortName(n.clusterName)}
                         </span>
                       </span>
                     </button>

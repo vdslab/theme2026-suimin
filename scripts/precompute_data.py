@@ -1,4 +1,6 @@
 
+import json
+import math
 import os
 import numpy as np
 import pandas as pd
@@ -14,8 +16,12 @@ from sklearn.cluster import AgglomerativeClustering
 # --- 設定 ---------------------------------------------------------------
 TASTE_COLS = ["Aroma", "Flavor", "Aftertaste", "Acidity", "Body", "Balance"]
 DEV_COLS = [f"{c}_dev" for c in TASTE_COLS]
-GROUP_COLS = ["Country.of.Origin", "Processing.Method"]
+# 集約単位: 産地(国) × admin1地域。admin1は Region 正規化で付与した第1次コーヒー地域。
+GROUP_COLS = ["Country.of.Origin", "Region_admin1"]
 MIN_SAMPLE_COUNT = 1
+# admin1 の代表座標（地図に点を打つため）。scripts/normalize_region.py 由来の
+# data/region_coords.json を参照。無い地域は国重心＋決定的オフセットで代替。
+COORDS_JSON = "data/region_coords.json"
 # HDBSCANの細かいクラスタを、最終的に何個へ丸め込むか（4〜6推奨）。
 # 近い（=味の傾向が似た）クラスタどうしをまとめ、サイズを均等めにする。
 #   見た目(dominant_cluster)の分布の均等さ:
@@ -55,6 +61,39 @@ AXIS_LOW = {
 SECOND_AXIS_THRESHOLD = 0.02
 # クラスタ名に軸を含める偏差の閾値（絶対値がこの値以上の軸だけを命名に使う）
 NAME_THRESHOLD = 0.1
+
+
+def load_coords():
+    """region_coords.json を読み、(country,admin1)->(lng,lat) と country->(lng,lat) を返す。"""
+    region, country = {}, {}
+    if os.path.exists(COORDS_JSON):
+        with open(COORDS_JSON, encoding="utf-8") as f:
+            data = json.load(f)
+        for r in data.get("regions", []):
+            region[(r["country"], r["admin1"])] = (r["lng"], r["lat"])
+        for c in data.get("countries", []):
+            country[c["country"]] = (c["lng"], c["lat"])
+    else:
+        print(f"    [warn] {COORDS_JSON} が無いため座標は country 重心のみで代替")
+    return region, country
+
+
+def resolve_coord(country_name, admin1, region, country, order):
+    """点の座標を決定。admin1の実座標優先、無ければ国重心＋決定的リングオフセット。
+
+    order: 同一国内でのその admin1 の連番（重複回避のオフセット用）。
+    戻り値: (lng, lat, source)  source: region / country
+    """
+    key = (country_name, admin1)
+    if key in region:
+        return region[key][0], region[key][1], "region"
+    if country_name in country:
+        clng, clat = country[country_name]
+        # 同一国内で重ならないよう、連番で小さな円状に散らす（決定的）
+        ang = (order * 2.399963)  # 黄金角(rad)でばらけさせる
+        rad = 0.6 + 0.35 * order   # 度単位の小さな半径
+        return (clng + rad * math.cos(ang), clat + rad * math.sin(ang), "country")
+    return None, None, "none"
 
 
 def assign_cluster_name(dev_mean: pd.Series, c: int) -> str:
@@ -196,7 +235,8 @@ def main():
     # ------------------------------------------------------------------
     # [3] 産地 × 精製方法 で集約（先に偏差を取ってから平均する）
     # ------------------------------------------------------------------
-    print("[3] 産地 × 精製方法 で集約")
+    print("[3] 産地(国) × admin1地域 で集約")
+    # 集約キーに欠損があると groupby から外れるため、明示的にログ
     agg_spec = {c: "mean" for c in TASTE_COLS}          # 元6軸スコア平均
     agg_spec.update({c: "mean" for c in DEV_COLS})       # 偏差6軸平均
     agg_spec["row_mean"] = "mean"                        # 6軸平均そのものの平均
@@ -324,12 +364,25 @@ def main():
     print("[6] JSON 出力:", OUTPUT_JSON)
     os.makedirs(os.path.dirname(OUTPUT_JSON), exist_ok=True)
 
+    region_coords, country_coords = load_coords()
+    country_order = {}  # 国ごとの連番（座標フォールバックの散らし用）
+
     records = []
     for idx, row in nodes.iterrows():
+        country_name = row["Country.of.Origin"]
+        admin1 = row["Region_admin1"]
+        order = country_order.get(country_name, 0)
+        country_order[country_name] = order + 1
+        lng, lat, coord_source = resolve_coord(
+            country_name, admin1, region_coords, country_coords, order
+        )
         rec = {
             "id": int(idx),
-            "country": row["Country.of.Origin"],
-            "method": row["Processing.Method"],
+            "country": country_name,
+            "admin1": admin1,
+            "lng": lng,
+            "lat": lat,
+            "coord_source": coord_source,
             "varieties": row["varieties"],
             "sample_count": int(row["sample_count"]),
             "x": float(row["x"]),

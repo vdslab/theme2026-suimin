@@ -1,0 +1,363 @@
+Country,Region_raw,Region_clean,Region_admin1,Region_admin2,Region_source
+Brazil,alta paulista (sao paulo),alta paulista,São Paulo,Alta Paulista,manual
+Brazil,brazil matas de minas,brazil matas de minas,Matas de Minas,,manual
+Brazil,campos altos - cerrado,campos altos - cerrado,Cerrado Mineiro,Campos Altos,manual
+Brazil,carmo de minas,carmo de minas,Mantiqueira de Minas,Carmo de Minas,manual
+Brazil,cerrado,cerrado,Cerrado Mineiro,,token
+Brazil,cerrado - monte carmelo - minas gerais,cerrado - monte carmelo - minas gerais,Cerrado Mineiro,Monte Carmelo,manual
+Brazil,chapadão de ferro (cerrado mineiro),chapadão de ferro,Cerrado Mineiro,Chapadão de Ferro,manual
+Brazil,grama valley,grama valley,Mantiqueira de Minas,Vale da Grama,manual
+Brazil,high mogiana,high mogiana,Mogiana,,manual
+Brazil,mantiqueira de minas,mantiqueira de minas,Mantiqueira de Minas,,token
+Brazil,matas de minas,matas de minas,Matas de Minas,,token
+Brazil,"minas gerais, br","minas gerais, br",Minas Gerais,,manual
+Brazil,mmm,mmm,,,unmatched
+Brazil,mogiana,mogiana,Mogiana,,token
+Brazil,monte carmelo,monte carmelo,Cerrado Mineiro,Monte Carmelo,manual
+Brazil,mountains of minas gerais,mountains of minas gerais,Minas Gerais,,manual
+Brazil,south of minas,south of minas,Sul de Minas,,manual
+Brazil,sul de minas,sul de minas,Sul de Minas,,manual
+Brazil,sul de minas - carmo de minas,sul de minas - carmo de minas,Sul de Minas,Carmo de Minas,manual
+Brazil,test,test,,,unmatched
+Brazil,vale da grama,vale da grama,Mantiqueira de Minas,Vale da Grama,manual
+Burundi,kayanza,kayanza,Kayanza,,manual
+Burundi,mumirwa,mumirwa,Mumirwa,,manual
+China,dehong prefecture,dehong prefecture,Yunnan,Dehong,manual
+China,menglian,menglian,Yunnan,Menglian,manual
+China,xishuangbanna prefecture,xishuangbanna prefecture,Yunnan,Xishuangbanna,manual
+China,yunnan,yunnan,Yunnan,,token
+Colombia,52 narino (exact location: mattituy; municipal region: florida code 381,narino (,Nariño,Florida,manual
+Colombia,antioquia,antioquia,Antioquia,,token
+Colombia,cauca,cauca,Cauca,,token
+Colombia,cundinamarca,cundinamarca,Cundinamarca,,token
+Colombia,eje cafetero,eje cafetero,,,unmatched
+Colombia,guayata,guayata,Boyacá,Guayatá,manual
+Colombia,huila,huila,Huila,,token
+Colombia,huila supremo,huila supremo,Huila,,manual
+Colombia,la plata,la plata,Huila,La Plata,manual
+Colombia,nariño,nariño,Nariño,,token
+Colombia,pasto,pasto,Nariño,Pasto,manual
+Colombia,pereira,pereira,Risaralda,Pereira,manual
+Colombia,pitalito,pitalito,Huila,Pitalito,manual
+Colombia,santander,santander,Santander,,token
+Colombia,south huila,south huila,Huila,,manual
+Colombia,tolima,tolima,Tolima,,token
+Costa Rica,brunca,brunca,Brunca,,token
+Costa Rica,central valley,central valley,Central Valley,,token
+Costa Rica,costa rica,costa rica,,,unmatched
+Costa Rica,naranjo,naranjo,West Valley,Naranjo,manual
+Costa Rica,occidental,occidental,West Valley,,manual
+Costa Rica,san rafael,san rafael,,,unmatched
+Costa Rica,san ramon,san ramon,West Valley,San Ramón,manual
+Costa Rica,tarrazu,tarrazu,Tarrazú,,token
+Costa Rica,tres rios,tres rios,Tres Ríos,,token
+Costa Rica,turrialba,turrialba,Turrialba,,token
+Costa Rica,valle central,valle central,Central Valley,,manual
+Costa Rica,west and central valley,west and central valley,West Valley,,manual
+Costa Rica,west valley,west valley,West Valley,,token
+Cote d?Ivoire,cnra station of divo,cnra station of divo,,,unmatched
+Ecuador,"province of manabi, ecuador","province of manabi, ecuador",Manabí,,manual
+Ecuador,"san juan, playas","san juan, playas",,,unmatched
+El Salvador,apaneca,apaneca,Apaneca-Ilamatepec,,manual
+El Salvador,"ataco, apaneca - ilamatepec mountain range","ataco, apaneca - ilamatepec mountain range",Apaneca-Ilamatepec,Ataco,manual
+El Salvador,cacahuatique,cacahuatique,Cacahuatique,,manual
+El Salvador,"department of ahuachapan, municipality of apanecallamatepec mountain","department of ahuachapan, municipality of apanecallamatepec mountain",Apaneca-Ilamatepec,Apaneca,manual
+El Salvador,"el balsamo, quezaltepec","el balsamo, quezaltepec",El Bálsamo-Quezaltepeque,,manual
+El Salvador,santa ana,santa ana,Santa Ana,,manual
+Ethiopia,addis ababa,addis ababa,,,unmatched
+Ethiopia,aricha,aricha,Yirgacheffe,Aricha,manual
+Ethiopia,"blida,kercha,guji,oromia","blida,kercha,guji,oromia",Guji,Kercha,manual
+Ethiopia,"ethiopia, sidamo","ethiopia, sidamo",Sidamo,,manual
+Ethiopia,gedio,gedio,Yirgacheffe,Gedeo,manual
+Ethiopia,guji-hambela,guji-hambela,Guji,Hambela,manual
+Ethiopia,"kefa zone, gimbo distict, at a place called woka araba, south west ethiopia.","kefa zone, gimbo distict",Kaffa,Gimbo,manual
+Ethiopia,kelem welega,kelem welega,Welega,Kelem,manual
+Ethiopia,limu,limu,Limu,,token
+Ethiopia,oromia,oromia,Oromia,,token
+Ethiopia,oromiya,oromiya,Oromia,,token
+Ethiopia,sidamo,sidamo,Sidamo,,token
+Ethiopia,"snnp/kaffa zone,gimbowereda","snnp/kaffa zone,gimbowereda",Kaffa,Gimbo,manual
+Ethiopia,snnprg; kafa; telo woreda; shada kebele,snnprg; kafa; telo woreda; shada kebele,Kaffa,Telo,manual
+Ethiopia,yirgacheffe,yirgacheffe,Yirgacheffe,,token
+Guatemala,acatenango,acatenango,Acatenango,,token
+Guatemala,"aldea xeucalvitz, ixil region, quiche department","aldea xeucalvitz, ixil region, quiche department",Quiché,Ixil,manual
+Guatemala,antigua,antigua,Antigua,,token
+Guatemala,atitlan,atitlan,Atitlán,,token
+Guatemala,"chuva, san marcos","chuva, san marcos",San Marcos,Chuva,manual
+Guatemala,el progreso,el progreso,El Progreso,,token
+Guatemala,"el tumbador, san marcos","el tumbador, san marcos",San Marcos,El Tumbador,manual
+Guatemala,guatemala,guatemala,Guatemala,,token
+Guatemala,huehuetenango,huehuetenango,Huehuetenango,,token
+Guatemala,jalapa,jalapa,Jalapa,,token
+Guatemala,"la reforma, san marcos","la reforma, san marcos",San Marcos,La Reforma,manual
+Guatemala,norte,norte,Norte,,token
+Guatemala,nuevo oriente,nuevo oriente,Nuevo Oriente,,token
+Guatemala,occidente,occidente,Occidente,,token
+Guatemala,orient,orient,Oriente,,manual
+Guatemala,oriente,oriente,Oriente,,token
+Guatemala,quetzaltenango,quetzaltenango,Quetzaltenango,,token
+Guatemala,"sacatepequez, guatemala","sacatepequez, guatemala",Antigua,Sacatepéquez,manual
+Guatemala,"san lucas toliman, solola","san lucas toliman, solola",Atitlán,San Lucas Tolimán,manual
+Guatemala,san marcos,san marcos,San Marcos,,token
+Guatemala,santa rosa,santa rosa,Santa Rosa,,token
+Guatemala,solola,solola,Atitlán,Sololá,manual
+Haiti,"department d'artibonite , haiti","department d'artibonite , haiti",Artibonite,,manual
+Haiti,"dondon, haiti","dondon, haiti",Nord,Dondon,manual
+Haiti,haiti,haiti,,,unmatched
+Haiti,marmelade,marmelade,Artibonite,Marmelade,manual
+Haiti,"thiotte, haiti","thiotte, haiti",Sud-Est,Thiotte,manual
+Honduras,central region,central region,Central Region,,manual
+Honduras,comayagua,comayagua,Comayagua,,token
+Honduras,"comayagua, honduras","comayagua, honduras",Comayagua,,manual
+Honduras,el paraíso,el paraíso,El Paraíso,,token
+Honduras,guinope el paraíso,guinope el paraíso,El Paraíso,Güinope,manual
+Honduras,intibuca,intibuca,Intibucá,,token
+Honduras,marcala,marcala,La Paz,Marcala,manual
+Honduras,occidental,occidental,Western Region,,manual
+Honduras,ocotepeque,ocotepeque,Ocotepeque,,token
+Honduras,san marcos,san marcos,,,unmatched
+Honduras,"siguatepeque, comayagua","siguatepeque, comayagua",Comayagua,Siguatepeque,manual
+Honduras,western region,western region,Western Region,,manual
+India,chickmangalore,chickmangalore,Karnataka,Chikmagalur,manual
+India,chikmagalur,chikmagalur,Karnataka,Chikmagalur,manual
+India,chikmagalur karnataka,chikmagalur karnataka,Karnataka,Chikmagalur,manual
+India,chikmagalur karnataka india,chikmagalur karnataka india,Karnataka,Chikmagalur,manual
+India,chikmagalur karnataka indua,chikmagalur karnataka indua,Karnataka,Chikmagalur,manual
+Indonesia,aceh,aceh,Aceh,,manual
+Indonesia,aceh gayo,aceh gayo,Aceh,Gayo,manual
+Indonesia,aceh tengah,aceh tengah,Aceh,Central Aceh,manual
+Indonesia,bali,bali,Bali,,manual
+Indonesia,bener meriah,bener meriah,Aceh,Bener Meriah,manual
+Indonesia,bondowoso,bondowoso,East Java,Bondowoso,manual
+Indonesia,dolok sanggul,dolok sanggul,North Sumatra,Dolok Sanggul,manual
+Indonesia,east java,east java,East Java,,manual
+Indonesia,ijen,ijen,East Java,Ijen,manual
+Indonesia,indonesia,indonesia,,,unmatched
+Indonesia,lington nihuta,lington nihuta,North Sumatra,Lintong Nihuta,manual
+Indonesia,lintong,lintong,North Sumatra,Lintong,manual
+Indonesia,sapan toraja,sapan toraja,Sulawesi,Toraja,manual
+Indonesia,sulawesi,sulawesi,Sulawesi,,manual
+Indonesia,sumatra brastagi,sumatra brastagi,North Sumatra,Berastagi,manual
+Indonesia,"temanggung, indonesia","temanggung, indonesia",Central Java,Temanggung,manual
+Japan,ada okinawa japan,ada okinawa japan,Okinawa,Ada,manual
+Kenya,blend,blend,,,unmatched
+Kenya,central kenya,central kenya,Central,,manual
+Kenya,kenya,kenya,,,unmatched
+Kenya,kiambu,kiambu,Kiambu,,token
+Kenya,kirinyaga,kirinyaga,Kirinyaga,,token
+Kenya,meru county,meru county,Meru,,manual
+Kenya,muranga,muranga,Murang'a,,manual
+Kenya,nyeri,nyeri,Nyeri,,token
+Laos,lao p.d.r.,lao p.d.r.,,,unmatched
+Laos,"paksong,laos","paksong,laos",Champasak,Paksong,manual
+Malawi,kakoma,kakoma,Northern,Kakoma,manual
+Malawi,mzuzu,mzuzu,Northern,Mzuzu,manual
+Malawi,southern- zomba,southern- zomba,Southern,Zomba,manual
+Mauritius,chamarel (south west),chamarel,Rivière Noire,Chamarel,manual
+Mexico,adolfo lopez mateos,adolfo lopez mateos,,,unmatched
+Mexico,altotonga,altotonga,Veracruz,Altotonga,manual
+Mexico,amatenango de la frontera,amatenango de la frontera,Chiapas,Amatenango de la Frontera,manual
+Mexico,atoyac de alvarez,atoyac de alvarez,Guerrero,Atoyac de Álvarez,manual
+Mexico,"calnali, hidalgo","calnali, hidalgo",Hidalgo,Calnali,manual
+Mexico,canoas,canoas,,,unmatched
+Mexico,"chapulhuacan, hidalgo","chapulhuacan, hidalgo",Hidalgo,Chapulhuacán,manual
+Mexico,chiapas,chiapas,Chiapas,,token
+Mexico,"chiapas, jaltenango","chiapas, jaltenango",Chiapas,Jaltenango,manual
+Mexico,chilón,chilón,Chiapas,Chilón,manual
+Mexico,"chocaman, veracruz","chocaman, veracruz",Veracruz,Chocamán,manual
+Mexico,coatepec,coatepec,Veracruz,Coatepec,manual
+Mexico,"coatepec, coatepec","coatepec, coatepec",Veracruz,Coatepec,manual
+Mexico,cofradia de suchitlan,cofradia de suchitlan,Colima,Cofradía de Suchitlán,manual
+Mexico,colima,colima,Colima,,token
+Mexico,cordoba,cordoba,Veracruz,Córdoba,manual
+Mexico,coscomatepec,coscomatepec,Veracruz,Coscomatepec,manual
+Mexico,cuarenteño,cuarenteño,,,unmatched
+Mexico,"el desmoronado, talpan de allende jalisco","el desmoronado, talpan de allende jalisco",Jalisco,Talpa de Allende,manual
+Mexico,el remudadero,el remudadero,,,unmatched
+Mexico,escuitla,escuitla,Chiapas,Escuintla,manual
+Mexico,fln mirador,fln mirador,,,unmatched
+Mexico,fortín de las flores,fortín de las flores,Veracruz,Fortín de las Flores,manual
+Mexico,huautla de jimenez,huautla de jimenez,Oaxaca,Huautla de Jiménez,manual
+Mexico,"huazalingo, hidalgo","huazalingo, hidalgo",Hidalgo,Huazalingo,manual
+Mexico,hustusco,hustusco,Veracruz,Huatusco,manual
+Mexico,"iliatenco, guerrero","iliatenco, guerrero",Guerrero,Iliatenco,manual
+Mexico,ixhuatlan del cafe,ixhuatlan del cafe,Veracruz,Ixhuatlán del Café,manual
+Mexico,jaltenango,jaltenango,Chiapas,Jaltenango,manual
+Mexico,"jaltocan, hidalgo","jaltocan, hidalgo",Hidalgo,Jaltocán,manual
+Mexico,juchique de ferrer,juchique de ferrer,Veracruz,Juchique de Ferrer,manual
+Mexico,juquila,juquila,Oaxaca,Juquila,manual
+Mexico,la concordia,la concordia,Chiapas,La Concordia,manual
+Mexico,"la concordia, chiapas","la concordia, chiapas",Chiapas,La Concordia,manual
+Mexico,la cumbre,la cumbre,,,unmatched
+Mexico,la yerba,la yerba,,,unmatched
+Mexico,la yerbabuena,la yerbabuena,,,unmatched
+Mexico,los angeles,los angeles,,,unmatched
+Mexico,mahuixtlan,mahuixtlan,Veracruz,Mahuixtlán,manual
+Mexico,manzanillo,manzanillo,Colima,Manzanillo,manual
+Mexico,menglian,menglian,,,unmatched
+Mexico,mexico,mexico,,,unmatched
+Mexico,motozintla,motozintla,Chiapas,Motozintla,manual
+Mexico,"motozintla, chiapas","motozintla, chiapas",Chiapas,Motozintla,manual
+Mexico,nayarit,nayarit,Nayarit,,token
+Mexico,oaxaca,oaxaca,Oaxaca,,token
+Mexico,ocosingo,ocosingo,Chiapas,Ocosingo,manual
+Mexico,"ohuapan, tlaltetela","ohuapan, tlaltetela",Veracruz,Tlaltetela,manual
+Mexico,petatlan,petatlan,Guerrero,Petatlán,manual
+Mexico,"pluma hidalogo, oaxaca","pluma hidalogo, oaxaca",Oaxaca,Pluma Hidalgo,manual
+Mexico,pochutla,pochutla,Oaxaca,San Pedro Pochutla,manual
+Mexico,progreso santa rosa teocelo,progreso santa rosa teocelo,Veracruz,Teocelo,manual
+Mexico,"sacún palma, municipio de chilón, chiapas","sacún palma, municipio de chilón, chiapas",Chiapas,Chilón,manual
+Mexico,san bartolo tutotepec,san bartolo tutotepec,Hidalgo,San Bartolo Tutotepec,manual
+Mexico,san fernando,san fernando,,,unmatched
+Mexico,san isidro,san isidro,,,unmatched
+Mexico,san miguel del puerto,san miguel del puerto,Oaxaca,San Miguel del Puerto,manual
+Mexico,san pedro cotzilnam,san pedro cotzilnam,Chiapas,San Pedro Cotzilnam,manual
+Mexico,santa catarina juquila,santa catarina juquila,Oaxaca,Santa Catarina Juquila,manual
+Mexico,santa maria sitepec,santa maria sitepec,Oaxaca,Santa María Sitepec,manual
+Mexico,santo domingo cacalotepec,santo domingo cacalotepec,Oaxaca,Santo Domingo Cacalotepec,manual
+Mexico,santo reyes nopala,santo reyes nopala,Oaxaca,Santos Reyes Nopala,manual
+Mexico,sierra alta mixe y zapoteca,sierra alta mixe y zapoteca,Oaxaca,,manual
+Mexico,"sierra fraylesca, chiapas","sierra fraylesca, chiapas",Chiapas,Fraylesca,manual
+Mexico,sierra madre occidental,sierra madre occidental,,,unmatched
+Mexico,"sierra norte yajalon, chiapas","sierra norte yajalon, chiapas",Chiapas,Yajalón,manual
+Mexico,"sierra, chiapas","sierra, chiapas",Chiapas,,manual
+Mexico,siltepec el triunfo,siltepec el triunfo,Chiapas,Siltepec,manual
+Mexico,"siltepec el triunfo, chiapas, mexico","siltepec el triunfo, chiapas, mexico",Chiapas,Siltepec,manual
+Mexico,talpa de allende,talpa de allende,Jalisco,Talpa de Allende,manual
+Mexico,tapachula,tapachula,Chiapas,Tapachula,manual
+Mexico,temaxcalapa,temaxcalapa,,,unmatched
+Mexico,"tenango de doria, hidalgo","tenango de doria, hidalgo",Hidalgo,Tenango de Doria,manual
+Mexico,tepetzingo,tepetzingo,Veracruz,Tepetzingo,manual
+Mexico,tepictla,tepictla,,,unmatched
+Mexico,tlacuilotepec,tlacuilotepec,Puebla,Tlacuilotepec,manual
+Mexico,"tlanchinol, hidalgo","tlanchinol, hidalgo",Hidalgo,Tlanchinol,manual
+Mexico,tlatlauquitepec,tlatlauquitepec,Puebla,Tlatlauquitepec,manual
+Mexico,totutla,totutla,Veracruz,Totutla,manual
+Mexico,tuxtla gutierrez,tuxtla gutierrez,Chiapas,Tuxtla Gutiérrez,manual
+Mexico,veracruz,veracruz,Veracruz,,token
+Mexico,villa talea de castro,villa talea de castro,Oaxaca,Villa Talea de Castro,manual
+Mexico,xalapa,xalapa,Veracruz,Xalapa,manual
+Mexico,xicotepec de juarez,xicotepec de juarez,Puebla,Xicotepec de Juárez,manual
+Mexico,"xochitonalco, huautla","xochitonalco, huautla",Oaxaca,Huautla,manual
+Mexico,yajalon,yajalon,Chiapas,Yajalón,manual
+Mexico,yecuatla,yecuatla,Veracruz,Yecuatla,manual
+Mexico,zapotitlan de mendez,zapotitlan de mendez,Puebla,Zapotitlán de Méndez,manual
+Mexico,zaragoza itundujia,zaragoza itundujia,Oaxaca,Santiago Itundujia,manual
+Mexico,zentla,zentla,Veracruz,Zentla,manual
+Mexico,zihuatanejo de azueta,zihuatanejo de azueta,Guerrero,Zihuatanejo,manual
+Myanmar,"doe kwin, pyin oo lwin","doe kwin, pyin oo lwin",Mandalay,Pyin Oo Lwin,manual
+Myanmar,pyin oo lwin,pyin oo lwin,Mandalay,Pyin Oo Lwin,manual
+Myanmar,pyinoolwin,pyinoolwin,Mandalay,Pyin Oo Lwin,manual
+Myanmar,"yauk sauk, shan state","yauk sauk, shan state",Shan,Yauk Sauk,manual
+Myanmar,ywar ngan,ywar ngan,Shan,Ywangan,manual
+Myanmar,ywar ngan township,ywar ngan township,Shan,Ywangan,manual
+Nicaragua,"dipilto, nueva segovia","dipilto, nueva segovia",Nueva Segovia,Dipilto,manual
+Nicaragua,jalapa,jalapa,Nueva Segovia,Jalapa,manual
+Nicaragua,jinotega,jinotega,Jinotega,,token
+Nicaragua,matagalpa,matagalpa,Matagalpa,,token
+Nicaragua,nueva segovia,nueva segovia,Nueva Segovia,,token
+Panama,boquete,boquete,Chiriquí,Boquete,manual
+Papua New Guinea,eastern highlands province,eastern highlands province,Eastern Highlands,,manual
+Peru,cajamarca,cajamarca,Cajamarca,,manual
+Peru,huanuco,huanuco,Huánuco,,manual
+Peru,"penachi, cecanor","penachi, cecanor",Lambayeque,Penachi,manual
+Peru,peru,peru,,,unmatched
+Peru,puno,puno,Puno,,manual
+Peru,san ignacio,san ignacio,Cajamarca,San Ignacio,manual
+Philippines,asia pacific,asia pacific,,,unmatched
+Philippines,"benguet, mountain province","benguet, mountain province",Cordillera,Benguet,manual
+Philippines,"bukidnon, mindanao, philppines","bukidnon, mindanao, philppines",Northern Mindanao,Bukidnon,manual
+Philippines,corillera administrative,corillera administrative,Cordillera,,manual
+Philippines,"davao city, region 11","davao city, region",Davao,Davao City,manual
+Rwanda,gicumbi,gicumbi,Northern,Gicumbi,manual
+Taiwan,"baihe dist., tainan city 臺南市白河區","baihe dist., tainan city",Tainan,Baihe,manual
+Taiwan,changhua baguashan 彰化市八卦山,changhua baguashan,Changhua,Baguashan,manual
+Taiwan,chiayi alishan 嘉義縣阿里山鄉,chiayi alishan,Chiayi,Alishan,manual
+Taiwan,chiayi fanlu嘉義縣番路鄉,chiayi fanlu,Chiayi,Fanlu,manual
+Taiwan,"dongshan dist., tainan city 台南市東山區","dongshan dist., tainan city",Tainan,Dongshan,manual
+Taiwan,"dongshan dist., tainan city 臺南市東山區","dongshan dist., tainan city",Tainan,Dongshan,manual
+Taiwan,"leye, alishan township, chiayi county","leye, alishan township, chiayi county",Chiayi,Alishan,manual
+Taiwan,"leye, alishan township, chiayi county 嘉義阿里山樂野村","leye, alishan township, chiayi county",Chiayi,Alishan,manual
+Taiwan,"mountain ali, taiwan","mountain ali, taiwan",Chiayi,Alishan,manual
+Taiwan,nantou,nantou,Nantou,,manual
+Taiwan,"nanxi dist., tainan city 臺南市楠西區","nanxi dist., tainan city",Tainan,Nanxi,manual
+Taiwan,natou county,natou county,Nantou,,manual
+Taiwan,new taipei zhonghe 新北市中和區,new taipei zhonghe,New Taipei,Zhonghe,manual
+Taiwan,taichung taiping 台中市太平區,taichung taiping,Taichung,Taiping,manual
+Taiwan,taichung xinshe 台中市新社區,taichung xinshe,Taichung,Xinshe,manual
+Taiwan,taiwan,taiwan,,,unmatched
+Taiwan,"taiwu township , pingtung county 屏東縣泰武鄉","taiwu township , pingtung county",Pingtung,Taiwu,manual
+Taiwan,yunlin gukeng he bao 雲林縣古坑鄉荷苞村,yunlin gukeng he bao,Yunlin,Gukeng,manual
+Taiwan,yunlin 雲林縣石壁,yunlin,Yunlin,,manual
+Taiwan,南投國姓,,Nantou,Guoshing,manual
+Taiwan,古坑鄉荷包村尖山坑60號,,Yunlin,Gukeng,manual
+Taiwan,台中和平區,,Taichung,Heping,manual
+Taiwan,台中新社,,Taichung,Xinshe,manual
+Taiwan,"台南市東山區 (dongshan dist., tainan city)",,Tainan,Dongshan,manual
+Taiwan,"台南市東山區( dongshan dist., tainan city)",,Tainan,Dongshan,manual
+Taiwan,台東太麻里,,Taitung,Taimali,manual
+Taiwan,台灣,,,,unmatched
+Taiwan,嘉義阿里山,,Chiayi,Alishan,manual
+Taiwan,國姓鄉 guoshing township,guoshing township,Nantou,Guoshing,manual
+Taiwan,苗栗三灣,,Miaoli,Sanwan,manual
+Taiwan,苗栗泰安,,Miaoli,Taian,manual
+"Tanzania, United Republic Of",arusha,arusha,Arusha,,manual
+"Tanzania, United Republic Of",arusha meru,arusha meru,Arusha,Meru,manual
+"Tanzania, United Republic Of",ikand village,ikand village,,,unmatched
+"Tanzania, United Republic Of","ilomba vilage, mbozi","ilomba vilage, mbozi",Mbeya,Mbozi,manual
+"Tanzania, United Republic Of","iwala village, mbeya rural","iwala village, mbeya rural",Mbeya,Mbeya Rural,manual
+"Tanzania, United Republic Of",karatu arusha,karatu arusha,Arusha,Karatu,manual
+"Tanzania, United Republic Of",karatu ngorogoro,karatu ngorogoro,Arusha,Karatu,manual
+"Tanzania, United Republic Of",karatu northern,karatu northern,Arusha,Karatu,manual
+"Tanzania, United Republic Of",kilimanjaro,kilimanjaro,Kilimanjaro,,manual
+"Tanzania, United Republic Of","manyara, karatu","manyara, karatu",Arusha,Karatu,manual
+"Tanzania, United Republic Of",mbeya,mbeya,Mbeya,,manual
+"Tanzania, United Republic Of",mbinga,mbinga,Ruvuma,Mbinga,manual
+"Tanzania, United Republic Of",meru,meru,Arusha,Meru,manual
+"Tanzania, United Republic Of",mkuu rombo,mkuu rombo,Kilimanjaro,Rombo,manual
+"Tanzania, United Republic Of",moshi,moshi,Kilimanjaro,Moshi,manual
+"Tanzania, United Republic Of",ngorogoro,ngorogoro,Arusha,Ngorongoro,manual
+"Tanzania, United Republic Of",nkure- meru,nkure- meru,Arusha,Meru,manual
+"Tanzania, United Republic Of",northern,northern,,,unmatched
+"Tanzania, United Republic Of","oldeani , mongola","oldeani , mongola",Arusha,Oldeani,manual
+"Tanzania, United Republic Of",ruvuma,ruvuma,Ruvuma,,manual
+"Tanzania, United Republic Of","ruvuma, mbinga","ruvuma, mbinga",Ruvuma,Mbinga,manual
+"Tanzania, United Republic Of",shizingo village,shizingo village,,,unmatched
+Thailand,chiang rai,chiang rai,Chiang Rai,,manual
+Thailand,chiang rai thailand,chiang rai thailand,Chiang Rai,,manual
+Thailand,chiangrai,chiangrai,Chiang Rai,,manual
+Thailand,"doi chaang village, chiang rai, thialand","doi chaang village, chiang rai, thialand",Chiang Rai,Doi Chaang,manual
+Thailand,phahi,phahi,Chiang Rai,Pha Hi,manual
+Thailand,thailand,thailand,,,unmatched
+Uganda,bulambuli eastern region,bulambuli eastern region,Eastern,Bulambuli,manual
+Uganda,central,central,Central,,manual
+Uganda,eastern,eastern,Eastern,,manual
+Uganda,eastern uganda,eastern uganda,Eastern,,manual
+Uganda,iganga namadrope eastern,iganga namadrope eastern,Eastern,Iganga,manual
+Uganda,kapchorwa,kapchorwa,Eastern,Kapchorwa,manual
+Uganda,kapchorwa eastern,kapchorwa eastern,Eastern,Kapchorwa,manual
+Uganda,kasese,kasese,Western,Kasese,manual
+Uganda,"kasese, mt. rwenzori","kasese, mt. rwenzori",Western,Kasese,manual
+Uganda,luwero central region,luwero central region,Central,Luwero,manual
+Uganda,mbale,mbale,Eastern,Mbale,manual
+Uganda,mt elgon,mt elgon,Eastern,Mt. Elgon,manual
+Uganda,mt. rwenzori,mt. rwenzori,Western,Mt. Rwenzori,manual
+Uganda,sheema south western,sheema south western,Western,Sheema,manual
+Uganda,"sipi, mt elgon","sipi, mt elgon",Eastern,Sipi,manual
+Uganda,south western,south western,Western,,manual
+Uganda,southern,southern,Southern,,manual
+Uganda,west nile,west nile,West Nile,,manual
+Uganda,western,western,Western,,manual
+United States,antioquia,antioquia,,,unmatched
+United States,berastagi,berastagi,,,unmatched
+United States,central america,central america,,,unmatched
+United States,chikmagalur,chikmagalur,,,unmatched
+United States,"kwanza norte province, angola","kwanza norte province, angola",,,unmatched
+United States (Hawaii),kona,kona,Kona,,manual
+United States (Puerto Rico),yauco region,yauco region,Yauco,,manual
+Vietnam,dala,dala,Lâm Đồng,Đà Lạt,manual
+Vietnam,don duong,don duong,Lâm Đồng,Đơn Dương,manual
+Vietnam,vietnam,vietnam,,,unmatched
+Vietnam,vietnam cau dat,vietnam cau dat,Lâm Đồng,Cầu Đất,manual
+Vietnam,vietnam tutra,vietnam tutra,Lâm Đồng,Tu Tra,manual
+Zambia,mubuyu estate,mubuyu estate,Southern,Mubuyu,manual

@@ -7,12 +7,14 @@ export default function Header({
   searchQuery,
   setSearchQuery,
   onRecommend,
+  onClearRecommendation,
+  isRecommendedActive,
   onOpenGuide,
 }) {
   const searchSuggestions = useMemo(() => {
     const values = rawData.flatMap((item) => [
       translateCountry(item.country),
-      item.method,
+      item.admin1,
       ...cleanVarieties(item.varieties),
     ]);
 
@@ -90,13 +92,23 @@ export default function Header({
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={onRecommend}
-          className="btn btn-primary btn-lg text-white shadow-lg hover:scale-105 transition-transform shrink-0"
-        >
-          ✨ おすすめを計算する
-        </button>
+        {isRecommendedActive ? (
+          <button
+            type="button"
+            onClick={onClearRecommendation}
+            className="btn btn-outline btn-lg shadow-lg hover:scale-105 transition-transform shrink-0 bg-base-100"
+          >
+            ❌ おすすめを解除
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={onRecommend}
+            className="btn btn-primary btn-lg text-white shadow-lg hover:scale-105 transition-transform shrink-0"
+          >
+            ✨ おすすめを計算する
+          </button>
+        )}
       </div>
     </div>
   );
