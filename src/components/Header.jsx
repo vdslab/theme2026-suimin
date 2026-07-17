@@ -3,16 +3,11 @@ import rawData from "../data/coffee_data.json";
 import { translateCountry } from "../lib/countryNames";
 import { cleanVarieties } from "../lib/varieties";
 
-export default function Header({
-  searchQuery,
-  setSearchQuery,
-  onRecommend,
-  onOpenGuide,
-}) {
+export default function Header({ searchQuery, setSearchQuery, onOpenGuide }) {
   const searchSuggestions = useMemo(() => {
     const values = rawData.flatMap((item) => [
       translateCountry(item.country),
-      item.method,
+      item.admin1,
       ...cleanVarieties(item.varieties),
     ]);
 
@@ -89,14 +84,6 @@ export default function Header({
             )}
           </div>
         </div>
-
-        <button
-          type="button"
-          onClick={onRecommend}
-          className="btn btn-primary btn-lg text-white shadow-lg hover:scale-105 transition-transform shrink-0"
-        >
-          ✨ おすすめを計算する
-        </button>
       </div>
     </div>
   );

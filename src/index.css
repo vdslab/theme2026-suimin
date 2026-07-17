@@ -3,6 +3,20 @@
   themes: light --default;
 }
 
+/* クリックできる要素はポインターにする（無効なものは除く）。
+   base レイヤーなので cursor-grab 等のユーティリティクラスが必要な箇所は上書きできる。 */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  a[href],
+  select:not(:disabled),
+  label:has(input[type="radio"]:not(:disabled)),
+  label:has(input[type="checkbox"]:not(:disabled)) {
+    cursor: pointer;
+  }
+}
+
 @layer utilities {
   @keyframes dash-flow-forward {
     from {
