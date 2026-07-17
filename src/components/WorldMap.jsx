@@ -10,6 +10,14 @@ import { coffeeData } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
 import MapLegend from "./MapLegend";
+import MethodPopup from "./MethodPopup";
+
+// 精製方法を選ぶと DetailPanel (App.jsx の w-96) が右からスライドインするため、
+// ポップアップがその下に潜り込まないよう右端に余白を確保する
+const DETAIL_PANEL_WIDTH = 384;
+const POPUP_WIDTH = 560;
+// 味覚クラスタ凡例（左下）を避けるための、ポップアップの想定高さ
+const POPUP_HEIGHT = 360;
 
 // TopoJSONのnameとcoffeeDataのcountryをマッピング
 const mapCountryName = (c) => {
@@ -23,11 +31,15 @@ const mapCountryName = (c) => {
 export default function WorldMap({
   selectedCoffee,
   onSelectCoffee,
-  onSelectCountry,
   searchQuery,
+  drankCoffees = {},
+  onUpdateDrank,
+  onRemoveDrank,
   recommendedCoffee,
 }) {
   const [activeCluster, setActiveCluster] = useState(null);
+  const [popupInfo, setPopupInfo] = useState(null); // { geoName, x, y }
+  const [sliderValues, setSliderValues] = useState({});
 
   const containerRef = useRef(null);
   const svgRef = useRef(null);
@@ -233,25 +245,91 @@ export default function WorldMap({
       );
   };
 
+  // DetailPanel の「味が近い豆」など、地図外から別の国の豆が選択されたとき、
+  // 開いているポップアップをその国に追従させ、正しい国と精製方法を表示する。
+  useEffect(() => {
+    if (!selectedCoffee) return;
+    const geoName = mapCountryName(selectedCoffee.country);
+    setPopupInfo((prev) => {
+      // ポップアップが閉じている、または既に同じ国を表示中なら何もしない
+      // （地図クリック由来の選択ではクリック位置を維持したいのでここで弾く）
+      if (!prev || prev.geoName === geoName) return prev;
+
+      // 対象の国の画面上の位置を求めてポップアップを移動する
+      let cx;
+      let cy;
+      if (geoName === "Hawaii") {
+        [cx, cy] = projection([-155.5828, 19.8968]) || [0, 0];
+      } else {
+        const geo = geoFeatures.find((g) => g.properties.name === geoName);
+        if (!geo) return { ...prev, geoName };
+        [cx, cy] = pathGenerator.centroid(geo);
+      }
+      const transform = zoomTransformRef.current;
+      const [rawSx, sy] = transform.apply([cx, cy]);
+      // 横方向は無限スクロールで折り返すため、画面中央に最も近いコピーの位置を採用する
+      const period = worldWidth * transform.k;
+      const sx = rawSx - Math.round((rawSx - width / 2) / period) * period;
+
+      const x = Math.max(
+        0,
+        Math.min(sx, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
+      );
+      const y = Math.max(0, Math.min(sy, height - 300));
+      return { geoName, x, y };
+    });
+  }, [
+    selectedCoffee,
+    geoFeatures,
+    pathGenerator,
+    projection,
+    width,
+    height,
+    worldWidth,
+  ]);
+
   const handleCountryClick = (e, geoName, geo = null) => {
     e.stopPropagation();
+    const rect = containerRef.current.getBoundingClientRect();
 
     if (geo) {
       animateCenterTo(d3geo.geoCentroid(geo));
     }
 
     const nodes = filteredNodesByGeoName[geoName];
-
-    if (!nodes || nodes.length === 0) {
-      return;
+    if (nodes && nodes.length > 0) {
+      const topNode = [...nodes].sort(
+        (a, b) => b.sampleCount - a.sampleCount,
+      )[0];
+      onSelectCoffee(topNode);
     }
 
-    const sortedNodes = [...nodes].sort(
-      (a, b) => b.sampleCount - a.sampleCount,
+    // 右端は DetailPanel の幅も避けてクランプ（詳細パネルと重ならないように）
+    const x = Math.max(
+      0,
+      Math.min(e.clientX - rect.left, width - DETAIL_PANEL_WIDTH - POPUP_WIDTH),
     );
+    let y = Math.min(e.clientY - rect.top, height - 300);
 
-    onSelectCoffee?.(sortedNodes[0]);
-    onSelectCountry?.(sortedNodes);
+    // 左下の味覚クラスタ凡例と横方向で重なる位置なら、その上に収まるよう持ち上げる
+    const legend = legendRef.current;
+    if (legend) {
+      const lr = legend.getBoundingClientRect();
+      const legendLeft = lr.left - rect.left;
+      const legendRight = lr.right - rect.left;
+      const legendTop = lr.top - rect.top;
+      const overlapsHorizontally =
+        x < legendRight && x + POPUP_WIDTH > legendLeft;
+      if (overlapsHorizontally) {
+        y = Math.max(0, Math.min(y, legendTop - POPUP_HEIGHT));
+      }
+    }
+
+    setPopupInfo({ geoName, x, y });
+  };
+
+  const handleSliderChange = (id, val) => {
+    setSliderValues((prev) => ({ ...prev, [id]: val }));
   };
 
   const toggleCluster = (name) =>
@@ -270,7 +348,7 @@ export default function WorldMap({
         className="absolute inset-0 select-none bg-[#e0f2fe]"
         onClick={() => {
           onSelectCoffee(null);
-          onSelectCountry([]);
+          setPopupInfo(null);
         }}
       >
         <defs>
@@ -412,6 +490,21 @@ export default function WorldMap({
         toggleCluster={toggleCluster}
         setActiveCluster={setActiveCluster}
       />
+
+      {popupInfo && (
+        <MethodPopup
+          popupInfo={popupInfo}
+          setPopupInfo={setPopupInfo}
+          nodes={filteredNodesByGeoName[popupInfo.geoName]}
+          selectedCoffee={selectedCoffee}
+          onSelectCoffee={onSelectCoffee}
+          sliderValues={sliderValues}
+          handleSliderChange={handleSliderChange}
+          drankCoffees={drankCoffees}
+          onRemoveDrank={onRemoveDrank}
+          onUpdateDrank={onUpdateDrank}
+        />
+      )}
     </div>
   );
 }
