@@ -15,7 +15,6 @@ export default function DrankList({
   selectedCoffee,
 }) {
   const entries = Object.entries(drankCoffees);
-  if (entries.length === 0) return null;
 
   return (
     <div className="absolute top-40 left-6 z-20 flex max-h-[calc(100vh-22rem)] w-[260px] flex-col rounded-2xl border border-base-200 bg-base-100 shadow-lg pointer-events-auto">
@@ -23,20 +22,27 @@ export default function DrankList({
         <span className="text-sm font-semibold text-base-content/70">
           飲んだ豆（{entries.length}）
         </span>
-        <button
-          type="button"
-          onClick={() => {
-            if (window.confirm("飲んだ豆をすべて解除しますか？")) {
-              onClearDrank();
-            }
-          }}
-          className="btn btn-ghost btn-xs text-error"
-          title="すべて解除"
-        >
-          全解除
-        </button>
+        {entries.length > 0 && (
+          <button
+            type="button"
+            onClick={() => {
+              if (window.confirm("飲んだ豆をすべて解除しますか？")) {
+                onClearDrank();
+              }
+            }}
+            className="btn btn-ghost btn-xs text-error"
+            title="すべて解除"
+          >
+            全解除
+          </button>
+        )}
       </div>
       <div className="flex flex-col gap-1 overflow-y-auto p-2">
+        {entries.length === 0 && (
+          <p className="px-2 py-3 text-center text-xs text-base-content/40">
+            まだ飲んだ豆がありません
+          </p>
+        )}
         {entries.map(([id, score]) => {
           const c = nodeById.get(id);
           if (!c) return null;
