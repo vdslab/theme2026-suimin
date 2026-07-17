@@ -1,7 +1,33 @@
+import { ChevronDown, X } from "lucide-react";
 import { useState } from "react";
 import { clusterColor, shortName, TASTE_AXES } from "../lib/clusters";
 import { coffeeData, nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
+
+// 見出しクリックで開閉できるセクション。デフォルトは開いた状態。
+function Section({ id, title, collapsed, onToggle, children }) {
+  const open = !collapsed[id];
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={() => onToggle(id)}
+        className="flex w-full items-center justify-between mb-2"
+      >
+        <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider">
+          {title}
+        </h3>
+        <ChevronDown
+          size={16}
+          className={`text-base-content/40 transition-transform ${
+            open ? "" : "-rotate-90"
+          }`}
+        />
+      </button>
+      {open && children}
+    </div>
+  );
+}
 
 function DetailPanel({
   selectedCoffee,
@@ -13,6 +39,10 @@ function DetailPanel({
 }) {
   // 好み度スライダーの一時値（id ごと）。未操作なら記録値、それも無ければ 3。
   const [scoreDraft, setScoreDraft] = useState({});
+  // 折りたたみ状態（id: true で閉じる）。空 = 全て開いている。
+  const [collapsed, setCollapsed] = useState({});
+  const toggleSection = (id) =>
+    setCollapsed((prev) => ({ ...prev, [id]: !prev[id] }));
 
   if (!selectedCoffee) {
     return (
@@ -54,25 +84,28 @@ function DetailPanel({
   const neighbors = nearestByTaste(c, 3);
 
   return (
-    <aside className="bg-base-100 h-full flex flex-col relative overflow-hidden">
-      {/* 閉じるボタン */}
-      <button
-        type="button"
-        onClick={onClose}
-        className="absolute top-4 right-4 btn btn-circle btn-sm btn-ghost bg-base-200 hover:bg-base-300 z-10"
-      >
-        ✕
-      </button>
-
-      <div className="p-6 overflow-y-auto flex-1">
-        <div className="rounded-box border border-base-300 bg-base-200 p-4 space-y-4 mt-8">
+    <aside className="bg-base-100 h-full flex flex-col overflow-hidden">
+      <div className="p-4 overflow-y-auto flex-1">
+        <div className="rounded-box border border-base-300 bg-base-200 p-4 space-y-4">
           <div>
-            <span
-              className="inline-block rounded-lg px-2.5 py-1 text-xs font-semibold text-white leading-snug mb-2"
-              style={{ backgroundColor: color }}
-            >
-              {shortName(c.clusterName)}
-            </span>
+            {/* クラスタバッジと閉じるボタンを1行に並べ、専用バーの隙間をなくす */}
+            <div className="flex items-start justify-between gap-2 mb-2">
+              <span
+                className="inline-block rounded-lg px-2.5 py-1 text-xs font-semibold text-white leading-snug"
+                style={{ backgroundColor: color }}
+              >
+                {shortName(c.clusterName)}
+              </span>
+              <button
+                type="button"
+                onClick={onClose}
+                className="btn btn-ghost btn-xs btn-circle shrink-0 -mr-1 -mt-1"
+                title="閉じる"
+                aria-label="閉じる"
+              >
+                <X size={18} />
+              </button>
+            </div>
             <h2 className="text-xl font-bold leading-tight">
               {translateCountry(c.country)}
             </h2>
@@ -82,10 +115,12 @@ function DetailPanel({
             </p>
           </div>
 
-          <div>
-            <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-              好み度を入力
-            </h3>
+          <Section
+            id="score"
+            title="好み度を入力"
+            collapsed={collapsed}
+            onToggle={toggleSection}
+          >
             <div className="flex justify-between text-[10px] px-1 text-base-content/60 font-medium mb-1">
               <span>苦手</span>
               <span>普通</span>
@@ -131,13 +166,15 @@ function DetailPanel({
                 飲んだ！
               </button>
             )}
-          </div>
+          </Section>
 
           {regions.length > 1 && (
-            <div>
-              <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-                地域を選択
-              </h3>
+            <Section
+              id="regions"
+              title="地域を選択"
+              collapsed={collapsed}
+              onToggle={toggleSection}
+            >
               <div className="flex flex-col gap-1 max-h-40 overflow-y-auto">
                 {regions.map((n) => {
                   const active = n.id === c.id;
@@ -173,13 +210,15 @@ function DetailPanel({
                   );
                 })}
               </div>
-            </div>
+            </Section>
           )}
 
-          <div>
-            <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-              味わいの特徴（この産地の傾向）
-            </h3>
+          <Section
+            id="taste"
+            title="味わいの特徴（この産地の傾向）"
+            collapsed={collapsed}
+            onToggle={toggleSection}
+          >
             <div className="space-y-2">
               {devs.map((d) => {
                 const pct = (Math.abs(d.dev) / maxAbs) * 50;
@@ -215,12 +254,14 @@ function DetailPanel({
             <p className="text-[11px] text-base-content/40 mt-2">
               右にいくほど、この産地で強く感じられる味です
             </p>
-          </div>
+          </Section>
 
-          <div>
-            <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-              含まれる主な品種
-            </h3>
+          <Section
+            id="varieties"
+            title="含まれる主な品種"
+            collapsed={collapsed}
+            onToggle={toggleSection}
+          >
             {c.varieties?.length > 0 ? (
               <div className="flex flex-wrap gap-1">
                 {c.varieties.map((v) => (
@@ -235,13 +276,15 @@ function DetailPanel({
             ) : (
               <p className="text-xs text-base-content/40">品種情報なし</p>
             )}
-          </div>
+          </Section>
 
           {probs.length > 0 && (
-            <div>
-              <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-                味わいのタイプ（近さ）
-              </h3>
+            <Section
+              id="types"
+              title="味わいのタイプ（近さ）"
+              collapsed={collapsed}
+              onToggle={toggleSection}
+            >
               <div className="space-y-1.5">
                 {probs.map(([name, p]) => {
                   const isNoiseRow = name === "noise";
@@ -271,14 +314,16 @@ function DetailPanel({
                   );
                 })}
               </div>
-            </div>
+            </Section>
           )}
 
           {neighbors.length > 0 && (
-            <div>
-              <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider mb-2">
-                味が近い豆
-              </h3>
+            <Section
+              id="neighbors"
+              title="味が近い豆"
+              collapsed={collapsed}
+              onToggle={toggleSection}
+            >
               <div className="space-y-1.5">
                 {neighbors.map((n, i) => {
                   const nColor = clusterColor(n.clusterName);
@@ -308,7 +353,7 @@ function DetailPanel({
                   );
                 })}
               </div>
-            </div>
+            </Section>
           )}
         </div>
       </div>
