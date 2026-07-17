@@ -18,7 +18,6 @@ const PAGES = [
   },
 ];
 
-// Chevron Left Icon
 const ChevronLeftIcon = () => (
   <svg
     aria-hidden="true"
@@ -36,7 +35,6 @@ const ChevronLeftIcon = () => (
   </svg>
 );
 
-// Chevron Right Icon
 const ChevronRightIcon = () => (
   <svg
     aria-hidden="true"
@@ -77,7 +75,6 @@ export default function StartupGuide({ isOpen, onClose }) {
   return (
     <div className="modal modal-open">
       <div className="modal-box max-w-4xl w-11/12 h-[85vh] flex flex-col p-0 overflow-hidden relative bg-base-100 shadow-2xl">
-        {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
@@ -86,9 +83,7 @@ export default function StartupGuide({ isOpen, onClose }) {
           ✕
         </button>
 
-        {/* Content Area */}
         <div className="flex-1 flex flex-col relative bg-base-200/30 min-h-0 overflow-hidden">
-          {/* Image Section */}
           <div className="flex-1 min-h-0 w-full bg-base-200 flex items-center justify-center p-6 lg:p-12 relative">
             {/* biome-ignore lint/a11y/useAltText: Startup guide decorative images */}
             <img
@@ -98,7 +93,6 @@ export default function StartupGuide({ isOpen, onClose }) {
             />
           </div>
 
-          {/* Text Section */}
           <div className="shrink-0 h-[35%] min-h-[200px] p-8 lg:px-16 flex flex-col items-center justify-center text-center bg-base-100 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <h2 className="text-2xl font-bold mb-4 text-primary">
               {page.title}
@@ -129,11 +123,9 @@ export default function StartupGuide({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* Footer Area (Dots & Start Button) */}
         <div className="bg-base-100 p-4 border-t border-base-200 flex items-center justify-between z-10 shrink-0">
           <div className="w-24">{/* Empty space for flex balance */}</div>
 
-          {/* Dots */}
           <div className="flex gap-2">
             {PAGES.map((_, idx) => (
               <button
@@ -151,7 +143,6 @@ export default function StartupGuide({ isOpen, onClose }) {
             ))}
           </div>
 
-          {/* Start / Next Button area */}
           <div className="w-24 flex justify-end">
             {isLastPage && (
               <button
@@ -166,7 +157,6 @@ export default function StartupGuide({ isOpen, onClose }) {
         </div>
       </div>
 
-      {/* Backdrop */}
       {/* biome-ignore lint/a11y/noStaticElementInteractions: Backdrop click to close */}
       <div
         className="modal-backdrop bg-base-300/80"

@@ -42,7 +42,6 @@ export default function WorldMap({
   const gRef = useRef(null);
   const zoomRef = useRef(null);
   const legendRef = useRef(null);
-  // ズームの最新 transform を保持（外部選択時のポップアップ追従で使用）
   const zoomTransformRef = useRef(zoomIdentity);
 
   const [{ width, height }, setDimensions] = useState(() => ({
@@ -58,7 +57,6 @@ export default function WorldMap({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // 世界地図データ
   const geoFeatures = useMemo(() => {
     return topojson.feature(worldTopoJson, worldTopoJson.objects.countries)
       .features;
@@ -69,7 +67,6 @@ export default function WorldMap({
   const worldWidth = width;
   const mapScale = worldWidth / (2 * Math.PI);
 
-  // Projection
   const projection = useMemo(() => {
     return d3geo
       .geoMercator()
@@ -191,7 +188,6 @@ export default function WorldMap({
     drankCoffees,
   ]);
 
-  // ズーム設定
   useEffect(() => {
     const svg = select(svgRef.current);
     const zoomBehavior = zoom()
@@ -227,7 +223,6 @@ export default function WorldMap({
           "transform",
           `translate(${wrappedX},${y}) scale(${k})`,
         );
-        // 外部選択時のポップアップ追従で参照するため最新 transform を保持
         zoomTransformRef.current = event.transform;
       });
     zoomRef.current = zoomBehavior;
@@ -445,7 +440,6 @@ export default function WorldMap({
                   ? similarCoffeeIds.has(node.id)
                   : false;
 
-                // Opacity logic based on user rules
                 let opacity = 1;
                 const isFilteredOut =
                   activeCluster !== null && activeCluster !== node.clusterName;
@@ -459,13 +453,12 @@ export default function WorldMap({
                 }
                 // 何も選択されていない時は、未飲豆のグレーアウトはしない
 
-                // Radius and stroke logic
                 let r = 3.5;
                 let strokeColor = "#ffffff";
                 let strokeWidth = 0.7;
 
                 if (isSelected || isSimilar) {
-                  r += 2; // 少し大きくなるだけ
+                  r += 2;
                 }
 
                 if (isRecommended) {
