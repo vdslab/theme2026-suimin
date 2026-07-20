@@ -255,9 +255,12 @@ export default function WorldMap({
       const k = current.k;
       const period = worldWidth * k;
 
-      // 詳細パネル(幅384px)を考慮した、見えている領域の中心
-      const visibleCenterX = (width - 384) / 2;
-      const visibleCenterY = height / 2;
+      // 見えている領域の中心。詳細パネルに隠れない位置へ寄せる。
+      // モバイル(<640px)は下部のボトムシート(約80dvh)を避け、上部の帯の中央へ。
+      // デスクトップは右の詳細パネル(幅384px)を避けて左寄りの中央へ。
+      const isMobile = width < 640;
+      const visibleCenterX = isMobile ? width / 2 : (width - 384) / 2;
+      const visibleCenterY = isMobile ? height * 0.1 : height / 2;
 
       // その点が画面中央に来るためのパン量。
       let targetX = visibleCenterX - px * k;

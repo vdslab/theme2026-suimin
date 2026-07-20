@@ -1,3 +1,4 @@
+import { ChevronUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import DetailPanel from "./components/DetailPanel";
 import DrankList from "./components/DrankList";
@@ -5,6 +6,7 @@ import Header from "./components/Header";
 import StartupGuide from "./components/StartupGuide";
 import WorldMap from "./components/WorldMap";
 import { useRecommendation } from "./hooks/useRecommendation";
+import { translateCountry } from "./lib/countryNames";
 
 function App() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
@@ -13,6 +15,8 @@ function App() {
   // オブジェクトのキーは数値idで昇順に並ぶため、追加順は別途配列で保持する。
   const [drankOrder, setDrankOrder] = useState([]);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
+  // モバイルのボトムシートの最小化状態（デスクトップの右パネルでは未使用）
+  const [sheetMinimized, setSheetMinimized] = useState(false);
 
   useEffect(() => {
     const hasSeenGuide = localStorage.getItem("hasSeenGuide");
@@ -21,6 +25,11 @@ function App() {
       localStorage.setItem("hasSeenGuide", "true");
     }
   }, []);
+
+  // 別の豆を選び直したらシートは展開状態に戻す
+  useEffect(() => {
+    if (selectedCoffee) setSheetMinimized(false);
+  }, [selectedCoffee]);
 
   const { recommendedCoffee, setRecommendedCoffee, recommend } =
     useRecommendation(drankCoffees, setSelectedCoffee);
@@ -87,23 +96,45 @@ function App() {
       />
 
       <div
-        className={`absolute top-0 right-0 h-full w-96 bg-base-100 shadow-2xl z-30 transition-transform duration-300 transform ${
-          selectedCoffee ? "translate-x-0" : "translate-x-full"
+        className={`absolute z-30 flex flex-col bg-base-100 shadow-2xl transition-transform duration-300 transform inset-x-0 bottom-0 h-[30dvh] rounded-t-2xl sm:inset-x-auto sm:top-0 sm:right-0 sm:bottom-auto sm:h-full sm:w-96 sm:rounded-none ${
+          !selectedCoffee
+            ? "translate-y-full sm:translate-x-full sm:translate-y-0"
+            : sheetMinimized
+              ? "translate-y-[calc(30dvh-3rem)] sm:translate-x-0 sm:translate-y-0"
+              : "translate-y-0 sm:translate-x-0"
         }`}
       >
-        <DetailPanel
-          selectedCoffee={selectedCoffee}
-          isRecommended={
-            selectedCoffee &&
-            recommendedCoffee &&
-            selectedCoffee.id === recommendedCoffee.id
-          }
-          onClose={handleCloseDetail}
-          onSelectCoffee={setSelectedCoffee}
-          drankCoffees={drankCoffees}
-          onUpdateDrank={handleUpdateDrank}
-          onRemoveDrank={handleRemoveDrank}
-        />
+        {/* モバイル専用: つまみ。タップで最小化/展開を切り替える */}
+        <button
+          type="button"
+          onClick={() => setSheetMinimized((m) => !m)}
+          className="sm:hidden flex h-12 shrink-0 flex-col items-center justify-center gap-1 border-b border-base-200"
+          aria-label={sheetMinimized ? "詳細を展開" : "詳細を最小化"}
+        >
+          <span className="h-1.5 w-10 rounded-full bg-base-300" />
+          {sheetMinimized && selectedCoffee && (
+            <span className="flex items-center gap-1 text-xs font-semibold text-base-content/70">
+              {translateCountry(selectedCoffee.country)}
+              <ChevronUp size={14} />
+            </span>
+          )}
+        </button>
+
+        <div className="min-h-0 flex-1">
+          <DetailPanel
+            selectedCoffee={selectedCoffee}
+            isRecommended={
+              selectedCoffee &&
+              recommendedCoffee &&
+              selectedCoffee.id === recommendedCoffee.id
+            }
+            onClose={handleCloseDetail}
+            onSelectCoffee={setSelectedCoffee}
+            drankCoffees={drankCoffees}
+            onUpdateDrank={handleUpdateDrank}
+            onRemoveDrank={handleRemoveDrank}
+          />
+        </div>
       </div>
     </div>
   );

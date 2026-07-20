@@ -25,7 +25,7 @@ export default function DrankList({
   const entries = orderedIds.map((id) => [id, drankCoffees[id]]);
 
   return (
-    <div className="absolute top-40 left-6 z-20 flex max-h-[calc(100vh-22rem)] w-[260px] flex-col rounded-2xl border border-base-200 bg-base-100 shadow-lg pointer-events-auto">
+    <div className="absolute top-28 left-3 sm:top-40 sm:left-6 z-20 flex max-h-[calc(100vh-16rem)] sm:max-h-[calc(100vh-22rem)] w-[220px] sm:w-[260px] flex-col rounded-2xl border border-base-200 bg-base-100 shadow-lg pointer-events-auto">
       <div className="flex items-center justify-between gap-2 border-b border-base-200 px-4 pt-3 pb-2">
         <span className="text-sm font-semibold text-base-content/70">
           飲んだ豆（{entries.length}）

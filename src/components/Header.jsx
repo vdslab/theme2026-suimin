@@ -27,11 +27,11 @@ export default function Header({ searchQuery, setSearchQuery, onOpenGuide }) {
   }, [searchQuery, searchSuggestions]);
 
   return (
-    <div className="absolute top-6 left-6 z-20 flex flex-col gap-4 pointer-events-none">
+    <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-20 flex flex-col gap-4 pointer-events-none">
       <div className="flex gap-4 items-start pointer-events-auto">
-        <div className="bg-base-100 p-4 rounded-2xl shadow-lg border border-base-200">
-          <div className="flex items-center justify-between mb-3">
-            <h1 className="text-2xl font-bold text-primary">
+        <div className="bg-base-100 p-3 sm:p-4 rounded-2xl shadow-lg border border-base-200">
+          <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
+            <h1 className="text-lg sm:text-2xl font-bold text-primary">
               Coffee Taste Map
             </h1>
             <button
@@ -63,7 +63,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenGuide }) {
           <div className="relative">
             <input
               type="text"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered input-sm sm:input-md w-full max-w-[16rem] sm:max-w-xs"
               placeholder="産地・精製方法・品種で検索"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}

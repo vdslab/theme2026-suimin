@@ -84,7 +84,7 @@ export default function StartupGuide({ isOpen, onClose }) {
         </button>
 
         <div className="flex-1 flex flex-col relative bg-base-200/30 min-h-0 overflow-hidden">
-          <div className="flex-1 min-h-0 w-full bg-base-200 flex items-center justify-center p-6 lg:p-12 relative">
+          <div className="flex-1 min-h-0 w-full bg-base-200 flex items-center justify-center p-3 sm:p-6 lg:p-12 relative">
             {/* biome-ignore lint/a11y/useAltText: Startup guide decorative images */}
             <img
               src={page.image}
@@ -93,11 +93,11 @@ export default function StartupGuide({ isOpen, onClose }) {
             />
           </div>
 
-          <div className="shrink-0 h-[35%] min-h-[200px] p-8 lg:px-16 flex flex-col items-center justify-center text-center bg-base-100 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <h2 className="text-2xl font-bold mb-4 text-primary">
+          <div className="shrink-0 h-[35%] min-h-[160px] sm:min-h-[200px] p-5 sm:p-8 lg:px-16 flex flex-col items-center justify-center text-center bg-base-100 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <h2 className="text-lg sm:text-2xl font-bold mb-2 sm:mb-4 text-primary">
               {page.title}
             </h2>
-            <p className="text-base-content/80 leading-relaxed whitespace-pre-wrap max-w-2xl">
+            <p className="text-sm sm:text-base text-base-content/80 leading-relaxed whitespace-pre-wrap max-w-2xl">
               {page.text}
             </p>
           </div>

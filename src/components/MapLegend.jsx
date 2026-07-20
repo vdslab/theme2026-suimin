@@ -23,12 +23,12 @@ const MapLegend = forwardRef(function MapLegend(
   return (
     <div
       ref={ref}
-      className="absolute bottom-6 left-6 z-20 flex flex-col gap-2 p-4 bg-base-100 rounded-2xl shadow-lg border border-base-200 pointer-events-auto"
+      className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 z-20 flex max-w-[calc(100vw-1.5rem)] sm:max-w-none flex-col gap-2 p-3 sm:p-4 bg-base-100 rounded-2xl shadow-lg border border-base-200 pointer-events-auto"
     >
       <span className="text-sm font-semibold text-base-content/70">
         味覚クラスタ:
       </span>
-      <div className="flex flex-wrap items-center gap-2 max-w-[400px]">
+      <div className="flex flex-wrap items-center gap-2 w-full sm:max-w-[400px] overflow-y-auto max-h-32 sm:max-h-none">
         {legendClusters.map((name) => {
           const color = clusterColor(name);
           const selected = activeCluster === name;
