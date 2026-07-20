@@ -67,7 +67,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenGuide }) {
             <input
               type="text"
               className="input input-bordered input-sm sm:input-md w-full max-w-[16rem] sm:max-w-xs"
-              placeholder="産地・精製方法・品種で検索"
+              placeholder="産地・品種で検索"
               value={searchQuery}
               onChange={(e) => {
                 setSearchQuery(e.target.value);
