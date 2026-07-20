@@ -1,9 +1,12 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import rawData from "../data/coffee_data.json";
 import { translateCountry } from "../lib/countryNames";
 import { cleanVarieties } from "../lib/varieties";
 
 export default function Header({ searchQuery, setSearchQuery, onOpenGuide }) {
+  // 候補をクリック（選択）したら閉じる。再度入力があれば開き直す。
+  const [suggestionsDismissed, setSuggestionsDismissed] = useState(false);
+
   const searchSuggestions = useMemo(() => {
     const values = rawData.flatMap((item) => [
       translateCountry(item.country),
@@ -27,7 +30,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenGuide }) {
   }, [searchQuery, searchSuggestions]);
 
   return (
-    <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-20 flex flex-col gap-4 pointer-events-none">
+    <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-30 flex flex-col gap-4 pointer-events-none">
       <div className="flex gap-4 items-start pointer-events-auto">
         <div className="bg-base-100 p-3 sm:p-4 rounded-2xl shadow-lg border border-base-200">
           <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
@@ -66,16 +69,22 @@ export default function Header({ searchQuery, setSearchQuery, onOpenGuide }) {
               className="input input-bordered input-sm sm:input-md w-full max-w-[16rem] sm:max-w-xs"
               placeholder="産地・精製方法・品種で検索"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setSuggestionsDismissed(false);
+              }}
             />
-            {filteredSuggestions.length > 0 && (
+            {!suggestionsDismissed && filteredSuggestions.length > 0 && (
               <div className="absolute z-50 mt-1 w-full rounded-box border border-base-300 bg-base-100 shadow-xl overflow-hidden">
                 {filteredSuggestions.map((suggestion) => (
                   <button
                     key={suggestion}
                     type="button"
                     className="block w-full px-4 py-2 text-left text-sm hover:bg-base-200"
-                    onClick={() => setSearchQuery(suggestion)}
+                    onClick={() => {
+                      setSearchQuery(suggestion);
+                      setSuggestionsDismissed(true);
+                    }}
                   >
                     {suggestion}
                   </button>
