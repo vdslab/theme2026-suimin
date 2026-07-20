@@ -31,11 +31,14 @@ export default function WorldMap({
   // ノードのホバーで表示する国・地域ツールチップ（コンテナ基準の座標）
   const [hoveredNode, setHoveredNode] = useState(null);
 
-  const similarCoffeeIds = useMemo(() => {
-    if (!selectedCoffee) return new Set();
-    const neighbors = nearestByTaste(selectedCoffee, 3);
-    return new Set(neighbors.map((n) => n.id));
+  const similarCoffees = useMemo(() => {
+    if (!selectedCoffee) return [];
+    return nearestByTaste(selectedCoffee, 3);
   }, [selectedCoffee]);
+
+  const similarCoffeeIds = useMemo(() => {
+    return new Set(similarCoffees.map((n) => n.id));
+  }, [similarCoffees]);
 
   const containerRef = useRef(null);
   const svgRef = useRef(null);
@@ -349,180 +352,263 @@ export default function WorldMap({
         }}
       >
         <g ref={gRef} className="countries">
-          {worldCopyOffsets.map((offsetX) => (
-            <g
-              key={`world-copy-${offsetX}`}
-              transform={`translate(${offsetX},0)`}
-            >
-              {geoFeatures.map((geo, geoIdx) => {
-                const geoName = geo.properties.name;
-                const hasData = !!filteredNodesByGeoName[geoName];
-                // 点(産地)を主役にするため、国の塗りは控えめに。
-                // データのある国はうっすら色づけ、無い国はグレー。
-                const fill = hasData ? "#fde9d0" : "#e2e8f0";
+          {/* レイヤー1: 地図（陸地と背景線） */}
+          <g className="layer-map">
+            {worldCopyOffsets.map((offsetX) => (
+              <g
+                key={`world-copy-map-${offsetX}`}
+                transform={`translate(${offsetX},0)`}
+              >
+                {geoFeatures.map((geo, geoIdx) => {
+                  const geoName = geo.properties.name;
+                  const hasData = !!filteredNodesByGeoName[geoName];
+                  // 点(産地)を主役にするため、国の塗りは控えめに。
+                  // データのある国はうっすら色づけ、無い国はグレー。
+                  const fill = hasData ? "#fde9d0" : "#e2e8f0";
 
-                return (
-                  // biome-ignore lint/a11y/noStaticElementInteractions: SVG map path
-                  <path
-                    key={`geo-${geoName}`}
-                    d={geoPaths[geoIdx]}
-                    fill={fill}
-                    stroke="#f8fafc"
-                    strokeWidth={0.5}
-                    className={
-                      hasData
-                        ? "cursor-pointer hover:opacity-80 transition-opacity"
-                        : ""
-                    }
-                    onClick={(e) =>
-                      hasData && handleCountryClick(e, geoName, geo)
-                    }
-                  />
-                );
-              })}
+                  return (
+                    // biome-ignore lint/a11y/noStaticElementInteractions: SVG map path
+                    <path
+                      key={`geo-${geoName}`}
+                      d={geoPaths[geoIdx]}
+                      fill={fill}
+                      stroke="#f8fafc"
+                      strokeWidth={0.5}
+                      className={
+                        hasData
+                          ? "cursor-pointer hover:opacity-80 transition-opacity"
+                          : ""
+                      }
+                      onClick={(e) =>
+                        hasData && handleCountryClick(e, geoName, geo)
+                      }
+                    />
+                  );
+                })}
 
-              {/* コーヒーベルト(南北回帰線の間)を薄く塗り、回帰線と赤道を引く。
+                {/* コーヒーベルト(南北回帰線の間)を薄く塗り、回帰線と赤道を引く。
                   クリックを邪魔しないよう pointerEvents は無効。 */}
-              <rect
-                x={0}
-                y={yCancer}
-                width={worldWidth}
-                height={yCapricorn - yCancer}
-                fill="#f59e0b"
-                opacity={0.12}
-                pointerEvents="none"
-              />
-              <line
-                x1={0}
-                x2={worldWidth}
-                y1={yCancer}
-                y2={yCancer}
-                stroke="#f59e0b"
-                strokeWidth={0.8}
-                strokeDasharray="4 4"
-                opacity={0.55}
-                pointerEvents="none"
-              />
-              <line
-                x1={0}
-                x2={worldWidth}
-                y1={yCapricorn}
-                y2={yCapricorn}
-                stroke="#f59e0b"
-                strokeWidth={0.8}
-                strokeDasharray="4 4"
-                opacity={0.55}
-                pointerEvents="none"
-              />
-              <line
-                x1={0}
-                x2={worldWidth}
-                y1={yEquator}
-                y2={yEquator}
-                stroke="#ef4444"
-                strokeWidth={1}
-                strokeDasharray="6 4"
-                opacity={0.7}
-                pointerEvents="none"
-              />
+                <rect
+                  x={0}
+                  y={yCancer}
+                  width={worldWidth}
+                  height={yCapricorn - yCancer}
+                  fill="#f59e0b"
+                  opacity={0.12}
+                  pointerEvents="none"
+                />
+                <line
+                  x1={0}
+                  x2={worldWidth}
+                  y1={yCancer}
+                  y2={yCancer}
+                  stroke="#f59e0b"
+                  strokeWidth={0.8}
+                  strokeDasharray="4 4"
+                  opacity={0.55}
+                  pointerEvents="none"
+                />
+                <line
+                  x1={0}
+                  x2={worldWidth}
+                  y1={yCapricorn}
+                  y2={yCapricorn}
+                  stroke="#f59e0b"
+                  strokeWidth={0.8}
+                  strokeDasharray="4 4"
+                  opacity={0.55}
+                  pointerEvents="none"
+                />
+                <line
+                  x1={0}
+                  x2={worldWidth}
+                  y1={yEquator}
+                  y2={yEquator}
+                  stroke="#ef4444"
+                  strokeWidth={1}
+                  strokeDasharray="6 4"
+                  opacity={0.7}
+                  pointerEvents="none"
+                />
+              </g>
+            ))}
+          </g>
 
-              {/* 産地(admin1)の点。UMAP座標ではなく地理座標[lng,lat]に配置する。 */}
-              {filteredNodeList.map((node) => {
-                if (node.lng == null || node.lat == null) return null;
-                const projected = projection([node.lng, node.lat]);
-                if (!projected) return null;
-                const [px, py] = projected;
+          {/* レイヤー2: 弧線 */}
+          <g className="layer-arcs">
+            {worldCopyOffsets.map((offsetX) => (
+              <g
+                key={`world-copy-arcs-${offsetX}`}
+                transform={`translate(${offsetX},0)`}
+              >
+                {/* 選択された豆から味が近い豆への弧線(アニメーション) */}
+                {selectedCoffee &&
+                  similarCoffees.map((similar) => {
+                    if (similar.lng == null || similar.lat == null) return null;
+                    if (
+                      selectedCoffee.lng == null ||
+                      selectedCoffee.lat == null
+                    )
+                      return null;
 
-                const isRecommended = recommendedCoffee?.id === node.id;
-                const isSelected = selectedCoffee?.id === node.id;
-                const isDrank = !!drankCoffees[node.id];
-                const isSimilar = selectedCoffee
-                  ? similarCoffeeIds.has(node.id)
-                  : false;
+                    const p1 = projection([
+                      selectedCoffee.lng,
+                      selectedCoffee.lat,
+                    ]);
+                    const p2 = projection([similar.lng, similar.lat]);
+                    if (!p1 || !p2) return null;
 
-                let opacity = 1;
-                const isFilteredOut =
-                  activeCluster !== null && activeCluster !== node.clusterName;
-                if (isFilteredOut) {
-                  opacity = 0.12;
-                } else if (recommendedCoffee) {
-                  // "おすすめを計算する"が実行中: 計算結果の豆と飲んだ豆以外を暗くする
-                  if (!isDrank && !isRecommended) opacity = 0.3;
-                } else if (selectedCoffee) {
-                  if (!isSelected && !isSimilar) opacity = 0.3;
-                }
-                // 何も選択されていない時は、未飲豆のグレーアウトはしない
+                    // 投影後の座標距離（世界地図のループを考慮）
+                    let dx = p2[0] - p1[0];
+                    if (dx > worldWidth / 2) dx -= worldWidth;
+                    else if (dx < -worldWidth / 2) dx += worldWidth;
 
-                let r = 3.5;
-                let strokeColor = "#ffffff";
-                let strokeWidth = 0.7;
+                    const startX = p1[0];
+                    const startY = p1[1];
+                    const endX = p1[0] + dx;
+                    const endY = p2[1];
 
-                if (isSelected || isSimilar) {
-                  r += 2;
-                }
+                    const dist = Math.sqrt(
+                      dx * dx + (endY - startY) * (endY - startY),
+                    );
 
-                if (isRecommended) {
-                  if (!isSelected && !isSimilar) r += 2; // 重複して大きくならないように
-                  strokeColor = "#eab308";
-                  strokeWidth = 2;
-                }
+                    // ベジェ曲線の制御点（距離に応じて上に膨らむように）
+                    const cx = (startX + endX) / 2;
+                    const cy = (startY + endY) / 2 - dist * 0.25;
 
-                return (
-                  <g key={`pt-${node.id}`}>
-                    {(isDrank || isSelected) && (
-                      <circle
-                        cx={px}
-                        cy={py}
-                        r={r + 1.5}
+                    const pathD = `M ${startX},${startY} Q ${cx},${cy} ${endX},${endY}`;
+
+                    return (
+                      <path
+                        key={`arc-${similar.id}`}
+                        d={pathD}
                         fill="none"
-                        stroke="#000000"
-                        strokeWidth={0.5}
-                        opacity={opacity}
-                      />
-                    )}
-                    {isRecommended && (
+                        stroke="#14b8a6" // teal-500
+                        strokeWidth="2"
+                        strokeDasharray="6 6"
+                        opacity="0.9"
+                        pointerEvents="none"
+                      >
+                        <animate
+                          attributeName="stroke-dashoffset"
+                          from="12"
+                          to="0"
+                          dur="0.6s"
+                          repeatCount="indefinite"
+                        />
+                      </path>
+                    );
+                  })}
+              </g>
+            ))}
+          </g>
+
+          {/* レイヤー3: 産地の点 */}
+          <g className="layer-points">
+            {worldCopyOffsets.map((offsetX) => (
+              <g
+                key={`world-copy-pts-${offsetX}`}
+                transform={`translate(${offsetX},0)`}
+              >
+                {/* 産地(admin1)の点。UMAP座標ではなく地理座標[lng,lat]に配置する。 */}
+                {filteredNodeList.map((node) => {
+                  if (node.lng == null || node.lat == null) return null;
+                  const projected = projection([node.lng, node.lat]);
+                  if (!projected) return null;
+                  const [px, py] = projected;
+
+                  const isRecommended = recommendedCoffee?.id === node.id;
+                  const isSelected = selectedCoffee?.id === node.id;
+                  const isDrank = !!drankCoffees[node.id];
+                  const isSimilar = selectedCoffee
+                    ? similarCoffeeIds.has(node.id)
+                    : false;
+
+                  let opacity = 1;
+                  const isFilteredOut =
+                    activeCluster !== null &&
+                    activeCluster !== node.clusterName;
+                  if (isFilteredOut) {
+                    opacity = 0.12;
+                  } else if (recommendedCoffee) {
+                    // "おすすめを計算する"が実行中: 計算結果の豆と飲んだ豆以外を暗くする
+                    if (!isDrank && !isRecommended) opacity = 0.3;
+                  } else if (selectedCoffee) {
+                    if (!isSelected && !isSimilar) opacity = 0.3;
+                  }
+                  // 何も選択されていない時は、未飲豆のグレーアウトはしない
+
+                  let r = 3.5;
+                  let strokeColor = "#ffffff";
+                  let strokeWidth = 0.7;
+
+                  if (isSelected || isSimilar) {
+                    r += 2;
+                  }
+
+                  if (isRecommended) {
+                    if (!isSelected && !isSimilar) r += 2; // 重複して大きくならないように
+                    strokeColor = "#eab308";
+                    strokeWidth = 2;
+                  }
+
+                  return (
+                    <g key={`pt-${node.id}`}>
+                      {(isDrank || isSelected) && (
+                        <circle
+                          cx={px}
+                          cy={py}
+                          r={r + 1.5}
+                          fill="none"
+                          stroke="#000000"
+                          strokeWidth={0.5}
+                          opacity={opacity}
+                        />
+                      )}
+                      {isRecommended && (
+                        <circle
+                          cx={px}
+                          cy={py}
+                          r={r}
+                          fill="none"
+                          stroke="#eab308"
+                          strokeWidth={2}
+                        >
+                          <animate
+                            attributeName="r"
+                            values={`${r};${r + 15}`}
+                            dur="1.5s"
+                            repeatCount="indefinite"
+                          />
+                          <animate
+                            attributeName="opacity"
+                            values="1;0"
+                            dur="1.5s"
+                            repeatCount="indefinite"
+                          />
+                        </circle>
+                      )}
+                      {/* biome-ignore lint/a11y/noStaticElementInteractions: SVG map point */}
                       <circle
                         cx={px}
                         cy={py}
                         r={r}
-                        fill="none"
-                        stroke="#eab308"
-                        strokeWidth={2}
-                      >
-                        <animate
-                          attributeName="r"
-                          values={`${r};${r + 15}`}
-                          dur="1.5s"
-                          repeatCount="indefinite"
-                        />
-                        <animate
-                          attributeName="opacity"
-                          values="1;0"
-                          dur="1.5s"
-                          repeatCount="indefinite"
-                        />
-                      </circle>
-                    )}
-                    {/* biome-ignore lint/a11y/noStaticElementInteractions: SVG map point */}
-                    <circle
-                      cx={px}
-                      cy={py}
-                      r={r}
-                      fill={clusterColor(node.clusterName)}
-                      stroke={strokeColor}
-                      strokeWidth={strokeWidth}
-                      opacity={opacity}
-                      className="cursor-pointer transition-opacity hover:opacity-80"
-                      onClick={(e) => handlePointClick(e, node)}
-                      onMouseEnter={(e) => handleNodeHover(e, node)}
-                      onMouseMove={(e) => handleNodeHover(e, node)}
-                      onMouseLeave={() => setHoveredNode(null)}
-                    />
-                  </g>
-                );
-              })}
-            </g>
-          ))}
+                        fill={clusterColor(node.clusterName)}
+                        stroke={strokeColor}
+                        strokeWidth={strokeWidth}
+                        opacity={opacity}
+                        className="cursor-pointer transition-opacity hover:opacity-80"
+                        onClick={(e) => handlePointClick(e, node)}
+                        onMouseEnter={(e) => handleNodeHover(e, node)}
+                        onMouseMove={(e) => handleNodeHover(e, node)}
+                        onMouseLeave={() => setHoveredNode(null)}
+                      />
+                    </g>
+                  );
+                })}
+              </g>
+            ))}
+          </g>
         </g>
       </svg>
 
