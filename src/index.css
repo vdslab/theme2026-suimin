@@ -1,6 +1,50 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: light --default;
+@plugin "daisyui";
+
+/* コーヒーサイト風の配色（ラテ系ライトテーマ）。
+   コンポーネントは base-100 / primary / accent などの意味的トークンを使うので、
+   ここを差し替えるだけで全体の配色が変わる。 */
+@plugin "daisyui/theme" {
+  name: "latte";
+  default: true;
+  color-scheme: light;
+
+  /* 背景・面：クリームからラテ、深めのミルクへ */
+  --color-base-100: #fbf7f1; /* メインの面（クリーム） */
+  --color-base-200: #f2e8da; /* フォーム */
+  --color-base-300: #e4d5c0; /* ミルクブラウン */
+  --color-base-content: #3e3128; /* エスプレッソの文字色 */
+
+  /* プライマリ：コーヒーブラウン */
+  --color-primary: #6f4e37;
+  --color-primary-content: #fbf7f1;
+
+  /* セカンダリ：キャラメルラテ */
+  --color-secondary: #a9714b;
+  --color-secondary-content: #fbf7f1;
+
+  /* アクセント：黄金のキャラメル */
+  --color-accent: #c97c1e;
+  --color-accent-content: #2a1b0a;
+
+  /* ニュートラル：ダークロースト */
+  --color-neutral: #362a21;
+  --color-neutral-content: #f2e8da;
+
+  /* セマンティック（コーヒーのトーンに寄せた） */
+  --color-info: #5e8b7e;
+  --color-info-content: #fbf7f1;
+  --color-success: #6e8b3d;
+  --color-success-content: #fbf7f1;
+  --color-warning: #d69b2d;
+  --color-warning-content: #2a1b0a;
+  --color-error: #b4462f;
+  --color-error-content: #fbf7f1;
+
+  /* 角丸：やわらかく居心地のよい印象に */
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
 }
 
 /* クリックできる要素はポインターにする（無効なものは除く）。
