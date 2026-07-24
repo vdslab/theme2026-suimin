@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const PAGES = [
   {
@@ -54,6 +54,11 @@ const ChevronRightIcon = () => (
 
 export default function StartupGuide({ isOpen, onClose }) {
   const [currentPage, setCurrentPage] = useState(0);
+
+  // 再表示のたびに最初のページから見せる（前回の閲覧位置を引き継がない）
+  useEffect(() => {
+    if (isOpen) setCurrentPage(0);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 

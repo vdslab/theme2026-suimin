@@ -291,23 +291,6 @@ export default function WorldMap({
     }
   }, [selectedCoffee, animateCenterTo]);
 
-  // 国(ポリゴン)クリック: その国で最もサンプルの多い産地を選び、詳細パネルを開く。
-  const handleCountryClick = (e, geoName, geo = null) => {
-    e.stopPropagation();
-
-    if (geo) {
-      animateCenterTo(d3geo.geoCentroid(geo));
-    }
-
-    const nodes = filteredNodesByGeoName[geoName];
-    if (nodes && nodes.length > 0) {
-      const topNode = [...nodes].sort(
-        (a, b) => b.sampleCount - a.sampleCount,
-      )[0];
-      onSelectCoffee(topNode);
-    }
-  };
-
   // 地図上の産地(点)クリック: その産地ノードを選択し、詳細パネルを開く。
   const handlePointClick = (e, node) => {
     e.stopPropagation();
@@ -352,6 +335,8 @@ export default function WorldMap({
         className="absolute inset-0 select-none bg-[#e0f2fe]"
         onClick={() => {
           onSelectCoffee(null);
+          // 背景クリックで凡例のクラスタ絞り込みも解除する
+          setActiveCluster(null);
         }}
       >
         <g ref={gRef} className="countries">
@@ -369,22 +354,15 @@ export default function WorldMap({
                   // データのある国はうっすら色づけ、無い国はグレー。
                   const fill = hasData ? "#fde9d0" : "#e2e8f0";
 
+                  // 点(産地ノード)を主役にするため、国ポリゴン自体はクリック不可。
+                  // クリックは背景として扱われ、SVGのonClickで選択解除される。
                   return (
-                    // biome-ignore lint/a11y/noStaticElementInteractions: SVG map path
                     <path
                       key={`geo-${geoName}`}
                       d={geoPaths[geoIdx]}
                       fill={fill}
                       stroke="#f8fafc"
                       strokeWidth={0.5}
-                      className={
-                        hasData
-                          ? "cursor-pointer hover:opacity-80 transition-opacity"
-                          : ""
-                      }
-                      onClick={(e) =>
-                        hasData && handleCountryClick(e, geoName, geo)
-                      }
                     />
                   );
                 })}
