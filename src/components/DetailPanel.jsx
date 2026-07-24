@@ -1,4 +1,4 @@
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown, MapPin, X } from "lucide-react";
 import { useState } from "react";
 import { clusterColor, shortName, TASTE_AXES } from "../lib/clusters";
 import { coffeeData, nearestByTaste } from "../lib/coffeeData";
@@ -109,7 +109,10 @@ function DetailPanel({
             <h2 className="text-xl font-bold leading-tight">
               {translateCountry(c.country)}
             </h2>
-            <p className="text-sm text-base-content/60">地域：{c.admin1}</p>
+            <p className="flex items-center gap-1 text-sm text-base-content/60">
+              <MapPin size={13} className="shrink-0" />
+              {c.admin1}
+            </p>
             <p className="text-xs text-base-content/50 mt-1">
               参考にした豆の数：{c.sampleCount} 件
             </p>
@@ -194,8 +197,12 @@ function DetailPanel({
                         style={{ backgroundColor: clusterColor(n.clusterName) }}
                       />
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate text-sm font-medium">
-                          {n.admin1}
+                        <span className="flex items-center gap-1 text-sm font-medium">
+                          <MapPin
+                            size={12}
+                            className="shrink-0 text-base-content/40"
+                          />
+                          <span className="truncate">{n.admin1}</span>
                         </span>
                         <span className="block truncate text-[11px] text-base-content/50">
                           {shortName(n.clusterName)}
@@ -345,8 +352,11 @@ function DetailPanel({
                         <span className="block truncate text-sm font-medium">
                           {translateCountry(n.country)}
                         </span>
-                        <span className="block truncate text-[11px] text-base-content/50">
-                          {n.admin1} ・ {shortName(n.clusterName)}
+                        <span className="flex items-center gap-1 text-[11px] text-base-content/50">
+                          <MapPin size={10} className="shrink-0" />
+                          <span className="truncate">
+                            {n.admin1} ・ {shortName(n.clusterName)}
+                          </span>
                         </span>
                       </span>
                     </button>
