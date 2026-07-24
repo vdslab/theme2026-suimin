@@ -5,8 +5,22 @@ import { coffeeData, nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
 // 見出しクリックで開閉できるセクション。デフォルトは開いた状態。
-function Section({ id, title, collapsed, onToggle, children }) {
+// variant で情報の強弱（見出しの重み）を切り替える: primary=主役, muted=副次。
+function Section({
+  id,
+  title,
+  collapsed,
+  onToggle,
+  children,
+  variant = "default",
+}) {
   const open = !collapsed[id];
+  const titleClass =
+    variant === "primary"
+      ? "text-sm font-bold text-base-content"
+      : variant === "muted"
+        ? "text-[11px] font-semibold uppercase tracking-wider text-base-content/40"
+        : "text-xs font-bold uppercase tracking-wider text-base-content/50";
   return (
     <div>
       <button
@@ -14,9 +28,7 @@ function Section({ id, title, collapsed, onToggle, children }) {
         onClick={() => onToggle(id)}
         className="flex w-full items-center justify-between mb-2"
       >
-        <h3 className="text-xs font-bold text-base-content/50 uppercase tracking-wider">
-          {title}
-        </h3>
+        <h3 className={titleClass}>{title}</h3>
         <ChevronDown
           size={16}
           className={`text-base-content/40 transition-transform ${
@@ -85,42 +97,97 @@ function DetailPanel({
 
   return (
     <aside className="bg-base-100 h-full flex flex-col overflow-hidden">
-      <div className="p-4 overflow-y-auto flex-1">
-        <div className="rounded-box border border-base-300 bg-base-200 p-4 space-y-4">
-          <div>
-            {/* クラスタバッジと閉じるボタンを1行に並べ、専用バーの隙間をなくす */}
-            <div className="flex items-start justify-between gap-2 mb-2">
+      <div className="p-4 overflow-y-auto flex-1 space-y-4">
+        {/* ── ヒーロー: 産地とクラスタ（最重要情報を強調） ── */}
+        <div
+          className="relative rounded-box border border-l-4 border-base-300 bg-base-100 py-4 pl-4 pr-3 shadow-sm"
+          style={{ borderLeftColor: color }}
+        >
+          <div className="flex items-start justify-between gap-2">
+            <div className="min-w-0">
               <span
-                className="inline-block rounded-lg px-2.5 py-1 text-xs font-semibold text-white leading-snug"
+                className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold text-white leading-none mb-2"
                 style={{ backgroundColor: color }}
               >
+                <span className="h-1.5 w-1.5 rounded-full bg-white/90" />
                 {shortName(c.clusterName)}
               </span>
-              <button
-                type="button"
-                onClick={onClose}
-                className="btn btn-ghost btn-xs btn-circle shrink-0 -mr-1 -mt-1"
-                title="閉じる"
-                aria-label="閉じる"
-              >
-                <X size={18} />
-              </button>
+              <h2 className="text-2xl font-bold leading-tight">
+                {translateCountry(c.country)}
+              </h2>
+              <p className="flex items-center gap-1 text-sm text-base-content/70 mt-0.5">
+                <MapPin size={14} className="shrink-0" />
+                {c.admin1}
+              </p>
             </div>
-            <h2 className="text-xl font-bold leading-tight">
-              {translateCountry(c.country)}
-            </h2>
-            <p className="flex items-center gap-1 text-sm text-base-content/60">
-              <MapPin size={13} className="shrink-0" />
-              {c.admin1}
-            </p>
-            <p className="text-xs text-base-content/50 mt-1">
-              参考にした豆の数：{c.sampleCount} 件
-            </p>
+            <button
+              type="button"
+              onClick={onClose}
+              className="btn btn-ghost btn-xs btn-circle shrink-0 -mr-1 -mt-1"
+              title="閉じる"
+              aria-label="閉じる"
+            >
+              <X size={18} />
+            </button>
           </div>
+          <p className="text-[11px] text-base-content/40 mt-3">
+            参考にした豆 {c.sampleCount} 件
+          </p>
+        </div>
 
+        {/* ── 主役: 味わいの特徴（白カード＋影で前面に） ── */}
+        <div className="rounded-box border border-base-300 bg-base-100 p-4 shadow-sm">
+          <Section
+            id="taste"
+            title="味わいの特徴（この産地の傾向）"
+            variant="primary"
+            collapsed={collapsed}
+            onToggle={toggleSection}
+          >
+            <div className="space-y-2">
+              {devs.map((d) => {
+                const pct = (Math.abs(d.dev) / maxAbs) * 50;
+                const positive = d.dev >= 0;
+                return (
+                  <div key={d.key} className="flex items-center gap-2 text-xs">
+                    <span className="w-16 shrink-0 text-base-content/70">
+                      {d.label}
+                    </span>
+                    <div className="relative flex-1 h-3 rounded bg-base-300/40">
+                      <div className="absolute inset-y-0 left-1/2 w-px bg-base-content/20" />
+                      <div
+                        className="absolute inset-y-0 rounded"
+                        style={{
+                          left: positive ? "50%" : `${50 - pct}%`,
+                          width: `${pct}%`,
+                          backgroundColor: positive ? color : "#cbd5e1",
+                        }}
+                      />
+                    </div>
+                    <span
+                      className={`w-12 shrink-0 text-right font-semibold ${
+                        positive ? "" : "text-base-content/40"
+                      }`}
+                    >
+                      {d.dev >= 0 ? "+" : ""}
+                      {d.dev.toFixed(2)}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+            <p className="text-[11px] text-base-content/40 mt-2">
+              右にいくほど、この産地で強く感じられる味です
+            </p>
+          </Section>
+        </div>
+
+        {/* ── アクション: 好み度の記録（主要CTAとして色付きカードで強調） ── */}
+        <div className="rounded-box border border-primary/25 bg-primary/5 p-4 shadow-sm">
           <Section
             id="score"
             title="好み度を入力"
+            variant="primary"
             collapsed={collapsed}
             onToggle={toggleSection}
           >
@@ -170,11 +237,15 @@ function DetailPanel({
               </button>
             )}
           </Section>
+        </div>
 
+        {/* ── 副次情報: グレーの控えめカードにまとめて視覚的に後退させる ── */}
+        <div className="rounded-box bg-base-200/50 p-4 space-y-4">
           {regions.length > 1 && (
             <Section
               id="regions"
               title="地域を選択"
+              variant="muted"
               collapsed={collapsed}
               onToggle={toggleSection}
             >
@@ -189,7 +260,7 @@ function DetailPanel({
                       className={`flex items-center gap-2 rounded-lg border p-2 text-left transition-colors ${
                         active
                           ? "border-primary bg-primary/10"
-                          : "border-base-200 hover:bg-base-300/40"
+                          : "border-base-200 bg-base-100 hover:bg-base-300/40"
                       }`}
                     >
                       <span
@@ -221,51 +292,9 @@ function DetailPanel({
           )}
 
           <Section
-            id="taste"
-            title="味わいの特徴（この産地の傾向）"
-            collapsed={collapsed}
-            onToggle={toggleSection}
-          >
-            <div className="space-y-2">
-              {devs.map((d) => {
-                const pct = (Math.abs(d.dev) / maxAbs) * 50;
-                const positive = d.dev >= 0;
-                return (
-                  <div key={d.key} className="flex items-center gap-2 text-xs">
-                    <span className="w-16 shrink-0 text-base-content/70">
-                      {d.label}
-                    </span>
-                    <div className="relative flex-1 h-3 rounded bg-base-300/40">
-                      <div className="absolute inset-y-0 left-1/2 w-px bg-base-content/20" />
-                      <div
-                        className="absolute inset-y-0 rounded"
-                        style={{
-                          left: positive ? "50%" : `${50 - pct}%`,
-                          width: `${pct}%`,
-                          backgroundColor: positive ? color : "#cbd5e1",
-                        }}
-                      />
-                    </div>
-                    <span
-                      className={`w-12 shrink-0 text-right font-semibold ${
-                        positive ? "" : "text-base-content/40"
-                      }`}
-                    >
-                      {d.dev >= 0 ? "+" : ""}
-                      {d.dev.toFixed(2)}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-            <p className="text-[11px] text-base-content/40 mt-2">
-              右にいくほど、この産地で強く感じられる味です
-            </p>
-          </Section>
-
-          <Section
             id="varieties"
             title="含まれる主な品種"
+            variant="muted"
             collapsed={collapsed}
             onToggle={toggleSection}
           >
@@ -289,6 +318,7 @@ function DetailPanel({
             <Section
               id="types"
               title="味わいのタイプ（近さ）"
+              variant="muted"
               collapsed={collapsed}
               onToggle={toggleSection}
             >
@@ -328,6 +358,7 @@ function DetailPanel({
             <Section
               id="neighbors"
               title="味が近い豆"
+              variant="muted"
               collapsed={collapsed}
               onToggle={toggleSection}
             >
