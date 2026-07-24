@@ -1,5 +1,6 @@
 import * as d3geo from "d3-geo";
 import { select } from "d3-selection";
+import { MapPin } from "lucide-react";
 import "d3-transition"; // select(...).transition() を有効化（zoom.transformのアニメーション用）
 import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -608,9 +609,12 @@ export default function WorldMap({
           <div className="text-sm font-semibold leading-tight">
             {translateCountry(hoveredNode.country)}
           </div>
-          <div className="text-[11px] text-base-content/60 leading-tight">
-            {hoveredNode.admin1}
-          </div>
+          {hoveredNode.admin1 && (
+            <div className="flex items-center gap-1 text-[11px] text-base-content/60 leading-tight">
+              <MapPin size={11} className="shrink-0" />
+              {hoveredNode.admin1}
+            </div>
+          )}
         </div>
       )}
     </div>
