@@ -22,12 +22,10 @@ MIN_SAMPLE_COUNT = 1
 # admin1 の代表座標（地図に点を打つため）。scripts/normalize_region.py 由来の
 # data/region_coords.json を参照。無い地域は国重心＋決定的オフセットで代替。
 COORDS_JSON = "data/region_coords.json"
-# HDBSCANの細かいクラスタを、最終的に何個へ丸め込むか（4〜6推奨）。
-# 近い（=味の傾向が似た）クラスタどうしをまとめ、サイズを均等めにする。
-#   見た目(dominant_cluster)の分布の均等さ:
-#     4 -> [33,31,10,7]  5 -> [33,18,12,10,8]  6 -> [19,18,13,12,10,9]
-#   → 6 が最も均等（大きな塊が2つに割れるため）。
-N_CLUSTERS_TARGET = 6
+# HDBSCANの細かいクラスタを、最終的に何個へ丸め込むか。
+# 近い（=味の傾向が似た）クラスタどうしをまとめる。検証実験(scripts/experiment_clustering.py)
+# の結果、5 が silhouette と各クラスタの特徴（振幅）のバランスが最も良かった。
+N_CLUSTERS_TARGET = 5
 INPUT_CSV = "data/merged_data_cleaned.csv"
 OUTPUT_JSON = "src/data/coffee_data.json"
 HEATMAP_PNG = "scripts/cluster_deviation_heatmap.png"
@@ -61,6 +59,11 @@ AXIS_LOW = {
 SECOND_AXIS_THRESHOLD = 0.02
 # クラスタ名に軸を含める偏差の閾値（絶対値がこの値以上の軸だけを命名に使う）
 NAME_THRESHOLD = 0.1
+
+# 「個性派(独自の味わい)」の判定閾値。HDBSCANの-1(密度外れ値)に頼らず、
+# どのクラスタにも所属確率がこの値未満でしか属さない豆だけを個性派として独立させる。
+# 小さいほど個性派は減る（0.2 で全体の約8%）。検証: scripts/experiment_clustering.py
+NOISE_MEMBERSHIP_THRESHOLD = 0.2
 
 
 def load_coords():
@@ -308,18 +311,42 @@ def main():
         n_clusters = N_CLUSTERS_TARGET
         print(f"    → 近いクラスタを統合し {n_clusters} クラスタへ丸め込み")
 
+    # ------------------------------------------------------------------
+    # [5c] 「個性派」を所属確率で判定する（B案）
+    #   HDBSCANの-1（密度外れ値）ではなく、どのクラスタにも
+    #   NOISE_MEMBERSHIP_THRESHOLD 未満の確信度でしか属さない豆を個性派に。
+    #   -1だった豆も確信度が閾値以上なら最有力クラスタへ編入する。
+    #   → 「個性派＝どのクラスタにも確信を持って属さない豆」と定義が明快になり、
+    #     ノイズ量を閾値で制御できる（地図で表示中の probs と定義が一致）。
+    # ------------------------------------------------------------------
+    max_prob = membership.max(axis=1)
+    cluster_labels = np.where(
+        max_prob < NOISE_MEMBERSHIP_THRESHOLD, -1, membership.argmax(axis=1)
+    )
+
     n_noise = int((cluster_labels == -1).sum())
     print(f"    最終クラスタ数: {n_clusters}")
-    print(f"    ノイズ(個性派)扱いノード数: {n_noise} / {len(nodes)}")
+    print(f"    個性派(独自の味わい)扱いノード数: {n_noise} / {len(nodes)} "
+          f"(閾値 τ={NOISE_MEMBERSHIP_THRESHOLD})")
 
     # ------------------------------------------------------------------
     # クラスタ名の割り当て（偏差6軸平均の最大特徴量で命名）
     # ------------------------------------------------------------------
+    # クラスタ名は全 n_clusters 列に用意する（probs出力が全列を参照するため）。
+    # 個性派しきい値で外れた豆も、代表偏差は「最有力クラスタ」基準で数える。
     cluster_names = {}
-    for c in sorted(set(cluster_labels)):
-        if c == -1:
-            continue
-        dev_mean = nodes.loc[cluster_labels == c, DEV_COLS].mean()
+    argmax_label = membership.argmax(axis=1)
+    for c in range(n_clusters):
+        members = nodes.loc[argmax_label == c, DEV_COLS]
+        if len(members):
+            dev_mean = members.mean()
+        else:
+            # 誰の最有力でもない稀なケースは membership 重み平均で代表を出す
+            w = membership[:, c]
+            dev_mean = pd.Series(
+                (nodes[DEV_COLS].values * w[:, None]).sum(axis=0) / max(w.sum(), 1e-9),
+                index=DEV_COLS,
+            )
         cluster_names[c] = assign_cluster_name(dev_mean, c)
 
     # ------------------------------------------------------------------
