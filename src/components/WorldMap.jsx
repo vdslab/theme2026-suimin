@@ -7,7 +7,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as topojson from "topojson-client";
 import worldTopoJson from "../data/world-110m.json";
 import { clusterColor } from "../lib/clusters";
-import { coffeeData, nearestByTaste } from "../lib/coffeeData";
+import {
+  coffeeData,
+  nearestByTaste,
+  tasteSimilarityPairs,
+} from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
 import MapLegend from "./MapLegend";
@@ -90,6 +94,33 @@ export default function WorldMap({
   const pathGenerator = useMemo(() => {
     return d3geo.geoPath().projection(projection);
   }, [projection]);
+
+  // 2つの産地[lng,lat]を結ぶベジェ弧のSVGパスを返す（世界地図のループを考慮）。
+  const arcPath = useCallback(
+    (a, b) => {
+      if (a.lng == null || a.lat == null || b.lng == null || b.lat == null)
+        return null;
+      const p1 = projection([a.lng, a.lat]);
+      const p2 = projection([b.lng, b.lat]);
+      if (!p1 || !p2) return null;
+
+      let dx = p2[0] - p1[0];
+      if (dx > worldWidth / 2) dx -= worldWidth;
+      else if (dx < -worldWidth / 2) dx += worldWidth;
+
+      const startX = p1[0];
+      const startY = p1[1];
+      const endX = p1[0] + dx;
+      const endY = p2[1];
+
+      const dist = Math.hypot(dx, endY - startY);
+      const cx = (startX + endX) / 2;
+      const cy = (startY + endY) / 2 - dist * 0.25;
+
+      return `M ${startX},${startY} Q ${cx},${cy} ${endX},${endY}`;
+    },
+    [projection, worldWidth],
+  );
 
   // 各国のパス文字列は投影が変わったときだけ再計算し、コピー間で使い回す。
   // （コピー枚数ぶん geoPath を再生成する無駄を防ぐ）
@@ -423,42 +454,37 @@ export default function WorldMap({
                 key={`world-copy-arcs-${offsetX}`}
                 transform={`translate(${offsetX},0)`}
               >
+                {/* 何も選択していない時: 全産地の「味が近い上位3件」を薄い網として敷く */}
+                {!selectedCoffee &&
+                  !recommendedCoffee &&
+                  tasteSimilarityPairs.map((pair) => {
+                    const isFilteredOut =
+                      activeCluster !== null &&
+                      pair.a.clusterName !== activeCluster &&
+                      pair.b.clusterName !== activeCluster;
+                    if (isFilteredOut) return null;
+
+                    const pathD = arcPath(pair.a, pair.b);
+                    if (!pathD) return null;
+
+                    return (
+                      <path
+                        key={`net-${pair.id}`}
+                        d={pathD}
+                        fill="none"
+                        stroke="#14b8a6" // teal-500
+                        strokeWidth="1"
+                        opacity="0.18"
+                        pointerEvents="none"
+                      />
+                    );
+                  })}
+
                 {/* 選択された豆から味が近い豆への弧線(アニメーション) */}
                 {selectedCoffee &&
                   similarCoffees.map((similar) => {
-                    if (similar.lng == null || similar.lat == null) return null;
-                    if (
-                      selectedCoffee.lng == null ||
-                      selectedCoffee.lat == null
-                    )
-                      return null;
-
-                    const p1 = projection([
-                      selectedCoffee.lng,
-                      selectedCoffee.lat,
-                    ]);
-                    const p2 = projection([similar.lng, similar.lat]);
-                    if (!p1 || !p2) return null;
-
-                    // 投影後の座標距離（世界地図のループを考慮）
-                    let dx = p2[0] - p1[0];
-                    if (dx > worldWidth / 2) dx -= worldWidth;
-                    else if (dx < -worldWidth / 2) dx += worldWidth;
-
-                    const startX = p1[0];
-                    const startY = p1[1];
-                    const endX = p1[0] + dx;
-                    const endY = p2[1];
-
-                    const dist = Math.sqrt(
-                      dx * dx + (endY - startY) * (endY - startY),
-                    );
-
-                    // ベジェ曲線の制御点（距離に応じて上に膨らむように）
-                    const cx = (startX + endX) / 2;
-                    const cy = (startY + endY) / 2 - dist * 0.25;
-
-                    const pathD = `M ${startX},${startY} Q ${cx},${cy} ${endX},${endY}`;
+                    const pathD = arcPath(selectedCoffee, similar);
+                    if (!pathD) return null;
 
                     return (
                       <path

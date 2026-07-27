@@ -36,3 +36,22 @@ export function nearestByTaste(target, limit = 5) {
     .slice(0, limit)
     .map(({ node }) => node);
 }
+
+// 全ノードについて「味が近い上位3件」への弧を、無向ペアとして1度だけ算出する。
+// A→B と B→A は同一の線分として重複を除く。地図の背景に類似ネットワークを敷くために使う。
+export const tasteSimilarityPairs = (() => {
+  const seen = new Set();
+  const pairs = [];
+  for (const node of coffeeData) {
+    for (const neighbor of nearestByTaste(node, 3)) {
+      const key =
+        node.id < neighbor.id
+          ? `${node.id}|${neighbor.id}`
+          : `${neighbor.id}|${node.id}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      pairs.push({ id: key, a: node, b: neighbor });
+    }
+  }
+  return pairs;
+})();
