@@ -7,7 +7,7 @@ import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as topojson from "topojson-client";
 import worldTopoJson from "../data/world-110m.json";
-import { clusterColor } from "../lib/clusters";
+import { clusterColor, clusterIndex, isNoise } from "../lib/clusters";
 import {
   coffeeData,
   nearestByTaste,
@@ -130,24 +130,68 @@ export default function WorldMap({
   );
 
   // 同じ地域の豆はまったく同じ産地座標を持つため、そのままでは点が完全に重なる。
-  // 「産地へ引き戻すバネ」と「点どうしを押し離す衝突」を釣り合わせて重なりを解く。
+  // 「アンカーへ引き戻すバネ」と「点どうしを押し離す衝突」を釣り合わせて重なりを解く。
+  //
+  // 見た目が"ぐちゃぐちゃ"にならないよう、引き戻す先を産地の中心そのものではなく
+  //   産地中心 + そのクラスタ(色)ごとの方向オフセット = クラスタ・サブアンカー
+  // にする。これで同じ地域の中でも同じ色の豆が同じ方角へ寄り、色ごとにまとまる。
   // 投影後のpx空間で一度だけ収束させ、その結果をズーム/パン中は使い回す。
   const nodePositions = useMemo(() => {
-    const particles = [];
-    coffeeData.forEach((node, i) => {
+    // 1) 産地(admin1)ごとに豆をまとめ、投影座標(地域の中心)を求める
+    const regions = new Map();
+    coffeeData.forEach((node) => {
       if (node.lng == null || node.lat == null) return;
       const p = projection([node.lng, node.lat]);
       if (!p) return;
-      // 完全に同一座標だと押し離す向きが決まらないので、黄金角で微小にずらして初期化する
-      const ang = i * 2.399963;
-      particles.push({
-        id: node.id,
-        anchorX: p[0],
-        anchorY: p[1],
-        x: p[0] + 0.01 * Math.cos(ang),
-        y: p[1] + 0.01 * Math.sin(ang),
-      });
+      const key = `${node.country}|${node.admin1}`;
+      let region = regions.get(key);
+      if (!region) {
+        region = { cx: p[0], cy: p[1], members: [] };
+        regions.set(key, region);
+      }
+      region.members.push(node);
     });
+
+    // 2) 各地域内で、クラスタ(色)ごとに方向を割り当ててサブアンカーを作る
+    const particles = [];
+    for (const region of regions.values()) {
+      // その地域に存在するクラスタを決定的な順序(クラスタ番号順・ノイズは最後)で並べる
+      const clusterOrder = [];
+      const seen = new Set();
+      for (const node of region.members) {
+        const name = node.clusterName;
+        if (seen.has(name)) continue;
+        seen.add(name);
+        clusterOrder.push(name);
+      }
+      clusterOrder.sort((a, b) => {
+        if (isNoise(a)) return 1;
+        if (isNoise(b)) return -1;
+        return (clusterIndex(a) ?? 0) - (clusterIndex(b) ?? 0);
+      });
+      const dirOf = new Map(clusterOrder.map((name, i) => [name, i]));
+      const m = clusterOrder.length;
+      // 地域が大きい(=豆が多い)ほど点の塊も大きいので、色を分ける距離もそれに比例させる
+      const spread =
+        m <= 1 ? 0 : NODE_BASE_R * Math.sqrt(region.members.length) * 0.55;
+
+      region.members.forEach((node, i) => {
+        const k = dirOf.get(node.clusterName);
+        const ang = m <= 1 ? 0 : (2 * Math.PI * k) / m;
+        // サブアンカー: 地域中心から、そのクラスタの方角へ spread だけずらした点
+        const ax = region.cx + spread * Math.cos(ang);
+        const ay = region.cy + spread * Math.sin(ang);
+        // 初期位置はサブアンカー付近に微小ジッター(黄金角)で置く
+        const j = i * 2.399963;
+        particles.push({
+          id: node.id,
+          anchorX: ax,
+          anchorY: ay,
+          x: ax + 0.01 * Math.cos(j),
+          y: ay + 0.01 * Math.sin(j),
+        });
+      });
+    }
 
     forceSimulation(particles)
       .force("spring-x", forceX((d) => d.anchorX).strength(LAYOUT_SPRING))
