@@ -76,7 +76,8 @@ export default function DrankList({
                     {translateCountry(c.country)}
                   </span>
                   <span className="block truncate text-[11px] text-base-content/50">
-                    {c.admin1} ・ 好み {score}
+                    {[c.admin1, c.variety].filter(Boolean).join(" ・ ")} ・ 好み{" "}
+                    {score}
                   </span>
                 </span>
               </button>

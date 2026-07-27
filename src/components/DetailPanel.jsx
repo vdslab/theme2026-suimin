@@ -49,7 +49,7 @@ function DetailPanel({
       <aside className="bg-base-100 p-6 h-full flex flex-col justify-center items-center">
         <div className="rounded-box border border-dashed border-base-300 bg-base-200/50 p-6 text-center">
           <p className="text-sm text-base-content/60">
-            マップ上の産地(点)をクリックすると、
+            マップ上の豆(点)をクリックすると、
             <br />
             ここに詳細が表示されます。
           </p>
@@ -64,10 +64,13 @@ function DetailPanel({
   const isDrank = drankCoffees[c.id] !== undefined;
   const score = scoreDraft[c.id] ?? drankCoffees[c.id] ?? 3;
 
-  // 同じ国の産地(地域)一覧。地域を切り替えられるようにする。
-  const regions = coffeeData
+  // 同じ国の豆一覧（1豆=1ノードなので同じ地域の豆も別々に並ぶ）。
+  // 産地の多い国では数百件になるため、地域名順に並べて表示件数を絞る。
+  const SAME_COUNTRY_LIMIT = 50;
+  const sameCountryBeans = coffeeData
     .filter((n) => n.country === c.country)
-    .sort((a, b) => b.sampleCount - a.sampleCount);
+    .sort((a, b) => a.admin1.localeCompare(b.admin1) || a.id - b.id);
+  const sameCountryShown = sameCountryBeans.slice(0, SAME_COUNTRY_LIMIT);
 
   const devs = TASTE_AXES.map((a) => ({
     ...a,
@@ -114,7 +117,8 @@ function DetailPanel({
               {c.admin1}
             </p>
             <p className="text-xs text-base-content/50 mt-1">
-              参考にした豆の数：{c.sampleCount} 件
+              {[c.variety, c.processingMethod].filter(Boolean).join(" ・ ") ||
+                "品種・精製方法は不明"}
             </p>
           </div>
 
@@ -171,15 +175,15 @@ function DetailPanel({
             )}
           </Section>
 
-          {regions.length > 1 && (
+          {sameCountryBeans.length > 1 && (
             <Section
               id="regions"
-              title="地域を選択"
+              title={`同じ国の豆（${sameCountryBeans.length}件）`}
               collapsed={collapsed}
               onToggle={toggleSection}
             >
               <div className="flex flex-col gap-1 max-h-40 overflow-y-auto">
-                {regions.map((n) => {
+                {sameCountryShown.map((n) => {
                   const active = n.id === c.id;
                   return (
                     <button
@@ -205,7 +209,9 @@ function DetailPanel({
                           <span className="truncate">{n.admin1}</span>
                         </span>
                         <span className="block truncate text-[11px] text-base-content/50">
-                          {shortName(n.clusterName)}
+                          {[n.variety, shortName(n.clusterName)]
+                            .filter(Boolean)
+                            .join(" ・ ")}
                         </span>
                       </span>
                       {drankCoffees[n.id] !== undefined && (
@@ -216,13 +222,19 @@ function DetailPanel({
                     </button>
                   );
                 })}
+                {sameCountryBeans.length > sameCountryShown.length && (
+                  <p className="px-2 py-1 text-[11px] text-base-content/40">
+                    ほか {sameCountryBeans.length - sameCountryShown.length}{" "}
+                    件（地図上の点から選べます）
+                  </p>
+                )}
               </div>
             </Section>
           )}
 
           <Section
             id="taste"
-            title="味わいの特徴（この産地の傾向）"
+            title="味わいの特徴（この豆）"
             collapsed={collapsed}
             onToggle={toggleSection}
           >
@@ -259,30 +271,38 @@ function DetailPanel({
               })}
             </div>
             <p className="text-[11px] text-base-content/40 mt-2">
-              右にいくほど、この産地で強く感じられる味です
+              右にいくほど、この豆で強く感じられる味です
             </p>
           </Section>
 
           <Section
             id="varieties"
-            title="含まれる主な品種"
+            title="この豆の情報"
             collapsed={collapsed}
             onToggle={toggleSection}
           >
-            {c.varieties?.length > 0 ? (
-              <div className="flex flex-wrap gap-1">
-                {c.varieties.map((v) => (
-                  <span
-                    key={v}
-                    className="badge badge-ghost badge-sm font-normal"
+            <dl className="space-y-1 text-xs">
+              {[
+                ["品種", c.variety],
+                ["精製方法", c.processingMethod],
+                ["標高", c.altitude != null ? `${Math.round(c.altitude)} m` : null],
+                [
+                  "総合スコア",
+                  c.totalCupPoints != null ? c.totalCupPoints.toFixed(2) : null,
+                ],
+              ].map(([label, value]) => (
+                <div key={label} className="flex justify-between gap-2">
+                  <dt className="text-base-content/50">{label}</dt>
+                  <dd
+                    className={`truncate text-right ${
+                      value ? "font-medium" : "text-base-content/30"
+                    }`}
                   >
-                    {v}
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <p className="text-xs text-base-content/40">品種情報なし</p>
-            )}
+                    {value ?? "不明"}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </Section>
 
           {probs.length > 0 && (

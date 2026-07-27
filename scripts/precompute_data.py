@@ -1,6 +1,5 @@
 
 import json
-import math
 import os
 import numpy as np
 import pandas as pd
@@ -12,21 +11,26 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import AgglomerativeClustering
+from sklearn.neighbors import NearestNeighbors
 
 # --- 設定 ---------------------------------------------------------------
 TASTE_COLS = ["Aroma", "Flavor", "Aftertaste", "Acidity", "Body", "Balance"]
 DEV_COLS = [f"{c}_dev" for c in TASTE_COLS]
-# 集約単位: 産地(国) × admin1地域。admin1は Region 正規化で付与した第1次コーヒー地域。
-GROUP_COLS = ["Country.of.Origin", "Region_admin1"]
-MIN_SAMPLE_COUNT = 1
+# 1件のコーヒー豆 = 1ノード。地域での集約(平均化)は行わない。
+# 位置決めと表示に必要な列（欠損行は除外する）。
+REQUIRED_COLS = ["Country.of.Origin", "Region_admin1"]
 # admin1 の代表座標（地図に点を打つため）。scripts/normalize_region.py 由来の
-# data/region_coords.json を参照。無い地域は国重心＋決定的オフセットで代替。
+# data/region_coords.json を参照。無い地域は国重心で代替。
+# 同じ地域の豆は同一座標になるが、点の重なりは地図側のバネ+衝突レイアウトで解消するため、
+# ここでは産地の座標をそのまま持たせる（座標の意味を歪めない）。
 COORDS_JSON = "data/region_coords.json"
+# 「味が近い豆」として各ノードに書き出す近傍数（k-NN）。
+# フロント側のエッジはこの上位3件を無向・重複除去して使う。
+NEIGHBOR_K = 5
+# HDBSCANの最小クラスタサイズ。豆単位(約1200件)なので集約時より大きめにとる。
+MIN_CLUSTER_SIZE = 20
 # HDBSCANの細かいクラスタを、最終的に何個へ丸め込むか（4〜6推奨）。
 # 近い（=味の傾向が似た）クラスタどうしをまとめ、サイズを均等めにする。
-#   見た目(dominant_cluster)の分布の均等さ:
-#     4 -> [33,31,10,7]  5 -> [33,18,12,10,8]  6 -> [19,18,13,12,10,9]
-#   → 6 が最も均等（大きな塊が2つに割れるため）。
 N_CLUSTERS_TARGET = 6
 INPUT_CSV = "data/merged_data_cleaned.csv"
 OUTPUT_JSON = "src/data/coffee_data.json"
@@ -78,21 +82,18 @@ def load_coords():
     return region, country
 
 
-def resolve_coord(country_name, admin1, region, country, order):
-    """点の座標を決定。admin1の実座標優先、無ければ国重心＋決定的リングオフセット。
+def resolve_coord(country_name, admin1, region, country):
+    """豆1件の座標を決定。admin1の実座標優先、無ければ国重心で代替。
 
-    order: 同一国内でのその admin1 の連番（重複回避のオフセット用）。
-    戻り値: (lng, lat, source)  source: region / country
+    同一地域の豆は同じ座標になる（データは統合せず別ノードのまま）。
+    地図上で点が重ならないようにするのはフロント側のバネ+衝突レイアウトの役目。
+    戻り値: (lng, lat, source)  source: region / country / none
     """
     key = (country_name, admin1)
     if key in region:
         return region[key][0], region[key][1], "region"
     if country_name in country:
-        clng, clat = country[country_name]
-        # 同一国内で重ならないよう、連番で小さな円状に散らす（決定的）
-        ang = (order * 2.399963)  # 黄金角(rad)でばらけさせる
-        rad = 0.6 + 0.35 * order   # 度単位の小さな半径
-        return (clng + rad * math.cos(ang), clat + rad * math.sin(ang), "country")
+        return country[country_name][0], country[country_name][1], "country"
     return None, None, "none"
 
 
@@ -136,23 +137,19 @@ def plot_scatter(nodes, cluster_names, has_tcp):
         sub = nodes[nodes["_cluster_label"] == c]
         color = HEX_PALETTE[c % len(HEX_PALETTE)]
         label = f"C{c}: {english_short_label(sub[DEV_COLS].mean())} (n={len(sub)})"
-        ax.scatter(sub["x"], sub["y"], s=90, c=color, edgecolors="white",
-                   linewidths=0.8, alpha=0.9, label=label, zorder=3)
+        ax.scatter(sub["x"], sub["y"], s=18, c=color, edgecolors="white",
+                   linewidths=0.3, alpha=0.85, label=label, zorder=3)
 
     noise = nodes[nodes["_cluster_label"] == -1]
     if len(noise):
-        ax.scatter(noise["x"], noise["y"], s=70, c="lightgrey",
-                   edgecolors="white", linewidths=0.8, alpha=0.7,
+        ax.scatter(noise["x"], noise["y"], s=14, c="lightgrey",
+                   edgecolors="white", linewidths=0.3, alpha=0.6,
                    label=f"Noise (n={len(noise)})", zorder=2)
 
-    # 産地を薄く注記（読みやすさのため小さめ）
-    for _, r in nodes.iterrows():
-        ax.annotate(r["Country.of.Origin"], (r["x"], r["y"]),
-                    fontsize=6, alpha=0.55, xytext=(4, 3),
-                    textcoords="offset points")
+    # 豆単位(約1200点)なので、点ごとの産地注記は入れない（潰れて読めないため）
 
     ax.set_title("Coffee taste-shape map (UMAP 2D of deviation features)\n"
-                 "colored by HDBSCAN cluster")
+                 "one point = one bean, colored by HDBSCAN cluster")
     ax.set_xlabel("UMAP-1")
     ax.set_ylabel("UMAP-2")
     ax.legend(loc="best", fontsize=8, framealpha=0.9)
@@ -212,8 +209,11 @@ def main():
     print("=" * 70)
     print("[1] データ読み込み:", INPUT_CSV)
     df = pd.read_csv(INPUT_CSV)
-    df = df.dropna(subset=GROUP_COLS + TASTE_COLS).copy()
+    print(f"    CSV 行数: {len(df)}")
+    df = df.dropna(subset=REQUIRED_COLS + TASTE_COLS).copy()
     df["Variety"] = df["Variety"].fillna("Unknown")
+    df["Processing.Method"] = df["Processing.Method"].fillna("Unknown")
+    print(f"    産地・味覚6軸が揃っている豆: {len(df)} 件（これがそのままノード数）")
 
     # 総合品質スコア（補助情報）。Total.Cup.Points があれば使う。
     has_tcp = "Total.Cup.Points" in df.columns
@@ -233,35 +233,19 @@ def main():
           f"abs max={dev_row_sums.abs().max():.2e}  (理論上0)")
 
     # ------------------------------------------------------------------
-    # [3] 産地 × 精製方法 で集約（先に偏差を取ってから平均する）
+    # [3] 集約はしない: 豆1件をそのまま1ノードとして扱う
+    #     （同じ地域に複数の豆があっても統合せず、すべて別ノードで保持する）
     # ------------------------------------------------------------------
-    print("[3] 産地(国) × admin1地域 で集約")
-    # 集約キーに欠損があると groupby から外れるため、明示的にログ
-    agg_spec = {c: "mean" for c in TASTE_COLS}          # 元6軸スコア平均
-    agg_spec.update({c: "mean" for c in DEV_COLS})       # 偏差6軸平均
-    agg_spec["row_mean"] = "mean"                        # 6軸平均そのものの平均
-    if has_tcp:
-        agg_spec["Total.Cup.Points"] = "mean"
-
-    grouped = df.groupby(GROUP_COLS).agg(agg_spec)
-    grouped["sample_count"] = df.groupby(GROUP_COLS).size()
-    # 表示用メタデータ: グループ内のユニーク品種一覧
-    grouped["varieties"] = df.groupby(GROUP_COLS)["Variety"].agg(
-        lambda s: sorted(s.unique().tolist())
-    )
-    grouped = grouped.reset_index()
-    print(f"    集約後のノード数: {len(grouped)}")
+    print("[3] 集約なし: 豆1件 = 1ノード")
+    nodes = df.reset_index(drop=True)
+    dup = nodes.groupby(REQUIRED_COLS).size()
+    print(f"    ノード数: {len(nodes)}  (地域数: {len(dup)}, "
+          f"1地域あたり最大 {int(dup.max())} 件の豆が同居)")
 
     # ------------------------------------------------------------------
-    # [4] sample_count >= 3 のグループのみクラスタリング対象に
+    # [4] 豆単位の偏差6軸に StandardScaler → UMAP(2D) → HDBSCAN
     # ------------------------------------------------------------------
-    nodes = grouped[grouped["sample_count"] >= MIN_SAMPLE_COUNT].reset_index(drop=True)
-    print(f"[4] sample_count >= {MIN_SAMPLE_COUNT} で残ったノード数: {len(nodes)}")
-
-    # ------------------------------------------------------------------
-    # [5] 集約ノードの偏差6軸に StandardScaler → UMAP(2D) → HDBSCAN
-    # ------------------------------------------------------------------
-    print("[5] StandardScaler → UMAP(2D) → HDBSCAN")
+    print("[4] StandardScaler → UMAP(2D) → HDBSCAN")
     X = nodes[DEV_COLS].values
     X_scaled = StandardScaler().fit_transform(X)
 
@@ -276,7 +260,7 @@ def main():
         # まず細かめ(=多め)にクラスタリングしておき、後段でN_CLUSTERS_TARGETへ丸め込む。
         # min_cluster_size を直接上げてクラスタ数を減らすと1つの塊が肥大化して
         # サイズが極端に偏るため、ここは細かめのままにするのが肝。
-        min_cluster_size=4, min_samples=1, prediction_data=True,
+        min_cluster_size=MIN_CLUSTER_SIZE, min_samples=1, prediction_data=True,
     )
     cluster_labels = clusterer.fit_predict(X_2d)
     membership = hdbscan.all_points_membership_vectors(clusterer)
@@ -349,8 +333,12 @@ def main():
         else:
             dominant_clusters.append(cluster_names[int(np.argmax(probs))])
 
-        p_dict = {cluster_names[j]: float(probs[j]) for j in range(n_clusters)}
-        p_dict["noise"] = float(max(0.0, 1.0 - sum_probs))
+        # 1%未満の所属度は表示にも使わないため、JSONを軽くするため落とす
+        p_dict = {cluster_names[j]: float(probs[j])
+                  for j in range(n_clusters) if probs[j] >= 0.01}
+        noise_p = float(max(0.0, 1.0 - sum_probs))
+        if noise_p >= 0.01:
+            p_dict["noise"] = noise_p
         probs_list.append(p_dict)
 
     nodes["dominant_cluster"] = dominant_clusters
@@ -359,23 +347,39 @@ def main():
     nodes["_cluster_label"] = cluster_labels  # 確認ログ用
 
     # ------------------------------------------------------------------
+    # [5] 味覚特徴量空間での k-NN（味が近い豆の近傍探索）
+    #   クラスタリングと同じ「標準化済み偏差6軸」の上で距離を測る。
+    #   ここで得た上位K件をフロントに渡し、無向・重複除去してエッジにする。
+    # ------------------------------------------------------------------
+    print(f"[5] 味覚特徴量空間で k-NN (K={NEIGHBOR_K})")
+    k = min(NEIGHBOR_K + 1, len(nodes))  # 自分自身が必ず1件含まれるため +1
+    nn_idx = NearestNeighbors(n_neighbors=k).fit(X_scaled).kneighbors(
+        X_scaled, return_distance=False
+    )
+    neighbor_ids = [
+        [int(j) for j in row if int(j) != i][:NEIGHBOR_K]
+        for i, row in enumerate(nn_idx)
+    ]
+    n_edges = len({tuple(sorted((i, j)))
+                   for i, ns in enumerate(neighbor_ids) for j in ns[:3]})
+    print(f"    上位3件で張られる無向エッジ数(重複除去後): {n_edges}")
+
+    # ------------------------------------------------------------------
     # [6] JSON 出力
     # ------------------------------------------------------------------
     print("[6] JSON 出力:", OUTPUT_JSON)
     os.makedirs(os.path.dirname(OUTPUT_JSON), exist_ok=True)
 
     region_coords, country_coords = load_coords()
-    country_order = {}  # 国ごとの連番（座標フォールバックの散らし用）
 
     records = []
     for idx, row in nodes.iterrows():
         country_name = row["Country.of.Origin"]
         admin1 = row["Region_admin1"]
-        order = country_order.get(country_name, 0)
-        country_order[country_name] = order + 1
         lng, lat, coord_source = resolve_coord(
-            country_name, admin1, region_coords, country_coords, order
+            country_name, admin1, region_coords, country_coords
         )
+        altitude = row.get("altitude_mean_meters")
         rec = {
             "id": int(idx),
             "country": country_name,
@@ -383,28 +387,35 @@ def main():
             "lng": lng,
             "lat": lat,
             "coord_source": coord_source,
-            "varieties": row["varieties"],
-            "sample_count": int(row["sample_count"]),
+            # 豆1件ぶんのメタデータ（集約していないので単一値）
+            "variety": row["Variety"],
+            "processing_method": row["Processing.Method"],
+            "altitude_m": None if pd.isna(altitude) else float(altitude),
             "x": float(row["x"]),
             "y": float(row["y"]),
-            # 元の6軸スコア平均（補助情報）
-            "scores_mean": {c: float(row[c]) for c in TASTE_COLS},
-            # 偏差6軸平均（クラスタリングに使った特徴量）
-            "deviation_mean": {c: float(row[c]) for c in DEV_COLS},
-            # 総合品質スコア（補助情報・クラスタリングには未使用）
-            "overall_score_mean": float(row["row_mean"]),
+            # 元の6軸スコア
+            "scores": {c: float(row[c]) for c in TASTE_COLS},
+            # 偏差6軸（クラスタリング・近傍探索に使った特徴量）
+            "deviation": {c: float(row[c]) for c in DEV_COLS},
+            # 6軸平均（補助情報・クラスタリングには未使用）
+            "overall_score": float(row["row_mean"]),
             "dominant_cluster": row["dominant_cluster"],
             "color": row["color"],
             "probs": row["probs"],
+            # 味覚特徴量が近い豆（近い順）。フロントのエッジはこの上位3件から作る。
+            "neighbors": neighbor_ids[idx],
         }
         if has_tcp:
-            rec["total_cup_points_mean"] = float(row["Total.Cup.Points"])
+            rec["total_cup_points"] = float(row["Total.Cup.Points"])
         records.append(rec)
 
+    missing_coord = sum(1 for r in records if r["lng"] is None)
     pd.Series(records).to_json(
-        OUTPUT_JSON, orient="values", force_ascii=False, indent=2
+        OUTPUT_JSON, orient="values", force_ascii=False, indent=2,
+        double_precision=4,
     )
-    print(f"    [OK] {OUTPUT_JSON} 保存完了 (ノード数: {len(records)})")
+    print(f"    [OK] {OUTPUT_JSON} 保存完了 (ノード数: {len(records)}, "
+          f"座標なし: {missing_coord})")
 
     # ------------------------------------------------------------------
     # 確認ログ: 各クラスタの偏差6軸平均 / 総合品質スコア平均
