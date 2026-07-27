@@ -129,36 +129,41 @@ export default function WorldMap({
     [worldWidth],
   );
 
-  // 同じ地域の豆はまったく同じ産地座標を持つため、そのままでは点が完全に重なる。
+  // 同じ産地の豆はまったく同じ座標を持つため、そのままでは点が完全に重なる。
   // 「アンカーへ引き戻すバネ」と「点どうしを押し離す衝突」を釣り合わせて重なりを解く。
   //
-  // 見た目が"ぐちゃぐちゃ"にならないよう、引き戻す先を産地の中心そのものではなく
-  //   産地中心 + そのクラスタ(色)ごとの方向オフセット = クラスタ・サブアンカー
-  // にする。これで同じ地域の中でも同じ色の豆が同じ方角へ寄り、色ごとにまとまる。
+  // 見た目が"ぐちゃぐちゃ"にならないよう、引き戻す先を国の中心そのものではなく
+  //   国の中心 + そのクラスタ(色)ごとの方向オフセット = クラスタ・サブアンカー
+  // にする。これで同じ国の中で同じ色の豆が同じ方角へ寄り、国ごとに色がまとまる。
   // 投影後のpx空間で一度だけ収束させ、その結果をズーム/パン中は使い回す。
   const nodePositions = useMemo(() => {
-    // 1) 産地(admin1)ごとに豆をまとめ、投影座標(地域の中心)を求める
-    const regions = new Map();
+    // 1) 国ごとに豆をまとめ、その国の豆の平均座標を中心とする
+    //    （admin1でばらけている産地を1つの塊に集約して国単位の島にする）
+    const countries = new Map();
     coffeeData.forEach((node) => {
       if (node.lng == null || node.lat == null) return;
       const p = projection([node.lng, node.lat]);
       if (!p) return;
-      const key = `${node.country}|${node.admin1}`;
-      let region = regions.get(key);
-      if (!region) {
-        region = { cx: p[0], cy: p[1], members: [] };
-        regions.set(key, region);
+      let country = countries.get(node.country);
+      if (!country) {
+        country = { sx: 0, sy: 0, members: [] };
+        countries.set(node.country, country);
       }
-      region.members.push(node);
+      country.sx += p[0];
+      country.sy += p[1];
+      country.members.push(node);
     });
 
-    // 2) 各地域内で、クラスタ(色)ごとに方向を割り当ててサブアンカーを作る
+    // 2) 各国内で、クラスタ(色)ごとに方向を割り当ててサブアンカーを作る
     const particles = [];
-    for (const region of regions.values()) {
-      // その地域に存在するクラスタを決定的な順序(クラスタ番号順・ノイズは最後)で並べる
+    for (const country of countries.values()) {
+      const cx = country.sx / country.members.length;
+      const cy = country.sy / country.members.length;
+
+      // その国に存在するクラスタを決定的な順序(クラスタ番号順・ノイズは最後)で並べる
       const clusterOrder = [];
       const seen = new Set();
-      for (const node of region.members) {
+      for (const node of country.members) {
         const name = node.clusterName;
         if (seen.has(name)) continue;
         seen.add(name);
@@ -171,16 +176,16 @@ export default function WorldMap({
       });
       const dirOf = new Map(clusterOrder.map((name, i) => [name, i]));
       const m = clusterOrder.length;
-      // 地域が大きい(=豆が多い)ほど点の塊も大きいので、色を分ける距離もそれに比例させる
+      // 国が大きい(=豆が多い)ほど点の塊も大きいので、色を分ける距離もそれに比例させる
       const spread =
-        m <= 1 ? 0 : NODE_BASE_R * Math.sqrt(region.members.length) * 0.55;
+        m <= 1 ? 0 : NODE_BASE_R * Math.sqrt(country.members.length) * 0.55;
 
-      region.members.forEach((node, i) => {
+      country.members.forEach((node, i) => {
         const k = dirOf.get(node.clusterName);
         const ang = m <= 1 ? 0 : (2 * Math.PI * k) / m;
-        // サブアンカー: 地域中心から、そのクラスタの方角へ spread だけずらした点
-        const ax = region.cx + spread * Math.cos(ang);
-        const ay = region.cy + spread * Math.sin(ang);
+        // サブアンカー: 国の中心から、そのクラスタの方角へ spread だけずらした点
+        const ax = cx + spread * Math.cos(ang);
+        const ay = cy + spread * Math.sin(ang);
         // 初期位置はサブアンカー付近に微小ジッター(黄金角)で置く
         const j = i * 2.399963;
         particles.push({
