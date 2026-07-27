@@ -1,3 +1,4 @@
+import { forceCollide, forceSimulation, forceX, forceY } from "d3-force";
 import * as d3geo from "d3-geo";
 import { select } from "d3-selection";
 import { MapPin } from "lucide-react";
@@ -6,11 +7,20 @@ import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as topojson from "topojson-client";
 import worldTopoJson from "../data/world-110m.json";
-import { clusterColor } from "../lib/clusters";
+import { clusterColor, clusterIndex, isNoise } from "../lib/clusters";
 import { coffeeData, nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
 import MapLegend from "./MapLegend";
+
+// 点の基本半径(px, ズーム率1のとき)。重なり除去の衝突半径もこれを基準にする。
+const NODE_BASE_R = 3.5;
+// バネ+衝突レイアウトのパラメータ。
+// バネを弱く / 衝突を強くするほど重なりは減るが、点が産地から離れていく。
+const LAYOUT_SPRING = 0.15; // 産地の実座標へ引き戻すバネの強さ
+const LAYOUT_COLLIDE_PADDING = 0.5; // 点と点のあいだに空ける余白(px)
+const LAYOUT_COLLIDE_STRENGTH = 0.85;
+const LAYOUT_TICKS = 300; // 収束させるステップ数（アニメーションはさせない）
 
 // TopoJSONのnameとcoffeeDataのcountryをマッピング
 const mapCountryName = (c) => {
@@ -113,6 +123,89 @@ export default function WorldMap({
   // 最新値を ref 経由で渡す。
   const clampRef = useRef({ bounds: worldBounds, width, height });
   clampRef.current = { bounds: worldBounds, width, height };
+
+  // 近い産地どうしの点が重なって見えるのを防ぐため、
+  // 「アンカーへ引き戻すバネ」と「点どうしを押し離す衝突」を釣り合わせて重なりを解く。
+  //
+  // 見た目が"ぐちゃぐちゃ"にならないよう、引き戻す先を国の中心そのものではなく
+  //   国の中心 + そのクラスタ(色)ごとの方向オフセット = クラスタ・サブアンカー
+  // にする。これで同じ国の中で同じ色の産地が同じ方角へ寄り、国ごとに色がまとまる。
+  // 投影後のpx空間で一度だけ収束させ、その結果をズーム/パン中は使い回す。
+  const nodePositions = useMemo(() => {
+    // 1) 国ごとに産地(ノード)をまとめ、その国の平均座標を中心とする
+    const countries = new Map();
+    coffeeData.forEach((node) => {
+      if (node.lng == null || node.lat == null) return;
+      const p = projection([node.lng, node.lat]);
+      if (!p) return;
+      let country = countries.get(node.country);
+      if (!country) {
+        country = { sx: 0, sy: 0, members: [] };
+        countries.set(node.country, country);
+      }
+      country.sx += p[0];
+      country.sy += p[1];
+      country.members.push(node);
+    });
+
+    // 2) 各国内で、クラスタ(色)ごとに方向を割り当ててサブアンカーを作る
+    const particles = [];
+    for (const country of countries.values()) {
+      const cx = country.sx / country.members.length;
+      const cy = country.sy / country.members.length;
+
+      // その国に存在するクラスタを決定的な順序(クラスタ番号順・ノイズは最後)で並べる
+      const clusterOrder = [];
+      const seen = new Set();
+      for (const node of country.members) {
+        const name = node.clusterName;
+        if (seen.has(name)) continue;
+        seen.add(name);
+        clusterOrder.push(name);
+      }
+      clusterOrder.sort((a, b) => {
+        if (isNoise(a)) return 1;
+        if (isNoise(b)) return -1;
+        return (clusterIndex(a) ?? 0) - (clusterIndex(b) ?? 0);
+      });
+      const dirOf = new Map(clusterOrder.map((name, i) => [name, i]));
+      const m = clusterOrder.length;
+      // 国が大きい(=産地が多い)ほど点の塊も大きいので、色を分ける距離もそれに比例させる
+      const spread =
+        m <= 1 ? 0 : NODE_BASE_R * Math.sqrt(country.members.length) * 0.9;
+
+      country.members.forEach((node, i) => {
+        const k = dirOf.get(node.clusterName);
+        const ang = m <= 1 ? 0 : (2 * Math.PI * k) / m;
+        // サブアンカー: 国の中心から、そのクラスタの方角へ spread だけずらした点
+        const ax = cx + spread * Math.cos(ang);
+        const ay = cy + spread * Math.sin(ang);
+        // 初期位置はサブアンカー付近に微小ジッター(黄金角)で置く
+        const j = i * 2.399963;
+        particles.push({
+          id: node.id,
+          anchorX: ax,
+          anchorY: ay,
+          x: ax + 0.01 * Math.cos(j),
+          y: ay + 0.01 * Math.sin(j),
+        });
+      });
+    }
+
+    forceSimulation(particles)
+      .force("spring-x", forceX((d) => d.anchorX).strength(LAYOUT_SPRING))
+      .force("spring-y", forceY((d) => d.anchorY).strength(LAYOUT_SPRING))
+      .force(
+        "collide",
+        forceCollide(NODE_BASE_R + LAYOUT_COLLIDE_PADDING).strength(
+          LAYOUT_COLLIDE_STRENGTH,
+        ),
+      )
+      .stop()
+      .tick(LAYOUT_TICKS);
+
+    return new Map(particles.map((p) => [p.id, [p.x, p.y]]));
+  }, [projection]);
 
   // ノードのグループ化（検索・フィルタ反映）
   const filteredNodesByGeoName = useMemo(() => {
@@ -243,15 +336,14 @@ export default function WorldMap({
     }
   }, [width, height]);
 
-  // 指定した経緯度が見えている画面中央（詳細パネルを避けた位置）に来るよう、パンをアニメーションで寄せる。
+  // 指定した投影済みの点[px,py]が見えている画面中央（詳細パネルを避けた位置）に
+  // 来るよう、パンをアニメーションで寄せる。
   const animateCenterTo = useCallback(
-    (coord) => {
+    (point) => {
       const svgNode = svgRef.current;
-      if (!svgNode || !zoomRef.current || !coord) return;
-      const projected = projection(coord);
-      if (!projected) return;
+      if (!svgNode || !zoomRef.current || !point) return;
 
-      const [px, py] = projected;
+      const [px, py] = point;
       const current = zoomTransform(svgNode);
       const k = current.k;
       const period = worldWidth * k;
@@ -278,26 +370,19 @@ export default function WorldMap({
           zoomIdentity.translate(targetX, targetY).scale(k),
         );
     },
-    [projection, width, height, worldWidth],
+    [width, height, worldWidth],
   );
 
   // 外部から豆が選択されたとき（おすすめ、味が近い豆など）、その場所へパンする
   useEffect(() => {
-    if (
-      selectedCoffee &&
-      selectedCoffee.lng != null &&
-      selectedCoffee.lat != null
-    ) {
-      animateCenterTo([selectedCoffee.lng, selectedCoffee.lat]);
-    }
-  }, [selectedCoffee, animateCenterTo]);
+    if (!selectedCoffee) return;
+    animateCenterTo(nodePositions.get(selectedCoffee.id));
+  }, [selectedCoffee, nodePositions, animateCenterTo]);
 
   // 地図上の産地(点)クリック: その産地ノードを選択し、詳細パネルを開く。
   const handlePointClick = (e, node) => {
     e.stopPropagation();
-    if (node.lng != null && node.lat != null) {
-      animateCenterTo([node.lng, node.lat]);
-    }
+    animateCenterTo(nodePositions.get(node.id));
     onSelectCoffee(node);
   };
 
@@ -426,18 +511,8 @@ export default function WorldMap({
                 {/* 選択された豆から味が近い豆への弧線(アニメーション) */}
                 {selectedCoffee &&
                   similarCoffees.map((similar) => {
-                    if (similar.lng == null || similar.lat == null) return null;
-                    if (
-                      selectedCoffee.lng == null ||
-                      selectedCoffee.lat == null
-                    )
-                      return null;
-
-                    const p1 = projection([
-                      selectedCoffee.lng,
-                      selectedCoffee.lat,
-                    ]);
-                    const p2 = projection([similar.lng, similar.lat]);
+                    const p1 = nodePositions.get(selectedCoffee.id);
+                    const p2 = nodePositions.get(similar.id);
                     if (!p1 || !p2) return null;
 
                     // 投影後の座標距離（世界地図のループを考慮）
@@ -492,12 +567,11 @@ export default function WorldMap({
                 key={`world-copy-pts-${offsetX}`}
                 transform={`translate(${offsetX},0)`}
               >
-                {/* 産地(admin1)の点。UMAP座標ではなく地理座標[lng,lat]に配置する。 */}
+                {/* 産地(admin1)の点。地理座標[lng,lat]をバネ+衝突で重なり除去した位置に置く。 */}
                 {filteredNodeList.map((node) => {
-                  if (node.lng == null || node.lat == null) return null;
-                  const projected = projection([node.lng, node.lat]);
-                  if (!projected) return null;
-                  const [px, py] = projected;
+                  const pos = nodePositions.get(node.id);
+                  if (!pos) return null;
+                  const [px, py] = pos;
 
                   const isRecommended = recommendedCoffee?.id === node.id;
                   const isSelected = selectedCoffee?.id === node.id;
@@ -520,7 +594,7 @@ export default function WorldMap({
                   }
                   // 何も選択されていない時は、未飲豆のグレーアウトはしない
 
-                  let r = 3.5;
+                  let r = NODE_BASE_R;
                   let strokeColor = "#ffffff";
                   let strokeWidth = 0.7;
 
