@@ -1,3 +1,4 @@
+import { forceCollide, forceSimulation, forceX, forceY } from "d3-force";
 import * as d3geo from "d3-geo";
 import { select } from "d3-selection";
 import { MapPin } from "lucide-react";
@@ -15,6 +16,15 @@ import {
 import { translateCountry } from "../lib/countryNames";
 
 import MapLegend from "./MapLegend";
+
+// 点の基本半径(px, ズーム率1のとき)。重なり除去の衝突半径もこれを基準にする。
+const NODE_BASE_R = 1.5;
+// バネ+衝突レイアウトのパラメータ。
+// バネを弱く / 衝突を強くするほど重なりは減るが、点が産地から離れていく。
+const LAYOUT_SPRING = 0.15; // 産地の実座標へ引き戻すバネの強さ
+const LAYOUT_COLLIDE_PADDING = 0; // 点と点のあいだに空ける余白(px)。0で「ちょうど接する」
+const LAYOUT_COLLIDE_STRENGTH = 0.85;
+const LAYOUT_TICKS = 300; // 収束させるステップ数（アニメーションはさせない）
 
 // TopoJSONのnameとcoffeeDataのcountryをマッピング
 const mapCountryName = (c) => {
@@ -83,11 +93,12 @@ export default function WorldMap({
       .translate([width / 2, height / 1.5]);
   }, [width, height, mapScale]);
 
-  // 横ドラッグ時に地図が途切れないよう、画面外の隣接コピーを左右2枚ずつ用意する。
-  // （1周=画面幅なので、静止時は中央のコピー1枚だけが見える＝重複しない）
+  // 横ドラッグ時に地図が途切れないよう、画面外の隣接コピーを左右1枚ずつ用意する。
+  // （1周=画面幅、かつパンは1周ぶんで折り返すため、k>=1では左右1枚で必ず埋まる。
+  //   豆単位ノードでは要素数が多いので、コピー枚数は必要最小限にする）
   const worldCopyOffsets = useMemo(() => {
     const offsets = [];
-    for (let i = -2; i <= 2; i++) offsets.push(i * worldWidth);
+    for (let i = -1; i <= 1; i++) offsets.push(i * worldWidth);
     return offsets;
   }, [worldWidth]);
 
@@ -95,13 +106,9 @@ export default function WorldMap({
     return d3geo.geoPath().projection(projection);
   }, [projection]);
 
-  // 2つの産地[lng,lat]を結ぶベジェ弧のSVGパスを返す（世界地図のループを考慮）。
+  // 投影済みの2点[px,py]を結ぶベジェ弧のSVGパスを返す（世界地図のループを考慮）。
   const arcPath = useCallback(
-    (a, b) => {
-      if (a.lng == null || a.lat == null || b.lng == null || b.lat == null)
-        return null;
-      const p1 = projection([a.lng, a.lat]);
-      const p2 = projection([b.lng, b.lat]);
+    (p1, p2) => {
       if (!p1 || !p2) return null;
 
       let dx = p2[0] - p1[0];
@@ -119,8 +126,43 @@ export default function WorldMap({
 
       return `M ${startX},${startY} Q ${cx},${cy} ${endX},${endY}`;
     },
-    [projection, worldWidth],
+    [worldWidth],
   );
+
+  // 同じ地域の豆はまったく同じ産地座標を持つため、そのままでは点が完全に重なる。
+  // 「産地へ引き戻すバネ」と「点どうしを押し離す衝突」を釣り合わせて重なりを解く。
+  // 投影後のpx空間で一度だけ収束させ、その結果をズーム/パン中は使い回す。
+  const nodePositions = useMemo(() => {
+    const particles = [];
+    coffeeData.forEach((node, i) => {
+      if (node.lng == null || node.lat == null) return;
+      const p = projection([node.lng, node.lat]);
+      if (!p) return;
+      // 完全に同一座標だと押し離す向きが決まらないので、黄金角で微小にずらして初期化する
+      const ang = i * 2.399963;
+      particles.push({
+        id: node.id,
+        anchorX: p[0],
+        anchorY: p[1],
+        x: p[0] + 0.01 * Math.cos(ang),
+        y: p[1] + 0.01 * Math.sin(ang),
+      });
+    });
+
+    forceSimulation(particles)
+      .force("spring-x", forceX((d) => d.anchorX).strength(LAYOUT_SPRING))
+      .force("spring-y", forceY((d) => d.anchorY).strength(LAYOUT_SPRING))
+      .force(
+        "collide",
+        forceCollide(NODE_BASE_R + LAYOUT_COLLIDE_PADDING).strength(
+          LAYOUT_COLLIDE_STRENGTH,
+        ),
+      )
+      .stop()
+      .tick(LAYOUT_TICKS);
+
+    return new Map(particles.map((p) => [p.id, [p.x, p.y]]));
+  }, [projection]);
 
   // 各国のパス文字列は投影が変わったときだけ再計算し、コピー間で使い回す。
   // （コピー枚数ぶん geoPath を再生成する無駄を防ぐ）
@@ -173,7 +215,8 @@ export default function WorldMap({
           node.country || "",
           node.admin1 || "",
           node.name || "",
-          (node.varieties || []).join(" "),
+          node.variety || "",
+          node.processingMethod || "",
         ];
 
         if (isRegexValid) {
@@ -274,15 +317,14 @@ export default function WorldMap({
     }
   }, [width, height]);
 
-  // 指定した経緯度が見えている画面中央（詳細パネルを避けた位置）に来るよう、パンをアニメーションで寄せる。
+  // 指定した投影済みの点[px,py]が見えている画面中央（詳細パネルを避けた位置）に
+  // 来るよう、パンをアニメーションで寄せる。
   const animateCenterTo = useCallback(
-    (coord) => {
+    (point) => {
       const svgNode = svgRef.current;
-      if (!svgNode || !zoomRef.current || !coord) return;
-      const projected = projection(coord);
-      if (!projected) return;
+      if (!svgNode || !zoomRef.current || !point) return;
 
-      const [px, py] = projected;
+      const [px, py] = point;
       const current = zoomTransform(svgNode);
       const k = current.k;
       const period = worldWidth * k;
@@ -309,43 +351,240 @@ export default function WorldMap({
           zoomIdentity.translate(targetX, targetY).scale(k),
         );
     },
-    [projection, width, height, worldWidth],
+    [width, height, worldWidth],
   );
 
   // 外部から豆が選択されたとき（おすすめ、味が近い豆など）、その場所へパンする
   useEffect(() => {
-    if (
-      selectedCoffee &&
-      selectedCoffee.lng != null &&
-      selectedCoffee.lat != null
-    ) {
-      animateCenterTo([selectedCoffee.lng, selectedCoffee.lat]);
-    }
-  }, [selectedCoffee, animateCenterTo]);
+    if (!selectedCoffee) return;
+    animateCenterTo(nodePositions.get(selectedCoffee.id));
+  }, [selectedCoffee, nodePositions, animateCenterTo]);
 
-  // 地図上の産地(点)クリック: その産地ノードを選択し、詳細パネルを開く。
-  const handlePointClick = (e, node) => {
-    e.stopPropagation();
-    if (node.lng != null && node.lat != null) {
-      animateCenterTo([node.lng, node.lat]);
-    }
-    onSelectCoffee(node);
-  };
+  // 地図上の豆(点)クリック: その豆を選択し、詳細パネルを開く。
+  const handlePointClick = useCallback(
+    (e, node) => {
+      e.stopPropagation();
+      animateCenterTo(nodePositions.get(node.id));
+      onSelectCoffee(node);
+    },
+    [animateCenterTo, nodePositions, onSelectCoffee],
+  );
 
-  // ノードにホバーしたとき、国・地域名をカーソル位置に表示する。
-  const handleNodeHover = (e, node) => {
+  // ノードにホバーしたとき、国・地域名と品種をカーソル位置に表示する。
+  const handleNodeHover = useCallback((e, node) => {
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
     setHoveredNode({
       country: node.country,
       admin1: node.admin1,
+      variety: node.variety,
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
     });
-  };
+  }, []);
 
   const toggleCluster = (name) =>
     setActiveCluster((prev) => (prev === name ? null : name));
+
+  // 弧線レイヤー。豆単位では数千本になるため、ホバー等の無関係な再描画で
+  // 作り直さないようメモ化する（依存が変わらなければReactが差分計算ごと省く）。
+  const arcsLayer = useMemo(
+    () =>
+      worldCopyOffsets.map((offsetX) => (
+        <g
+          key={`world-copy-arcs-${offsetX}`}
+          transform={`translate(${offsetX},0)`}
+        >
+          {/* 何も選択していない時: 全ての豆の「味が近い上位3件」を薄い網として敷く */}
+          {!selectedCoffee &&
+            !recommendedCoffee &&
+            tasteSimilarityPairs.map((pair) => {
+              const isFilteredOut =
+                activeCluster !== null &&
+                pair.a.clusterName !== activeCluster &&
+                pair.b.clusterName !== activeCluster;
+              if (isFilteredOut) return null;
+
+              const pathD = arcPath(
+                nodePositions.get(pair.a.id),
+                nodePositions.get(pair.b.id),
+              );
+              if (!pathD) return null;
+
+              return (
+                <path
+                  key={`net-${pair.id}`}
+                  d={pathD}
+                  fill="none"
+                  stroke="#14b8a6" // teal-500
+                  strokeWidth="0.5"
+                  opacity="0.07"
+                  pointerEvents="none"
+                />
+              );
+            })}
+
+          {/* 選択された豆から味が近い豆への弧線(アニメーション) */}
+          {selectedCoffee &&
+            similarCoffees.map((similar) => {
+              const pathD = arcPath(
+                nodePositions.get(selectedCoffee.id),
+                nodePositions.get(similar.id),
+              );
+              if (!pathD) return null;
+
+              return (
+                <path
+                  key={`arc-${similar.id}`}
+                  d={pathD}
+                  fill="none"
+                  stroke="#14b8a6" // teal-500
+                  strokeWidth="2"
+                  strokeDasharray="6 6"
+                  opacity="0.9"
+                  pointerEvents="none"
+                >
+                  <animate
+                    attributeName="stroke-dashoffset"
+                    from="12"
+                    to="0"
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                  />
+                </path>
+              );
+            })}
+        </g>
+      )),
+    [
+      worldCopyOffsets,
+      arcPath,
+      nodePositions,
+      activeCluster,
+      selectedCoffee,
+      recommendedCoffee,
+      similarCoffees,
+    ],
+  );
+
+  // 豆の点レイヤー。1豆=1ノードで数千個になるため、同じくメモ化する。
+  const pointsLayer = useMemo(
+    () =>
+      worldCopyOffsets.map((offsetX) => (
+        <g
+          key={`world-copy-pts-${offsetX}`}
+          transform={`translate(${offsetX},0)`}
+        >
+          {/* 豆の点。UMAP座標ではなく、その豆の産地の地理座標[lng,lat]を
+              バネ+衝突レイアウトで重なり除去した位置に配置する。 */}
+          {filteredNodeList.map((node) => {
+            const pos = nodePositions.get(node.id);
+            if (!pos) return null;
+            const [px, py] = pos;
+
+            const isRecommended = recommendedCoffee?.id === node.id;
+            const isSelected = selectedCoffee?.id === node.id;
+            const isDrank = !!drankCoffees[node.id];
+            const isSimilar = selectedCoffee
+              ? similarCoffeeIds.has(node.id)
+              : false;
+
+            let opacity = 1;
+            const isFilteredOut =
+              activeCluster !== null && activeCluster !== node.clusterName;
+            if (isFilteredOut) {
+              opacity = 0.12;
+            } else if (recommendedCoffee) {
+              // "おすすめを計算する"が実行中: 計算結果の豆と飲んだ豆以外を暗くする
+              if (!isDrank && !isRecommended) opacity = 0.3;
+            } else if (selectedCoffee) {
+              if (!isSelected && !isSimilar) opacity = 0.3;
+            }
+            // 何も選択されていない時は、未飲豆のグレーアウトはしない
+
+            let r = NODE_BASE_R;
+            let strokeColor = "#ffffff";
+            let strokeWidth = 0.3;
+
+            if (isSelected || isSimilar) {
+              r += 2.5;
+            }
+
+            if (isRecommended) {
+              if (!isSelected && !isSimilar) r += 2.5; // 重複して大きくならないように
+              strokeColor = "#eab308";
+              strokeWidth = 2;
+            }
+
+            return (
+              <g key={`pt-${node.id}`}>
+                {(isDrank || isSelected) && (
+                  <circle
+                    cx={px}
+                    cy={py}
+                    r={r + 1.5}
+                    fill="none"
+                    stroke="#000000"
+                    strokeWidth={0.5}
+                    opacity={opacity}
+                  />
+                )}
+                {isRecommended && (
+                  <circle
+                    cx={px}
+                    cy={py}
+                    r={r}
+                    fill="none"
+                    stroke="#eab308"
+                    strokeWidth={2}
+                  >
+                    <animate
+                      attributeName="r"
+                      values={`${r};${r + 15}`}
+                      dur="1.5s"
+                      repeatCount="indefinite"
+                    />
+                    <animate
+                      attributeName="opacity"
+                      values="1;0"
+                      dur="1.5s"
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                )}
+                {/* biome-ignore lint/a11y/noStaticElementInteractions: SVG map point */}
+                <circle
+                  cx={px}
+                  cy={py}
+                  r={r}
+                  fill={clusterColor(node.clusterName)}
+                  stroke={strokeColor}
+                  strokeWidth={strokeWidth}
+                  opacity={opacity}
+                  className="cursor-pointer transition-opacity hover:opacity-80"
+                  onClick={(e) => handlePointClick(e, node)}
+                  onMouseEnter={(e) => handleNodeHover(e, node)}
+                  onMouseMove={(e) => handleNodeHover(e, node)}
+                  onMouseLeave={() => setHoveredNode(null)}
+                />
+              </g>
+            );
+          })}
+        </g>
+      )),
+    [
+      worldCopyOffsets,
+      filteredNodeList,
+      nodePositions,
+      activeCluster,
+      selectedCoffee,
+      recommendedCoffee,
+      similarCoffeeIds,
+      drankCoffees,
+      handlePointClick,
+      handleNodeHover,
+    ],
+  );
 
   // コーヒーベルト(南北回帰線±23.4°)と赤道の描画用Y座標。
   // メルカトル図法では緯線は水平なので、経度は任意でよい。
@@ -448,175 +687,10 @@ export default function WorldMap({
           </g>
 
           {/* レイヤー2: 弧線 */}
-          <g className="layer-arcs">
-            {worldCopyOffsets.map((offsetX) => (
-              <g
-                key={`world-copy-arcs-${offsetX}`}
-                transform={`translate(${offsetX},0)`}
-              >
-                {/* 何も選択していない時: 全産地の「味が近い上位3件」を薄い網として敷く */}
-                {!selectedCoffee &&
-                  !recommendedCoffee &&
-                  tasteSimilarityPairs.map((pair) => {
-                    const isFilteredOut =
-                      activeCluster !== null &&
-                      pair.a.clusterName !== activeCluster &&
-                      pair.b.clusterName !== activeCluster;
-                    if (isFilteredOut) return null;
+          <g className="layer-arcs">{arcsLayer}</g>
 
-                    const pathD = arcPath(pair.a, pair.b);
-                    if (!pathD) return null;
-
-                    return (
-                      <path
-                        key={`net-${pair.id}`}
-                        d={pathD}
-                        fill="none"
-                        stroke="#14b8a6" // teal-500
-                        strokeWidth="1"
-                        opacity="0.18"
-                        pointerEvents="none"
-                      />
-                    );
-                  })}
-
-                {/* 選択された豆から味が近い豆への弧線(アニメーション) */}
-                {selectedCoffee &&
-                  similarCoffees.map((similar) => {
-                    const pathD = arcPath(selectedCoffee, similar);
-                    if (!pathD) return null;
-
-                    return (
-                      <path
-                        key={`arc-${similar.id}`}
-                        d={pathD}
-                        fill="none"
-                        stroke="#14b8a6" // teal-500
-                        strokeWidth="2"
-                        strokeDasharray="6 6"
-                        opacity="0.9"
-                        pointerEvents="none"
-                      >
-                        <animate
-                          attributeName="stroke-dashoffset"
-                          from="12"
-                          to="0"
-                          dur="0.6s"
-                          repeatCount="indefinite"
-                        />
-                      </path>
-                    );
-                  })}
-              </g>
-            ))}
-          </g>
-
-          {/* レイヤー3: 産地の点 */}
-          <g className="layer-points">
-            {worldCopyOffsets.map((offsetX) => (
-              <g
-                key={`world-copy-pts-${offsetX}`}
-                transform={`translate(${offsetX},0)`}
-              >
-                {/* 産地(admin1)の点。UMAP座標ではなく地理座標[lng,lat]に配置する。 */}
-                {filteredNodeList.map((node) => {
-                  if (node.lng == null || node.lat == null) return null;
-                  const projected = projection([node.lng, node.lat]);
-                  if (!projected) return null;
-                  const [px, py] = projected;
-
-                  const isRecommended = recommendedCoffee?.id === node.id;
-                  const isSelected = selectedCoffee?.id === node.id;
-                  const isDrank = !!drankCoffees[node.id];
-                  const isSimilar = selectedCoffee
-                    ? similarCoffeeIds.has(node.id)
-                    : false;
-
-                  let opacity = 1;
-                  const isFilteredOut =
-                    activeCluster !== null &&
-                    activeCluster !== node.clusterName;
-                  if (isFilteredOut) {
-                    opacity = 0.12;
-                  } else if (recommendedCoffee) {
-                    // "おすすめを計算する"が実行中: 計算結果の豆と飲んだ豆以外を暗くする
-                    if (!isDrank && !isRecommended) opacity = 0.3;
-                  } else if (selectedCoffee) {
-                    if (!isSelected && !isSimilar) opacity = 0.3;
-                  }
-                  // 何も選択されていない時は、未飲豆のグレーアウトはしない
-
-                  let r = 3.5;
-                  let strokeColor = "#ffffff";
-                  let strokeWidth = 0.7;
-
-                  if (isSelected || isSimilar) {
-                    r += 2;
-                  }
-
-                  if (isRecommended) {
-                    if (!isSelected && !isSimilar) r += 2; // 重複して大きくならないように
-                    strokeColor = "#eab308";
-                    strokeWidth = 2;
-                  }
-
-                  return (
-                    <g key={`pt-${node.id}`}>
-                      {(isDrank || isSelected) && (
-                        <circle
-                          cx={px}
-                          cy={py}
-                          r={r + 1.5}
-                          fill="none"
-                          stroke="#000000"
-                          strokeWidth={0.5}
-                          opacity={opacity}
-                        />
-                      )}
-                      {isRecommended && (
-                        <circle
-                          cx={px}
-                          cy={py}
-                          r={r}
-                          fill="none"
-                          stroke="#eab308"
-                          strokeWidth={2}
-                        >
-                          <animate
-                            attributeName="r"
-                            values={`${r};${r + 15}`}
-                            dur="1.5s"
-                            repeatCount="indefinite"
-                          />
-                          <animate
-                            attributeName="opacity"
-                            values="1;0"
-                            dur="1.5s"
-                            repeatCount="indefinite"
-                          />
-                        </circle>
-                      )}
-                      {/* biome-ignore lint/a11y/noStaticElementInteractions: SVG map point */}
-                      <circle
-                        cx={px}
-                        cy={py}
-                        r={r}
-                        fill={clusterColor(node.clusterName)}
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        opacity={opacity}
-                        className="cursor-pointer transition-opacity hover:opacity-80"
-                        onClick={(e) => handlePointClick(e, node)}
-                        onMouseEnter={(e) => handleNodeHover(e, node)}
-                        onMouseMove={(e) => handleNodeHover(e, node)}
-                        onMouseLeave={() => setHoveredNode(null)}
-                      />
-                    </g>
-                  );
-                })}
-              </g>
-            ))}
-          </g>
+          {/* レイヤー3: 豆の点 */}
+          <g className="layer-points">{pointsLayer}</g>
         </g>
       </svg>
 
@@ -639,6 +713,11 @@ export default function WorldMap({
             <div className="flex items-center gap-1 text-[11px] text-base-content/60 leading-tight">
               <MapPin size={11} className="shrink-0" />
               {hoveredNode.admin1}
+            </div>
+          )}
+          {hoveredNode.variety && (
+            <div className="text-[11px] text-base-content/50 leading-tight">
+              {hoveredNode.variety}
             </div>
           )}
         </div>
