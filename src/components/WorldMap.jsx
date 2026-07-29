@@ -1,30 +1,36 @@
-import { forceCollide, forceSimulation, forceX, forceY } from "d3-force";
 import * as d3geo from "d3-geo";
 import { select } from "d3-selection";
 import { MapPin } from "lucide-react";
 import "d3-transition"; // select(...).transition() を有効化（zoom.transformのアニメーション用）
 import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import * as topojson from "topojson-client";
 import worldTopoJson from "../data/world-110m.json";
-import { clusterColor, clusterIndex, isNoise } from "../lib/clusters";
+import { clusterColor, isNoise, shortName } from "../lib/clusters";
 import {
   coffeeData,
   nearestByTaste,
   tasteSimilarityPairs,
 } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
+import { buildGeoLayout, buildTasteLayout, NODE_BASE_R } from "../lib/layouts";
 
 import MapLegend from "./MapLegend";
 
-// 点の基本半径(px, ズーム率1のとき)。重なり除去の衝突半径もこれを基準にする。
-const NODE_BASE_R = 1.5;
-// バネ+衝突レイアウトのパラメータ。
-// バネを弱く / 衝突を強くするほど重なりは減るが、点が産地から離れていく。
-const LAYOUT_SPRING = 0.15; // 産地の実座標へ引き戻すバネの強さ
-const LAYOUT_COLLIDE_PADDING = 0; // 点と点のあいだに空ける余白(px)。0で「ちょうど接する」
-const LAYOUT_COLLIDE_STRENGTH = 0.85;
-const LAYOUT_TICKS = 300; // 収束させるステップ数（アニメーションはさせない）
+// 味覚空間 ⇄ 地図 のモーフにかける時間(ms)と、ズームを初期位置へ戻す時間(ms)。
+const MORPH_MS = 1100;
+const MORPH_ZOOM_MS = 600;
+
+// なめらかな加減速（ease-in-out cubic）
+const easeInOut = (t) =>
+  t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
 
 // TopoJSONのnameとcoffeeDataのcountryをマッピング
 const mapCountryName = (c) => {
@@ -41,10 +47,15 @@ export default function WorldMap({
   searchQuery,
   drankCoffees = {},
   recommendedCoffee,
+  viewMode = "taste",
 }) {
   const [activeCluster, setActiveCluster] = useState(null);
   // ノードのホバーで表示する国・地域ツールチップ（コンテナ基準の座標）
   const [hoveredNode, setHoveredNode] = useState(null);
+  // モーフ中は点をrAFで直接動かすため、重い弧レイヤーを止めて世界コピーも1枚に絞る。
+  const [isMorphing, setIsMorphing] = useState(false);
+
+  const isMap = viewMode === "map";
 
   const similarCoffees = useMemo(() => {
     if (!selectedCoffee) return [];
@@ -96,24 +107,33 @@ export default function WorldMap({
   // 横ドラッグ時に地図が途切れないよう、画面外の隣接コピーを左右1枚ずつ用意する。
   // （1周=画面幅、かつパンは1周ぶんで折り返すため、k>=1では左右1枚で必ず埋まる。
   //   豆単位ノードでは要素数が多いので、コピー枚数は必要最小限にする）
+  //
+  // 味覚空間には「世界の折り返し」が存在しないのでコピーは不要。モーフ中も、
+  // rAFで動かす要素数を1206個に抑えるため1枚だけにする（3枚だと3618個になる）。
+  const needsWorldCopies = isMap && !isMorphing;
   const worldCopyOffsets = useMemo(() => {
+    if (!needsWorldCopies) return [0];
     const offsets = [];
     for (let i = -1; i <= 1; i++) offsets.push(i * worldWidth);
     return offsets;
-  }, [worldWidth]);
+  }, [worldWidth, needsWorldCopies]);
 
   const pathGenerator = useMemo(() => {
     return d3geo.geoPath().projection(projection);
   }, [projection]);
 
-  // 投影済みの2点[px,py]を結ぶベジェ弧のSVGパスを返す（世界地図のループを考慮）。
+  // 投影済みの2点[px,py]を結ぶベジェ弧のSVGパスを返す。
+  // 地図モードでは世界地図のループを考慮して短い方向へ回す。
+  // 味覚空間モードには折り返しが無いため、この補正をかけると弧が壊れる。
   const arcPath = useCallback(
     (p1, p2) => {
       if (!p1 || !p2) return null;
 
       let dx = p2[0] - p1[0];
-      if (dx > worldWidth / 2) dx -= worldWidth;
-      else if (dx < -worldWidth / 2) dx += worldWidth;
+      if (isMap) {
+        if (dx > worldWidth / 2) dx -= worldWidth;
+        else if (dx < -worldWidth / 2) dx += worldWidth;
+      }
 
       const startX = p1[0];
       const startY = p1[1];
@@ -126,92 +146,18 @@ export default function WorldMap({
 
       return `M ${startX},${startY} Q ${cx},${cy} ${endX},${endY}`;
     },
-    [worldWidth],
+    [worldWidth, isMap],
   );
 
-  // 同じ産地の豆はまったく同じ座標を持つため、そのままでは点が完全に重なる。
-  // 「アンカーへ引き戻すバネ」と「点どうしを押し離す衝突」を釣り合わせて重なりを解く。
-  //
-  // 見た目が"ぐちゃぐちゃ"にならないよう、引き戻す先を国の中心そのものではなく
-  //   国の中心 + そのクラスタ(色)ごとの方向オフセット = クラスタ・サブアンカー
-  // にする。これで同じ国の中で同じ色の豆が同じ方角へ寄り、国ごとに色がまとまる。
-  // 投影後のpx空間で一度だけ収束させ、その結果をズーム/パン中は使い回す。
-  const nodePositions = useMemo(() => {
-    // 1) 国ごとに豆をまとめ、その国の豆の平均座標を中心とする
-    //    （admin1でばらけている産地を1つの塊に集約して国単位の島にする）
-    const countries = new Map();
-    coffeeData.forEach((node) => {
-      if (node.lng == null || node.lat == null) return;
-      const p = projection([node.lng, node.lat]);
-      if (!p) return;
-      let country = countries.get(node.country);
-      if (!country) {
-        country = { sx: 0, sy: 0, members: [] };
-        countries.set(node.country, country);
-      }
-      country.sx += p[0];
-      country.sy += p[1];
-      country.members.push(node);
-    });
+  // 2つのレイアウト（産地に並べる / 味の近さに並べる）。どちらも投影後のpx空間で
+  // 一度だけ収束させ、ズーム/パン中は使い回す。詳細は src/lib/layouts.js を参照。
+  const geoPositions = useMemo(() => buildGeoLayout(projection), [projection]);
+  const tasteLayout = useMemo(
+    () => buildTasteLayout(width, height),
+    [width, height],
+  );
 
-    // 2) 各国内で、クラスタ(色)ごとに方向を割り当ててサブアンカーを作る
-    const particles = [];
-    for (const country of countries.values()) {
-      const cx = country.sx / country.members.length;
-      const cy = country.sy / country.members.length;
-
-      // その国に存在するクラスタを決定的な順序(クラスタ番号順・ノイズは最後)で並べる
-      const clusterOrder = [];
-      const seen = new Set();
-      for (const node of country.members) {
-        const name = node.clusterName;
-        if (seen.has(name)) continue;
-        seen.add(name);
-        clusterOrder.push(name);
-      }
-      clusterOrder.sort((a, b) => {
-        if (isNoise(a)) return 1;
-        if (isNoise(b)) return -1;
-        return (clusterIndex(a) ?? 0) - (clusterIndex(b) ?? 0);
-      });
-      const dirOf = new Map(clusterOrder.map((name, i) => [name, i]));
-      const m = clusterOrder.length;
-      // 国が大きい(=豆が多い)ほど点の塊も大きいので、色を分ける距離もそれに比例させる
-      const spread =
-        m <= 1 ? 0 : NODE_BASE_R * Math.sqrt(country.members.length) * 0.55;
-
-      country.members.forEach((node, i) => {
-        const k = dirOf.get(node.clusterName);
-        const ang = m <= 1 ? 0 : (2 * Math.PI * k) / m;
-        // サブアンカー: 国の中心から、そのクラスタの方角へ spread だけずらした点
-        const ax = cx + spread * Math.cos(ang);
-        const ay = cy + spread * Math.sin(ang);
-        // 初期位置はサブアンカー付近に微小ジッター(黄金角)で置く
-        const j = i * 2.399963;
-        particles.push({
-          id: node.id,
-          anchorX: ax,
-          anchorY: ay,
-          x: ax + 0.01 * Math.cos(j),
-          y: ay + 0.01 * Math.sin(j),
-        });
-      });
-    }
-
-    forceSimulation(particles)
-      .force("spring-x", forceX((d) => d.anchorX).strength(LAYOUT_SPRING))
-      .force("spring-y", forceY((d) => d.anchorY).strength(LAYOUT_SPRING))
-      .force(
-        "collide",
-        forceCollide(NODE_BASE_R + LAYOUT_COLLIDE_PADDING).strength(
-          LAYOUT_COLLIDE_STRENGTH,
-        ),
-      )
-      .stop()
-      .tick(LAYOUT_TICKS);
-
-    return new Map(particles.map((p) => [p.id, [p.x, p.y]]));
-  }, [projection]);
+  const nodePositions = isMap ? geoPositions : tasteLayout.positions;
 
   // 各国のパス文字列は投影が変わったときだけ再計算し、コピー間で使い回す。
   // （コピー枚数ぶん geoPath を再生成する無駄を防ぐ）
@@ -231,10 +177,17 @@ export default function WorldMap({
     [pathGenerator, geoFeatures],
   );
 
-  // constrain は zoom の初期化 effect（deps []）から参照するため、
-  // 最新値を ref 経由で渡す。
-  const clampRef = useRef({ bounds: worldBounds, width, height });
-  clampRef.current = { bounds: worldBounds, width, height };
+  // constrain / zoom ハンドラは zoom の初期化 effect（deps []）から参照するため、
+  // 最新値を ref 経由で渡す。縦パンのクランプ範囲は、地図モードでは陸地の範囲、
+  // 味覚空間モードでは点群の範囲。
+  const clampRef = useRef(null);
+  clampRef.current = {
+    bounds: isMap ? worldBounds : tasteLayout.bounds,
+    width,
+    height,
+    // 味覚空間には世界の折り返しが無いので、横パンの剰余ラップも行わない
+    wrapX: isMap,
+  };
 
   // ノードのグループ化（検索・フィルタ反映）
   const filteredNodesByGeoName = useMemo(() => {
@@ -345,7 +298,9 @@ export default function WorldMap({
         const { x, y, k } = event.transform;
         // worldWidth(=width) は初期化 effect(deps [])では古くなるため ref 経由で最新値を使う
         const period = clampRef.current.width * k;
-        const wrappedX = x - Math.round(x / period) * period;
+        const wrappedX = clampRef.current.wrapX
+          ? x - Math.round(x / period) * period
+          : x;
         select(gRef.current).attr(
           "transform",
           `translate(${wrappedX},${y}) scale(${k})`,
@@ -389,8 +344,11 @@ export default function WorldMap({
       let targetX = visibleCenterX - px * k;
       const targetY = visibleCenterY - py * k;
 
-      // 現在位置に最も近い周期を選び、最短距離で寄せる（世界を何周もしない）。
-      targetX += Math.round((current.x - targetX) / period) * period;
+      // 地図モードのみ: 現在位置に最も近い周期を選び、最短距離で寄せる
+      // （世界を何周もしない）。味覚空間はコピーが1枚なので加算すると画面外へ飛ぶ。
+      if (isMap) {
+        targetX += Math.round((current.x - targetX) / period) * period;
+      }
 
       select(svgNode)
         .transition()
@@ -400,24 +358,122 @@ export default function WorldMap({
           zoomIdentity.translate(targetX, targetY).scale(k),
         );
     },
-    [width, height, worldWidth],
+    [width, height, worldWidth, isMap],
   );
+
+  // 選択時のオートパンは nodePositions を ref 経由で読む。
+  // 直接依存にすると、モードを切り替えるたびに発火してモーフと競合してしまう。
+  const nodePositionsRef = useRef(nodePositions);
+  nodePositionsRef.current = nodePositions;
 
   // 外部から豆が選択されたとき（おすすめ、味が近い豆など）、その場所へパンする
   useEffect(() => {
     if (!selectedCoffee) return;
-    animateCenterTo(nodePositions.get(selectedCoffee.id));
-  }, [selectedCoffee, nodePositions, animateCenterTo]);
+    animateCenterTo(nodePositionsRef.current.get(selectedCoffee.id));
+  }, [selectedCoffee, animateCenterTo]);
 
   // 地図上の豆(点)クリック: その豆を選択し、詳細パネルを開く。
   const handlePointClick = useCallback(
     (e, node) => {
       e.stopPropagation();
-      animateCenterTo(nodePositions.get(node.id));
+      animateCenterTo(nodePositionsRef.current.get(node.id));
       onSelectCoffee(node);
     },
-    [animateCenterTo, nodePositions, onSelectCoffee],
+    [animateCenterTo, onSelectCoffee],
   );
+
+  // ---- 味覚空間 ⇄ 地図 のモーフ -------------------------------------------
+  // 同じ1206点を、味の近さで並べた配置と産地で並べた配置のあいだで動かす。
+  // Reactの再レンダリングは切り替え時の1回だけにして、実際の移動はrAFから
+  // transform属性を直接書き換えて行う。点・弧レイヤーは重いメモなので、
+  // 毎フレーム作り直すと確実にフレーム落ちする。
+  const morphRef = useRef({ raf: 0, items: null, start: 0 });
+  const morphFromRef = useRef(null);
+
+  // 実行中のモーフの、いまこの瞬間の補間位置。切り替えを連打されたときに
+  // 点がワープしないよう、これを次のモーフの開始位置として引き継ぐ。
+  const sampleMorph = () => {
+    const { items, start } = morphRef.current;
+    if (!items) return null;
+    const t = easeInOut(Math.min(1, (performance.now() - start) / MORPH_MS));
+    return new Map(
+      items.map((it) => [
+        it.id,
+        [it.fx + (it.tx - it.fx) * t, it.fy + (it.ty - it.fy) * t],
+      ]),
+    );
+  };
+
+  // viewMode と nodePositions は同じレンダリングで一緒に切り替わるため、
+  // 「切り替え直前のレイアウト」はレンダリング中に確保しておく必要がある。
+  // isMorphing もここで立てて、世界コピーの枚数が viewMode と同じコミットで
+  // 1枚に絞られるようにする（後から立てると3枚描いてから作り直しになる）。
+  const prevViewModeRef = useRef(viewMode);
+  if (prevViewModeRef.current !== viewMode) {
+    morphFromRef.current =
+      sampleMorph() ??
+      (prevViewModeRef.current === "map" ? geoPositions : tasteLayout.positions);
+    prevViewModeRef.current = viewMode;
+    setIsMorphing(true);
+  }
+
+  // viewMode の変化そのものがモーフの起動条件なので依存に残す。
+  // 位置は常に最新を読みたいので nodePositionsRef 経由にしてある。
+  // biome-ignore lint/correctness/useExhaustiveDependencies: 上記のとおり意図的
+  useLayoutEffect(() => {
+    const from = morphFromRef.current;
+    if (!from || !gRef.current) return; // 初回マウント時は何もしない
+    morphFromRef.current = null;
+
+    // ズームを初期位置へ戻す。モーフ中は世界コピーが1枚しかないので、
+    // 中央のコピーが画面に来ている状態（＝identity）である必要がある。
+    if (svgRef.current && zoomRef.current) {
+      select(svgRef.current)
+        .transition()
+        .duration(MORPH_ZOOM_MS)
+        .call(zoomRef.current.transform, zoomIdentity);
+    }
+
+    const to = nodePositionsRef.current;
+    const items = [];
+    for (const el of gRef.current.querySelectorAll("[data-node-id]")) {
+      const id = Number(el.dataset.nodeId);
+      const f = from.get(id);
+      const t = to.get(id);
+      if (f && t) items.push({ id, el, fx: f[0], fy: f[1], tx: t[0], ty: t[1] });
+    }
+
+    const finish = () => {
+      morphRef.current = { raf: 0, items: null, start: 0 };
+      setIsMorphing(false);
+    };
+
+    const reduceMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)",
+    )?.matches;
+    if (reduceMotion || items.length === 0) {
+      finish();
+      return;
+    }
+
+    const start = performance.now();
+    const step = (now) => {
+      const p = Math.min(1, (now - start) / MORPH_MS);
+      const t = easeInOut(p);
+      for (const it of items) {
+        // 最終フレームは目標値をそのまま書き、Reactが描画した属性値と一致させる
+        // （一致していれば isMorphing を戻したときに点が跳ねない）
+        const x = p === 1 ? it.tx : it.fx + (it.tx - it.fx) * t;
+        const y = p === 1 ? it.ty : it.fy + (it.ty - it.fy) * t;
+        it.el.setAttribute("transform", `translate(${x},${y})`);
+      }
+      if (p < 1) morphRef.current.raf = requestAnimationFrame(step);
+      else finish();
+    };
+
+    morphRef.current = { raf: requestAnimationFrame(step), items, start };
+    return () => cancelAnimationFrame(morphRef.current.raf);
+  }, [viewMode]);
 
   // ノードにホバーしたとき、国・地域名と品種をカーソル位置に表示する。
   const handleNodeHover = useCallback((e, node) => {
@@ -444,8 +500,11 @@ export default function WorldMap({
           key={`world-copy-arcs-${offsetX}`}
           transform={`translate(${offsetX},0)`}
         >
-          {/* 何も選択していない時: 全ての豆の「味が近い上位3件」を薄い網として敷く */}
-          {!selectedCoffee &&
+          {/* 何も選択していない時: 全ての豆の「味が近い上位3件」を薄い網として敷く。
+              味覚空間モード限定。地図モードでは近傍が世界中に散るため、
+              約2500本が世界地図を横断するだけのモヤになって情報量がない。 */}
+          {!isMap &&
+            !selectedCoffee &&
             !recommendedCoffee &&
             tasteSimilarityPairs.map((pair) => {
               const isFilteredOut =
@@ -513,6 +572,7 @@ export default function WorldMap({
       selectedCoffee,
       recommendedCoffee,
       similarCoffees,
+      isMap,
     ],
   );
 
@@ -565,12 +625,16 @@ export default function WorldMap({
               strokeWidth = 2;
             }
 
+            // 位置は g の transform 1か所に集約する。こうしておくと
+            // モーフのrAFが1ノードにつき1属性を書き換えるだけで済む。
             return (
-              <g key={`pt-${node.id}`}>
+              <g
+                key={`pt-${node.id}`}
+                data-node-id={node.id}
+                transform={`translate(${px},${py})`}
+              >
                 {(isDrank || isSelected) && (
                   <circle
-                    cx={px}
-                    cy={py}
                     r={r + 1.5}
                     fill="none"
                     stroke="#000000"
@@ -579,14 +643,7 @@ export default function WorldMap({
                   />
                 )}
                 {isRecommended && (
-                  <circle
-                    cx={px}
-                    cy={py}
-                    r={r}
-                    fill="none"
-                    stroke="#eab308"
-                    strokeWidth={2}
-                  >
+                  <circle r={r} fill="none" stroke="#eab308" strokeWidth={2}>
                     <animate
                       attributeName="r"
                       values={`${r};${r + 15}`}
@@ -603,8 +660,6 @@ export default function WorldMap({
                 )}
                 {/* biome-ignore lint/a11y/noStaticElementInteractions: SVG map point */}
                 <circle
-                  cx={px}
-                  cy={py}
                   r={r}
                   fill={clusterColor(node.clusterName)}
                   stroke={strokeColor}
@@ -635,6 +690,36 @@ export default function WorldMap({
     ],
   );
 
+  // 味覚空間モードのクラスタ名ラベル。UMAPの軸そのものには意味がないので、
+  // 代わりに「どの塊が何の味か」をその場で読めるようにする。
+  // モーフ完了後にだけ出す（移動中に味覚空間の重心へ置いても意味がないため）。
+  const clusterLabels = useMemo(() => {
+    if (isMap || isMorphing) return null;
+    return [...tasteLayout.clusterCentroids].map(([name, [cx, cy]]) => {
+      // ノイズ(独自の味わい)は塊を作らず全体に散るので、重心にラベルを置くと
+      // そこに集まっているように読めてしまう。凡例だけに任せる。
+      if (isNoise(name)) return null;
+      if (activeCluster !== null && activeCluster !== name) return null;
+      return (
+        <text
+          key={`label-${name}`}
+          x={cx}
+          y={cy}
+          textAnchor="middle"
+          pointerEvents="none"
+          className="font-bold"
+          fontSize={12}
+          fill={clusterColor(name)}
+          stroke="#ffffff"
+          strokeWidth={3}
+          paintOrder="stroke"
+        >
+          {shortName(name)}
+        </text>
+      );
+    });
+  }, [isMap, isMorphing, tasteLayout, activeCluster]);
+
   // コーヒーベルト(南北回帰線±23.4°)と赤道の描画用Y座標。
   // メルカトル図法では緯線は水平なので、経度は任意でよい。
   const TROPIC = 25;
@@ -652,7 +737,9 @@ export default function WorldMap({
         viewBox={`0 0 ${width} ${height}`}
         width="100%"
         height="100%"
-        className="absolute inset-0 select-none bg-[#e0f2fe]"
+        className={`absolute inset-0 select-none transition-colors duration-700 ${
+          isMap ? "bg-[#e0f2fe]" : "bg-[#f8fafc]"
+        }`}
         onClick={() => {
           onSelectCoffee(null);
           // 背景クリックで凡例のクラスタ絞り込みも解除する
@@ -660,8 +747,13 @@ export default function WorldMap({
         }}
       >
         <g ref={gRef} className="countries">
-          {/* レイヤー1: 地図（陸地と背景線） */}
-          <g className="layer-map">
+          {/* レイヤー1: 地図（陸地と背景線）。
+              味覚空間モードでは地理そのものが意味を持たないのでフェードアウトさせる。 */}
+          <g
+            className="layer-map transition-opacity duration-700"
+            opacity={isMap ? 1 : 0}
+            pointerEvents="none"
+          >
             {worldCopyOffsets.map((offsetX) => (
               <g
                 key={`world-copy-map-${offsetX}`}
@@ -735,11 +827,14 @@ export default function WorldMap({
             ))}
           </g>
 
-          {/* レイヤー2: 弧線 */}
-          <g className="layer-arcs">{arcsLayer}</g>
+          {/* レイヤー2: 弧線。モーフ中は数千本を毎フレーム引き直せないので消す */}
+          {!isMorphing && <g className="layer-arcs">{arcsLayer}</g>}
 
           {/* レイヤー3: 豆の点 */}
           <g className="layer-points">{pointsLayer}</g>
+
+          {/* レイヤー4: 味覚空間モードのクラスタ名 */}
+          <g className="layer-labels">{clusterLabels}</g>
         </g>
       </svg>
 

@@ -2,7 +2,19 @@ import { useMemo, useState } from "react";
 import { coffeeData } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
 
-export default function Header({ searchQuery, setSearchQuery, onOpenGuide }) {
+// 並べ替えモードの説明。トグルの真下に出して、2つの図の関係を1行で伝える。
+const VIEW_CAPTION = {
+  taste: "味の近さで並べた図。6つのクラスタがはっきり分かれる",
+  map: "同じ豆を産地に並べ替えた図。クラスタは産地ごとに混ざる",
+};
+
+export default function Header({
+  searchQuery,
+  setSearchQuery,
+  onOpenGuide,
+  viewMode,
+  setViewMode,
+}) {
   // 候補をクリック（選択）したら閉じる。再度入力があれば開き直す。
   const [suggestionsDismissed, setSuggestionsDismissed] = useState(false);
 
@@ -60,6 +72,33 @@ export default function Header({ searchQuery, setSearchQuery, onOpenGuide }) {
                 <path d="M12 17h.01" />
               </svg>
             </button>
+          </div>
+
+          {/* 並べ替えモードの切り替え。同じ1206点を味覚空間↔産地でモーフさせる。 */}
+          <div className="mb-2 sm:mb-3">
+            <div className="inline-flex rounded-lg bg-base-200 p-0.5">
+              {[
+                ["taste", "味覚空間"],
+                ["map", "地図"],
+              ].map(([mode, label]) => (
+                <button
+                  key={mode}
+                  type="button"
+                  aria-pressed={viewMode === mode}
+                  onClick={() => setViewMode(mode)}
+                  className={`rounded-md px-3 py-1 text-xs sm:text-sm font-semibold transition-colors ${
+                    viewMode === mode
+                      ? "bg-base-100 text-primary shadow-sm"
+                      : "text-base-content/60 hover:text-base-content"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <p className="mt-1.5 max-w-[16rem] sm:max-w-xs text-[11px] leading-snug text-base-content/60">
+              {VIEW_CAPTION[viewMode]}
+            </p>
           </div>
 
           <div className="relative">

@@ -17,6 +17,10 @@ function App() {
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   // モバイルのボトムシートの最小化状態（デスクトップの右パネルでは未使用）
   const [sheetMinimized, setSheetMinimized] = useState(false);
+  // 同じ豆をどう並べるか: "taste"=味の近さ(UMAP座標) / "map"=産地(地理座標)。
+  // 味覚空間ではクラスタが分離し、産地に並べ替えると混ざる、という対比が主題なので
+  // 最初は味覚空間から見せる。
+  const [viewMode, setViewMode] = useState("taste");
 
   useEffect(() => {
     const hasSeenGuide = localStorage.getItem("hasSeenGuide");
@@ -70,12 +74,15 @@ function App() {
         searchQuery={searchQuery}
         drankCoffees={drankCoffees}
         recommendedCoffee={recommendedCoffee}
+        viewMode={viewMode}
       />
 
       <Header
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onOpenGuide={() => setIsGuideOpen(true)}
+        viewMode={viewMode}
+        setViewMode={setViewMode}
       />
 
       <DrankList
