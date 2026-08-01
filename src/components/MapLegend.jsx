@@ -40,6 +40,11 @@ const globalMaxDev = (() => {
   return maxVal;
 })();
 
+// 軸名（最長は「バランス」4文字 ≒ 30px）が chart 本体の 80px 幅からはみ出すため、
+// 左右に余白を足した viewBox にして SVG 自身の箱の中へ収める。
+// はみ出させたままだと、横スクロールする凡例の左端でラベルが切れてしまう。
+const RADAR_PAD_X = 18;
+
 function ClusterRadarChart({ devs, color, selected }) {
   const size = 80;
   const cx = size / 2;
@@ -108,10 +113,10 @@ function ClusterRadarChart({ devs, color, selected }) {
     <svg
       role="img"
       aria-label="クラスタの味覚傾向レーダーチャート"
-      width={size}
+      width={size + RADAR_PAD_X * 2}
       height={size}
-      viewBox={`0 0 ${size} ${size}`}
-      className="overflow-visible select-none my-0.5"
+      viewBox={`${-RADAR_PAD_X} 0 ${size + RADAR_PAD_X * 2} ${size}`}
+      className="select-none my-0.5"
     >
       <title>クラスタの味覚傾向レーダーチャート</title>
 
@@ -334,7 +339,7 @@ const MapLegend = forwardRef(function MapLegend(
       </div>
 
       {!isCollapsed && (
-        <div className="flex items-center gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1 px-0.5 max-w-full">
+        <div className="flex items-stretch gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1.5 px-1.5 max-w-full">
           {legendClusters.map((name) => {
             const color = clusterColor(name);
             const selected = activeCluster === name;
@@ -346,7 +351,7 @@ const MapLegend = forwardRef(function MapLegend(
                 key={name}
                 type="button"
                 onClick={() => toggleCluster(name)}
-                className={`flex flex-col items-center justify-between p-1.5 rounded-xl border transition-all duration-200 cursor-pointer shrink-0 ${
+                className={`flex w-[128px] flex-col items-center justify-between p-1.5 rounded-xl border transition-all duration-200 cursor-pointer shrink-0 ${
                   selected
                     ? "bg-base-100 shadow-md ring-2 scale-105 z-10"
                     : dimmed
@@ -355,12 +360,12 @@ const MapLegend = forwardRef(function MapLegend(
                 }`}
                 style={{
                   borderColor: selected ? color : `${color}40`,
-                  ringColor: selected ? color : "transparent",
+                  "--tw-ring-color": selected ? color : "transparent",
                 }}
               >
-                {/* 上部: クラスタ名ラベル */}
+                {/* 上部: クラスタ名ラベル（長い名前は2行に折り返す） */}
                 <div
-                  className="badge gap-1 px-1.5 py-0.5 text-[10px] font-bold transition-all h-5 min-h-0"
+                  className="flex w-full items-center justify-center gap-1 rounded-full border px-1.5 py-0.5 min-h-[29px] text-[10px] font-bold leading-tight text-center transition-all"
                   style={{
                     backgroundColor: selected ? color : "transparent",
                     borderColor: color,
@@ -371,8 +376,17 @@ const MapLegend = forwardRef(function MapLegend(
                     className="w-1.5 h-1.5 rounded-full shrink-0"
                     style={{ backgroundColor: selected ? "#fff" : color }}
                   />
-                  <span className="truncate max-w-[80px]">
-                    {shortName(name)}
+                  {/* 折り返しは軸の区切り「・」の位置で起きるように分割して並べる */}
+                  <span className="flex min-w-0 flex-wrap items-center justify-center">
+                    {(() => {
+                      const parts = shortName(name).split("・");
+                      return parts.map((part, i) => (
+                        <span key={part}>
+                          {part}
+                          {i < parts.length - 1 && "・"}
+                        </span>
+                      ));
+                    })()}
                   </span>
                 </div>
 
