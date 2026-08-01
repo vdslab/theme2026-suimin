@@ -10,6 +10,14 @@ import worldTopoJson from "../data/world-50m.json";
 import { clusterColor } from "../lib/clusters";
 import { coffeeData, nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
+import {
+  BELT_COLOR,
+  BELT_FILL_OPACITY,
+  BELT_LAT,
+  BELT_LINE_OPACITY,
+  EQUATOR_COLOR,
+  EQUATOR_LINE_OPACITY,
+} from "../lib/mapStyle";
 
 import MapLegend from "./MapLegend";
 
@@ -356,12 +364,11 @@ export default function WorldMap({
   const toggleCluster = (name) =>
     setActiveCluster((prev) => (prev === name ? null : name));
 
-  // コーヒーベルト(南北回帰線±23.4°)と赤道の描画用Y座標。
+  // コーヒーベルト(南北 BELT_LAT 度)と赤道の描画用Y座標。
   // メルカトル図法では緯線は水平なので、経度は任意でよい。
-  const TROPIC = 25;
   const yEquator = projection([centerLng, 0])?.[1] ?? 0;
-  const yCancer = projection([centerLng, TROPIC])?.[1] ?? 0; // 北回帰線
-  const yCapricorn = projection([centerLng, -TROPIC])?.[1] ?? 0; // 南回帰線
+  const yBeltNorth = projection([centerLng, BELT_LAT])?.[1] ?? 0;
+  const yBeltSouth = projection([centerLng, -BELT_LAT])?.[1] ?? 0;
 
   return (
     <div ref={containerRef} className="w-full h-full relative">
@@ -408,37 +415,37 @@ export default function WorldMap({
                   );
                 })}
 
-                {/* コーヒーベルト(南北回帰線の間)を薄く塗り、回帰線と赤道を引く。
+                {/* コーヒーベルト(南北 BELT_LAT 度の間)を薄く塗り、その境界線と赤道を引く。
                   クリックを邪魔しないよう pointerEvents は無効。 */}
                 <rect
                   x={0}
-                  y={yCancer}
+                  y={yBeltNorth}
                   width={worldWidth}
-                  height={yCapricorn - yCancer}
-                  fill="#f59e0b"
-                  opacity={0.12}
+                  height={yBeltSouth - yBeltNorth}
+                  fill={BELT_COLOR}
+                  opacity={BELT_FILL_OPACITY}
                   pointerEvents="none"
                 />
                 <line
                   x1={0}
                   x2={worldWidth}
-                  y1={yCancer}
-                  y2={yCancer}
-                  stroke="#f59e0b"
+                  y1={yBeltNorth}
+                  y2={yBeltNorth}
+                  stroke={BELT_COLOR}
                   strokeWidth={0.8}
                   strokeDasharray="4 4"
-                  opacity={0.55}
+                  opacity={BELT_LINE_OPACITY}
                   pointerEvents="none"
                 />
                 <line
                   x1={0}
                   x2={worldWidth}
-                  y1={yCapricorn}
-                  y2={yCapricorn}
-                  stroke="#f59e0b"
+                  y1={yBeltSouth}
+                  y2={yBeltSouth}
+                  stroke={BELT_COLOR}
                   strokeWidth={0.8}
                   strokeDasharray="4 4"
-                  opacity={0.55}
+                  opacity={BELT_LINE_OPACITY}
                   pointerEvents="none"
                 />
                 <line
@@ -446,10 +453,10 @@ export default function WorldMap({
                   x2={worldWidth}
                   y1={yEquator}
                   y2={yEquator}
-                  stroke="#ef4444"
+                  stroke={EQUATOR_COLOR}
                   strokeWidth={1}
                   strokeDasharray="6 4"
-                  opacity={0.7}
+                  opacity={EQUATOR_LINE_OPACITY}
                   pointerEvents="none"
                 />
               </g>
