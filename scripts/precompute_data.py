@@ -361,20 +361,24 @@ def main():
     # クラスタ名の割り当て（偏差6軸平均の最大特徴量で命名）
     # ------------------------------------------------------------------
     # クラスタ名は全 n_clusters 列に用意する（probs出力が全列を参照するため）。
-    # 個性派しきい値で外れた豆も、代表偏差は「最有力クラスタ」基準で数える。
+    # ノイズ判定完了後（cluster_labels == c）の確定ノード群の偏差平均に基づいて命名。
     cluster_names = {}
     argmax_label = membership.argmax(axis=1)
     for c in range(n_clusters):
-        members = nodes.loc[argmax_label == c, DEV_COLS]
+        members = nodes.loc[cluster_labels == c, DEV_COLS]
         if len(members):
             dev_mean = members.mean()
         else:
-            # 誰の最有力でもない稀なケースは membership 重み平均で代表を出す
-            w = membership[:, c]
-            dev_mean = pd.Series(
-                (nodes[DEV_COLS].values * w[:, None]).sum(axis=0) / max(w.sum(), 1e-9),
-                index=DEV_COLS,
-            )
+            # ノイズ除外後にノードが0件の場合のフォールバック
+            fallback_members = nodes.loc[argmax_label == c, DEV_COLS]
+            if len(fallback_members):
+                dev_mean = fallback_members.mean()
+            else:
+                w = membership[:, c]
+                dev_mean = pd.Series(
+                    (nodes[DEV_COLS].values * w[:, None]).sum(axis=0) / max(w.sum(), 1e-9),
+                    index=DEV_COLS,
+                )
         cluster_names[c] = assign_cluster_name(dev_mean, c)
 
     # ------------------------------------------------------------------
