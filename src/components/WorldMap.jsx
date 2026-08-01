@@ -1,3 +1,4 @@
+import { forceCollide, forceSimulation, forceX, forceY } from "d3-force";
 import * as d3geo from "d3-geo";
 import { select } from "d3-selection";
 import { MapPin } from "lucide-react";
@@ -12,8 +13,14 @@ import { translateCountry } from "../lib/countryNames";
 
 import MapLegend from "./MapLegend";
 
-// 点の基本半径(px, ズーム率1のとき)。
+// 点の基本半径(px, ズーム率1のとき)。重なり除去の衝突半径もこれを基準にする。
 const NODE_BASE_R = 3.5;
+// 重なり除去のパラメータ。
+// バネが産地の実座標へ引き戻し、衝突が点どうしを押し離す。その釣り合いで位置が決まる。
+const LAYOUT_SPRING = 0.3; // 実座標へ引き戻すバネの強さ
+const LAYOUT_COLLIDE_PADDING = 0.5; // 点と点のあいだに空ける余白(px)
+const LAYOUT_COLLIDE_STRENGTH = 0.85;
+const LAYOUT_TICKS = 300; // 収束させるステップ数（アニメーションはさせない）
 
 // TopoJSONのnameとcoffeeDataのcountryをマッピング
 const mapCountryName = (c) => {
@@ -119,17 +126,40 @@ export default function WorldMap({
   const clampRef = useRef({ bounds: worldBounds, width, height });
   clampRef.current = { bounds: worldBounds, width, height };
 
-  // 産地(admin1)の実座標をそのまま投影した位置。
-  // 近い産地どうしは点が重なるが、地理的な位置の正確さを優先する。
+  // 産地(admin1)の実座標を投影し、点が重ならないように押し離した位置。
+  // アンカーは国の中心ではなく産地そのものの座標なので、動くのは重なった分だけで、
+  // 産地の地理的な位置関係は保たれる。
+  // 投影後のpx空間で一度だけ収束させ、その結果をズーム/パン中は使い回す。
+  // (点は変換後のgの中にあり、ズームすると点も一緒に拡大するので、
+  //  等倍で重なりが解けていれば、どのズーム率でも重ならない)
   const nodePositions = useMemo(() => {
-    const positions = new Map();
+    const particles = [];
     coffeeData.forEach((node) => {
       if (node.lng == null || node.lat == null) return;
       const p = projection([node.lng, node.lat]);
       if (!p) return;
-      positions.set(node.id, p);
+      particles.push({
+        id: node.id,
+        anchorX: p[0],
+        anchorY: p[1],
+        x: p[0],
+        y: p[1],
+      });
     });
-    return positions;
+
+    forceSimulation(particles)
+      .force("spring-x", forceX((d) => d.anchorX).strength(LAYOUT_SPRING))
+      .force("spring-y", forceY((d) => d.anchorY).strength(LAYOUT_SPRING))
+      .force(
+        "collide",
+        forceCollide(NODE_BASE_R + LAYOUT_COLLIDE_PADDING).strength(
+          LAYOUT_COLLIDE_STRENGTH,
+        ),
+      )
+      .stop()
+      .tick(LAYOUT_TICKS);
+
+    return new Map(particles.map((p) => [p.id, [p.x, p.y]]));
   }, [projection]);
 
   // ノードのグループ化（検索・フィルタ反映）
