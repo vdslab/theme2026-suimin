@@ -35,7 +35,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenGuide }) {
         <div className="bg-base-100 p-3 sm:p-4 rounded-2xl shadow-lg border border-base-200">
           <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
             <h1 className="text-lg sm:text-2xl font-bold text-primary">
-              Coffee Taste Map
+              Coffee Flavor Map
             </h1>
             <button
               type="button"

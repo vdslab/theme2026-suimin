@@ -6,18 +6,26 @@ import "d3-transition"; // select(...).transition() を有効化（zoom.transfor
 import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as topojson from "topojson-client";
-import worldTopoJson from "../data/world-110m.json";
-import { clusterColor, clusterIndex, isNoise } from "../lib/clusters";
+import worldTopoJson from "../data/world-50m.json";
+import { clusterColor } from "../lib/clusters";
 import { coffeeData, nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
+import {
+  BELT_COLOR,
+  BELT_FILL_OPACITY,
+  BELT_LAT,
+  BELT_LINE_OPACITY,
+  EQUATOR_COLOR,
+  EQUATOR_LINE_OPACITY,
+} from "../lib/mapStyle";
 
 import MapLegend from "./MapLegend";
 
 // 点の基本半径(px, ズーム率1のとき)。重なり除去の衝突半径もこれを基準にする。
 const NODE_BASE_R = 3.5;
-// バネ+衝突レイアウトのパラメータ。
-// バネを弱く / 衝突を強くするほど重なりは減るが、点が産地から離れていく。
-const LAYOUT_SPRING = 0.15; // 産地の実座標へ引き戻すバネの強さ
+// 重なり除去のパラメータ。
+// バネが産地の実座標へ引き戻し、衝突が点どうしを押し離す。その釣り合いで位置が決まる。
+const LAYOUT_SPRING = 0.3; // 実座標へ引き戻すバネの強さ
 const LAYOUT_COLLIDE_PADDING = 0.5; // 点と点のあいだに空ける余白(px)
 const LAYOUT_COLLIDE_STRENGTH = 0.85;
 const LAYOUT_TICKS = 300; // 収束させるステップ数（アニメーションはさせない）
@@ -89,11 +97,13 @@ export default function WorldMap({
       .translate([width / 2, height / 1.5]);
   }, [width, height, mapScale]);
 
-  // 横ドラッグ時に地図が途切れないよう、画面外の隣接コピーを左右2枚ずつ用意する。
-  // （1周=画面幅なので、静止時は中央のコピー1枚だけが見える＝重複しない）
+  // 横ドラッグ時に地図が途切れないよう、画面外の隣接コピーを左右1枚ずつ用意する。
+  // zoom側で描画位置を1周ぶん(period = 画面幅 × k)に折り返しているうえ period は
+  // 常に画面幅以上なので、左右1枚ずつで画面は必ず埋まる。
+  // （50mの地図はパスが重いので、コピーは必要最小限に留める）
   const worldCopyOffsets = useMemo(() => {
     const offsets = [];
-    for (let i = -2; i <= 2; i++) offsets.push(i * worldWidth);
+    for (let i = -1; i <= 1; i++) offsets.push(i * worldWidth);
     return offsets;
   }, [worldWidth]);
 
@@ -124,73 +134,26 @@ export default function WorldMap({
   const clampRef = useRef({ bounds: worldBounds, width, height });
   clampRef.current = { bounds: worldBounds, width, height };
 
-  // 近い産地どうしの点が重なって見えるのを防ぐため、
-  // 「アンカーへ引き戻すバネ」と「点どうしを押し離す衝突」を釣り合わせて重なりを解く。
-  //
-  // 見た目が"ぐちゃぐちゃ"にならないよう、引き戻す先を国の中心そのものではなく
-  //   国の中心 + そのクラスタ(色)ごとの方向オフセット = クラスタ・サブアンカー
-  // にする。これで同じ国の中で同じ色の産地が同じ方角へ寄り、国ごとに色がまとまる。
+  // 産地(admin1)の実座標を投影し、点が重ならないように押し離した位置。
+  // アンカーは国の中心ではなく産地そのものの座標なので、動くのは重なった分だけで、
+  // 産地の地理的な位置関係は保たれる。
   // 投影後のpx空間で一度だけ収束させ、その結果をズーム/パン中は使い回す。
+  // (点は変換後のgの中にあり、ズームすると点も一緒に拡大するので、
+  //  等倍で重なりが解けていれば、どのズーム率でも重ならない)
   const nodePositions = useMemo(() => {
-    // 1) 国ごとに産地(ノード)をまとめ、その国の平均座標を中心とする
-    const countries = new Map();
+    const particles = [];
     coffeeData.forEach((node) => {
       if (node.lng == null || node.lat == null) return;
       const p = projection([node.lng, node.lat]);
       if (!p) return;
-      let country = countries.get(node.country);
-      if (!country) {
-        country = { sx: 0, sy: 0, members: [] };
-        countries.set(node.country, country);
-      }
-      country.sx += p[0];
-      country.sy += p[1];
-      country.members.push(node);
+      particles.push({
+        id: node.id,
+        anchorX: p[0],
+        anchorY: p[1],
+        x: p[0],
+        y: p[1],
+      });
     });
-
-    // 2) 各国内で、クラスタ(色)ごとに方向を割り当ててサブアンカーを作る
-    const particles = [];
-    for (const country of countries.values()) {
-      const cx = country.sx / country.members.length;
-      const cy = country.sy / country.members.length;
-
-      // その国に存在するクラスタを決定的な順序(クラスタ番号順・ノイズは最後)で並べる
-      const clusterOrder = [];
-      const seen = new Set();
-      for (const node of country.members) {
-        const name = node.clusterName;
-        if (seen.has(name)) continue;
-        seen.add(name);
-        clusterOrder.push(name);
-      }
-      clusterOrder.sort((a, b) => {
-        if (isNoise(a)) return 1;
-        if (isNoise(b)) return -1;
-        return (clusterIndex(a) ?? 0) - (clusterIndex(b) ?? 0);
-      });
-      const dirOf = new Map(clusterOrder.map((name, i) => [name, i]));
-      const m = clusterOrder.length;
-      // 国が大きい(=産地が多い)ほど点の塊も大きいので、色を分ける距離もそれに比例させる
-      const spread =
-        m <= 1 ? 0 : NODE_BASE_R * Math.sqrt(country.members.length) * 0.9;
-
-      country.members.forEach((node, i) => {
-        const k = dirOf.get(node.clusterName);
-        const ang = m <= 1 ? 0 : (2 * Math.PI * k) / m;
-        // サブアンカー: 国の中心から、そのクラスタの方角へ spread だけずらした点
-        const ax = cx + spread * Math.cos(ang);
-        const ay = cy + spread * Math.sin(ang);
-        // 初期位置はサブアンカー付近に微小ジッター(黄金角)で置く
-        const j = i * 2.399963;
-        particles.push({
-          id: node.id,
-          anchorX: ax,
-          anchorY: ay,
-          x: ax + 0.01 * Math.cos(j),
-          y: ay + 0.01 * Math.sin(j),
-        });
-      });
-    }
 
     forceSimulation(particles)
       .force("spring-x", forceX((d) => d.anchorX).strength(LAYOUT_SPRING))
@@ -401,12 +364,11 @@ export default function WorldMap({
   const toggleCluster = (name) =>
     setActiveCluster((prev) => (prev === name ? null : name));
 
-  // コーヒーベルト(南北回帰線±23.4°)と赤道の描画用Y座標。
+  // コーヒーベルト(南北 BELT_LAT 度)と赤道の描画用Y座標。
   // メルカトル図法では緯線は水平なので、経度は任意でよい。
-  const TROPIC = 25;
   const yEquator = projection([centerLng, 0])?.[1] ?? 0;
-  const yCancer = projection([centerLng, TROPIC])?.[1] ?? 0; // 北回帰線
-  const yCapricorn = projection([centerLng, -TROPIC])?.[1] ?? 0; // 南回帰線
+  const yBeltNorth = projection([centerLng, BELT_LAT])?.[1] ?? 0;
+  const yBeltSouth = projection([centerLng, -BELT_LAT])?.[1] ?? 0;
 
   return (
     <div ref={containerRef} className="w-full h-full relative">
@@ -453,37 +415,37 @@ export default function WorldMap({
                   );
                 })}
 
-                {/* コーヒーベルト(南北回帰線の間)を薄く塗り、回帰線と赤道を引く。
+                {/* コーヒーベルト(南北 BELT_LAT 度の間)を薄く塗り、その境界線と赤道を引く。
                   クリックを邪魔しないよう pointerEvents は無効。 */}
                 <rect
                   x={0}
-                  y={yCancer}
+                  y={yBeltNorth}
                   width={worldWidth}
-                  height={yCapricorn - yCancer}
-                  fill="#f59e0b"
-                  opacity={0.12}
+                  height={yBeltSouth - yBeltNorth}
+                  fill={BELT_COLOR}
+                  opacity={BELT_FILL_OPACITY}
                   pointerEvents="none"
                 />
                 <line
                   x1={0}
                   x2={worldWidth}
-                  y1={yCancer}
-                  y2={yCancer}
-                  stroke="#f59e0b"
+                  y1={yBeltNorth}
+                  y2={yBeltNorth}
+                  stroke={BELT_COLOR}
                   strokeWidth={0.8}
                   strokeDasharray="4 4"
-                  opacity={0.55}
+                  opacity={BELT_LINE_OPACITY}
                   pointerEvents="none"
                 />
                 <line
                   x1={0}
                   x2={worldWidth}
-                  y1={yCapricorn}
-                  y2={yCapricorn}
-                  stroke="#f59e0b"
+                  y1={yBeltSouth}
+                  y2={yBeltSouth}
+                  stroke={BELT_COLOR}
                   strokeWidth={0.8}
                   strokeDasharray="4 4"
-                  opacity={0.55}
+                  opacity={BELT_LINE_OPACITY}
                   pointerEvents="none"
                 />
                 <line
@@ -491,10 +453,10 @@ export default function WorldMap({
                   x2={worldWidth}
                   y1={yEquator}
                   y2={yEquator}
-                  stroke="#ef4444"
+                  stroke={EQUATOR_COLOR}
                   strokeWidth={1}
                   strokeDasharray="6 4"
-                  opacity={0.7}
+                  opacity={EQUATOR_LINE_OPACITY}
                   pointerEvents="none"
                 />
               </g>

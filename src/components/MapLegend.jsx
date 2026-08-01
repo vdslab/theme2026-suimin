@@ -9,6 +9,14 @@ import {
   TASTE_AXES,
 } from "../lib/clusters";
 import { coffeeData } from "../lib/coffeeData";
+import {
+  BELT_COLOR,
+  BELT_FILL_OPACITY,
+  BELT_LAT,
+  BELT_LINE_OPACITY,
+  EQUATOR_COLOR,
+  EQUATOR_LINE_OPACITY,
+} from "../lib/mapStyle";
 
 const legendClusters = (() => {
   const set = new Set(coffeeData.map((d) => d.clusterName));
@@ -212,6 +220,69 @@ function ClusterRadarChart({ devs, color, selected }) {
   );
 }
 
+// 地図に引いてある緯度線の凡例。色と破線パターンは地図と同じものを使う。
+// ただし透明度は上げる。地図では広い面積に敷くので薄くてよいが、
+// 26pxの見本を同じ薄さで塗ると白背景に埋もれて見えないため。
+const SWATCH_FILL_OPACITY = Math.min(1, BELT_FILL_OPACITY * 2.5);
+const SWATCH_LINE_OPACITY = Math.min(1, BELT_LINE_OPACITY * 1.6);
+const SWATCH_EQUATOR_OPACITY = Math.min(1, EQUATOR_LINE_OPACITY * 1.3);
+
+function MapLinesLegend() {
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-base-200 px-1 pt-1.5">
+      <span className="flex items-center gap-1.5 text-[11px] text-base-content/70">
+        <svg width="26" height="14" aria-hidden="true" className="shrink-0">
+          <rect
+            x="0"
+            y="2.5"
+            width="26"
+            height="9"
+            fill={BELT_COLOR}
+            opacity={SWATCH_FILL_OPACITY}
+          />
+          <line
+            x1="0"
+            x2="26"
+            y1="3"
+            y2="3"
+            stroke={BELT_COLOR}
+            strokeWidth="1"
+            strokeDasharray="4 4"
+            opacity={SWATCH_LINE_OPACITY}
+          />
+          <line
+            x1="0"
+            x2="26"
+            y1="11"
+            y2="11"
+            stroke={BELT_COLOR}
+            strokeWidth="1"
+            strokeDasharray="4 4"
+            opacity={SWATCH_LINE_OPACITY}
+          />
+        </svg>
+        コーヒーベルト（南北{BELT_LAT}度）
+      </span>
+
+      <span className="flex items-center gap-1.5 text-[11px] text-base-content/70">
+        <svg width="26" height="14" aria-hidden="true" className="shrink-0">
+          <line
+            x1="0"
+            x2="26"
+            y1="7"
+            y2="7"
+            stroke={EQUATOR_COLOR}
+            strokeWidth="1.2"
+            strokeDasharray="6 4"
+            opacity={SWATCH_EQUATOR_OPACITY}
+          />
+        </svg>
+        赤道
+      </span>
+    </div>
+  );
+}
+
 const MapLegend = forwardRef(function MapLegend(
   { activeCluster, toggleCluster, setActiveCluster },
   ref,
@@ -316,6 +387,8 @@ const MapLegend = forwardRef(function MapLegend(
           })}
         </div>
       )}
+
+      {!isCollapsed && <MapLinesLegend />}
     </div>
   );
 });
