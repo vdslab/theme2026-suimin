@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const PAGES = [
   {
-    title: "Coffee Taste Map へようこそ",
+    title: "Coffee Flavor Map へようこそ",
     text: "一杯のコーヒーから、世界の産地をめぐる旅へ。\nこのマップは、世界中のコーヒー豆の味覚データをもとに、あなた好みの一杯を見つけるためのガイドです。\n国ごとの縞模様は、その産地の味わいの傾向（クラスタ）と、その割合を表しています。",
     image: "/images/image_map_concept.png",
   },

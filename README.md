@@ -1,6 +1,7 @@
-# theme2026-suimin
+# coffee-flavor-map
 
-Vite + React + Tailwind CSS (daisyUI) で構築したプロジェクトです。
+味の傾向から自分好みのコーヒー豆を探せる可視化アプリです。
+Vite + React + Tailwind CSS (daisyUI) で構築しています。
 
 ## セットアップ
 
