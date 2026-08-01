@@ -17,8 +17,11 @@ export function clusterIndex(name) {
   return m ? parseInt(m[1], 10) : null;
 }
 
+// どのクラスタにも属さない豆の名前。precompute_data.py が付ける値と揃える。
+export const NOISE_NAME = "独自の味わい";
+
 export function isNoise(name) {
-  return !name || name.includes("ノイズ");
+  return !name || name === NOISE_NAME || name.includes("ノイズ");
 }
 
 // クラスタの基準色（凡例・バッジ・枠線用）
@@ -30,7 +33,7 @@ export function clusterColor(name) {
 
 // 表示用に "(C3)" を取り除いた短い名前
 export function shortName(name) {
-  if (isNoise(name)) return "ノイズ (独自路線)";
+  if (isNoise(name)) return NOISE_NAME;
   return (name || "").replace(/\s*\(C\d+\)\s*$/, "");
 }
 

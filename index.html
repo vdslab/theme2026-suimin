@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>coffee-flavor-map</title>
     <link rel="icon" href="/public/images/fabicon.ico" />
+    <!-- 初回訪問時はスタートガイドが自動で開くため、1枚目だけJSより先に取得を始める -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/image_map_concept.webp"
+      type="image/webp"
+    />
     <meta
       name="description"
       content="味の傾向から自分好みのコーヒー豆を探せる可視化アプリです。"

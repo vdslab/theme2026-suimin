@@ -1,20 +1,31 @@
 import { useEffect, useState } from "react";
 
+// 画像は WebP。表示枠(最大でも約800px幅)に対して十分な解像度に落としてあり、
+// 3枚あわせて約80KB。差し替える際も PNG のまま置かないこと（1枚200KB超になる）。
 const PAGES = [
   {
     title: "地図の見かた",
     text: "世界のコーヒー豆の味覚データを、産地ごとに地図へ並べたサイトです。\n点が産地（国と地域）、点の色が味わいのタイプを表します。\n色が同じ産地は、味の傾向が似ています。\n横に伸びるオレンジの帯は、産地が集中している\nコーヒーベルト（南北25度にはさまれた範囲）です。",
-    image: "/images/image_map_concept.png",
+    image: "/images/image_map_concept.webp",
+    alt: "地図上に産地の点と、コーヒーベルトの帯が表示された画面",
+    width: 1280,
+    height: 673,
   },
   {
     title: "産地の詳細を見る",
     text: "点をクリックすると、その産地の詳細が右側に開きます。\n酸味・コクなど6項目が全体の平均からどれだけ離れているか\n主な品種、味わいのタイプの内訳が並びます。\n「味が近い豆」に出てくる3件は、地図の上でも選んだ点から線でつながります。",
-    image: "/images/image_detail_panel.png",
+    image: "/images/image_detail_panel.webp",
+    alt: "産地をクリックして右側に詳細パネルが開いた画面",
+    width: 1060,
+    height: 620,
   },
   {
     title: "飲んだ豆から探す",
     text: "詳細パネルで好み度を5段階で選び、「飲んだ！」を押すと左のリストに残ります。\nいくつか記録したら「おすすめを計算する」を押してください。\n記録した好みに近い産地を1件選んで、地図の上で黄色く光らせます。",
-    image: "/images/image_rating_recommend.png",
+    image: "/images/image_rating_recommend.webp",
+    alt: "好み度を付けた豆の一覧と、おすすめの産地が光っている画面",
+    width: 1060,
+    height: 620,
   },
 ];
 
@@ -60,6 +71,15 @@ export default function StartupGuide({ isOpen, onClose }) {
     if (isOpen) setCurrentPage(0);
   }, [isOpen]);
 
+  // ガイドを閉じていてもマウント時に3枚とも取得しておく。
+  // ヘッダーの「?」から後で開いたときも、待ち時間なしで表示される。
+  useEffect(() => {
+    for (const p of PAGES) {
+      const img = new Image();
+      img.src = p.image;
+    }
+  }, []);
+
   if (!isOpen) return null;
 
   const handleNext = () => {
@@ -89,13 +109,23 @@ export default function StartupGuide({ isOpen, onClose }) {
         </button>
 
         <div className="flex-1 flex flex-col relative bg-base-200/30 min-h-0 overflow-hidden">
-          <div className="flex-1 min-h-0 w-full bg-base-200 flex items-center justify-center p-3 sm:p-6 lg:p-12 relative">
-            {/* biome-ignore lint/a11y/useAltText: Startup guide decorative images */}
-            <img
-              src={page.image}
-              key={page.image}
-              className="h-full w-full object-contain rounded-xl shadow-lg animate-in fade-in zoom-in duration-500"
-            />
+          {/* 3枚とも常にDOMに残し、表示切替は opacity だけで行う。
+              ページを戻ったときに再デコード・再取得が起きず、切替が一瞬で済む。 */}
+          <div className="flex-1 min-h-0 w-full bg-base-200 relative">
+            {PAGES.map((p, idx) => (
+              <img
+                key={p.image}
+                src={p.image}
+                alt={p.alt}
+                width={p.width}
+                height={p.height}
+                decoding="async"
+                fetchPriority={idx === 0 ? "high" : "low"}
+                className={`absolute inset-0 h-full w-full object-contain p-3 sm:p-6 lg:p-12 rounded-xl shadow-lg transition-opacity duration-300 ${
+                  idx === currentPage ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
           </div>
 
           <div className="shrink-0 h-[35%] min-h-[160px] sm:min-h-[200px] p-5 sm:p-8 lg:px-16 flex flex-col items-center justify-center text-center bg-base-100 animate-in fade-in slide-in-from-bottom-4 duration-500">

@@ -55,7 +55,7 @@ AXIS_LOW = {
     "Body": "軽やか",
     "Balance": "個性際立つ",
 }
-# 英語短ラベル(PNG用)で2軸目を含める閾値
+# 英語短ラベル(PNG用)で2軸目を含める閾値（偏差の絶対値で判定）
 SECOND_AXIS_THRESHOLD = 0.02
 # クラスタ名に軸を含める偏差の閾値（絶対値がこの値以上の軸だけを命名に使う）
 NAME_THRESHOLD = 0.1
@@ -118,12 +118,22 @@ def assign_cluster_name(dev_mean: pd.Series, c: int) -> str:
 
 
 def english_short_label(dev_mean: pd.Series) -> str:
-    """ヒートマップ/散布図用の英語短ラベル（上位1〜2軸）。matplotlib文字化け回避。"""
-    ordered = dev_mean.sort_values(ascending=False)
-    bases = [idx.replace("_dev", "") for idx in ordered.index]
-    if ordered.values[1] >= SECOND_AXIS_THRESHOLD:
-        return f"{bases[0]}+{bases[1]}"
-    return bases[0]
+    """ヒートマップ/散布図用の英語短ラベル（際立つ上位1〜2軸）。matplotlib文字化け回避。
+
+    assign_cluster_name と同じく |偏差| の降順で見る。生の値の降順で選ぶと
+    マイナス側に大きく振れた軸（例: C1 の Aftertaste -0.163）がラベルから
+    落ち、日本語のクラスタ名（「後味すっきり」）と食い違ってしまうため。
+    どちら向きに振れた軸かが分かるよう符号を +/- で付ける。
+    """
+    ordered = dev_mean.reindex(dev_mean.abs().sort_values(ascending=False).index)
+
+    def tag(idx, val):
+        return f"{idx.replace('_dev', '')}{'+' if val >= 0 else '-'}"
+
+    parts = [tag(ordered.index[0], ordered.iloc[0])]
+    if abs(ordered.iloc[1]) >= SECOND_AXIS_THRESHOLD:
+        parts.append(tag(ordered.index[1], ordered.iloc[1]))
+    return " / ".join(parts)
 
 
 def plot_scatter(nodes, cluster_names, has_tcp):
@@ -172,12 +182,18 @@ def plot_heatmap(nodes, cluster_names, has_tcp):
         print("    [skip] クラスタが無いためヒートマップは省略")
         return
 
+    # 個性派(-1)も1行として出す。除外すると図が全ノードを説明できず、
+    # 行の n を足しても総ノード数に届かない理由が図から読み取れないため。
+    groups = [(f"C{c}", nodes[nodes["_cluster_label"] == c]) for c in cluster_ids]
+    noise = nodes[nodes["_cluster_label"] == -1]
+    if len(noise):
+        groups.append(("Noise", noise))
+
     rows, ylabels = [], []
-    for c in cluster_ids:
-        sub = nodes[nodes["_cluster_label"] == c]
+    for name, sub in groups:
         dev_mean = sub[DEV_COLS].mean()
         rows.append(dev_mean.values)
-        label = f"C{c}: {english_short_label(dev_mean)}  (n={len(sub)}"
+        label = f"{name}: {english_short_label(dev_mean)}  (n={len(sub)}"
         if has_tcp:
             label += f", TCP={sub['Total.Cup.Points'].mean():.1f}"
         label += ")"
@@ -186,7 +202,8 @@ def plot_heatmap(nodes, cluster_names, has_tcp):
     mat = np.array(rows)
     vmax = np.abs(mat).max()
 
-    fig, ax = plt.subplots(figsize=(9, 1.1 * len(rows) + 2))
+    # 幅は行ラベル（軸名2つ＋n＋TCP）とカラーバーのラベルが切れない実測値
+    fig, ax = plt.subplots(figsize=(11, 1.1 * len(rows) + 2))
     im = ax.imshow(mat, cmap="RdBu_r", vmin=-vmax, vmax=vmax, aspect="auto")
 
     ax.set_xticks(range(len(TASTE_COLS)))
@@ -202,8 +219,19 @@ def plot_heatmap(nodes, cluster_names, has_tcp):
                     fontsize=8,
                     color="white" if abs(val) > vmax * 0.6 else "black")
 
+    # 個性派はクラスタではないので、罫線で区切って別枠であることを示す
+    if len(noise):
+        ax.axhline(len(groups) - 1.5, color="black", linewidth=1.2)
+
     ax.set_title("Cluster mean of deviation features (taste shape)\n"
                  "+ = relatively strong in the bean, - = relatively weak")
+    # n はノード数(産地グループ数)であって豆の本数ではない点を明示する。
+    # 1豆のグループも124豆のグループも等しく1行に効くため、読み違えやすい。
+    n_beans = int(nodes["sample_count"].sum()) if "sample_count" in nodes else 0
+    ax.set_xlabel(
+        f"n = region-group nodes (unweighted mean over nodes, not per bean); "
+        f"{len(nodes)} nodes / {n_beans} beans"
+    )
     fig.colorbar(im, ax=ax, label="deviation from bean's 6-axis mean")
     fig.tight_layout()
     fig.savefig(HEATMAP_PNG, dpi=130)
