@@ -4,7 +4,7 @@ import App from "./App";
 import StarCoordinates from "./components/StarCoordinates";
 import "./index.css";
 
-// #star で Star Coordinates 実験ビュー、それ以外は通常アプリ。
+// Star Coordinates を既定表示にし、#map で通常の地図アプリを開く。
 function Root() {
   const [hash, setHash] = useState(window.location.hash);
   useEffect(() => {
@@ -12,7 +12,7 @@ function Root() {
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
-  return hash === "#star" ? <StarCoordinates /> : <App />;
+  return hash === "#map" ? <App /> : <StarCoordinates />;
 }
 
 createRoot(document.querySelector("#content")).render(<Root />);
