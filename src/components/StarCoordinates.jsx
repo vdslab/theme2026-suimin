@@ -1,6 +1,13 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { clusterColor, isNoise, shortName, TASTE_AXES } from "../lib/clusters";
 import { coffeeData } from "../lib/coffeeData";
+import {
+  createDefaultAxes,
+  createPresetAxes,
+  getPresetHighlightRule,
+  STAR_PRESET_CONFIG,
+  STAR_PRESET_LAYOUT,
+} from "../lib/starPresets";
 
 // ------------------------------------------------------------------
 // Star Coordinates ビュー（#star で開く独立ページ）
@@ -8,9 +15,18 @@ import { coffeeData } from "../lib/coffeeData";
 // 軸の先端をドラッグして回転・伸縮できる（= kairollmann の Star Coordinates 相当）。
 // ------------------------------------------------------------------
 
-const SIZE = 720; // 描画領域(正方形)
+// 1.5倍に伸ばした右向きの軸とラベルが収まる余白を含む。
+const SIZE = 800; // 描画領域(正方形)
 const CENTER = SIZE / 2;
 const BASE_LEN = 240; // 軸の初期長さ(px)
+
+function easeInOutCubic(t) {
+  return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+}
+
+function shortestAngleDelta(from, to) {
+  return ((to - from + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
+}
 
 // 各偏差次元を [-1, 1] に正規化するためのスケール（全産地の最大絶対値）
 function useNormScales() {
@@ -34,16 +50,20 @@ export default function StarCoordinates() {
 
   // 各軸の状態: 角度(rad)・長さ(px)・表示ON/OFF。初期は等間隔・同一長・全表示。
   const [axes, setAxes] = useState(() =>
-    TASTE_AXES.map((a, i) => ({
-      ...a,
-      angle: -Math.PI / 2 + (i * 2 * Math.PI) / TASTE_AXES.length,
-      length: BASE_LEN,
-      enabled: true,
-    })),
+    createDefaultAxes(TASTE_AXES, BASE_LEN),
   );
+  const [activePresetKey, setActivePresetKey] = useState(null);
   const [hover, setHover] = useState(null);
   const [activeClusters, setActiveClusters] = useState(() => new Set());
   const dragRef = useRef(null);
+  const animationRef = useRef(null);
+
+  useEffect(
+    () => () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    },
+    [],
+  );
 
   // 軸の単位ベクトル×長さ = 軸ベクトル(px)
   const axisVectors = axes.map((ax) => ({
@@ -82,6 +102,8 @@ export default function StarCoordinates() {
 
   function onHandleDown(i, e) {
     e.preventDefault();
+    if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    animationRef.current = null;
     dragRef.current = i;
     e.currentTarget.setPointerCapture(e.pointerId);
   }
@@ -109,15 +131,54 @@ export default function StarCoordinates() {
   }
 
   function resetAxes() {
-    setAxes(
-      TASTE_AXES.map((a, i) => ({
-        ...a,
-        angle: -Math.PI / 2 + (i * 2 * Math.PI) / TASTE_AXES.length,
-        length: BASE_LEN,
-        enabled: true,
-      })),
-    );
+    setActivePresetKey(null);
+    animateAxes(createDefaultAxes(TASTE_AXES, BASE_LEN));
   }
+
+  function animateAxes(targetAxes) {
+    if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    const startAxes = axes.map((axis) => ({ ...axis }));
+    const startTime = performance.now();
+
+    const frame = (now) => {
+      const progress = Math.min(
+        1,
+        (now - startTime) / STAR_PRESET_LAYOUT.animationMs,
+      );
+      const eased = easeInOutCubic(progress);
+      setAxes(
+        startAxes.map((axis, index) => ({
+          ...axis,
+          enabled: targetAxes[index].enabled,
+          angle:
+            axis.angle +
+            shortestAngleDelta(axis.angle, targetAxes[index].angle) * eased,
+          length:
+            axis.length + (targetAxes[index].length - axis.length) * eased,
+        })),
+      );
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(frame);
+      } else {
+        animationRef.current = null;
+      }
+    };
+    animationRef.current = requestAnimationFrame(frame);
+  }
+
+  function selectPreset(key) {
+    const preset = STAR_PRESET_CONFIG[key];
+    setActivePresetKey(key);
+    animateAxes(createPresetAxes(axes, preset, BASE_LEN));
+  }
+
+  const activePreset = activePresetKey
+    ? STAR_PRESET_CONFIG[activePresetKey]
+    : null;
+  const presetHighlight = useMemo(
+    () => getPresetHighlightRule(coffeeData, activePreset),
+    [activePreset],
+  );
 
   // ---- 凡例(クラスタ)一覧 ----
   const clusters = useMemo(() => {
@@ -150,9 +211,12 @@ export default function StarCoordinates() {
     });
   }
 
-  const isDimmed = (node) => {
-    if (activeClusters.size === 0) return false;
-    return !activeClusters.has(node.clusterName || "noise");
+  const getNodeEmphasis = (node) => {
+    const clusterDimmed =
+      activeClusters.size > 0 &&
+      !activeClusters.has(node.clusterName || "noise");
+    const presetMatch = presetHighlight?.matches(node) ?? false;
+    return { clusterDimmed, presetMatch };
   };
 
   return (
@@ -168,6 +232,43 @@ export default function StarCoordinates() {
             軸の先端(○)をドラッグで回転・伸縮できます。色は既存クラスタと同一。
           </p>
         </header>
+
+        <section className="mb-4 rounded-lg border border-base-300 bg-base-200/50 p-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="mr-1 text-sm font-semibold">味から探す</span>
+            {Object.entries(STAR_PRESET_CONFIG).map(([key, preset]) => (
+              <button
+                key={key}
+                type="button"
+                className={`btn btn-sm ${
+                  activePresetKey === key ? "btn-primary" : "btn-outline"
+                }`}
+                onClick={() => selectPreset(key)}
+              >
+                {preset.label}
+              </button>
+            ))}
+            <button
+              type="button"
+              className="btn btn-sm btn-ghost"
+              onClick={resetAxes}
+            >
+              自由に調整
+            </button>
+          </div>
+          {activePreset && (
+            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 rounded-md bg-base-100 px-3 py-2 text-sm">
+              <span>{activePreset.axisLabel}を比較しやすい配置です</span>
+              <span className="font-bold text-primary">
+                {activePreset.direction === "high" ? "→" : "←"}{" "}
+                {activePreset.label}
+              </span>
+              <span className="text-xs opacity-60">
+                色枠の点が条件に当てはまる約30%です
+              </span>
+            </div>
+          )}
+        </section>
 
         <div className="flex flex-col lg:flex-row gap-6">
           {/* 描画 */}
@@ -232,7 +333,9 @@ export default function StarCoordinates() {
 
               {/* 産地の点 */}
               {points.map(({ node, x, y }) => {
-                const dim = isDimmed(node);
+                const { clusterDimmed, presetMatch } = getNodeEmphasis(node);
+                const presetDimmed = activePreset && !presetMatch;
+                const dim = clusterDimmed || presetDimmed;
                 return (
                   // biome-ignore lint/a11y/noStaticElementInteractions: SVG data point (hover only)
                   <circle
@@ -241,10 +344,10 @@ export default function StarCoordinates() {
                     cy={y}
                     r={hover?.id === node.id ? 7 : 5}
                     fill={clusterColor(node.clusterName)}
-                    fillOpacity={dim ? 0.08 : 0.85}
-                    stroke="#fff"
-                    strokeWidth={0.6}
-                    strokeOpacity={dim ? 0.1 : 0.6}
+                    fillOpacity={dim ? 0.12 : presetMatch ? 1 : 0.85}
+                    stroke={presetMatch ? "#f59e0b" : "#fff"}
+                    strokeWidth={presetMatch ? 2.5 : 0.6}
+                    strokeOpacity={dim ? 0.15 : presetMatch ? 1 : 0.6}
                     className="cursor-pointer"
                     onMouseEnter={() => setHover(node)}
                     onMouseLeave={() => setHover(null)}
@@ -261,7 +364,7 @@ export default function StarCoordinates() {
                 type="button"
                 className="btn btn-sm btn-ghost"
                 onClick={() => {
-                  window.location.hash = "";
+                  window.location.hash = "map";
                 }}
               >
                 ← アプリに戻る
