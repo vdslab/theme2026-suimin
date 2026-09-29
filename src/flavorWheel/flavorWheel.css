@@ -1,0 +1,61 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; color: #222; background: #fff; }
+
+.fw-app { display: flex; min-height: 100vh; }
+.fw-panel { width: 280px; flex: none; padding: 16px; border-right: 1px solid #e5e5e5; font-size: 13px; }
+.fw-panel h1 { font-size: 16px; margin: 0 0 8px; }
+.fw-panel h2 { font-size: 13px; margin: 20px 0 6px; }
+.fw-panel label { display: block; margin-top: 14px; }
+.fw-panel input[type="range"], .fw-panel select { display: block; width: 100%; margin-top: 4px; }
+.fw-panel .fw-check { display: flex; gap: 6px; align-items: center; }
+.fw-panel svg text { font-size: 12px; fill: #333; }
+.fw-muted { color: #666; margin: 4px 0; }
+.fw-hint { color: #888; font-size: 11px; margin: 2px 0; }
+.fw-legend { list-style: none; padding: 0; margin: 0; }
+.fw-legend li { display: flex; align-items: center; gap: 6px; margin: 2px 0; }
+.fw-legend span { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.fw-legend-tree { stroke: #555; stroke-width: 1.5; }
+.fw-legend-rel { stroke-width: 1.5; opacity: 0.6; }
+
+.fw-main { flex: 1; min-width: 0; display: flex; justify-content: center; align-items: center; padding: 8px; }
+.fw-graph { position: relative; width: min(100%, calc(100vh - 16px)); aspect-ratio: 1; }
+.fw-graph svg { width: 100%; height: 100%; display: block; }
+
+.fw-rings circle { fill: none; stroke: #eee; stroke-dasharray: 2 3; }
+.fw-rings .fw-bean-ring, .fw-rings .fw-tag-ring { stroke: #ddd; stroke-dasharray: none; }
+.fw-annulus { fill: none; stroke: #faf8f5; }
+.fw-link-end { fill: #555; }
+.fw-rings text { font-size: 9px; fill: #bbb; text-anchor: middle; }
+
+.fw-edges path { fill: none; stroke-width: 1; stroke-opacity: 0.22; }
+.fw-edges.is-dimmed path { stroke-opacity: 0.04; }
+.fw-edges.is-active path { stroke-width: 2; stroke-opacity: 0.9; }
+
+.fw-tree-links path { fill: none; stroke: #555; stroke-width: 1.4; }
+.fw-tree-links path.is-active { stroke: #111; stroke-width: 2.4; }
+
+.fw-tag { cursor: pointer; }
+.fw-tag circle { stroke: #fff; stroke-width: 1; }
+.fw-tag text { font-size: 10px; fill: #333; }
+.fw-tag.depth-1 text { font-size: 12px; font-weight: 600; }
+.fw-tag.depth-2 text { font-size: 10px; font-weight: 500; }
+.fw-halo { paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }
+.fw-tag.is-dim { opacity: 0.25; }
+
+.fw-bean { cursor: pointer; }
+.fw-bean text { font-size: 8px; fill: #555; }
+.fw-bean.is-active text { font-size: 10px; fill: #000; font-weight: 600; }
+.fw-bean.is-dim { opacity: 0.2; }
+
+.fw-tooltip {
+  position: absolute; pointer-events: none; max-width: 340px; padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.96); border: 1px solid #ccc; border-radius: 4px;
+  font-size: 12px; line-height: 1.45; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+.fw-tooltip ul { margin: 2px 0 0; padding-left: 16px; }
+
+@media (max-width: 800px) {
+  .fw-app { flex-direction: column; }
+  .fw-panel { width: auto; border-right: none; border-bottom: 1px solid #e5e5e5; }
+  .fw-graph { width: 100%; }
+}
