@@ -1,0 +1,6266 @@
+[
+  {
+    "id": "14937669239160",
+    "title": "Bolivia - Los Rodriguez: Natural, Longberry",
+    "roaster": "3fe Coffee",
+    "country": "Bolivia",
+    "region": null,
+    "altitude": "1700 - 1800m",
+    "altitudeMin": 1700.0,
+    "altitudeMax": 1800.0,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 125,
+    "priceCurrency": "USD",
+    "priceValue": 18.0,
+    "tastingNotes": [
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Sweet > Honey > Honey",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.3fe.com/products/bolivia-los-rodriguez-natural-longberry",
+    "retrievedAt": "2026-07-04 12:37:13"
+  },
+  {
+    "id": "4461404422249",
+    "title": "Honduras COMSA",
+    "roaster": "44 North Coffee",
+    "country": "Honduras",
+    "region": "Marcala",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 227,
+    "priceCurrency": "USD",
+    "priceValue": 9.0,
+    "tastingNotes": [
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Maple Syrup",
+        "fullPath": "Sweet > Brown Sugar > Maple Syrup",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Maple Syrup"
+        ],
+        "nameJa": "メープルシロップ",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      }
+    ],
+    "tastingNotesRaw": "Sweet > Brown Sugar > Maple Syrup",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://44northcoffee.com/products/honduras",
+    "retrievedAt": "2026-07-04 12:40:15"
+  },
+  {
+    "id": "15325880091010",
+    "title": "Mexico — SIPRO",
+    "roaster": "Assembly Coffee",
+    "country": "Mexico",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 200,
+    "priceCurrency": "USD",
+    "priceValue": 13.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Cherry",
+    "confidence": 0.8,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://assemblycoffee.co.uk/products/mexico-sipro-smallholders",
+    "retrievedAt": "2026-07-04 12:32:21"
+  },
+  {
+    "id": "9804784075045",
+    "title": "Burundi Coffee",
+    "roaster": "Bean There Coffee",
+    "country": "Burundi",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Honey",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 140.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Chocolate; Sweet > Honey > Honey",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://beanthere.co.za/products/burundi-coffee-beans",
+    "retrievedAt": "2026-07-04 12:40:01"
+  },
+  {
+    "id": "9648336863545",
+    "title": "José Merchán - Delagua Natural",
+    "roaster": "Black & White Coffee Roasters",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "1733 - 1733m",
+    "altitudeMin": 1733.0,
+    "altitudeMax": 1733.0,
+    "process": "Anaerobic",
+    "roastLevel": "Dark",
+    "varietals": "Castillo",
+    "weightGrams": 354,
+    "priceCurrency": "USD",
+    "priceValue": 24.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Raspberry",
+        "fullPath": "Fruity > Berry > Raspberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Raspberry"
+        ],
+        "nameJa": "ラズベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Grape",
+        "fullPath": "Fruity > Other Fruit > Grape",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Grape"
+        ],
+        "nameJa": "ぶどう (グレープ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Cocoa Nibs",
+        "fullPath": "Nutty/Cocoa > Cocoa > Cocoa Nibs",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Cocoa Nibs"
+        ],
+        "nameJa": "カカオニブ",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Raspberry; Fruity > Other Fruit > Grape; Fruity > Other Fruit > Cherry; Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate; Nutty/Cocoa > Cocoa > Cocoa Nibs",
+    "confidence": 0.85,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.blackwhiteroasters.com/products/r-jose-merchan-delagua-natural",
+    "retrievedAt": "2026-07-04 12:30:05"
+  },
+  {
+    "id": "10016598425913",
+    "title": "Lica Torres – Black Cherry Gesha",
+    "roaster": "Black & White Coffee Roasters",
+    "country": "Costa Rica",
+    "region": null,
+    "altitude": "1500 - 1600m",
+    "altitudeMin": 1500.0,
+    "altitudeMax": 1600.0,
+    "process": "Natural",
+    "roastLevel": "Dark",
+    "varietals": "Gesha",
+    "weightGrams": 354,
+    "priceCurrency": "USD",
+    "priceValue": 28.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Orange; Fruity > Other Fruit > Cherry; Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.78,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.blackwhiteroasters.com/products/r-lica-torres-black-cherry-gesha",
+    "retrievedAt": "2026-07-04 12:30:04"
+  },
+  {
+    "id": "761129009239",
+    "title": "Galactic Standard",
+    "roaster": "Brandywine Coffee Roasters",
+    "country": "Ethiopia",
+    "region": "Bombe",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Medium",
+    "varietals": null,
+    "weightGrams": 425,
+    "priceCurrency": "USD",
+    "priceValue": 22.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.brandywinecoffeeroasters.com/products/galactic-standard-espresso-blend-16-00",
+    "retrievedAt": "2026-07-04 12:30:01"
+  },
+  {
+    "id": "8030121607",
+    "title": "Sumatra, Adsenia - Organic",
+    "roaster": "Buddy Brew Coffee",
+    "country": "Indonesia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 19.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Molasses",
+        "fullPath": "Sweet > Brown Sugar > Molasses",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Molasses"
+        ],
+        "nameJa": "糖蜜 (モラセス)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Vanilla",
+        "descriptor": "Vanilla",
+        "fullPath": "Sweet > Vanilla > Vanilla",
+        "pathParts": [
+          "Sweet",
+          "Vanilla",
+          "Vanilla"
+        ],
+        "nameJa": "バニラ",
+        "catJa": "スウィート (甘味)",
+        "subJa": "バニラ"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Chocolate; Sweet > Brown Sugar > Molasses; Sweet > Vanilla > Vanilla",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://buddybrew.com/products/sumatra-adsenia-organic",
+    "retrievedAt": "2026-07-04 12:40:04"
+  },
+  {
+    "id": "10469119748",
+    "title": "Bean There - Blend 44",
+    "roaster": "Cape Coffee Beans",
+    "country": "Ethiopia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Honey",
+    "roastLevel": "Medium",
+    "varietals": null,
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 149.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Strawberry",
+        "fullPath": "Fruity > Berry > Strawberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Strawberry"
+        ],
+        "nameJa": "ストロベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Caramel",
+        "fullPath": "Sweet > Brown Sugar > Caramel",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Caramel"
+        ],
+        "nameJa": "キャラメル",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Strawberry; Fruity > Citrus Fruit > Orange; Sweet > Brown Sugar > Caramel; Sweet > Honey > Honey",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://capecoffeebeans.co.za/products/bean-there-blend-44",
+    "retrievedAt": "2026-07-04 12:39:57"
+  },
+  {
+    "id": "10146607497506",
+    "title": "Mexico Los Abuelitos",
+    "roaster": "Cat & Cloud",
+    "country": "Mexico",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 312,
+    "priceCurrency": "USD",
+    "priceValue": 27.31,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Apple",
+        "fullPath": "Fruity > Other Fruit > Apple",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Apple"
+        ],
+        "nameJa": "りんご (アップル)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Spices",
+        "subcategory": "Spices",
+        "descriptor": "Cinnamon",
+        "fullPath": "Spices > Spices > Cinnamon",
+        "pathParts": [
+          "Spices",
+          "Spices",
+          "Cinnamon"
+        ],
+        "nameJa": "シナモン",
+        "catJa": "スパイス",
+        "subJa": "スパイス"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Apple; Nutty/Cocoa > Cocoa > Dark Chocolate; Spices > Spices > Cinnamon",
+    "confidence": 0.73,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://catandcloud.com/products/mexico-los-abuelitos",
+    "retrievedAt": "2026-07-04 12:30:06"
+  },
+  {
+    "id": "11742735381",
+    "title": "Decaf EA Ethiopia",
+    "roaster": "Ceremony Coffee Roasters",
+    "country": "Ethiopia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 363,
+    "priceCurrency": "USD",
+    "priceValue": 21.5,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Cherry",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://ceremonycoffee.com/products/decaf-colombia",
+    "retrievedAt": "2026-07-04 12:30:23"
+  },
+  {
+    "id": "14973121790337",
+    "title": "Drifft Half Caff No.6",
+    "roaster": "Coaltown Coffee",
+    "country": "Brazil",
+    "region": null,
+    "altitude": "1400 - 2100m",
+    "altitudeMin": 1400.0,
+    "altitudeMax": 2100.0,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": "Bourbon, Catuai",
+    "weightGrams": 200,
+    "priceCurrency": "USD",
+    "priceValue": 14.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://coaltowncoffee.co.uk/products/drifft",
+    "retrievedAt": "2026-07-04 12:38:45"
+  },
+  {
+    "id": "945524998187",
+    "title": "Java Jampit Estate - 500g",
+    "roaster": "Coffee Compass",
+    "country": "Indonesia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Light",
+    "varietals": "Typica",
+    "weightGrams": 500,
+    "priceCurrency": "USD",
+    "priceValue": 16.1,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Vanilla",
+        "descriptor": "Vanilla",
+        "fullPath": "Sweet > Vanilla > Vanilla",
+        "pathParts": [
+          "Sweet",
+          "Vanilla",
+          "Vanilla"
+        ],
+        "nameJa": "バニラ",
+        "catJa": "スウィート (甘味)",
+        "subJa": "バニラ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Cherry; Sweet > Vanilla > Vanilla",
+    "confidence": 0.78,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.coffeecompass.co.uk/products/java-jampit-estate-500g",
+    "retrievedAt": "2026-07-04 12:38:42"
+  },
+  {
+    "id": "945525948459",
+    "title": "Costa Rica La Pastora Cooperative Tarrazú - 500g",
+    "roaster": "Coffee Compass",
+    "country": "Costa Rica",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 500,
+    "priceCurrency": "USD",
+    "priceValue": 16.25,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Jasmine",
+        "fullPath": "Floral > Floral > Jasmine",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Jasmine"
+        ],
+        "nameJa": "ジャスミン",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Chocolate; Floral > Floral > Jasmine",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.coffeecompass.co.uk/products/costa-lapastora-tarrazu-500g",
+    "retrievedAt": "2026-07-04 12:38:42"
+  },
+  {
+    "id": "185478971422",
+    "title": "Westerlies Winds",
+    "roaster": "Corvus Coffee Roasters",
+    "country": "Ethiopia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Light",
+    "varietals": null,
+    "weightGrams": 283,
+    "priceCurrency": "USD",
+    "priceValue": 15.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Spices",
+        "subcategory": "Spices",
+        "descriptor": "Cinnamon",
+        "fullPath": "Spices > Spices > Cinnamon",
+        "pathParts": [
+          "Spices",
+          "Spices",
+          "Cinnamon"
+        ],
+        "nameJa": "シナモン",
+        "catJa": "スパイス",
+        "subJa": "スパイス"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate; Spices > Spices > Cinnamon",
+    "confidence": 0.83,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.corvuscoffee.com/products/westerlies-blend",
+    "retrievedAt": "2026-07-04 12:30:19"
+  },
+  {
+    "id": "6884107518029",
+    "title": "Concepción Huista",
+    "roaster": "Counter Culture Coffee",
+    "country": "Guatemala",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Light",
+    "varietals": null,
+    "weightGrams": 367,
+    "priceCurrency": "USD",
+    "priceValue": 25.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Apple",
+        "fullPath": "Fruity > Other Fruit > Apple",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Apple"
+        ],
+        "nameJa": "りんご (アップル)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Apple; Fruity > Other Fruit > Cherry",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://counterculturecoffee.com/products/concepcion-huista",
+    "retrievedAt": "2026-07-04 12:30:42"
+  },
+  {
+    "id": "6889714745421",
+    "title": "Kabtamu Family – Natural Sundried",
+    "roaster": "Counter Culture Coffee",
+    "country": "Ethiopia",
+    "region": "Yirgacheffe",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 367,
+    "priceCurrency": "USD",
+    "priceValue": 25.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Blueberry",
+        "fullPath": "Fruity > Berry > Blueberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Blueberry"
+        ],
+        "nameJa": "ブルーベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Blueberry",
+    "confidence": 0.95,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://counterculturecoffee.com/products/kabtamu-family-natural-sundried",
+    "retrievedAt": "2026-07-04 12:30:42"
+  },
+  {
+    "id": "7691414044766",
+    "title": "XIX (July Limited Blend) Coffee Cold 8-Pack",
+    "roaster": "Dark Matter Coffee",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Light",
+    "varietals": "Catuai",
+    "weightGrams": 2722,
+    "priceCurrency": "USD",
+    "priceValue": 36.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Orange; Fruity > Other Fruit > Peach",
+    "confidence": 0.8,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.darkmattercoffee.com/products/taza-mundail-june-limited-blend-coffee-cold-8-pack-copy",
+    "retrievedAt": "2026-07-04 12:31:08"
+  },
+  {
+    "id": "6788436426846",
+    "title": "Unicorn Blood Coffee Cold 8-Pack",
+    "roaster": "Dark Matter Coffee",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Honey",
+    "roastLevel": "Dark",
+    "varietals": "Bourbon",
+    "weightGrams": 2722,
+    "priceCurrency": "USD",
+    "priceValue": 36.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Nutty",
+        "descriptor": "Peanut",
+        "fullPath": "Nutty/Cocoa > Nutty > Peanut",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Nutty",
+          "Peanut"
+        ],
+        "nameJa": "ピーナッツ",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ナッツ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Milk Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Milk Chocolate"
+        ],
+        "nameJa": "ミルクチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Orange; Nutty/Cocoa > Nutty > Peanut; Nutty/Cocoa > Cocoa > Milk Chocolate; Nutty/Cocoa > Cocoa > Chocolate; Sweet > Honey > Honey",
+    "confidence": 0.87,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.darkmattercoffee.com/products/unicorn-blood-coffee-cold",
+    "retrievedAt": "2026-07-04 12:31:09"
+  },
+  {
+    "id": "427734621",
+    "title": "HONEY",
+    "roaster": "Devocion",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "850 - 850m",
+    "altitudeMin": 850.0,
+    "altitudeMax": 850.0,
+    "process": "Honey",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 369,
+    "priceCurrency": "USD",
+    "priceValue": 25.25,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Caramel",
+        "fullPath": "Sweet > Brown Sugar > Caramel",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Caramel"
+        ],
+        "nameJa": "キャラメル",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Vanilla",
+        "descriptor": "Vanilla",
+        "fullPath": "Sweet > Vanilla > Vanilla",
+        "pathParts": [
+          "Sweet",
+          "Vanilla",
+          "Vanilla"
+        ],
+        "nameJa": "バニラ",
+        "catJa": "スウィート (甘味)",
+        "subJa": "バニラ"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Orange Blossom",
+        "fullPath": "Floral > Floral > Orange Blossom",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Orange Blossom"
+        ],
+        "nameJa": "オレンジブロッサム",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Orange; Sweet > Brown Sugar > Caramel; Sweet > Honey > Honey; Sweet > Vanilla > Vanilla; Floral > Floral > Orange Blossom",
+    "confidence": 0.84,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.devocion.com/products/coffee-colombia-honey",
+    "retrievedAt": "2026-07-04 12:30:44"
+  },
+  {
+    "id": "4426288562291",
+    "title": "RED BARREL",
+    "roaster": "Devocion",
+    "country": "Colombia",
+    "region": "Tolima",
+    "altitude": "800 - 800m",
+    "altitudeMin": 800.0,
+    "altitudeMax": 800.0,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": "Castillo",
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 28.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Blackberry",
+        "fullPath": "Fruity > Berry > Blackberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Blackberry"
+        ],
+        "nameJa": "ブラックベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Blackberry",
+    "confidence": 0.95,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.devocion.com/products/special-edition-coffee-red-barrel",
+    "retrievedAt": "2026-07-04 12:30:44"
+  },
+  {
+    "id": "7588585766994",
+    "title": "Ecuador La Carolina Sidra",
+    "roaster": "Equator Coffees",
+    "country": "Ecuador",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": "Sidra",
+    "weightGrams": 170,
+    "priceCurrency": "USD",
+    "priceValue": 22.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Grape",
+        "fullPath": "Fruity > Other Fruit > Grape",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Grape"
+        ],
+        "nameJa": "ぶどう (グレープ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Caramel",
+        "fullPath": "Sweet > Brown Sugar > Caramel",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Caramel"
+        ],
+        "nameJa": "キャラメル",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Grape; Sweet > Brown Sugar > Caramel",
+    "confidence": 0.93,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.equatorcoffees.com/products/ecuador-la-carolina-sidra",
+    "retrievedAt": "2026-07-04 12:29:54"
+  },
+  {
+    "id": "7341291798700",
+    "title": "Primaveral",
+    "roaster": "Five Senses Coffee",
+    "country": "Colombia",
+    "region": "Huila",
+    "altitude": "1500 - 2000m",
+    "altitudeMin": 1500.0,
+    "altitudeMax": 2000.0,
+    "process": "Other",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 19.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Grape",
+        "fullPath": "Fruity > Other Fruit > Grape",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Grape"
+        ],
+        "nameJa": "ぶどう (グレープ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Grape; Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://fivesenses.com.au/products/primaveral-colombia",
+    "retrievedAt": "2026-07-04 12:37:34"
+  },
+  {
+    "id": "7341294944428",
+    "title": "Espana Estate",
+    "roaster": "Five Senses Coffee",
+    "country": "El Salvador",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": "Bourbon, Typica, Caturra, Catuai",
+    "weightGrams": 1000,
+    "priceCurrency": "USD",
+    "priceValue": 71.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Cherry",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://fivesenses.com.au/products/espana-estate-el-salvador",
+    "retrievedAt": "2026-07-04 12:37:34"
+  },
+  {
+    "id": "10235469922626",
+    "title": "Costa Rica Rio Conejo H1 5lb WB, GV",
+    "roaster": "Fulcrum Coffee",
+    "country": "Costa Rica",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 19.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Pineapple",
+        "fullPath": "Fruity > Other Fruit > Pineapple",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Pineapple"
+        ],
+        "nameJa": "パイナップル",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Cherry; Fruity > Other Fruit > Pineapple; Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.fulcrumcoffee.com/products/costa-rica-rio-conejo-h1-5lb-wb-gv",
+    "retrievedAt": "2026-07-04 12:31:28"
+  },
+  {
+    "id": "6875632402543",
+    "title": "La Cabana (Decaf) | Colombia",
+    "roaster": "Full Circle Roasters",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": "Caturra, Castillo",
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 15.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://fullcircleroasters.ie/products/la-cabana-decaf-colombia",
+    "retrievedAt": "2026-07-04 12:38:53"
+  },
+  {
+    "id": "8159969640585",
+    "title": "Fazenda Capoeira, Brazil - Espresso (500g)",
+    "roaster": "Gabriel Coffee",
+    "country": "Brazil",
+    "region": null,
+    "altitude": "900 - 900m",
+    "altitudeMin": 900.0,
+    "altitudeMax": 900.0,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": "Catuai",
+    "weightGrams": 500,
+    "priceCurrency": "USD",
+    "priceValue": 44.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Nutty",
+        "descriptor": "Hazelnut",
+        "fullPath": "Nutty/Cocoa > Nutty > Hazelnut",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Nutty",
+          "Hazelnut"
+        ],
+        "nameJa": "ヘーゼルナッツ",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ナッツ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Milk Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Milk Chocolate"
+        ],
+        "nameJa": "ミルクチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Nutty > Hazelnut; Nutty/Cocoa > Cocoa > Milk Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://gabrielcoffee.com.au/products/fazenda-capoeira-brazil-espresso-500g",
+    "retrievedAt": "2026-07-04 12:40:49"
+  },
+  {
+    "id": "8400367059201",
+    "title": "Cold Brew Blend",
+    "roaster": "Great Lakes Coffee",
+    "country": "Colombia",
+    "region": "Cauca",
+    "altitude": "1000 - 1800m",
+    "altitudeMin": 1000.0,
+    "altitudeMax": 1800.0,
+    "process": "Washed",
+    "roastLevel": "Dark",
+    "varietals": "Bourbon, Typica",
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 20.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Grapefruit",
+        "fullPath": "Fruity > Citrus Fruit > Grapefruit",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Grapefruit"
+        ],
+        "nameJa": "グレープフルーツ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Grapefruit; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.93,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://greatlakescoffee.com/products/cold-brew-blend",
+    "retrievedAt": "2026-07-04 12:38:13"
+  },
+  {
+    "id": "9609169417",
+    "title": "Up North",
+    "roaster": "Great Lakes Coffee",
+    "country": "Ethiopia",
+    "region": "Yirgacheffe",
+    "altitude": "1780 - 1870m",
+    "altitudeMin": 1780.0,
+    "altitudeMax": 1870.0,
+    "process": "Washed",
+    "roastLevel": "Light",
+    "varietals": "Heirloom",
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 21.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Peach",
+    "confidence": 0.85,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://greatlakescoffee.com/products/up-north",
+    "retrievedAt": "2026-07-04 12:38:13"
+  },
+  {
+    "id": "7390606688325",
+    "title": "Don Eli Geisha - Last chance",
+    "roaster": "Horsham Coffee Roaster",
+    "country": "Costa Rica",
+    "region": "Tarrazu",
+    "altitude": "1900 - 2000m",
+    "altitudeMin": 1900.0,
+    "altitudeMax": 2000.0,
+    "process": "Honey",
+    "roastLevel": "Unknown",
+    "varietals": "Geisha",
+    "weightGrams": 275,
+    "priceCurrency": "USD",
+    "priceValue": 17.5,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Pear",
+        "fullPath": "Fruity > Other Fruit > Pear",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Pear"
+        ],
+        "nameJa": "洋梨 (ペア)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Grape",
+        "fullPath": "Fruity > Other Fruit > Grape",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Grape"
+        ],
+        "nameJa": "ぶどう (グレープ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Peach; Fruity > Other Fruit > Pear; Fruity > Other Fruit > Grape; Fruity > Other Fruit > Cherry; Sweet > Honey > Honey",
+    "confidence": 0.84,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://horshamcoffeeroaster.co.uk/products/don-eli-geisha",
+    "retrievedAt": "2026-07-04 12:37:06"
+  },
+  {
+    "id": "7261952704581",
+    "title": "Finca La Esperanza Geisha",
+    "roaster": "Horsham Coffee Roaster",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Anaerobic",
+    "roastLevel": "Unknown",
+    "varietals": "Geisha",
+    "weightGrams": 275,
+    "priceCurrency": "USD",
+    "priceValue": 15.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Hibiscus",
+        "fullPath": "Floral > Floral > Hibiscus",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Hibiscus"
+        ],
+        "nameJa": "ハイビスカス",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Cherry; Sweet > Honey > Honey; Floral > Floral > Hibiscus",
+    "confidence": 0.82,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://horshamcoffeeroaster.co.uk/products/finca-la-esperanza",
+    "retrievedAt": "2026-07-04 12:37:06"
+  },
+  {
+    "id": "7052723191842",
+    "title": "Freak & Unique IX | Bolivia | Rodriguez Family Farm",
+    "roaster": "Hundred House Coffee",
+    "country": "Bolivia",
+    "region": null,
+    "altitude": "1500 - 1650m",
+    "altitudeMin": 1500.0,
+    "altitudeMax": 1650.0,
+    "process": "Natural",
+    "roastLevel": "Light",
+    "varietals": "Geisha",
+    "weightGrams": 800,
+    "priceCurrency": "USD",
+    "priceValue": 25.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Cherry",
+    "confidence": 0.8,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://hundredhousecoffee.com/products/freak-unique-ix-bolivia-rodriguez-family-farm",
+    "retrievedAt": "2026-07-04 12:40:32"
+  },
+  {
+    "id": "7151436234812",
+    "title": "El Salvador Malacara SL-28 XF",
+    "roaster": "Intelligentsia Coffee",
+    "country": "Kenya",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 30.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Peach",
+    "confidence": 0.7,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.intelligentsia.com/products/el-salvador-malacara-sl-28-xf",
+    "retrievedAt": "2026-07-04 12:29:52"
+  },
+  {
+    "id": "7555847159868",
+    "title": "Colombia El Estoraque Honey",
+    "roaster": "Intelligentsia Coffee",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Anaerobic",
+    "roastLevel": "Light",
+    "varietals": null,
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 22.0,
+    "tastingNotes": [
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Sweet > Honey > Honey",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.intelligentsia.com/products/colombia-el-estoraque-honey",
+    "retrievedAt": "2026-07-04 12:29:52"
+  },
+  {
+    "id": "269686449",
+    "title": "Skate Perk",
+    "roaster": "Just Coffee Cooperative",
+    "country": "Bolivia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Medium",
+    "varietals": null,
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 20.0,
+    "tastingNotes": [
+      {
+        "category": "Roasted",
+        "subcategory": "Cereal",
+        "descriptor": "Malt",
+        "fullPath": "Roasted > Cereal > Malt",
+        "pathParts": [
+          "Roasted",
+          "Cereal",
+          "Malt"
+        ],
+        "nameJa": "モルト (麦芽)",
+        "catJa": "ロースト",
+        "subJa": "穀物 (シリアル)"
+      }
+    ],
+    "tastingNotesRaw": "Roasted > Cereal > Malt",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://justcoffee.coop/products/skateperk-grind",
+    "retrievedAt": "2026-07-04 12:40:24"
+  },
+  {
+    "id": "10054396051803",
+    "title": "Espresso - Colombie - El Origen",
+    "roaster": "KB Coffee Roasters",
+    "country": "Colombia",
+    "region": "Huila",
+    "altitude": "1710 - 1710m",
+    "altitudeMin": 1710.0,
+    "altitudeMax": 1710.0,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": "Castillo",
+    "weightGrams": 270,
+    "priceCurrency": "USD",
+    "priceValue": 17.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Dried Fruit",
+        "descriptor": "Raisin",
+        "fullPath": "Fruity > Dried Fruit > Raisin",
+        "pathParts": [
+          "Fruity",
+          "Dried Fruit",
+          "Raisin"
+        ],
+        "nameJa": "レーズン",
+        "catJa": "フルーティ",
+        "subJa": "ドライフルーツ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Dried Fruit > Raisin",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://kbcoffeeroasters.com/products/espresso-colombie-el-origen",
+    "retrievedAt": "2026-07-04 12:39:01"
+  },
+  {
+    "id": "10357247443291",
+    "title": "Colombie - Chapoleros",
+    "roaster": "KB Coffee Roasters",
+    "country": "Colombia",
+    "region": "Huila",
+    "altitude": "1700 - 1700m",
+    "altitudeMin": 1700.0,
+    "altitudeMax": 1700.0,
+    "process": "Anaerobic",
+    "roastLevel": "Unknown",
+    "varietals": "Gesha, Caturra, Castillo",
+    "weightGrams": 260,
+    "priceCurrency": "USD",
+    "priceValue": 28.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+    "confidence": 0.7,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://kbcoffeeroasters.com/products/colombie-chapoleros",
+    "retrievedAt": "2026-07-04 12:39:01"
+  },
+  {
+    "id": "15380429701450",
+    "title": "Pink Jam. Café de Colombia",
+    "roaster": "Kima Coffee",
+    "country": "Colombia",
+    "region": "Antioquia",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": "Bourbon, Pink Bourbon",
+    "weightGrams": 270,
+    "priceCurrency": "USD",
+    "priceValue": 21.9,
+    "tastingNotes": [
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Hibiscus",
+        "fullPath": "Floral > Floral > Hibiscus",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Hibiscus"
+        ],
+        "nameJa": "ハイビスカス",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Floral > Floral > Hibiscus",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://kimacoffee.com/products/pink-jam-cafe-de-colombia-tostado-por-kima-coffee-en-malaga",
+    "retrievedAt": "2026-07-04 12:39:15"
+  },
+  {
+    "id": "10327167271242",
+    "title": "Cherry Bloom. Café de Colombia",
+    "roaster": "Kima Coffee",
+    "country": "Colombia",
+    "region": "Huila",
+    "altitude": "900 - 900m",
+    "altitudeMin": 900.0,
+    "altitudeMax": 900.0,
+    "process": "Honey",
+    "roastLevel": "Unknown",
+    "varietals": "Castillo, Caturra",
+    "weightGrams": 270,
+    "priceCurrency": "USD",
+    "priceValue": 21.9,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Cherry; Sweet > Honey > Honey",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://kimacoffee.com/products/cherry-bloom-cafe-de-colombia-tostado-por-kima-coffee-en-malaga",
+    "retrievedAt": "2026-07-04 12:39:15"
+  },
+  {
+    "id": "15734593225085",
+    "title": "Costa Rica, Lica Torres",
+    "roaster": "Kiss the Hippo Coffee",
+    "country": "Costa Rica",
+    "region": null,
+    "altitude": "550 - 550m",
+    "altitudeMin": 550.0,
+    "altitudeMax": 550.0,
+    "process": "Honey",
+    "roastLevel": "Dark",
+    "varietals": "Caturra",
+    "weightGrams": 321,
+    "priceCurrency": "USD",
+    "priceValue": 15.5,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Apple",
+        "fullPath": "Fruity > Other Fruit > Apple",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Apple"
+        ],
+        "nameJa": "りんご (アップル)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Apple; Fruity > Other Fruit > Cherry; Sweet > Honey > Honey",
+    "confidence": 0.8,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.kissthehippo.com/products/costa-rica-lica-torres",
+    "retrievedAt": "2026-07-04 12:32:24"
+  },
+  {
+    "id": "15256490377597",
+    "title": "Peru, La Ponderosa Gesha",
+    "roaster": "Kiss the Hippo Coffee",
+    "country": "Peru",
+    "region": null,
+    "altitude": "1850 - 1950m",
+    "altitudeMin": 1850.0,
+    "altitudeMax": 1950.0,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": "Gesha",
+    "weightGrams": 321,
+    "priceCurrency": "USD",
+    "priceValue": 35.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Lemon",
+        "fullPath": "Fruity > Citrus Fruit > Lemon",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Lemon"
+        ],
+        "nameJa": "レモン",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Pineapple",
+        "fullPath": "Fruity > Other Fruit > Pineapple",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Pineapple"
+        ],
+        "nameJa": "パイナップル",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Jasmine",
+        "fullPath": "Floral > Floral > Jasmine",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Jasmine"
+        ],
+        "nameJa": "ジャスミン",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Lemon; Fruity > Other Fruit > Pineapple; Floral > Floral > Jasmine",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.kissthehippo.com/products/peru-la-ponderosa-gesha",
+    "retrievedAt": "2026-07-04 12:32:24"
+  },
+  {
+    "id": "7432619000044",
+    "title": "Honduras Arturo Paz *Very Limited*",
+    "roaster": "Kuma Coffee",
+    "country": "Honduras",
+    "region": null,
+    "altitude": "1630 - 1630m",
+    "altitudeMin": 1630.0,
+    "altitudeMax": 1630.0,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": "Catuai",
+    "weightGrams": 345,
+    "priceCurrency": "USD",
+    "priceValue": 22.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Grape",
+        "fullPath": "Fruity > Other Fruit > Grape",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Grape"
+        ],
+        "nameJa": "ぶどう (グレープ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Passion Fruit",
+        "fullPath": "Fruity > Other Fruit > Passion Fruit",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Passion Fruit"
+        ],
+        "nameJa": "パッションフルーツ",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Hibiscus",
+        "fullPath": "Floral > Floral > Hibiscus",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Hibiscus"
+        ],
+        "nameJa": "ハイビスカス",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Grape; Fruity > Other Fruit > Passion Fruit; Floral > Floral > Hibiscus",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://kumacoffee.com/products/honduras-arturo-paz-very-limited",
+    "retrievedAt": "2026-07-04 12:30:32"
+  },
+  {
+    "id": "2160398081",
+    "title": "Classic",
+    "roaster": "Kuma Coffee",
+    "country": "Honduras",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Honey",
+    "roastLevel": "Medium",
+    "varietals": null,
+    "weightGrams": 345,
+    "priceCurrency": "USD",
+    "priceValue": 19.5,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Caramel",
+        "fullPath": "Sweet > Brown Sugar > Caramel",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Caramel"
+        ],
+        "nameJa": "キャラメル",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Peach; Nutty/Cocoa > Cocoa > Chocolate; Sweet > Brown Sugar > Caramel; Sweet > Honey > Honey",
+    "confidence": 0.85,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://kumacoffee.com/products/coffee-fresh-crop-blend-balanced",
+    "retrievedAt": "2026-07-04 12:30:32"
+  },
+  {
+    "id": "6207596396723",
+    "title": "FRENCH",
+    "roaster": "Level Ground Trading",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 317,
+    "priceCurrency": "USD",
+    "priceValue": 18.99,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Spices",
+        "subcategory": "Spices",
+        "descriptor": "Clove",
+        "fullPath": "Spices > Spices > Clove",
+        "pathParts": [
+          "Spices",
+          "Spices",
+          "Clove"
+        ],
+        "nameJa": "クローブ",
+        "catJa": "スパイス",
+        "subJa": "スパイス"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate; Spices > Spices > Clove",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://levelground.com/products/french-roast-coffee",
+    "retrievedAt": "2026-07-04 12:40:29"
+  },
+  {
+    "id": "6205085941939",
+    "title": "ETHIOPIA",
+    "roaster": "Level Ground Trading",
+    "country": "Ethiopia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 317,
+    "priceCurrency": "USD",
+    "priceValue": 18.99,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Tangerine",
+        "fullPath": "Fruity > Citrus Fruit > Tangerine",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Tangerine"
+        ],
+        "nameJa": "タンジェリン",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Nutty",
+        "descriptor": "Almond",
+        "fullPath": "Nutty/Cocoa > Nutty > Almond",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Nutty",
+          "Almond"
+        ],
+        "nameJa": "アーモンド",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ナッツ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Tangerine; Nutty/Cocoa > Nutty > Almond",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://levelground.com/products/ethiopia-coffee",
+    "retrievedAt": "2026-07-04 12:40:29"
+  },
+  {
+    "id": "8361601990929",
+    "title": "Sumatra Kerinci Gunung Tujuh",
+    "roaster": "Lighthouse Roasters",
+    "country": "Indonesia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 454,
+    "priceCurrency": "USD",
+    "priceValue": 22.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Caramel",
+        "fullPath": "Sweet > Brown Sugar > Caramel",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Caramel"
+        ],
+        "nameJa": "キャラメル",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Brown Sugar",
+        "fullPath": "Sweet > Brown Sugar > Brown Sugar",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Brown Sugar"
+        ],
+        "nameJa": "黒糖・ブラウンシュガー",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Chocolate; Sweet > Brown Sugar > Caramel; Sweet > Brown Sugar > Brown Sugar",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://lighthouseroasters.com/products/sumatra-mandheling",
+    "retrievedAt": "2026-07-04 12:38:08"
+  },
+  {
+    "id": "8609353302183",
+    "title": "Ethiopia Guji Kalimaz",
+    "roaster": "Mad Lab Coffee",
+    "country": "Ethiopia",
+    "region": "Guji",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 263,
+    "priceCurrency": "USD",
+    "priceValue": 10.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Lemon",
+        "fullPath": "Fruity > Citrus Fruit > Lemon",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Lemon"
+        ],
+        "nameJa": "レモン",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Lemon",
+    "confidence": 0.95,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://madlabcoffee.com/products/ethiopia-guji-kalimaz",
+    "retrievedAt": "2026-07-04 12:30:40"
+  },
+  {
+    "id": "8978150523034",
+    "title": "Gea Bloom",
+    "roaster": "Marigold Coffee",
+    "country": "Honduras",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Medium",
+    "varietals": null,
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 22.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Milk Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Milk Chocolate"
+        ],
+        "nameJa": "ミルクチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Milk Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://marigoldcoffee.com/products/gea-bloom-1",
+    "retrievedAt": "2026-07-04 12:40:23"
+  },
+  {
+    "id": "7889595695280",
+    "title": "Burundi Hafi Natural",
+    "roaster": "Messenger Coffee",
+    "country": "Burundi",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Medium",
+    "varietals": null,
+    "weightGrams": 283,
+    "priceCurrency": "USD",
+    "priceValue": 11.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Grapefruit",
+        "fullPath": "Fruity > Citrus Fruit > Grapefruit",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Grapefruit"
+        ],
+        "nameJa": "グレープフルーツ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Grapefruit",
+    "confidence": 0.8,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://messengercoffee.co/products/burundi-hafi-natural",
+    "retrievedAt": "2026-07-04 12:31:04"
+  },
+  {
+    "id": "4172952207437",
+    "title": "Sans Decaf",
+    "roaster": "Mission Coffee Works",
+    "country": "Papua New Guinea",
+    "region": null,
+    "altitude": "1600 - 1850m",
+    "altitudeMin": 1600.0,
+    "altitudeMax": 1850.0,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": "Bourbon, Typica",
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 13.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Nutty",
+        "descriptor": "Hazelnut",
+        "fullPath": "Nutty/Cocoa > Nutty > Hazelnut",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Nutty",
+          "Hazelnut"
+        ],
+        "nameJa": "ヘーゼルナッツ",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ナッツ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Peach; Nutty/Cocoa > Nutty > Hazelnut",
+    "confidence": 0.72,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.missioncoffeeworks.com/products/decaf-esprseso",
+    "retrievedAt": "2026-07-04 12:38:43"
+  },
+  {
+    "id": "4807740620877",
+    "title": "Up Hill Espresso - 3 months",
+    "roaster": "Mission Coffee Works",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "1050 - 1850m",
+    "altitudeMin": 1050.0,
+    "altitudeMax": 1850.0,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": "Typica, Caturra",
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 35.1,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Nutty",
+        "descriptor": "Pecan",
+        "fullPath": "Nutty/Cocoa > Nutty > Pecan",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Nutty",
+          "Pecan"
+        ],
+        "nameJa": "ペカンナッツ",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ナッツ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Orange; Nutty/Cocoa > Nutty > Pecan",
+    "confidence": 0.93,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.missioncoffeeworks.com/products/up-hill-espresso-3-months",
+    "retrievedAt": "2026-07-04 12:38:43"
+  },
+  {
+    "id": "15236014637427",
+    "title": "Elida Estate Espresso",
+    "roaster": "Monogram Coffee",
+    "country": "Panama",
+    "region": "Elida",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": "Catuai",
+    "weightGrams": 300,
+    "priceCurrency": "USD",
+    "priceValue": 32.5,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Strawberry",
+        "fullPath": "Fruity > Berry > Strawberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Strawberry"
+        ],
+        "nameJa": "ストロベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Spices",
+        "subcategory": "Spices",
+        "descriptor": "Black Tea",
+        "fullPath": "Spices > Spices > Black Tea",
+        "pathParts": [
+          "Spices",
+          "Spices",
+          "Black Tea"
+        ],
+        "nameJa": "ブラックティー",
+        "catJa": "スパイス",
+        "subJa": "スパイス"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Strawberry; Nutty/Cocoa > Cocoa > Chocolate; Spices > Spices > Black Tea",
+    "confidence": 0.92,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://monogramcoffee.com/products/elida-estate-espresso",
+    "retrievedAt": "2026-07-04 12:37:46"
+  },
+  {
+    "id": "15019635769720",
+    "title": "Colombia Edil Quinayas Washed Pink Bourbon",
+    "roaster": "North Star Coffee Roasters",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": "Bourbon, Pink Bourbon",
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 18.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Peach",
+    "confidence": 0.8,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.northstarroast.com/products/colombia-edil-quinayas-washed-pink-bourbon",
+    "retrievedAt": "2026-07-04 12:32:30"
+  },
+  {
+    "id": "7604348354735",
+    "title": "Guatemala - Slow Jam",
+    "roaster": "Nossa Familia Coffee",
+    "country": "Guatemala",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Light",
+    "varietals": "Catuai",
+    "weightGrams": 397,
+    "priceCurrency": "USD",
+    "priceValue": 23.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Strawberry",
+        "fullPath": "Fruity > Berry > Strawberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Strawberry"
+        ],
+        "nameJa": "ストロベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Tropical Fruit",
+        "fullPath": "Fruity > Other Fruit > Tropical Fruit",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Tropical Fruit"
+        ],
+        "nameJa": "トロピカルフルーツ",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Hibiscus",
+        "fullPath": "Floral > Floral > Hibiscus",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Hibiscus"
+        ],
+        "nameJa": "ハイビスカス",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Strawberry; Fruity > Other Fruit > Cherry; Fruity > Other Fruit > Tropical Fruit; Floral > Floral > Hibiscus",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://nossacoffee.com/products/guatemala-slow-jam",
+    "retrievedAt": "2026-07-04 12:31:32"
+  },
+  {
+    "id": "7855155609791",
+    "title": "Bench Maji, Ethiopia, Washed",
+    "roaster": "Ona Coffee",
+    "country": "Ethiopia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 200,
+    "priceCurrency": "USD",
+    "priceValue": 22.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Peach",
+    "confidence": 0.7,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://onacoffee.com.au/products/espresso-x-soe1",
+    "retrievedAt": "2026-07-04 12:37:30"
+  },
+  {
+    "id": "8733956145372",
+    "title": "Nuts & Bolts",
+    "roaster": "PPP Coffee",
+    "country": "Ethiopia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 22.5,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Nutty",
+        "descriptor": "Almond",
+        "fullPath": "Nutty/Cocoa > Nutty > Almond",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Nutty",
+          "Almond"
+        ],
+        "nameJa": "アーモンド",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ナッツ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Nutty > Almond; Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://pppcoffee.com/products/nuts-bolts-2",
+    "retrievedAt": "2026-07-04 12:38:00"
+  },
+  {
+    "id": "8306570559708",
+    "title": "Single Origin Batch Brew - 1kg (Wholesale) - WTCG",
+    "roaster": "PPP Coffee",
+    "country": "Ethiopia",
+    "region": "Guji",
+    "altitude": "1200 - 1300m",
+    "altitudeMin": 1200.0,
+    "altitudeMax": 1300.0,
+    "process": "Natural",
+    "roastLevel": "Dark",
+    "varietals": "Bourbon, Typica, Caturra, Catuai",
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 45.78,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Dried Fruit",
+        "descriptor": "Raisin",
+        "fullPath": "Fruity > Dried Fruit > Raisin",
+        "pathParts": [
+          "Fruity",
+          "Dried Fruit",
+          "Raisin"
+        ],
+        "nameJa": "レーズン",
+        "catJa": "フルーティ",
+        "subJa": "ドライフルーツ"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Nutty",
+        "descriptor": "Almond",
+        "fullPath": "Nutty/Cocoa > Nutty > Almond",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Nutty",
+          "Almond"
+        ],
+        "nameJa": "アーモンド",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ナッツ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Milk Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Milk Chocolate"
+        ],
+        "nameJa": "ミルクチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Spices",
+        "subcategory": "Spices",
+        "descriptor": "Earl Grey",
+        "fullPath": "Spices > Spices > Earl Grey",
+        "pathParts": [
+          "Spices",
+          "Spices",
+          "Earl Grey"
+        ],
+        "nameJa": "アールグレイ",
+        "catJa": "スパイス",
+        "subJa": "スパイス"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Dried Fruit > Raisin; Fruity > Citrus Fruit > Orange; Fruity > Other Fruit > Peach; Fruity > Other Fruit > Cherry; Nutty/Cocoa > Nutty > Almond; Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Milk Chocolate; Nutty/Cocoa > Cocoa > Chocolate; Spices > Spices > Earl Grey",
+    "confidence": 0.77,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://pppcoffee.com/products/single-origin-1kg-wholesale-wtcg",
+    "retrievedAt": "2026-07-04 12:38:00"
+  },
+  {
+    "id": "542209114160",
+    "title": "Sudan Rume Natural",
+    "roaster": "PT's Coffee Roasting",
+    "country": "Ethiopia",
+    "region": "Cauca",
+    "altitude": "852 - 852m",
+    "altitudeMin": 852.0,
+    "altitudeMax": 852.0,
+    "process": "Natural",
+    "roastLevel": "Light-Medium",
+    "varietals": "Bourbon",
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 45.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Grapefruit",
+        "fullPath": "Fruity > Citrus Fruit > Grapefruit",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Grapefruit"
+        ],
+        "nameJa": "グレープフルーツ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Grape",
+        "fullPath": "Fruity > Other Fruit > Grape",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Grape"
+        ],
+        "nameJa": "ぶどう (グレープ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Molasses",
+        "fullPath": "Sweet > Brown Sugar > Molasses",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Molasses"
+        ],
+        "nameJa": "糖蜜 (モラセス)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Grapefruit; Fruity > Other Fruit > Grape; Sweet > Brown Sugar > Molasses",
+    "confidence": 0.88,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.ptscoffee.com/products/sudan-rume-natural",
+    "retrievedAt": "2026-07-04 12:31:03"
+  },
+  {
+    "id": "7454385406000",
+    "title": "Abadatezuka Coop Washed",
+    "roaster": "PT's Coffee Roasting",
+    "country": "Kenya",
+    "region": "Nyungwe",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Honey",
+    "roastLevel": "Light",
+    "varietals": "Bourbon",
+    "weightGrams": 283,
+    "priceCurrency": "USD",
+    "priceValue": 19.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Blackberry",
+        "fullPath": "Fruity > Berry > Blackberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Blackberry"
+        ],
+        "nameJa": "ブラックベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Bergamot",
+        "fullPath": "Fruity > Citrus Fruit > Bergamot",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Bergamot"
+        ],
+        "nameJa": "ベルガモット",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Apple",
+        "fullPath": "Fruity > Other Fruit > Apple",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Apple"
+        ],
+        "nameJa": "りんご (アップル)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Caramel",
+        "fullPath": "Sweet > Brown Sugar > Caramel",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Caramel"
+        ],
+        "nameJa": "キャラメル",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Blackberry; Fruity > Citrus Fruit > Orange; Fruity > Citrus Fruit > Bergamot; Fruity > Other Fruit > Apple; Nutty/Cocoa > Cocoa > Chocolate; Sweet > Brown Sugar > Caramel",
+    "confidence": 0.83,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.ptscoffee.com/products/abadatezuka-coop-washed",
+    "retrievedAt": "2026-07-04 12:31:03"
+  },
+  {
+    "id": "9381634146524",
+    "title": "Brazil Gabriel Nunes  - Single Origin Espresso",
+    "roaster": "Padre Coffee",
+    "country": "Brazil",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 260,
+    "priceCurrency": "USD",
+    "priceValue": 26.5,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Bergamot",
+        "fullPath": "Fruity > Citrus Fruit > Bergamot",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Bergamot"
+        ],
+        "nameJa": "ベルガモット",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Vanilla",
+        "descriptor": "Vanilla",
+        "fullPath": "Sweet > Vanilla > Vanilla",
+        "pathParts": [
+          "Sweet",
+          "Vanilla",
+          "Vanilla"
+        ],
+        "nameJa": "バニラ",
+        "catJa": "スウィート (甘味)",
+        "subJa": "バニラ"
+      },
+      {
+        "category": "Spices",
+        "subcategory": "Spices",
+        "descriptor": "Cinnamon",
+        "fullPath": "Spices > Spices > Cinnamon",
+        "pathParts": [
+          "Spices",
+          "Spices",
+          "Cinnamon"
+        ],
+        "nameJa": "シナモン",
+        "catJa": "スパイス",
+        "subJa": "スパイス"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Bergamot; Fruity > Other Fruit > Peach; Sweet > Vanilla > Vanilla; Spices > Spices > Cinnamon",
+    "confidence": 0.89,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://padrecoffee.com.au/products/brazil-gabriel-nunes-single-origin-espresso",
+    "retrievedAt": "2026-07-04 12:37:25"
+  },
+  {
+    "id": "8500355825819",
+    "title": "ISRAEL SALAZAR - Colombia Specialty Coffee WS",
+    "roaster": "Panther Coffee",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "2000 - 2000m",
+    "altitudeMin": 2000.0,
+    "altitudeMax": 2000.0,
+    "process": "Washed",
+    "roastLevel": "Light",
+    "varietals": "Castillo",
+    "weightGrams": 2309,
+    "priceCurrency": "USD",
+    "priceValue": 25.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Lemon",
+        "fullPath": "Fruity > Citrus Fruit > Lemon",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Lemon"
+        ],
+        "nameJa": "レモン",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Roasted",
+        "subcategory": "Cereal",
+        "descriptor": "Graham Cracker",
+        "fullPath": "Roasted > Cereal > Graham Cracker",
+        "pathParts": [
+          "Roasted",
+          "Cereal",
+          "Graham Cracker"
+        ],
+        "nameJa": "グラハムクラッカー",
+        "catJa": "ロースト",
+        "subJa": "穀物 (シリアル)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Orange; Fruity > Citrus Fruit > Lemon; Roasted > Cereal > Graham Cracker",
+    "confidence": 0.93,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://panthercoffee.com/products/israel-salazar-colombia-specialty-coffee-1",
+    "retrievedAt": "2026-07-04 12:40:02"
+  },
+  {
+    "id": "8690935234715",
+    "title": "MEJOR - Colombia Specialty Coffee WS",
+    "roaster": "Panther Coffee",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 425,
+    "priceCurrency": "USD",
+    "priceValue": 11.25,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Milk Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Milk Chocolate"
+        ],
+        "nameJa": "ミルクチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Cherry; Nutty/Cocoa > Cocoa > Milk Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://panthercoffee.com/products/mejor-colombia-specialty-coffee-ws",
+    "retrievedAt": "2026-07-04 12:40:03"
+  },
+  {
+    "id": "8138526982364",
+    "title": "Mexico Miramar",
+    "roaster": "Parlor Coffee",
+    "country": "Mexico",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 227,
+    "priceCurrency": "USD",
+    "priceValue": 26.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Strawberry",
+        "fullPath": "Fruity > Berry > Strawberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Strawberry"
+        ],
+        "nameJa": "ストロベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Pear",
+        "fullPath": "Fruity > Other Fruit > Pear",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Pear"
+        ],
+        "nameJa": "洋梨 (ペア)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Apple",
+        "fullPath": "Fruity > Other Fruit > Apple",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Apple"
+        ],
+        "nameJa": "りんご (アップル)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Strawberry; Fruity > Other Fruit > Pear; Fruity > Other Fruit > Apple; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.82,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.parlorcoffee.com/products/mexico-miramar",
+    "retrievedAt": "2026-07-04 12:30:45"
+  },
+  {
+    "id": "8347445067966",
+    "title": "Mullugeta Muntasha - Wet Process - 2024",
+    "roaster": "Passenger Coffee",
+    "country": "Ethiopia",
+    "region": "Sidama",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 142,
+    "priceCurrency": "USD",
+    "priceValue": 13.75,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Spices",
+        "subcategory": "Spices",
+        "descriptor": "Black Tea",
+        "fullPath": "Spices > Spices > Black Tea",
+        "pathParts": [
+          "Spices",
+          "Spices",
+          "Black Tea"
+        ],
+        "nameJa": "ブラックティー",
+        "catJa": "スパイス",
+        "subJa": "スパイス"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Peach; Spices > Spices > Black Tea",
+    "confidence": 0.72,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.passengercoffee.com/products/mullugeta-muntasha",
+    "retrievedAt": "2026-07-04 12:30:00"
+  },
+  {
+    "id": "9920049611066",
+    "title": "Archive: Sumatra Kerinci Valley Anaerobic",
+    "roaster": "Perc Coffee",
+    "country": "Indonesia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Anaerobic",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 29.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Blackberry",
+        "fullPath": "Fruity > Berry > Blackberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Blackberry"
+        ],
+        "nameJa": "ブラックベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Strawberry",
+        "fullPath": "Fruity > Berry > Strawberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Strawberry"
+        ],
+        "nameJa": "ストロベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Blackberry; Fruity > Berry > Strawberry",
+    "confidence": 0.8,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://perccoffee.com/products/sumatra-kerinci-valley-anaerobic",
+    "retrievedAt": "2026-07-04 12:40:06"
+  },
+  {
+    "id": "7187201392699",
+    "title": "Jazzy Max",
+    "roaster": "Perky Blenders",
+    "country": "Brazil",
+    "region": "Sul De Minas",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 280,
+    "priceCurrency": "USD",
+    "priceValue": 10.5,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Blueberry",
+        "fullPath": "Fruity > Berry > Blueberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Blueberry"
+        ],
+        "nameJa": "ブルーベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Tropical Fruit",
+        "fullPath": "Fruity > Other Fruit > Tropical Fruit",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Tropical Fruit"
+        ],
+        "nameJa": "トロピカルフルーツ",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Mango",
+        "fullPath": "Fruity > Other Fruit > Mango",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Mango"
+        ],
+        "nameJa": "マンゴー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Milk Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Milk Chocolate"
+        ],
+        "nameJa": "ミルクチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Blueberry; Fruity > Other Fruit > Tropical Fruit; Fruity > Other Fruit > Mango; Nutty/Cocoa > Cocoa > Milk Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.81,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://perkyblenders.com/products/jazzy-max",
+    "retrievedAt": "2026-07-04 12:38:38"
+  },
+  {
+    "id": "6667840618599",
+    "title": "Guatemala | Las Marias",
+    "roaster": "Prevail Coffee",
+    "country": "Guatemala",
+    "region": null,
+    "altitude": "1400 - 1400m",
+    "altitudeMin": 1400.0,
+    "altitudeMax": 1400.0,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": "Caturra",
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 21.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Nutty",
+        "descriptor": "Peanut",
+        "fullPath": "Nutty/Cocoa > Nutty > Peanut",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Nutty",
+          "Peanut"
+        ],
+        "nameJa": "ピーナッツ",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ナッツ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Milk Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Milk Chocolate"
+        ],
+        "nameJa": "ミルクチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Orange; Nutty/Cocoa > Nutty > Peanut; Nutty/Cocoa > Cocoa > Milk Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.91,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://prevailcoffee.com/products/guatemala-las-marias",
+    "retrievedAt": "2026-07-04 12:38:29"
+  },
+  {
+    "id": "9272976474389",
+    "title": "Gesha Bundle | Gesha Village & Finca Campo Hermoso",
+    "roaster": "Regent Coffee",
+    "country": "Ethiopia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Honey",
+    "roastLevel": "Light",
+    "varietals": "Gesha",
+    "weightGrams": 680,
+    "priceCurrency": "USD",
+    "priceValue": 32.0,
+    "tastingNotes": [
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Sweet > Honey > Honey",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://regentcoffee.com/products/finca-campo-hermoso-carbonic-galaxy-hops-infused-mossto-gesha-copy",
+    "retrievedAt": "2026-07-04 12:30:38"
+  },
+  {
+    "id": "6785539604577",
+    "title": "Jardines El Eden Bubble Gum",
+    "roaster": "Regent Coffee",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "1900 - 1900m",
+    "altitudeMin": 1900.0,
+    "altitudeMax": 1900.0,
+    "process": "Anaerobic",
+    "roastLevel": "Medium",
+    "varietals": "Caturra",
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 31.5,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Strawberry",
+        "fullPath": "Fruity > Berry > Strawberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Strawberry"
+        ],
+        "nameJa": "ストロベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Tropical Fruit",
+        "fullPath": "Fruity > Other Fruit > Tropical Fruit",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Tropical Fruit"
+        ],
+        "nameJa": "トロピカルフルーツ",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Passion Fruit",
+        "fullPath": "Fruity > Other Fruit > Passion Fruit",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Passion Fruit"
+        ],
+        "nameJa": "パッションフルーツ",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Strawberry; Fruity > Other Fruit > Tropical Fruit; Fruity > Other Fruit > Passion Fruit; Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://regentcoffee.com/products/bubble-gum-colombia-coffee",
+    "retrievedAt": "2026-07-04 12:30:38"
+  },
+  {
+    "id": "8154331414710",
+    "title": "Hacienda Barbara Washed Geisha 100g",
+    "roaster": "Rosso Coffee Roasters",
+    "country": "Panama",
+    "region": "Boquete",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Light",
+    "varietals": "Geisha",
+    "weightGrams": 100,
+    "priceCurrency": "USD",
+    "priceValue": 23.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Dried Fruit",
+        "descriptor": "Raisin",
+        "fullPath": "Fruity > Dried Fruit > Raisin",
+        "pathParts": [
+          "Fruity",
+          "Dried Fruit",
+          "Raisin"
+        ],
+        "nameJa": "レーズン",
+        "catJa": "フルーティ",
+        "subJa": "ドライフルーツ"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Tropical Fruit",
+        "fullPath": "Fruity > Other Fruit > Tropical Fruit",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Tropical Fruit"
+        ],
+        "nameJa": "トロピカルフルーツ",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Jasmine",
+        "fullPath": "Floral > Floral > Jasmine",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Jasmine"
+        ],
+        "nameJa": "ジャスミン",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Orange Blossom",
+        "fullPath": "Floral > Floral > Orange Blossom",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Orange Blossom"
+        ],
+        "nameJa": "オレンジブロッサム",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Dried Fruit > Raisin; Fruity > Citrus Fruit > Orange; Fruity > Other Fruit > Tropical Fruit; Nutty/Cocoa > Cocoa > Chocolate; Floral > Floral > Jasmine; Floral > Floral > Orange Blossom",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://rossocoffeeroasters.com/products/hacienda-barbara-washed-geisha-100g",
+    "retrievedAt": "2026-07-04 12:37:48"
+  },
+  {
+    "id": "8161044332726",
+    "title": "Janson Washed Geisha Lot 411 100g",
+    "roaster": "Rosso Coffee Roasters",
+    "country": "Panama",
+    "region": null,
+    "altitude": "700 - 700m",
+    "altitudeMin": 700.0,
+    "altitudeMax": 700.0,
+    "process": "Honey",
+    "roastLevel": "Light",
+    "varietals": "Geisha",
+    "weightGrams": 100,
+    "priceCurrency": "USD",
+    "priceValue": 41.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Lemon",
+        "fullPath": "Fruity > Citrus Fruit > Lemon",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Lemon"
+        ],
+        "nameJa": "レモン",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Jasmine",
+        "fullPath": "Floral > Floral > Jasmine",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Jasmine"
+        ],
+        "nameJa": "ジャスミン",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Lemon; Fruity > Other Fruit > Peach; Sweet > Honey > Honey; Floral > Floral > Jasmine",
+    "confidence": 0.78,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://rossocoffeeroasters.com/products/panama-janson-geisha-washed-lot-411-100g",
+    "retrievedAt": "2026-07-04 12:37:48"
+  },
+  {
+    "id": "9600032538937",
+    "title": "Colombia El Placer Espresso",
+    "roaster": "Rumble Coffee Roasters",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 270,
+    "priceCurrency": "USD",
+    "priceValue": 22.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Milk Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Milk Chocolate"
+        ],
+        "nameJa": "ミルクチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Peach; Fruity > Other Fruit > Cherry; Nutty/Cocoa > Cocoa > Milk Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.79,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://rumblecoffee.com.au/products/colombia-el-placer",
+    "retrievedAt": "2026-07-04 12:37:28"
+  },
+  {
+    "id": "8095682986231",
+    "title": "Honduras La Salsa Heirloom",
+    "roaster": "Saint Frank Coffee",
+    "country": "Ethiopia",
+    "region": null,
+    "altitude": "1700 - 1700m",
+    "altitudeMin": 1700.0,
+    "altitudeMax": 1700.0,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": "Gesha, SL28, Heirloom",
+    "weightGrams": 312,
+    "priceCurrency": "USD",
+    "priceValue": 30.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Lemon",
+        "fullPath": "Fruity > Citrus Fruit > Lemon",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Lemon"
+        ],
+        "nameJa": "レモン",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Lime",
+        "fullPath": "Fruity > Citrus Fruit > Lime",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Lime"
+        ],
+        "nameJa": "ライム",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Bergamot",
+        "fullPath": "Fruity > Citrus Fruit > Bergamot",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Bergamot"
+        ],
+        "nameJa": "ベルガモット",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Lemon; Fruity > Citrus Fruit > Lime; Fruity > Citrus Fruit > Bergamot; Fruity > Other Fruit > Peach",
+    "confidence": 0.78,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.saintfrankcoffee.com/products/honduras-la-salsa-heirloom",
+    "retrievedAt": "2026-07-04 12:31:14"
+  },
+  {
+    "id": "10310454673572",
+    "title": "Maria Reyes, Honduras",
+    "roaster": "Seven Seeds",
+    "country": "Honduras",
+    "region": null,
+    "altitude": "1780 - 1780m",
+    "altitudeMin": 1780.0,
+    "altitudeMax": 1780.0,
+    "process": "Washed",
+    "roastLevel": "Light",
+    "varietals": "Catuai",
+    "weightGrams": 300,
+    "priceCurrency": "USD",
+    "priceValue": 28.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Tangerine",
+        "fullPath": "Fruity > Citrus Fruit > Tangerine",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Tangerine"
+        ],
+        "nameJa": "タンジェリン",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Tangerine",
+    "confidence": 0.85,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://sevenseeds.com.au/products/maria-reyes-honduras-2526",
+    "retrievedAt": "2026-07-04 12:37:17"
+  },
+  {
+    "id": "10309260771492",
+    "title": "Bekele Belaycho, Ethiopia",
+    "roaster": "Seven Seeds",
+    "country": "Ethiopia",
+    "region": "Sidama",
+    "altitude": "2300 - 2300m",
+    "altitudeMin": 2300.0,
+    "altitudeMax": 2300.0,
+    "process": "Natural",
+    "roastLevel": "Medium",
+    "varietals": null,
+    "weightGrams": 300,
+    "priceCurrency": "USD",
+    "priceValue": 25.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Cherry",
+    "confidence": 0.8,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://sevenseeds.com.au/products/bekele-belaycho-ethiopia-2025",
+    "retrievedAt": "2026-07-04 12:37:17"
+  },
+  {
+    "id": "1684839172",
+    "title": "Maiden Voyage -Best Seller Organic Espresso - Ethiopian Coffee",
+    "roaster": "Sextant Coffee Roasters",
+    "country": "Ethiopia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Medium",
+    "varietals": "Heirloom",
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 27.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Cherry",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://sextantcoffee.com/products/maiden-voyage-espresso-blend-sextant-coffee",
+    "retrievedAt": "2026-07-04 12:38:23"
+  },
+  {
+    "id": "7741943546110",
+    "title": "2022 Wilmer Galindez; Napoles - Colombia",
+    "roaster": "Sey Coffee",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": "Bourbon, Pink Bourbon",
+    "weightGrams": 318,
+    "priceCurrency": "USD",
+    "priceValue": 23.5,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Strawberry",
+        "fullPath": "Fruity > Berry > Strawberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Strawberry"
+        ],
+        "nameJa": "ストロベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Rose",
+        "fullPath": "Floral > Floral > Rose",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Rose"
+        ],
+        "nameJa": "ローズ",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Strawberry; Floral > Floral > Rose",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.seycoffee.com/products/wilmer-galindez-2022",
+    "retrievedAt": "2026-07-04 12:30:11"
+  },
+  {
+    "id": "8543007965438",
+    "title": "2024 Jose & Pepe Jijon; Finca San Pedro, Middle Harvest - Ecuador",
+    "roaster": "Sey Coffee",
+    "country": "Ecuador",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 318,
+    "priceCurrency": "USD",
+    "priceValue": 45.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Raspberry",
+        "fullPath": "Fruity > Berry > Raspberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Raspberry"
+        ],
+        "nameJa": "ラズベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Tropical Fruit",
+        "fullPath": "Fruity > Other Fruit > Tropical Fruit",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Tropical Fruit"
+        ],
+        "nameJa": "トロピカルフルーツ",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Rose",
+        "fullPath": "Floral > Floral > Rose",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Rose"
+        ],
+        "nameJa": "ローズ",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Raspberry; Fruity > Other Fruit > Tropical Fruit; Floral > Floral > Rose",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.seycoffee.com/products/2024-jose-pepe-jijon-finca-san-pedro-middle-harvest-ecuador",
+    "retrievedAt": "2026-07-04 12:30:11"
+  },
+  {
+    "id": "15012147200376",
+    "title": "Decaf El Buho 250g Decaf Coffee",
+    "roaster": "Small Batch Coffee",
+    "country": "Colombia",
+    "region": "Huila",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 320,
+    "priceCurrency": "USD",
+    "priceValue": 14.5,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Grape",
+        "fullPath": "Fruity > Other Fruit > Grape",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Grape"
+        ],
+        "nameJa": "ぶどう (グレープ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Vanilla",
+        "descriptor": "Vanilla",
+        "fullPath": "Sweet > Vanilla > Vanilla",
+        "pathParts": [
+          "Sweet",
+          "Vanilla",
+          "Vanilla"
+        ],
+        "nameJa": "バニラ",
+        "catJa": "スウィート (甘味)",
+        "subJa": "バニラ"
+      },
+      {
+        "category": "Roasted",
+        "subcategory": "Cereal",
+        "descriptor": "Malt",
+        "fullPath": "Roasted > Cereal > Malt",
+        "pathParts": [
+          "Roasted",
+          "Cereal",
+          "Malt"
+        ],
+        "nameJa": "モルト (麦芽)",
+        "catJa": "ロースト",
+        "subJa": "穀物 (シリアル)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Grape; Sweet > Vanilla > Vanilla; Roasted > Cereal > Malt",
+    "confidence": 0.77,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://smallbatchcoffee.co.uk/products/decaf-el-buho-250g",
+    "retrievedAt": "2026-07-04 12:40:37"
+  },
+  {
+    "id": "8240340435144",
+    "title": "Ethiopia Suke Quto",
+    "roaster": "Sparrows Coffee",
+    "country": "Ethiopia",
+    "region": "Guji",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 310,
+    "priceCurrency": "USD",
+    "priceValue": 18.5,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Lemon",
+        "fullPath": "Fruity > Citrus Fruit > Lemon",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Lemon"
+        ],
+        "nameJa": "レモン",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Lime",
+        "fullPath": "Fruity > Citrus Fruit > Lime",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Lime"
+        ],
+        "nameJa": "ライム",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Vanilla",
+        "descriptor": "Vanilla",
+        "fullPath": "Sweet > Vanilla > Vanilla",
+        "pathParts": [
+          "Sweet",
+          "Vanilla",
+          "Vanilla"
+        ],
+        "nameJa": "バニラ",
+        "catJa": "スウィート (甘味)",
+        "subJa": "バニラ"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Jasmine",
+        "fullPath": "Floral > Floral > Jasmine",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Jasmine"
+        ],
+        "nameJa": "ジャスミン",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Lemon; Fruity > Citrus Fruit > Lime; Fruity > Other Fruit > Peach; Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate; Sweet > Vanilla > Vanilla; Floral > Floral > Jasmine",
+    "confidence": 0.84,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.sparrowscoffee.com/products/ethiopia-suke-quto",
+    "retrievedAt": "2026-07-04 12:31:11"
+  },
+  {
+    "id": "4674656403515",
+    "title": "All Seasons Blend",
+    "roaster": "Sparrows Coffee",
+    "country": "Ethiopia",
+    "region": "Cauca",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 310,
+    "priceCurrency": "USD",
+    "priceValue": 16.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Apple",
+        "fullPath": "Fruity > Other Fruit > Apple",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Apple"
+        ],
+        "nameJa": "りんご (アップル)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Apple; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.85,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.sparrowscoffee.com/products/all-seasons-blend",
+    "retrievedAt": "2026-07-04 12:31:11"
+  },
+  {
+    "id": "15675265384783",
+    "title": "Capsules Shoondhisa Natural – by Ture Waji Ethiopia",
+    "roaster": "Standout Coffee",
+    "country": "Ethiopia",
+    "region": "Guji",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 135,
+    "priceCurrency": "USD",
+    "priceValue": 129.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Grape",
+        "fullPath": "Fruity > Other Fruit > Grape",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Grape"
+        ],
+        "nameJa": "ぶどう (グレープ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Peach; Fruity > Other Fruit > Grape",
+    "confidence": 0.8,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://standoutcoffee.com/products/capsules-shoondhisa",
+    "retrievedAt": "2026-07-04 12:39:04"
+  },
+  {
+    "id": "15945556656508",
+    "title": "Peru Anibal Garcia",
+    "roaster": "Steampunk Coffee",
+    "country": "Peru",
+    "region": null,
+    "altitude": "900 - 900m",
+    "altitudeMin": 900.0,
+    "altitudeMax": 900.0,
+    "process": "Natural",
+    "roastLevel": "Light",
+    "varietals": "Geisha, Bourbon",
+    "weightGrams": 450,
+    "priceCurrency": "USD",
+    "priceValue": 15.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Raspberry",
+        "fullPath": "Fruity > Berry > Raspberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Raspberry"
+        ],
+        "nameJa": "ラズベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Strawberry",
+        "fullPath": "Fruity > Berry > Strawberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Strawberry"
+        ],
+        "nameJa": "ストロベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Raspberry; Fruity > Berry > Strawberry; Fruity > Other Fruit > Cherry; Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.82,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://steampunkcoffee.co.uk/products/peru-anibal-garcia",
+    "retrievedAt": "2026-07-04 12:38:46"
+  },
+  {
+    "id": "9083033518236",
+    "title": "JUST PASSING THROUGH",
+    "roaster": "Stone Creek Coffee",
+    "country": "Guatemala",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Washed",
+    "roastLevel": "Light",
+    "varietals": null,
+    "weightGrams": 227,
+    "priceCurrency": "USD",
+    "priceValue": 13.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Peach; Nutty/Cocoa > Cocoa > Dark Chocolate",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.stonecreekcoffee.com/products/just-passing-through",
+    "retrievedAt": "2026-07-04 12:31:01"
+  },
+  {
+    "id": "8407182180508",
+    "title": "RIPPLE EFFECT",
+    "roaster": "Stone Creek Coffee",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 20.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Caramel",
+        "fullPath": "Sweet > Brown Sugar > Caramel",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Caramel"
+        ],
+        "nameJa": "キャラメル",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Chocolate; Sweet > Brown Sugar > Caramel",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.stonecreekcoffee.com/products/ripple-effect",
+    "retrievedAt": "2026-07-04 12:31:01"
+  },
+  {
+    "id": "15721776185678",
+    "title": "San Isidro",
+    "roaster": "Syra Coffee",
+    "country": "Colombia",
+    "region": "Huila",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": "Castillo",
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 11.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://syra.coffee/products/san-isidro",
+    "retrievedAt": "2026-07-04 12:31:56"
+  },
+  {
+    "id": "15851004002638",
+    "title": "Atitlán",
+    "roaster": "Syra Coffee",
+    "country": "Guatemala",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": "Bourbon, Caturra",
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 13.5,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://syra.coffee/products/atitlan",
+    "retrievedAt": "2026-07-04 12:31:56"
+  },
+  {
+    "id": "8589445464256",
+    "title": "Bolivia La Paz Washed",
+    "roaster": "Topeca Coffee",
+    "country": "Bolivia",
+    "region": null,
+    "altitude": "1350 - 1350m",
+    "altitudeMin": 1350.0,
+    "altitudeMax": 1350.0,
+    "process": "Washed",
+    "roastLevel": "Light",
+    "varietals": "Caturra",
+    "weightGrams": 354,
+    "priceCurrency": "USD",
+    "priceValue": 19.99,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Apple",
+        "fullPath": "Fruity > Other Fruit > Apple",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Apple"
+        ],
+        "nameJa": "りんご (アップル)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Caramel",
+        "fullPath": "Sweet > Brown Sugar > Caramel",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Caramel"
+        ],
+        "nameJa": "キャラメル",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Apple; Sweet > Brown Sugar > Caramel",
+    "confidence": 0.93,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://topecacoffee.com/products/bolivia-la-paz-washed",
+    "retrievedAt": "2026-07-04 12:38:31"
+  },
+  {
+    "id": "6694121046085",
+    "title": "Sumava - Raw Green Coffee - Costa Rica",
+    "roaster": "Transcend Coffee",
+    "country": "Costa Rica",
+    "region": "West Valley",
+    "altitude": "1670 - 1750m",
+    "altitudeMin": 1670.0,
+    "altitudeMax": 1750.0,
+    "process": "Honey",
+    "roastLevel": "Light",
+    "varietals": "Caturra",
+    "weightGrams": 454,
+    "priceCurrency": "USD",
+    "priceValue": 17.5,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Milk Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Milk Chocolate"
+        ],
+        "nameJa": "ミルクチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Brown Sugar",
+        "fullPath": "Sweet > Brown Sugar > Brown Sugar",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Brown Sugar"
+        ],
+        "nameJa": "黒糖・ブラウンシュガー",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Milk Chocolate; Nutty/Cocoa > Cocoa > Chocolate; Sweet > Brown Sugar > Brown Sugar; Sweet > Honey > Honey",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://transcendcoffee.ca/products/sumava-green-unroasted-coffee-costa-rica",
+    "retrievedAt": "2026-07-04 12:37:56"
+  },
+  {
+    "id": "7049139257510",
+    "title": "Christmas Coffee",
+    "roaster": "Tres Cabezas",
+    "country": "Costa Rica",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 250,
+    "priceCurrency": "USD",
+    "priceValue": 17.9,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Orange",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://trescabezas.de/products/christmas-coffee",
+    "retrievedAt": "2026-07-04 12:40:41"
+  },
+  {
+    "id": "2230971891830",
+    "title": "Espresso Selection, Gift Box",
+    "roaster": "Union Hand-Roasted Coffee",
+    "country": "Guatemala",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 1001,
+    "priceCurrency": "USD",
+    "priceValue": 34.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Caramel",
+        "fullPath": "Sweet > Brown Sugar > Caramel",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Caramel"
+        ],
+        "nameJa": "キャラメル",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Cocoa > Chocolate; Sweet > Brown Sugar > Caramel",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://unionroasted.com/products/espresso-selection-gift-box",
+    "retrievedAt": "2026-07-04 12:32:44"
+  },
+  {
+    "id": "7568646307923",
+    "title": "Archive: Kenya Kangocho",
+    "roaster": "Verve Coffee Roasters",
+    "country": "Kenya",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Light",
+    "varietals": null,
+    "weightGrams": 386,
+    "priceCurrency": "USD",
+    "priceValue": 27.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Pear",
+        "fullPath": "Fruity > Other Fruit > Pear",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Pear"
+        ],
+        "nameJa": "洋梨 (ペア)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Other Fruit > Pear",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.vervecoffee.com/products/kangocho",
+    "retrievedAt": "2026-07-04 12:29:39"
+  },
+  {
+    "id": "7778869674067",
+    "title": "Archive: Ethiopia Anasora Natural Espresso",
+    "roaster": "Verve Coffee Roasters",
+    "country": "Ethiopia",
+    "region": "Guji",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Unknown",
+    "varietals": null,
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 23.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Blackberry",
+        "fullPath": "Fruity > Berry > Blackberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Blackberry"
+        ],
+        "nameJa": "ブラックベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Raspberry",
+        "fullPath": "Fruity > Berry > Raspberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Raspberry"
+        ],
+        "nameJa": "ラズベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Strawberry",
+        "fullPath": "Fruity > Berry > Strawberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Strawberry"
+        ],
+        "nameJa": "ストロベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Lemon",
+        "fullPath": "Fruity > Citrus Fruit > Lemon",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Lemon"
+        ],
+        "nameJa": "レモン",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Lime",
+        "fullPath": "Fruity > Citrus Fruit > Lime",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Lime"
+        ],
+        "nameJa": "ライム",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Peach",
+        "fullPath": "Fruity > Other Fruit > Peach",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Peach"
+        ],
+        "nameJa": "桃 (ピーチ)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Pear",
+        "fullPath": "Fruity > Other Fruit > Pear",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Pear"
+        ],
+        "nameJa": "洋梨 (ペア)",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Fruity",
+        "subcategory": "Other Fruit",
+        "descriptor": "Cherry",
+        "fullPath": "Fruity > Other Fruit > Cherry",
+        "pathParts": [
+          "Fruity",
+          "Other Fruit",
+          "Cherry"
+        ],
+        "nameJa": "チェリー",
+        "catJa": "フルーティ",
+        "subJa": "その他の果実"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Brown Sugar",
+        "fullPath": "Sweet > Brown Sugar > Brown Sugar",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Brown Sugar"
+        ],
+        "nameJa": "黒糖・ブラウンシュガー",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Vanilla",
+        "descriptor": "Vanilla",
+        "fullPath": "Sweet > Vanilla > Vanilla",
+        "pathParts": [
+          "Sweet",
+          "Vanilla",
+          "Vanilla"
+        ],
+        "nameJa": "バニラ",
+        "catJa": "スウィート (甘味)",
+        "subJa": "バニラ"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Jasmine",
+        "fullPath": "Floral > Floral > Jasmine",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Jasmine"
+        ],
+        "nameJa": "ジャスミン",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Orange Blossom",
+        "fullPath": "Floral > Floral > Orange Blossom",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Orange Blossom"
+        ],
+        "nameJa": "オレンジブロッサム",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      },
+      {
+        "category": "Floral",
+        "subcategory": "Floral",
+        "descriptor": "Hibiscus",
+        "fullPath": "Floral > Floral > Hibiscus",
+        "pathParts": [
+          "Floral",
+          "Floral",
+          "Hibiscus"
+        ],
+        "nameJa": "ハイビスカス",
+        "catJa": "フローラル",
+        "subJa": "フローラル"
+      },
+      {
+        "category": "Spices",
+        "subcategory": "Spices",
+        "descriptor": "Black Tea",
+        "fullPath": "Spices > Spices > Black Tea",
+        "pathParts": [
+          "Spices",
+          "Spices",
+          "Black Tea"
+        ],
+        "nameJa": "ブラックティー",
+        "catJa": "スパイス",
+        "subJa": "スパイス"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Blackberry; Fruity > Berry > Raspberry; Fruity > Berry > Strawberry; Fruity > Citrus Fruit > Orange; Fruity > Citrus Fruit > Lemon; Fruity > Citrus Fruit > Lime; Fruity > Other Fruit > Peach; Fruity > Other Fruit > Pear; Fruity > Other Fruit > Cherry; Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate; Sweet > Brown Sugar > Brown Sugar; Sweet > Vanilla > Vanilla; Floral > Floral > Jasmine; Floral > Floral > Orange Blossom; Floral > Floral > Hibiscus; Spices > Spices > Black Tea",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.vervecoffee.com/products/guji-anasora-natural-espresso",
+    "retrievedAt": "2026-07-04 12:29:40"
+  },
+  {
+    "id": "7885950157034",
+    "title": "Big Band Blend",
+    "roaster": "Victrola Coffee Roasters",
+    "country": "Brazil",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 345,
+    "priceCurrency": "USD",
+    "priceValue": 19.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Nutty",
+        "descriptor": "Almond",
+        "fullPath": "Nutty/Cocoa > Nutty > Almond",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Nutty",
+          "Almond"
+        ],
+        "nameJa": "アーモンド",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ナッツ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Nutty > Almond; Nutty/Cocoa > Cocoa > Chocolate",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.victrolacoffee.com/products/big-band-blend",
+    "retrievedAt": "2026-07-04 12:38:05"
+  },
+  {
+    "id": "1048526340",
+    "title": "Deco Decaf Blend",
+    "roaster": "Victrola Coffee Roasters",
+    "country": "Colombia",
+    "region": "Huila",
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 345,
+    "priceCurrency": "USD",
+    "priceValue": 19.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Berry",
+        "descriptor": "Strawberry",
+        "fullPath": "Fruity > Berry > Strawberry",
+        "pathParts": [
+          "Fruity",
+          "Berry",
+          "Strawberry"
+        ],
+        "nameJa": "ストロベリー",
+        "catJa": "フルーティ",
+        "subJa": "ベリー"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Milk Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Milk Chocolate"
+        ],
+        "nameJa": "ミルクチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Roasted",
+        "subcategory": "Cereal",
+        "descriptor": "Graham Cracker",
+        "fullPath": "Roasted > Cereal > Graham Cracker",
+        "pathParts": [
+          "Roasted",
+          "Cereal",
+          "Graham Cracker"
+        ],
+        "nameJa": "グラハムクラッカー",
+        "catJa": "ロースト",
+        "subJa": "穀物 (シリアル)"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Berry > Strawberry; Nutty/Cocoa > Cocoa > Milk Chocolate; Nutty/Cocoa > Cocoa > Chocolate; Roasted > Cereal > Graham Cracker",
+    "confidence": 0.91,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.victrolacoffee.com/products/deco-decaf-blend",
+    "retrievedAt": "2026-07-04 12:38:05"
+  },
+  {
+    "id": "7974181667057",
+    "title": "Peru Darkslide",
+    "roaster": "Vigilante Coffee",
+    "country": "Peru",
+    "region": null,
+    "altitude": "1700 - 1900m",
+    "altitudeMin": 1700.0,
+    "altitudeMax": 1900.0,
+    "process": "Washed",
+    "roastLevel": "Dark",
+    "varietals": "Typica",
+    "weightGrams": 340,
+    "priceCurrency": "USD",
+    "priceValue": 20.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Dried Fruit",
+        "descriptor": "Prune",
+        "fullPath": "Fruity > Dried Fruit > Prune",
+        "pathParts": [
+          "Fruity",
+          "Dried Fruit",
+          "Prune"
+        ],
+        "nameJa": "プルーン",
+        "catJa": "フルーティ",
+        "subJa": "ドライフルーツ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Molasses",
+        "fullPath": "Sweet > Brown Sugar > Molasses",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Molasses"
+        ],
+        "nameJa": "糖蜜 (モラセス)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Caramel",
+        "fullPath": "Sweet > Brown Sugar > Caramel",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Caramel"
+        ],
+        "nameJa": "キャラメル",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Dried Fruit > Prune; Nutty/Cocoa > Cocoa > Dark Chocolate; Nutty/Cocoa > Cocoa > Chocolate; Sweet > Brown Sugar > Molasses; Sweet > Brown Sugar > Caramel",
+    "confidence": 0.88,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.vigilantecoffee.com/products/peru-darkslide",
+    "retrievedAt": "2026-07-04 12:31:37"
+  },
+  {
+    "id": "1177365676068",
+    "title": "Firehouse Blend",
+    "roaster": "Volcano Coffee Works",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Light",
+    "varietals": null,
+    "weightGrams": 200,
+    "priceCurrency": "USD",
+    "priceValue": 9.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Milk Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Milk Chocolate"
+        ],
+        "nameJa": "ミルクチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Chocolate"
+        ],
+        "nameJa": "チョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      },
+      {
+        "category": "Spices",
+        "subcategory": "Spices",
+        "descriptor": "Cinnamon",
+        "fullPath": "Spices > Spices > Cinnamon",
+        "pathParts": [
+          "Spices",
+          "Spices",
+          "Cinnamon"
+        ],
+        "nameJa": "シナモン",
+        "catJa": "スパイス",
+        "subJa": "スパイス"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Orange; Nutty/Cocoa > Cocoa > Milk Chocolate; Nutty/Cocoa > Cocoa > Chocolate; Spices > Spices > Cinnamon",
+    "confidence": 0.76,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://volcanocoffeeworks.com/products/firehouse-blend",
+    "retrievedAt": "2026-07-04 12:32:36"
+  },
+  {
+    "id": "15416748507513",
+    "title": "The Brixton (Office Coffee)",
+    "roaster": "Volcano Coffee Works",
+    "country": "Brazil",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Natural",
+    "roastLevel": "Light",
+    "varietals": null,
+    "weightGrams": 4000,
+    "priceCurrency": "USD",
+    "priceValue": 107.0,
+    "tastingNotes": [
+      {
+        "category": "Fruity",
+        "subcategory": "Citrus Fruit",
+        "descriptor": "Orange",
+        "fullPath": "Fruity > Citrus Fruit > Orange",
+        "pathParts": [
+          "Fruity",
+          "Citrus Fruit",
+          "Orange"
+        ],
+        "nameJa": "オレンジ",
+        "catJa": "フルーティ",
+        "subJa": "柑橘類 (シトラス)"
+      },
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Cocoa",
+        "descriptor": "Dark Chocolate",
+        "fullPath": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Cocoa",
+          "Dark Chocolate"
+        ],
+        "nameJa": "ダークチョコレート",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ココア / チョコ"
+      }
+    ],
+    "tastingNotesRaw": "Fruity > Citrus Fruit > Orange; Nutty/Cocoa > Cocoa > Dark Chocolate",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://volcanocoffeeworks.com/products/the-brixton-office",
+    "retrievedAt": "2026-07-04 12:32:36"
+  },
+  {
+    "id": "7576707989598",
+    "title": "Costa Rica - Beneficio San Diego, Tarrazú (Honey)",
+    "roaster": "Yellow Brick Coffee",
+    "country": "Costa Rica",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Honey",
+    "roastLevel": "Unknown",
+    "varietals": "Caturra, Catuai",
+    "weightGrams": 54,
+    "priceCurrency": "USD",
+    "priceValue": 21.0,
+    "tastingNotes": [
+      {
+        "category": "Sweet",
+        "subcategory": "Honey",
+        "descriptor": "Honey",
+        "fullPath": "Sweet > Honey > Honey",
+        "pathParts": [
+          "Sweet",
+          "Honey",
+          "Honey"
+        ],
+        "nameJa": "ハニー (蜂蜜)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "ハニー (蜂蜜)"
+      }
+    ],
+    "tastingNotesRaw": "Sweet > Honey > Honey",
+    "confidence": 0.75,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://yellowbrickcoffee.com/products/costa-rica-terrazu",
+    "retrievedAt": "2026-07-04 12:40:21"
+  },
+  {
+    "id": "6696689664070",
+    "title": "Hidden City 5LB Bag",
+    "roaster": "Zoka Coffee",
+    "country": "Colombia",
+    "region": null,
+    "altitude": "標高情報なし",
+    "altitudeMin": null,
+    "altitudeMax": null,
+    "process": "Other",
+    "roastLevel": "Dark",
+    "varietals": null,
+    "weightGrams": 2268,
+    "priceCurrency": "USD",
+    "priceValue": 104.0,
+    "tastingNotes": [
+      {
+        "category": "Nutty/Cocoa",
+        "subcategory": "Nutty",
+        "descriptor": "Pecan",
+        "fullPath": "Nutty/Cocoa > Nutty > Pecan",
+        "pathParts": [
+          "Nutty/Cocoa",
+          "Nutty",
+          "Pecan"
+        ],
+        "nameJa": "ペカンナッツ",
+        "catJa": "ナッツ / ココア",
+        "subJa": "ナッツ"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Molasses",
+        "fullPath": "Sweet > Brown Sugar > Molasses",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Molasses"
+        ],
+        "nameJa": "糖蜜 (モラセス)",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      },
+      {
+        "category": "Sweet",
+        "subcategory": "Brown Sugar",
+        "descriptor": "Caramel",
+        "fullPath": "Sweet > Brown Sugar > Caramel",
+        "pathParts": [
+          "Sweet",
+          "Brown Sugar",
+          "Caramel"
+        ],
+        "nameJa": "キャラメル",
+        "catJa": "スウィート (甘味)",
+        "subJa": "黒糖・ブラウンシュガー"
+      }
+    ],
+    "tastingNotesRaw": "Nutty/Cocoa > Nutty > Pecan; Sweet > Brown Sugar > Molasses; Sweet > Brown Sugar > Caramel",
+    "confidence": 0.9,
+    "qualityFlag": "good",
+    "sourcePlatform": "shopify",
+    "sourceUrl": "https://www.zokacoffee.com/products/hiddencity-5lb",
+    "retrievedAt": "2026-07-04 12:38:04"
+  }
+]

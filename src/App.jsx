@@ -1,141 +1,105 @@
-import { ChevronUp } from "lucide-react";
 import { useEffect, useState } from "react";
-import DetailPanel from "./components/DetailPanel";
-import DrankList from "./components/DrankList";
+import CoffeeBeanList from "./components/CoffeeBeanList";
+import CoffeeDetailModal from "./components/CoffeeDetailModal";
+import FlavorWheel from "./components/FlavorWheel";
 import Header from "./components/Header";
-import StartupGuide from "./components/StartupGuide";
-import WorldMap from "./components/WorldMap";
-import { useRecommendation } from "./hooks/useRecommendation";
-import { translateCountry } from "./lib/countryNames";
+import InfoGuideModal from "./components/InfoGuideModal";
+import coffeeBeansData from "./data/coffee_beans.json";
+import flavorTreeData from "./data/flavor_wheel_data.json";
 
 function App() {
+  const [selectedFlavor, setSelectedFlavor] = useState(null);
   const [selectedCoffee, setSelectedCoffee] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [drankCoffees, setDrankCoffees] = useState({}); // { [id]: score }
-  // オブジェクトのキーは数値idで昇順に並ぶため、追加順は別途配列で保持する。
-  const [drankOrder, setDrankOrder] = useState([]);
+  const [languageMode, setLanguageMode] = useState("both"); // "both" | "ja" | "en"
   const [isGuideOpen, setIsGuideOpen] = useState(false);
-  // モバイルのボトムシートの最小化状態（デスクトップの右パネルでは未使用）
-  const [sheetMinimized, setSheetMinimized] = useState(false);
 
+  // Show guide on first visit
   useEffect(() => {
-    const hasSeenGuide = localStorage.getItem("hasSeenGuide");
+    const hasSeenGuide = localStorage.getItem("hasSeenFlavorGuide_v1");
     if (!hasSeenGuide) {
       setIsGuideOpen(true);
-      localStorage.setItem("hasSeenGuide", "true");
+      localStorage.setItem("hasSeenFlavorGuide_v1", "true");
     }
   }, []);
 
-  // 別の豆を選び直したらシートは展開状態に戻す
-  useEffect(() => {
-    if (selectedCoffee) setSheetMinimized(false);
-  }, [selectedCoffee]);
+  // Handle clicking a flavor note badge from a coffee card to navigate the wheel
+  const handleSelectFlavorPath = (note) => {
+    if (!note) return;
+    const targetPath = note.fullPath || note.path;
+    // Find matching flavor node in tree
+    const findNode = (node) => {
+      if (node.path === targetPath) return node;
+      if (node.children) {
+        for (const child of node.children) {
+          const res = findNode(child);
+          if (res) return res;
+        }
+      }
+      return null;
+    };
 
-  const { recommendedCoffee, setRecommendedCoffee, recommend } =
-    useRecommendation(drankCoffees, setSelectedCoffee);
-
-  const handleCloseDetail = () => {
-    setSelectedCoffee(null);
-  };
-
-  const handleUpdateDrank = (id, score) => {
-    const key = String(id);
-    setDrankCoffees((prev) => ({ ...prev, [key]: score }));
-    setDrankOrder((prev) => (prev.includes(key) ? prev : [...prev, key]));
-    setRecommendedCoffee(null);
-  };
-
-  const handleRemoveDrank = (id) => {
-    const key = String(id);
-    setDrankCoffees((prev) => {
-      const newState = { ...prev };
-      delete newState[key];
-      return newState;
-    });
-    setDrankOrder((prev) => prev.filter((k) => k !== key));
-    setRecommendedCoffee(null);
-  };
-
-  const handleClearDrank = () => {
-    setDrankCoffees({});
-    setDrankOrder([]);
-    setRecommendedCoffee(null);
+    const found = findNode(flavorTreeData);
+    if (found) {
+      setSelectedFlavor(found);
+    } else {
+      setSelectedFlavor({
+        name: note.descriptor || note.name,
+        nameJa: note.nameJa || note.descriptor,
+        path: targetPath,
+        color: "var(--color-primary, #6f4e37)",
+      });
+    }
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-[#e0f2fe] text-base-content font-sans">
-      <WorldMap
-        selectedCoffee={selectedCoffee}
-        onSelectCoffee={setSelectedCoffee}
-        searchQuery={searchQuery}
-        drankCoffees={drankCoffees}
-        recommendedCoffee={recommendedCoffee}
-      />
-
+    <div className="flex flex-col min-h-screen w-screen bg-[#fcf9f5] text-base-content font-sans overflow-x-hidden">
+      {/* Header */}
       <Header
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
+        languageMode={languageMode}
+        setLanguageMode={setLanguageMode}
         onOpenGuide={() => setIsGuideOpen(true)}
+        totalBeansCount={coffeeBeansData.length}
       />
 
-      <DrankList
-        drankCoffees={drankCoffees}
-        drankOrder={drankOrder}
-        onRemoveDrank={handleRemoveDrank}
-        onClearDrank={handleClearDrank}
-        onSelectCoffee={setSelectedCoffee}
-        selectedCoffee={selectedCoffee}
-        onRecommend={recommend}
-        isRecommendedActive={recommendedCoffee != null}
-        onClearRecommendation={() => setRecommendedCoffee(null)}
+      {/* Main Split-View Content */}
+      <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-5 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 overflow-hidden">
+        {/* Left / Center: Interactive Flavor Wheel (Sunburst Chart) */}
+        <section className="lg:col-span-7 flex flex-col min-h-[500px] lg:min-h-0 lg:h-[calc(100vh-6.5rem)]">
+          <FlavorWheel
+            flavorTree={flavorTreeData}
+            beans={coffeeBeansData}
+            selectedFlavor={selectedFlavor}
+            onSelectFlavor={setSelectedFlavor}
+            onSelectCoffee={setSelectedCoffee}
+            languageMode={languageMode}
+          />
+        </section>
+
+        {/* Right: Coffee Bean Recommendations & Filters */}
+        <section className="lg:col-span-5 flex flex-col min-h-[500px] lg:min-h-0 lg:h-[calc(100vh-6.5rem)]">
+          <CoffeeBeanList
+            beans={coffeeBeansData}
+            selectedFlavor={selectedFlavor}
+            onClearFlavor={() => setSelectedFlavor(null)}
+            onSelectFlavorPath={handleSelectFlavorPath}
+            onSelectCoffee={setSelectedCoffee}
+            selectedCoffee={selectedCoffee}
+          />
+        </section>
+      </main>
+
+      {/* Coffee Details Modal */}
+      <CoffeeDetailModal
+        coffee={selectedCoffee}
+        onClose={() => setSelectedCoffee(null)}
+        onSelectFlavorPath={handleSelectFlavorPath}
       />
 
-      <StartupGuide
+      {/* Startup & Help Guide Modal */}
+      <InfoGuideModal
         isOpen={isGuideOpen}
         onClose={() => setIsGuideOpen(false)}
       />
-
-      <div
-        className={`absolute z-30 flex flex-col bg-base-100 shadow-2xl transition-transform duration-300 transform inset-x-0 bottom-0 h-[30dvh] rounded-t-2xl sm:inset-x-auto sm:top-0 sm:right-0 sm:bottom-auto sm:h-full sm:w-96 sm:rounded-none ${
-          !selectedCoffee
-            ? "translate-y-full sm:translate-x-full sm:translate-y-0"
-            : sheetMinimized
-              ? "translate-y-[calc(30dvh-3rem)] sm:translate-x-0 sm:translate-y-0"
-              : "translate-y-0 sm:translate-x-0"
-        }`}
-      >
-        {/* モバイル専用: つまみ。タップで最小化/展開を切り替える */}
-        <button
-          type="button"
-          onClick={() => setSheetMinimized((m) => !m)}
-          className="sm:hidden flex h-12 shrink-0 flex-col items-center justify-center gap-1 border-b border-base-200"
-          aria-label={sheetMinimized ? "詳細を展開" : "詳細を最小化"}
-        >
-          <span className="h-1.5 w-10 rounded-full bg-base-300" />
-          {sheetMinimized && selectedCoffee && (
-            <span className="flex items-center gap-1 text-xs font-semibold text-base-content/70">
-              {translateCountry(selectedCoffee.country)}
-              <ChevronUp size={14} />
-            </span>
-          )}
-        </button>
-
-        <div className="min-h-0 flex-1">
-          <DetailPanel
-            selectedCoffee={selectedCoffee}
-            isRecommended={
-              selectedCoffee &&
-              recommendedCoffee &&
-              selectedCoffee.id === recommendedCoffee.id
-            }
-            onClose={handleCloseDetail}
-            onSelectCoffee={setSelectedCoffee}
-            drankCoffees={drankCoffees}
-            onUpdateDrank={handleUpdateDrank}
-            onRemoveDrank={handleRemoveDrank}
-          />
-        </div>
-      </div>
     </div>
   );
 }

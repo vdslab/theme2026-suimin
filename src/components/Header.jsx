@@ -1,99 +1,102 @@
-import { useMemo, useState } from "react";
-import rawData from "../data/coffee_data.json";
-import { translateCountry } from "../lib/countryNames";
-import { cleanVarieties } from "../lib/varieties";
+import { Coffee, HelpCircle, Languages, Sparkles } from "lucide-react";
 
-export default function Header({ searchQuery, setSearchQuery, onOpenGuide }) {
-  // 候補をクリック（選択）したら閉じる。再度入力があれば開き直す。
-  const [suggestionsDismissed, setSuggestionsDismissed] = useState(false);
-
-  const searchSuggestions = useMemo(() => {
-    const values = rawData.flatMap((item) => [
-      translateCountry(item.country),
-      item.admin1,
-      ...cleanVarieties(item.varieties),
-    ]);
-
-    return [...new Set(values)]
-      .filter(Boolean)
-      .sort((a, b) => a.localeCompare(b));
-  }, []);
-
-  const filteredSuggestions = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
-
-    if (!query) return [];
-
-    return searchSuggestions
-      .filter((suggestion) => suggestion.toLowerCase().includes(query))
-      .slice(0, 8);
-  }, [searchQuery, searchSuggestions]);
-
+export default function Header({
+  languageMode,
+  setLanguageMode,
+  onOpenGuide,
+  totalBeansCount = 100,
+}) {
   return (
-    <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-30 flex flex-col gap-4 pointer-events-none">
-      <div className="flex gap-4 items-start pointer-events-auto">
-        <div className="bg-base-100 p-3 sm:p-4 rounded-2xl shadow-lg border border-base-200">
-          <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
-            <h1 className="text-lg sm:text-2xl font-bold text-primary">
-              Coffee Flavor Map
-            </h1>
-            <button
-              type="button"
-              onClick={onOpenGuide}
-              className="btn btn-sm btn-circle btn-ghost text-base-content/60 hover:text-base-content"
-              title="使い方を見る"
-              aria-label="使い方を見る"
-            >
-              <svg
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-                <path d="M12 17h.01" />
-              </svg>
-            </button>
+    <header className="w-full bg-base-100/80 border-b border-base-300/70 backdrop-blur-md sticky top-0 z-40 px-4 sm:px-6 py-3 transition-all">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+        {/* Left Title & Branding */}
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-primary to-amber-600 flex items-center justify-center text-white shadow-md shadow-primary/20 shrink-0">
+            <Coffee size={22} className="animate-pulse" />
           </div>
 
-          <div className="relative">
-            <input
-              type="text"
-              className="input input-bordered input-sm sm:input-md w-full max-w-[16rem] sm:max-w-xs"
-              placeholder="産地・品種で検索"
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                setSuggestionsDismissed(false);
-              }}
-            />
-            {!suggestionsDismissed && filteredSuggestions.length > 0 && (
-              <div className="absolute z-50 mt-1 w-full rounded-box border border-base-300 bg-base-100 shadow-xl overflow-hidden">
-                {filteredSuggestions.map((suggestion) => (
-                  <button
-                    key={suggestion}
-                    type="button"
-                    className="block w-full px-4 py-2 text-left text-sm hover:bg-base-200"
-                    onClick={() => {
-                      setSearchQuery(suggestion);
-                      setSuggestionsDismissed(true);
-                    }}
-                  >
-                    {suggestion}
-                  </button>
-                ))}
-              </div>
-            )}
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="font-extrabold text-base sm:text-lg text-base-content tracking-tight">
+                Coffee Flavor Wheel Explorer
+              </h1>
+              <span className="hidden sm:inline-flex badge badge-xs badge-primary font-semibold">
+                SCAA / WCR
+              </span>
+            </div>
+            <p className="text-[11px] sm:text-xs text-base-content/60 font-medium hidden xs:block">
+              WCR Sensory Lexicon
+              の味覚階層から好みのスペシャルティコーヒー豆を発見
+            </p>
           </div>
         </div>
+
+        {/* Right Actions & Utilities */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Dataset Count Badge */}
+          <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-base-200/80 text-xs text-base-content/80 font-medium border border-base-300/40">
+            <Sparkles size={13} className="text-amber-600" />
+            <span>{totalBeansCount} 銘柄の豆を収録</span>
+          </div>
+
+          {/* Language Toggle Dropdown */}
+          <div className="dropdown dropdown-end">
+            <button
+              type="button"
+              className="btn btn-sm btn-ghost gap-1.5 rounded-full border border-base-300/60 bg-base-200/50 hover:bg-base-200"
+            >
+              <Languages size={14} className="text-primary" />
+              <span className="text-xs font-semibold hidden sm:inline">
+                {languageMode === "both"
+                  ? "日英併記"
+                  : languageMode === "ja"
+                    ? "日本語"
+                    : "English"}
+              </span>
+            </button>
+            <ul className="dropdown-content z-50 menu p-1.5 shadow-xl bg-base-100 rounded-2xl w-36 border border-base-200 text-xs">
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setLanguageMode("both")}
+                  className={languageMode === "both" ? "active font-bold" : ""}
+                >
+                  日英併記 (Both)
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setLanguageMode("ja")}
+                  className={languageMode === "ja" ? "active font-bold" : ""}
+                >
+                  日本語のみ
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setLanguageMode("en")}
+                  className={languageMode === "en" ? "active font-bold" : ""}
+                >
+                  English only
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Guide Button */}
+          <button
+            type="button"
+            onClick={onOpenGuide}
+            className="btn btn-sm btn-circle btn-ghost text-base-content/70 hover:text-primary"
+            title="使い方ガイドを見る"
+            aria-label="使い方ガイド"
+          >
+            <HelpCircle size={18} />
+          </button>
+        </div>
       </div>
-    </div>
+    </header>
   );
 }

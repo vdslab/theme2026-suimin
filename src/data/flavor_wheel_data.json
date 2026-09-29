@@ -1,0 +1,591 @@
+{
+  "name": "Coffee Flavors",
+  "nameJa": "フレーバー全体",
+  "children": [
+    {
+      "name": "Fruity",
+      "nameJa": "フルーティ",
+      "color": "#E73845",
+      "path": "Fruity",
+      "level": 1,
+      "beanCount": 73,
+      "children": [
+        {
+          "name": "Other Fruit",
+          "nameJa": "その他の果実",
+          "color": "#F05654",
+          "path": "Fruity > Other Fruit",
+          "level": 2,
+          "beanCount": 51,
+          "children": [
+            {
+              "name": "Apple",
+              "nameJa": "りんご (アップル)",
+              "color": "#F05654",
+              "path": "Fruity > Other Fruit > Apple",
+              "level": 3,
+              "beanCount": 7,
+              "value": 7
+            },
+            {
+              "name": "Cherry",
+              "nameJa": "チェリー",
+              "color": "#F05654",
+              "path": "Fruity > Other Fruit > Cherry",
+              "level": 3,
+              "beanCount": 21,
+              "value": 21
+            },
+            {
+              "name": "Grape",
+              "nameJa": "ぶどう (グレープ)",
+              "color": "#F05654",
+              "path": "Fruity > Other Fruit > Grape",
+              "level": 3,
+              "beanCount": 8,
+              "value": 8
+            },
+            {
+              "name": "Mango",
+              "nameJa": "マンゴー",
+              "color": "#F05654",
+              "path": "Fruity > Other Fruit > Mango",
+              "level": 3,
+              "beanCount": 1,
+              "value": 1
+            },
+            {
+              "name": "Passion Fruit",
+              "nameJa": "パッションフルーツ",
+              "color": "#F05654",
+              "path": "Fruity > Other Fruit > Passion Fruit",
+              "level": 3,
+              "beanCount": 2,
+              "value": 2
+            },
+            {
+              "name": "Peach",
+              "nameJa": "桃 (ピーチ)",
+              "color": "#F05654",
+              "path": "Fruity > Other Fruit > Peach",
+              "level": 3,
+              "beanCount": 18,
+              "value": 18
+            },
+            {
+              "name": "Pear",
+              "nameJa": "洋梨 (ペア)",
+              "color": "#F05654",
+              "path": "Fruity > Other Fruit > Pear",
+              "level": 3,
+              "beanCount": 4,
+              "value": 4
+            },
+            {
+              "name": "Pineapple",
+              "nameJa": "パイナップル",
+              "color": "#F05654",
+              "path": "Fruity > Other Fruit > Pineapple",
+              "level": 3,
+              "beanCount": 2,
+              "value": 2
+            },
+            {
+              "name": "Tropical Fruit",
+              "nameJa": "トロピカルフルーツ",
+              "color": "#F05654",
+              "path": "Fruity > Other Fruit > Tropical Fruit",
+              "level": 3,
+              "beanCount": 5,
+              "value": 5
+            }
+          ]
+        },
+        {
+          "name": "Berry",
+          "nameJa": "ベリー",
+          "color": "#D82635",
+          "path": "Fruity > Berry",
+          "level": 2,
+          "beanCount": 16,
+          "children": [
+            {
+              "name": "Blackberry",
+              "nameJa": "ブラックベリー",
+              "color": "#D82635",
+              "path": "Fruity > Berry > Blackberry",
+              "level": 3,
+              "beanCount": 4,
+              "value": 4
+            },
+            {
+              "name": "Blueberry",
+              "nameJa": "ブルーベリー",
+              "color": "#D82635",
+              "path": "Fruity > Berry > Blueberry",
+              "level": 3,
+              "beanCount": 2,
+              "value": 2
+            },
+            {
+              "name": "Raspberry",
+              "nameJa": "ラズベリー",
+              "color": "#D82635",
+              "path": "Fruity > Berry > Raspberry",
+              "level": 3,
+              "beanCount": 4,
+              "value": 4
+            },
+            {
+              "name": "Strawberry",
+              "nameJa": "ストロベリー",
+              "color": "#D82635",
+              "path": "Fruity > Berry > Strawberry",
+              "level": 3,
+              "beanCount": 10,
+              "value": 10
+            }
+          ]
+        },
+        {
+          "name": "Citrus Fruit",
+          "nameJa": "柑橘類 (シトラス)",
+          "color": "#F77F48",
+          "path": "Fruity > Citrus Fruit",
+          "level": 2,
+          "beanCount": 26,
+          "children": [
+            {
+              "name": "Bergamot",
+              "nameJa": "ベルガモット",
+              "color": "#F77F48",
+              "path": "Fruity > Citrus Fruit > Bergamot",
+              "level": 3,
+              "beanCount": 3,
+              "value": 3
+            },
+            {
+              "name": "Grapefruit",
+              "nameJa": "グレープフルーツ",
+              "color": "#F77F48",
+              "path": "Fruity > Citrus Fruit > Grapefruit",
+              "level": 3,
+              "beanCount": 3,
+              "value": 3
+            },
+            {
+              "name": "Lemon",
+              "nameJa": "レモン",
+              "color": "#F77F48",
+              "path": "Fruity > Citrus Fruit > Lemon",
+              "level": 3,
+              "beanCount": 7,
+              "value": 7
+            },
+            {
+              "name": "Lime",
+              "nameJa": "ライム",
+              "color": "#F77F48",
+              "path": "Fruity > Citrus Fruit > Lime",
+              "level": 3,
+              "beanCount": 3,
+              "value": 3
+            },
+            {
+              "name": "Orange",
+              "nameJa": "オレンジ",
+              "color": "#F77F48",
+              "path": "Fruity > Citrus Fruit > Orange",
+              "level": 3,
+              "beanCount": 15,
+              "value": 15
+            },
+            {
+              "name": "Tangerine",
+              "nameJa": "タンジェリン",
+              "color": "#F77F48",
+              "path": "Fruity > Citrus Fruit > Tangerine",
+              "level": 3,
+              "beanCount": 2,
+              "value": 2
+            }
+          ]
+        },
+        {
+          "name": "Dried Fruit",
+          "nameJa": "ドライフルーツ",
+          "color": "#BF1E2D",
+          "path": "Fruity > Dried Fruit",
+          "level": 2,
+          "beanCount": 4,
+          "children": [
+            {
+              "name": "Prune",
+              "nameJa": "プルーン",
+              "color": "#BF1E2D",
+              "path": "Fruity > Dried Fruit > Prune",
+              "level": 3,
+              "beanCount": 1,
+              "value": 1
+            },
+            {
+              "name": "Raisin",
+              "nameJa": "レーズン",
+              "color": "#BF1E2D",
+              "path": "Fruity > Dried Fruit > Raisin",
+              "level": 3,
+              "beanCount": 3,
+              "value": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Floral",
+      "nameJa": "フローラル",
+      "color": "#E05A8D",
+      "path": "Floral",
+      "level": 1,
+      "beanCount": 13,
+      "children": [
+        {
+          "name": "Floral",
+          "nameJa": "フローラル",
+          "color": "#EC729C",
+          "path": "Floral > Floral",
+          "level": 2,
+          "beanCount": 13,
+          "children": [
+            {
+              "name": "Hibiscus",
+              "nameJa": "ハイビスカス",
+              "color": "#EC729C",
+              "path": "Floral > Floral > Hibiscus",
+              "level": 3,
+              "beanCount": 5,
+              "value": 5
+            },
+            {
+              "name": "Jasmine",
+              "nameJa": "ジャスミン",
+              "color": "#EC729C",
+              "path": "Floral > Floral > Jasmine",
+              "level": 3,
+              "beanCount": 6,
+              "value": 6
+            },
+            {
+              "name": "Orange Blossom",
+              "nameJa": "オレンジブロッサム",
+              "color": "#EC729C",
+              "path": "Floral > Floral > Orange Blossom",
+              "level": 3,
+              "beanCount": 3,
+              "value": 3
+            },
+            {
+              "name": "Rose",
+              "nameJa": "ローズ",
+              "color": "#EC729C",
+              "path": "Floral > Floral > Rose",
+              "level": 3,
+              "beanCount": 2,
+              "value": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sweet",
+      "nameJa": "スウィート (甘味)",
+      "color": "#E89E19",
+      "path": "Sweet",
+      "level": 1,
+      "beanCount": 31,
+      "children": [
+        {
+          "name": "Honey",
+          "nameJa": "ハニー (蜂蜜)",
+          "color": "#F7C042",
+          "path": "Sweet > Honey",
+          "level": 2,
+          "beanCount": 15,
+          "children": [
+            {
+              "name": "Honey",
+              "nameJa": "ハニー (蜂蜜)",
+              "color": "#F7C042",
+              "path": "Sweet > Honey > Honey",
+              "level": 3,
+              "beanCount": 15,
+              "value": 15
+            }
+          ]
+        },
+        {
+          "name": "Brown Sugar",
+          "nameJa": "黒糖・ブラウンシュガー",
+          "color": "#D48B0B",
+          "path": "Sweet > Brown Sugar",
+          "level": 2,
+          "beanCount": 16,
+          "children": [
+            {
+              "name": "Brown Sugar",
+              "nameJa": "黒糖・ブラウンシュガー",
+              "color": "#D48B0B",
+              "path": "Sweet > Brown Sugar > Brown Sugar",
+              "level": 3,
+              "beanCount": 3,
+              "value": 3
+            },
+            {
+              "name": "Caramel",
+              "nameJa": "キャラメル",
+              "color": "#D48B0B",
+              "path": "Sweet > Brown Sugar > Caramel",
+              "level": 3,
+              "beanCount": 11,
+              "value": 11
+            },
+            {
+              "name": "Maple Syrup",
+              "nameJa": "メープルシロップ",
+              "color": "#D48B0B",
+              "path": "Sweet > Brown Sugar > Maple Syrup",
+              "level": 3,
+              "beanCount": 1,
+              "value": 1
+            },
+            {
+              "name": "Molasses",
+              "nameJa": "糖蜜 (モラセス)",
+              "color": "#D48B0B",
+              "path": "Sweet > Brown Sugar > Molasses",
+              "level": 3,
+              "beanCount": 4,
+              "value": 4
+            }
+          ]
+        },
+        {
+          "name": "Vanilla",
+          "nameJa": "バニラ",
+          "color": "#F2AF30",
+          "path": "Sweet > Vanilla",
+          "level": 2,
+          "beanCount": 7,
+          "children": [
+            {
+              "name": "Vanilla",
+              "nameJa": "バニラ",
+              "color": "#F2AF30",
+              "path": "Sweet > Vanilla > Vanilla",
+              "level": 3,
+              "beanCount": 7,
+              "value": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Nutty/Cocoa",
+      "nameJa": "ナッツ / ココア",
+      "color": "#975E3D",
+      "path": "Nutty/Cocoa",
+      "level": 1,
+      "beanCount": 50,
+      "children": [
+        {
+          "name": "Cocoa",
+          "nameJa": "ココア / チョコ",
+          "color": "#824B2C",
+          "path": "Nutty/Cocoa > Cocoa",
+          "level": 2,
+          "beanCount": 46,
+          "children": [
+            {
+              "name": "Chocolate",
+              "nameJa": "チョコレート",
+              "color": "#824B2C",
+              "path": "Nutty/Cocoa > Cocoa > Chocolate",
+              "level": 3,
+              "beanCount": 42,
+              "value": 42
+            },
+            {
+              "name": "Cocoa Nibs",
+              "nameJa": "カカオニブ",
+              "color": "#824B2C",
+              "path": "Nutty/Cocoa > Cocoa > Cocoa Nibs",
+              "level": 3,
+              "beanCount": 1,
+              "value": 1
+            },
+            {
+              "name": "Dark Chocolate",
+              "nameJa": "ダークチョコレート",
+              "color": "#824B2C",
+              "path": "Nutty/Cocoa > Cocoa > Dark Chocolate",
+              "level": 3,
+              "beanCount": 17,
+              "value": 17
+            },
+            {
+              "name": "Milk Chocolate",
+              "nameJa": "ミルクチョコレート",
+              "color": "#824B2C",
+              "path": "Nutty/Cocoa > Cocoa > Milk Chocolate",
+              "level": 3,
+              "beanCount": 11,
+              "value": 11
+            }
+          ]
+        },
+        {
+          "name": "Nutty",
+          "nameJa": "ナッツ",
+          "color": "#A86D48",
+          "path": "Nutty/Cocoa > Nutty",
+          "level": 2,
+          "beanCount": 10,
+          "children": [
+            {
+              "name": "Almond",
+              "nameJa": "アーモンド",
+              "color": "#A86D48",
+              "path": "Nutty/Cocoa > Nutty > Almond",
+              "level": 3,
+              "beanCount": 4,
+              "value": 4
+            },
+            {
+              "name": "Hazelnut",
+              "nameJa": "ヘーゼルナッツ",
+              "color": "#A86D48",
+              "path": "Nutty/Cocoa > Nutty > Hazelnut",
+              "level": 3,
+              "beanCount": 2,
+              "value": 2
+            },
+            {
+              "name": "Peanut",
+              "nameJa": "ピーナッツ",
+              "color": "#A86D48",
+              "path": "Nutty/Cocoa > Nutty > Peanut",
+              "level": 3,
+              "beanCount": 2,
+              "value": 2
+            },
+            {
+              "name": "Pecan",
+              "nameJa": "ペカンナッツ",
+              "color": "#A86D48",
+              "path": "Nutty/Cocoa > Nutty > Pecan",
+              "level": 3,
+              "beanCount": 2,
+              "value": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spices",
+      "nameJa": "スパイス",
+      "color": "#E6683B",
+      "path": "Spices",
+      "level": 1,
+      "beanCount": 9,
+      "children": [
+        {
+          "name": "Spices",
+          "nameJa": "スパイス",
+          "color": "#E6683B",
+          "path": "Spices > Spices",
+          "level": 2,
+          "beanCount": 9,
+          "children": [
+            {
+              "name": "Black Tea",
+              "nameJa": "ブラックティー",
+              "color": "#E6683B",
+              "path": "Spices > Spices > Black Tea",
+              "level": 3,
+              "beanCount": 3,
+              "value": 3
+            },
+            {
+              "name": "Cinnamon",
+              "nameJa": "シナモン",
+              "color": "#E6683B",
+              "path": "Spices > Spices > Cinnamon",
+              "level": 3,
+              "beanCount": 4,
+              "value": 4
+            },
+            {
+              "name": "Clove",
+              "nameJa": "クローブ",
+              "color": "#E6683B",
+              "path": "Spices > Spices > Clove",
+              "level": 3,
+              "beanCount": 1,
+              "value": 1
+            },
+            {
+              "name": "Earl Grey",
+              "nameJa": "アールグレイ",
+              "color": "#E6683B",
+              "path": "Spices > Spices > Earl Grey",
+              "level": 3,
+              "beanCount": 1,
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Roasted",
+      "nameJa": "ロースト",
+      "color": "#C45525",
+      "path": "Roasted",
+      "level": 1,
+      "beanCount": 4,
+      "children": [
+        {
+          "name": "Cereal",
+          "nameJa": "穀物 (シリアル)",
+          "color": "#CC6A3A",
+          "path": "Roasted > Cereal",
+          "level": 2,
+          "beanCount": 4,
+          "children": [
+            {
+              "name": "Graham Cracker",
+              "nameJa": "グラハムクラッカー",
+              "color": "#CC6A3A",
+              "path": "Roasted > Cereal > Graham Cracker",
+              "level": 3,
+              "beanCount": 2,
+              "value": 2
+            },
+            {
+              "name": "Malt",
+              "nameJa": "モルト (麦芽)",
+              "color": "#CC6A3A",
+              "path": "Roasted > Cereal > Malt",
+              "level": 3,
+              "beanCount": 2,
+              "value": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
