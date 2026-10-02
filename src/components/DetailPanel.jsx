@@ -3,6 +3,7 @@ import { useState } from "react";
 import { clusterColor, shortName, TASTE_AXES } from "../lib/clusters";
 import { coffeeData, nearestByTaste } from "../lib/coffeeData";
 import { translateCountry } from "../lib/countryNames";
+import { translateFlavorPath } from "../lib/flavorNames";
 
 // 見出しクリックで開閉できるセクション。デフォルトは開いた状態。
 function Section({ id, title, collapsed, onToggle, children }) {
@@ -119,7 +120,7 @@ function DetailPanel({
                   key={parts.join("/")}
                   className="rounded-xl border border-base-300 bg-base-200/60 px-3 py-2 text-sm"
                 >
-                  {parts.join(" › ")}
+                  {translateFlavorPath(parts)}
                 </div>
               ))}
             </div>

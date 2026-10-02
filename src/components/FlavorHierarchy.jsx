@@ -1,5 +1,6 @@
 import { cluster, hierarchy } from "d3-hierarchy";
 import { useMemo, useState } from "react";
+import { translateFlavor } from "../lib/flavorNames";
 import { buildCoffeeBranch } from "./CoffeeNodes";
 
 const COLORS = [
@@ -67,7 +68,7 @@ export default function FlavorHierarchy({
   const hoverNotes = hoveredCoffee
     ? (indexes.coffeeToFlavorPaths.get(hoveredCoffee.id) ?? []).map((path) => ({
         path,
-        name: path.split("/").at(-1),
+        name: translateFlavor(path.split("/").at(-1)),
       }))
     : [];
   const expandedCount = expandedCountry
@@ -131,7 +132,7 @@ export default function FlavorHierarchy({
                 else if (isCoffee) onSelectCoffee(node.data.coffee);
               }}
             >
-              <title>{`${node.data.name}${count != null ? ` — ${count} coffees` : ""}`}</title>
+              <title>{`${type === "flavor" ? translateFlavor(node.data.name) : node.data.name}${count != null ? ` — ${count} coffees` : ""}`}</title>
               <circle
                 r={
                   isCoffee
@@ -163,12 +164,20 @@ export default function FlavorHierarchy({
                   x={node.x < Math.PI ? 10 : -10}
                   dy="0.32em"
                   textAnchor={node.x < Math.PI ? "start" : "end"}
-                  transform={node.x >= Math.PI ? "rotate(180)" : undefined}
                   fontSize={node.depth === 0 ? 13 : 10}
                   fontWeight={node.depth <= 1 ? 700 : 500}
                   fill="#493c32"
+                  style={{
+                    paintOrder: "stroke",
+                    stroke: "#fffdf8",
+                    strokeWidth: 3,
+                    strokeLinejoin: "round",
+                  }}
                 >
-                  {node.data.name} {count != null ? count : ""}
+                  {type === "flavor"
+                    ? translateFlavor(node.data.name)
+                    : node.data.name}{" "}
+                  {count != null ? count : ""}
                 </text>
               )}
             </g>

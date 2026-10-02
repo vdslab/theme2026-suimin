@@ -2,6 +2,7 @@ import { ArrowLeft, LoaderCircle } from "lucide-react";
 import { useMemo, useState } from "react";
 import { buildFlavorHierarchy } from "../lib/buildFlavorHierarchy";
 import { buildFlavorIndexes } from "../lib/buildFlavorIndexes";
+import { translateFlavor } from "../lib/flavorNames";
 import { loadRoasterData } from "../lib/loadRoasterData";
 import FlavorHierarchy from "./FlavorHierarchy";
 
@@ -29,7 +30,7 @@ export default function FlavorExplorer({ selectedCoffee, onSelectCoffee }) {
             className="font-bold text-primary hover:underline"
             onClick={() => setFocusPath("")}
           >
-            All
+            すべて
           </button>
           {crumbs.map((crumb, index) => {
             const path = crumbs.slice(0, index + 1).join("/");
@@ -45,7 +46,7 @@ export default function FlavorExplorer({ selectedCoffee, onSelectCoffee }) {
                   }
                   onClick={() => setFocusPath(path)}
                 >
-                  {crumb}
+                  {translateFlavor(crumb)}
                 </button>
               </span>
             );
