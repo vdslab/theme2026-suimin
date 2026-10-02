@@ -1,4 +1,4 @@
-import { ChevronDown, MapPin, X } from "lucide-react";
+import { ChevronDown, ExternalLink, MapPin, X } from "lucide-react";
 import { useState } from "react";
 import { clusterColor, shortName, TASTE_AXES } from "../lib/clusters";
 import { coffeeData, nearestByTaste } from "../lib/coffeeData";
@@ -53,6 +53,87 @@ function DetailPanel({
             <br />
             ここに詳細が表示されます。
           </p>
+        </div>
+      </aside>
+    );
+  }
+
+  if (selectedCoffee._kind === "roaster") {
+    const c = selectedCoffee;
+    const fields = [
+      ["Roaster", c.source_roaster],
+      [
+        "Origin",
+        [c.origin_country, c.origin_region].filter(Boolean).join(" / "),
+      ],
+      ["Process", c.process_method],
+      ["Roast", c.roast_level],
+      ["Varietals", c.varietals],
+      [
+        "Confidence",
+        c.tasting_notes_confidence != null
+          ? `${Math.round(c.tasting_notes_confidence * 100)}%`
+          : "",
+      ],
+      [
+        "Price",
+        c.price_value != null ? `${c.price_currency} ${c.price_value}` : "",
+      ],
+    ];
+    return (
+      <aside className="flex h-full flex-col overflow-hidden bg-base-100">
+        <div className="flex items-start justify-between border-b border-base-200 p-5">
+          <div className="min-w-0 pr-3">
+            <span className="badge badge-primary badge-sm mb-2">
+              Roaster coffee
+            </span>
+            <h2 className="text-xl font-bold leading-tight">{c.title}</h2>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="btn btn-ghost btn-sm btn-circle shrink-0"
+            aria-label="閉じる"
+          >
+            <X size={18} />
+          </button>
+        </div>
+        <div className="min-h-0 flex-1 space-y-5 overflow-y-auto p-5">
+          <dl className="grid grid-cols-[5.5rem_1fr] gap-x-3 gap-y-3 text-sm">
+            {fields
+              .filter(([, value]) => value)
+              .map(([label, value]) => (
+                <div key={label} className="contents">
+                  <dt className="text-base-content/50">{label}</dt>
+                  <dd className="font-medium break-words">{value}</dd>
+                </div>
+              ))}
+          </dl>
+          <div>
+            <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-base-content/50">
+              Tasting notes
+            </h3>
+            <div className="space-y-2">
+              {c.flavorParts.map((parts) => (
+                <div
+                  key={parts.join("/")}
+                  className="rounded-xl border border-base-300 bg-base-200/60 px-3 py-2 text-sm"
+                >
+                  {parts.join(" › ")}
+                </div>
+              ))}
+            </div>
+          </div>
+          {c.source_url && (
+            <a
+              href={c.source_url}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-primary btn-sm w-full"
+            >
+              商品ページを開く <ExternalLink size={14} />
+            </a>
+          )}
         </div>
       </aside>
     );

@@ -1,7 +1,8 @@
-import { ChevronUp } from "lucide-react";
+import { ChevronUp, Globe2, Network } from "lucide-react";
 import { useEffect, useState } from "react";
 import DetailPanel from "./components/DetailPanel";
 import DrankList from "./components/DrankList";
+import FlavorExplorer from "./components/FlavorExplorer";
 import Header from "./components/Header";
 import StartupGuide from "./components/StartupGuide";
 import WorldMap from "./components/WorldMap";
@@ -17,6 +18,7 @@ function App() {
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   // モバイルのボトムシートの最小化状態（デスクトップの右パネルでは未使用）
   const [sheetMinimized, setSheetMinimized] = useState(false);
+  const [view, setView] = useState("map");
 
   useEffect(() => {
     const hasSeenGuide = localStorage.getItem("hasSeenGuide");
@@ -64,31 +66,61 @@ function App() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#e0f2fe] text-base-content font-sans">
-      <WorldMap
-        selectedCoffee={selectedCoffee}
-        onSelectCoffee={setSelectedCoffee}
-        searchQuery={searchQuery}
-        drankCoffees={drankCoffees}
-        recommendedCoffee={recommendedCoffee}
-      />
+      {view === "map" ? (
+        <>
+          <WorldMap
+            selectedCoffee={selectedCoffee}
+            onSelectCoffee={setSelectedCoffee}
+            searchQuery={searchQuery}
+            drankCoffees={drankCoffees}
+            recommendedCoffee={recommendedCoffee}
+          />
+          <Header
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            onOpenGuide={() => setIsGuideOpen(true)}
+          />
+          <DrankList
+            drankCoffees={drankCoffees}
+            drankOrder={drankOrder}
+            onRemoveDrank={handleRemoveDrank}
+            onClearDrank={handleClearDrank}
+            onSelectCoffee={setSelectedCoffee}
+            selectedCoffee={selectedCoffee}
+            onRecommend={recommend}
+            isRecommendedActive={recommendedCoffee != null}
+            onClearRecommendation={() => setRecommendedCoffee(null)}
+          />
+        </>
+      ) : (
+        <FlavorExplorer
+          selectedCoffee={selectedCoffee}
+          onSelectCoffee={setSelectedCoffee}
+        />
+      )}
 
-      <Header
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        onOpenGuide={() => setIsGuideOpen(true)}
-      />
-
-      <DrankList
-        drankCoffees={drankCoffees}
-        drankOrder={drankOrder}
-        onRemoveDrank={handleRemoveDrank}
-        onClearDrank={handleClearDrank}
-        onSelectCoffee={setSelectedCoffee}
-        selectedCoffee={selectedCoffee}
-        onRecommend={recommend}
-        isRecommendedActive={recommendedCoffee != null}
-        onClearRecommendation={() => setRecommendedCoffee(null)}
-      />
+      <div className="absolute left-1/2 top-3 z-40 flex -translate-x-1/2 rounded-full border border-base-300 bg-base-100/95 p-1 shadow-lg backdrop-blur sm:top-5">
+        <button
+          type="button"
+          className={`btn btn-sm rounded-full ${view === "map" ? "btn-primary" : "btn-ghost"}`}
+          onClick={() => {
+            setView("map");
+            setSelectedCoffee(null);
+          }}
+        >
+          <Globe2 size={15} /> 産地から
+        </button>
+        <button
+          type="button"
+          className={`btn btn-sm rounded-full ${view === "flavor" ? "btn-primary" : "btn-ghost"}`}
+          onClick={() => {
+            setView("flavor");
+            setSelectedCoffee(null);
+          }}
+        >
+          <Network size={15} /> 味から
+        </button>
+      </div>
 
       <StartupGuide
         isOpen={isGuideOpen}
@@ -125,6 +157,7 @@ function App() {
             selectedCoffee={selectedCoffee}
             isRecommended={
               selectedCoffee &&
+              selectedCoffee._kind !== "roaster" &&
               recommendedCoffee &&
               selectedCoffee.id === recommendedCoffee.id
             }
