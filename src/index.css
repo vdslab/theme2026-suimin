@@ -76,4 +76,21 @@
   .animate-dash-backward {
     animation: dash-flow-backward 1s linear infinite;
   }
+
+  @keyframes treemap-zoom-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.88);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .treemap-zoom-enter {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: treemap-zoom-enter 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
 }

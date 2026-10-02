@@ -1,19 +1,9 @@
 import { cluster, hierarchy } from "d3-hierarchy";
 import { useMemo, useState } from "react";
+import { buildVisibleFlavorTree } from "../lib/buildVisibleFlavorTree";
+import { flavorColor } from "../lib/flavorColors";
 import { translateFlavor } from "../lib/flavorNames";
-import { buildCoffeeBranch } from "./CoffeeNodes";
 
-const COLORS = [
-  "#dc6b5d",
-  "#b46fbd",
-  "#de9f38",
-  "#8a6f53",
-  "#ca704d",
-  "#7c6658",
-  "#c89558",
-  "#69a176",
-  "#708aa7",
-];
 const polar = (angle, radius) => {
   const a = angle - Math.PI / 2;
   return [Math.cos(a) * radius, Math.sin(a) * radius];
@@ -28,7 +18,9 @@ const curve = (source, target) => {
 };
 
 export default function FlavorHierarchy({
-  focusNode,
+  root,
+  activeNode,
+  expandedPaths,
   indexes,
   selectedCoffee,
   onSelectFlavor,
@@ -38,10 +30,15 @@ export default function FlavorHierarchy({
   const [hoveredFlavor, setHoveredFlavor] = useState(null);
   const [hoveredCoffee, setHoveredCoffee] = useState(null);
 
-  const treeData = useMemo(
-    () => buildCoffeeBranch(focusNode, indexes, expandedCountry) ?? focusNode,
-    [focusNode, indexes, expandedCountry],
-  );
+  const treeData = useMemo(() => {
+    return buildVisibleFlavorTree({
+      root,
+      activeNode,
+      expandedPaths,
+      indexes,
+      expandedCountry,
+    });
+  }, [root, activeNode, expandedPaths, indexes, expandedCountry]);
   const { nodes, links } = useMemo(() => {
     const root = hierarchy(treeData);
     const maxDepth = Math.max(root.height, 1);
@@ -55,9 +52,11 @@ export default function FlavorHierarchy({
   const topColor = (node) => {
     let cursor = node;
     while (cursor.depth > 1) cursor = cursor.parent;
-    return COLORS[
-      (cursor.parent?.children.indexOf(cursor) ?? 0) % COLORS.length
-    ];
+    return flavorColor(
+      node.data.name,
+      cursor.data.name,
+      node.data.depth ?? node.depth,
+    );
   };
   const hoveredIds = hoveredFlavor
     ? indexes.flavorToCoffeeIds.get(hoveredFlavor.path)
@@ -107,6 +106,11 @@ export default function FlavorHierarchy({
             isCoffee && hoveredIds && !hoveredIds.has(node.data.coffee.id);
           const selected =
             isCoffee && selectedCoffee?.id === node.data.coffee.id;
+          const inActivePath =
+            type === "flavor" &&
+            (node.data.path === "" ||
+              node.data.path === activeNode.path ||
+              activeNode.path.startsWith(`${node.data.path}/`));
           const count = node.data.coffeeCount ?? node.data.coffeeIds?.size;
           return (
             // biome-ignore lint/a11y/noStaticElementInteractions: SVG tree nodes cannot use HTML buttons.
@@ -124,7 +128,7 @@ export default function FlavorHierarchy({
                 setHoveredCoffee(null);
               }}
               onClick={() => {
-                if (type === "flavor" && node.data.path !== focusNode.path) {
+                if (type === "flavor") {
                   setExpandedCountry(null);
                   onSelectFlavor(node.data.path);
                 } else if (type === "country")
@@ -153,11 +157,13 @@ export default function FlavorHierarchy({
                 stroke={
                   selected
                     ? "#f59e0b"
-                    : type === "country"
-                      ? topColor(node)
-                      : "#fffdf8"
+                    : inActivePath
+                      ? "#493c32"
+                      : type === "country"
+                        ? topColor(node)
+                        : "#fffdf8"
                 }
-                strokeWidth={selected ? 3 : 1.5}
+                strokeWidth={selected || inActivePath ? 3 : 1.5}
               />
               {!isCoffee && (
                 <text
@@ -165,7 +171,7 @@ export default function FlavorHierarchy({
                   dy="0.32em"
                   textAnchor={node.x < Math.PI ? "start" : "end"}
                   fontSize={node.depth === 0 ? 13 : 10}
-                  fontWeight={node.depth <= 1 ? 700 : 500}
+                  fontWeight={node.depth <= 1 || inActivePath ? 700 : 500}
                   fill="#493c32"
                   style={{
                     paintOrder: "stroke",
@@ -215,7 +221,7 @@ export default function FlavorHierarchy({
           })}
         <circle r="3" fill="#6f4e37" />
       </svg>
-      {focusNode.children.length === 0 && !expandedCountry && (
+      {activeNode.children.length === 0 && !expandedCountry && (
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-[#f4eadc]/95 px-4 py-2 text-xs text-[#6c5544] shadow-sm">
           国をクリックすると、その国の豆を展開します
         </div>

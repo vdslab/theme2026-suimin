@@ -1,10 +1,11 @@
-import { ArrowLeft, LoaderCircle } from "lucide-react";
+import { ArrowLeft, CircleDot, LayoutGrid, LoaderCircle } from "lucide-react";
 import { useMemo, useState } from "react";
 import { buildFlavorHierarchy } from "../lib/buildFlavorHierarchy";
 import { buildFlavorIndexes } from "../lib/buildFlavorIndexes";
 import { translateFlavor } from "../lib/flavorNames";
 import { loadRoasterData } from "../lib/loadRoasterData";
 import FlavorHierarchy from "./FlavorHierarchy";
+import FlavorTreemap from "./FlavorTreemap";
 
 export default function FlavorExplorer({ selectedCoffee, onSelectCoffee }) {
   const coffees = useMemo(() => loadRoasterData(), []);
@@ -13,11 +14,33 @@ export default function FlavorExplorer({ selectedCoffee, onSelectCoffee }) {
     () => buildFlavorHierarchy(coffees, indexes.flavorToCoffeeIds),
     [coffees, indexes],
   );
-  const [focusPath, setFocusPath] = useState("");
-  const focusNode = nodesByPath.get(focusPath) ?? root;
-  const crumbs = focusPath ? focusPath.split("/") : [];
+  const [activePath, setActivePath] = useState("");
+  const [expandedPaths, setExpandedPaths] = useState(() => new Set([""]));
+  const [layout, setLayout] = useState("treemap");
+  const activeNode = nodesByPath.get(activePath) ?? root;
+  const crumbs = activePath ? activePath.split("/") : [];
 
-  if (!focusNode) return <LoaderCircle className="animate-spin" />;
+  const handleSelectFlavor = (path) => {
+    setActivePath(path);
+    setExpandedPaths((previous) => {
+      const next = new Set(previous);
+      next.add(path);
+      return next;
+    });
+  };
+
+  const handleBack = () => {
+    if (!activePath) return;
+    const parentPath = crumbs.slice(0, -1).join("/");
+    setExpandedPaths((previous) => {
+      const next = new Set(previous);
+      next.delete(activePath);
+      return next;
+    });
+    setActivePath(parentPath);
+  };
+
+  if (!activeNode) return <LoaderCircle className="animate-spin" />;
   return (
     <main className="flex h-full flex-col gap-3 bg-[#f7f0e6] p-3 pt-20 sm:p-6 sm:pt-24">
       <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-[#e5d6c3] bg-[#fffaf3] px-4 py-2 shadow-sm">
@@ -28,7 +51,7 @@ export default function FlavorExplorer({ selectedCoffee, onSelectCoffee }) {
           <button
             type="button"
             className="font-bold text-primary hover:underline"
-            onClick={() => setFocusPath("")}
+            onClick={() => setActivePath("")}
           >
             すべて
           </button>
@@ -44,7 +67,7 @@ export default function FlavorExplorer({ selectedCoffee, onSelectCoffee }) {
                       ? "font-bold"
                       : "hover:underline"
                   }
-                  onClick={() => setFocusPath(path)}
+                  onClick={() => setActivePath(path)}
                 >
                   {translateFlavor(crumb)}
                 </button>
@@ -52,25 +75,56 @@ export default function FlavorExplorer({ selectedCoffee, onSelectCoffee }) {
             );
           })}
         </nav>
-        <button
-          type="button"
-          className="btn btn-sm btn-ghost"
-          disabled={!focusPath}
-          onClick={() => setFocusPath(crumbs.slice(0, -1).join("/"))}
-        >
-          <ArrowLeft size={15} /> Back
-        </button>
+        <div className="flex items-center gap-1">
+          <fieldset className="join border-0 p-0" aria-label="表示形式">
+            <button
+              type="button"
+              className={`btn btn-sm join-item ${layout === "treemap" ? "btn-primary" : "btn-ghost"}`}
+              onClick={() => setLayout("treemap")}
+            >
+              <LayoutGrid size={14} /> ツリーマップ
+            </button>
+            <button
+              type="button"
+              className={`btn btn-sm join-item ${layout === "radial" ? "btn-primary" : "btn-ghost"}`}
+              onClick={() => setLayout("radial")}
+            >
+              <CircleDot size={14} /> 円形
+            </button>
+          </fieldset>
+          <button
+            type="button"
+            className="btn btn-sm btn-ghost"
+            disabled={!activePath}
+            onClick={handleBack}
+          >
+            <ArrowLeft size={15} /> Back
+          </button>
+        </div>
       </div>
-      <FlavorHierarchy
-        key={focusNode.path}
-        focusNode={focusNode}
-        indexes={indexes}
-        selectedCoffee={selectedCoffee}
-        onSelectFlavor={setFocusPath}
-        onSelectCoffee={onSelectCoffee}
-      />
+      {layout === "treemap" ? (
+        <FlavorTreemap
+          root={root}
+          activeNode={activeNode}
+          expandedPaths={expandedPaths}
+          indexes={indexes}
+          selectedCoffee={selectedCoffee}
+          onSelectFlavor={handleSelectFlavor}
+          onSelectCoffee={onSelectCoffee}
+        />
+      ) : (
+        <FlavorHierarchy
+          root={root}
+          activeNode={activeNode}
+          expandedPaths={expandedPaths}
+          indexes={indexes}
+          selectedCoffee={selectedCoffee}
+          onSelectFlavor={handleSelectFlavor}
+          onSelectCoffee={onSelectCoffee}
+        />
+      )}
       <p className="text-center text-xs text-base-content/50">
-        円の大きさと数値は、その味以下に含まれるコーヒー豆数です。タグをクリックして絞り込めます。
+        タグをクリックすると、その位置を保ったまま次の味階層が追加表示されます。
       </p>
     </main>
   );
