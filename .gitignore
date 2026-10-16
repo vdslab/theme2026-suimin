@@ -291,3 +291,9 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 .gemini/
+# Paid dataset (RoasterDB) & derived intermediates — never commit
+# (README / .gitkeep だけ追跡して置き場所を示す)
+data/private/*
+!data/private/README.md
+data/interim/*
+!data/interim/.gitkeep
