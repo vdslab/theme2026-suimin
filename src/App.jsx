@@ -7,8 +7,33 @@ import StartupGuide from "./components/StartupGuide";
 import WorldMap from "./components/WorldMap";
 import { useRecommendation } from "./hooks/useRecommendation";
 import { translateCountry } from "./lib/countryNames";
+import FlavorExplorerPage from "./FlavorExplorerPage";
 
 function App() {
+  const [flavorView, setFlavorView] = useState(
+    () => window.location.hash === "#flavors",
+  );
+  useEffect(() => {
+    const update = () => setFlavorView(window.location.hash === "#flavors");
+    window.addEventListener("hashchange", update);
+    return () => window.removeEventListener("hashchange", update);
+  }, []);
+  return flavorView ? (
+    <FlavorExplorerPage />
+  ) : (
+    <>
+      <a
+        href="#flavors"
+        className="fixed bottom-5 left-5 z-50 rounded-full bg-[#17282d] px-5 py-3 text-sm text-white shadow-lg"
+      >
+        味のつながりを探索 ↗
+      </a>
+      <CoffeeMapApp />
+    </>
+  );
+}
+
+function CoffeeMapApp() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [drankCoffees, setDrankCoffees] = useState({}); // { [id]: score }
