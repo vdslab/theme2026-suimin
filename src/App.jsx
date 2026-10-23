@@ -7,8 +7,33 @@ import StartupGuide from "./components/StartupGuide";
 import WorldMap from "./components/WorldMap";
 import { useRecommendation } from "./hooks/useRecommendation";
 import { translateCountry } from "./lib/countryNames";
+import FlavorExplorerPage from "./FlavorExplorerPage";
 
 function App() {
+  const [flavorView, setFlavorView] = useState(
+    () => window.location.hash === "#sunburst",
+  );
+  useEffect(() => {
+    const update = () => setFlavorView(window.location.hash === "#sunburst");
+    window.addEventListener("hashchange", update);
+    return () => window.removeEventListener("hashchange", update);
+  }, []);
+  return flavorView ? (
+    <FlavorExplorerPage />
+  ) : (
+    <>
+      <a
+        href="#sunburst"
+        className="fixed bottom-5 left-5 z-50 rounded-full bg-[#6f4e37] px-5 py-3 text-sm text-white shadow-lg"
+      >
+        味のつながりを探索 ↗
+      </a>
+      <CoffeeMapApp />
+    </>
+  );
+}
+
+function CoffeeMapApp() {
   const [selectedCoffee, setSelectedCoffee] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [drankCoffees, setDrankCoffees] = useState({}); // { [id]: score }
@@ -63,7 +88,7 @@ function App() {
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-[#e0f2fe] text-base-content font-sans">
+    <div className="relative w-screen h-screen overflow-hidden bg-[#f2e8da] text-base-content font-sans">
       <WorldMap
         selectedCoffee={selectedCoffee}
         onSelectCoffee={setSelectedCoffee}
