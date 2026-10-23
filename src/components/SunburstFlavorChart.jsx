@@ -2,6 +2,10 @@ import { useMemo, useState } from "react";
 import { flavorName, flavorPath } from "../lib/flavorJapanese";
 import { hierarchy, partition } from "d3-hierarchy";
 import { arc } from "d3-shape";
+import {
+  flavorColorTheme,
+  getFlavorAppearance,
+} from "../lib/flavorColorUtils.js";
 
 export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
   const [scale, setScale] = useState(1);
@@ -45,7 +49,7 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
         <svg
           className="flavor-wheel"
           style={{ width: `${scale * 100}%`, maxHeight: "none" }}
-          viewBox="-255 -255 510 510"
+          viewBox="-310 -310 620 620"
           aria-label="味の階層。各セグメントをクリックして選択"
         >
           {root
@@ -55,14 +59,20 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
               const angle = (((n.x0 + n.x1) / 2) * 180) / Math.PI;
               const radius = (n.y0 + n.y1) / 2;
               const active = selectedId === n.data.id;
+              const outer = !n.children;
+              const appearance = getFlavorAppearance(n.data.path, {
+                hovered: hoveredId === n.data.id,
+                selected: active,
+                outer,
+              });
               return (
                 <g key={n.data.id}>
                   <path
                     d={shape(n)}
-                    fill={data.color(n.data.path)}
-                    fillOpacity={active ? 1 : 0.85 - n.depth * 0.08}
-                    stroke={active ? "#6f4e37" : "#fffbf3"}
-                    strokeWidth={active ? 3 : 1}
+                    fill={appearance.fill}
+                    fillOpacity={1}
+                    stroke={appearance.stroke}
+                    strokeWidth={appearance.strokeWidth}
                     role="button"
                     tabIndex={0}
                     aria-label={`${flavorPath(n.data.path)}: ${n.data.beanIds.size}件`}
@@ -88,16 +98,21 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
                   {
                     <text
                       pointerEvents="none"
-                      transform={`rotate(${angle - 90}) translate(${radius},0) rotate(${angle < 180 ? 0 : 180})`}
-                      textAnchor="middle"
+                      transform={`rotate(${angle - 90}) translate(${outer ? n.y1 + 6 : radius},0) rotate(${angle < 180 ? 0 : 180})`}
+                      textAnchor={
+                        outer ? (angle < 180 ? "start" : "end") : "middle"
+                      }
                       dominantBaseline="middle"
-                      fill="#3e2c20"
+                      fill={appearance.label}
                       fontSize={Math.max(
                         0.6,
                         Math.min(
-                          11,
+                          outer ? 8 : 11,
                           (n.x1 - n.x0) * radius * 0.75,
-                          (n.y1 - n.y0 - 9) / flavorName(n.data.name).length,
+                          outer
+                            ? 8
+                            : (n.y1 - n.y0 - 9) /
+                                flavorName(n.data.name).length,
                         ),
                       )}
                     >
@@ -107,11 +122,21 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
                 </g>
               );
             })}
-          <circle r={root.y1 - 3} fill="#f2e8d8" />
-          <text textAnchor="middle" y="-5" fill="#493426" fontSize="13">
+          <circle r={root.y1 - 3} fill={flavorColorTheme.center} />
+          <text
+            textAnchor="middle"
+            y="-5"
+            fill={flavorColorTheme.darkText}
+            fontSize="13"
+          >
             味の全体像
           </text>
-          <text textAnchor="middle" y="14" fill="#79634f" fontSize="10">
+          <text
+            textAnchor="middle"
+            y="14"
+            fill={flavorColorTheme.mutedText}
+            fontSize="10"
+          >
             {data.beans.length.toLocaleString()}件の豆
           </text>
         </svg>
