@@ -61,7 +61,7 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
                     d={shape(n)}
                     fill={data.color(n.data.path)}
                     fillOpacity={active ? 1 : 0.85 - n.depth * 0.08}
-                    stroke={active ? "#fff8e8" : "#172529"}
+                    stroke={active ? "#6f4e37" : "#fffbf3"}
                     strokeWidth={active ? 3 : 1}
                     role="button"
                     tabIndex={0}
@@ -91,7 +91,7 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
                       transform={`rotate(${angle - 90}) translate(${radius},0) rotate(${angle < 180 ? 0 : 180})`}
                       textAnchor="middle"
                       dominantBaseline="middle"
-                      fill="#112126"
+                      fill="#3e2c20"
                       fontSize={Math.max(
                         0.6,
                         Math.min(
@@ -107,11 +107,11 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
                 </g>
               );
             })}
-          <circle r={root.y1 - 3} fill="#14272b" />
-          <text textAnchor="middle" y="-5" fill="#f4eada" fontSize="13">
+          <circle r={root.y1 - 3} fill="#f2e8d8" />
+          <text textAnchor="middle" y="-5" fill="#493426" fontSize="13">
             味の全体像
           </text>
-          <text textAnchor="middle" y="14" fill="#9fb3ae" fontSize="10">
+          <text textAnchor="middle" y="14" fill="#79634f" fontSize="10">
             {data.beans.length.toLocaleString()}件の豆
           </text>
         </svg>

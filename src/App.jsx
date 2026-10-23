@@ -24,7 +24,7 @@ function App() {
     <>
       <a
         href="#flavors"
-        className="fixed bottom-5 left-5 z-50 rounded-full bg-[#17282d] px-5 py-3 text-sm text-white shadow-lg"
+        className="fixed bottom-5 left-5 z-50 rounded-full bg-[#6f4e37] px-5 py-3 text-sm text-white shadow-lg"
       >
         味のつながりを探索 ↗
       </a>
@@ -88,7 +88,7 @@ function CoffeeMapApp() {
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-[#e0f2fe] text-base-content font-sans">
+    <div className="relative w-screen h-screen overflow-hidden bg-[#f2e8da] text-base-content font-sans">
       <WorldMap
         selectedCoffee={selectedCoffee}
         onSelectCoffee={setSelectedCoffee}

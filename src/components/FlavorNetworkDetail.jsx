@@ -59,7 +59,7 @@ export default function FlavorNetworkDetail({ network, color, onSelect }) {
       .selectAll("line")
       .data(links)
       .join("line")
-      .attr("stroke", "#91b6a9")
+      .attr("stroke", "#94704d")
       .attr("stroke-opacity", 0.26)
       .attr("stroke-width", 1.2);
     const items = group
@@ -92,9 +92,9 @@ export default function FlavorNetworkDetail({ network, color, onSelect }) {
             : 9,
       )
       .attr("fill", (n) =>
-        n.type === "bean" ? "#e8dfc9" : color(n.flavor.path),
+        n.type === "bean" ? "#c8a477" : color(n.flavor.path),
       )
-      .attr("stroke", (n) => (n.type === "center" ? "#fff6dc" : "#172b2f"))
+      .attr("stroke", (n) => (n.type === "center" ? "#6f4e37" : "#fffbf3"))
       .attr("stroke-width", 2);
     items
       .append("title")
@@ -107,7 +107,7 @@ export default function FlavorNetworkDetail({ network, color, onSelect }) {
       .append("text")
       .attr("text-anchor", "middle")
       .attr("y", (n) => (n.type === "bean" ? 23 : 4))
-      .attr("fill", (n) => (n.type === "bean" ? "#c7d5d0" : "#102026"))
+      .attr("fill", (n) => (n.type === "bean" ? "#624833" : "#3e2c20"))
       .attr("font-size", (n) => (n.type === "bean" ? 9 : 11))
       .attr("pointer-events", "none")
       .text((n) =>
