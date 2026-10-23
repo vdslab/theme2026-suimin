@@ -1,18 +1,8 @@
 import { csvParse } from "d3-dsv";
+import { getFlavorColor } from "./flavorColorUtils.js";
 
 export const MAX_BEANS = 20;
 export const MAX_FLAVORS = 10;
-const PALETTE = [
-  "#e08d50",
-  "#dc728e",
-  "#a998e5",
-  "#7bb8a2",
-  "#c9b76c",
-  "#7eaecb",
-  "#b78968",
-  "#a6ad72",
-  "#c783ae",
-];
 export const pathId = (parts) => JSON.stringify(parts);
 export const parseFlavorPaths = (value = "") => [
   ...new Map(
@@ -92,9 +82,7 @@ export function buildFlavorData(csv) {
       });
     }
   }
-  const categories = root.children.map((n) => n.name).sort();
-  const color = (path) =>
-    PALETTE[Math.max(0, categories.indexOf(path[0])) % PALETTE.length];
+  const color = getFlavorColor;
   // Arc weights are tag assignments; each node's displayed count is unique beans.
   for (const node of nodes.values()) node.weight = node.directIds?.size || 0;
   const initial = [...nodes.values()]
