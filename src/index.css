@@ -76,4 +76,135 @@
   .animate-dash-backward {
     animation: dash-flow-backward 1s linear infinite;
   }
+
+  /* Flavor wheel slice entry animation */
+  @keyframes slice-appear {
+    from {
+      opacity: 0;
+      transform: scale(0.88);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slice-zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(0.72) rotate(-6deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes slice-zoom-out {
+    from {
+      opacity: 0;
+      transform: scale(1.18) rotate(4deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes fade-up-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes pulse-ring {
+    0%   { transform: scale(1);    opacity: 0.7; }
+    70%  { transform: scale(1.35); opacity: 0; }
+    100% { transform: scale(1.35); opacity: 0; }
+  }
+
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-8px); }
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position:  200% center; }
+  }
+
+  .animate-slice-appear {
+    animation: slice-appear 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .animate-slice-zoom-in {
+    animation: slice-zoom-in 0.42s cubic-bezier(0.34, 1.36, 0.64, 1) both;
+  }
+
+  .animate-slice-zoom-out {
+    animation: slice-zoom-out 0.38s cubic-bezier(0.34, 1.36, 0.64, 1) both;
+  }
+
+  .animate-fade-up-in {
+    animation: fade-up-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease both;
+  }
+
+  .animate-pulse-ring {
+    animation: pulse-ring 1.8s ease-out infinite;
+  }
+
+  .animate-float-y {
+    animation: float-y 3s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-base-300);
+    border-radius: 999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-base-content);
+    opacity: 0.3;
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    transform-origin: center;
+    animation: spin-slow 20s linear infinite;
+  }
 }
+

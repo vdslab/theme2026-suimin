@@ -9,6 +9,7 @@ export default function FlavorWheel({
   selectedFlavor,
   onSelectFlavor,
   onSelectCoffee,
+  explorationMode = "step", // "step" | "all"
   languageMode = "both", // "both" | "ja" | "en"
 }) {
   const svgRef = useRef(null);
@@ -18,6 +19,8 @@ export default function FlavorWheel({
   const [hoveredNode, setHoveredNode] = useState(null);
   const [hoveredBeanId, setHoveredBeanId] = useState(null);
   const [hoveredDot, setHoveredDot] = useState(null);
+  const [navDirection, setNavDirection] = useState(null); // "in" | "out" | null
+  const [animKey, setAnimKey] = useState(0); // increment to re-trigger animation
 
   // Resize observer for responsive SVG sizing
   useEffect(() => {
@@ -78,11 +81,18 @@ export default function FlavorWheel({
     if (e) e.stopPropagation();
     if (!node) return;
 
+    const prevDepth = currentFocus ? currentFocus.depth : 0;
+    const nextDepth = node.depth;
+    const dir =
+      nextDepth > prevDepth ? "in" : nextDepth < prevDepth ? "out" : null;
+    setNavDirection(dir);
+    setAnimKey((k) => k + 1);
+
     setCurrentFocus(node);
     if (node.depth === 0) {
       onSelectFlavor(null);
     } else {
-      onSelectFlavor(node.data);
+      onSelectFlavor({ ...node.data, depth: node.depth, level: node.depth });
     }
   };
 
@@ -94,11 +104,17 @@ export default function FlavorWheel({
       return;
     }
     const parent = currentFocus.parent || root;
+    setNavDirection("out");
+    setAnimKey((k) => k + 1);
     setCurrentFocus(parent);
     if (parent.depth === 0) {
       onSelectFlavor(null);
     } else {
-      onSelectFlavor(parent.data);
+      onSelectFlavor({
+        ...parent.data,
+        depth: parent.depth,
+        level: parent.depth,
+      });
     }
   };
 
@@ -107,8 +123,10 @@ export default function FlavorWheel({
     Math.min(dimensions.width, dimensions.height) / 2 - 12;
   // Wheel takes ~58% of radius, leaving 24px clear gap for connection lines, plus outer dots and labels
   const sunburstOuterRadius = maxAvailableRadius * 0.58;
-  const innerRadiusBase = sunburstOuterRadius * 0.22;
+  const innerRadiusBase = sunburstOuterRadius * 0.28;
   const dotBaseRadius = sunburstOuterRadius + 24;
+
+  const isStepMode = explorationMode === "step";
 
   // Transform angle according to current focus
   const toAngle = React.useCallback(
@@ -134,6 +152,10 @@ export default function FlavorWheel({
     .endAngle((d) => toAngle(d.x1))
     .innerRadius((d) => {
       if (!currentFocus) return Math.max(0, d.y0);
+      if (isStepMode) {
+        // Single spacious ring in step mode
+        return innerRadiusBase;
+      }
       const focusDepth = currentFocus.depth;
       const depthDiff = d.depth - focusDepth;
       if (depthDiff <= 0) return 0;
@@ -143,6 +165,9 @@ export default function FlavorWheel({
     })
     .outerRadius((d) => {
       if (!currentFocus) return Math.max(0, d.y1);
+      if (isStepMode) {
+        return sunburstOuterRadius - 2;
+      }
       const focusDepth = currentFocus.depth;
       const depthDiff = d.depth - focusDepth;
       if (depthDiff < 0) return 0;
@@ -150,14 +175,24 @@ export default function FlavorWheel({
       const step = (sunburstOuterRadius - innerRadiusBase) / visibleLevels;
       return innerRadiusBase + depthDiff * step - 2;
     })
-    .padAngle(0.006)
-    .cornerRadius(3);
+    .padAngle(isStepMode ? 0.01 : 0.006)
+    .cornerRadius(isStepMode ? 5 : 3);
 
-  // Nodes to display (descendants of current focus or direct tree)
+  // Nodes to display (in Step Mode: ONLY 1 level outside of currentFocus)
   const visibleNodes = useMemo(() => {
     if (!root || !currentFocus) return [];
+    const isStep = explorationMode === "step";
+    const currentDepth = currentFocus.depth;
+    // In step mode: strictly target the next outer tier (depth + 1), capped at leaf depth 3
+    const targetDepth = currentDepth < 3 ? currentDepth + 1 : 3;
+
     return root.descendants().filter((d) => {
       if (d.depth === 0) return false;
+
+      // In step mode, render ONLY nodes at targetDepth!
+      if (isStep && d.depth !== targetDepth) return false;
+
+      // Must be a descendant of currentFocus (or currentFocus itself if at leaf)
       let curr = d;
       let isDescendant = false;
       while (curr) {
@@ -172,10 +207,9 @@ export default function FlavorWheel({
       const angle = (d.x1 - d.x0) / (currentFocus.x1 - currentFocus.x0);
       return angle > 0.002;
     });
-  }, [root, currentFocus]);
+  }, [root, currentFocus, explorationMode]);
 
   // Compute active tag paths for the hovered bean
-  // (used to dim non-belonging sunburst slices when a dot is hovered)
   const activeTagPaths = useMemo(() => {
     if (!hoveredBeanId) return new Set();
     const bean = beans.find((b) => b.id === hoveredBeanId);
@@ -191,9 +225,16 @@ export default function FlavorWheel({
   }, [hoveredBeanId, beans]);
 
   // Compute outer circumference dots for coffee beans
-  // Each coffee bean has multiple tasting notes, so a bean produces a dot for EACH tag it possesses!
+  // In Step Mode: Only rendered when the outermost tier (Level 3 descriptors) is displayed!
   const outerDots = useMemo(() => {
     if (!root || !currentFocus || !beans.length) return [];
+
+    const isStep = explorationMode === "step";
+    // Outermost tier (level 3) is displayed when currentFocus depth >= 2
+    const isOutermostDisplayed = !isStep || currentFocus.depth >= 2;
+    if (!isOutermostDisplayed) {
+      return []; // Do not draw outer dots until outermost tier is reached!
+    }
 
     // Map leaf paths to node in root
     const leafNodesMap = new Map();
@@ -242,7 +283,7 @@ export default function FlavorWheel({
       }
     }
 
-    // Now calculate angle and radius for each dot within each leaf node's visible angle range
+    // Calculate angle and radius for each dot within each leaf node's visible angle range
     const calculatedDots = [];
     const isZoomed = currentFocus.depth > 0;
 
@@ -252,7 +293,6 @@ export default function FlavorWheel({
       const spread = endA - startA;
       if (spread < 0.001) return;
 
-      // Sort dots deterministically by bean title
       dots.sort((a, b) => a.bean.title.localeCompare(b.bean.title));
 
       const count = dots.length;
@@ -260,7 +300,6 @@ export default function FlavorWheel({
       const available = spread - 2 * pad;
       const angleStep = count > 1 ? available / count : 0;
 
-      // Stagger radius into multiple concentric tracks if high density
       const isDense = !isZoomed && count > 5 && available / count < 0.022;
 
       dots.forEach((dot, idx) => {
@@ -272,12 +311,10 @@ export default function FlavorWheel({
         const trackOffset = isDense ? (idx % 2) * 8 : 0;
         const rDot = dotBaseRadius + trackOffset;
 
-        // Coordinates
         const midA = dotAngle - Math.PI / 2;
         const cx = Math.cos(midA) * rDot;
         const cy = Math.sin(midA) * rDot;
 
-        // Radial label coordinates
         const rLabel = rDot + 7;
         const lx = Math.cos(midA) * rLabel;
         const ly = Math.sin(midA) * rLabel;
@@ -308,11 +345,11 @@ export default function FlavorWheel({
     });
 
     return calculatedDots;
-  }, [root, currentFocus, beans, dotBaseRadius, toAngle]);
+  }, [root, currentFocus, beans, dotBaseRadius, toAngle, explorationMode]);
 
   // Compute radial connectors from each dot of the hovered bean to its belonging sunburst slice
   const hoveredDotConnectors = useMemo(() => {
-    if (!hoveredBeanId) return [];
+    if (!hoveredBeanId || !outerDots.length) return [];
     const matchedDots = outerDots.filter((d) => d.beanId === hoveredBeanId);
     const sliceBoundaryRadius = sunburstOuterRadius - 2;
 
@@ -356,6 +393,15 @@ export default function FlavorWheel({
   const centerNode = currentFocus || root;
   const isAtRoot = !currentFocus || currentFocus.depth === 0;
   const isZoomed = !isAtRoot;
+
+  // Exploration step label
+  const stepLabel = useMemo(() => {
+    if (!isStepMode) return null;
+    const depth = currentFocus ? currentFocus.depth : 0;
+    if (depth === 0) return "ステップ 1 / 3: 大カテゴリを選択";
+    if (depth === 1) return "ステップ 2 / 3: 中カテゴリ系統を選択";
+    return "ステップ 3 / 3: 最外端フレーバー（豆データ表示中）";
+  }, [isStepMode, currentFocus]);
 
   return (
     <div className="flex flex-col h-full w-full select-none bg-base-100/60 rounded-3xl p-4 shadow-sm border border-base-300/60 backdrop-blur-md">
@@ -405,8 +451,14 @@ export default function FlavorWheel({
           })}
         </div>
 
-        {/* Quick Reset & Hint */}
+        {/* Step Guide Pill & Quick Reset */}
         <div className="flex items-center gap-2">
+          {isStepMode && (
+            <span className="badge badge-sm badge-primary badge-outline font-semibold px-2.5 py-2">
+              {stepLabel}
+            </span>
+          )}
+
           {!isAtRoot && (
             <button
               type="button"
@@ -428,12 +480,22 @@ export default function FlavorWheel({
       >
         <svg
           ref={svgRef}
+          key={animKey}
           width={dimensions.width}
           height={dimensions.height}
           viewBox={`${-dimensions.width / 2} ${-dimensions.height / 2} ${
             dimensions.width
           } ${dimensions.height}`}
-          className="transition-all duration-300"
+          className={`transition-all duration-300 ${
+            navDirection === "in"
+              ? "animate-slice-zoom-in"
+              : navDirection === "out"
+                ? "animate-slice-zoom-out"
+                : animKey > 0
+                  ? "animate-slice-appear"
+                  : ""
+          }`}
+          style={{ transformOrigin: "center center" }}
           role="img"
           aria-label="SCAA Specialty Coffee Flavor Wheel"
         >
@@ -441,7 +503,7 @@ export default function FlavorWheel({
 
           {/* Wheel Slices */}
           <g className="sunburst-slices">
-            {visibleNodes.map((node) => {
+            {visibleNodes.map((node, idx) => {
               const dPath = arcGenerator(node);
               if (!dPath) return null;
 
@@ -461,13 +523,18 @@ export default function FlavorWheel({
               const isSelected =
                 selectedFlavor && selectedFlavor.path === node.data.path;
 
-              // Calculate middle point for text label
-              const focusDepth = currentFocus ? currentFocus.depth : 0;
-              const depthDiff = node.depth - focusDepth;
-              const visibleLevels = Math.max(1, 3 - focusDepth);
-              const step =
-                (sunburstOuterRadius - innerRadiusBase) / visibleLevels;
-              const rMid = innerRadiusBase + (depthDiff - 0.5) * step;
+              // Radius midpoint for text placement
+              let rMid;
+              if (isStepMode) {
+                rMid = (innerRadiusBase + sunburstOuterRadius) / 2;
+              } else {
+                const focusDepth = currentFocus ? currentFocus.depth : 0;
+                const depthDiff = node.depth - focusDepth;
+                const visibleLevels = Math.max(1, 3 - focusDepth);
+                const step =
+                  (sunburstOuterRadius - innerRadiusBase) / visibleLevels;
+                rMid = innerRadiusBase + (depthDiff - 0.5) * step;
+              }
 
               const midAngle =
                 Math.max(
@@ -489,17 +556,23 @@ export default function FlavorWheel({
               const rotateDeg =
                 degAngle > 90 || degAngle < -90 ? degAngle + 180 : degAngle;
 
-              const showLabel = angleSpread > 0.08;
+              const showLabel = angleSpread > (isStepMode ? 0.05 : 0.08);
 
+              const sliceDelay = (idx * 28) % 160; // stagger delay per slice
               return (
                 // biome-ignore lint/a11y/noStaticElementInteractions: Interactive SVG chart slice
                 <g
                   key={node.data.path}
-                  className="cursor-pointer transition-all duration-200 group"
+                  className="cursor-pointer group"
+                  style={{
+                    animation: `slice-appear 0.38s cubic-bezier(0.34,1.56,0.64,1) ${sliceDelay}ms both`,
+                    transformOrigin: "center center",
+                    opacity: isDimmed ? 0.18 : 1,
+                    transition: "opacity 0.25s ease",
+                  }}
                   onClick={(e) => handleSliceClick(node, e)}
                   onMouseEnter={() => setHoveredNode(node)}
                   onMouseLeave={() => setHoveredNode(null)}
-                  opacity={isDimmed ? 0.18 : 1}
                 >
                   <path
                     d={dPath}
@@ -507,10 +580,10 @@ export default function FlavorWheel({
                     stroke="#ffffff"
                     strokeWidth={
                       isSelected || (isBelongingSlice && hoveredBeanId !== null)
-                        ? 3
+                        ? 3.5
                         : isHovered
-                          ? 2
-                          : 1
+                          ? 2.5
+                          : 1.5
                     }
                     className={`transition-all duration-200 ${
                       isDimmed
@@ -526,28 +599,52 @@ export default function FlavorWheel({
 
                   {/* Arc Text Label */}
                   {showLabel && (
-                    <text
-                      x={xText}
-                      y={yText}
-                      transform={`rotate(${rotateDeg}, ${xText}, ${yText})`}
-                      textAnchor="middle"
-                      dominantBaseline="central"
-                      fill="#ffffff"
-                      opacity={isDimmed ? 0.25 : 1}
-                      fontSize={
-                        angleSpread > 0.3 ? (depthDiff === 1 ? 12 : 10) : 9
-                      }
-                      fontWeight={depthDiff === 1 ? "700" : "600"}
-                      className="pointer-events-none select-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]"
-                    >
-                      {languageMode === "ja"
-                        ? node.data.nameJa || node.data.name
-                        : languageMode === "en"
-                          ? node.data.name
-                          : angleSpread > 0.25
-                            ? `${node.data.nameJa || node.data.name}`
+                    <g transform={`rotate(${rotateDeg}, ${xText}, ${yText})`}>
+                      <text
+                        x={xText}
+                        y={isStepMode ? yText - 6 : yText}
+                        textAnchor="middle"
+                        dominantBaseline="central"
+                        fill="#ffffff"
+                        opacity={isDimmed ? 0.25 : 1}
+                        fontSize={
+                          isStepMode
+                            ? angleSpread > 0.3
+                              ? 14
+                              : 11
+                            : angleSpread > 0.3
+                              ? 12
+                              : 9.5
+                        }
+                        fontWeight="700"
+                        className="pointer-events-none select-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]"
+                      >
+                        {languageMode === "ja"
+                          ? node.data.nameJa || node.data.name
+                          : languageMode === "en"
+                            ? node.data.name
                             : node.data.nameJa || node.data.name}
-                    </text>
+                      </text>
+
+                      {/* In step mode: display bean count or EN name subtitle inside the wide slice */}
+                      {isStepMode && angleSpread > 0.15 && (
+                        <text
+                          x={xText}
+                          y={yText + 9}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fill="#ffffff"
+                          opacity={isDimmed ? 0.2 : 0.9}
+                          fontSize={angleSpread > 0.3 ? 10.5 : 9}
+                          fontWeight="600"
+                          className="pointer-events-none select-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]"
+                        >
+                          {node.data.beanCount !== undefined
+                            ? `${node.data.beanCount} 銘柄`
+                            : node.data.name}
+                        </text>
+                      )}
+                    </g>
                   )}
                 </g>
               );
@@ -595,6 +692,7 @@ export default function FlavorWheel({
           </g>
 
           {/* Outer Perimeter Dots (Representing individual coffee bean data) */}
+          {/* Note: In Step Mode, outerDots is empty until outermost tier is reached */}
           <g className="outer-data-dots">
             {outerDots.map((dot) => {
               const isBeanHovered = hoveredBeanId === dot.beanId;
@@ -711,7 +809,7 @@ export default function FlavorWheel({
           >
             {/* Center Background Glow & Circle */}
             <circle
-              r={innerRadiusBase - 3}
+              r={innerRadiusBase - 4}
               fill={
                 centerNode?.data?.color
                   ? centerNode.data.color
@@ -722,7 +820,7 @@ export default function FlavorWheel({
               className="transition-all duration-300 group-hover:filter group-hover:brightness-110 shadow-lg"
             />
             <circle
-              r={innerRadiusBase - 8}
+              r={innerRadiusBase - 9}
               fill="rgba(0,0,0,0.15)"
               className="pointer-events-none"
             />
@@ -802,7 +900,7 @@ export default function FlavorWheel({
               </span>
             </div>
             <div className="text-[10px] text-neutral-content/60 mt-1 italic">
-              クリックでこの階層をズーム・絞り込み
+              クリックしてこの階層を選択
             </div>
           </div>
         )}
@@ -861,7 +959,9 @@ export default function FlavorWheel({
         <div className="text-[11px] font-semibold text-base-content/60 mb-1.5 flex items-center justify-between">
           <span>大カテゴリから選ぶ:</span>
           <span className="text-[10px] text-base-content/50">
-            スライスクリックでズームイン
+            {isStepMode
+              ? "クリックしてステップ進行"
+              : "スライスクリックでズームイン"}
           </span>
         </div>
         <div className="flex flex-wrap gap-1.5">
