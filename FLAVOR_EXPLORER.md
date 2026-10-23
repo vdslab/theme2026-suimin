@@ -1,6 +1,6 @@
 # 味タグ探索プロトタイプ
 
-`npm install` → `npm run dev` → `http://localhost:5173/#flavors`。
+`npm install` → `npm run dev` → `http://localhost:5173/#sunburst`。
 既存地図の左下の「味のつながりを探索」からも開けます。
 `npm run build` と `npm run preview` でもローカル確認できます。
 

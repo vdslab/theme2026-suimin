@@ -11,10 +11,10 @@ import FlavorExplorerPage from "./FlavorExplorerPage";
 
 function App() {
   const [flavorView, setFlavorView] = useState(
-    () => window.location.hash === "#flavors",
+    () => window.location.hash === "#sunburst",
   );
   useEffect(() => {
-    const update = () => setFlavorView(window.location.hash === "#flavors");
+    const update = () => setFlavorView(window.location.hash === "#sunburst");
     window.addEventListener("hashchange", update);
     return () => window.removeEventListener("hashchange", update);
   }, []);
@@ -23,7 +23,7 @@ function App() {
   ) : (
     <>
       <a
-        href="#flavors"
+        href="#sunburst"
         className="fixed bottom-5 left-5 z-50 rounded-full bg-[#6f4e37] px-5 py-3 text-sm text-white shadow-lg"
       >
         味のつながりを探索 ↗
