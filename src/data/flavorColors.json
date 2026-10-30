@@ -13,8 +13,6 @@
   "derived": {
     "lightnessPerLevel": 0.065,
     "saturationPerLevel": -0.035,
-    "siblingLightnessSpread": 0.1,
-    "siblingSaturationSpread": 0.06,
     "minLightness": 0.2,
     "maxLightness": 0.76,
     "minSaturation": 0.25,

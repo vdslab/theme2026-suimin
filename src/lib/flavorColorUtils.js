@@ -3,13 +3,6 @@ import config from "../data/flavorColors.json" with { type: "json" };
 export const flavorColorTheme = config.ui;
 const clamp = (value, min = 0, max = 1) => Math.max(min, Math.min(max, value));
 
-function hash(value) {
-  let result = 2166136261;
-  for (const char of value)
-    result = Math.imul(result ^ char.codePointAt(0), 16777619);
-  return result >>> 0;
-}
-
 function toHsl(hex) {
   const [r, g, b] = hex
     .slice(1)
@@ -42,30 +35,22 @@ function toHex([h, s, l]) {
     .join("")}`;
 }
 
-/** Paths, rather than sibling indexes, keep colors stable when data is reordered. */
+/** Siblings share a color derived only from their parent and hierarchy depth. */
 export function getFlavorColor(path = []) {
   const base = config.level1[path[0]] || config.ui.fallback;
   if (path.length <= 1 || !config.level1[path[0]]) return base;
   // Derive from the immediate parent so every depth stays in its color family.
   const [h, s, l] = toHsl(getFlavorColor(path.slice(0, -1)));
   const settings = config.derived;
-  const lightnessVariation =
-    hash(`light:${JSON.stringify(path)}`) / 0xffffffff - 0.5;
-  const saturationVariation =
-    hash(`sat:${JSON.stringify(path)}`) / 0xffffffff - 0.5;
   return toHex([
     h,
     clamp(
-      s +
-        settings.saturationPerLevel +
-        saturationVariation * settings.siblingSaturationSpread,
+      s + settings.saturationPerLevel,
       settings.minSaturation,
       settings.maxSaturation,
     ),
     clamp(
-      l +
-        settings.lightnessPerLevel +
-        lightnessVariation * settings.siblingLightnessSpread,
+      l + settings.lightnessPerLevel,
       settings.minLightness,
       settings.maxLightness,
     ),

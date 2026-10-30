@@ -43,12 +43,28 @@ const hue = (hex) => {
   );
 };
 
-test("descendants vary across siblings and depth while preserving second-level hue", () => {
+test("siblings share one color and depth changes preserve the parent hue", () => {
   const parent = ["Fruity", "Berry"];
   const siblings = ["Strawberry", "Blueberry", "Raspberry"].map((name) =>
     getFlavorColor([...parent, name]),
   );
-  assert.equal(new Set(siblings).size, 3);
+  assert.equal(new Set(siblings).size, 1);
+  assert.equal(
+    getFlavorColor(["Fruity", "Other Fruit", "Mango"]),
+    getFlavorColor(["Fruity", "Other Fruit", "Pineapple"]),
+  );
+  assert.equal(
+    getFlavorColor(["Fruity", "Berry"]),
+    getFlavorColor(["Fruity", "Other Fruit"]),
+  );
+  assert.notEqual(
+    siblings[0],
+    getFlavorColor([...parent, "Strawberry", "Detail"]),
+  );
+  assert.notEqual(
+    siblings[0],
+    getFlavorColor(["Sweet", "Brown Sugar", "Molasses"]),
+  );
   for (const color of [
     ...siblings,
     getFlavorColor([...parent, "Strawberry", "Detail"]),
