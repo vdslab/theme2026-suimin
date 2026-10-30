@@ -2,7 +2,6 @@ import config from "../data/flavorColors.json" with { type: "json" };
 
 export const flavorColorTheme = config.ui;
 const clamp = (value, min = 0, max = 1) => Math.max(min, Math.min(max, value));
-const keyOf = (path) => path.join(" > ");
 
 function hash(value) {
   let result = 2166136261;
@@ -45,14 +44,11 @@ function toHex([h, s, l]) {
 
 /** Paths, rather than sibling indexes, keep colors stable when data is reordered. */
 export function getFlavorColor(path = []) {
-  const base =
-    config.level2[keyOf(path.slice(0, 2))] ||
-    config.level1[path[0]] ||
-    config.ui.fallback;
-  if (path.length <= 2) return base;
-  const [h, s, l] = toHsl(base);
+  const base = config.level1[path[0]] || config.ui.fallback;
+  if (path.length <= 1 || !config.level1[path[0]]) return base;
+  // Derive from the immediate parent so every depth stays in its color family.
+  const [h, s, l] = toHsl(getFlavorColor(path.slice(0, -1)));
   const settings = config.derived;
-  const depth = path.length - 2;
   const lightnessVariation =
     hash(`light:${JSON.stringify(path)}`) / 0xffffffff - 0.5;
   const saturationVariation =
@@ -61,14 +57,14 @@ export function getFlavorColor(path = []) {
     h,
     clamp(
       s +
-        depth * settings.saturationPerLevel +
+        settings.saturationPerLevel +
         saturationVariation * settings.siblingSaturationSpread,
       settings.minSaturation,
       settings.maxSaturation,
     ),
     clamp(
       l +
-        depth * settings.lightnessPerLevel +
+        settings.lightnessPerLevel +
         lightnessVariation * settings.siblingLightnessSpread,
       settings.minLightness,
       settings.maxLightness,
@@ -87,13 +83,30 @@ function contrastText(fill) {
         : ((channel + 0.055) / 1.055) ** 2.4;
     })
     .reduce((sum, value, i) => sum + value * [0.2126, 0.7152, 0.0722][i], 0);
-  return luminance > 0.35 ? config.ui.darkText : config.ui.lightText;
+  const luminanceOf = (hex) =>
+    hex
+      .slice(1)
+      .match(/.{2}/g)
+      .map((part) => {
+        const value = parseInt(part, 16) / 255;
+        return value <= 0.04045
+          ? value / 12.92
+          : ((value + 0.055) / 1.055) ** 2.4;
+      })
+      .reduce((sum, value, i) => sum + value * [0.2126, 0.7152, 0.0722][i], 0);
+  const darkContrast =
+    (luminance + 0.05) / (luminanceOf(config.ui.darkText) + 0.05);
+  const lightContrast =
+    (luminanceOf(config.ui.lightText) + 0.05) / (luminance + 0.05);
+  return darkContrast >= lightContrast
+    ? config.ui.darkText
+    : config.ui.lightText;
 }
 
 /** Shared rendering colors for pointer hover, keyboard focus and selection. */
 export function getFlavorAppearance(
   path,
-  { hovered = false, selected = false, outer = false } = {},
+  { hovered = false, selected = false } = {},
 ) {
   const base = getFlavorColor(path);
   let fill = base;
@@ -112,7 +125,7 @@ export function getFlavorAppearance(
   }
   return {
     fill,
-    label: outer ? base : contrastText(fill),
+    label: contrastText(fill),
     stroke: selected || hovered ? config.ui.emphasis : config.ui.divider,
     strokeWidth: selected
       ? config.interaction.selectedStrokeWidth
