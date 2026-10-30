@@ -7,7 +7,7 @@ import {
   roastName,
 } from "../lib/flavorJapanese";
 import { translateCountry } from "../lib/countryNames";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   forceSimulation,
   forceLink,
@@ -50,7 +50,6 @@ export default function FlavorNetworkDetail({
   const svgRef = useRef(null);
   const groupRef = useRef(null);
   const viewportRef = useRef(null);
-  const [inspected, setInspected] = useState(null);
 
   const onSelectBeanRef = useRef(onSelectBean);
   onSelectBeanRef.current = onSelectBean;
@@ -59,20 +58,7 @@ export default function FlavorNetworkDetail({
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
 
-  // 親から selectedBeanId が変更されたら inspected を同期
   useEffect(() => {
-    if (!selectedBeanId) return;
-    const beanNode = network?.nodes?.find(
-      (n) => n.type === "bean" && n.bean.id === selectedBeanId,
-    );
-    if (beanNode) {
-      setInspected(beanNode);
-    }
-  }, [selectedBeanId, network]);
-
-  // D3 force simulation 初期化（networkまたはcolor変更時のみ）
-  useEffect(() => {
-    setInspected(null);
     const svg = select(svgRef.current);
     const viewport = viewportRef.current;
     let layout = networkLayout(
@@ -194,7 +180,6 @@ export default function FlavorNetworkDetail({
           : `${flavorName(n.flavor.name)}: ${n.count}件`,
       )
       .on("click", (_, n) => {
-        setInspected(n);
         if (n.type === "bean") {
           onSelectBeanRef.current?.(n.bean);
         } else {
@@ -202,7 +187,6 @@ export default function FlavorNetworkDetail({
         }
       })
       .on("focus", (_, n) => {
-        setInspected(n);
         highlight(n);
       })
       .on("blur", () => highlight(null))
@@ -221,7 +205,6 @@ export default function FlavorNetworkDetail({
       .on("keydown", (event, n) => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          setInspected(n);
           if (n.type === "bean") {
             onSelectBeanRef.current?.(n.bean);
           } else {
@@ -420,50 +403,13 @@ export default function FlavorNetworkDetail({
     });
   }, [selectedBeanId, hoveredBeanId, network]);
 
-  const selectedBean = network.matchedBeans.find(
-    (b) => b.id === selectedBeanId,
-  );
-  const selectedBeanNode = selectedBean
-    ? { type: "bean", bean: selectedBean }
-    : null;
-  const currentInspected =
-    inspected?.type === "flavor" || inspected?.type === "center"
-      ? inspected
-      : selectedBeanNode || inspected;
-
   return (
-    <>
-      <div className="flavor-network-viewport" ref={viewportRef}>
-        <svg
-          ref={svgRef}
-          className="flavor-network"
-          aria-label="豆と味のネットワーク。ドラッグで移動、ホイールで拡大縮小"
-        />
-      </div>
-      <div
-        className="flavor-inspector"
-        aria-live="polite"
-        hidden={!currentInspected || currentInspected.type === "bean"}
-      >
-        {currentInspected ? (
-          currentInspected.type === "bean" ? null : (
-            <div className="flavor-inspector-flavor">
-              <span className="flavor-inspector-badge">味ノード</span>
-              <strong>{flavorPath(currentInspected.flavor.path)}</strong>
-              <p>選択味と一緒に出た件数：{currentInspected.count}件</p>
-              {currentInspected.type !== "center" && (
-                <button
-                  type="button"
-                  onClick={() => onSelect(currentInspected.flavor.id)}
-                  className="flavor-inspector-btn"
-                >
-                  この味を中心に探索 →
-                </button>
-              )}
-            </div>
-          )
-        ) : null}
-      </div>
-    </>
+    <div className="flavor-network-viewport" ref={viewportRef}>
+      <svg
+        ref={svgRef}
+        className="flavor-network"
+        aria-label="豆と味のネットワーク。ドラッグで移動、ホイールで拡大縮小"
+      />
+    </div>
   );
 }
