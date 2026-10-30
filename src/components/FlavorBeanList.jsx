@@ -24,15 +24,7 @@ export default function FlavorBeanList({
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("match_desc");
   const itemRefs = useRef({});
-
-  // ネットワーク図側で豆が選択されたとき、リストの該当要素へスクロール
-  useEffect(() => {
-    if (!selectedBeanId) return;
-    const el = itemRefs.current[selectedBeanId];
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  }, [selectedBeanId]);
+  const scrollRef = useRef(null);
 
   // フィルタリング
   const filtered = useMemo(() => {
@@ -85,6 +77,23 @@ export default function FlavorBeanList({
         return list;
     }
   }, [filtered, sortBy]);
+
+  // リスト内だけをスクロールし、末尾のカードも上端にそろえられる余白を確保する。
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const card = selectedBeanId && itemRefs.current[selectedBeanId];
+    if (!card) {
+      container.style.paddingBottom = "0px";
+      return;
+    }
+    const top = container.scrollTop + card.getBoundingClientRect().top
+      - container.getBoundingClientRect().top - container.clientTop;
+    const contentHeight = container.scrollHeight
+      - (parseFloat(container.style.paddingBottom) || 0);
+    container.style.paddingBottom = `${Math.max(0, top + container.clientHeight - contentHeight)}px`;
+    container.scrollTo({ top, behavior: "smooth" });
+  }, [selectedBeanId, sorted]);
 
   return (
     <div className="flavor-bean-list-container">
@@ -155,7 +164,7 @@ export default function FlavorBeanList({
         </div>
       </div>
 
-      <div className="flavor-bean-items-scroll">
+      <div className="flavor-bean-items-scroll" ref={scrollRef}>
         {sorted.length === 0 ? (
           <div className="flavor-bean-empty">
             <p>条件に一致する豆が見つかりませんでした。</p>
