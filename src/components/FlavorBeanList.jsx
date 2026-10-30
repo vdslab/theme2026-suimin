@@ -87,10 +87,13 @@ export default function FlavorBeanList({
       container.style.paddingBottom = "0px";
       return;
     }
-    const top = container.scrollTop + card.getBoundingClientRect().top
-      - container.getBoundingClientRect().top - container.clientTop;
-    const contentHeight = container.scrollHeight
-      - (parseFloat(container.style.paddingBottom) || 0);
+    const top =
+      container.scrollTop +
+      card.getBoundingClientRect().top -
+      container.getBoundingClientRect().top -
+      container.clientTop;
+    const contentHeight =
+      container.scrollHeight - (parseFloat(container.style.paddingBottom) || 0);
     container.style.paddingBottom = `${Math.max(0, top + container.clientHeight - contentHeight)}px`;
     container.scrollTo({ top, behavior: "smooth" });
   }, [selectedBeanId, sorted]);
@@ -126,7 +129,6 @@ export default function FlavorBeanList({
 
         <div className="flavor-bean-list-controls">
           <div className="flavor-bean-search-box">
-            <span className="flavor-bean-search-icon">🔍</span>
             <input
               type="search"
               value={search}
@@ -241,9 +243,7 @@ export default function FlavorBeanList({
                         信頼度: {confidenceDisplay}
                       </span>
                     </div>
-                    <h4 className="flavor-bean-card-title">
-                      {bean.title}
-                    </h4>
+                    <h4 className="flavor-bean-card-title">{bean.title}</h4>
                   </div>
 
                   <div className="flavor-bean-card-details">
