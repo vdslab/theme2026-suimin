@@ -12,6 +12,60 @@ import { partition } from "d3-hierarchy";
 import { sunburstLabelLines } from "./sunburstLabels.js";
 import { FLAVOR_JA, flavorName } from "./flavorJapanese.js";
 
+test("fruit families and spices keep editorial order regardless of input order or branch size", () => {
+  const paths = [
+    "Fruity > Other Fruit > Peach",
+    "Fruity > Other Fruit > Apple",
+    "Fruity > Dried Fruit > Raisin",
+    "Fruity > Berry > Strawberry",
+    "Fruity > Citrus Fruit > Lemon",
+    "Spices > Spices > Cardamom",
+    "Spices > Spices > Black Tea",
+    "Spices > Spices > Cinnamon",
+    "Spices > Spices > Earl Grey",
+    "Spices > Spices > Clove",
+    "Spices > Spices > Nutmeg",
+  ];
+  for (const input of [paths, [...paths].reverse()]) {
+    const data = buildFlavorData(
+      csvFormat([
+        {
+          product_id: "1",
+          tasting_notes_sca_nodes: input.join("; "),
+        },
+      ]),
+    );
+    const original = JSON.stringify(
+      data.root.children.map((n) => n.children.map((c) => c.name)),
+    );
+    const root = sunburstHierarchy(data.root);
+    partition().size([Math.PI * 2, 240])(root);
+    const names = (path) =>
+      sunburstNodeForId(root, pathId(path)).children.map((n) => n.data.name);
+    assert.deepEqual(names(["Fruity"]), [
+      "Citrus Fruit",
+      "Berry",
+      "Dried Fruit",
+      "Other Fruit",
+    ]);
+    assert.deepEqual(names(["Spices", "Spices"]), [
+      "Black Tea",
+      "Earl Grey",
+      "Cinnamon",
+      "Nutmeg",
+      "Clove",
+      "Cardamom",
+    ]);
+    assert.equal(root.value, paths.length);
+    assert.equal(
+      JSON.stringify(
+        data.root.children.map((n) => n.children.map((c) => c.name)),
+      ),
+      original,
+    );
+  }
+});
+
 test("duplicate terminal tags stop at level two without changing source data or weights", () => {
   const data = buildFlavorData(
     csvFormat([

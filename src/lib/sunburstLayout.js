@@ -1,5 +1,31 @@
 import { hierarchy } from "d3-hierarchy";
 
+// Editorial sibling order follows the wheel clockwise from twelve o'clock.
+// Keep catch-all fruit last and tea together beside the individual spices.
+const siblingOrders = new Map([
+  [
+    JSON.stringify(["Fruity"]),
+    ["Citrus Fruit", "Berry", "Dried Fruit", "Other Fruit"],
+  ],
+  [
+    JSON.stringify(["Spices", "Spices"]),
+    ["Black Tea", "Earl Grey", "Cinnamon", "Nutmeg", "Clove", "Cardamom"],
+  ],
+]);
+
+function compareSunburstNodes(a, b) {
+  const order = siblingOrders.get(JSON.stringify(a.parent.data.path));
+  if (order) {
+    const rank = (node) => {
+      const index = order.indexOf(node.data.name);
+      return index < 0 ? order.length : index;
+    };
+    const difference = rank(a) - rank(b);
+    if (difference) return difference;
+  }
+  return b.value - a.value;
+}
+
 // Collapse only redundant third-level leaves in the display hierarchy.
 // The source nodes and IDs stay intact for bean counts and network selection.
 export function sunburstHierarchy(dataRoot) {
@@ -14,7 +40,7 @@ export function sunburstHierarchy(dataRoot) {
   };
   return hierarchy(dataRoot, children)
     .sum((node) => (children(node).length ? 0 : 1))
-    .sort((a, b) => b.value - a.value);
+    .sort(compareSunburstNodes);
 }
 
 export function sunburstNodeForId(root, id) {
