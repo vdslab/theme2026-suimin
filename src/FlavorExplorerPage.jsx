@@ -125,7 +125,7 @@ export default function FlavorExplorerPage() {
                   ))}
                 </div>
                 <p className="flavor-note">
-                  面積は味タグの延べ付与件数。複数タグを持つ豆は複数区画に寄与します。
+                  区画の角度は配下の末端タグの種類数に比例します。末端タグは各1の重みで、表示件数は該当するユニークな豆数です。
                 </p>
               </section>
 
