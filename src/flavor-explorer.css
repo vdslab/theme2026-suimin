@@ -246,3 +246,15 @@
 .flavor-bean-confidence small{display:block;font-size:10px;color:#79634f}
 .flavor-inspector[hidden]{display:none}
 @media(prefers-reduced-motion:reduce){.flavor-bean-accordion,.flavor-bean-chevron{transition:none}}
+.flavor-bean-extra-tags{flex-basis:100%;width:100%;margin-top:-4px}
+.flavor-bean-extra-tags[data-open="true"]{margin-top:0}
+.flavor-bean-facts{row-gap:14px}
+.flavor-bean-facts dt,.flavor-bean-expanded-content h5,.flavor-bean-confidence-label{font-size:11px;color:#8c7663;font-weight:400}
+.flavor-bean-facts dt{margin-bottom:4px}
+.flavor-bean-facts dd,.flavor-bean-confidence-value{font-size:13px;color:#3e2c20;font-weight:500}
+.flavor-bean-confidence{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px}
+.flavor-bean-confidence-help{display:inline-flex}
+.flavor-bean-info-button{border:0;padding:2px 5px;background:none;color:#79634f;font-size:14px;line-height:1.3;cursor:pointer;border-radius:4px}
+.flavor-bean-info-button:focus-visible{outline:2px solid #936139;outline-offset:2px}
+.flavor-bean-confidence-tip{flex-basis:100%;background:#f5ebdc;color:#624833;border-radius:6px;padding:6px 8px;font-size:11px;line-height:1.6}
+.flavor-bean-confidence-tip[hidden]{display:none}

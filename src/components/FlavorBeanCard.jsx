@@ -25,6 +25,10 @@ export default function FlavorBeanCard({
 }) {
   const detailId = useId();
   const triggerId = useId();
+  const confidenceTipId = useId();
+  const [confidenceTipOpen, setConfidenceTipOpen] = useState(false);
+  const [confidenceTipHovered, setConfidenceTipHovered] = useState(false);
+  const showConfidenceTip = confidenceTipOpen || confidenceTipHovered;
   const [readMore, setReadMore] = useState(false);
   const descriptionRef = useRef(null);
   const [descriptionOverflows, setDescriptionOverflows] = useState(false);
@@ -122,7 +126,7 @@ export default function FlavorBeanCard({
       ref={cardRef}
       className={`flavor-bean-card ${isSelected ? "is-selected" : ""} ${isHovered ? "is-hovered" : ""} ${isExpanded ? "is-expanded" : ""}`}
       onClick={(e) => {
-        if (!e.target.closest("button, a")) onToggle();
+        if (!e.target.closest("button, a, [data-card-interactive]")) onToggle();
       }}
       onKeyDown={(e) => {
         if (
@@ -168,9 +172,9 @@ export default function FlavorBeanCard({
         </div>
       )}
       {paths.length > 0 && (
-        <div className="flavor-bean-tag-chips">
+        <div className="flavor-bean-tag-chips flavor-bean-summary-tags">
           {tags(compactPaths)}
-          {remaining > 0 && (
+          {remaining > 0 && !isExpanded && (
             <span
               role="img"
               className="flavor-bean-tag-more"
@@ -178,6 +182,20 @@ export default function FlavorBeanCard({
             >
               +{remaining}
             </span>
+          )}
+          {remaining > 0 && (
+            <div
+              className="flavor-bean-accordion flavor-bean-extra-tags"
+              data-open={isExpanded}
+              inert={!isExpanded}
+              aria-hidden={!isExpanded}
+            >
+              <div className="flavor-bean-accordion-clip">
+                <div className="flavor-bean-tag-chips">
+                  {tags(unmatched.slice(3))}
+                </div>
+              </div>
+            </div>
           )}
         </div>
       )}
@@ -201,10 +219,52 @@ export default function FlavorBeanCard({
                 ))}
               </dl>
             )}
-            {paths.length > 0 && (
-              <div>
-                <h5>すべての味タグ</h5>
-                <div className="flavor-bean-tag-chips">{tags(paths)}</div>
+            {confidence != null && (
+              <div className="flavor-bean-confidence" data-card-interactive>
+                <span className="flavor-bean-confidence-label">
+                  味タグ抽出の信頼度
+                </span>
+                <span className="flavor-bean-confidence-value">
+                  {Math.round(Number(confidence) * 100)}%
+                </span>
+                <span
+                  className="flavor-bean-confidence-help"
+                  onPointerEnter={(e) => {
+                    if (e.pointerType === "mouse")
+                      setConfidenceTipHovered(true);
+                  }}
+                  onPointerLeave={() => setConfidenceTipHovered(false)}
+                >
+                  <button
+                    type="button"
+                    className="flavor-bean-info-button"
+                    aria-label="味タグ抽出の信頼度について"
+                    aria-expanded={showConfidenceTip}
+                    aria-controls={confidenceTipId}
+                    aria-describedby={
+                      showConfidenceTip ? confidenceTipId : undefined
+                    }
+                    onClick={() => setConfidenceTipOpen(!confidenceTipOpen)}
+                    onBlur={() => setConfidenceTipOpen(false)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Escape") {
+                        e.stopPropagation();
+                        setConfidenceTipOpen(false);
+                        setConfidenceTipHovered(false);
+                      }
+                    }}
+                  >
+                    ⓘ
+                  </button>
+                </span>
+                <span
+                  id={confidenceTipId}
+                  role="tooltip"
+                  className="flavor-bean-confidence-tip"
+                  hidden={!showConfidenceTip}
+                >
+                  味タグの抽出に関する指標です。豆の品質評価ではありません。
+                </span>
               </div>
             )}
             {present(bean.tasting_notes_raw) && (
@@ -227,14 +287,6 @@ export default function FlavorBeanCard({
                   </button>
                 )}
               </div>
-            )}
-            {confidence != null && (
-              <p className="flavor-bean-confidence">
-                味タグ抽出の信頼度：{Math.round(Number(confidence) * 100)}%
-                <small>
-                  味タグの抽出に関する指標です。豆の品質評価ではありません。
-                </small>
-              </p>
             )}
             {url && (
               <a
