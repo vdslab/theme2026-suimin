@@ -23,9 +23,9 @@
 .flavor-view-toggle-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:9999px;font-size:12px;font-weight:650;color:#6f4e37;background:#f4ede3;border:1.5px solid #6f4e37;cursor:pointer;transition:all .2s ease;white-space:nowrap;box-shadow:0 2px 6px rgba(111,78,55,.08);margin-top:2px}
 .flavor-view-toggle-btn:hover{background:#6f4e37;color:#fff;transform:translateY(-1px);box-shadow:0 4px 12px rgba(111,78,55,.22)}
 
-.flavor-bean-list-top-bar{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:4px}
+.flavor-bean-list-top-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:4px}
 .flavor-bean-list-heading-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.flavor-bean-list-close-btn{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:9999px;font-size:11px;font-weight:600;color:#79502f;background:#efe3d2;border:1px solid #d4bea2;cursor:pointer;transition:all .18s ease;white-space:nowrap}
+.flavor-bean-list-close-btn{display:inline-flex;align-items:center;gap:4px;padding:7px 12px;border-radius:9999px;font-size:14px;font-weight:600;color:#79502f;background:#efe3d2;border:1px solid #d4bea2;cursor:pointer;transition:all .18s ease;white-space:nowrap}
 .flavor-bean-list-close-btn:hover{background:#6f4e37;color:#fff;border-color:#6f4e37}
 
 .flavor-panel-beans .flavor-bean-list-container{margin-top:0;padding-top:0;border-top:none;display:flex;flex-direction:column;flex:1;min-height:0}
@@ -117,19 +117,20 @@
 .flavor-inspector-empty{color:#79634f;font-size:12px;line-height:1.6;margin:0}
 
 /* --- 豆リスト（信頼度順・情報確認用） --- */
-.flavor-bean-list-container{margin-top:24px;padding-top:20px;border-top:1px solid #dccbb5}
+.flavor-bean-list-container{margin-top:24px;padding-top:20px;border-top:1px solid #dccbb5;font-size:14px;line-height:1.7}
 .flavor-bean-list-header{margin-bottom:14px}
 .flavor-bean-list-title-wrap{display:flex;align-items:center;gap:10px;margin-bottom:4px}
-.flavor-bean-list-count{font-size:11px;font-weight:650;color:#6f4e37;background:#eddcc7;padding:2px 9px;border-radius:9999px}
-.flavor-bean-list-subtitle{font-size:11.5px;color:#79634f;margin:0 0 12px;line-height:1.5}
+.flavor-bean-list-title{line-height:1.5}
+.flavor-bean-list-count{font-size:13px;font-weight:650;color:#6f4e37;background:#eddcc7;padding:2px 9px;border-radius:9999px}
+.flavor-bean-list-subtitle{font-size:14px;color:#79634f;margin:0 0 16px;line-height:1.8}
 .flavor-bean-list-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.flavor-bean-search-box{position:relative;flex:1;min-width:200px}
-.flavor-bean-search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:11px;opacity:.55;pointer-events:none}
-.flavor-bean-search-input{width:100%;height:34px;padding:0 26px 0 30px;background:#fdfaf5;border:1px solid #d4bea2;border-radius:7px;font-size:11.5px;color:#493426}
+.flavor-bean-search-box{position:relative;flex:1 1 240px;min-width:0}
+.flavor-bean-search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.55;pointer-events:none}
+.flavor-bean-search-input{width:100%;height:44px;padding:0 34px 0 36px;background:#fdfaf5;border:1px solid #d4bea2;border-radius:7px;font-size:14px;color:#493426}
 .flavor-bean-search-input:focus{outline:2px solid #936139;outline-offset:1px}
-.flavor-bean-search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:#9c8571;cursor:pointer;font-size:11px;padding:2px 4px}
-.flavor-bean-sort-box{display:flex;align-items:center;gap:6px;font-size:11.5px;color:#624833;white-space:nowrap}
-.flavor-bean-sort-select{height:34px;padding:0 8px;background:#fdfaf5;border:1px solid #d4bea2;border-radius:7px;font-size:11.5px;color:#493426;cursor:pointer}
+.flavor-bean-search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:#9c8571;cursor:pointer;font-size:14px;padding:2px 4px}
+.flavor-bean-sort-box{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:14px;color:#624833;min-width:0;max-width:100%}
+.flavor-bean-sort-select{height:44px;min-width:0;max-width:100%;padding:0 8px;background:#fdfaf5;border:1px solid #d4bea2;border-radius:7px;font-size:14px;color:#493426;cursor:pointer}
 .flavor-bean-sort-select:focus{outline:2px solid #936139}
 
 .flavor-bean-items-scroll{max-height:540px;overflow-y:auto;padding-right:6px;overscroll-behavior:contain}
@@ -137,39 +138,39 @@
 .flavor-bean-items-scroll::-webkit-scrollbar-thumb{background:#d4bea2;border-radius:3px}
 .flavor-bean-items-scroll::-webkit-scrollbar-track{background:transparent}
 
-.flavor-bean-items{display:flex;flex-direction:column;gap:10px}
-.flavor-bean-card{background:#fffdf9;border:1px solid #dfcfbc;border-radius:12px;padding:14px;cursor:pointer;transition:border-color .18s,background .18s,transform .18s,box-shadow .18s;display:flex;flex-direction:column;gap:8px;text-align:left;position:relative}
+.flavor-bean-items{display:flex;flex-direction:column;gap:14px}
+.flavor-bean-card{background:#fffdf9;border:1px solid #dfcfbc;border-radius:12px;padding:12px 14px;cursor:pointer;transition:border-color .18s,background .18s,transform .18s,box-shadow .18s;display:flex;flex-direction:column;gap:8px;text-align:left;position:relative;line-height:1.5}
 .flavor-bean-card:hover,.flavor-bean-card.is-hovered{border-color:#936139;background:#fbf5ec;box-shadow:0 3px 10px rgba(111,78,55,0.08);transform:translateY(-1px)}
-.flavor-bean-card.is-selected{border-color:#6f4e37;background:#f6ece0;box-shadow:0 4px 14px rgba(111,78,55,0.18);outline:2px solid #6f4e37}
+.flavor-bean-card.is-selected{border-color:#6f4e37;background:#fffdf9;box-shadow:none;outline:2px solid #6f4e37;transform:none}
 
-.flavor-bean-card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.flavor-bean-meta-badges{display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0;margin-left:auto}
-.flavor-bean-badge{font-size:11px;font-weight:600;padding:2px 7px;border-radius:5px;line-height:1.4}
+.flavor-bean-card-top{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:4px 12px}
+.flavor-bean-meta-badges{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px;align-items:center;justify-self:end;white-space:nowrap}
+.flavor-bean-badge{font-size:13px;font-weight:600;padding:3px 8px;border-radius:5px;line-height:1.6}
 .flavor-bean-badge.confidence-badge.conf-high{background:#296535;color:#fff}
 .flavor-bean-badge.confidence-badge.conf-mid{background:#8a6423;color:#fff}
 .flavor-bean-badge.confidence-badge.conf-low{background:#716860;color:#fff}
 
-.flavor-bean-card-title{flex:1;min-width:0;font-size:13.5px;font-weight:650;color:#3e2c20;margin:0;line-height:1.4;overflow-wrap:anywhere}
-.flavor-bean-name-label{display:block;font-size:10.5px;font-weight:500;color:#79634f;margin-bottom:3px}
-.flavor-bean-card-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:5px 12px;font-size:11.5px;background:#f5ebdc;padding:7px 10px;border-radius:7px}
-.flavor-bean-detail-row{display:flex;gap:5px;align-items:baseline}
-.flavor-bean-detail-label{color:#79634f;flex-shrink:0;font-size:11px}
+.flavor-bean-card-title{grid-column:1 / -1;min-width:0;font-size:16px;font-weight:650;color:#3e2c20;margin:0;line-height:1.6;overflow-wrap:anywhere}
+.flavor-bean-name-label{display:block;font-size:13px;font-weight:500;color:#79634f;margin:0}
+.flavor-bean-card-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:5px 12px;font-size:14px;background:#f5ebdc;padding:7px 10px;border-radius:7px}
+.flavor-bean-detail-row{display:flex;min-width:0;gap:8px;align-items:baseline}
+.flavor-bean-detail-label{color:#79634f;flex-shrink:0;font-size:13px}
 .flavor-bean-detail-value{color:#3e2c20;font-weight:500;overflow-wrap:anywhere}
 
 .flavor-bean-card-tags{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px}
-.flavor-bean-tags-label{font-size:10.5px;color:#79634f}
-.flavor-bean-tag-chips{display:flex;gap:4px;flex-wrap:wrap}
-.flavor-bean-tag-chip{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;padding:2px 7px;border-radius:9999px;border:1px solid;background:#fbf7ef;color:#493426;cursor:pointer;transition:background .15s}
+.flavor-bean-tags-label{font-size:13px;color:#79634f}
+.flavor-bean-tag-chips{display:flex;min-width:0;gap:6px;flex-wrap:wrap}
+.flavor-bean-tag-chip{display:inline-flex;align-items:center;gap:6px;max-width:100%;overflow-wrap:anywhere;font-size:13px;padding:2px 9px;border-radius:9999px;border:1px solid;background:#fbf7ef;color:#493426;cursor:pointer;transition:background .15s}
 .flavor-bean-tag-chip:hover{background:#ede0ce}
 .flavor-bean-tag-chip.is-active-flavor{background:#6f4e37;color:#fff;border-color:#6f4e37!important;font-weight:600}
 
-.flavor-bean-card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:4px;padding-top:6px;border-top:1px dashed #e3d3c2;font-size:11px}
-.flavor-bean-select-action{background:none;border:none;color:#6f4e37;font-weight:600;cursor:pointer;padding:0;font-size:11.5px}
+.flavor-bean-card-footer{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;align-items:center;margin-top:0;padding-top:6px;border-top:1px dashed #e3d3c2;font-size:13px}
+.flavor-bean-select-action{background:none;border:none;color:#6f4e37;font-weight:600;cursor:pointer;padding:4px 0;font-size:13px}
 .flavor-bean-select-action:hover{text-decoration:underline}
-.flavor-bean-external-link{color:#79502f;text-decoration:underline;font-weight:500;font-size:11px}
+.flavor-bean-external-link{color:#79502f;text-decoration:underline;font-weight:500;font-size:13px}
 
-.flavor-bean-empty{text-align:center;padding:36px 16px;color:#79634f;font-size:12.5px}
-.flavor-bean-reset-btn{margin-top:10px;background:#6f4e37;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:11.5px;cursor:pointer}
+.flavor-bean-empty{text-align:center;padding:36px 16px;color:#79634f;font-size:14px}
+.flavor-bean-reset-btn{margin-top:10px;background:#6f4e37;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:14px;cursor:pointer}
 .flavor-selection-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
 .flavor-selection-controls small { flex-basis: 100%; color: #766453; }
 .flavor-selection-controls button { cursor: pointer; padding: 5px 10px; border: 1px solid #cbb9a3; border-radius: 16px; background: #fffaf2; color: #493426; }

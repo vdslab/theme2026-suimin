@@ -217,10 +217,7 @@ export default function FlavorBeanList({
                   }}
                 >
                   <div className="flavor-bean-card-top">
-                    <h4 className="flavor-bean-card-title">
-                      <span className="flavor-bean-name-label">豆の名前</span>
-                      {bean.title}
-                    </h4>
+                    <span className="flavor-bean-name-label">豆の名前</span>
                     <div className="flavor-bean-meta-badges">
                       <span
                         className="flavor-bean-badge"
@@ -235,6 +232,9 @@ export default function FlavorBeanList({
                         信頼度: {confidenceDisplay}
                       </span>
                     </div>
+                    <h4 className="flavor-bean-card-title">
+                      {bean.title}
+                    </h4>
                   </div>
 
                   <div className="flavor-bean-card-details">
