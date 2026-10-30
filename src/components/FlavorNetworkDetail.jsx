@@ -17,7 +17,8 @@ import {
   forceY,
 } from "d3-force";
 import { select } from "d3-selection";
-import { zoom } from "d3-zoom";
+import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
+import { networkLayout, resizeNetworkNodes } from "../lib/networkLayout.js";
 import { drag } from "d3-drag";
 import { pathId } from "../lib/flavorData";
 
@@ -40,6 +41,7 @@ export default function FlavorNetworkDetail({
 }) {
   const svgRef = useRef(null);
   const groupRef = useRef(null);
+  const viewportRef = useRef(null);
   const [inspected, setInspected] = useState(null);
 
   const onSelectBeanRef = useRef(onSelectBean);
@@ -64,17 +66,23 @@ export default function FlavorNetworkDetail({
   useEffect(() => {
     setInspected(null);
     const svg = select(svgRef.current);
+    const viewport = viewportRef.current;
+    let layout = networkLayout(
+      Math.max(1, viewport.clientWidth),
+      Math.max(1, viewport.clientHeight),
+    );
+    svg.attr("viewBox", `0 0 ${layout.width} ${layout.height}`);
     svg.selectAll("*").remove();
     const group = svg.append("g");
     groupRef.current = group;
 
     const nodes = network.nodes.map((n, i) => ({
       ...n,
-      x: 350 + Math.cos(i * 2.4) * 170,
-      y: 270 + Math.sin(i * 2.4) * 170,
+      x: layout.cx + Math.cos(i * 2.4) * 170 * layout.unit,
+      y: layout.cy + Math.sin(i * 2.4) * 170 * layout.unit,
     }));
-    nodes[0].fx = 350;
-    nodes[0].fy = 270;
+    nodes[0].fx = layout.cx;
+    nodes[0].fy = layout.cy;
     const links = network.links.map((l) => ({ ...l }));
 
     // 100ノード規模でも重なりすぎず画面内に美しく収まるよう調整
@@ -83,19 +91,20 @@ export default function FlavorNetworkDetail({
         "link",
         forceLink(links)
           .id((n) => n.id)
-          .distance((l) => (l.target.type === "center" ? 135 : 75))
+          .distance(
+            (l) => (l.target.type === "center" ? 135 : 75) * layout.unit,
+          )
           .strength(0.32),
       )
-      .force("charge", forceManyBody().strength(-70))
+      .force("charge", forceManyBody().strength(-70 * layout.unit))
       .force(
         "collide",
         forceCollide((n) =>
           n.type === "center" ? 64 : n.type === "flavor" ? 40 : 10,
         ),
       )
-      .force("x", forceX(350).strength(0.08))
-      .force("y", forceY(270).strength(0.12));
-
+      .force("x", forceX(layout.cx).strength(0.08))
+      .force("y", forceY(layout.cy).strength(0.12));
     const edges = group
       .append("g")
       .attr("class", "network-edges")
@@ -230,6 +239,18 @@ export default function FlavorNetworkDetail({
     );
 
     simulation.on("tick", () => {
+      for (const node of nodes) {
+        const marginX = Math.min(
+          layout.width / 2,
+          node.type === "bean" ? 90 : 65,
+        );
+        const marginY = Math.min(
+          layout.height / 2,
+          node.type === "center" ? 55 : 42,
+        );
+        node.x = Math.max(marginX, Math.min(layout.width - marginX, node.x));
+        node.y = Math.max(marginY, Math.min(layout.height - marginY, node.y));
+      }
       edges
         .attr("x1", (l) => l.source.x)
         .attr("y1", (l) => l.source.y)
@@ -242,8 +263,43 @@ export default function FlavorNetworkDetail({
       .scaleExtent([0.35, 4])
       .on("zoom", (e) => group.attr("transform", e.transform));
     svg.call(zoomBehavior).on("dblclick.zoom", null);
-
+    // Restore the current transform when the selected flavor changes, too.
+    group.attr("transform", zoomTransform(svg.node()));
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+      if (
+        !width ||
+        !height ||
+        (width === layout.width && height === layout.height)
+      )
+        return;
+      const previous = layout;
+      layout = networkLayout(width, height);
+      resizeNetworkNodes(nodes, previous, layout);
+      nodes[0].fx = layout.cx;
+      nodes[0].fy = layout.cy;
+      svg.attr("viewBox", `0 0 ${width} ${height}`);
+      simulation.force("x").x(layout.cx);
+      simulation.force("y").y(layout.cy);
+      simulation
+        .force("link")
+        .distance((l) => (l.target.type === "center" ? 135 : 75) * layout.unit);
+      simulation.force("charge").strength(-70 * layout.unit);
+      const transform = zoomTransform(svg.node());
+      svg.call(
+        zoomBehavior.transform,
+        zoomIdentity
+          .translate(
+            (transform.x * width) / previous.width,
+            (transform.y * height) / previous.height,
+          )
+          .scale(transform.k),
+      );
+      simulation.alpha(0.35).restart();
+    });
+    observer.observe(viewport);
     return () => {
+      observer.disconnect();
       simulation.stop();
       svg.on(".zoom", null);
     };
@@ -300,12 +356,13 @@ export default function FlavorNetworkDetail({
 
   return (
     <>
-      <svg
-        ref={svgRef}
-        className="flavor-network"
-        viewBox="0 0 700 540"
-        aria-label="豆と味のネットワーク。ドラッグで移動、ホイールで拡大縮小"
-      />
+      <div className="flavor-network-viewport" ref={viewportRef}>
+        <svg
+          ref={svgRef}
+          className="flavor-network"
+          aria-label="豆と味のネットワーク。ドラッグで移動、ホイールで拡大縮小"
+        />
+      </div>
       <div className="flavor-inspector" aria-live="polite">
         {currentInspected ? (
           currentInspected.type === "bean" ? (
