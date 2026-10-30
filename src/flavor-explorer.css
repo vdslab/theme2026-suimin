@@ -8,7 +8,8 @@
 .flavor-overview b{font-size:20px;color:#493426;margin-right:6px}
 .flavor-overview>span:last-child{margin-left:auto;letter-spacing:.12em}
 .flavor-card{background:#fffbf3;border:1px solid #dccbb5;border-radius:18px;padding:24px;min-width:0;box-sizing:border-box}
-.flavor-section-heading h2{font-size:24px;margin:8px 0 4px;font-weight:600}
+.flavor-section-heading h2,.flavor-bean-list-title{font-size:24px;margin:8px 0 4px;font-weight:600}
+.flavor-panel-network,.flavor-panel-beans{padding:20px}
 
 /* --- 3パネル横スライダー --- */
 .flavor-panels-viewport{width:100%;overflow:hidden;position:relative;padding:4px 0}
@@ -23,7 +24,7 @@
 .flavor-view-toggle-btn:hover{background:#6f4e37;color:#fff;transform:translateY(-1px);box-shadow:0 4px 12px rgba(111,78,55,.22)}
 
 .flavor-bean-list-top-bar{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:4px}
-.flavor-bean-list-heading-row{display:flex;align-items:center;gap:10px;margin-top:4px}
+.flavor-bean-list-heading-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .flavor-bean-list-close-btn{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:9999px;font-size:11px;font-weight:600;color:#79502f;background:#efe3d2;border:1px solid #d4bea2;cursor:pointer;transition:all .18s ease;white-space:nowrap}
 .flavor-bean-list-close-btn:hover{background:#6f4e37;color:#fff;border-color:#6f4e37}
 
@@ -82,7 +83,7 @@
   .flavor-wheel-viewport{height:clamp(220px,58dvh,700px)}
   .flavor-explorer{padding:20px 12px}
   .flavor-header{margin-bottom:16px}
-  .flavor-sunburst-card{padding:16px}
+  .flavor-sunburst-card,.flavor-panel-network,.flavor-panel-beans{padding:16px}
   .flavor-wheel-caption{flex-wrap:wrap}
   .flavor-network-viewport{height:clamp(340px,65dvh,700px)}
 }
@@ -119,7 +120,6 @@
 .flavor-bean-list-container{margin-top:24px;padding-top:20px;border-top:1px solid #dccbb5}
 .flavor-bean-list-header{margin-bottom:14px}
 .flavor-bean-list-title-wrap{display:flex;align-items:center;gap:10px;margin-bottom:4px}
-.flavor-bean-list-title{font-size:18px;font-weight:650;color:#493426;margin:0}
 .flavor-bean-list-count{font-size:11px;font-weight:650;color:#6f4e37;background:#eddcc7;padding:2px 9px;border-radius:9999px}
 .flavor-bean-list-subtitle{font-size:11.5px;color:#79634f;margin:0 0 12px;line-height:1.5}
 .flavor-bean-list-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center}

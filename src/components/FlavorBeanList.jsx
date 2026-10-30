@@ -91,9 +91,8 @@ export default function FlavorBeanList({
       <div className="flavor-bean-list-header">
         <div className="flavor-bean-list-top-bar">
           <div className="flavor-bean-list-title-wrap">
-            <span className="flavor-eyebrow">その３ / 豆の一覧</span>
             <div className="flavor-bean-list-heading-row">
-              <h3 className="flavor-bean-list-title">表示中の豆一覧</h3>
+              <h2 className="flavor-bean-list-title">表示中の豆一覧</h2>
               <span className="flavor-bean-list-count">
                 {sorted.length} / {beans.length}件
               </span>

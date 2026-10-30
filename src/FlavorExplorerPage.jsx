@@ -128,7 +128,6 @@ export default function FlavorExplorerPage() {
               <section className="flavor-card flavor-panel-network">
                 <div className="flavor-section-heading flavor-network-heading">
                   <div>
-                    <span>その２ / 味と豆のつながり</span>
                     <h2>味と豆を探索</h2>
                   </div>
                   <button
