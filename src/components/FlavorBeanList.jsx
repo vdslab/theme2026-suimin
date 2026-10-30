@@ -218,6 +218,10 @@ export default function FlavorBeanList({
                   }}
                 >
                   <div className="flavor-bean-card-top">
+                    <h4 className="flavor-bean-card-title">
+                      <span className="flavor-bean-name-label">豆の名前</span>
+                      {bean.title}
+                    </h4>
                     <div className="flavor-bean-meta-badges">
                       <span
                         className="flavor-bean-badge"
@@ -231,35 +235,27 @@ export default function FlavorBeanList({
                       >
                         信頼度: {confidenceDisplay}
                       </span>
-                      <span className="flavor-bean-badge price-badge">
-                        {priceDisplay}
-                      </span>
                     </div>
                   </div>
 
-                  <h4 className="flavor-bean-card-title">
-                    <span className="flavor-bean-name-label">豆の名前</span>
-                    {bean.title}
-                  </h4>
-
                   <div className="flavor-bean-card-details">
                     <div className="flavor-bean-detail-row">
-                      <span className="flavor-bean-detail-label">📍 産地</span>
+                      <span className="flavor-bean-detail-label">産地</span>
                       <span className="flavor-bean-detail-value">
                         {originDisplay}
                       </span>
                     </div>
                     <div className="flavor-bean-detail-row">
-                      <span className="flavor-bean-detail-label">🏛 焙煎所</span>
-                      <span className="flavor-bean-detail-value">
-                        {bean.source_roaster || "不明"}
-                      </span>
-                    </div>
-                    <div className="flavor-bean-detail-row">
-                      <span className="flavor-bean-detail-label">☕ 特徴</span>
+                      <span className="flavor-bean-detail-label">特徴</span>
                       <span className="flavor-bean-detail-value">
                         {processName(bean.process_method)} ·{" "}
                         {roastName(bean.roast_level)}
+                      </span>
+                    </div>
+                    <div className="flavor-bean-detail-row">
+                      <span className="flavor-bean-detail-label">価格</span>
+                      <span className="flavor-bean-detail-value">
+                        {priceDisplay}
                       </span>
                     </div>
                   </div>

@@ -142,15 +142,14 @@
 .flavor-bean-card:hover,.flavor-bean-card.is-hovered{border-color:#936139;background:#fbf5ec;box-shadow:0 3px 10px rgba(111,78,55,0.08);transform:translateY(-1px)}
 .flavor-bean-card.is-selected{border-color:#6f4e37;background:#f6ece0;box-shadow:0 4px 14px rgba(111,78,55,0.18);outline:2px solid #6f4e37}
 
-.flavor-bean-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.flavor-bean-meta-badges{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.flavor-bean-card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.flavor-bean-meta-badges{display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0;margin-left:auto}
 .flavor-bean-badge{font-size:11px;font-weight:600;padding:2px 7px;border-radius:5px;line-height:1.4}
-.flavor-bean-badge.price-badge{background:#433022;color:#fff}
 .flavor-bean-badge.confidence-badge.conf-high{background:#296535;color:#fff}
 .flavor-bean-badge.confidence-badge.conf-mid{background:#8a6423;color:#fff}
 .flavor-bean-badge.confidence-badge.conf-low{background:#716860;color:#fff}
 
-.flavor-bean-card-title{font-size:13.5px;font-weight:650;color:#3e2c20;margin:0;line-height:1.4}
+.flavor-bean-card-title{flex:1;min-width:0;font-size:13.5px;font-weight:650;color:#3e2c20;margin:0;line-height:1.4;overflow-wrap:anywhere}
 .flavor-bean-name-label{display:block;font-size:10.5px;font-weight:500;color:#79634f;margin-bottom:3px}
 .flavor-bean-card-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:5px 12px;font-size:11.5px;background:#f5ebdc;padding:7px 10px;border-radius:7px}
 .flavor-bean-detail-row{display:flex;gap:5px;align-items:baseline}
