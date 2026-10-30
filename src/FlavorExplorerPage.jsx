@@ -81,7 +81,6 @@ export default function FlavorExplorerPage() {
           <div className="flavor-grid">
             <section className="flavor-card flavor-sunburst-card">
               <div className="flavor-section-heading">
-                <span>その１ / 味の階層</span>
                 <h2>味の全体像</h2>
                 <p>
                   内側から大分類 → 中分類 → 末端タグ。好きな区画をクリック。
