@@ -8,7 +8,7 @@ import {
   processName,
   roastName,
 } from "../lib/flavorJapanese";
-import { pathId } from "../lib/flavorData";
+import { compareFlavorMatch, pathId } from "../lib/flavorData";
 
 export default function FlavorBeanList({
   beans = [],
@@ -22,7 +22,7 @@ export default function FlavorBeanList({
   onClose,
 }) {
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState("confidence_desc");
+  const [sortBy, setSortBy] = useState("match_desc");
   const itemRefs = useRef({});
 
   // ネットワーク図側で豆が選択されたとき、リストの該当要素へスクロール
@@ -63,6 +63,8 @@ export default function FlavorBeanList({
   const sorted = useMemo(() => {
     const list = [...filtered];
     switch (sortBy) {
+      case "match_desc":
+        return list.sort(compareFlavorMatch);
       case "confidence_desc":
         return list.sort(
           (a, b) =>
@@ -122,7 +124,8 @@ export default function FlavorBeanList({
           )}
         </div>
         <p className="flavor-bean-list-subtitle">
-          選択条件に一致するすべての豆です。クリックで詳細確認・ネットワーク図と連動します。
+          グラフに表示中のすべての豆です。クリックで詳細確認・ネットワーク図と連動します。
+          一致度は選択した味との一致数で判定し、同じ場合は味タグの抽出信頼度順です。
         </p>
 
         <div className="flavor-bean-list-controls">
@@ -156,6 +159,7 @@ export default function FlavorBeanList({
               onChange={(e) => setSortBy(e.target.value)}
               className="flavor-bean-sort-select"
             >
+              <option value="match_desc">選択した味との一致度（高い順）</option>
               <option value="confidence_desc">信頼度（高い順）</option>
               <option value="confidence_asc">信頼度（低い順）</option>
               <option value="price_asc">価格（安い順）</option>
@@ -230,6 +234,12 @@ export default function FlavorBeanList({
                   <div className="flavor-bean-card-top">
                     <span className="flavor-bean-rank">#{index + 1}</span>
                     <div className="flavor-bean-meta-badges">
+                      <span
+                        className="flavor-bean-badge"
+                        title="選択した味のうち、この豆が一致する味の数"
+                      >
+                        味の一致: {bean.matchCount} / {bean.selectedCount}
+                      </span>
                       <span
                         className={`flavor-bean-badge confidence-badge ${confLevelClass}`}
                         title={`味タグの抽出信頼度: ${bean.confidence}`}

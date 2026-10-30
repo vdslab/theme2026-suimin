@@ -101,6 +101,11 @@ export function buildFlavorData(csv) {
 
 export const isFlavorPrefix = (a, b) =>
   a.length <= b.length && a.every((v, i) => b[i] === v);
+export const compareFlavorMatch = (a, b) =>
+  (b.matchCount ?? 0) - (a.matchCount ?? 0) ||
+  (b.confidence ?? 0) - (a.confidence ?? 0) ||
+  a.id.localeCompare(b.id);
+
 export function toggleFlavorSelection(data, ids, id) {
   if (ids.includes(id)) return ids.filter((v) => v !== id);
   const node = data.nodes.get(id);
@@ -136,12 +141,7 @@ export function buildFlavorNetwork(data, selectedIds, allThree = false) {
             .length,
         }))
         .filter((b) => b.matchCount >= threshold)
-        .sort(
-          (a, b) =>
-            b.matchCount - a.matchCount ||
-            b.confidence - a.confidence ||
-            a.id.localeCompare(b.id),
-        )
+        .sort(compareFlavorMatch)
     : [];
   const beans = matchedBeans.slice(0, MAX_BEANS);
   const counts = new Map();

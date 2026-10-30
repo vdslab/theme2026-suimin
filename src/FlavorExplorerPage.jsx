@@ -225,7 +225,7 @@ export default function FlavorExplorerPage() {
               {/* パネル3: 豆の一覧（豆リスト） */}
               <section className="flavor-card flavor-panel-beans">
                 <FlavorBeanList
-                  beans={network.matchedBeans}
+                  beans={network.beans}
                   color={data.color}
                   onSelectFlavor={(id) => {
                     selectFlavor(id);
