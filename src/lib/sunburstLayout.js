@@ -33,65 +33,84 @@ export function sunburstRadius(width, height) {
 }
 
 export function sunburstLabel(node, text) {
-  const padding = 3;
   const radius = (node.y0 + node.y1) / 2;
+  const padding = Math.min(
+    3,
+    (node.y1 - node.y0) * 0.05,
+    (node.x1 - node.x0) * radius * 0.06,
+  );
   const halfAngle = Math.max(0, (node.x1 - node.x0) / 2 - 0.004);
   const angle = (((node.x0 + node.x1) / 2) * 180) / Math.PI;
-  const chars = Array.from(text);
-  const result = { visible: false, fontSize: 12, lines: [text], transform: "" };
-  // Prefer radial text; long labels may use the tangent or wrap to two lines.
-  for (const fontSize of [12, 11, 10]) {
-    for (const lineCount of [1, 2]) {
-      const perLine = Math.ceil(chars.length / lineCount);
-      if (!perLine) return result;
-      const lines = [];
-      for (let i = 0; i < chars.length; i += perLine)
-        lines.push(chars.slice(i, i + perLine).join(""));
-      const halfWidth = (perLine * fontSize) / 2;
-      const halfHeight = fontSize * (lines.length === 1 ? 0.75 : 1.2);
-      for (const tangent of [false, true]) {
-        const radial = tangent ? halfHeight : halfWidth;
-        const angular = tangent ? halfWidth : halfHeight;
-        const minimumRadius = Math.max(
-          node.y0 + 1 + padding + radial,
-          halfAngle < Math.PI / 2
-            ? radial + (angular + padding) / Math.tan(halfAngle)
-            : 0,
-        );
-        const maximumRadius =
-          Math.sqrt(Math.max(0, (node.y1 - 1 - padding) ** 2 - angular ** 2)) -
-          radial;
-        const labelRadius =
-          radius < minimumRadius || radius > maximumRadius
-            ? (minimumRadius + maximumRadius) / 2
-            : radius;
-        const near = labelRadius - radial;
-        const far = labelRadius + radial;
-        const rotation = tangent
-          ? 90 + (angle > 90 && angle < 270 ? 180 : 0)
-          : angle < 180
-            ? 0
-            : 180;
-        const layout = {
-          visible:
-            near >= node.y0 + 1 + padding &&
-            Math.hypot(far, angular) <= node.y1 - 1 - padding &&
-            Math.atan2(angular + padding, near) <= halfAngle,
-          fontSize,
-          lines,
-          transform:
-            "rotate(" +
-            (angle - 90) +
-            ") translate(" +
-            labelRadius +
-            ",0) rotate(" +
-            rotation +
-            ")",
-        };
-        if (layout.visible) return layout;
-        Object.assign(result, layout);
-      }
+  const lines = Array.isArray(text) ? text : [text];
+  const characters = Math.max(...lines.map((line) => Array.from(line).length));
+  let result = { visible: false, fontSize: 12, lines, transform: "" };
+  if (!characters || halfAngle <= 0 || node.y1 - node.y0 <= 2) return result;
+  const fit = (fontSize) => {
+    const halfWidth = (characters * fontSize) / 2;
+    const halfHeight = fontSize * (lines.length === 1 ? 0.75 : 1.2);
+    for (const tangent of [false, true]) {
+      const radial = tangent ? halfHeight : halfWidth;
+      const angular = tangent ? halfWidth : halfHeight;
+      const minimumRadius = Math.max(
+        node.y0 + 1 + padding + radial,
+        halfAngle < Math.PI / 2
+          ? radial + (angular + padding) / Math.tan(halfAngle)
+          : 0,
+      );
+      const maximumRadius =
+        Math.sqrt(Math.max(0, (node.y1 - 1 - padding) ** 2 - angular ** 2)) -
+        radial;
+      const labelRadius =
+        radius < minimumRadius || radius > maximumRadius
+          ? (minimumRadius + maximumRadius) / 2
+          : radius;
+      const near = labelRadius - radial;
+      const far = labelRadius + radial;
+      const rotation = tangent
+        ? 90 + (angle > 90 && angle < 270 ? 180 : 0)
+        : angle < 180
+          ? 0
+          : 180;
+      const layout = {
+        visible:
+          near >= node.y0 + 1 + padding &&
+          Math.hypot(far, angular) <= node.y1 - 1 - padding &&
+          Math.atan2(angular + padding, near) <= halfAngle,
+        fontSize,
+        lines,
+        transform:
+          "rotate(" +
+          (angle - 90) +
+          ") translate(" +
+          labelRadius +
+          ",0) rotate(" +
+          rotation +
+          ")",
+      };
+      if (layout.visible) return layout;
+      result = layout;
     }
+    return result;
+  };
+  for (const fontSize of [12, 11, 10]) {
+    const layout = fit(fontSize);
+    if (layout.visible) return layout;
+  }
+  // Every terminal tag remains labelled. Adapt only font size and placement;
+  // never move editorial line breaks according to the available space.
+  if (!node.children?.length) {
+    let lower = 0;
+    let upper = 10;
+    let best = result;
+    for (let i = 0; i < 24; i++) {
+      const fontSize = (lower + upper) / 2;
+      const layout = fit(fontSize);
+      if (layout.visible) {
+        best = layout;
+        lower = fontSize;
+      } else upper = fontSize;
+    }
+    return best;
   }
   return result;
 }

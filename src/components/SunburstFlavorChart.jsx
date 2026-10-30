@@ -9,6 +9,7 @@ import { flavorName, flavorPath } from "../lib/flavorJapanese";
 import { partition } from "d3-hierarchy";
 import { arc } from "d3-shape";
 import { pathId } from "../lib/flavorData.js";
+import { sunburstLabelLines } from "../lib/sunburstLabels.js";
 import {
   flavorColorTheme,
   getFlavorAppearance,
@@ -80,7 +81,7 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
               .descendants()
               .filter((n) => n.depth && n.value)
               .map((n, index) => {
-                const label = sunburstLabel(n, flavorName(n.data.name));
+                const label = sunburstLabel(n, sunburstLabelLines(n.data.name));
                 const clipId = `${clipPrefix}-arc-${index}`;
                 const active = selected?.id === n.data.id;
                 const appearance = getFlavorAppearance(n.data.path, {
