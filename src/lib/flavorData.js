@@ -1,7 +1,7 @@
 import { csvParse } from "d3-dsv";
 import { getFlavorColor } from "./flavorColorUtils.js";
 
-export const MAX_BEANS = 20;
+export const MAX_BEANS = 100;
 export const MAX_FLAVORS = 10;
 export const pathId = (parts) => JSON.stringify(parts);
 export const parseFlavorPaths = (value = "") => [

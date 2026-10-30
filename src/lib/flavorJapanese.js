@@ -84,3 +84,34 @@ const ROAST_JA = {
 };
 export const processName = (value) => PROCESS_JA[value] || value || "不明";
 export const roastName = (value) => ROAST_JA[value] || value || "不明";
+
+export function formatPrice(value, currency = "USD") {
+  if (value === undefined || value === null || value === "" || isNaN(Number(value))) {
+    return "価格不明";
+  }
+  const num = Number(value);
+  const curr = (currency || "").toUpperCase();
+  if (curr === "USD" || curr === "$") {
+    return `$${num.toFixed(2)}`;
+  }
+  if (curr === "JPY" || curr === "円") {
+    return `¥${Math.round(num).toLocaleString()}`;
+  }
+  if (curr === "EUR" || curr === "€") {
+    return `€${num.toFixed(2)}`;
+  }
+  if (curr === "GBP" || curr === "£") {
+    return `£${num.toFixed(2)}`;
+  }
+  return `${currency} ${num.toFixed(2)}`;
+}
+
+export function formatConfidence(confidence) {
+  if (confidence === undefined || confidence === null || confidence === "" || isNaN(Number(confidence))) {
+    return "不明";
+  }
+  const val = Number(confidence);
+  const percent = Math.round(val * 100);
+  return `${percent}% (${val.toFixed(2)})`;
+}
+

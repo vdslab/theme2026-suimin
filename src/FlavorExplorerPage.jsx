@@ -8,12 +8,26 @@ import {
 } from "./lib/flavorData";
 import SunburstFlavorChart from "./components/SunburstFlavorChart";
 import FlavorNetworkDetail from "./components/FlavorNetworkDetail";
+import FlavorBeanList from "./components/FlavorBeanList";
 import "./flavor-explorer.css";
 
 export default function FlavorExplorerPage() {
   const [data, setData] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+  const [selectedBeanId, setSelectedBeanId] = useState(null);
+  const [hoveredBeanId, setHoveredBeanId] = useState(null);
+  const [isListOpen, setIsListOpen] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && isListOpen) {
+        setIsListOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isListOpen]);
   useEffect(() => {
     const controller = new AbortController();
     fetch(`${import.meta.env.BASE_URL}api/flavor-data.csv`, {
@@ -78,74 +92,120 @@ export default function FlavorExplorerPage() {
             </span>
             <span>焙煎所データ · 2026年10月</span>
           </div>
-          <div className="flavor-grid">
-            <section className="flavor-card">
-              <div className="flavor-section-heading">
-                <span>その１ / 味の階層</span>
-                <h2>味の全体像</h2>
-                <p>
-                  内側から大分類 → 中分類 → 末端タグ。好きな区画をクリック。
+          <div className="flavor-panels-viewport">
+            <div
+              className={`flavor-panels-track ${
+                isListOpen ? "is-list-open" : ""
+              }`}
+            >
+              {/* パネル1: 味の階層（サンバースト図） */}
+              <section className="flavor-card flavor-panel-sunburst">
+                <div className="flavor-section-heading">
+                  <span>その１ / 味の階層</span>
+                  <h2>味の全体像</h2>
+                  <p>
+                    内側から大分類 → 中分類 → 末端タグ。好きな区画をクリック。
+                  </p>
+                </div>
+                <SunburstFlavorChart
+                  data={data}
+                  selectedId={selectedId}
+                  onSelect={setSelectedId}
+                />
+                <div className="flavor-legend">
+                  {data.root.children.map((n) => (
+                    <button
+                      type="button"
+                      key={n.id}
+                      onClick={() => setSelectedId(n.id)}
+                    >
+                      <i style={{ background: data.color(n.path) }} />
+                      {flavorName(n.name)}
+                    </button>
+                  ))}
+                </div>
+                <p className="flavor-note">
+                  面積は味タグの延べ付与件数。複数タグを持つ豆は複数区画に寄与します。
                 </p>
-              </div>
-              <SunburstFlavorChart
-                data={data}
-                selectedId={selectedId}
-                onSelect={setSelectedId}
-              />
-              <div className="flavor-legend">
-                {data.root.children.map((n) => (
+              </section>
+
+              {/* パネル2: 味と豆のつながり（ネットワーク図） */}
+              <section className="flavor-card flavor-panel-network">
+                <div className="flavor-section-heading flavor-network-heading">
+                  <div>
+                    <span>その２ / 味と豆のつながり</span>
+                    <h2 style={{ color: data.color(network.selected.path) }}>
+                      {flavorName(network.selected.name)}
+                    </h2>
+                    <p>{flavorPath(network.selected.path)}</p>
+                  </div>
                   <button
                     type="button"
-                    key={n.id}
-                    onClick={() => setSelectedId(n.id)}
+                    className="flavor-view-toggle-btn"
+                    onClick={() => setIsListOpen((prev) => !prev)}
+                    title={
+                      isListOpen
+                        ? "味の階層（サンバースト図）に戻る"
+                        : "豆リストを右側に並べて表示"
+                    }
                   >
-                    <i style={{ background: data.color(n.path) }} />
-                    {flavorName(n.name)}
+                    {isListOpen ? "≪ 味の階層を表示" : "リストを表示 ≫"}
                   </button>
-                ))}
-              </div>
-              <p className="flavor-note">
-                面積は味タグの延べ付与件数。複数タグを持つ豆は複数区画に寄与します。
-              </p>
-            </section>
-            <section className="flavor-card">
-              <div className="flavor-section-heading">
-                <span>その２ / 味と豆のつながり</span>
-                <h2 style={{ color: data.color(network.selected.path) }}>
-                  {flavorName(network.selected.name)}
-                </h2>
-                <p>{flavorPath(network.selected.path)}</p>
-              </div>
-              <div className="flavor-stats">
-                <div>
-                  <b>{network.matchedCount.toLocaleString()}</b>
-                  <span>該当豆数</span>
                 </div>
-                <div>
-                  <b>{network.cooccurrenceCount}</b>
-                  <span>共起味数</span>
+                <div className="flavor-stats">
+                  <div>
+                    <b>{network.matchedCount.toLocaleString()}</b>
+                    <span>該当豆数</span>
+                  </div>
+                  <div>
+                    <b>{network.cooccurrenceCount}</b>
+                    <span>共起味数</span>
+                  </div>
+                  <div>
+                    <b>{network.beans.length}</b>
+                    <span>表示中の豆</span>
+                  </div>
                 </div>
-                <div>
-                  <b>{network.beans.length}</b>
-                  <span>表示中の豆</span>
+                <div className="flavor-network-key">
+                  <span>● 味ノード</span>
+                  <span>◦ 豆ノード</span>
+                  <span>ドラッグで移動 / スクロールでズーム</span>
                 </div>
-              </div>
-              <div className="flavor-network-key">
-                <span>● 味ノード</span>
-                <span>◦ 豆ノード</span>
-                <span>ドラッグで移動 / スクロールでズーム</span>
-              </div>
-              <FlavorNetworkDetail
-                network={network}
-                color={data.color}
-                onSelect={setSelectedId}
-              />
-              <p className="flavor-note">
-                豆は味タグの信頼度上位{MAX_BEANS}
-                件、共起味は全該当豆での頻度上位
-                {MAX_FLAVORS}件。単一タグの豆も中心に接続。
-              </p>
-            </section>
+                <FlavorNetworkDetail
+                  network={network}
+                  color={data.color}
+                  onSelect={(id) => {
+                    setSelectedId(id);
+                    setSelectedBeanId(null);
+                  }}
+                  selectedBeanId={selectedBeanId}
+                  onSelectBean={(b) => setSelectedBeanId(b.id)}
+                  hoveredBeanId={hoveredBeanId}
+                  onHoverBean={setHoveredBeanId}
+                />
+                <p className="flavor-note">
+                  豆は味タグの信頼度上位{MAX_BEANS}件（ネットワーク図上限100ノード）、共起味は全該当豆での頻度上位{MAX_FLAVORS}件。単一タグの豆も中心に接続。
+                </p>
+              </section>
+
+              {/* パネル3: 豆の一覧（豆リスト） */}
+              <section className="flavor-card flavor-panel-beans">
+                <FlavorBeanList
+                  beans={network.beans}
+                  color={data.color}
+                  onSelectFlavor={(id) => {
+                    setSelectedId(id);
+                    setSelectedBeanId(null);
+                  }}
+                  selectedBeanId={selectedBeanId}
+                  onSelectBean={(b) => setSelectedBeanId(b.id)}
+                  hoveredBeanId={hoveredBeanId}
+                  onHoverBean={setHoveredBeanId}
+                  selectedFlavorPath={network.selected.path}
+                  onClose={() => setIsListOpen(false)}
+                />
+              </section>
+            </div>
           </div>
           <footer className="flavor-footer">
             分類参考：SCAフレーバーホイール ·
