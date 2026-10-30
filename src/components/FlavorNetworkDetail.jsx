@@ -252,16 +252,7 @@ export default function FlavorNetworkDetail({
       )
       .attr("stroke-width", (n) => (n.type === "center" ? 2.5 : 1.5));
 
-    // ツールチップ
-    items
-      .append("title")
-      .text((n) =>
-        n.type === "bean"
-          ? beanInfo(n.bean)
-          : `${flavorPath(n.flavor.path)}\n選択味と一緒に出た件数: ${n.count}`,
-      );
-
-    // テキストラベル: 味ノードは常時、豆ノードはホバー/選択時またはツールチップで識別
+    // テキストラベル: 味ノードは常時、豆ノードはホバー/選択時に表示
     // 100ノードの豆すべてに文字を出すと画面が真っ黒になるため、味ノードのみ常時表示
     items
       .filter((n) => n.type !== "bean")
