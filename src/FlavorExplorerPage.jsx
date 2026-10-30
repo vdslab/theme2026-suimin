@@ -91,9 +91,6 @@ export default function FlavorExplorerPage() {
                 selectedId={selectedId}
                 onSelect={setSelectedId}
               />
-              <p className="flavor-note">
-                区画の角度は末端タグの種類数、件数はユニークな豆数です。区画に触れると味の階層パスを確認できます。
-              </p>
             </section>
             <section className="flavor-card">
               <div className="flavor-section-heading">
