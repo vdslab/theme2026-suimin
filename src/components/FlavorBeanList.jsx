@@ -123,8 +123,7 @@ export default function FlavorBeanList({
           )}
         </div>
         <p className="flavor-bean-list-subtitle">
-          グラフに表示中のすべての豆です。クリックで詳細確認・ネットワーク図と連動します。
-          一致度は選択した味との一致数で判定し、同じ場合は味タグの抽出信頼度順です。
+          豆を選ぶと、グラフで位置と詳細を確認できます。
         </p>
 
         <div className="flavor-bean-list-controls">
