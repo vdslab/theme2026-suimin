@@ -142,16 +142,15 @@
 .flavor-bean-card:hover,.flavor-bean-card.is-hovered{border-color:#936139;background:#fbf5ec;box-shadow:0 3px 10px rgba(111,78,55,0.08);transform:translateY(-1px)}
 .flavor-bean-card.is-selected{border-color:#6f4e37;background:#f6ece0;box-shadow:0 4px 14px rgba(111,78,55,0.18);outline:2px solid #6f4e37}
 
-.flavor-bean-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.flavor-bean-rank{font-size:11px;font-weight:700;color:#9c7b5f}
-.flavor-bean-meta-badges{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.flavor-bean-card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.flavor-bean-meta-badges{display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0;margin-left:auto}
 .flavor-bean-badge{font-size:11px;font-weight:600;padding:2px 7px;border-radius:5px;line-height:1.4}
-.flavor-bean-badge.price-badge{background:#433022;color:#fff}
 .flavor-bean-badge.confidence-badge.conf-high{background:#296535;color:#fff}
 .flavor-bean-badge.confidence-badge.conf-mid{background:#8a6423;color:#fff}
 .flavor-bean-badge.confidence-badge.conf-low{background:#716860;color:#fff}
 
-.flavor-bean-card-title{font-size:13.5px;font-weight:650;color:#3e2c20;margin:0;line-height:1.4}
+.flavor-bean-card-title{flex:1;min-width:0;font-size:13.5px;font-weight:650;color:#3e2c20;margin:0;line-height:1.4;overflow-wrap:anywhere}
+.flavor-bean-name-label{display:block;font-size:10.5px;font-weight:500;color:#79634f;margin-bottom:3px}
 .flavor-bean-card-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:5px 12px;font-size:11.5px;background:#f5ebdc;padding:7px 10px;border-radius:7px}
 .flavor-bean-detail-row{display:flex;gap:5px;align-items:baseline}
 .flavor-bean-detail-label{color:#79634f;flex-shrink:0;font-size:11px}
@@ -171,3 +170,8 @@
 
 .flavor-bean-empty{text-align:center;padding:36px 16px;color:#79634f;font-size:12.5px}
 .flavor-bean-reset-btn{margin-top:10px;background:#6f4e37;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:11.5px;cursor:pointer}
+.flavor-selection-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+.flavor-selection-controls small { flex-basis: 100%; color: #766453; }
+.flavor-selection-controls button { cursor: pointer; padding: 5px 10px; border: 1px solid #cbb9a3; border-radius: 16px; background: #fffaf2; color: #493426; }
+.flavor-selection-controls button:disabled { opacity: .4; cursor: default; }
+.flavor-selection-controls .flavor-selection-chip { border-width: 2px; }

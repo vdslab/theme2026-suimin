@@ -8,6 +8,7 @@ import {
   parseFlavorPaths,
   pathId,
   MAX_BEANS,
+  toggleFlavorSelection,
 } from "./flavorData.js";
 
 test("tag paths are trimmed and deduplicated", () => {
@@ -36,7 +37,9 @@ test("sunburst angles count unique leaf paths independently of bean counts", () 
           "Fruity > Berry > Strawberry; Fruity > Berry > Strawberry; Fruity > Berry > Raspberry; Fruity > Berry > Blueberry; Fruity > Citrus Fruit > Lemon; Fruity > Citrus Fruit > Orange; Sweet > Honey; Sweet > Caramel; Floral",
       },
       { tasting_notes_sca_nodes: "Fruity > Berry > Strawberry; Sweet > Honey" },
-      { tasting_notes_sca_nodes: "Fruity > Berry > Strawberry; Fruity > Berry" },
+      {
+        tasting_notes_sca_nodes: "Fruity > Berry > Strawberry; Fruity > Berry",
+      },
     ]),
   );
   const root = hierarchy(data.root)
@@ -107,7 +110,7 @@ test("intermediate selection includes descendants, duplicate products merge, sin
   assert.equal(single.links.length, 1);
 });
 test("limits apply after population counts, confidence chooses displayed beans", () => {
-  const rows = Array.from({ length: 35 }, (_, i) => ({
+  const rows = Array.from({ length: 65 }, (_, i) => ({
     tasting_notes_sca_nodes:
       "Sweet > Honey > Honey; Fruity > Berry > Strawberry",
     tasting_notes_confidence: String(i / 35),
@@ -116,8 +119,51 @@ test("limits apply after population counts, confidence chooses displayed beans",
     buildFlavorData(makeCsv(rows)),
     pathId(["Sweet"]),
   );
-  assert.equal(network.matchedCount, 35);
+  assert.equal(network.matchedCount, 65);
   assert.equal(network.beans.length, MAX_BEANS);
-  assert.equal(network.beans[0].product_id, "34");
-  assert.equal(network.nodes.find((n) => n.type === "flavor").count, 35);
+  assert.equal(network.beans[0].product_id, "64");
+  assert.equal(network.matchedBeans.length, 65);
+  assert.equal(network.nodes.find((n) => n.type === "flavor").count, MAX_BEANS);
+});
+
+test("multiple selections match independent paths and rank all-three first", () => {
+  const data = buildFlavorData(
+    makeCsv([
+      { tasting_notes_sca_nodes: "Fruity > Berry > Strawberry" },
+      { tasting_notes_sca_nodes: "Fruity > Berry > Strawberry; Sweet > Honey" },
+      {
+        tasting_notes_sca_nodes:
+          "Fruity > Berry > Strawberry; Sweet > Honey; Floral > Rose",
+      },
+      { tasting_notes_sca_nodes: "Sweet > Honey; Floral > Rose" },
+    ]),
+  );
+  const a = pathId(["Fruity"]),
+    b = pathId(["Sweet"]),
+    c = pathId(["Floral"]);
+  assert.equal(buildFlavorNetwork(data, [a]).matchedCount, 3);
+  assert.equal(buildFlavorNetwork(data, [a, b]).matchedCount, 2);
+  const graph = buildFlavorNetwork(data, [a, b, c]);
+  assert.equal(graph.matchedCount, 3);
+  assert.deepEqual(
+    graph.beans.map((b) => b.matchCount),
+    [3, 2, 2],
+  );
+  assert.equal(buildFlavorNetwork(data, [a, b, c], true).matchedCount, 1);
+  for (const link of graph.links) {
+    const source = graph.nodes.find((n) => n.id === link.source);
+    const target = graph.nodes.find((n) => n.id === link.target);
+    assert.equal(source.type, "bean");
+    assert.notEqual(target.type, "bean");
+    assert.ok(target.flavor.beanIds.has(source.bean.id));
+  }
+  const child = pathId(["Fruity", "Berry", "Strawberry"]);
+  assert.deepEqual(toggleFlavorSelection(data, [a, b], child), [b, child]);
+  assert.deepEqual(toggleFlavorSelection(data, [child, b], a), [b, a]);
+  assert.deepEqual(toggleFlavorSelection(data, [a, b], a), [b]);
+  assert.deepEqual(buildFlavorNetwork(data, []).nodes, []);
+  assert.deepEqual(
+    buildFlavorNetwork(data, [a, b, c]).beans.map((b) => b.id),
+    graph.beans.map((b) => b.id),
+  );
 });

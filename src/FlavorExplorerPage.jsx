@@ -5,6 +5,7 @@ import {
   buildFlavorNetwork,
   MAX_BEANS,
   MAX_FLAVORS,
+  toggleFlavorSelection,
 } from "./lib/flavorData";
 import SunburstFlavorChart from "./components/SunburstFlavorChart";
 import FlavorNetworkDetail from "./components/FlavorNetworkDetail";
@@ -13,7 +14,17 @@ import "./flavor-explorer.css";
 
 export default function FlavorExplorerPage() {
   const [data, setData] = useState(null);
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [allThree, setAllThree] = useState(false);
+  const [notice, setNotice] = useState("");
+  const selectFlavor = (id) => {
+    const next = toggleFlavorSelection(data, selectedIds, id);
+    setNotice(next === selectedIds ? "最大3つまで選択できます" : "");
+    setSelectedIds(next);
+    setSelectedBeanId(null);
+    setHoveredBeanId(null);
+    setAllThree(false);
+  };
   const [selectedBeanId, setSelectedBeanId] = useState(null);
   const [hoveredBeanId, setHoveredBeanId] = useState(null);
   const [isListOpen, setIsListOpen] = useState(false);
@@ -45,7 +56,7 @@ export default function FlavorExplorerPage() {
             "有効な味タグが見つかりません。CSVの配置とカラムを確認してください。",
           );
         setData(result);
-        setSelectedId(result.initialId);
+        setSelectedIds([result.initialId]);
       })
       .catch((e) => {
         if (e.name !== "AbortError") setError(e.message);
@@ -53,8 +64,8 @@ export default function FlavorExplorerPage() {
     return () => controller.abort();
   }, []);
   const network = useMemo(
-    () => data && buildFlavorNetwork(data, selectedId),
-    [data, selectedId],
+    () => data && buildFlavorNetwork(data, selectedIds, allThree),
+    [data, selectedIds, allThree],
   );
   return (
     <main className="flavor-explorer">
@@ -108,8 +119,8 @@ export default function FlavorExplorerPage() {
                 </div>
                 <SunburstFlavorChart
                   data={data}
-                  selectedId={selectedId}
-                  onSelect={setSelectedId}
+                  selectedIds={selectedIds}
+                  onSelect={selectFlavor}
                 />
               </section>
 
@@ -118,10 +129,7 @@ export default function FlavorExplorerPage() {
                 <div className="flavor-section-heading flavor-network-heading">
                   <div>
                     <span>その２ / 味と豆のつながり</span>
-                    <h2 style={{ color: data.color(network.selected.path) }}>
-                      {flavorName(network.selected.name)}
-                    </h2>
-                    <p>{flavorPath(network.selected.path)}</p>
+                    <h2>味と豆を探索</h2>
                   </div>
                   <button
                     type="button"
@@ -135,6 +143,46 @@ export default function FlavorExplorerPage() {
                   >
                     {isListOpen ? "≪ 味の階層を表示" : "リストを表示 ≫"}
                   </button>
+                </div>
+                <div className="flavor-selection-controls">
+                  {network.selectedFlavors.map((node) => (
+                    <button
+                      type="button"
+                      className="flavor-selection-chip"
+                      key={node.id}
+                      style={{ borderColor: data.color(node.path) }}
+                      onClick={() => selectFlavor(node.id)}
+                      aria-label={`${flavorPath(node.path)}の選択解除`}
+                    >
+                      {flavorPath(node.path)} ×
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    disabled={!selectedIds.length}
+                    onClick={() => {
+                      setSelectedIds([]);
+                      setSelectedBeanId(null);
+                      setAllThree(false);
+                      setNotice("");
+                    }}
+                  >
+                    全選択解除
+                  </button>
+                  {selectedIds.length === 3 && (
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={allThree}
+                        onChange={(e) => setAllThree(e.target.checked)}
+                      />
+                      3つすべて一致のみ
+                    </label>
+                  )}
+                  <span role="status">{notice}</span>
+                  <small>
+                    最大3つ。親子の味は後から選んだ味に置き換えます。未選択時は左の図から選択してください。
+                  </small>
                 </div>
                 <div className="flavor-stats">
                   <div>
@@ -159,16 +207,18 @@ export default function FlavorExplorerPage() {
                   network={network}
                   color={data.color}
                   onSelect={(id) => {
-                    setSelectedId(id);
+                    selectFlavor(id);
                     setSelectedBeanId(null);
                   }}
                   selectedBeanId={selectedBeanId}
-                  onSelectBean={(b) => setSelectedBeanId(b.id)}
+                  onSelectBean={(b) => setSelectedBeanId(b?.id ?? null)}
                   hoveredBeanId={hoveredBeanId}
                   onHoverBean={setHoveredBeanId}
                 />
                 <p className="flavor-note">
-                  豆は味タグの信頼度上位{MAX_BEANS}件（ネットワーク図上限100ノード）、共起味は全該当豆での頻度上位{MAX_FLAVORS}件。単一タグの豆も中心に接続。
+                  {network.beans.length} /{" "}
+                  {network.matchedCount.toLocaleString()}件表示 · 上限
+                  {MAX_BEANS}件 · 関連味{MAX_FLAVORS}件
                 </p>
               </section>
 
@@ -178,14 +228,16 @@ export default function FlavorExplorerPage() {
                   beans={network.beans}
                   color={data.color}
                   onSelectFlavor={(id) => {
-                    setSelectedId(id);
+                    selectFlavor(id);
                     setSelectedBeanId(null);
                   }}
                   selectedBeanId={selectedBeanId}
-                  onSelectBean={(b) => setSelectedBeanId(b.id)}
+                  onSelectBean={(b) => setSelectedBeanId(b?.id ?? null)}
                   hoveredBeanId={hoveredBeanId}
                   onHoverBean={setHoveredBeanId}
-                  selectedFlavorPath={network.selected.path}
+                  selectedFlavorPaths={network.selectedFlavors.map(
+                    (n) => n.path,
+                  )}
                   onClose={() => setIsListOpen(false)}
                 />
               </section>

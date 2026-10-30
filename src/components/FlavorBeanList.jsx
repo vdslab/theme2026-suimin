@@ -8,7 +8,7 @@ import {
   processName,
   roastName,
 } from "../lib/flavorJapanese";
-import { pathId } from "../lib/flavorData";
+import { compareFlavorMatch, pathId } from "../lib/flavorData";
 
 export default function FlavorBeanList({
   beans = [],
@@ -18,11 +18,11 @@ export default function FlavorBeanList({
   onSelectBean,
   hoveredBeanId,
   onHoverBean,
-  selectedFlavorPath = [],
+  selectedFlavorPaths = [],
   onClose,
 }) {
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState("confidence_desc");
+  const [sortBy, setSortBy] = useState("match_desc");
   const itemRefs = useRef({});
 
   // ネットワーク図側で豆が選択されたとき、リストの該当要素へスクロール
@@ -53,7 +53,8 @@ export default function FlavorBeanList({
         title.includes(q) ||
         roaster.includes(q) ||
         process.includes(q) ||
-        roast.includes(q)
+        roast.includes(q) ||
+        b.paths.some((p) => flavorPath(p).toLowerCase().includes(q))
       );
     });
   }, [beans, search]);
@@ -62,30 +63,28 @@ export default function FlavorBeanList({
   const sorted = useMemo(() => {
     const list = [...filtered];
     switch (sortBy) {
+      case "match_desc":
+        return list.sort(compareFlavorMatch);
       case "confidence_desc":
-        return list.sort((a, b) => (b.confidence || 0) - (a.confidence || 0) || a.id.localeCompare(b.id));
+        return list.sort(
+          (a, b) =>
+            (b.confidence || 0) - (a.confidence || 0) ||
+            a.id.localeCompare(b.id),
+        );
       case "confidence_asc":
-        return list.sort((a, b) => (a.confidence || 0) - (b.confidence || 0) || a.id.localeCompare(b.id));
-      case "price_asc":
-        return list.sort((a, b) => {
-          const pa = Number(a.price_value) || Infinity;
-          const pb = Number(b.price_value) || Infinity;
-          return pa - pb || (b.confidence || 0) - (a.confidence || 0);
-        });
-      case "price_desc":
-        return list.sort((a, b) => {
-          const pa = Number(a.price_value) || -Infinity;
-          const pb = Number(b.price_value) || -Infinity;
-          return pb - pa || (b.confidence || 0) - (a.confidence || 0);
-        });
+        return list.sort(
+          (a, b) =>
+            (a.confidence || 0) - (b.confidence || 0) ||
+            a.id.localeCompare(b.id),
+        );
       case "title_asc":
-        return list.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+        return list.sort((a, b) =>
+          (a.title || "").localeCompare(b.title || ""),
+        );
       default:
         return list;
     }
   }, [filtered, sortBy]);
-
-  const selectedPathStr = JSON.stringify(selectedFlavorPath);
 
   return (
     <div className="flavor-bean-list-container">
@@ -113,7 +112,8 @@ export default function FlavorBeanList({
           )}
         </div>
         <p className="flavor-bean-list-subtitle">
-          ネットワーク図上の豆ノードです。クリックで詳細確認・ネットワーク図と連動します。
+          グラフに表示中のすべての豆です。クリックで詳細確認・ネットワーク図と連動します。
+          一致度は選択した味との一致数で判定し、同じ場合は味タグの抽出信頼度順です。
         </p>
 
         <div className="flavor-bean-list-controls">
@@ -147,10 +147,9 @@ export default function FlavorBeanList({
               onChange={(e) => setSortBy(e.target.value)}
               className="flavor-bean-sort-select"
             >
+              <option value="match_desc">選択した味との一致度（高い順）</option>
               <option value="confidence_desc">信頼度（高い順）</option>
               <option value="confidence_asc">信頼度（低い順）</option>
-              <option value="price_asc">価格（安い順）</option>
-              <option value="price_desc">価格（高い順）</option>
               <option value="title_asc">豆名（五十音/アルファベット順）</option>
             </select>
           </div>
@@ -173,7 +172,7 @@ export default function FlavorBeanList({
           </div>
         ) : (
           <div className="flavor-bean-items">
-            {sorted.map((bean, index) => {
+            {sorted.map((bean) => {
               const isSelected = selectedBeanId === bean.id;
               const isHovered = hoveredBeanId === bean.id;
               const country = translateCountry(bean.origin_country);
@@ -219,40 +218,44 @@ export default function FlavorBeanList({
                   }}
                 >
                   <div className="flavor-bean-card-top">
-                    <span className="flavor-bean-rank">#{index + 1}</span>
+                    <h4 className="flavor-bean-card-title">
+                      <span className="flavor-bean-name-label">豆の名前</span>
+                      {bean.title}
+                    </h4>
                     <div className="flavor-bean-meta-badges">
+                      <span
+                        className="flavor-bean-badge"
+                        title="選択した味のうち、この豆が一致する味の数"
+                      >
+                        味の一致: {bean.matchCount} / {bean.selectedCount}
+                      </span>
                       <span
                         className={`flavor-bean-badge confidence-badge ${confLevelClass}`}
                         title={`味タグの抽出信頼度: ${bean.confidence}`}
                       >
                         信頼度: {confidenceDisplay}
                       </span>
-                      <span className="flavor-bean-badge price-badge">
-                        {priceDisplay}
-                      </span>
                     </div>
                   </div>
 
-                  <h4 className="flavor-bean-card-title">{bean.title}</h4>
-
                   <div className="flavor-bean-card-details">
                     <div className="flavor-bean-detail-row">
-                      <span className="flavor-bean-detail-label">📍 産地</span>
+                      <span className="flavor-bean-detail-label">産地</span>
                       <span className="flavor-bean-detail-value">
                         {originDisplay}
                       </span>
                     </div>
                     <div className="flavor-bean-detail-row">
-                      <span className="flavor-bean-detail-label">🏛 焙煎所</span>
-                      <span className="flavor-bean-detail-value">
-                        {bean.source_roaster || "不明"}
-                      </span>
-                    </div>
-                    <div className="flavor-bean-detail-row">
-                      <span className="flavor-bean-detail-label">☕ 特徴</span>
+                      <span className="flavor-bean-detail-label">特徴</span>
                       <span className="flavor-bean-detail-value">
                         {processName(bean.process_method)} ·{" "}
                         {roastName(bean.roast_level)}
+                      </span>
+                    </div>
+                    <div className="flavor-bean-detail-row">
+                      <span className="flavor-bean-detail-label">価格</span>
+                      <span className="flavor-bean-detail-value">
+                        {priceDisplay}
                       </span>
                     </div>
                   </div>
@@ -263,8 +266,9 @@ export default function FlavorBeanList({
                       <div className="flavor-bean-tag-chips">
                         {bean.paths.map((p) => {
                           const id = pathId(p);
-                          const isTargetFlavor =
-                            JSON.stringify(p) === selectedPathStr;
+                          const isTargetFlavor = selectedFlavorPaths.some(
+                            (path) => path.every((v, i) => p[i] === v),
+                          );
                           return (
                             <button
                               key={id}
