@@ -77,18 +77,6 @@ export default function FlavorBeanList({
             (a.confidence || 0) - (b.confidence || 0) ||
             a.id.localeCompare(b.id),
         );
-      case "price_asc":
-        return list.sort((a, b) => {
-          const pa = Number(a.price_value) || Infinity;
-          const pb = Number(b.price_value) || Infinity;
-          return pa - pb || (b.confidence || 0) - (a.confidence || 0);
-        });
-      case "price_desc":
-        return list.sort((a, b) => {
-          const pa = Number(a.price_value) || -Infinity;
-          const pb = Number(b.price_value) || -Infinity;
-          return pb - pa || (b.confidence || 0) - (a.confidence || 0);
-        });
       case "title_asc":
         return list.sort((a, b) =>
           (a.title || "").localeCompare(b.title || ""),
@@ -162,8 +150,6 @@ export default function FlavorBeanList({
               <option value="match_desc">選択した味との一致度（高い順）</option>
               <option value="confidence_desc">信頼度（高い順）</option>
               <option value="confidence_asc">信頼度（低い順）</option>
-              <option value="price_asc">価格（安い順）</option>
-              <option value="price_desc">価格（高い順）</option>
               <option value="title_asc">豆名（五十音/アルファベット順）</option>
             </select>
           </div>
