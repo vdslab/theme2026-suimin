@@ -149,6 +149,9 @@ test("editorial line breaks preserve full names at every viewport size", () => {
           `${name}, width ${width}, depth ${depth}`,
         );
         assert.deepEqual(label.lines, lines);
+        assert.ok(
+          label.transform.includes(`translate(${(node.y0 + node.y1) / 2},0)`),
+        );
         assert.ok(label.fontSize > 0 && label.fontSize <= 12);
         assert.ok(!label.transform.includes("NaN"));
       }

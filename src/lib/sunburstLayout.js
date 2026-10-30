@@ -51,21 +51,10 @@ export function sunburstLabel(node, text) {
     for (const tangent of [false, true]) {
       const radial = tangent ? halfHeight : halfWidth;
       const angular = tangent ? halfWidth : halfHeight;
-      const minimumRadius = Math.max(
-        node.y0 + 1 + padding + radial,
-        halfAngle < Math.PI / 2
-          ? radial + (angular + padding) / Math.tan(halfAngle)
-          : 0,
-      );
-      const maximumRadius =
-        Math.sqrt(Math.max(0, (node.y1 - 1 - padding) ** 2 - angular ** 2)) -
-        radial;
-      const labelRadius =
-        radius < minimumRadius || radius > maximumRadius
-          ? (minimumRadius + maximumRadius) / 2
-          : radius;
-      const near = labelRadius - radial;
-      const far = labelRadius + radial;
+      // Always anchor at the sector's angular and radial midpoint.
+      // Fit by changing orientation/font size rather than shifting the label.
+      const near = radius - radial;
+      const far = radius + radial;
       const rotation = tangent
         ? 90 + (angle > 90 && angle < 270 ? 180 : 0)
         : angle < 180
@@ -82,7 +71,7 @@ export function sunburstLabel(node, text) {
           "rotate(" +
           (angle - 90) +
           ") translate(" +
-          labelRadius +
+          radius +
           ",0) rotate(" +
           rotation +
           ")",
@@ -96,7 +85,7 @@ export function sunburstLabel(node, text) {
     const layout = fit(fontSize);
     if (layout.visible) return layout;
   }
-  // Every terminal tag remains labelled. Adapt only font size and placement;
+  // Every terminal tag remains labelled. Adapt only font size and orientation;
   // never move editorial line breaks according to the available space.
   if (!node.children?.length) {
     let lower = 0;
