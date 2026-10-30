@@ -71,9 +71,8 @@ export default function FlavorExplorerPage() {
     <main className="flavor-explorer">
       <header className="flavor-header">
         <div>
-          <span className="flavor-eyebrow">コーヒー研究室 / 試作その１</span>
+          <span className="flavor-eyebrow">コーヒー研究室</span>
           <h1>味からつながる、コーヒー。</h1>
-          <p>階層をひらく。豆をたどる。意外な味のつながりを探す。</p>
         </div>
         <a href="#">地図に戻る ↗</a>
       </header>

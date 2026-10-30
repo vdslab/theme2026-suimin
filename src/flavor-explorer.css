@@ -1,7 +1,7 @@
 .flavor-explorer{min-height:100dvh;background:#f6f0e5;color:#493426;padding:36px clamp(16px,3vw,52px);font-family:Inter,"Noto Sans JP",sans-serif;overflow-x:hidden}
-.flavor-header{display:flex;justify-content:space-between;gap:24px;align-items:center;margin-bottom:30px}
+.flavor-header{display:flex;justify-content:space-between;gap:24px;align-items:center;margin-bottom:12px}
 .flavor-eyebrow,.flavor-section-heading>span{font-size:11px;letter-spacing:.18em;color:#806047}
-.flavor-header h1{font-size:clamp(24px,3vw,38px);font-weight:650;letter-spacing:.04em;margin:12px 0}
+.flavor-header h1{font-size:clamp(22px,2vw,28px);font-weight:650;letter-spacing:.04em;margin:4px 0 0;line-height:1.4}
 .flavor-header p,.flavor-section-heading p{font-size:12px;color:#79634f;line-height:1.8}
 .flavor-header a,.flavor-inspector a,.flavor-inspector button{color:#79502f;font-size:12px}
 .flavor-overview{display:flex;flex-wrap:wrap;gap:24px;padding:16px 0;border-top:1px solid #dccbb5;font-size:12px;color:#79634f}
@@ -173,3 +173,44 @@
 .flavor-selection-controls button { cursor: pointer; padding: 5px 10px; border: 1px solid #cbb9a3; border-radius: 16px; background: #fffaf2; color: #493426; }
 .flavor-selection-controls button:disabled { opacity: .4; cursor: default; }
 .flavor-selection-controls .flavor-selection-chip { border-width: 2px; }
+
+/* 横並びではページ全体を画面高に収め、図と一覧に残りの高さを配分する。 */
+@media(min-width:1024px){
+  .flavor-explorer{height:100dvh;min-height:0;box-sizing:border-box;display:flex;flex-direction:column;padding:16px clamp(16px,2vw,36px)}
+  .flavor-header,.flavor-overview,.flavor-footer{flex-shrink:0}
+  .flavor-overview{align-items:center;padding:8px 0;gap:18px}
+  .flavor-overview b{font-size:17px}
+  .flavor-footer{margin-top:8px;line-height:1.5}
+  .flavor-panels-viewport{flex:1;min-height:0}
+  .flavor-panels-track{height:100%}
+  .flavor-panel-sunburst,.flavor-panel-network,.flavor-panel-beans{height:100%;min-height:0;padding:14px}
+  .flavor-section-heading h2,.flavor-bean-list-title{font-size:22px;margin:0 0 4px;line-height:1.5}
+  .flavor-sunburst-card{gap:6px}
+  .flavor-sunburst-card>.flavor-section-heading,.flavor-breadcrumb{flex-shrink:0}
+  .flavor-wheel-viewport{flex:1;min-height:0;height:auto;overflow:hidden}
+  .flavor-panel-network{display:flex;flex-direction:column}
+  .flavor-network-heading,.flavor-selection-controls,.flavor-stats,.flavor-network-key,.flavor-panel-network>.flavor-note{flex-shrink:0}
+  .flavor-selection-controls{gap:6px;margin:6px 0;font-size:12px}
+  .flavor-stats{gap:24px;margin-top:6px;padding:6px 0}
+  .flavor-stats b{font-size:22px}
+  .flavor-network-key{gap:10px;margin-top:6px}
+  .flavor-network-viewport{flex:1;min-height:80px;height:auto}
+  .flavor-inspector{flex:0 1 auto;min-height:0;max-height:22dvh;overflow:auto;padding:10px}
+  .flavor-panel-network>.flavor-note{margin:6px 0 0}
+  .flavor-panel-beans .flavor-bean-list-header{flex-shrink:0;margin-bottom:8px}
+  .flavor-panel-beans .flavor-bean-list-subtitle{margin-bottom:8px;line-height:1.5}
+  .flavor-panel-beans .flavor-bean-list-controls{gap:8px}
+  .flavor-panel-beans .flavor-bean-search-box{flex-basis:180px}
+  .flavor-panel-beans .flavor-bean-search-input,.flavor-panel-beans .flavor-bean-sort-select{height:34px}
+  .flavor-panel-beans .flavor-bean-items-scroll{flex:1 1 0;min-height:0;max-height:none;padding-top:3px;padding-left:3px;padding-right:6px}
+  .flavor-panel-beans .flavor-bean-items{gap:8px}
+  .flavor-panel-beans .flavor-bean-card{padding:8px 10px;gap:5px}
+  .flavor-panel-beans .flavor-bean-card-top{row-gap:2px}
+  .flavor-panel-beans .flavor-bean-badge{padding:1px 6px}
+  .flavor-panel-beans .flavor-bean-card-details{grid-template-columns:repeat(3,minmax(0,1fr));padding:5px 8px;gap:4px 8px}
+  .flavor-panel-beans .flavor-bean-detail-row{flex-wrap:wrap;gap:0 5px}
+  .flavor-panel-beans .flavor-bean-card-tags{margin-top:0}
+  .flavor-panel-beans .flavor-bean-tag-chip{padding:1px 7px}
+  .flavor-panel-beans .flavor-bean-card-footer{padding-top:3px}
+  .flavor-panel-beans .flavor-bean-select-action{padding:2px 0}
+}
