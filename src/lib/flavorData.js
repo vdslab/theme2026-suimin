@@ -83,8 +83,8 @@ export function buildFlavorData(csv) {
     }
   }
   const color = getFlavorColor;
-  // Arc weights are tag assignments; each node's displayed count is unique beans.
-  for (const node of nodes.values()) node.weight = node.directIds?.size || 0;
+  // D3 sums one per leaf tag; displayed unique bean counts stay independent.
+  for (const node of nodes.values()) node.weight = node.children.length ? 0 : 1;
   const initial = [...nodes.values()]
     .filter((n) => !n.children.length)
     .sort((a, b) => b.beanIds.size - a.beanIds.size)[0];
