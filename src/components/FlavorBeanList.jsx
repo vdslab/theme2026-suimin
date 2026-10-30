@@ -172,7 +172,7 @@ export default function FlavorBeanList({
           </div>
         ) : (
           <div className="flavor-bean-items">
-            {sorted.map((bean, index) => {
+            {sorted.map((bean) => {
               const isSelected = selectedBeanId === bean.id;
               const isHovered = hoveredBeanId === bean.id;
               const country = translateCountry(bean.origin_country);
@@ -218,7 +218,6 @@ export default function FlavorBeanList({
                   }}
                 >
                   <div className="flavor-bean-card-top">
-                    <span className="flavor-bean-rank">#{index + 1}</span>
                     <div className="flavor-bean-meta-badges">
                       <span
                         className="flavor-bean-badge"
@@ -238,7 +237,10 @@ export default function FlavorBeanList({
                     </div>
                   </div>
 
-                  <h4 className="flavor-bean-card-title">{bean.title}</h4>
+                  <h4 className="flavor-bean-card-title">
+                    <span className="flavor-bean-name-label">豆の名前</span>
+                    {bean.title}
+                  </h4>
 
                   <div className="flavor-bean-card-details">
                     <div className="flavor-bean-detail-row">
