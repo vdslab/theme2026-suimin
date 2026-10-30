@@ -20,7 +20,6 @@ import { select } from "d3-selection";
 import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
 import { networkLayout, resizeNetworkNodes } from "../lib/networkLayout.js";
 import { drag } from "d3-drag";
-import { pathId } from "../lib/flavorData";
 
 export const FORCE_SETTINGS = {
   selectedDistance: 105,
@@ -260,7 +259,9 @@ export default function FlavorNetworkDetail({
       .attr("class", "node-label")
       .attr("text-anchor", "middle")
       .attr("y", 4)
-      .attr("fill", (n) => n.flavor.path[0] === "Roasted" ? "#ffffff" : "#3e2c20")
+      .attr("fill", (n) =>
+        n.flavor.path[0] === "Roasted" ? "#ffffff" : "#3e2c20",
+      )
       .attr("font-size", 11)
       .attr("font-weight", (n) => (n.type === "center" ? 600 : 500))
       .attr("pointer-events", "none")
@@ -430,10 +431,6 @@ export default function FlavorNetworkDetail({
       ? inspected
       : selectedBeanNode || inspected;
 
-  const source =
-    currentInspected?.bean?.source_url || currentInspected?.bean?.product_url;
-  const safeSource = source && /^https?:\/\//i.test(source) ? source : null;
-
   return (
     <>
       <div className="flavor-network-viewport" ref={viewportRef}>
@@ -443,89 +440,13 @@ export default function FlavorNetworkDetail({
           aria-label="豆と味のネットワーク。ドラッグで移動、ホイールで拡大縮小"
         />
       </div>
-      <div className="flavor-inspector" aria-live="polite">
+      <div
+        className="flavor-inspector"
+        aria-live="polite"
+        hidden={!currentInspected || currentInspected.type === "bean"}
+      >
         {currentInspected ? (
-          currentInspected.type === "bean" ? (
-            <div className="flavor-inspector-bean">
-              <div className="flavor-inspector-header">
-                <span className="flavor-inspector-badge">選択中の豆</span>
-                <strong>{currentInspected.bean.title}</strong>
-              </div>
-              <div className="flavor-inspector-grid">
-                <div>
-                  <span className="inspector-label">値段:</span>
-                  <span className="inspector-value font-semibold">
-                    {formatPrice(
-                      currentInspected.bean.price_value,
-                      currentInspected.bean.price_currency,
-                    )}
-                  </span>
-                </div>
-                <div>
-                  <span className="inspector-label">産地:</span>
-                  <span className="inspector-value">
-                    {translateCountry(currentInspected.bean.origin_country) ||
-                      "不明"}
-                    {currentInspected.bean.origin_region
-                      ? ` (${currentInspected.bean.origin_region})`
-                      : ""}
-                  </span>
-                </div>
-                <div>
-                  <span className="inspector-label">信頼度:</span>
-                  <span className="inspector-value font-semibold">
-                    {formatConfidence(currentInspected.bean.confidence)}
-                  </span>
-                </div>
-                <div>
-                  <span className="inspector-label">焙煎所:</span>
-                  <span className="inspector-value">
-                    {currentInspected.bean.source_roaster || "不明"}
-                  </span>
-                </div>
-                <div>
-                  <span className="inspector-label">精製・焙煎:</span>
-                  <span className="inspector-value">
-                    {processName(currentInspected.bean.process_method)} ·{" "}
-                    {roastName(currentInspected.bean.roast_level)}
-                  </span>
-                </div>
-              </div>
-              <div className="flavor-bean-tags">
-                <p>この豆の味タグ（{currentInspected.bean.paths.length}個）</p>
-                <ul aria-label="この豆が持つすべての味タグ">
-                  {currentInspected.bean.paths.map((path) => (
-                    <li key={pathId(path)}>
-                      <button
-                        type="button"
-                        onClick={() => onSelect(pathId(path))}
-                        title="この味を中心に探索"
-                        style={{ borderColor: color(path) }}
-                      >
-                        <i
-                          className="flavor-tag-dot"
-                          style={{ backgroundColor: color(path) }}
-                        />
-                        {flavorPath(path)}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              {safeSource && (
-                <div className="flavor-inspector-actions">
-                  <a
-                    href={safeSource}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flavor-inspector-link"
-                  >
-                    出典の商品ページを開く ↗
-                  </a>
-                </div>
-              )}
-            </div>
-          ) : (
+          currentInspected.type === "bean" ? null : (
             <div className="flavor-inspector-flavor">
               <span className="flavor-inspector-badge">味ノード</span>
               <strong>{flavorPath(currentInspected.flavor.path)}</strong>
@@ -541,12 +462,7 @@ export default function FlavorNetworkDetail({
               )}
             </div>
           )
-        ) : (
-          <p className="flavor-inspector-empty">
-            ネットワーク図のノードに触れるとツールチップ、クリックするとここに詳細が表示されます。
-            下のリストから豆を選ぶと、ネットワーク図と連動します。
-          </p>
-        )}
+        ) : null}
       </div>
     </>
   );
