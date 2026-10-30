@@ -269,7 +269,7 @@ export default function FlavorNetworkDetail({
       .attr("class", "node-label")
       .attr("text-anchor", "middle")
       .attr("y", 4)
-      .attr("fill", "#3e2c20")
+      .attr("fill", (n) => n.flavor.path[0] === "Roasted" ? "#ffffff" : "#3e2c20")
       .attr("font-size", 11)
       .attr("font-weight", (n) => (n.type === "center" ? 600 : 500))
       .attr("pointer-events", "none")

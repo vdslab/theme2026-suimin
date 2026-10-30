@@ -110,7 +110,7 @@ export function getFlavorAppearance(
   }
   return {
     fill,
-    label: contrastText(fill),
+    label: path[0] === "Roasted" ? "#ffffff" : contrastText(fill),
     stroke: selected || hovered ? config.ui.emphasis : config.ui.divider,
     strokeWidth: selected
       ? config.interaction.selectedStrokeWidth
