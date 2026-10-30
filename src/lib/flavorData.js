@@ -1,7 +1,7 @@
 import { csvParse } from "d3-dsv";
 import { getFlavorColor } from "./flavorColorUtils.js";
 
-export const MAX_BEANS = 100;
+export const MAX_BEANS = 40;
 export const MAX_FLAVORS = 10;
 export const pathId = (parts) => JSON.stringify(parts);
 export const parseFlavorPaths = (value = "") => [
@@ -99,26 +99,75 @@ export function buildFlavorData(csv) {
   };
 }
 
-export function buildFlavorNetwork(data, selectedId) {
-  const selected = data.nodes.get(selectedId);
-  if (!selected) return null;
-  const matched = data.beans.filter((b) => selected.beanIds.has(b.id));
+export const isFlavorPrefix = (a, b) =>
+  a.length <= b.length && a.every((v, i) => b[i] === v);
+export function toggleFlavorSelection(data, ids, id) {
+  if (ids.includes(id)) return ids.filter((v) => v !== id);
+  const node = data.nodes.get(id);
+  if (!node?.path.length) return ids;
+  const rest = ids.filter((v) => {
+    const p = data.nodes.get(v).path;
+    return !isFlavorPrefix(p, node.path) && !isFlavorPrefix(node.path, p);
+  });
+  return rest.length < 3 ? [...rest, id] : ids;
+}
+
+export function buildFlavorNetwork(data, selectedIds, allThree = false) {
+  const selectedFlavors = [];
+  for (const id of Array.isArray(selectedIds) ? selectedIds : [selectedIds]) {
+    const n = data.nodes.get(id);
+    if (
+      n &&
+      !selectedFlavors.some(
+        (v) => isFlavorPrefix(v.path, n.path) || isFlavorPrefix(n.path, v.path),
+      )
+    )
+      selectedFlavors.push(n);
+    if (selectedFlavors.length === 3) break;
+  }
+  const threshold =
+    selectedFlavors.length === 3 ? (allThree ? 3 : 2) : selectedFlavors.length;
+  const matchedBeans = selectedFlavors.length
+    ? data.beans
+        .map((bean) => ({
+          ...bean,
+          selectedCount: selectedFlavors.length,
+          matchCount: selectedFlavors.filter((n) => n.beanIds.has(bean.id))
+            .length,
+        }))
+        .filter((b) => b.matchCount >= threshold)
+        .sort(
+          (a, b) =>
+            b.matchCount - a.matchCount ||
+            b.confidence - a.confidence ||
+            a.id.localeCompare(b.id),
+        )
+    : [];
+  const beans = matchedBeans.slice(0, MAX_BEANS);
   const counts = new Map();
-  for (const bean of matched)
-    for (const path of bean.paths) {
-      // Descendant tags belong to the selected family, rather than co-occurring flavors.
-      if (selected.path.every((part, i) => path[i] === part)) continue;
-      const id = pathId(path);
-      counts.set(id, (counts.get(id) || 0) + 1);
-    }
+  for (const bean of beans) {
+    const seen = new Set(
+      bean.paths
+        .filter(
+          (p) =>
+            !selectedFlavors.some(
+              (n) => isFlavorPrefix(n.path, p) || isFlavorPrefix(p, n.path),
+            ),
+        )
+        .map(pathId),
+    );
+    for (const id of seen) counts.set(id, (counts.get(id) || 0) + 1);
+  }
   const flavors = [...counts]
     .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
     .slice(0, MAX_FLAVORS);
-  const beans = [...matched]
-    .sort((a, b) => b.confidence - a.confidence || a.id.localeCompare(b.id))
-    .slice(0, MAX_BEANS);
   const nodes = [
-    { id: "selected", type: "center", flavor: selected, count: matched.length },
+    ...selectedFlavors.map((flavor, i) => ({
+      id: i === 0 ? "selected" : `selected:${flavor.id}`,
+      type: "center",
+      flavor,
+      count: matchedBeans.filter((b) => flavor.beanIds.has(b.id)).length,
+    })),
     ...flavors.map(([id, count]) => ({
       id,
       type: "flavor",
@@ -127,16 +176,20 @@ export function buildFlavorNetwork(data, selectedId) {
     })),
     ...beans.map((bean) => ({ id: `bean:${bean.id}`, type: "bean", bean })),
   ];
-  const allowed = new Set(flavors.map(([id]) => id));
-  const links = beans.flatMap((bean) => [
-    { source: `bean:${bean.id}`, target: "selected" },
-    ...bean.paths
-      .filter((p) => allowed.has(pathId(p)))
-      .map((p) => ({ source: `bean:${bean.id}`, target: pathId(p) })),
-  ]);
+  const links = beans.flatMap((bean) =>
+    nodes
+      .filter((n) => n.type !== "bean" && n.flavor.beanIds.has(bean.id))
+      .map((n) => ({
+        source: `bean:${bean.id}`,
+        target: n.id,
+        selected: n.type === "center",
+      })),
+  );
   return {
-    selected,
-    matchedCount: matched.length,
+    selected: selectedFlavors[0],
+    selectedFlavors,
+    matchedBeans,
+    matchedCount: matchedBeans.length,
     cooccurrenceCount: counts.size,
     beans,
     nodes,

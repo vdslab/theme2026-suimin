@@ -18,7 +18,7 @@ export default function FlavorBeanList({
   onSelectBean,
   hoveredBeanId,
   onHoverBean,
-  selectedFlavorPath = [],
+  selectedFlavorPaths = [],
   onClose,
 }) {
   const [search, setSearch] = useState("");
@@ -53,7 +53,8 @@ export default function FlavorBeanList({
         title.includes(q) ||
         roaster.includes(q) ||
         process.includes(q) ||
-        roast.includes(q)
+        roast.includes(q) ||
+        b.paths.some((p) => flavorPath(p).toLowerCase().includes(q))
       );
     });
   }, [beans, search]);
@@ -63,9 +64,17 @@ export default function FlavorBeanList({
     const list = [...filtered];
     switch (sortBy) {
       case "confidence_desc":
-        return list.sort((a, b) => (b.confidence || 0) - (a.confidence || 0) || a.id.localeCompare(b.id));
+        return list.sort(
+          (a, b) =>
+            (b.confidence || 0) - (a.confidence || 0) ||
+            a.id.localeCompare(b.id),
+        );
       case "confidence_asc":
-        return list.sort((a, b) => (a.confidence || 0) - (b.confidence || 0) || a.id.localeCompare(b.id));
+        return list.sort(
+          (a, b) =>
+            (a.confidence || 0) - (b.confidence || 0) ||
+            a.id.localeCompare(b.id),
+        );
       case "price_asc":
         return list.sort((a, b) => {
           const pa = Number(a.price_value) || Infinity;
@@ -79,13 +88,13 @@ export default function FlavorBeanList({
           return pb - pa || (b.confidence || 0) - (a.confidence || 0);
         });
       case "title_asc":
-        return list.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+        return list.sort((a, b) =>
+          (a.title || "").localeCompare(b.title || ""),
+        );
       default:
         return list;
     }
   }, [filtered, sortBy]);
-
-  const selectedPathStr = JSON.stringify(selectedFlavorPath);
 
   return (
     <div className="flavor-bean-list-container">
@@ -113,7 +122,7 @@ export default function FlavorBeanList({
           )}
         </div>
         <p className="flavor-bean-list-subtitle">
-          ネットワーク図上の豆ノードです。クリックで詳細確認・ネットワーク図と連動します。
+          選択条件に一致するすべての豆です。クリックで詳細確認・ネットワーク図と連動します。
         </p>
 
         <div className="flavor-bean-list-controls">
@@ -263,8 +272,9 @@ export default function FlavorBeanList({
                       <div className="flavor-bean-tag-chips">
                         {bean.paths.map((p) => {
                           const id = pathId(p);
-                          const isTargetFlavor =
-                            JSON.stringify(p) === selectedPathStr;
+                          const isTargetFlavor = selectedFlavorPaths.some(
+                            (path) => path.every((v, i) => p[i] === v),
+                          );
                           return (
                             <button
                               key={id}

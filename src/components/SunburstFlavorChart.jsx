@@ -15,7 +15,11 @@ import {
   getFlavorAppearance,
 } from "../lib/flavorColorUtils.js";
 
-export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
+export default function SunburstFlavorChart({
+  data,
+  selectedIds = [],
+  onSelect,
+}) {
   const [hoveredId, setHoveredId] = useState(null);
   const viewportRef = useRef(null);
   const clipPrefix = useId();
@@ -42,7 +46,7 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
       .outerRadius((n) => n.y1 - 1);
     return { root, shape };
   }, [data, radius]);
-  const selected = sunburstNodeForId(root, selectedId)?.data;
+  const selected = sunburstNodeForId(root, selectedIds.at(-1))?.data;
   return (
     <>
       <nav className="flavor-breadcrumb" aria-label="選択中の味の階層">
@@ -83,7 +87,7 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
               .map((n, index) => {
                 const label = sunburstLabel(n, sunburstLabelLines(n.data.name));
                 const clipId = `${clipPrefix}-arc-${index}`;
-                const active = selected?.id === n.data.id;
+                const active = selectedIds.includes(n.data.id);
                 const appearance = getFlavorAppearance(n.data.path, {
                   hovered: hoveredId === n.data.id,
                   selected: active,
