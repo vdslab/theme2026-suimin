@@ -24,15 +24,7 @@ export default function FlavorBeanList({
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("match_desc");
   const itemRefs = useRef({});
-
-  // ネットワーク図側で豆が選択されたとき、リストの該当要素へスクロール
-  useEffect(() => {
-    if (!selectedBeanId) return;
-    const el = itemRefs.current[selectedBeanId];
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  }, [selectedBeanId]);
+  const scrollRef = useRef(null);
 
   // フィルタリング
   const filtered = useMemo(() => {
@@ -86,14 +78,33 @@ export default function FlavorBeanList({
     }
   }, [filtered, sortBy]);
 
+  // リスト内だけをスクロールし、末尾のカードも上端にそろえられる余白を確保する。
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const card = selectedBeanId && itemRefs.current[selectedBeanId];
+    if (!card) {
+      container.style.paddingBottom = "0px";
+      return;
+    }
+    const top =
+      container.scrollTop +
+      card.getBoundingClientRect().top -
+      container.getBoundingClientRect().top -
+      container.clientTop;
+    const contentHeight =
+      container.scrollHeight - (parseFloat(container.style.paddingBottom) || 0);
+    container.style.paddingBottom = `${Math.max(0, top + container.clientHeight - contentHeight)}px`;
+    container.scrollTo({ top, behavior: "smooth" });
+  }, [selectedBeanId, sorted]);
+
   return (
     <div className="flavor-bean-list-container">
       <div className="flavor-bean-list-header">
         <div className="flavor-bean-list-top-bar">
           <div className="flavor-bean-list-title-wrap">
-            <span className="flavor-eyebrow">その３ / 豆の一覧</span>
             <div className="flavor-bean-list-heading-row">
-              <h3 className="flavor-bean-list-title">表示中の豆一覧</h3>
+              <h2 className="flavor-bean-list-title">表示中の豆一覧</h2>
               <span className="flavor-bean-list-count">
                 {sorted.length} / {beans.length}件
               </span>
@@ -112,13 +123,11 @@ export default function FlavorBeanList({
           )}
         </div>
         <p className="flavor-bean-list-subtitle">
-          グラフに表示中のすべての豆です。クリックで詳細確認・ネットワーク図と連動します。
-          一致度は選択した味との一致数で判定し、同じ場合は味タグの抽出信頼度順です。
+          豆を選ぶと、グラフで位置と詳細を確認できます。
         </p>
 
         <div className="flavor-bean-list-controls">
           <div className="flavor-bean-search-box">
-            <span className="flavor-bean-search-icon">🔍</span>
             <input
               type="search"
               value={search}
@@ -156,7 +165,7 @@ export default function FlavorBeanList({
         </div>
       </div>
 
-      <div className="flavor-bean-items-scroll">
+      <div className="flavor-bean-items-scroll" ref={scrollRef}>
         {sorted.length === 0 ? (
           <div className="flavor-bean-empty">
             <p>条件に一致する豆が見つかりませんでした。</p>
@@ -218,10 +227,7 @@ export default function FlavorBeanList({
                   }}
                 >
                   <div className="flavor-bean-card-top">
-                    <h4 className="flavor-bean-card-title">
-                      <span className="flavor-bean-name-label">豆の名前</span>
-                      {bean.title}
-                    </h4>
+                    <span className="flavor-bean-name-label">豆の名前</span>
                     <div className="flavor-bean-meta-badges">
                       <span
                         className="flavor-bean-badge"
@@ -236,6 +242,7 @@ export default function FlavorBeanList({
                         信頼度: {confidenceDisplay}
                       </span>
                     </div>
+                    <h4 className="flavor-bean-card-title">{bean.title}</h4>
                   </div>
 
                   <div className="flavor-bean-card-details">
