@@ -41,7 +41,6 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
       .outerRadius((n) => n.y1 - 1);
     return { root, shape };
   }, [data, radius]);
-  const focused = sunburstNodeForId(root, hoveredId || selectedId)?.data;
   const selected = sunburstNodeForId(root, selectedId)?.data;
   return (
     <>
@@ -173,14 +172,6 @@ export default function SunburstFlavorChart({ data, selectedId, onSelect }) {
               {data.beans.length.toLocaleString()}件の豆
             </text>
           </svg>
-        )}
-      </div>
-      <div className="flavor-wheel-caption" aria-live="polite">
-        {focused && (
-          <>
-            <strong>{flavorPath(focused.path)}</strong>
-            <span>{focused.beanIds.size.toLocaleString()}件の豆</span>
-          </>
         )}
       </div>
     </>
