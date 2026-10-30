@@ -79,7 +79,7 @@ export default function FlavorExplorerPage() {
             <span>焙煎所データ · 2026年10月</span>
           </div>
           <div className="flavor-grid">
-            <section className="flavor-card">
+            <section className="flavor-card flavor-sunburst-card">
               <div className="flavor-section-heading">
                 <span>その１ / 味の階層</span>
                 <h2>味の全体像</h2>
@@ -92,20 +92,8 @@ export default function FlavorExplorerPage() {
                 selectedId={selectedId}
                 onSelect={setSelectedId}
               />
-              <div className="flavor-legend">
-                {data.root.children.map((n) => (
-                  <button
-                    type="button"
-                    key={n.id}
-                    onClick={() => setSelectedId(n.id)}
-                  >
-                    <i style={{ background: data.color(n.path) }} />
-                    {flavorName(n.name)}
-                  </button>
-                ))}
-              </div>
               <p className="flavor-note">
-                区画の角度は配下の末端タグの種類数に比例します。末端タグは各1の重みで、表示件数は該当するユニークな豆数です。
+                区画の角度は末端タグの種類数、件数はユニークな豆数です。区画に触れると味の階層パスを確認できます。
               </p>
             </section>
             <section className="flavor-card">
