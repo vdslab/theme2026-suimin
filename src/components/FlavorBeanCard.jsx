@@ -10,6 +10,14 @@ const present = (value) =>
 const numeric = (value) => present(value) && Number.isFinite(Number(value));
 const display = (value) =>
   Array.isArray(value) ? value.filter(present).join("、") : value;
+const MISSING = "データなし";
+const valueOrMissing = (value) =>
+  present(value) &&
+  !/^(unknown|unspecified|null|none|n\/a|不明|データなし)$/i.test(
+    String(value).trim(),
+  )
+    ? value
+    : MISSING;
 
 export default function FlavorBeanCard({
   bean,
@@ -80,7 +88,7 @@ export default function FlavorBeanCard({
         : null,
     ],
     ["標高", altitude],
-  ].filter(([, value]) => present(value));
+  ];
   const price = numeric(bean.price_value)
     ? [
         bean.price_currency?.trim().toUpperCase(),
@@ -101,7 +109,7 @@ export default function FlavorBeanCard({
       present(bean.process_method) ? processName(bean.process_method) : null,
     ],
     ["価格", price],
-  ].filter(([, value]) => present(value));
+  ];
   const url = [bean.product_url, bean.source_url].find(
     (value) => typeof value === "string" && /^https?:\/\//i.test(value),
   );
@@ -158,7 +166,7 @@ export default function FlavorBeanCard({
             aria-expanded={isExpanded}
             aria-controls={detailId}
           >
-            {bean.title}
+            {valueOrMissing(bean.title)}
           </button>
         </h4>
         <span className="flavor-bean-badge">
@@ -173,7 +181,9 @@ export default function FlavorBeanCard({
           {summary.map(([label, value]) => (
             <div key={label} className="flavor-bean-detail-row">
               <span className="flavor-bean-detail-label">{label}</span>
-              <span className="flavor-bean-detail-value">{value}</span>
+              <span className="flavor-bean-detail-value">
+                {valueOrMissing(value)}
+              </span>
             </div>
           ))}
         </div>
@@ -221,22 +231,24 @@ export default function FlavorBeanCard({
                 {facts.map(([label, value]) => (
                   <div key={label}>
                     <dt>{label}</dt>
-                    <dd>{value}</dd>
+                    <dd>{valueOrMissing(value)}</dd>
                   </div>
                 ))}
               </dl>
             )}
-            {present(bean.tasting_notes_raw) && (
-              <div>
-                <h5>販売元による説明</h5>
-                <p
-                  id={descriptionId}
-                  ref={descriptionRef}
-                  className={`flavor-bean-description ${readMore ? "" : "is-clamped"}`}
-                >
-                  {bean.tasting_notes_raw}
-                </p>
-                {(readMore || descriptionOverflows) && (
+            <div>
+              <h5>販売元による説明</h5>
+              <p
+                id={descriptionId}
+                ref={descriptionRef}
+                className={`flavor-bean-description ${readMore ? "" : "is-clamped"}`}
+              >
+                {present(bean.tasting_notes_raw)
+                  ? bean.tasting_notes_raw
+                  : MISSING}
+              </p>
+              {present(bean.tasting_notes_raw) &&
+                (readMore || descriptionOverflows) && (
                   <button
                     type="button"
                     className="flavor-bean-read-more"
@@ -250,66 +262,69 @@ export default function FlavorBeanCard({
                     {readMore ? "閉じる" : "続きを読む"}
                   </button>
                 )}
-              </div>
-            )}
-            {confidence != null && (
-              <div className="flavor-bean-confidence" data-card-interactive>
-                <span className="flavor-bean-confidence-label">
-                  味タグ抽出の信頼度
-                </span>
-                <span className="flavor-bean-confidence-value">
-                  {Math.round(Number(confidence) * 100)}%
-                </span>
-                <span
-                  className="flavor-bean-confidence-help"
-                  onPointerEnter={(e) => {
-                    if (e.pointerType === "mouse")
-                      setConfidenceTipHovered(true);
-                  }}
-                  onPointerLeave={() => setConfidenceTipHovered(false)}
-                >
-                  <button
-                    type="button"
-                    className="flavor-bean-info-button"
-                    aria-label="味タグ抽出の信頼度について"
-                    aria-expanded={showConfidenceTip}
-                    aria-controls={confidenceTipId}
-                    aria-describedby={
-                      showConfidenceTip ? confidenceTipId : undefined
-                    }
-                    onClick={() => setConfidenceTipOpen(!confidenceTipOpen)}
-                    onBlur={() => setConfidenceTipOpen(false)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Escape") {
-                        e.stopPropagation();
-                        setConfidenceTipOpen(false);
-                        setConfidenceTipHovered(false);
-                      }
-                    }}
-                  >
-                    ⓘ
-                  </button>
-                </span>
-                <span
-                  id={confidenceTipId}
-                  role="tooltip"
-                  className="flavor-bean-confidence-tip"
-                  hidden={!showConfidenceTip}
-                >
-                  味タグの抽出に関する指標です。豆の品質評価ではありません。
-                </span>
-              </div>
-            )}
-            {url && (
-              <a
-                className="flavor-bean-external-link"
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
+            </div>
+            <div className="flavor-bean-confidence" data-card-interactive>
+              <span className="flavor-bean-confidence-label">
+                味タグ抽出の信頼度
+              </span>
+              <span className="flavor-bean-confidence-value">
+                {confidence != null
+                  ? `${Math.round(Number(confidence) * 100)}%`
+                  : MISSING}
+              </span>
+              <span
+                className="flavor-bean-confidence-help"
+                onPointerEnter={(e) => {
+                  if (e.pointerType === "mouse") setConfidenceTipHovered(true);
+                }}
+                onPointerLeave={() => setConfidenceTipHovered(false)}
               >
-                商品ページを開く ↗
-              </a>
-            )}
+                <button
+                  type="button"
+                  className="flavor-bean-info-button"
+                  aria-label="味タグ抽出の信頼度について"
+                  aria-expanded={showConfidenceTip}
+                  aria-controls={confidenceTipId}
+                  aria-describedby={
+                    showConfidenceTip ? confidenceTipId : undefined
+                  }
+                  onClick={() => setConfidenceTipOpen(!confidenceTipOpen)}
+                  onBlur={() => setConfidenceTipOpen(false)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") {
+                      e.stopPropagation();
+                      setConfidenceTipOpen(false);
+                      setConfidenceTipHovered(false);
+                    }
+                  }}
+                >
+                  ⓘ
+                </button>
+              </span>
+              <span
+                id={confidenceTipId}
+                role="tooltip"
+                className="flavor-bean-confidence-tip"
+                hidden={!showConfidenceTip}
+              >
+                味タグの抽出に関する指標です。豆の品質評価ではありません。
+              </span>
+            </div>
+            <div>
+              <h5>商品ページ</h5>
+              {url ? (
+                <a
+                  className="flavor-bean-external-link"
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  商品ページを開く ↗
+                </a>
+              ) : (
+                <span>{MISSING}</span>
+              )}
+            </div>
           </div>
         </div>
       </section>
