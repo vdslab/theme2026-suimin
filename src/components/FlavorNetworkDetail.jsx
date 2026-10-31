@@ -7,7 +7,7 @@ import {
   roastName,
 } from "../lib/flavorJapanese";
 import { translateCountry } from "../lib/countryNames";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   forceSimulation,
   forceLink,
@@ -20,7 +20,6 @@ import { select } from "d3-selection";
 import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
 import { networkLayout, resizeNetworkNodes } from "../lib/networkLayout.js";
 import { drag } from "d3-drag";
-import { pathId } from "../lib/flavorData";
 
 export const FORCE_SETTINGS = {
   selectedDistance: 105,
@@ -51,7 +50,6 @@ export default function FlavorNetworkDetail({
   const svgRef = useRef(null);
   const groupRef = useRef(null);
   const viewportRef = useRef(null);
-  const [inspected, setInspected] = useState(null);
 
   const onSelectBeanRef = useRef(onSelectBean);
   onSelectBeanRef.current = onSelectBean;
@@ -60,20 +58,7 @@ export default function FlavorNetworkDetail({
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
 
-  // 親から selectedBeanId が変更されたら inspected を同期
   useEffect(() => {
-    if (!selectedBeanId) return;
-    const beanNode = network?.nodes?.find(
-      (n) => n.type === "bean" && n.bean.id === selectedBeanId,
-    );
-    if (beanNode) {
-      setInspected(beanNode);
-    }
-  }, [selectedBeanId, network]);
-
-  // D3 force simulation 初期化（networkまたはcolor変更時のみ）
-  useEffect(() => {
-    setInspected(null);
     const svg = select(svgRef.current);
     const viewport = viewportRef.current;
     let layout = networkLayout(
@@ -195,7 +180,6 @@ export default function FlavorNetworkDetail({
           : `${flavorName(n.flavor.name)}: ${n.count}件`,
       )
       .on("click", (_, n) => {
-        setInspected(n);
         if (n.type === "bean") {
           onSelectBeanRef.current?.(n.bean);
         } else {
@@ -203,7 +187,6 @@ export default function FlavorNetworkDetail({
         }
       })
       .on("focus", (_, n) => {
-        setInspected(n);
         highlight(n);
       })
       .on("blur", () => highlight(null))
@@ -222,7 +205,6 @@ export default function FlavorNetworkDetail({
       .on("keydown", (event, n) => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          setInspected(n);
           if (n.type === "bean") {
             onSelectBeanRef.current?.(n.bean);
           } else {
@@ -260,7 +242,9 @@ export default function FlavorNetworkDetail({
       .attr("class", "node-label")
       .attr("text-anchor", "middle")
       .attr("y", 4)
-      .attr("fill", (n) => n.flavor.path[0] === "Roasted" ? "#ffffff" : "#3e2c20")
+      .attr("fill", (n) =>
+        n.flavor.path[0] === "Roasted" ? "#ffffff" : "#3e2c20",
+      )
       .attr("font-size", 11)
       .attr("font-weight", (n) => (n.type === "center" ? 600 : 500))
       .attr("pointer-events", "none")
@@ -419,135 +403,13 @@ export default function FlavorNetworkDetail({
     });
   }, [selectedBeanId, hoveredBeanId, network]);
 
-  const selectedBean = network.matchedBeans.find(
-    (b) => b.id === selectedBeanId,
-  );
-  const selectedBeanNode = selectedBean
-    ? { type: "bean", bean: selectedBean }
-    : null;
-  const currentInspected =
-    inspected?.type === "flavor" || inspected?.type === "center"
-      ? inspected
-      : selectedBeanNode || inspected;
-
-  const source =
-    currentInspected?.bean?.source_url || currentInspected?.bean?.product_url;
-  const safeSource = source && /^https?:\/\//i.test(source) ? source : null;
-
   return (
-    <>
-      <div className="flavor-network-viewport" ref={viewportRef}>
-        <svg
-          ref={svgRef}
-          className="flavor-network"
-          aria-label="豆と味のネットワーク。ドラッグで移動、ホイールで拡大縮小"
-        />
-      </div>
-      <div className="flavor-inspector" aria-live="polite">
-        {currentInspected ? (
-          currentInspected.type === "bean" ? (
-            <div className="flavor-inspector-bean">
-              <div className="flavor-inspector-header">
-                <span className="flavor-inspector-badge">選択中の豆</span>
-                <strong>{currentInspected.bean.title}</strong>
-              </div>
-              <div className="flavor-inspector-grid">
-                <div>
-                  <span className="inspector-label">値段:</span>
-                  <span className="inspector-value font-semibold">
-                    {formatPrice(
-                      currentInspected.bean.price_value,
-                      currentInspected.bean.price_currency,
-                    )}
-                  </span>
-                </div>
-                <div>
-                  <span className="inspector-label">産地:</span>
-                  <span className="inspector-value">
-                    {translateCountry(currentInspected.bean.origin_country) ||
-                      "不明"}
-                    {currentInspected.bean.origin_region
-                      ? ` (${currentInspected.bean.origin_region})`
-                      : ""}
-                  </span>
-                </div>
-                <div>
-                  <span className="inspector-label">信頼度:</span>
-                  <span className="inspector-value font-semibold">
-                    {formatConfidence(currentInspected.bean.confidence)}
-                  </span>
-                </div>
-                <div>
-                  <span className="inspector-label">焙煎所:</span>
-                  <span className="inspector-value">
-                    {currentInspected.bean.source_roaster || "不明"}
-                  </span>
-                </div>
-                <div>
-                  <span className="inspector-label">精製・焙煎:</span>
-                  <span className="inspector-value">
-                    {processName(currentInspected.bean.process_method)} ·{" "}
-                    {roastName(currentInspected.bean.roast_level)}
-                  </span>
-                </div>
-              </div>
-              <div className="flavor-bean-tags">
-                <p>この豆の味タグ（{currentInspected.bean.paths.length}個）</p>
-                <ul aria-label="この豆が持つすべての味タグ">
-                  {currentInspected.bean.paths.map((path) => (
-                    <li key={pathId(path)}>
-                      <button
-                        type="button"
-                        onClick={() => onSelect(pathId(path))}
-                        title="この味を中心に探索"
-                        style={{ borderColor: color(path) }}
-                      >
-                        <i
-                          className="flavor-tag-dot"
-                          style={{ backgroundColor: color(path) }}
-                        />
-                        {flavorPath(path)}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              {safeSource && (
-                <div className="flavor-inspector-actions">
-                  <a
-                    href={safeSource}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flavor-inspector-link"
-                  >
-                    出典の商品ページを開く ↗
-                  </a>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="flavor-inspector-flavor">
-              <span className="flavor-inspector-badge">味ノード</span>
-              <strong>{flavorPath(currentInspected.flavor.path)}</strong>
-              <p>選択味と一緒に出た件数：{currentInspected.count}件</p>
-              {currentInspected.type !== "center" && (
-                <button
-                  type="button"
-                  onClick={() => onSelect(currentInspected.flavor.id)}
-                  className="flavor-inspector-btn"
-                >
-                  この味を中心に探索 →
-                </button>
-              )}
-            </div>
-          )
-        ) : (
-          <p className="flavor-inspector-empty">
-            ネットワーク図のノードに触れるとツールチップ、クリックするとここに詳細が表示されます。
-            下のリストから豆を選ぶと、ネットワーク図と連動します。
-          </p>
-        )}
-      </div>
-    </>
+    <div className="flavor-network-viewport" ref={viewportRef}>
+      <svg
+        ref={svgRef}
+        className="flavor-network"
+        aria-label="豆と味のネットワーク。ドラッグで移動、ホイールで拡大縮小"
+      />
+    </div>
   );
 }

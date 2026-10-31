@@ -214,3 +214,51 @@
   .flavor-panel-beans .flavor-bean-card-footer{padding-top:3px}
   .flavor-panel-beans .flavor-bean-select-action{padding:2px 0}
 }
+
+/* Compact summaries and in-card details share the existing cream/brown palette. */
+.flavor-bean-items-scroll{overflow-anchor:none;scrollbar-gutter:stable}
+.flavor-bean-items{gap:9px}
+.flavor-bean-card{padding:9px 11px;gap:6px}
+.flavor-bean-card:hover{transform:none}
+.flavor-bean-card-top{grid-template-columns:minmax(0,1fr) auto auto;gap:7px;align-items:start}
+.flavor-bean-card-title{grid-column:auto;line-height:1.45}
+.flavor-bean-toggle{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;width:100%;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;overflow-wrap:anywhere}
+.flavor-bean-toggle:focus-visible,.flavor-bean-tag-chip:focus-visible,.flavor-bean-read-more:focus-visible{outline:2px solid #936139;outline-offset:3px}
+.flavor-bean-card:has(.flavor-bean-toggle:focus-visible){outline:2px solid #936139}
+.flavor-bean-badge{white-space:nowrap;padding:1px 5px;color:#6f4e37}
+.flavor-bean-chevron{color:#79634f;transition:transform .2s;line-height:1.2}
+.flavor-bean-card.is-expanded .flavor-bean-chevron{transform:rotate(180deg)}
+.flavor-bean-card-details{grid-template-columns:repeat(3,minmax(0,1fr));padding:5px 8px;gap:4px 8px}
+.flavor-bean-detail-row{flex-wrap:wrap;gap:0 5px}
+.flavor-bean-tag-chips{gap:4px}
+.flavor-bean-tag-more{font-size:11px;color:#79634f;align-self:center;padding:0 4px}
+.flavor-bean-accordion{display:grid;grid-template-rows:0fr;transition:grid-template-rows .2s ease;min-width:0}
+.flavor-bean-accordion[data-open="true"]{grid-template-rows:1fr}
+.flavor-bean-accordion-clip{min-height:0;overflow:hidden}
+.flavor-bean-expanded-content{border-top:1px solid #dfcfbc;margin-top:2px;padding-top:10px;display:grid;gap:10px;font-size:12px;overflow-wrap:anywhere;cursor:auto}
+.flavor-bean-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 12px;margin:0}
+.flavor-bean-facts dt,.flavor-bean-expanded-content h5{font-size:11px;color:#79634f;margin:0 0 3px;font-weight:500}
+.flavor-bean-facts dd{margin:0;white-space:pre-wrap}
+.flavor-bean-description{white-space:pre-wrap;margin:0;font-size:13px;line-height:1.6;color:#3e2c20;text-align:left;overflow-wrap:anywhere}
+.flavor-bean-description.is-clamped{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.flavor-bean-read-more{border:0;background:none;padding:3px 0;color:#79502f;text-decoration:underline;cursor:pointer;font-size:12px}
+.flavor-bean-confidence{margin:0;color:#624833}
+.flavor-bean-confidence small{display:block;font-size:10px;color:#79634f}
+.flavor-inspector[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.flavor-bean-accordion,.flavor-bean-chevron{transition:none}}
+.flavor-bean-extra-tags{flex-basis:100%;width:100%;margin-top:-4px}
+.flavor-bean-extra-tags[data-open="true"]{margin-top:0}
+.flavor-bean-facts{row-gap:14px}
+.flavor-bean-facts dt,.flavor-bean-expanded-content h5,.flavor-bean-confidence-label{font-size:11px;color:#8c7663;font-weight:400}
+.flavor-bean-facts dt{margin-bottom:4px}
+.flavor-bean-facts dd,.flavor-bean-confidence-value{font-size:13px;color:#3e2c20;font-weight:500}
+.flavor-bean-confidence{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px}
+.flavor-bean-confidence-help{display:inline-flex}
+.flavor-bean-info-button{border:0;padding:2px 5px;background:none;color:#79634f;font-size:14px;line-height:1.3;cursor:pointer;border-radius:4px}
+.flavor-bean-info-button:focus-visible{outline:2px solid #936139;outline-offset:2px}
+.flavor-bean-confidence-tip{flex-basis:100%;background:#f5ebdc;color:#624833;border-radius:6px;padding:6px 8px;font-size:11px;line-height:1.6}
+.flavor-bean-confidence-tip[hidden]{display:none}
+.flavor-bean-card-details .flavor-bean-detail-row,.flavor-panel-beans .flavor-bean-card-details .flavor-bean-detail-row{flex-direction:column;align-items:flex-start;gap:3px}
+.flavor-bean-description-actions{display:flex;flex-wrap:wrap;gap:4px 14px}
+.flavor-bean-translation-status{margin:3px 0 0;font-size:11px;line-height:1.5;color:#79634f;overflow-wrap:anywhere}
+.flavor-bean-translation-status:empty{display:none}

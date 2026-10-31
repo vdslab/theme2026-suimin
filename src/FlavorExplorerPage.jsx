@@ -22,10 +22,14 @@ export default function FlavorExplorerPage() {
     setNotice(next === selectedIds ? "最大3つまで選択できます" : "");
     setSelectedIds(next);
     setSelectedBeanId(null);
+    setExpandedBeanId(null);
+    setGraphSelection(null);
     setHoveredBeanId(null);
     setAllThree(false);
   };
   const [selectedBeanId, setSelectedBeanId] = useState(null);
+  const [expandedBeanId, setExpandedBeanId] = useState(null);
+  const [graphSelection, setGraphSelection] = useState(null);
   const [hoveredBeanId, setHoveredBeanId] = useState(null);
   const [isListOpen, setIsListOpen] = useState(false);
   const [error, setError] = useState("");
@@ -209,7 +213,12 @@ export default function FlavorExplorerPage() {
                     setSelectedBeanId(null);
                   }}
                   selectedBeanId={selectedBeanId}
-                  onSelectBean={(b) => setSelectedBeanId(b?.id ?? null)}
+                  onSelectBean={(b) => {
+                    setSelectedBeanId(b?.id ?? null);
+                    setExpandedBeanId(b?.id ?? null);
+                    setGraphSelection({ id: b?.id });
+                    setIsListOpen(true);
+                  }}
                   hoveredBeanId={hoveredBeanId}
                   onHoverBean={setHoveredBeanId}
                 />
@@ -229,6 +238,11 @@ export default function FlavorExplorerPage() {
                     selectFlavor(id);
                     setSelectedBeanId(null);
                   }}
+                  expandedBeanId={expandedBeanId}
+                  graphSelection={graphSelection}
+                  onToggleBean={(id) =>
+                    setExpandedBeanId((current) => (current === id ? null : id))
+                  }
                   selectedBeanId={selectedBeanId}
                   onSelectBean={(b) => setSelectedBeanId(b?.id ?? null)}
                   hoveredBeanId={hoveredBeanId}
