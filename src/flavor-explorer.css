@@ -239,8 +239,8 @@
 .flavor-bean-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 12px;margin:0}
 .flavor-bean-facts dt,.flavor-bean-expanded-content h5{font-size:11px;color:#79634f;margin:0 0 3px;font-weight:500}
 .flavor-bean-facts dd{margin:0;white-space:pre-wrap}
-.flavor-bean-description{white-space:pre-wrap;margin:0;line-height:1.65}
-.flavor-bean-description.is-clamped{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.flavor-bean-description{white-space:pre-wrap;margin:0;font-size:13px;line-height:1.6;color:#3e2c20;text-align:left;overflow-wrap:anywhere}
+.flavor-bean-description.is-clamped{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .flavor-bean-read-more{border:0;background:none;padding:3px 0;color:#79502f;text-decoration:underline;cursor:pointer;font-size:12px}
 .flavor-bean-confidence{margin:0;color:#624833}
 .flavor-bean-confidence small{display:block;font-size:10px;color:#79634f}

@@ -26,6 +26,7 @@ export default function FlavorBeanCard({
   const detailId = useId();
   const triggerId = useId();
   const confidenceTipId = useId();
+  const descriptionId = useId();
   const [confidenceTipOpen, setConfidenceTipOpen] = useState(false);
   const [confidenceTipHovered, setConfidenceTipHovered] = useState(false);
   const showConfidenceTip = confidenceTipOpen || confidenceTipHovered;
@@ -33,14 +34,20 @@ export default function FlavorBeanCard({
   const descriptionRef = useRef(null);
   const [descriptionOverflows, setDescriptionOverflows] = useState(false);
   useEffect(() => {
+    if (!isExpanded) setReadMore(false);
+  }, [isExpanded]);
+  useEffect(() => {
     const element = descriptionRef.current;
-    if (!element || readMore || !bean.tasting_notes_raw) return;
-    const observer = new ResizeObserver(() => {
+    if (!element || !isExpanded || readMore || !present(bean.tasting_notes_raw))
+      return;
+    const measure = () => {
       setDescriptionOverflows(element.scrollHeight > element.clientHeight + 1);
-    });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
     observer.observe(element);
     return () => observer.disconnect();
-  }, [readMore, bean.tasting_notes_raw]);
+  }, [isExpanded, readMore, bean.tasting_notes_raw]);
   const paths = bean.paths || [];
   // Preserve the existing hierarchical prefix match for the tag highlight.
   const matches = (p) =>
@@ -219,6 +226,32 @@ export default function FlavorBeanCard({
                 ))}
               </dl>
             )}
+            {present(bean.tasting_notes_raw) && (
+              <div>
+                <h5>販売元による説明</h5>
+                <p
+                  id={descriptionId}
+                  ref={descriptionRef}
+                  className={`flavor-bean-description ${readMore ? "" : "is-clamped"}`}
+                >
+                  {bean.tasting_notes_raw}
+                </p>
+                {(readMore || descriptionOverflows) && (
+                  <button
+                    type="button"
+                    className="flavor-bean-read-more"
+                    aria-expanded={readMore}
+                    aria-controls={descriptionId}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setReadMore((expanded) => !expanded);
+                    }}
+                  >
+                    {readMore ? "閉じる" : "続きを読む"}
+                  </button>
+                )}
+              </div>
+            )}
             {confidence != null && (
               <div className="flavor-bean-confidence" data-card-interactive>
                 <span className="flavor-bean-confidence-label">
@@ -265,27 +298,6 @@ export default function FlavorBeanCard({
                 >
                   味タグの抽出に関する指標です。豆の品質評価ではありません。
                 </span>
-              </div>
-            )}
-            {present(bean.tasting_notes_raw) && (
-              <div>
-                <h5>販売元の味の説明</h5>
-                <p
-                  ref={descriptionRef}
-                  className={`flavor-bean-description ${readMore ? "" : "is-clamped"}`}
-                >
-                  {bean.tasting_notes_raw}
-                </p>
-                {(readMore || descriptionOverflows) && (
-                  <button
-                    type="button"
-                    className="flavor-bean-read-more"
-                    aria-expanded={readMore}
-                    onClick={() => setReadMore(!readMore)}
-                  >
-                    {readMore ? "折りたたむ" : "続きを読む"}
-                  </button>
-                )}
               </div>
             )}
             {url && (
