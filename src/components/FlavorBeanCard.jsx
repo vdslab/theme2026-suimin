@@ -1,4 +1,6 @@
-﻿import { useEffect, useId, useRef, useState } from "react";
+import SellerDescription from "./SellerDescription";
+import { translateSellerDescription } from "../lib/descriptionTranslation";
+import { useId, useState } from "react";
 import { translateCountry } from "../lib/countryNames";
 import { flavorName, processName, roastName } from "../lib/flavorJapanese";
 import { pathId } from "../lib/flavorData";
@@ -34,28 +36,16 @@ export default function FlavorBeanCard({
   const detailId = useId();
   const triggerId = useId();
   const confidenceTipId = useId();
-  const descriptionId = useId();
   const [confidenceTipOpen, setConfidenceTipOpen] = useState(false);
   const [confidenceTipHovered, setConfidenceTipHovered] = useState(false);
   const showConfidenceTip = confidenceTipOpen || confidenceTipHovered;
-  const [readMore, setReadMore] = useState(false);
-  const descriptionRef = useRef(null);
-  const [descriptionOverflows, setDescriptionOverflows] = useState(false);
-  useEffect(() => {
-    if (!isExpanded) setReadMore(false);
-  }, [isExpanded]);
-  useEffect(() => {
-    const element = descriptionRef.current;
-    if (!element || !isExpanded || readMore || !present(bean.tasting_notes_raw))
-      return;
-    const measure = () => {
-      setDescriptionOverflows(element.scrollHeight > element.clientHeight + 1);
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [isExpanded, readMore, bean.tasting_notes_raw]);
+  const toggleCard = () => {
+    if (!isExpanded && present(bean.tasting_notes_raw)) {
+      // Start within the click/keyboard gesture, before React opens the card.
+      translateSellerDescription(bean.tasting_notes_raw).catch(() => {});
+    }
+    onToggle();
+  };
   const paths = bean.paths || [];
   // Preserve the existing hierarchical prefix match for the tag highlight.
   const matches = (p) =>
@@ -141,7 +131,8 @@ export default function FlavorBeanCard({
       ref={cardRef}
       className={`flavor-bean-card ${isSelected ? "is-selected" : ""} ${isHovered ? "is-hovered" : ""} ${isExpanded ? "is-expanded" : ""}`}
       onClick={(e) => {
-        if (!e.target.closest("button, a, [data-card-interactive]")) onToggle();
+        if (!e.target.closest("button, a, [data-card-interactive]"))
+          toggleCard();
       }}
       onKeyDown={(e) => {
         if (
@@ -149,7 +140,7 @@ export default function FlavorBeanCard({
           (e.key === "Enter" || e.key === " ")
         ) {
           e.preventDefault();
-          onToggle();
+          toggleCard();
         }
       }}
       onMouseEnter={() => onHoverBean?.(bean.id)}
@@ -162,7 +153,7 @@ export default function FlavorBeanCard({
             id={triggerId}
             type="button"
             className="flavor-bean-toggle"
-            onClick={onToggle}
+            onClick={toggleCard}
             aria-expanded={isExpanded}
             aria-controls={detailId}
           >
@@ -236,33 +227,10 @@ export default function FlavorBeanCard({
                 ))}
               </dl>
             )}
-            <div>
-              <h5>販売元による説明</h5>
-              <p
-                id={descriptionId}
-                ref={descriptionRef}
-                className={`flavor-bean-description ${readMore ? "" : "is-clamped"}`}
-              >
-                {present(bean.tasting_notes_raw)
-                  ? bean.tasting_notes_raw
-                  : MISSING}
-              </p>
-              {present(bean.tasting_notes_raw) &&
-                (readMore || descriptionOverflows) && (
-                  <button
-                    type="button"
-                    className="flavor-bean-read-more"
-                    aria-expanded={readMore}
-                    aria-controls={descriptionId}
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      setReadMore((expanded) => !expanded);
-                    }}
-                  >
-                    {readMore ? "閉じる" : "続きを読む"}
-                  </button>
-                )}
-            </div>
+            <SellerDescription
+              text={bean.tasting_notes_raw}
+              isExpanded={isExpanded}
+            />
             <div className="flavor-bean-confidence" data-card-interactive>
               <span className="flavor-bean-confidence-label">
                 味タグ抽出の信頼度

@@ -259,3 +259,6 @@
 .flavor-bean-confidence-tip{flex-basis:100%;background:#f5ebdc;color:#624833;border-radius:6px;padding:6px 8px;font-size:11px;line-height:1.6}
 .flavor-bean-confidence-tip[hidden]{display:none}
 .flavor-bean-card-details .flavor-bean-detail-row,.flavor-panel-beans .flavor-bean-card-details .flavor-bean-detail-row{flex-direction:column;align-items:flex-start;gap:3px}
+.flavor-bean-description-actions{display:flex;flex-wrap:wrap;gap:4px 14px}
+.flavor-bean-translation-status{margin:3px 0 0;font-size:11px;line-height:1.5;color:#79634f;overflow-wrap:anywhere}
+.flavor-bean-translation-status:empty{display:none}
