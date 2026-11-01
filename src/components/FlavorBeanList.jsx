@@ -1,20 +1,17 @@
+import FlavorBeanCard from "./FlavorBeanCard";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { translateCountry } from "../lib/countryNames";
-import {
-  flavorName,
-  flavorPath,
-  formatConfidence,
-  formatPrice,
-  processName,
-  roastName,
-} from "../lib/flavorJapanese";
-import { compareFlavorMatch, pathId } from "../lib/flavorData";
+import { flavorPath, processName, roastName } from "../lib/flavorJapanese";
+import { compareFlavorMatch } from "../lib/flavorData";
 
 export default function FlavorBeanList({
   beans = [],
   color,
   onSelectFlavor,
   selectedBeanId,
+  expandedBeanId,
+  graphSelection,
+  onToggleBean,
   onSelectBean,
   hoveredBeanId,
   onHoverBean,
@@ -80,23 +77,29 @@ export default function FlavorBeanList({
 
   // リスト内だけをスクロールし、末尾のカードも上端にそろえられる余白を確保する。
   useEffect(() => {
+    if (graphSelection) setSearch("");
+  }, [graphSelection]);
+  useEffect(() => {
     const container = scrollRef.current;
-    if (!container) return;
-    const card = selectedBeanId && itemRefs.current[selectedBeanId];
-    if (!card) {
-      container.style.paddingBottom = "0px";
-      return;
-    }
-    const top =
-      container.scrollTop +
-      card.getBoundingClientRect().top -
-      container.getBoundingClientRect().top -
-      container.clientTop;
-    const contentHeight =
-      container.scrollHeight - (parseFloat(container.style.paddingBottom) || 0);
-    container.style.paddingBottom = `${Math.max(0, top + container.clientHeight - contentHeight)}px`;
-    container.scrollTo({ top, behavior: "smooth" });
-  }, [selectedBeanId, sorted]);
+    const card =
+      sorted.some((bean) => bean.id === graphSelection?.id) &&
+      itemRefs.current[graphSelection.id];
+    if (!container || !card) return;
+    const timer = setTimeout(() => {
+      const top =
+        container.scrollTop +
+        card.getBoundingClientRect().top -
+        container.getBoundingClientRect().top -
+        container.clientTop;
+      container.scrollTo({
+        top: Math.max(0, top - 3),
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
+      });
+    }, 220);
+    return () => clearTimeout(timer);
+  }, [graphSelection, sorted]);
 
   return (
     <div className="flavor-bean-list-container">
@@ -181,157 +184,26 @@ export default function FlavorBeanList({
           </div>
         ) : (
           <div className="flavor-bean-items">
-            {sorted.map((bean) => {
-              const isSelected = selectedBeanId === bean.id;
-              const isHovered = hoveredBeanId === bean.id;
-              const country = translateCountry(bean.origin_country);
-              const region = bean.origin_region;
-              const originDisplay =
-                [country, region].filter(Boolean).join(" · ") || "産地情報なし";
-              const priceDisplay = formatPrice(
-                bean.price_value,
-                bean.price_currency,
-              );
-              const confidenceDisplay = formatConfidence(bean.confidence);
-              const sourceUrl =
-                bean.source_url && /^https?:\/\//i.test(bean.source_url)
-                  ? bean.source_url
-                  : bean.product_url && /^https?:\/\//i.test(bean.product_url)
-                    ? bean.product_url
-                    : null;
-
-              // 信頼度スコアに応じたバッジのクラス
-              const confVal = Number(bean.confidence) || 0;
-              let confLevelClass = "conf-low";
-              if (confVal >= 0.8) confLevelClass = "conf-high";
-              else if (confVal >= 0.5) confLevelClass = "conf-mid";
-
-              return (
-                <div
-                  key={bean.id}
-                  ref={(el) => (itemRefs.current[bean.id] = el)}
-                  className={`flavor-bean-card ${
-                    isSelected ? "is-selected" : ""
-                  } ${isHovered ? "is-hovered" : ""}`}
-                  onClick={() => onSelectBean?.(bean)}
-                  onMouseEnter={() => onHoverBean?.(bean.id)}
-                  onMouseLeave={() => onHoverBean?.(null)}
-                  tabIndex={0}
-                  role="button"
-                  aria-pressed={isSelected}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      onSelectBean?.(bean);
-                    }
-                  }}
-                >
-                  <div className="flavor-bean-card-top">
-                    <span className="flavor-bean-name-label">豆の名前</span>
-                    <div className="flavor-bean-meta-badges">
-                      <span
-                        className="flavor-bean-badge"
-                        title="選択した味のうち、この豆が一致する味の数"
-                      >
-                        味の一致: {bean.matchCount} / {bean.selectedCount}
-                      </span>
-                      <span
-                        className={`flavor-bean-badge confidence-badge ${confLevelClass}`}
-                        title={`味タグの抽出信頼度: ${bean.confidence}`}
-                      >
-                        信頼度: {confidenceDisplay}
-                      </span>
-                    </div>
-                    <h4 className="flavor-bean-card-title">{bean.title}</h4>
-                  </div>
-
-                  <div className="flavor-bean-card-details">
-                    <div className="flavor-bean-detail-row">
-                      <span className="flavor-bean-detail-label">産地</span>
-                      <span className="flavor-bean-detail-value">
-                        {originDisplay}
-                      </span>
-                    </div>
-                    <div className="flavor-bean-detail-row">
-                      <span className="flavor-bean-detail-label">特徴</span>
-                      <span className="flavor-bean-detail-value">
-                        {processName(bean.process_method)} ·{" "}
-                        {roastName(bean.roast_level)}
-                      </span>
-                    </div>
-                    <div className="flavor-bean-detail-row">
-                      <span className="flavor-bean-detail-label">価格</span>
-                      <span className="flavor-bean-detail-value">
-                        {priceDisplay}
-                      </span>
-                    </div>
-                  </div>
-
-                  {bean.paths && bean.paths.length > 0 && (
-                    <div className="flavor-bean-card-tags">
-                      <span className="flavor-bean-tags-label">味タグ:</span>
-                      <div className="flavor-bean-tag-chips">
-                        {bean.paths.map((p) => {
-                          const id = pathId(p);
-                          const isTargetFlavor = selectedFlavorPaths.some(
-                            (path) => path.every((v, i) => p[i] === v),
-                          );
-                          return (
-                            <button
-                              key={id}
-                              type="button"
-                              className={`flavor-bean-tag-chip ${
-                                isTargetFlavor ? "is-active-flavor" : ""
-                              }`}
-                              style={{
-                                borderColor: color?.(p) || "#94704d",
-                              }}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                onSelectFlavor?.(id);
-                              }}
-                              title="この味を中心に探索"
-                            >
-                              <i
-                                className="flavor-tag-dot"
-                                style={{
-                                  backgroundColor: color?.(p) || "#94704d",
-                                }}
-                              />
-                              {flavorName(p[p.length - 1])}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="flavor-bean-card-footer">
-                    <button
-                      type="button"
-                      className="flavor-bean-select-action"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onSelectBean?.(bean);
-                      }}
-                    >
-                      {isSelected ? "選択中 ✓" : "ネットワーク図で確認"}
-                    </button>
-                    {sourceUrl && (
-                      <a
-                        href={sourceUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flavor-bean-external-link"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        商品ページ ↗
-                      </a>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+            {sorted.map((bean) => (
+              <FlavorBeanCard
+                key={bean.id}
+                bean={bean}
+                cardRef={(el) => {
+                  itemRefs.current[bean.id] = el;
+                }}
+                isSelected={selectedBeanId === bean.id}
+                isExpanded={expandedBeanId === bean.id}
+                isHovered={hoveredBeanId === bean.id}
+                onToggle={() => {
+                  onSelectBean?.(bean);
+                  onToggleBean(bean.id);
+                }}
+                onHoverBean={onHoverBean}
+                onSelectFlavor={onSelectFlavor}
+                selectedFlavorPaths={selectedFlavorPaths}
+                color={color}
+              />
+            ))}
           </div>
         )}
       </div>
