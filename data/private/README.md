@@ -29,6 +29,8 @@ RoasterDB（DataEngineered）の有料スナップショット。購入済みの
 - OK: 分析、可視化、集計値、アプリ機能などの派生物の公開
 - NG: 生データや軽く加工しただけのデータの大部分を再配布すること、ダウンロードしたファイルを組織外へ共有すること
 - `src/data/` に出力するのは、アプリで使う最小限のフィールドだけにする
+- フレーバー探索ページ用の `src/data/flavor_beans.json`（`npm run export:flavor-data` で生成）は **Git 管理外**。公開版へは `npm run deploy` で Netlify にだけ送る（ルート README「公開（Netlify）」参照）
+- 販売者の説明文（`tasting_notes_raw`）は公開版に含めない。`npm run dev` のときだけ表示される
 - 表示する豆の `source_url`（出典リンク）は消さない
 - 味覚分類を表示するときは "SCA Flavor Wheel" とクレジットする
 - 中間生成物は `data/interim/`（こちらも Git 管理外）に置く

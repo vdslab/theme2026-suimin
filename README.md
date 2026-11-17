@@ -12,6 +12,26 @@ npm run build    # 本番ビルド
 npm run preview  # ビルド結果のプレビュー
 ```
 
+フレーバー探索ページ（`#sunburst`）は、有料データから生成する `src/data/flavor_beans.json` を読み込みます。
+初回と、データを更新したときは、先に次を実行してください（`data/private/` にデータの配置が必要です。[`data/private/README.md`](data/private/README.md) 参照）。
+
+```bash
+npm run export:flavor-data
+```
+
+## 公開（Netlify）
+
+公開版は GitHub 連携ではなく、手元でビルドして Netlify CLI でデプロイします。
+有料データ由来の `src/data/flavor_beans.json` を git に入れず、問題があればサイトを削除するだけで取り下げられるようにするためです。
+
+```bash
+npm run deploy   # 公開用JSONの書き出し → ビルド → netlify deploy --prod
+```
+
+- 初回は `npx netlify-cli@27.20.0 login` でログインし、デプロイ時にサイトを選択（または新規作成）します。
+- push しても自動ではデプロイされません。公開版を更新するときは `npm run deploy` を実行します。
+- Netlify の「Import from Git」で、このリポジトリをつながないでください（データがないためビルドが失敗します）。
+
 ## Lint / フォーマット
 
 リント・フォーマットには [Biome](https://biomejs.dev/) を使用しています（設定は [`biome.json`](biome.json)）。
