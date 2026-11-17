@@ -103,9 +103,8 @@ export default function FlavorBeanCard({
   const url = [bean.product_url, bean.source_url].find(
     (value) => typeof value === "string" && /^https?:\/\//i.test(value),
   );
-  const confidence = numeric(bean.tasting_notes_confidence)
-    ? (bean.confidence ?? bean.tasting_notes_confidence)
-    : null;
+  const rawConfidence = bean.confidence ?? bean.tasting_notes_confidence;
+  const confidence = numeric(rawConfidence) ? rawConfidence : null;
   const tags = (items) =>
     items.map((p) => (
       <button

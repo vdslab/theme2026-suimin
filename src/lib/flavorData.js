@@ -19,8 +19,11 @@ export const parseFlavorPaths = (value = "") => [
   ).values(),
 ];
 
-export function buildFlavorData(csv) {
-  const rows = csvParse(csv.replace(/^\uFEFF/, ""));
+export const buildFlavorData = (csv) =>
+  buildFlavorIndex(aggregateFlavorRows(csvParse(csv.replace(/^\uFEFF/, ""))));
+
+// Merges CSV rows into one record per product (roaster \u00D7 product_id).
+export function aggregateFlavorRows(rows) {
   const products = new Map();
   rows.forEach((row, index) => {
     const id = JSON.stringify([
@@ -47,7 +50,20 @@ export function buildFlavorData(csv) {
         confidence: Number(row.tasting_notes_confidence) || 0,
       });
   });
-  const beans = [...products.values()].filter((b) => b.paths.length);
+  return {
+    beans: [...products.values()],
+    totalRows: rows.length,
+    totalProducts: products.size,
+  };
+}
+
+// Builds the flavor hierarchy from per-product records ({ id, paths, ... }).
+export function buildFlavorIndex({
+  beans: products,
+  totalRows,
+  totalProducts,
+}) {
+  const beans = products.filter((b) => b.paths.length);
   const root = {
     id: pathId([]),
     name: "すべての味",
@@ -93,8 +109,8 @@ export function buildFlavorData(csv) {
     nodes,
     beans,
     color,
-    totalRows: rows.length,
-    totalProducts: products.size,
+    totalRows,
+    totalProducts,
     initialId: initial?.id,
   };
 }

@@ -11,7 +11,9 @@ export default function SellerDescription({ text, isExpanded }) {
   const [showOriginal, setShowOriginal] = useState(false);
   const [readMore, setReadMore] = useState(false);
   const [overflows, setOverflows] = useState(false);
-  const translated = translation?.source === text ? translation.text : null;
+  // Public data omits descriptions (text is undefined), so guard before matching.
+  const translated =
+    hasText && translation?.source === text ? translation.text : null;
   const shownText = hasText
     ? showOriginal
       ? text

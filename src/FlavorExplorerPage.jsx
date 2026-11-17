@@ -1,7 +1,7 @@
 import { flavorName, flavorPath } from "./lib/flavorJapanese";
 import { useEffect, useMemo, useState } from "react";
 import {
-  buildFlavorData,
+  buildFlavorIndex,
   buildFlavorNetwork,
   MAX_BEANS,
   MAX_FLAVORS,
@@ -44,28 +44,33 @@ export default function FlavorExplorerPage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isListOpen]);
   useEffect(() => {
-    const controller = new AbortController();
-    fetch(`${import.meta.env.BASE_URL}api/flavor-data.csv`, {
-      signal: controller.signal,
-    })
-      .then((response) => {
-        if (!response.ok)
-          throw new Error(`CSVを読み込めません (${response.status})`);
-        return response.text();
-      })
-      .then((csv) => {
-        const result = buildFlavorData(csv);
+    let active = true;
+    // Seller descriptions are not in the public data; only the dev server has them.
+    const descriptions = import.meta.env.DEV
+      ? fetch(`${import.meta.env.BASE_URL}api/flavor-descriptions.json`)
+          .then((response) => (response.ok ? response.json() : {}))
+          .catch(() => ({}))
+      : Promise.resolve({});
+    Promise.all([import("./data/flavor_beans.json"), descriptions])
+      .then(([{ default: published }, notes]) => {
+        const beans = published.beans.map((bean) =>
+          notes[bean.id]
+            ? { ...bean, tasting_notes_raw: notes[bean.id] }
+            : bean,
+        );
+        const result = buildFlavorIndex({ ...published, beans });
         if (!result.initialId)
-          throw new Error(
-            "有効な味タグが見つかりません。CSVの配置とカラムを確認してください。",
-          );
+          throw new Error("有効な味タグが見つかりません。");
+        if (!active) return;
         setData(result);
         setSelectedIds([result.initialId]);
       })
       .catch((e) => {
-        if (e.name !== "AbortError") setError(e.message);
+        if (active) setError(e.message);
       });
-    return () => controller.abort();
+    return () => {
+      active = false;
+    };
   }, []);
   const network = useMemo(
     () => data && buildFlavorNetwork(data, selectedIds, allThree),
@@ -85,12 +90,13 @@ export default function FlavorExplorerPage() {
           <h2>データを読み込めませんでした</h2>
           <p>{error}</p>
           <p>
-            data/private/roasterdb/2026.10/roasterdb_export.csv を配置し、npm
-            run dev または npm run preview で開いてください。
+            src/data/flavor_beans.json がない場合は、data/private
+            に有料データを配置して npm run export:flavor-data
+            を実行してください。
           </p>
         </div>
       ) : !network ? (
-        <p role="status">CSVを読み込んで味の階層を構築しています…</p>
+        <p role="status">データを読み込んで味の階層を構築しています…</p>
       ) : (
         <>
           <div className="flavor-overview">
@@ -256,9 +262,9 @@ export default function FlavorExplorerPage() {
             </div>
           </div>
           <footer className="flavor-footer">
-            分類参考：SCAフレーバーホイール ·
-            データ：焙煎所データベース（2026年10月） ·
-            ローカル検討用プロトタイプ
+            味の分類：SCA Flavor Wheel · データ：RoasterDB（DataEngineered,
+            2026年10月取得。価格は取得時点のもの） ·
+            各焙煎所とは関係のない非公式の可視化です
           </footer>
         </>
       )}

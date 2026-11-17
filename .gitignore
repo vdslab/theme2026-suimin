@@ -297,3 +297,7 @@ data/private/*
 !data/private/README.md
 data/interim/*
 !data/interim/.gitkeep
+# 有料データから生成する公開用JSON — git に入れず `npm run deploy` で Netlify にだけ送る
+src/data/flavor_beans.json
+# Netlify CLI のローカル設定（リンクしたサイトID）
+.netlify/
