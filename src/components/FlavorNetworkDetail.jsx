@@ -8,25 +8,23 @@ import {
 } from "../lib/flavorJapanese";
 import { translateCountry } from "../lib/countryNames";
 import { useEffect, useRef } from "react";
-import {
-  forceSimulation,
-  forceLink,
-  forceManyBody,
-  forceCollide,
-  forceX,
-  forceY,
-} from "d3-force";
+import { forceSimulation, forceCollide, forceX, forceY } from "d3-force";
 import { select } from "d3-selection";
 import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
-import { networkLayout, resizeNetworkNodes } from "../lib/networkLayout.js";
+import {
+  networkLayout,
+  resizeNetworkNodes,
+  computeAnchorOrder,
+  computeAnchorPositions,
+  computeBeanInitialPosition,
+  constrainBeanPosition,
+} from "../lib/networkLayout.js";
 import { drag } from "d3-drag";
 
 export const FORCE_SETTINGS = {
-  selectedDistance: 105,
-  relatedDistance: 75,
-  selectedStrength: 0.7,
-  relatedStrength: 0.16,
-  charge: -95,
+  centroidStrength: 0.3,
+  beanRadius: 13,
+  interiorScale: 0.65,
 };
 
 const beanInfo = (b) => {
@@ -46,7 +44,6 @@ export default function FlavorNetworkDetail({
   hoveredBeanId,
   onHoverBean,
 }) {
-  const positionsRef = useRef(new Map());
   const svgRef = useRef(null);
   const groupRef = useRef(null);
   const viewportRef = useRef(null);
@@ -70,70 +67,65 @@ export default function FlavorNetworkDetail({
     const group = svg.append("g");
     groupRef.current = group;
 
-    const nodes = network.nodes.map((n, i) => ({
-      ...n,
-      x:
-        positionsRef.current.get(n.id)?.x ??
-        layout.cx + Math.cos(i * 2.4) * 170 * layout.unit,
-      y:
-        positionsRef.current.get(n.id)?.y ??
-        layout.cy + Math.sin(i * 2.4) * 170 * layout.unit,
+    const nodes = network.nodes.map((n) => ({ ...n }));
+    const nodeMap = new Map(nodes.map((n) => [n.id, n]));
+    const links = network.links.map((l) => ({
+      ...l,
+      source: nodeMap.get(l.source),
+      target: nodeMap.get(l.target),
     }));
-    const pinSelected = () => {
-      const centers = nodes.filter((n) => n.type === "center");
-      const offset = Math.min(layout.width * 0.19, layout.height * 0.23, 110);
-      centers.forEach((n, i) => {
-        n.fx =
-          layout.cx +
-          (centers.length === 1
-            ? 0
-            : centers.length === 2
-              ? i === 0
-                ? -offset
-                : offset
-              : Math.cos(-Math.PI / 2 + (i * Math.PI * 2) / 3) * offset);
-        n.fy =
-          layout.cy +
-          (centers.length < 3
-            ? 0
-            : Math.sin(-Math.PI / 2 + (i * Math.PI * 2) / 3) * offset);
-        n.x = n.fx;
-        n.y = n.fy;
-      });
+    const anchors = computeAnchorOrder(
+      nodes.filter((n) => n.type !== "bean"),
+      links,
+    );
+    const updateTargets = (initialize = false) => {
+      const positions = computeAnchorPositions(
+        anchors,
+        layout.width,
+        layout.height,
+      );
+      for (const n of anchors) {
+        const p = positions.get(n.id);
+        n.x = n.fx = p.x;
+        n.y = n.fy = p.y;
+      }
+      for (const n of nodes.filter((n) => n.type === "bean")) {
+        const p = computeBeanInitialPosition(n, positions, links) ?? {
+          x: layout.cx,
+          y: layout.cy,
+        };
+        // Pull the centroid inward uniformly, preserving the combination's
+        // direction and leaving a gap between beans and the anchor ring.
+        n.targetX =
+          layout.cx + (p.x - layout.cx) * FORCE_SETTINGS.interiorScale;
+        n.targetY =
+          layout.cy + (p.y - layout.cy) * FORCE_SETTINGS.interiorScale;
+        if (initialize) {
+          n.x = n.targetX;
+          n.y = n.targetY;
+        }
+      }
     };
-    pinSelected();
-    const links = network.links.map((l) => ({ ...l }));
-
-    // 100ノード規模でも重なりすぎず画面内に美しく収まるよう調整
+    updateTargets(true);
     const simulation = forceSimulation(nodes)
-      .force(
-        "link",
-        forceLink(links)
-          .id((n) => n.id)
-          .distance(
-            (l) =>
-              (l.selected
-                ? FORCE_SETTINGS.selectedDistance
-                : FORCE_SETTINGS.relatedDistance) * layout.unit,
-          )
-          .strength((l) =>
-            l.selected
-              ? FORCE_SETTINGS.selectedStrength
-              : FORCE_SETTINGS.relatedStrength,
-          ),
-      )
-      .force(
-        "charge",
-        forceManyBody().strength(FORCE_SETTINGS.charge * layout.unit),
-      )
       .force(
         "collide",
         forceCollide((n) =>
-          n.type === "center" ? 43 : n.type === "flavor" ? 37 : 12,
+          n.type === "bean" ? FORCE_SETTINGS.beanRadius : 38,
+        ).iterations(3),
+      )
+      .force(
+        "x",
+        forceX((n) => n.targetX ?? n.fx).strength(
+          FORCE_SETTINGS.centroidStrength,
         ),
       )
-      .force("x", forceX(layout.cx).strength(0.08))
-      .force("y", forceY(layout.cy).strength(0.12));
+      .force(
+        "y",
+        forceY((n) => n.targetY ?? n.fy).strength(
+          FORCE_SETTINGS.centroidStrength,
+        ),
+      );
     const edges = group
       .append("g")
       .attr("class", "network-edges")
@@ -265,40 +257,33 @@ export default function FlavorNetworkDetail({
       .text((n) => n.bean.title.slice(0, 18));
 
     // ドラッグ操作
-    items.call(
-      drag()
-        .on("start", (event, n) => {
-          if (!event.active) simulation.alphaTarget(0.25).restart();
-          n.fx = n.x;
-          n.fy = n.y;
-        })
-        .on("drag", (event, n) => {
-          if (n.type !== "center") {
-            n.fx = event.x;
-            n.fy = event.y;
-          }
-        })
-        .on("end", (event, n) => {
-          if (!event.active) simulation.alphaTarget(0);
-          if (n.type !== "center") {
-            n.fx = null;
-            n.fy = null;
-          }
-        }),
-    );
+    items
+      .filter((n) => n.type === "bean")
+      .call(
+        drag()
+          .on("start", (event, n) => {
+            if (!event.active) simulation.alphaTarget(0.25).restart();
+            n.fx = n.x;
+            n.fy = n.y;
+          })
+          .on("drag", (event, n) => {
+            if (n.type === "bean") {
+              n.fx = event.x;
+              n.fy = event.y;
+            }
+          })
+          .on("end", (event, n) => {
+            if (!event.active) simulation.alphaTarget(0);
+            if (n.type === "bean") {
+              n.fx = null;
+              n.fy = null;
+            }
+          }),
+      );
 
-    simulation.on("tick", () => {
+    const render = () => {
       for (const node of nodes) {
-        const marginX = Math.min(
-          layout.width / 2,
-          node.type === "bean" ? 90 : 65,
-        );
-        const marginY = Math.min(
-          layout.height / 2,
-          node.type === "center" ? 55 : 42,
-        );
-        node.x = Math.max(marginX, Math.min(layout.width - marginX, node.x));
-        node.y = Math.max(marginY, Math.min(layout.height - marginY, node.y));
+        if (node.type === "bean") constrainBeanPosition(node, layout);
       }
       edges
         .attr("x1", (l) => l.source.x)
@@ -306,7 +291,17 @@ export default function FlavorNetworkDetail({
         .attr("x2", (l) => l.target.x)
         .attr("y2", (l) => l.target.y);
       items.attr("transform", (n) => `translate(${n.x},${n.y})`);
-    });
+    };
+    // Settle before first paint to avoid a large entrance animation.
+    simulation.stop();
+    for (let i = 0; i < 180; i++) {
+      simulation.tick();
+      for (const node of nodes) {
+        if (node.type === "bean") constrainBeanPosition(node, layout);
+      }
+    }
+    render();
+    simulation.on("tick", render);
 
     const zoomBehavior = zoom()
       .scaleExtent([0.35, 4])
@@ -325,14 +320,11 @@ export default function FlavorNetworkDetail({
       const previous = layout;
       layout = networkLayout(width, height);
       resizeNetworkNodes(nodes, previous, layout);
-      pinSelected();
+      updateTargets();
       svg.attr("viewBox", `0 0 ${width} ${height}`);
-      simulation.force("x").x(layout.cx);
-      simulation.force("y").y(layout.cy);
-      simulation
-        .force("link")
-        .distance((l) => (l.target.type === "center" ? 135 : 75) * layout.unit);
-      simulation.force("charge").strength(FORCE_SETTINGS.charge * layout.unit);
+      simulation.force("x").x((n) => n.targetX ?? n.fx);
+      simulation.force("y").y((n) => n.targetY ?? n.fy);
+      render();
       const transform = zoomTransform(svg.node());
       svg.call(
         zoomBehavior.transform,
@@ -348,9 +340,6 @@ export default function FlavorNetworkDetail({
     observer.observe(viewport);
     return () => {
       observer.disconnect();
-      positionsRef.current = new Map(
-        nodes.map((n) => [n.id, { x: n.x, y: n.y }]),
-      );
       simulation.on("tick", null).stop();
       items
         .on(".drag", null)

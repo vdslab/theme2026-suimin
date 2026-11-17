@@ -46,3 +46,75 @@ test("resize preserves simulation nodes, selected details, links and drag pins",
   assert.equal(inspected.y, 400);
   simulation.stop();
 });
+
+test("anchor order maximizes the closed Jaccard tour using only displayed links", async () => {
+  const { computeAnchorOrder } = await import("./networkLayout.js");
+  const anchors = ["a", "b", "c", "d"].map((id) => ({
+    id,
+    flavor: { id, beanIds: new Set(["outside-graph"]) },
+  }));
+  const members = {
+    a: ["1", "2"],
+    b: ["3", "4"],
+    c: ["1", "2", "3"],
+    d: ["3", "4", "5"],
+  };
+  const links = Object.entries(members).flatMap(([target, ids]) =>
+    ids.map((source) => ({ source, target })),
+  );
+  const score = (order) =>
+    order.reduce((total, node, i) => {
+      const left = new Set(members[node.id]);
+      const right = new Set(members[order[(i + 1) % order.length].id]);
+      const intersection = [...left].filter((id) => right.has(id)).length;
+      return total + intersection / new Set([...left, ...right]).size;
+    }, 0);
+  const permutations = (values) =>
+    values.length
+      ? values.flatMap((v) =>
+          permutations(values.filter((n) => n !== v)).map((rest) => [
+            v,
+            ...rest,
+          ]),
+        )
+      : [[]];
+  const order = computeAnchorOrder(anchors, links);
+  assert.ok(
+    Math.abs(score(order) - Math.max(...permutations(anchors).map(score))) <
+      1e-12,
+  );
+  assert.deepEqual(computeAnchorOrder([...anchors].reverse(), links), order);
+  assert.deepEqual(computeAnchorOrder([], []), []);
+  assert.deepEqual(computeAnchorOrder(anchors, []), anchors);
+});
+
+test("anchors lie on the ellipse and bean positions average only connected anchors", async () => {
+  const {
+    computeAnchorPositions,
+    computeBeanInitialPosition,
+    constrainBeanPosition,
+  } = await import("./networkLayout.js");
+  const anchors = ["a", "b", "c", "d"].map((id) => ({ id }));
+  for (const [width, height] of [
+    [320, 340],
+    [700, 540],
+    [1400, 780],
+  ]) {
+    const positions = computeAnchorPositions(anchors, width, height);
+    assert.equal(positions.get("a").y, 55);
+    const p = computeBeanInitialPosition({ id: "bean" }, positions, [
+      { source: "bean", target: "a" },
+      { source: { id: "bean" }, target: { id: "b" } },
+      { source: "other", target: "c" },
+    ]);
+    assert.equal(p.x, (positions.get("a").x + positions.get("b").x) / 2);
+    assert.equal(p.y, (positions.get("a").y + positions.get("b").y) / 2);
+    const node = { x: width * 2, y: height * 2 };
+    constrainBeanPosition(node, networkLayout(width, height));
+    assert.ok(node.x < width && node.y < height);
+  }
+  assert.equal(
+    computeBeanInitialPosition({ id: "missing" }, new Map(), []),
+    null,
+  );
+});
