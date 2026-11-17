@@ -111,21 +111,19 @@ export function sunburstLabel(node, text) {
     const layout = fit(fontSize);
     if (layout.visible) return layout;
   }
-  // Every terminal tag remains labelled. Adapt only font size and orientation;
-  // never move editorial line breaks according to the available space.
-  if (!node.children?.length) {
-    let lower = 0;
-    let upper = 10;
-    let best = result;
-    for (let i = 0; i < 24; i++) {
-      const fontSize = (lower + upper) / 2;
-      const layout = fit(fontSize);
-      if (layout.visible) {
-        best = layout;
-        lower = fontSize;
-      } else upper = fontSize;
-    }
-    return best;
+  // Adapt font size and orientation across viewport sizes so that labels remain
+  // visible for all flavor tags, while impossible branch slivers stay hidden.
+  const minFontSize = node.children?.length ? 2.5 : 0;
+  let lower = minFontSize;
+  let upper = 10;
+  let best = result;
+  for (let i = 0; i < 24; i++) {
+    const fontSize = (lower + upper) / 2;
+    const layout = fit(fontSize);
+    if (layout.visible) {
+      best = layout;
+      lower = fontSize;
+    } else upper = fontSize;
   }
-  return result;
+  return best;
 }

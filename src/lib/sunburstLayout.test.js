@@ -231,3 +231,20 @@ test("left-side labels flip and all depths use the ring midpoint", () => {
     );
   }
 });
+
+test("branch tags like Roasted remain visible when window size is reduced", () => {
+  for (const width of [280, 320, 400, 500]) {
+    const radius = sunburstRadius(width, 450);
+    const node = {
+      depth: 1,
+      y0: radius / 4,
+      y1: radius / 2,
+      x0: 5.9135,
+      x1: 6.2831,
+      children: [{}],
+    };
+    const label = sunburstLabel(node, sunburstLabelLines("Roasted"));
+    assert.equal(label.visible, true, `Roasted should be visible at width ${width}`);
+    assert.ok(label.fontSize > 0);
+  }
+});
