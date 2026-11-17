@@ -8,24 +8,21 @@ import {
 } from "../lib/flavorJapanese";
 import { translateCountry } from "../lib/countryNames";
 import { useEffect, useRef } from "react";
-import { forceSimulation, forceCollide, forceX, forceY } from "d3-force";
 import { select } from "d3-selection";
 import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
 import {
   networkLayout,
   resizeNetworkNodes,
-  computeAnchorOrder,
+  anchorGeometry,
+  computeBeanTargetPosition,
   computeAnchorPositions,
-  computeBeanInitialPosition,
+  createBeanSimulation,
+  FORCE_SETTINGS,
   constrainBeanPosition,
 } from "../lib/networkLayout.js";
 import { drag } from "d3-drag";
 
-export const FORCE_SETTINGS = {
-  centroidStrength: 0.3,
-  beanRadius: 13,
-  interiorScale: 0.65,
-};
+export { FORCE_SETTINGS } from "../lib/networkLayout.js";
 
 const beanInfo = (b) => {
   const price = formatPrice(b.price_value, b.price_currency);
@@ -74,58 +71,56 @@ export default function FlavorNetworkDetail({
       source: nodeMap.get(l.source),
       target: nodeMap.get(l.target),
     }));
-    const anchors = computeAnchorOrder(
-      nodes.filter((n) => n.type !== "bean"),
-      links,
-    );
+    const anchors = nodes.filter((n) => n.type !== "bean");
     const updateTargets = (initialize = false) => {
       const positions = computeAnchorPositions(
         anchors,
         layout.width,
         layout.height,
+        links,
       );
       for (const n of anchors) {
         const p = positions.get(n.id);
         n.x = n.fx = p.x;
         n.y = n.fy = p.y;
       }
+      const selectedPositions = new Map(
+        anchors
+          .filter((n) => n.type === "center")
+          .map((n) => [n.id, positions.get(n.id)]),
+      );
       for (const n of nodes.filter((n) => n.type === "bean")) {
-        const p = computeBeanInitialPosition(n, positions, links) ?? {
+        const target = computeBeanTargetPosition(
+          n,
+          positions,
+          links,
+          selectedPositions,
+        ) ?? {
           x: layout.cx,
           y: layout.cy,
         };
-        // Pull the centroid inward uniformly, preserving the combination's
-        // direction and leaving a gap between beans and the anchor ring.
-        n.targetX =
-          layout.cx + (p.x - layout.cx) * FORCE_SETTINGS.interiorScale;
-        n.targetY =
-          layout.cy + (p.y - layout.cy) * FORCE_SETTINGS.interiorScale;
+        n.targetX = target.x;
+        n.targetY = target.y;
         if (initialize) {
-          n.x = n.targetX;
-          n.y = n.targetY;
+          n.x = target.x;
+          n.y = target.y;
         }
       }
     };
     updateTargets(true);
-    const simulation = forceSimulation(nodes)
-      .force(
-        "collide",
-        forceCollide((n) =>
-          n.type === "bean" ? FORCE_SETTINGS.beanRadius : 38,
-        ).iterations(3),
-      )
-      .force(
-        "x",
-        forceX((n) => n.targetX ?? n.fx).strength(
-          FORCE_SETTINGS.centroidStrength,
-        ),
-      )
-      .force(
-        "y",
-        forceY((n) => n.targetY ?? n.fy).strength(
-          FORCE_SETTINGS.centroidStrength,
-        ),
-      );
+    const simulation = createBeanSimulation(nodes, layout);
+    // A separate decorative layer; never participates in links or highlighting.
+    const selectedAnchors = anchors.filter((n) => n.type === "center");
+    const triangle = group
+      .append("path")
+      .attr("class", "network-triangle-guide")
+      .attr("fill", "none")
+      .attr("stroke", "#94704d")
+      .attr("stroke-width", 1)
+      .attr("stroke-opacity", 0.23)
+      .attr("stroke-dasharray", "5 6")
+      .attr("pointer-events", "none")
+      .attr("aria-hidden", "true");
     const edges = group
       .append("g")
       .attr("class", "network-edges")
@@ -133,7 +128,7 @@ export default function FlavorNetworkDetail({
       .data(links)
       .join("line")
       .attr("stroke", "#94704d")
-      .attr("stroke-opacity", (l) => (l.selected ? 0.32 : 0.12))
+      .attr("stroke-opacity", (l) => (l.selected ? 0.32 : 0.08))
       .attr("stroke-width", (l) => (l.selected ? 1.6 : 0.8));
 
     const highlight = (node) => {
@@ -150,7 +145,7 @@ export default function FlavorNetworkDetail({
             : 0.035
           : l.selected
             ? 0.32
-            : 0.12,
+            : 0.08,
       );
       group
         .selectAll(".network-node")
@@ -282,6 +277,12 @@ export default function FlavorNetworkDetail({
       );
 
     const render = () => {
+      triangle.attr(
+        "d",
+        selectedAnchors.length === 3
+          ? "M" + selectedAnchors.map((n) => n.x + "," + n.y).join("L") + "Z"
+          : null,
+      );
       for (const node of nodes) {
         if (node.type === "bean") constrainBeanPosition(node, layout);
       }
@@ -290,7 +291,11 @@ export default function FlavorNetworkDetail({
         .attr("y1", (l) => l.source.y)
         .attr("x2", (l) => l.target.x)
         .attr("y2", (l) => l.target.y);
-      items.attr("transform", (n) => `translate(${n.x},${n.y})`);
+      items.attr(
+        "transform",
+        (n) =>
+          `translate(${n.x},${n.y}) scale(${anchorGeometry(layout.width, layout.height).scale})`,
+      );
     };
     // Settle before first paint to avoid a large entrance animation.
     simulation.stop();
@@ -322,6 +327,13 @@ export default function FlavorNetworkDetail({
       resizeNetworkNodes(nodes, previous, layout);
       updateTargets();
       svg.attr("viewBox", `0 0 ${width} ${height}`);
+      simulation
+        .force("collide")
+        .radius(
+          (n) =>
+            (n.type === "bean" ? FORCE_SETTINGS.beanRadius : 38) *
+            anchorGeometry(width, height).scale,
+        );
       simulation.force("x").x((n) => n.targetX ?? n.fx);
       simulation.force("y").y((n) => n.targetY ?? n.fy);
       render();

@@ -1,3 +1,36 @@
+import { forceSimulation, forceCollide, forceX, forceY } from "d3-force";
+
+export const FORCE_SETTINGS = {
+  centroidStrength: 0.45,
+  beanRadius: 11,
+  collisionIterations: 4,
+};
+
+// No link force or shared center force: every bean has its own combination
+// target. Anchors remain fixed obstacles; their mutual layout is solved above.
+export function createBeanSimulation(nodes, layout) {
+  const { scale } = anchorGeometry(layout.width, layout.height);
+  return forceSimulation(nodes)
+    .force(
+      "collide",
+      forceCollide(
+        (n) => (n.type === "bean" ? FORCE_SETTINGS.beanRadius : 38) * scale,
+      ).iterations(FORCE_SETTINGS.collisionIterations),
+    )
+    .force(
+      "x",
+      forceX((n) => n.targetX ?? n.fx).strength(
+        FORCE_SETTINGS.centroidStrength,
+      ),
+    )
+    .force(
+      "y",
+      forceY((n) => n.targetY ?? n.fy).strength(
+        FORCE_SETTINGS.centroidStrength,
+      ),
+    );
+}
+
 export function networkLayout(width, height) {
   const unit = Math.max(
     0.55,
@@ -9,70 +42,152 @@ export function networkLayout(width, height) {
 const endpointId = (endpoint) =>
   typeof endpoint === "object" ? endpoint.id : endpoint;
 
-// Links contain only displayed beans, so population-wide flavor counts never
-// influence Jaccard. Sets also prevent duplicate links from inflating scores.
-export function computeAnchorOrder(flavorNodes, beanLinks) {
-  const anchors = [...flavorNodes].sort((a, b) =>
-    (a.flavor?.id ?? a.id).localeCompare(b.flavor?.id ?? b.id),
-  );
-  if (anchors.length < 3) return anchors;
-  const sets = new Map(anchors.map((n) => [n.id, new Set()]));
-  for (const link of beanLinks) {
-    const source = endpointId(link.source);
-    const target = endpointId(link.target);
-    if (sets.has(source)) sets.get(source).add(target);
-    if (sets.has(target)) sets.get(target).add(source);
-  }
-  const scores = anchors.map((a) =>
-    anchors.map((b) => {
-      const left = sets.get(a.id);
-      const right = sets.get(b.id);
-      const intersection = [...left].filter((id) => right.has(id)).length;
-      const union = left.size + right.size - intersection;
-      return union ? intersection / union : 0;
-    }),
-  );
-  let best = anchors.map((_, i) => i);
-  let bestScore = -1;
-  // Fix the first anchor to remove rotations; skip mirrored tours. At most
-  // 7! / 2 tours (8 anchors). Sorted traversal breaks ties deterministically.
-  const visit = (order, remaining, score) => {
-    if (!remaining.length) {
-      if (order[1] > order[order.length - 1]) return;
-      const total = score + scores[order[order.length - 1]][0];
-      if (total > bestScore + 1e-12) {
-        bestScore = total;
-        best = [...order];
-      }
-      return;
-    }
-    for (const next of remaining) {
-      visit(
-        [...order, next],
-        remaining.filter((i) => i !== next),
-        score + scores[order[order.length - 1]][next],
-      );
-    }
+// Shared geometry keeps the fixed-anchor solver independent of D3 forces.
+export function anchorGeometry(width, height) {
+  const scale = Math.min(1, width / 320, height / 340);
+  return {
+    scale,
+    cx: width / 2,
+    cy: height / 2,
+    rx: Math.max(1e-6, width / 2 - 52 * scale),
+    ry: Math.max(1e-6, height / 2 - 46 * scale),
+    selectedRadius: Math.min(110, width * 0.15, height * 0.16),
   };
-  visit([0], best.slice(1), 0);
-  return best.map((i) => anchors[i]);
 }
 
-export function computeAnchorPositions(anchorNodes, width, height) {
-  const rx = Math.max(0, width / 2 - 65);
-  const ry = Math.max(0, height / 2 - 55);
+export function computeSelectedPositions(selected, width, height) {
+  const { cx, cy, selectedRadius, rx, ry, scale } = anchorGeometry(
+    width,
+    height,
+  );
+  // Equilateral triangle height = 1.5 * circumradius. Aim for 55% of
+  // viewport height, limiting by width and the outer ring on narrow screens.
+  const r =
+    selected.length === 3
+      ? Math.min(
+          (height * 0.55) / 1.5,
+          ry - 8 * scale,
+          0.94 / Math.hypot(Math.sqrt(3) / (2 * rx), 1 / (2 * ry)),
+        )
+      : selected.length === 2
+        ? Math.min(width * 0.22, rx - 44 * scale, height * 0.3)
+        : selectedRadius;
   return new Map(
-    anchorNodes.map((node, i) => {
-      const angle = -Math.PI / 2 + (i * Math.PI * 2) / anchorNodes.length;
+    selected.map((node, i) => {
+      if (selected.length === 1) return [node.id, { x: cx, y: cy }];
+      if (selected.length === 2)
+        return [node.id, { x: cx + (i === 0 ? -r : r), y: cy }];
+      // Selection order is always top, bottom-left, bottom-right.
+      const angle = -Math.PI / 2 - (i * Math.PI * 2) / 3;
       return [
         node.id,
-        {
-          x: width / 2 + Math.cos(angle) * rx,
-          y: height / 2 + Math.sin(angle) * ry,
-        },
+        { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r },
       ];
     }),
   );
+}
+
+function displayedBeanSets(anchors, links) {
+  const sets = new Map(anchors.map((n) => [n.id, new Set()]));
+  for (const link of links) {
+    const source = endpointId(link.source),
+      target = endpointId(link.target);
+    if (sets.has(source)) sets.get(source).add(target);
+    if (sets.has(target)) sets.get(target).add(source);
+  }
+  return sets;
+}
+
+const jaccard = (left, right) => {
+  const intersection = [...left].filter((id) => right.has(id)).length;
+  const union = left.size + right.size - intersection;
+  return union ? intersection / union : 0;
+};
+
+function stableAngle(node) {
+  let hash = 2166136261;
+  for (const c of node.flavor?.id ?? node.id)
+    hash = Math.imul(hash ^ c.charCodeAt(0), 16777619);
+  return ((hash >>> 0) / 4294967296) * Math.PI * 2;
+}
+
+export function computeAnchorPositions(anchorNodes, width, height, links = []) {
+  const selected = anchorNodes.filter((n) => n.type === "center");
+  const related = anchorNodes
+    .filter((n) => n.type === "flavor")
+    .sort((a, b) => (a.flavor?.id ?? a.id).localeCompare(b.flavor?.id ?? b.id));
+  const positions = computeSelectedPositions(selected, width, height);
+  const geometry = anchorGeometry(width, height);
+  const { cx, cy, rx, ry, scale } = geometry;
+  const sets = displayedBeanSets(anchorNodes, links);
+  const directions = related.map((node) => {
+    let dx = 0,
+      dy = 0;
+    for (const anchor of selected) {
+      const p = positions.get(anchor.id);
+      const length = Math.hypot(p.x - cx, p.y - cy);
+      const weight = jaccard(sets.get(node.id), sets.get(anchor.id));
+      if (length > 1e-9) {
+        dx += (weight * (p.x - cx)) / length;
+        dy += (weight * (p.y - cy)) / length;
+      }
+    }
+    // One central selection, zero scores and balanced weights have no unique
+    // direction. A flavor-ID hash gives them a stable, data-independent angle.
+    return Math.hypot(dx, dy) < 1e-9 ? stableAngle(node) : Math.atan2(dy, dx);
+  });
+  // Deterministic beam search on the outer ellipse: minimize angular deviation
+  // jointly, subject to circle clearance. Anchors never enter the simulation
+  // to resolve their mutual overlaps. 96 samples and 160 beams bound the work.
+  let beams = [{ points: [], cost: 0 }];
+  for (const direction of directions) {
+    const candidates = Array.from({ length: 96 }, (_, i) => {
+      const angle = direction + (i * Math.PI * 2) / 96;
+      // Intersect a physical direction (not an ellipse parameter) with the ring.
+      const radius = 1 / Math.hypot(Math.cos(angle) / rx, Math.sin(angle) / ry);
+      return {
+        x: cx + Math.cos(angle) * radius,
+        y: cy + Math.sin(angle) * radius,
+        cost:
+          Math.acos(Math.max(-1, Math.min(1, Math.cos(angle - direction)))) **
+          2,
+      };
+    }).filter((p) =>
+      [...positions.values()].every(
+        (q) => Math.hypot(p.x - q.x, p.y - q.y) >= 72 * scale,
+      ),
+    );
+    const next = [];
+    for (const beam of beams)
+      for (const p of candidates) {
+        if (
+          beam.points.every(
+            (q) => Math.hypot(p.x - q.x, p.y - q.y) >= 70 * scale,
+          )
+        ) {
+          next.push({ points: [...beam.points, p], cost: beam.cost + p.cost });
+        }
+      }
+    next.sort((a, b) => a.cost - b.cost);
+    beams = next.slice(0, 160);
+    if (!beams.length) throw new Error("Insufficient space for flavor anchors");
+  }
+  related.forEach((node, i) => {
+    const { x, y } = beams[0].points[i];
+    positions.set(node.id, { x, y });
+  });
+  return positions;
+}
+
+// Only selected anchors define a bean's combination. Related links are visual
+// connections and must never move the centroid, even if there are many of them.
+export function computeBeanTargetPosition(
+  bean,
+  positions,
+  links,
+  selectedPositions,
+) {
+  return computeBeanInitialPosition(bean, selectedPositions, links);
 }
 
 export function computeBeanInitialPosition(beanNode, anchorPositionMap, links) {
@@ -93,17 +208,13 @@ export function computeBeanInitialPosition(beanNode, anchorPositionMap, links) {
   };
 }
 
-// Leave a gap to the anchor ring even for beans connected to just one flavor.
+// Bound to the viewport, not the old central ellipse: that ellipse would pull
+// beans away from the enlarged triangle's vertices and edge midpoints.
 export function constrainBeanPosition(node, layout) {
-  const rx = Math.max(1, (layout.width / 2 - 65) * 0.8);
-  const ry = Math.max(1, (layout.height / 2 - 55) * 0.8);
-  const dx = node.x - layout.cx;
-  const dy = node.y - layout.cy;
-  const radius = Math.hypot(dx / rx, dy / ry);
-  if (radius > 1) {
-    node.x = layout.cx + dx / radius;
-    node.y = layout.cy + dy / radius;
-  }
+  const geometry = anchorGeometry(layout.width, layout.height);
+  const margin = 18 * geometry.scale;
+  node.x = Math.max(margin, Math.min(layout.width - margin, node.x));
+  node.y = Math.max(margin, Math.min(layout.height - margin, node.y));
 }
 
 // Keep the same node objects, including inspected nodes and drag pinning.
