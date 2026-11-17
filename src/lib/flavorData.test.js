@@ -167,3 +167,24 @@ test("multiple selections match independent paths and rank all-three first", () 
     graph.beans.map((b) => b.id),
   );
 });
+
+test("only the five highest ranked related flavors from displayed beans are included", () => {
+  const rows = Array.from({ length: 50 }, (_, i) => ({
+    tasting_notes_sca_nodes:
+      i < 40 ? "Selected; A; B; C; D; E; F; G" : "Selected; Hidden",
+    tasting_notes_confidence: i < 40 ? "1" : "0.1",
+  }));
+  const graph = buildFlavorNetwork(
+    buildFlavorData(makeCsv(rows)),
+    pathId(["Selected"]),
+  );
+  const related = graph.nodes.filter((n) => n.type === "flavor");
+  assert.equal(related.length, 5);
+  assert.deepEqual(
+    related.map((n) => n.flavor.name),
+    ["A", "B", "C", "D", "E"],
+  );
+  assert.equal(graph.beans.length, 40);
+  assert.equal(graph.nodes.find((n) => n.type === "center").count, 50);
+  assert.ok(related.every((n) => n.count === 40));
+});
