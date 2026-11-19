@@ -15,16 +15,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/minmmmmin/sandbox.git"
+    "url": "git+https://github.com/vdslab/theme2026-suimin.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "coffee",
+    "visualization",
+    "react",
+    "d3"
+  ],
+  "author": "vdslab",
+  "license": "MIT",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/minmmmmin/sandbox/issues"
+    "url": "https://github.com/vdslab/theme2026-suimin/issues"
   },
-  "homepage": "https://github.com/minmmmmin/sandbox#readme",
+  "homepage": "https://github.com/vdslab/theme2026-suimin#readme",
   "dependencies": {
     "d3-dsv": "^3.0.1",
     "d3-force": "^3.0.0",
