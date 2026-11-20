@@ -11,7 +11,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { csvParse } from "d3-dsv";
 import { aggregateFlavorRows } from "../src/lib/flavorData.js";
 
-const VERSION = "2026.10";
+const VERSION = "2026.11";
 const source = new URL(
   `../data/private/roasterdb/${VERSION}/roasterdb_export.csv`,
   import.meta.url,
