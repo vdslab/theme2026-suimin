@@ -23,14 +23,21 @@ export const buildFlavorData = (csv) =>
   buildFlavorIndex(aggregateFlavorRows(csvParse(csv.replace(/^\uFEFF/, ""))));
 
 // Merges CSV rows into one record per product (roaster \u00D7 product_id).
-export function aggregateFlavorRows(rows) {
+// `keepTag(descriptor, description)` can drop mis-extracted tags; dropped
+// counts per descriptor are returned.
+export function aggregateFlavorRows(rows, keepTag = () => true) {
   const products = new Map();
+  const dropped = {};
   rows.forEach((row, index) => {
     const id = JSON.stringify([
       row.source_roaster,
       row.product_id || `row-${index}`,
     ]);
-    const paths = parseFlavorPaths(row.tasting_notes_sca_nodes);
+    const paths = parseFlavorPaths(row.tasting_notes_sca_nodes).filter((p) => {
+      const keep = keepTag(p.at(-1), row.tasting_notes_raw ?? "");
+      if (!keep) dropped[p.at(-1)] = (dropped[p.at(-1)] || 0) + 1;
+      return keep;
+    });
     const existing = products.get(id);
     if (existing) {
       existing.paths = [
@@ -54,6 +61,7 @@ export function aggregateFlavorRows(rows) {
     beans: [...products.values()],
     totalRows: rows.length,
     totalProducts: products.size,
+    dropped,
   };
 }
 

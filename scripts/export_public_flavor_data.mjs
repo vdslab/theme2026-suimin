@@ -6,9 +6,13 @@
 // displays, for products that carry flavor tags. Seller descriptions (tasting_notes_raw)
 // are deliberately left out; `npm run dev` adds them locally from the private JSON.
 //
+// Mis-extracted tags (honey process, the coffee cherry, orange blossom, …) are
+// dropped with the same rules as scripts/flavor_analysis.py (src/lib/flavorCorrections.js).
+//
 // Usage: npm run export:flavor-data
 import { readFile, writeFile } from "node:fs/promises";
 import { csvParse } from "d3-dsv";
+import { keepTag } from "../src/lib/flavorCorrections.js";
 import { aggregateFlavorRows } from "../src/lib/flavorData.js";
 
 const VERSION = "2026.11";
@@ -35,9 +39,11 @@ const FIELDS = [
 ];
 
 const csv = await readFile(source, "utf8");
-const { beans, totalRows, totalProducts } = aggregateFlavorRows(
+const { beans, totalRows, totalProducts, dropped } = aggregateFlavorRows(
   csvParse(csv.replace(/^﻿/, "")),
+  keepTag,
 );
+console.log("dropped mis-extracted tags (CSV rows):", dropped);
 
 const publicBeans = beans
   .filter((bean) => bean.paths.length)
