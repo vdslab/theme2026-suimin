@@ -8,7 +8,10 @@ import FlavorMatrix, {
 } from "./components/FlavorMatrix";
 import SunburstFlavorChart from "./components/SunburstFlavorChart";
 import { useFlavorData } from "./hooks/useFlavorData";
-import { MIN_ORIGIN_BEANS } from "./lib/flavorStats";
+import { translateCountry } from "./lib/countryNames";
+import { flavorName } from "./lib/flavorJapanese";
+import { matrixHighlights } from "./lib/flavorMatrix";
+import { formatBags, MIN_ORIGIN_BEANS } from "./lib/flavorStats";
 import "./flavor-explorer.css";
 
 export const datasetLabel = (version) => {
@@ -57,8 +60,26 @@ function Toggle({ pressed, onClick, children }) {
   );
 }
 
+export function MatrixHighlights({ matrix }) {
+  const items = matrixHighlights(matrix);
+  if (!items.length) return null;
+  return (
+    <ul className="flavor-matrix-highlights">
+      {items.map((c) => (
+        <li key={`${c.i}-${c.j}`}>
+          <b>{translateCountry(matrix.origins[c.j])}</b>の豆は、
+          <b>{flavorName(matrix.rows[c.i].name)}</b>
+          の味が書かれた豆が平均の{c.ratio.toFixed(1)}倍（10袋中
+          {formatBags(c.p)}袋）
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function MatrixSection({ data, attributes, selectedId, onSelect }) {
-  const { matrix, orders } = useFlavorMatrix(data, attributes);
+  const [level, setLevel] = useState("mid");
+  const { matrix, orders, notes } = useFlavorMatrix(data, attributes, level);
   const [similar, setSimilar] = useState(true);
   const [vsup, setVsup] = useState(true);
   const [cell, setCell] = useState(null);
@@ -66,13 +87,19 @@ function MatrixSection({ data, attributes, selectedId, onSelect }) {
     <section className="flavor-card flavor-matrix-card">
       <div className="flavor-section-heading flavor-network-heading">
         <div>
-          <span>全体マップ</span>
+          <span>味 × 産地の早見表</span>
           <h2>どの産地で、どの味に出会いやすいか</h2>
           <p>
-            色は、その産地の豆で全体平均より出やすいか（茶）、出にくいか（青緑）。件数が少なく確かでないマスほど、色が薄くまとまります。行を押すと上の詳細に切り替わります。
+            茶色が濃いほど、その産地の豆に、その味が平均より多く書かれています（青緑は少ない）。件数が少なく確かでないマスは、薄い色にまとめています。行を押すと上の詳細に切り替わります。
           </p>
         </div>
         <div className="flavor-toggle-row">
+          <Toggle
+            pressed={level === "mid"}
+            onClick={() => setLevel((v) => (v === "mid" ? "leaf" : "mid"))}
+          >
+            {level === "mid" ? "味をまとめて表示" : "味を細かく表示"}
+          </Toggle>
           <Toggle pressed={similar} onClick={() => setSimilar((v) => !v)}>
             {similar ? "似ている順" : "ホイール順"}
           </Toggle>
@@ -81,10 +108,13 @@ function MatrixSection({ data, attributes, selectedId, onSelect }) {
           </Toggle>
         </div>
       </div>
+      <MatrixHighlights matrix={matrix} />
       <div className="flavor-matrix-scroll">
         <FlavorMatrix
           matrix={matrix}
           orders={orders}
+          notes={notes}
+          level={level}
           order={similar ? "similar" : "wheel"}
           color={vsup ? "vsup" : "plain"}
           selectedId={selectedId}
@@ -101,12 +131,12 @@ function MatrixSection({ data, attributes, selectedId, onSelect }) {
         <MatrixLegend color={vsup ? "vsup" : "plain"} />
         <p className="flavor-note">
           {similar
-            ? "行と列は出方の似ている順（階層クラスタリング＋最適葉順序）。端の線は、近くでつながるほど出方が似ていることを表す。列のすき間は産地を4つのまとまりに分けた位置。"
+            ? "行と列は、出方の似ているものが隣に来るように並べています（階層クラスタリング＋最適葉順序）。すき間はまとまりの区切りで、右と下にそのまとまりの特徴を書いています。"
             : "行は SCA フレーバーホイールの順、列は豆の件数の多い順。"}
           {vsup
-            ? "不確かさは、割合の95%区間の幅で4段階に分けた（VSUP）。"
-            : "件数0のマスは最も濃い青になる。"}
-          焙煎度は豆の一部でしか分からないため、列には入れていない。
+            ? "確かさは、割合の95%区間の幅で4段階に分けています（VSUP）。"
+            : "件数0のマスは最も濃い青になります。"}
+          焙煎度は豆の一部でしか分からないため、列には入れていません。
         </p>
       </div>
     </section>
@@ -159,7 +189,9 @@ export default function FlavorExplorerPage() {
               <div className="flavor-section-heading flavor-network-heading">
                 <div>
                   <h2>
-                    {view === "sunburst" ? "味の全体像" : "味の性格マップ"}
+                    {view === "sunburst"
+                      ? "味の全体像"
+                      : "焙煎の味？産地の味？"}
                   </h2>
                   <p>
                     {view === "sunburst"
@@ -178,7 +210,7 @@ export default function FlavorExplorerPage() {
                     pressed={view === "character"}
                     onClick={() => setView("character")}
                   >
-                    性格マップ
+                    焙煎か産地か
                   </Toggle>
                 </div>
               </div>

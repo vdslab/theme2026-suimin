@@ -330,3 +330,11 @@
 }
 .flavor-bag-chart{max-width:460px}
 .flavor-character-map svg{max-width:560px;margin:0 auto}
+.flavor-matrix .group-note text{font-size:11.5px;fill:#6f4e37;font-weight:600}
+.flavor-matrix .group-note path{stroke:#b49c80;stroke-width:1.2}
+.flavor-matrix-highlights{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.flavor-matrix-highlights li{font-size:12.5px;background:#f2e8d8;border-radius:9999px;padding:4px 14px;color:#493426}
+.flavor-matrix-highlights b{font-weight:650}
+.flavor-origin-map{width:100%;max-width:520px;height:auto;display:block;font-family:Inter,"Noto Sans JP",sans-serif;background:#f7efe3;border-radius:10px;margin:4px 0}
+.flavor-origin-map .land path{fill:#eadcc9;stroke:#fffbf3;stroke-width:.5}
+.flavor-origin-map .map-label{font-size:11px;fill:#2a211b;font-weight:600;paint-order:stroke;stroke:#f7efe3;stroke-width:3px}

@@ -4,6 +4,7 @@ import { getFlavorColor } from "../lib/flavorColorUtils";
 import { flavorName } from "../lib/flavorJapanese";
 import {
   buildMatrix,
+  matrixGroupNotes,
   matrixOrders,
   plainColor,
   UNCERTAINTY_JA,
@@ -13,50 +14,50 @@ import {
 import { formatBags } from "../lib/flavorStats";
 import { sunburstHierarchy } from "../lib/sunburstLayout";
 
-// Rows with fewer tagged beans than this are left out of the map.
+// Rows with fewer tagged beans than this are left out of the table.
 const MIN_ROW_BEANS = 20;
-const CW = 20;
-const RH = 15;
-const LABW = 128;
-const TOP = 78;
-const DENW = 48;
-const DENH = 36;
+const SIZES = {
+  mid: { cw: 34, rh: 26, font: 12.5 },
+  leaf: { cw: 22, rh: 17, font: 11.5 },
+};
+const LABW = 150;
+const TOP = 84;
+const NOTE_W = 170;
+const NOTE_H = 48;
 const RAMP = Array.from({ length: 17 }, (_, s) => -2 + s / 4);
 
-// Leaves in the sunburst's (SCA wheel) order.
-export function matrixRows(data) {
-  return sunburstHierarchy(data.root)
-    .leaves()
+// Rows in the sunburst's (SCA wheel) order: middle categories ("mid") or
+// individual flavors ("leaf").
+export function matrixRows(data, level) {
+  const root = sunburstHierarchy(data.root);
+  const nodes =
+    level === "mid"
+      ? root.descendants().filter((n) => n.depth === 2)
+      : root.leaves();
+  return nodes
     .map((n) => n.data)
     .filter((n) => n.path.length >= 2 && n.beanIds.size >= MIN_ROW_BEANS);
 }
 
-export function useFlavorMatrix(data, attributes) {
+export function useFlavorMatrix(data, attributes, level = "mid") {
   return useMemo(() => {
-    const matrix = buildMatrix(data, attributes, matrixRows(data));
-    return { matrix, orders: matrixOrders(matrix) };
-  }, [data, attributes]);
+    const matrix = buildMatrix(data, attributes, matrixRows(data, level));
+    const orders = matrixOrders(matrix, {
+      rowGroups: level === "mid" ? 4 : 5,
+      columnGroups: 4,
+    });
+    return {
+      matrix,
+      orders,
+      notes: matrixGroupNotes(matrix, orders.similar, {
+        name: rowLabel,
+        origin: translateCountry,
+      }),
+    };
+  }, [data, attributes, level]);
 }
 
-// Dendrogram segments from a tree whose leaves are drawn in order.
-function dendrogram(tree, leafPos, depth) {
-  const max = tree.height || 1;
-  const segs = [];
-  const walk = (node) => {
-    if (node.index !== undefined) return { pos: leafPos(node.index), h: 0 };
-    const a = walk(node.left);
-    const b = walk(node.right);
-    const h = node.height / max;
-    segs.push(
-      [a.pos, a.h, a.pos, h],
-      [a.pos, h, b.pos, h],
-      [b.pos, b.h, b.pos, h],
-    );
-    return { pos: (a.pos + b.pos) / 2, h };
-  };
-  walk(tree);
-  return segs.map(([p1, h1, p2, h2]) => [p1, h1 * depth, p2, h2 * depth]);
-}
+const rowLabel = (node) => flavorName(node.name);
 
 export function MatrixLegend({ color }) {
   if (color === "plain") {
@@ -78,13 +79,13 @@ export function MatrixLegend({ color }) {
           />
         ))}
         <text x="0" y="28" className="leg">
-          ×1/4以下
+          平均の1/4以下
         </text>
         <text x={8 * 15 + 7.5} y="28" textAnchor="middle" className="leg">
           平均
         </text>
         <text x="255" y="28" textAnchor="end" className="leg">
-          ×4以上
+          4倍以上
         </text>
       </svg>
     );
@@ -100,30 +101,31 @@ export function MatrixLegend({ color }) {
     >
       {VSUP_BINS.map((nb, level) => (
         <g key={nb}>
-          {Array.from({ length: nb }, (_, b) => (
-            <rect
-              // biome-ignore lint/suspicious/noArrayIndexKey: fixed bins
-              key={b}
-              x={X0 + (b * LW) / nb}
-              y={2 + level * 12}
-              width={LW / nb}
-              height="11"
-              fill={vsupColor(-2 + ((b + 0.5) * 4) / nb, level)}
-            />
-          ))}
+          {Array.from({ length: nb }, (_, b) => -2 + ((b + 0.5) * 4) / nb).map(
+            (center, b) => (
+              <rect
+                key={center}
+                x={X0 + (b * LW) / nb}
+                y={2 + level * 12}
+                width={LW / nb}
+                height="11"
+                fill={vsupColor(center, level)}
+              />
+            ),
+          )}
           <text x={X0 - 6} y={11 + level * 12} textAnchor="end" className="leg">
             {UNCERTAINTY_JA[level]}
           </text>
         </g>
       ))}
       <text x={X0} y="62" className="leg">
-        ×1/4以下
+        平均の1/4以下
       </text>
       <text x={X0 + LW / 2} y="62" textAnchor="middle" className="leg">
         平均
       </text>
       <text x={X0 + LW} y="62" textAnchor="end" className="leg">
-        ×4以上
+        4倍以上
       </text>
     </svg>
   );
@@ -131,12 +133,14 @@ export function MatrixLegend({ color }) {
 
 export function describeCell(matrix, i, j) {
   const c = matrix.cells[i][j];
-  return `${translateCountry(matrix.origins[j])} × ${flavorName(matrix.rows[i].name)}：${c.t.toLocaleString()}袋中${c.k}袋（10袋中${formatBags(c.p)}袋）、全体平均の${c.ratio.toFixed(2)}倍、確かさ：${UNCERTAINTY_JA[c.level]}`;
+  return `${translateCountry(matrix.origins[j])} × ${rowLabel(matrix.rows[i])}：${c.t.toLocaleString()}袋中${c.k}袋（10袋中${formatBags(c.p)}袋）、全体平均の${c.ratio.toFixed(2)}倍、確かさ：${UNCERTAINTY_JA[c.level]}`;
 }
 
 export default function FlavorMatrix({
   matrix,
   orders,
+  notes,
+  level = "mid",
   order = "similar",
   color = "vsup",
   selectedId,
@@ -146,46 +150,31 @@ export default function FlavorMatrix({
   const [hover, setHover] = useState(null);
   const similar = order === "similar";
   const o = orders[order];
+  const { cw, rh, font } = SIZES[level];
   const layout = useMemo(() => {
+    // A gap between groups: SCA categories in wheel order, clusters otherwise.
+    const rowGroup = (i) =>
+      similar ? o.rowGroups.get(i) : matrix.rows[i].path[0];
+    const colGroup = (j) => (similar ? o.colGroups.get(j) : 0);
     const rowY = [];
     let y = TOP;
     o.rows.forEach((i, p) => {
-      if (
-        !similar &&
-        p &&
-        matrix.rows[i].path[0] !== matrix.rows[o.rows[p - 1]].path[0]
-      )
-        y += 6;
+      if (p && rowGroup(i) !== rowGroup(o.rows[p - 1])) y += 8;
       rowY[i] = y;
-      y += RH;
+      y += rh;
     });
     const colX = [];
     let x = LABW;
     o.cols.forEach((j, p) => {
-      if (
-        similar &&
-        p &&
-        o.colGroups?.get(j) !== o.colGroups?.get(o.cols[p - 1])
-      )
-        x += 5;
+      if (p && colGroup(j) !== colGroup(o.cols[p - 1])) x += 8;
       colX[j] = x;
-      x += CW;
+      x += cw;
     });
-    const gridR = x;
-    const gridB = y;
-    const rowDen =
-      similar && o.rowTree
-        ? dendrogram(o.rowTree, (i) => rowY[i] + RH / 2, DENW - 10)
-        : [];
-    const colDen =
-      similar && o.colTree
-        ? dendrogram(o.colTree, (j) => colX[j] + CW / 2, DENH - 10)
-        : [];
-    return { rowY, colX, gridR, gridB, rowDen, colDen };
-  }, [matrix, o, similar]);
+    return { rowY, colX, gridR: x, gridB: y };
+  }, [matrix, o, similar, cw, rh]);
   const { rowY, colX, gridR, gridB } = layout;
-  const W = gridR + (similar ? DENW : 44);
-  const H = gridB + (similar ? DENH : 6);
+  const W = gridR + (similar ? NOTE_W : 12);
+  const H = gridB + (similar ? NOTE_H : 6);
   const setCell = (cell) => {
     setHover(cell);
     onHover?.(cell);
@@ -197,14 +186,15 @@ export default function FlavorMatrix({
       width={W}
       height={H}
       role="img"
-      aria-label={`味と産地のヒートマップ（${similar ? "似ている順" : "ホイール順"}、${color === "vsup" ? "不確かさを込めた配色" : "普通の配色"}）`}
+      aria-label={`味と産地の早見表（${similar ? "似ている順" : "ホイール順"}、${color === "vsup" ? "不確かさを込めた配色" : "普通の配色"}）`}
       onMouseLeave={() => setCell(null)}
     >
       {o.cols.map((j) => (
         <text
           key={j}
           className="col"
-          transform={`translate(${colX[j] + CW / 2 + 3},${TOP - 6}) rotate(-60)`}
+          fontSize={font}
+          transform={`translate(${colX[j] + cw / 2 + 4},${TOP - 6}) rotate(-55)`}
         >
           {translateCountry(matrix.origins[j])}
         </text>
@@ -219,7 +209,7 @@ export default function FlavorMatrix({
                 x="0"
                 y={rowY[i]}
                 width={gridR}
-                height={RH}
+                height={rh}
                 fill="#6f4e37"
                 opacity="0.12"
               />
@@ -231,7 +221,7 @@ export default function FlavorMatrix({
             >
               <rect
                 x="2"
-                y={rowY[i] + 3.5}
+                y={rowY[i] + rh / 2 - 4}
                 width="8"
                 height="8"
                 rx="2"
@@ -239,10 +229,11 @@ export default function FlavorMatrix({
               />
               <text
                 x="16"
-                y={rowY[i] + 11.5}
+                y={rowY[i] + rh / 2 + font * 0.36}
+                fontSize={font}
                 className={active ? "row active" : "row"}
               >
-                {flavorName(node.name)}
+                {rowLabel(node)}
               </text>
             </g>
             {o.cols.map((j) => {
@@ -251,11 +242,11 @@ export default function FlavorMatrix({
                 // biome-ignore lint/a11y/noStaticElementInteractions: cells mirror the row label and the hover readout
                 <rect
                   key={j}
-                  x={colX[j] + 0.75}
-                  y={rowY[i] + 0.75}
-                  width={CW - 1.5}
-                  height={RH - 1.5}
-                  rx="2"
+                  x={colX[j] + 1}
+                  y={rowY[i] + 1}
+                  width={cw - 2}
+                  height={rh - 2}
+                  rx="3"
                   fill={
                     color === "vsup" ? vsupColor(c.v, c.level) : plainColor(c.v)
                   }
@@ -271,20 +262,58 @@ export default function FlavorMatrix({
           </g>
         );
       })}
+      {similar &&
+        notes.rows.map((g) => {
+          const ys = g.members.map((i) => rowY[i]);
+          const y0 = Math.min(...ys);
+          const y1 = Math.max(...ys) + rh;
+          return (
+            <g key={`r${g.id}`} className="group-note">
+              <path d={`M${gridR + 6},${y0 + 2}h5V${y1 - 2}h-5`} fill="none" />
+              <text x={gridR + 16} y={(y0 + y1) / 2 - 2}>
+                {g.lines[0]}
+              </text>
+              {g.lines[1] && (
+                <text x={gridR + 16} y={(y0 + y1) / 2 + 12}>
+                  {g.lines[1]}
+                </text>
+              )}
+            </g>
+          );
+        })}
+      {similar &&
+        notes.cols.map((g, q) => {
+          const xs = g.members.map((j) => colX[j]);
+          const x0 = Math.min(...xs);
+          const x1 = Math.max(...xs) + cw;
+          return (
+            <g key={`c${g.id}`} className="group-note">
+              <path d={`M${x0 + 2},${gridB + 6}v5H${x1 - 2}v-5`} fill="none" />
+              {/* neighbouring notes alternate rows so narrow groups do not collide */}
+              <text
+                x={(x0 + x1) / 2}
+                y={gridB + 24 + (q % 2) * 15}
+                textAnchor="middle"
+              >
+                {g.lines[0]}
+              </text>
+            </g>
+          );
+        })}
       {hover && (
         <g pointerEvents="none">
           <rect
             x={LABW}
             y={rowY[hover[0]]}
             width={gridR - LABW}
-            height={RH}
+            height={rh}
             fill="none"
             stroke="#6f4e37"
           />
           <rect
             x={colX[hover[1]]}
             y={TOP}
-            width={CW}
+            width={cw}
             height={gridB - TOP}
             fill="none"
             stroke="#6f4e37"
@@ -292,35 +321,15 @@ export default function FlavorMatrix({
           <rect
             x={colX[hover[1]] - 1.5}
             y={rowY[hover[0]] - 1.5}
-            width={CW + 3}
-            height={RH + 3}
-            rx="3"
+            width={cw + 3}
+            height={rh + 3}
+            rx="4"
             fill="none"
             stroke="#2a211b"
             strokeWidth="2"
           />
         </g>
       )}
-      {layout.rowDen.map(([p1, h1, p2, h2]) => (
-        <line
-          key={`r${p1}-${h1}-${p2}-${h2}`}
-          x1={gridR + 5 + h1}
-          y1={p1}
-          x2={gridR + 5 + h2}
-          y2={p2}
-          className="den"
-        />
-      ))}
-      {layout.colDen.map(([p1, h1, p2, h2]) => (
-        <line
-          key={`c${p1}-${h1}-${p2}-${h2}`}
-          x1={p1}
-          y1={gridB + 5 + h1}
-          x2={p2}
-          y2={gridB + 5 + h2}
-          className="den"
-        />
-      ))}
     </svg>
   );
 }

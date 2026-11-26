@@ -20,7 +20,7 @@ export default function FlavorMatrixPage({ variant }) {
       <header className="flavor-header">
         <div>
           <span className="flavor-eyebrow">コーヒー研究室</span>
-          <h1>味と産地の全体マップ</h1>
+          <h1>味と産地の早見表</h1>
         </div>
       </header>
       {error ? (
@@ -35,7 +35,7 @@ export default function FlavorMatrixPage({ variant }) {
 }
 
 function MatrixOnly({ data, attributes, proposed }) {
-  const { matrix, orders } = useFlavorMatrix(data, attributes);
+  const { matrix, orders, notes } = useFlavorMatrix(data, attributes, "mid");
   const [cell, setCell] = useState(null);
   const color = proposed ? "vsup" : "plain";
   return (
@@ -44,7 +44,7 @@ function MatrixOnly({ data, attributes, proposed }) {
         <div className="flavor-section-heading">
           <h2>どの産地で、どの味に出会いやすいか</h2>
           <p>
-            色は、その産地の豆で全体平均より出やすいか（茶）、出にくいか（青緑）。
+            茶色が濃いほど、その産地の豆に、その味が平均より多く書かれています（青緑は少ない）。
             {proposed
               ? "件数が少なく確かでないマスほど、色が薄くまとまります。"
               : ""}
@@ -54,6 +54,8 @@ function MatrixOnly({ data, attributes, proposed }) {
           <FlavorMatrix
             matrix={matrix}
             orders={orders}
+            notes={notes}
+            level="mid"
             order={proposed ? "similar" : "wheel"}
             color={color}
             onHover={setCell}

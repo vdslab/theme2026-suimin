@@ -102,15 +102,17 @@ export function buildMatrix(data, attributes, rowNodes) {
   return { rows: rowNodes, origins, cells };
 }
 
-// Row and column orders for both views. "wheel" keeps the SCA order of
-// rowNodes and origins by bean count; "similar" reorders both.
-export function matrixOrders(matrix, columnGroups = 4) {
+// Row and column orders for both views. "wheel" keeps the SCA order of the
+// rows and origins by bean count; "similar" reorders both and cuts each tree
+// into a few groups, which are separated by gaps and named in the margin.
+export function matrixOrders(matrix, { rowGroups = 4, columnGroups = 4 } = {}) {
   const rowVectors = matrix.cells.map((row) => row.map((c) => c.smooth));
   const colVectors = matrix.origins.map((_, j) =>
     matrix.cells.map((row) => row[j].smooth),
   );
   const rows = reorder(rowVectors);
   const cols = reorder(colVectors);
+  const one = (n) => new Map(Array.from({ length: n }, (_, i) => [i, 0]));
   return {
     wheel: {
       rows: matrix.rows.map((_, i) => i),
@@ -121,7 +123,86 @@ export function matrixOrders(matrix, columnGroups = 4) {
       cols: cols.order,
       rowTree: rows.tree,
       colTree: cols.tree,
-      colGroups: cols.tree ? cutTree(cols.tree, columnGroups) : null,
+      rowGroups: rows.tree
+        ? cutTree(rows.tree, rowGroups)
+        : one(matrix.rows.length),
+      colGroups: cols.tree
+        ? cutTree(cols.tree, columnGroups)
+        : one(matrix.origins.length),
     },
   };
+}
+
+// Only fairly certain cells count when naming groups and picking highlights.
+const sure = (c) => (c.level <= 1 ? c.v : 0);
+const groupsInOrder = (order, groups) => {
+  const seen = new Map();
+  for (const i of order) {
+    const g = groups.get(i);
+    if (!seen.has(g)) seen.set(g, []);
+    seen.get(g).push(i);
+  }
+  return [...seen].map(([id, members]) => ({ id, members }));
+};
+// Labels for the reordered table: for each row group, the origins where its
+// flavors are listed most often; for each column group, the flavor listed
+// most often there. Names come from the data, so they follow any update.
+export function matrixGroupNotes(matrix, similar, { name, origin } = {}) {
+  const rowName = name ?? ((node) => node.name);
+  const originName = origin ?? ((o) => o);
+  const rows = groupsInOrder(similar.rows, similar.rowGroups).map((g) => {
+    const score = matrix.origins.map((_, j) => ({
+      j,
+      v:
+        g.members.reduce((s, i) => s + sure(matrix.cells[i][j]), 0) /
+        g.members.length,
+    }));
+    const top = score
+      .filter((s) => s.v > 0.4)
+      .sort((a, b) => b.v - a.v)
+      .slice(0, 2);
+    return {
+      ...g,
+      lines: top.length
+        ? [
+            top.map((s) => originName(matrix.origins[s.j])).join("・"),
+            "で出やすい",
+          ]
+        : ["産地の差は小さい"],
+    };
+  });
+  const cols = groupsInOrder(similar.cols, similar.colGroups).map((g) => {
+    const score = matrix.rows.map((node, i) => ({
+      node,
+      v:
+        g.members.reduce((s, j) => s + sure(matrix.cells[i][j]), 0) /
+        g.members.length,
+    }));
+    const top = score.filter((s) => s.v > 0.4).sort((a, b) => b.v - a.v)[0];
+    return { ...g, lines: [top ? `${rowName(top.node)}が多い` : ""] };
+  });
+  return { rows, cols };
+}
+
+// The strongest, fairly certain cells, one per origin, for the sentences
+// shown above the table.
+export function matrixHighlights(matrix, n = 3) {
+  const cells = [];
+  matrix.cells.forEach((row, i) => {
+    row.forEach((c, j) => {
+      if (c.level === 0 && c.v > 0.5) cells.push({ i, j, ...c });
+    });
+  });
+  cells.sort((a, b) => b.v - a.v || b.p - a.p);
+  const out = [];
+  const usedOrigins = new Set();
+  const usedRows = new Set();
+  for (const c of cells) {
+    if (usedOrigins.has(c.j) || usedRows.has(c.i)) continue;
+    usedOrigins.add(c.j);
+    usedRows.add(c.i);
+    out.push(c);
+    if (out.length === n) break;
+  }
+  return out;
 }
