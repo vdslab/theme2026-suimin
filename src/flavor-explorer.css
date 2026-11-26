@@ -262,3 +262,71 @@
 .flavor-bean-description-actions{display:flex;flex-wrap:wrap;gap:4px 14px}
 .flavor-bean-translation-status{margin:3px 0 0;font-size:11px;line-height:1.5;color:#79634f;overflow-wrap:anywhere}
 .flavor-bean-translation-status:empty{display:none}
+
+/* --- 味を選ぶ（左）と選んだ味の詳細（右） --- */
+.flavor-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start;margin-top:4px}
+.flavor-toggle-row{display:flex;flex-wrap:wrap;gap:8px}
+.flavor-view-toggle-btn[aria-pressed=true]{background:#6f4e37;color:#fff}
+.flavor-detail-card{display:flex;flex-direction:column;gap:12px;padding:20px}
+.flavor-detail{display:flex;flex-direction:column;gap:14px}
+.flavor-detail-empty{font-size:12px;color:#79634f;line-height:1.8}
+.flavor-detail-head{display:flex;flex-direction:column;gap:2px}
+.flavor-detail-path{font-size:11px;color:#79634f}
+.flavor-detail-name{font-size:24px;font-weight:600;margin:0;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.flavor-detail-name small{font-size:12px;font-weight:400;color:#79634f}
+.flavor-kind{align-self:flex-start;margin-top:6px;padding:2px 12px;border-radius:9999px;font-size:11px;font-weight:650;background:#f2e8d8;color:#493426}
+.flavor-kind-origin{background:#e5efe9;color:#2f5b50}
+.flavor-kind-roast{background:#efe1d4;color:#6f3a1f}
+.flavor-kind-weak,.flavor-kind-none{background:#eee6da;color:#79634f}
+.flavor-advice{display:flex;flex-direction:column;gap:8px;padding:14px;border:1px solid #d4bea2;border-radius:10px}
+.flavor-advice>p:first-child{font-size:15px;font-weight:600;margin:0;line-height:1.6}
+.flavor-bags{display:flex;gap:5px;flex-wrap:wrap}
+.flavor-detail-note{font-size:10px;line-height:1.8;color:#79634f;margin:0}
+.flavor-detail-block h3{font-size:13px;font-weight:600;margin:0 0 4px}
+.flavor-bag-chart{width:100%;height:auto;display:block;font-family:Inter,"Noto Sans JP",sans-serif}
+.flavor-bag-chart .label{font-size:11px;fill:#493426}
+.flavor-bag-chart .value,.flavor-bag-chart .tick{font-size:10px;fill:#79634f}
+.flavor-roast-key{display:inline-flex;gap:10px;margin-right:8px}
+.flavor-roast-key i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;vertical-align:-1px}
+.flavor-detail-more summary{font-size:12px;color:#79502f;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.flavor-detail-more[open] summary{margin-bottom:10px}
+.flavor-detail-more>div+div{margin-top:12px}
+
+/* 味の性格マップ */
+.flavor-character-map svg{width:100%;height:auto;display:block;font-family:Inter,"Noto Sans JP",sans-serif}
+.flavor-character-map .region{font-size:13px;fill:#b49c80;font-weight:600;letter-spacing:.08em}
+.flavor-character-map .region.small{font-size:10px}
+.flavor-character-map .axis text{font-size:10px;fill:#79634f}
+.flavor-character-map .axis line,.flavor-character-map .axis-line{stroke:#cdb79b}
+.flavor-character-map .axis-title{font-size:11px;fill:#79634f}
+.flavor-character-map .label{font-size:10.5px;fill:#493426;pointer-events:none}
+.flavor-character-map .label.active{font-weight:700;font-size:12px}
+.flavor-character-map .point{cursor:pointer;outline:none}
+.flavor-character-map .point:focus-visible circle{stroke:#6f4e37;stroke-width:3}
+
+/* 全体マップ */
+.flavor-matrix-card{margin-top:18px;display:flex;flex-direction:column;gap:12px}
+.flavor-matrix-scroll{overflow-x:auto;scrollbar-width:thin;border-radius:12px;background:radial-gradient(ellipse at center,#f2e8d855,transparent 72%)}
+.flavor-matrix{display:block;font-family:Inter,"Noto Sans JP",sans-serif}
+.flavor-matrix .col{font-size:11px;fill:#79634f}
+.flavor-matrix .row{font-size:11px;fill:#493426}
+.flavor-matrix .row.active{font-weight:700}
+.flavor-matrix .den{stroke:#b49c80;stroke-width:1}
+.flavor-matrix-readout{font-size:12px;color:#624833;min-height:1.8em;margin:0;padding:8px 12px;background:#f2e8d8;border-radius:8px}
+.flavor-matrix-key{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:flex-end}
+.flavor-matrix-key .flavor-note{margin:0;max-width:70ch;flex:1 1 260px}
+.flavor-matrix-key .leg{font-size:10px;fill:#79634f;font-family:Inter,"Noto Sans JP",sans-serif}
+.flavor-footer p{margin:2px 0}
+
+@media(max-width:1023px){
+  .flavor-main{grid-template-columns:minmax(0,1fr)}
+}
+
+/* 詳細と全体マップを縦に並べるので、ページは画面高に固定せずスクロールさせる */
+@media(min-width:1024px){
+  .flavor-explorer{height:auto;min-height:100dvh;display:block;padding:24px clamp(16px,2vw,36px)}
+  .flavor-main .flavor-wheel-viewport{flex:none;height:clamp(420px,62dvh,720px)}
+  .flavor-main .flavor-card{padding:20px}
+}
+.flavor-bag-chart{max-width:460px}
+.flavor-character-map svg{max-width:560px;margin:0 auto}

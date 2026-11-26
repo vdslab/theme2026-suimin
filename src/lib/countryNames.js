@@ -1,4 +1,5 @@
 export const COUNTRY_TRANSLATIONS = {
+  Bolivia: "ボリビア",
   Brazil: "ブラジル",
   Burundi: "ブルンジ",
   China: "中国",

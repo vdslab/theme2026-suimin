@@ -5,19 +5,27 @@ import DrankList from "./components/DrankList";
 import Header from "./components/Header";
 import StartupGuide from "./components/StartupGuide";
 import WorldMap from "./components/WorldMap";
+import FlavorExplorerPage from "./FlavorExplorerPage";
+import FlavorMatrixPage from "./FlavorMatrixPage";
 import { useRecommendation } from "./hooks/useRecommendation";
 import { translateCountry } from "./lib/countryNames";
-import FlavorExplorerPage from "./FlavorExplorerPage";
+
+// #sunburst: flavor explorer. #matrix / #matrix-plain: the whole map alone,
+// proposed and plain, for the evaluation.
+const FLAVOR_ROUTES = ["#sunburst", "#matrix", "#matrix-plain"];
+const flavorRoute = () =>
+  FLAVOR_ROUTES.includes(window.location.hash) ? window.location.hash : null;
 
 function App() {
-  const [flavorView, setFlavorView] = useState(
-    () => window.location.hash === "#sunburst",
-  );
+  const [flavorView, setFlavorView] = useState(flavorRoute);
   useEffect(() => {
-    const update = () => setFlavorView(window.location.hash === "#sunburst");
+    const update = () => setFlavorView(flavorRoute());
     window.addEventListener("hashchange", update);
     return () => window.removeEventListener("hashchange", update);
   }, []);
+  if (flavorView === "#matrix") return <FlavorMatrixPage variant="proposed" />;
+  if (flavorView === "#matrix-plain")
+    return <FlavorMatrixPage variant="plain" />;
   return flavorView ? (
     <FlavorExplorerPage />
   ) : (
@@ -26,7 +34,7 @@ function App() {
         href="#sunburst"
         className="fixed bottom-5 left-5 z-50 rounded-full bg-[#6f4e37] px-5 py-3 text-sm text-white shadow-lg"
       >
-        味のつながりを探索 ↗
+        味から産地と焙煎を探す ↗
       </a>
       <CoffeeMapApp />
     </>

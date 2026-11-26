@@ -1,101 +1,142 @@
-import { flavorName, flavorPath } from "./lib/flavorJapanese";
-import { useEffect, useMemo, useState } from "react";
-import {
-  buildFlavorIndex,
-  buildFlavorNetwork,
-  MAX_BEANS,
-  MAX_FLAVORS,
-  toggleFlavorSelection,
-} from "./lib/flavorData";
+import { useEffect, useState } from "react";
+import FlavorCharacterMap from "./components/FlavorCharacterMap";
+import FlavorDetail from "./components/FlavorDetail";
+import FlavorMatrix, {
+  describeCell,
+  MatrixLegend,
+  useFlavorMatrix,
+} from "./components/FlavorMatrix";
 import SunburstFlavorChart from "./components/SunburstFlavorChart";
-import FlavorNetworkDetail from "./components/FlavorNetworkDetail";
-import FlavorBeanList from "./components/FlavorBeanList";
+import { useFlavorData } from "./hooks/useFlavorData";
+import { MIN_ORIGIN_BEANS } from "./lib/flavorStats";
 import "./flavor-explorer.css";
 
-export default function FlavorExplorerPage() {
-  const [data, setData] = useState(null);
-  const [selectedIds, setSelectedIds] = useState([]);
-  const [allThree, setAllThree] = useState(false);
-  const [notice, setNotice] = useState("");
-  const selectFlavor = (id) => {
-    const next = toggleFlavorSelection(data, selectedIds, id);
-    setNotice(next === selectedIds ? "最大3つまで選択できます" : "");
-    setSelectedIds(next);
-    setSelectedBeanId(null);
-    setExpandedBeanId(null);
-    setGraphSelection(null);
-    setHoveredBeanId(null);
-    setAllThree(false);
-  };
-  const [selectedBeanId, setSelectedBeanId] = useState(null);
-  const [expandedBeanId, setExpandedBeanId] = useState(null);
-  const [graphSelection, setGraphSelection] = useState(null);
-  const [hoveredBeanId, setHoveredBeanId] = useState(null);
-  const [isListOpen, setIsListOpen] = useState(false);
-  const [error, setError] = useState("");
+export const datasetLabel = (version) => {
+  const [y, m] = String(version ?? "").split(".");
+  return m ? `${y}年${Number(m)}月` : "";
+};
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape" && isListOpen) {
-        setIsListOpen(false);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isListOpen]);
-  useEffect(() => {
-    let active = true;
-    // Seller descriptions are not in the public data; only the dev server has them.
-    const descriptions = import.meta.env.DEV
-      ? fetch(`${import.meta.env.BASE_URL}api/flavor-descriptions.json`)
-          .then((response) => (response.ok ? response.json() : {}))
-          .catch(() => ({}))
-      : Promise.resolve({});
-    Promise.all([import("./data/flavor_beans.json"), descriptions])
-      .then(([{ default: published }, notes]) => {
-        const beans = published.beans.map((bean) =>
-          notes[bean.id]
-            ? { ...bean, tasting_notes_raw: notes[bean.id] }
-            : bean,
-        );
-        const result = buildFlavorIndex({ ...published, beans });
-        if (!result.initialId)
-          throw new Error("有効な味タグが見つかりません。");
-        if (!active) return;
-        setData(result);
-        setSelectedIds([result.initialId]);
-      })
-      .catch((e) => {
-        if (active) setError(e.message);
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
-  const network = useMemo(
-    () => data && buildFlavorNetwork(data, selectedIds, allThree),
-    [data, selectedIds, allThree],
+export function FlavorCredits({ version }) {
+  return (
+    <footer className="flavor-footer">
+      <p>
+        Data: RoasterDB (DataEngineered)
+        {datasetLabel(version) ? `, ${datasetLabel(version)}取得` : ""} ／
+        Flavor taxonomy: SCA Coffee Taster's Flavor Wheel
+      </p>
+      <p>
+        値は、店の説明文に書かれた味の傾向です。各焙煎所とは関係のない非公式の可視化です。
+      </p>
+    </footer>
   );
+}
+
+function LoadError({ error }) {
+  return (
+    <div role="alert" className="flavor-card">
+      <h2>データを読み込めませんでした</h2>
+      <p>{error}</p>
+      <p>
+        src/data/flavor_beans.json がない場合は、data/private
+        に有料データを配置して npm run export:flavor-data を実行してください。
+      </p>
+    </div>
+  );
+}
+
+function Toggle({ pressed, onClick, children }) {
+  return (
+    <button
+      type="button"
+      className="flavor-view-toggle-btn"
+      aria-pressed={pressed}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
+
+function MatrixSection({ data, attributes, selectedId, onSelect }) {
+  const { matrix, orders } = useFlavorMatrix(data, attributes);
+  const [similar, setSimilar] = useState(true);
+  const [vsup, setVsup] = useState(true);
+  const [cell, setCell] = useState(null);
+  return (
+    <section className="flavor-card flavor-matrix-card">
+      <div className="flavor-section-heading flavor-network-heading">
+        <div>
+          <span>全体マップ</span>
+          <h2>どの産地で、どの味に出会いやすいか</h2>
+          <p>
+            色は、その産地の豆で全体平均より出やすいか（茶）、出にくいか（青緑）。件数が少なく確かでないマスほど、色が薄くまとまります。行を押すと上の詳細に切り替わります。
+          </p>
+        </div>
+        <div className="flavor-toggle-row">
+          <Toggle pressed={similar} onClick={() => setSimilar((v) => !v)}>
+            {similar ? "似ている順" : "ホイール順"}
+          </Toggle>
+          <Toggle pressed={vsup} onClick={() => setVsup((v) => !v)}>
+            {vsup ? "不確かさを込めた配色" : "普通の配色"}
+          </Toggle>
+        </div>
+      </div>
+      <div className="flavor-matrix-scroll">
+        <FlavorMatrix
+          matrix={matrix}
+          orders={orders}
+          order={similar ? "similar" : "wheel"}
+          color={vsup ? "vsup" : "plain"}
+          selectedId={selectedId}
+          onSelectRow={onSelect}
+          onHover={setCell}
+        />
+      </div>
+      <p className="flavor-matrix-readout" aria-live="polite">
+        {cell
+          ? describeCell(matrix, cell[0], cell[1])
+          : "マスにカーソルを合わせると、件数と10袋中何袋かが出ます。"}
+      </p>
+      <div className="flavor-matrix-key">
+        <MatrixLegend color={vsup ? "vsup" : "plain"} />
+        <p className="flavor-note">
+          {similar
+            ? "行と列は出方の似ている順（階層クラスタリング＋最適葉順序）。端の線は、近くでつながるほど出方が似ていることを表す。列のすき間は産地を4つのまとまりに分けた位置。"
+            : "行は SCA フレーバーホイールの順、列は豆の件数の多い順。"}
+          {vsup
+            ? "不確かさは、割合の95%区間の幅で4段階に分けた（VSUP）。"
+            : "件数0のマスは最も濃い青になる。"}
+          焙煎度は豆の一部でしか分からないため、列には入れていない。
+        </p>
+      </div>
+    </section>
+  );
+}
+
+export default function FlavorExplorerPage() {
+  const { data, attributes, error } = useFlavorData();
+  const [selectedId, setSelectedId] = useState(null);
+  const [view, setView] = useState("sunburst");
+  useEffect(() => {
+    if (data && !selectedId) setSelectedId(data.initialId);
+  }, [data, selectedId]);
+  const node = data && selectedId ? data.nodes.get(selectedId) : null;
+  // One flavor at a time: choosing the selected flavor again keeps it.
+  const select = (id) => {
+    if (data?.nodes.get(id)?.path.length) setSelectedId(id);
+  };
   return (
     <main className="flavor-explorer">
       <header className="flavor-header">
         <div>
           <span className="flavor-eyebrow">コーヒー研究室</span>
-          <h1>味からつながる、コーヒー。</h1>
+          <h1>味から選ぶ、産地と焙煎。</h1>
         </div>
-        <a href="#">地図に戻る ↗</a>
+        <a href="#map">地図に戻る ↗</a>
       </header>
       {error ? (
-        <div role="alert" className="flavor-card">
-          <h2>データを読み込めませんでした</h2>
-          <p>{error}</p>
-          <p>
-            src/data/flavor_beans.json がない場合は、data/private
-            に有料データを配置して npm run export:flavor-data
-            を実行してください。
-          </p>
-        </div>
-      ) : !network ? (
+        <LoadError error={error} />
+      ) : !data ? (
         <p role="status">データを読み込んで味の階層を構築しています…</p>
       ) : (
         <>
@@ -104,170 +145,81 @@ export default function FlavorExplorerPage() {
               <b>{data.beans.length.toLocaleString()}</b> タグ付き豆
             </span>
             <span>
-              <b>{data.nodes.size - 1}</b> 階層ノード
+              <b>{attributes.origins.length}</b> 産地（{MIN_ORIGIN_BEANS}
+              件以上）
             </span>
             <span>
               {data.totalProducts.toLocaleString()} 商品 /{" "}
               {data.totalRows.toLocaleString()} CSV行
             </span>
-            <span>焙煎所データ · 2026年10月</span>
+            <span>焙煎所データ · {datasetLabel(data.datasetVersion)}</span>
           </div>
-          <div className="flavor-panels-viewport">
-            <div
-              className={`flavor-panels-track ${
-                isListOpen ? "is-list-open" : ""
-              }`}
-            >
-              {/* パネル1: 味の階層（サンバースト図） */}
-              <section className="flavor-card flavor-panel-sunburst flavor-sunburst-card">
-                <div className="flavor-section-heading">
-                  <h2>味の全体像</h2>
+          <div className="flavor-main">
+            <section className="flavor-card flavor-sunburst-card">
+              <div className="flavor-section-heading flavor-network-heading">
+                <div>
+                  <h2>
+                    {view === "sunburst" ? "味の全体像" : "味の性格マップ"}
+                  </h2>
                   <p>
-                    内側から大分類 → 中分類 → 末端タグ。好きな区画をクリック。
+                    {view === "sunburst"
+                      ? "内側から大分類 → 中分類 → 末端タグ。好きな区画をクリック。"
+                      : "焙煎で決まる味か、産地で決まる味か。点をクリック。"}
                   </p>
                 </div>
+                <div className="flavor-toggle-row">
+                  <Toggle
+                    pressed={view === "sunburst"}
+                    onClick={() => setView("sunburst")}
+                  >
+                    全体像
+                  </Toggle>
+                  <Toggle
+                    pressed={view === "character"}
+                    onClick={() => setView("character")}
+                  >
+                    性格マップ
+                  </Toggle>
+                </div>
+              </div>
+              {view === "sunburst" ? (
                 <SunburstFlavorChart
                   data={data}
-                  selectedIds={selectedIds}
-                  onSelect={selectFlavor}
+                  selectedIds={selectedId ? [selectedId] : []}
+                  onSelect={select}
                 />
-              </section>
-
-              {/* パネル2: 味と豆のつながり（ネットワーク図） */}
-              <section className="flavor-card flavor-panel-network">
-                <div className="flavor-section-heading flavor-network-heading">
-                  <div>
-                    <h2>味と豆を探索</h2>
-                  </div>
-                  <button
-                    type="button"
-                    className="flavor-view-toggle-btn"
-                    onClick={() => setIsListOpen((prev) => !prev)}
-                    title={
-                      isListOpen
-                        ? "味の階層（サンバースト図）に戻る"
-                        : "豆リストを右側に並べて表示"
-                    }
-                  >
-                    {isListOpen ? "≪ 味の階層を表示" : "リストを表示 ≫"}
-                  </button>
-                </div>
-                <div className="flavor-selection-controls">
-                  {network.selectedFlavors.map((node) => (
-                    <button
-                      type="button"
-                      className="flavor-selection-chip"
-                      key={node.id}
-                      style={{ borderColor: data.color(node.path) }}
-                      onClick={() => selectFlavor(node.id)}
-                      aria-label={`${flavorPath(node.path)}の選択解除`}
-                    >
-                      {flavorPath(node.path)} ×
-                    </button>
-                  ))}
-                  <button
-                    type="button"
-                    disabled={!selectedIds.length}
-                    onClick={() => {
-                      setSelectedIds([]);
-                      setSelectedBeanId(null);
-                      setAllThree(false);
-                      setNotice("");
-                    }}
-                  >
-                    全選択解除
-                  </button>
-                  {selectedIds.length === 3 && (
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={allThree}
-                        onChange={(e) => setAllThree(e.target.checked)}
-                      />
-                      3つすべて一致のみ
-                    </label>
-                  )}
-                  <span role="status">{notice}</span>
-                  <small>
-                    最大3つ。親子の味は後から選んだ味に置き換えます。未選択時は左の図から選択してください。
-                  </small>
-                </div>
-                <div className="flavor-stats">
-                  <div>
-                    <b>{network.matchedCount.toLocaleString()}</b>
-                    <span>該当豆数</span>
-                  </div>
-                  <div>
-                    <b>{network.cooccurrenceCount}</b>
-                    <span>共起味数</span>
-                  </div>
-                  <div>
-                    <b>{network.beans.length}</b>
-                    <span>表示中の豆</span>
-                  </div>
-                </div>
-                <div className="flavor-network-key">
-                  <span>● 味ノード</span>
-                  <span>◦ 豆ノード</span>
-                  <span>ドラッグで移動 / スクロールでズーム</span>
-                </div>
-                <FlavorNetworkDetail
-                  network={network}
-                  color={data.color}
-                  onSelect={(id) => {
-                    selectFlavor(id);
-                    setSelectedBeanId(null);
-                  }}
-                  selectedBeanId={selectedBeanId}
-                  onSelectBean={(b) => {
-                    setSelectedBeanId(b?.id ?? null);
-                    setExpandedBeanId(b?.id ?? null);
-                    setGraphSelection({ id: b?.id });
-                    setIsListOpen(true);
-                  }}
-                  hoveredBeanId={hoveredBeanId}
-                  onHoverBean={setHoveredBeanId}
+              ) : (
+                <FlavorCharacterMap
+                  data={data}
+                  selectedId={selectedId}
+                  onSelect={select}
                 />
-                <p className="flavor-note">
-                  {network.beans.length} /{" "}
-                  {network.matchedCount.toLocaleString()}件表示 · 上限
-                  {MAX_BEANS}件 · 関連味{MAX_FLAVORS}件
-                </p>
-              </section>
-
-              {/* パネル3: 豆の一覧（豆リスト） */}
-              <section className="flavor-card flavor-panel-beans">
-                <FlavorBeanList
-                  beans={network.beans}
-                  color={data.color}
-                  onSelectFlavor={(id) => {
-                    selectFlavor(id);
-                    setSelectedBeanId(null);
-                  }}
-                  expandedBeanId={expandedBeanId}
-                  graphSelection={graphSelection}
-                  onToggleBean={(id) =>
-                    setExpandedBeanId((current) => (current === id ? null : id))
-                  }
-                  selectedBeanId={selectedBeanId}
-                  onSelectBean={(b) => setSelectedBeanId(b?.id ?? null)}
-                  hoveredBeanId={hoveredBeanId}
-                  onHoverBean={setHoveredBeanId}
-                  selectedFlavorPaths={network.selectedFlavors.map(
-                    (n) => n.path,
-                  )}
-                  onClose={() => setIsListOpen(false)}
-                />
-              </section>
-            </div>
+              )}
+            </section>
+            <section
+              className="flavor-card flavor-detail-card"
+              aria-live="polite"
+            >
+              <div className="flavor-section-heading">
+                <span>選んだ味</span>
+              </div>
+              <FlavorDetail data={data} attributes={attributes} node={node} />
+            </section>
           </div>
-          <footer className="flavor-footer">
-            味の分類：SCA Flavor Wheel · データ：RoasterDB（DataEngineered,
-            2026年10月取得。価格は取得時点のもの） ·
-            各焙煎所とは関係のない非公式の可視化です
-          </footer>
+          <MatrixSection
+            data={data}
+            attributes={attributes}
+            selectedId={selectedId}
+            onSelect={(id) => {
+              select(id);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          />
+          <FlavorCredits version={data.datasetVersion} />
         </>
       )}
     </main>
   );
 }
+
+export { LoadError };
