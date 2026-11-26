@@ -12,6 +12,7 @@ import {
   shareBy,
   shareByOriginRoast,
 } from "../lib/flavorStats";
+import FlavorOriginMap from "./FlavorOriginMap";
 
 export const ROAST_COLORS = {
   light: "#D49A5A",
@@ -300,6 +301,11 @@ export default function FlavorDetail({ data, attributes, node }) {
   const originChart = (
     <section className="flavor-detail-block">
       <h3>産地ごと</h3>
+      <FlavorOriginMap rows={originRows} base={stats.origin.base} />
+      <p className="flavor-detail-note">
+        円が大きいほど、その産地の豆に{name}
+        の味が多く書かれています（茶は平均より多い、青緑は少ない、薄い円は件数が少なく確かでない）。
+      </p>
       <BagChart rows={originRows} base={stats.origin.base} />
     </section>
   );
