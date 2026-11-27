@@ -338,3 +338,8 @@
 .flavor-origin-map{width:100%;max-width:520px;height:auto;display:block;font-family:Inter,"Noto Sans JP",sans-serif;background:#f7efe3;border-radius:10px;margin:4px 0}
 .flavor-origin-map .land path{fill:#eadcc9;stroke:#fffbf3;stroke-width:.5}
 .flavor-origin-map .map-label{font-size:11px;fill:#2a211b;font-weight:600;paint-order:stroke;stroke:#f7efe3;stroke-width:3px}
+
+/* #flavor-map 試作: 最初の画面と同じ配置 */
+.flavor-map-picker .flavor-wheel-viewport{height:clamp(200px,44dvh,380px);background:none}
+@media(max-width:639px){.flavor-map-picker .flavor-wheel-viewport{height:230px}}
+.flavor-world-label{font-size:13px;font-weight:650;fill:#2a211b;paint-order:stroke;stroke:#fffbf3;stroke-width:4px;font-family:Inter,"Noto Sans JP",sans-serif}

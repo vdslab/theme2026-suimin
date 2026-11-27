@@ -6,13 +6,15 @@ import Header from "./components/Header";
 import StartupGuide from "./components/StartupGuide";
 import WorldMap from "./components/WorldMap";
 import FlavorExplorerPage from "./FlavorExplorerPage";
+import FlavorMapPage from "./FlavorMapPage";
 import FlavorMatrixPage from "./FlavorMatrixPage";
 import { useRecommendation } from "./hooks/useRecommendation";
 import { translateCountry } from "./lib/countryNames";
 
 // #sunburst: flavor explorer. #matrix / #matrix-plain: the whole map alone,
-// proposed and plain, for the evaluation.
-const FLAVOR_ROUTES = ["#sunburst", "#matrix", "#matrix-plain"];
+// proposed and plain, for the evaluation. #flavor-map: prototype of the
+// flavor data in the root map's layout.
+const FLAVOR_ROUTES = ["#sunburst", "#matrix", "#matrix-plain", "#flavor-map"];
 const flavorRoute = () =>
   FLAVOR_ROUTES.includes(window.location.hash) ? window.location.hash : null;
 
@@ -23,6 +25,7 @@ function App() {
     window.addEventListener("hashchange", update);
     return () => window.removeEventListener("hashchange", update);
   }, []);
+  if (flavorView === "#flavor-map") return <FlavorMapPage />;
   if (flavorView === "#matrix") return <FlavorMatrixPage variant="proposed" />;
   if (flavorView === "#matrix-plain")
     return <FlavorMatrixPage variant="plain" />;

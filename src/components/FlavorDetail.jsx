@@ -265,7 +265,12 @@ function OriginRoastChart({ cross }) {
 const ROAST_NOTE =
   "焙煎度が書かれた豆（全体の約4割）の中での値。チョコ系が多い店ほど焙煎度を書いているため、全体の割合としては偏っている。";
 
-export default function FlavorDetail({ data, attributes, node }) {
+export default function FlavorDetail({
+  data,
+  attributes,
+  node,
+  showOriginMap = true,
+}) {
   const stats = useMemo(() => {
     if (!node) return null;
     return {
@@ -301,11 +306,15 @@ export default function FlavorDetail({ data, attributes, node }) {
   const originChart = (
     <section className="flavor-detail-block">
       <h3>産地ごと</h3>
-      <FlavorOriginMap rows={originRows} base={stats.origin.base} />
-      <p className="flavor-detail-note">
-        円が大きいほど、その産地の豆に{name}
-        の味が多く書かれています（茶は平均より多い、青緑は少ない、薄い円は件数が少なく確かでない）。
-      </p>
+      {showOriginMap && (
+        <>
+          <FlavorOriginMap rows={originRows} base={stats.origin.base} />
+          <p className="flavor-detail-note">
+            円が大きいほど、その産地の豆に{name}
+            の味が多く書かれています（茶は平均より多い、青緑は少ない、薄い円は件数が少なく確かでない）。
+          </p>
+        </>
+      )}
       <BagChart rows={originRows} base={stats.origin.base} />
     </section>
   );
