@@ -88,7 +88,7 @@ function MatrixSection({ data, attributes, selectedId, onSelect }) {
       <div className="flavor-section-heading flavor-network-heading">
         <div>
           <span>味 × 産地の早見表</span>
-          <h2>どの産地で、どの味に出会いやすいか</h2>
+          <h2>どの産地でどの味に出会えるか</h2>
           <p>
             茶色が濃いほど、その産地の豆に、その味が平均より多く書かれています（青緑は少ない）。件数が少なく確かでないマスは、薄い色にまとめています。行を押すと上の詳細に切り替わります。
           </p>
@@ -160,7 +160,7 @@ export default function FlavorExplorerPage() {
       <header className="flavor-header">
         <div>
           <span className="flavor-eyebrow">コーヒー研究室</span>
-          <h1>味から選ぶ、産地と焙煎。</h1>
+          <h1>味から選ぶ産地と焙煎</h1>
         </div>
         <a href="#map">地図に戻る ↗</a>
       </header>

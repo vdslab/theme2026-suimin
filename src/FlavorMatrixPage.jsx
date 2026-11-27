@@ -42,7 +42,7 @@ function MatrixOnly({ data, attributes, proposed }) {
     <>
       <section className="flavor-card flavor-matrix-card">
         <div className="flavor-section-heading">
-          <h2>どの産地で、どの味に出会いやすいか</h2>
+          <h2>どの産地でどの味に出会えるか</h2>
           <p>
             茶色が濃いほど、その産地の豆に、その味が平均より多く書かれています（青緑は少ない）。
             {proposed
